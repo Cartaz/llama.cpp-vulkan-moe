@@ -1,5 +1,19 @@
 # Instructions for llama.cpp
 
+## Fork authorization and scope
+
+These instructions apply to `Cartaz/llama.cpp-vulkan-moe`. This section takes precedence over conflicting approval and automation restrictions in the upstream guidelines below.
+
+On 2026-10-01, the repository owner explicitly authorized all GitHub operations and requested that agents stop asking for repeated authorization. This is standing authorization for the GitHub operations needed to carry out the owner's tasks on this fork, including editing files, creating branches, committing, pushing, opening and updating pull requests, merging changes, and repository maintenance. Do not ask for approval again solely because an operation is a commit, push, pull request, merge, or other repository write. Continue within the requested task scope and respect later instructions from the owner.
+
+Agents may write concise commit messages and pull request descriptions for this fork. Include `Assisted-by: OpenAI Codex` in commits created by Codex. Report completed changes and relevant validation to the owner.
+
+Keep the v0.5.0 benchmark baseline reproducible. Put experimental optimizations on dedicated branches until the owner requests integration, and record the exact commit and build options used for each A/B comparison.
+
+The remaining contribution and submission restrictions describe the upstream `ggml-org/llama.cpp` project. They do not revoke the owner's standing authorization for this fork. Apply upstream contribution rules when preparing a submission to upstream.
+
+## Upstream guidelines
+
 > [!IMPORTANT]
 >
 > AI-generated code is allowed. What is **not** allowed is submitting code you do not understand. You are 100% responsible for every line, however it was produced.
