@@ -1469,7 +1469,11 @@ UseGgmlGemm2:;
 
 // ggml_compute_forward_mul_mat_id
 
+#ifdef GGML_USE_CPU_MOE_COMPACT
+#define MMID_MATRIX_ROW(row_id, i1) matrix_rows[matrix_row_offsets[(row_id)] + (i1)]
+#else
 #define MMID_MATRIX_ROW(row_id, i1) matrix_rows[(row_id)*ids->ne[0]*ids->ne[1] + (i1)]
+#endif
 
 struct mmid_row_mapping {
     int32_t i1;
@@ -1488,11 +1492,15 @@ static void ggml_compute_forward_mul_mat_id_one_chunk(
     const int64_t ir1_end,
     const char * src0_cur,
     const struct mmid_row_mapping * matrix_rows,
+    const int64_t * matrix_row_offsets,
     const size_t row_size,
     const bool src1_cont,
     const void * wdata) {
 
     GGML_TENSOR_BINARY_OP_LOCALS
+
+    GGML_UNUSED(ids);
+    GGML_UNUSED(matrix_row_offsets);
 
     const enum ggml_type type = src0->type;
 
@@ -1590,8 +1598,16 @@ static void ggml_compute_forward_mul_mat_id(
     int64_t * matrix_row_counts = // [n_as]
         incr_ptr_aligned(&wdata_cur, n_as*sizeof(int64_t), sizeof(int64_t));
 
+#ifdef GGML_USE_CPU_MOE_COMPACT
+    int64_t * matrix_row_offsets =
+        incr_ptr_aligned(&wdata_cur, n_as*sizeof(int64_t), sizeof(int64_t));
+    struct mmid_row_mapping * matrix_rows =
+        incr_ptr_aligned(&wdata_cur, ids->ne[0]*ids->ne[1]*sizeof(struct mmid_row_mapping), sizeof(int64_t));
+#else
+    const int64_t * matrix_row_offsets = NULL;
     struct mmid_row_mapping * matrix_rows = // [n_as][ids->ne[0]*ids->ne[1]]
         incr_ptr_aligned(&wdata_cur, n_as*ids->ne[0]*ids->ne[1]*sizeof(struct mmid_row_mapping), sizeof(int64_t));
+#endif
 
     char (*atomic_current_chunk)[CACHE_LINE_SIZE] = // [n_as]
         incr_ptr_aligned(&wdata_cur, CACHE_LINE_SIZE * n_as, CACHE_LINE_SIZE);
@@ -1648,6 +1664,24 @@ static void ggml_compute_forward_mul_mat_id(
     if (ith == 0) {
         // initialize matrix_row_counts
         memset(matrix_row_counts, 0, n_as*sizeof(int64_t));
+
+#ifdef GGML_USE_CPU_MOE_COMPACT
+        for (int64_t iid1 = 0; iid1 < ids->ne[1]; ++iid1) {
+            for (int id = 0; id < n_ids; ++id) {
+                const int32_t i02 = *(const int32_t *) ((const char *) ids->data + iid1*ids->nb[1] + id*ids->nb[0]);
+                GGML_ASSERT(i02 >= 0 && i02 < n_as);
+                matrix_row_counts[i02] += 1;
+            }
+        }
+
+        int64_t row_offset = 0;
+        for (int cur_a = 0; cur_a < n_as; ++cur_a) {
+            matrix_row_offsets[cur_a] = row_offset;
+            row_offset += matrix_row_counts[cur_a];
+        }
+        GGML_ASSERT(row_offset == ids->ne[0]*ids->ne[1]);
+        memset(matrix_row_counts, 0, n_as*sizeof(int64_t));
+#endif
 
         // group rows by src0 matrix
         for (int64_t iid1 = 0; iid1 < ids->ne[1]; ++iid1) {
@@ -1727,7 +1761,7 @@ static void ggml_compute_forward_mul_mat_id(
             ggml_compute_forward_mul_mat_id_one_chunk(
                 dst, src0, src1, ids, cur_a,
                 ir0_start, ir0_end, ir1_start, ir1_end,
-                src0_cur, matrix_rows, row_size, src1_cont, wdata
+                src0_cur, matrix_rows, matrix_row_offsets, row_size, src1_cont, wdata
             );
 
             if (nth >= nchunk0 * nchunk1) {
@@ -2911,8 +2945,15 @@ struct ggml_cplan ggml_graph_plan(
                         }
                         // matrix_row_counts
                         cur += n_as * sizeof(int64_t) + sizeof(int64_t);
+#ifdef GGML_USE_CPU_MOE_COMPACT
+                        // matrix_row_offsets
+                        cur += n_as * sizeof(int64_t) + sizeof(int64_t);
+                        // matrix_rows
+                        cur += ids->ne[0]*ids->ne[1]*sizeof(struct mmid_row_mapping) + sizeof(int64_t);
+#else
                         // matrix_rows
                         cur += n_as*ids->ne[0]*ids->ne[1]*sizeof(struct mmid_row_mapping) + sizeof(int64_t);
+#endif
                         // atomic_current_chunk
                         cur += CACHE_LINE_SIZE*n_as + CACHE_LINE_SIZE;
                         // the IQ panel path needs one scratch panel per thread on top of that
