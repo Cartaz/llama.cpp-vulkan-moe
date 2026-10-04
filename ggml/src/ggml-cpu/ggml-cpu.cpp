@@ -543,6 +543,9 @@ static ggml_backend_feature * ggml_backend_cpu_get_features(ggml_backend_reg_t r
 #ifdef GGML_USE_CPU_MOE_COMPACT
         features.push_back({ "MOE_COMPACT", "1" });
 #endif
+#ifdef GGML_USE_CPU_MOE_ACTIVE
+        features.push_back({ "MOE_ACTIVE", "1" });
+#endif
         if (ggml_cpu_has_sse3()) {
             features.push_back({ "SSE3", "1" });
         }

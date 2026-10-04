@@ -1609,6 +1609,12 @@ static void ggml_compute_forward_mul_mat_id(
         incr_ptr_aligned(&wdata_cur, n_as*ids->ne[0]*ids->ne[1]*sizeof(struct mmid_row_mapping), sizeof(int64_t));
 #endif
 
+#ifdef GGML_USE_CPU_MOE_ACTIVE
+    const bool use_active = ids->ne[1] <= 8;
+    int32_t * matrix_active = // [count, expert IDs]
+        incr_ptr_aligned(&wdata_cur, ((size_t) n_as + 1)*sizeof(int32_t), sizeof(int64_t));
+#endif
+
     char (*atomic_current_chunk)[CACHE_LINE_SIZE] = // [n_as]
         incr_ptr_aligned(&wdata_cur, CACHE_LINE_SIZE * n_as, CACHE_LINE_SIZE);
 
@@ -1694,17 +1700,46 @@ static void ggml_compute_forward_mul_mat_id(
                 matrix_row_counts[i02] += 1;
             }
         }
+#ifdef GGML_USE_CPU_MOE_ACTIVE
+        if (use_active) {
+            int n_active = 0;
+            for (int cur_a = 0; cur_a < n_as; ++cur_a) {
+                if (matrix_row_counts[cur_a] > 0) {
+                    matrix_active[++n_active] = cur_a;
+                    atomic_int * current_chunk_ctr = (atomic_int *)(atomic_current_chunk + cur_a);
+                    // The barrier below publishes these counter resets.
+                    atomic_store_explicit(current_chunk_ctr, nth, memory_order_relaxed);
+                }
+            }
+            matrix_active[0] = n_active;
+        }
+#endif
     }
 
     // reset current_chunk
-    for (int cur_a = ith; cur_a < n_as; cur_a += nth) {
-        atomic_int * current_chunk_ctr = (atomic_int *)(atomic_current_chunk + cur_a);
-        *current_chunk_ctr = nth;
+#ifdef GGML_USE_CPU_MOE_ACTIVE
+    if (!use_active)
+#endif
+    {
+        for (int cur_a = ith; cur_a < n_as; cur_a += nth) {
+            atomic_int * current_chunk_ctr = (atomic_int *)(atomic_current_chunk + cur_a);
+            *current_chunk_ctr = nth;
+        }
     }
 
     ggml_barrier(params->threadpool);
 
-    for (int cur_a = 0; cur_a < n_as; ++cur_a) {
+#ifdef GGML_USE_CPU_MOE_ACTIVE
+    const int n_matrices = use_active ? matrix_active[0] : n_as;
+#else
+    const int n_matrices = n_as;
+#endif
+    for (int matrix = 0; matrix < n_matrices; ++matrix) {
+#ifdef GGML_USE_CPU_MOE_ACTIVE
+        const int cur_a = use_active ? matrix_active[matrix + 1] : matrix;
+#else
+        const int cur_a = matrix;
+#endif
         const int64_t cne1 = matrix_row_counts[cur_a];
 
         if (cne1 == 0) {
@@ -2953,6 +2988,9 @@ struct ggml_cplan ggml_graph_plan(
 #else
                         // matrix_rows
                         cur += n_as*ids->ne[0]*ids->ne[1]*sizeof(struct mmid_row_mapping) + sizeof(int64_t);
+#endif
+#ifdef GGML_USE_CPU_MOE_ACTIVE
+                        cur += ((size_t) n_as + 1)*sizeof(int32_t) + sizeof(int64_t);
 #endif
                         // atomic_current_chunk
                         cur += CACHE_LINE_SIZE*n_as + CACHE_LINE_SIZE;

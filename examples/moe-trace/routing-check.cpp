@@ -104,7 +104,7 @@ int main(int argc, char ** argv) {
     ggml_cpu_init();
     bool ok = true;
     for (ggml_type type : {GGML_TYPE_F32, GGML_TYPE_Q4_K, GGML_TYPE_Q6_K}) {
-        for (int n : {1, 7, 65}) {
+        for (int n : {1, 7, 8, 9, 65}) {
             for (int n_threads : {1, 4, 8}) {
                 for (bool broadcast : {false, true}) {
                     for (bool repeated : {false, true}) {

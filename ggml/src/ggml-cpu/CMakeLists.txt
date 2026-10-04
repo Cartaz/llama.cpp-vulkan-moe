@@ -63,6 +63,10 @@ function(ggml_add_cpu_backend_variant_impl tag_name)
         target_compile_definitions(${GGML_CPU_NAME} PRIVATE GGML_USE_CPU_MOE_COMPACT)
     endif()
 
+    if (GGML_CPU_MOE_ACTIVE)
+        target_compile_definitions(${GGML_CPU_NAME} PRIVATE GGML_USE_CPU_MOE_ACTIVE)
+    endif()
+
     if (APPLE AND GGML_ACCELERATE)
         find_library(ACCELERATE_FRAMEWORK Accelerate)
         if (ACCELERATE_FRAMEWORK)
