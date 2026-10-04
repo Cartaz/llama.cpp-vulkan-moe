@@ -38,3 +38,16 @@ Replay clears sequence memory, evaluates the complete workload once as a warmup,
 Set `MOE_REPLAY_LOGITS_OUT=logits.bin` for a byte comparison between builds using the same workload and batching. The file concatenates native float logits after each prefill chunk and each decode call, in repetition order; its vocabulary size comes from the model. Retain binary SHA-256s and an exact `cmp` for correctness evidence. Measure throughput separately with raw-logit output disabled.
 
 The same replay source can be compiled against an unmodified upstream build's libraries without modifying that checkout. Check that the headers and library ABI match, and record the replay source hash separately from the inference library commit. A fixed input sequence controls token-induced routing changes; it does not guarantee identical routing if logits or backend arithmetic change.
+
+## Prefill-informed cache policies
+
+Use `--phase decode --prefill-policies` to compare the existing cold LRU with two additional per-layer policies:
+
+```sh
+python3 examples/moe-trace/analyze.py agent-routing.csv --phase decode \
+  --prefill-policies --slots 0,16,32,48,64,96,128 --json prefill-policies.json
+```
+
+`warm_lru` processes the prefill into an LRU cache, then counts hits and performs LRU updates during decode. `static_prefill` selects the most frequent prefill experts once and holds those slots fixed throughout decode; equal frequencies use ascending expert ID. It never uses decode frequencies to select experts. Each request checks its distinct top-k experts before any cache update. Layers have independent caches. Layers absent from prefill start empty; the trace must contain some prefill and must place all prefill rows before decode.
+
+Only decode activations enter the hit-rate denominator. Per-layer JSON includes training activation counts and `prefill_cache` hits, misses and rates. Existing output is unchanged when the option is omitted. These policies assume the initial slots are populated before decode and exclude priming cost, transfers, eviction synchronization and cache capacity shared with dense weights/KV. They measure logical coverage, not a working GPU cache or an end-to-end speedup. Validate prompt-informed placement on multiple held-out prompts before choosing a policy.

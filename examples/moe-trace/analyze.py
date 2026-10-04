@@ -14,9 +14,12 @@ def main():
     parser.add_argument("--slots", default="0,16,32,48,64,96,128", help="slots per layer")
     parser.add_argument("--json", dest="json_path", help="write per-layer statistics as JSON")
     parser.add_argument("--window", type=int, default=32, help="working-set window in evaluated tokens per layer")
+    parser.add_argument("--prefill-policies", action="store_true", help="compare decode with prefill-warmed LRU and fixed prefill-frequency slots")
     args = parser.parse_args()
     if args.window < 1:
         parser.error("--window must be positive")
+    if args.prefill_policies and args.phase != "decode":
+        parser.error("--prefill-policies requires --phase decode")
     slots = sorted(set(int(s) for s in args.slots.split(",")))
     if not slots or min(slots) < 0:
         parser.error("--slots must contain non-negative integers")
@@ -30,8 +33,24 @@ def main():
     activations = Counter()
     frequency = defaultdict(Counter)
     phases_seen = set()
+    prefill_frequency = defaultdict(Counter)
+    warm_caches = defaultdict(lambda: {size: OrderedDict() for size in slots})
+    static_slots = {}
+    policy_hits = Counter()
+    decoding_seen = False
     group = None
     selected = []
+
+    def access(cache, size, distinct):
+        count = sum(expert in cache for expert in distinct)
+        for expert in distinct:
+            if expert in cache:
+                cache.move_to_end(expert)
+            elif size:
+                if len(cache) == size:
+                    cache.popitem(last=False)
+                cache[expert] = None
+        return count
 
     def process():
         if group is None:
@@ -40,6 +59,20 @@ def main():
         # The whole top-k set is requested at once; later ranks cannot hit
         # experts first selected by an earlier rank of the same token.
         distinct = list(dict.fromkeys(selected))
+        if args.prefill_policies:
+            if phase == "prefill":
+                prefill_frequency[layer].update(distinct)
+                for size in slots:
+                    access(warm_caches[layer][size], size, distinct)
+                return
+            if layer not in static_slots:
+                ranked = sorted(prefill_frequency[layer], key=lambda expert: (-prefill_frequency[layer][expert], expert))
+                static_slots[layer] = {size: set(ranked[:size]) for size in slots}
+            for size in slots:
+                policy_hits[(layer, size, "warm_lru")] += access(warm_caches[layer][size], size, distinct)
+                policy_hits[(layer, size, "static_prefill")] += sum(expert in static_slots[layer][size] for expert in distinct)
+        if args.phase == "all":
+            phase = "all"
         activations[phase] += len(distinct)
         frequency[(phase, layer)].update(distinct)
         key = (phase, layer)
@@ -54,16 +87,9 @@ def main():
             window_sizes[key].append(len(working_set[key]))
         for size in slots:
             cache = caches[(phase, layer)][size]
-            count = sum(expert in cache for expert in distinct)
+            count = access(cache, size, distinct)
             hits[(phase, size)] += count
             layer_hits[(phase, layer, size)] += count
-            for expert in distinct:
-                if expert in cache:
-                    cache.move_to_end(expert)
-                elif size:
-                    if len(cache) == size:
-                        cache.popitem(last=False)
-                    cache[expert] = None
 
     with open(args.trace, newline="", encoding="utf-8") as stream:
         reader = csv.DictReader(stream)
@@ -71,10 +97,16 @@ def main():
             parser.error("expected phase,token,layer,rank,expert CSV header")
         for row in reader:
             phase = row["phase"]
+            if args.prefill_policies:
+                if phase not in ("prefill", "decode") or (decoding_seen and phase == "prefill"):
+                    parser.error("prefill policies require prefill rows before decode rows")
+                decoding_seen = decoding_seen or phase == "decode"
             if args.phase != "all" and phase != args.phase:
-                continue
-            phases_seen.add(phase)
-            key = ("all" if args.phase == "all" else phase, int(row["token"]), int(row["layer"]))
+                if not (args.prefill_policies and phase == "prefill"):
+                    continue
+            if phase == args.phase or args.phase == "all":
+                phases_seen.add(phase)
+            key = (phase, int(row["token"]), int(row["layer"]))
             if group != key:
                 process()
                 group = key
@@ -84,6 +116,8 @@ def main():
 
     if not activations:
         parser.error("trace has no matching expert activations")
+    if args.prefill_policies and not any(prefill_frequency.values()):
+        parser.error("prefill policies need prefill expert activations")
     print(f"phases={','.join(sorted(phases_seen))} layers={len({key[1] for key in frequency})} activations={sum(activations.values())}")
     print("slots/layer  hits  activations  hit_rate")
     for size in slots:
@@ -104,6 +138,20 @@ def main():
                                   "misses": total - layer_hits[(phase, layer, size)],
                                   "hit_rate": layer_hits[(phase, layer, size)] / total} for size in slots]})
         print(f"layer {layer:3d}: unique={len(counts):4d} hottest={counts.most_common(1)[0][1]/total:.2%}")
+        if args.prefill_policies:
+            layers[-1]["prefill_training_activations"] = prefill_frequency[layer].total()
+            layers[-1]["prefill_cache"] = [
+                {"policy": policy, "slots": size, "hits": policy_hits[(layer, size, policy)],
+                 "misses": total - policy_hits[(layer, size, policy)],
+                 "hit_rate": policy_hits[(layer, size, policy)] / total}
+                for policy in ("warm_lru", "static_prefill") for size in slots]
+    if args.prefill_policies:
+        print("prefill policy   slots/layer  decode_hits  activations  hit_rate")
+        total = sum(activations.values())
+        for policy in ("warm_lru", "static_prefill"):
+            for size in slots:
+                count = sum(policy_hits[(layer["layer"], size, policy)] for layer in layers)
+                print(f"{policy:15s} {size:11d} {count:12d} {total:12d} {count/total:8.2%}")
     if args.json_path:
         with open(args.json_path, "w", encoding="utf-8") as stream:
             json.dump({"trace": args.trace, "phase": args.phase, "layers": layers}, stream, indent=2)
