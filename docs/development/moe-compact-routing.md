@@ -31,7 +31,7 @@ For Ornith on RX 6800, freeze the v0.5.0 runtime flags from the sweep, including
 
 ## Validation limits
 
-Local checks use a Linux x86-64 CPU build with `GGML_NATIVE=OFF` and `GGML_VULKAN=OFF`. RX 6800 Vulkan execution and Ornith end-to-end throughput remain to be measured on the target machine. AddressSanitizer and UndefinedBehaviorSanitizer checks use `detect_leaks=0` because leak detection is unavailable in the execution environment.
+Initial development checks used a Linux x86-64 CPU build with `GGML_NATIVE=OFF` and `GGML_VULKAN=OFF`. Target-machine validation is recorded below. AddressSanitizer and UndefinedBehaviorSanitizer checks use `detect_leaks=0` because leak detection is unavailable in the execution environment.
 
 All 217 deterministic cases pass with the option OFF and ON, with byte-identical raw outputs (SHA-256 `3d87bacdf6d90e8aad55b747679628a33736e7f490b9e988264181045eaea5dc`). The compact build also passes the 217 cases with AddressSanitizer and UndefinedBehaviorSanitizer; its output hashes match the OFF build. Total planned workspace for the 2048-token Q4_K case decreases from 34,171,480 to 750,176 bytes, including activation conversion and worker scratch.
 
@@ -40,3 +40,15 @@ Both builds pass all 955 CPU `MUL_MAT_ID` operator cases, including the 12 new 2
 ## Next experiment
 
 A GPU expert cache needs persistent device slots, expert ID remapping, staging buffers, buffer lifetime and synchronization rules, and a CPU miss path. This change does not implement that cache. Relevant upstream proposals: [hybrid expert cache](https://github.com/ggml-org/llama.cpp/discussions/24528) and [persistent expert pool](https://github.com/ggml-org/llama.cpp/discussions/28248).
+
+## RX 6800 validation, 2026-10-04
+
+On the target Ryzen 7 5700X3D / RX 6800 / RADV Mesa 26.2.4 machine, both existing native builds at `0a5bc4dc93516e4223a2ae4f0a2dcc4e25aa8646` pass all 217 deterministic routing cases. Their raw outputs are byte-identical and retain the SHA-256 above. The 2048-token workspace is 34,171,480 bytes OFF and 750,176 bytes ON. This is a verified CPU workspace reduction, not an increase in available VRAM.
+
+The local archive `risultati/2026-10-04-validation/` contains the unmodified v0.5.0 baseline, same-revision OFF/ON comparisons, CMake caches, compiler/driver/kernel metadata, model and binary hashes, exact commands, and one-second telemetry. Settings are `-ngl 99 -ncmoe 18 -t 8 -b 2048 -ub 512 -fa on -ctk q8_0 -ctv q8_0 -p 512,4096 -n 128 -r 3`. The first OFF/ON/ON/OFF group gives ON vs OFF of -0.78% pp512, -1.12% pp4096, and -0.56% tg128. These few replications do not establish a throughput improvement.
+
+At identical settings, upstream tg128 changes from 13.083 to 15.582 token/s in consecutive clean processes; OFF later reaches 15.555 without a binary change. The cause has not been isolated. Do not infer a regression from the mean upstream-vs-fork comparison. The final OFF/ON/upstream sequence gives tg128 of 15.555/15.441/15.551 token/s (ON vs OFF -0.73%). All individual process results are retained in the local report. Fixed-token end-to-end workloads and concurrency 2/4/8 remain to be measured.
+
+Target-machine profiling also found that the original trace callback read a strided `ggml_argsort_top_k` view as contiguous. The correction at `9149912a398e1bf4e78d63ac11657e6ae7642276` reads the complete view span and indexes with its byte strides. Nine focused read cases pass on CPU and Vulkan, and the original callback fails the same harness as expected. Regenerate old multi-token prefill traces before using them for cache decisions.
+
+A corrected trace of one 244-token C++ review prompt plus 64 greedy decode tokens contains 40 routed layers. A cold per-layer LRU simulation on the CPU-offloaded layers 0..17 yields 60.49% logical hits with 32 slots during decode. The maximum observed working set over 32-token windows ranges from 70 to 158 experts per CPU layer. These are short-sample routing statistics, not measured GPU cache hits or a tokens/s prediction. This branch still does not implement a GPU expert cache.
