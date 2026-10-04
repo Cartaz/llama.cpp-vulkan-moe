@@ -100,7 +100,7 @@ Four processes, five repetitions each, OFF/ON/ON/OFF, load-mode none, same binar
 | 3 | ON | 317.798 |
 | 4 | OFF | 366.013 |
 
-Means: OFF 366.012, ON 317.689 token/s (-13.20%). Every measured hash matches the original build. Raw-logit validation spans 2,979,840 bytes, SHA-256 `c2f4c7cf2977d3008c885c268cd6f6dc9e3a8c7c73719e4f8b381fdeb899452f`. The experiment is rejected for this workload; its scheduler changes were removed before publication. The patch and isolated binary remain archived for reproducibility. No environment variable from this prototype is supported by the resulting branch.
+Means: OFF 366.012, ON 317.689 token/s (-13.20%). Every measured hash matches the original build. Raw-logit validation spans 2,979,840 bytes, SHA-256 `c2f4c7cf2977d3008c885c268cd6f6dc9e3a8c7c73719e4f8b381fdeb899452f`. The experiment is rejected for this workload; its scheduler changes were removed before publication. The patch, build settings and binary hashes remain archived for reproducibility. No environment variable from this prototype is supported by the resulting branch.
 
 This rejects full copying without additional overlap at 512 tokens on this configuration. It does not measure the author's second-stream prefetch, larger batches or other prompt distributions. A later overlap experiment must isolate transfer queue concurrency, event dependencies, buffer lifetimes, allocation fallback and additional VRAM before testing 512/2048/4096 prompts and generation independently. The long-prompt correctness issue below must also be resolved for those larger workloads.
 
@@ -113,3 +113,5 @@ Three-repetition raw-logit diagnostics against unmodified upstream also vary: ma
 Separate checks with full memory zeroing, `LLAMA_GRAPH_REUSE_DISABLE=1` and `GGML_VK_DISABLE_ASYNC=1` do not eliminate variation at 4096 tokens. A 1024-token control was stable in one process; other diagnostic processes varied, so shorter length alone does not establish a universal boundary. Root cause remains unresolved. Do not promote the 4096-token or larger-ubatch performance results until correctness is understood. The validated short replay and first 512-token chunk are reported separately.
 
 Archives: `risultati/2026-10-04-runtime/` and `risultati/2026-10-04-full-copy/` retain full commands, environment variables, telemetry (including system MemAvailable), source patch, CMake caches, binary hashes, raw logits and diagnostics. Large outputs remain local and are not checked into Git.
+
+The subsequent [Q8_0 synchronization investigation](moe-prefill-sync-rx6800.md) records an opt-in GPU barrier, its validation and cost, the confirmed 4096-token host-load gain and the remaining F16/larger-batch limitations. It does not claim an identified root-cause fix.

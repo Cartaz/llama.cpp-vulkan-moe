@@ -7810,6 +7810,11 @@ void ggml_vk_flash_attn(ggml_backend_vk_context * ctx, vk_context& subctx, const
     const uint32_t nem2 = mask ? mask->ne[2] : 0;
     const uint32_t nem3 = mask ? mask->ne[3] : 0;
 
+    static const bool q8_sync = getenv("GGML_VK_FA_Q8_SYNC") != nullptr;
+    if (q8_sync && k->type == GGML_TYPE_Q8_0 && v->type == GGML_TYPE_Q8_0) {
+        ggml_vk_sync_buffers(ctx, subctx);
+    }
+
     const uint32_t HSK = nek0;
     const uint32_t HSV = nev0;
     uint32_t N = neq1;
