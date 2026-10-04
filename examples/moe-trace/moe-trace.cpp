@@ -24,6 +24,7 @@
 #include <cinttypes>
 #include <clocale>
 #include <cstdio>
+#include <memory>
 #include <cstring>
 #include <string>
 #include <vector>
@@ -84,6 +85,17 @@ int main(int argc, char ** argv) {
         return 1;
     }
 
+    using file_ptr = std::unique_ptr<FILE, int (*)(FILE *)>;
+    file_ptr token_output(nullptr, &std::fclose);
+    if (const char * path = std::getenv("MOE_TRACE_TOKENS_OUT")) {
+        token_output.reset(std::fopen(path, "w"));
+        if (!token_output) {
+            LOG_ERR("%s: cannot open token output\n", __func__);
+            return 1;
+        }
+        std::fprintf(token_output.get(), "phase,token,id\n");
+    }
+
     llama_backend_init();
     llama_numa_init(params.numa);
 
@@ -107,6 +119,11 @@ int main(int argc, char ** argv) {
     if (tokens.empty()) {
         LOG_ERR("%s: empty prompt - provide one with -p or -f\n", __func__);
         return 1;
+    }
+    if (token_output) {
+        for (size_t i = 0; i < tokens.size(); ++i) {
+            std::fprintf(token_output.get(), "prefill,%zu,%d\n", i, tokens[i]);
+        }
     }
     LOG_INF("%s: %zu prompt tokens, n_predict = %d\n", __func__, tokens.size(), params.n_predict);
 
@@ -143,12 +160,19 @@ int main(int argc, char ** argv) {
             fclose(trace.out);
             return 1;
         }
+        if (token_output) {
+            std::fprintf(token_output.get(), "decode,%zu,%d\n", trace.token_offset, best);
+        }
         if ((i + 1) % 8 == 0) {
             LOG_INF("  decode %d/%d\n", i + 1, params.n_predict);
             fflush(trace.out);
         }
     }
 
+    if (token_output && std::fflush(token_output.get()) != 0) {
+        LOG_ERR("%s: cannot flush token output\n", __func__);
+        return 1;
+    }
     fclose(trace.out);
     llama_backend_free();
     LOG_INF("%s: done\n", __func__);

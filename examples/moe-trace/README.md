@@ -17,3 +17,24 @@ Record the GGUF name and hash, `git rev-parse HEAD`, build flags, compiler, Mesa
 The JSON report contains expert frequencies, top-16 activation share, per-layer LRU hits and misses, and unique experts in a rolling window of evaluated tokens. Window statistics use only complete windows; they are null when the trace is shorter than `--window`. These counts describe logical expert activations, not bytes transferred or measured GPU cache hits.
 
 Prefill traces from the original example at `0a5bc4d` read the top-k view as contiguous and can contain incorrect expert IDs after the first token of each batch. Regenerate those traces with the stride-aware reader before using them for placement or cache decisions. Decode traces with one token per batch are unaffected by the row-stride error.
+
+## Fixed-token replay
+
+Record the token IDs of the prompt and greedy continuation as well as the routing:
+
+```sh
+MOE_TRACE_OUT=agent-routing.csv MOE_TRACE_TOKENS_OUT=agent-tokens.csv \
+  ./build-vulkan/bin/llama-moe-trace -m model.gguf -f prompt.txt -n 128 \
+  -ngl 99 -ncmoe 18 -t 8 -c 1024 -b 512 -ub 512 -fa on -ctk q8_0 -ctv q8_0
+MOE_REPLAY_IN=agent-tokens.csv MOE_REPLAY_REPS=3 \
+  ./build-vulkan/bin/llama-moe-replay -m model.gguf \
+  -ngl 99 -ncmoe 18 -t 8 -c 1024 -b 512 -ub 512 -fa on -ctk q8_0 -ctv q8_0 > replay.csv
+```
+
+The workload CSV is `phase,token,id`: a nonempty prefill followed by optional decode tokens, with consecutive zero-based positions. Replay uses these IDs directly, ignores sampling parameters and `-n`, and does not install a routing callback. Keep the model/tokenizer, workload file and batch/ubatch sizes fixed across builds. Context size must fit the full workload.
+
+Replay clears sequence memory, evaluates the complete workload once as a warmup, then runs the requested repetitions from empty sequence memory. Its CSV columns are `rep,phase,position,n_tokens,elapsed_us,logits_hash`. Each time is a synchronized decode call; the prefill sum and decode sum are separate. Hashing, CSV output and optional raw-logit writing occur outside each measured call. These are inference-call timings, not request TTFT, sampling time, total application latency or concurrent serving performance. The FNV-1a hash covers the last token's full float logits for each call; it is not a cryptographic checksum.
+
+Set `MOE_REPLAY_LOGITS_OUT=logits.bin` for a byte comparison between builds using the same workload and batching. The file concatenates native float logits after each prefill chunk and each decode call, in repetition order; its vocabulary size comes from the model. Retain binary SHA-256s and an exact `cmp` for correctness evidence. Measure throughput separately with raw-logit output disabled.
+
+The same replay source can be compiled against an unmodified upstream build's libraries without modifying that checkout. Check that the headers and library ABI match, and record the replay source hash separately from the inference library commit. A fixed input sequence controls token-induced routing changes; it does not guarantee identical routing if logits or backend arithmetic change.
