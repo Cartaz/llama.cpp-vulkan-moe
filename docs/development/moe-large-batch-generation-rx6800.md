@@ -43,3 +43,7 @@ Keep ubatch 2048 available as a measured experimental configuration. Its generat
 RX 6800 16 GB / RADV NAVI21, Ryzen 7 5700X3D, 32 GB RAM; kernel `7.2.9-1-cachyos`, Mesa/vulkan-radeon `26.2.4-1`, GCC `16.2.1+r23+gd564253eb6c8-1`, CMake `4.4.4-1.1`, Ninja `1.13.2-3.1`; Release/native/Ninja/Vulkan. CPU governor performance and GPU BOOTUP_DEFAULT unchanged. Model Ornith-1.5-35B-Q4_K_M.gguf SHA-256 `ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f`.
 
 Archives: `risultati/2026-10-04-generation/` holds the original identical harness, exact compile commands and hashes, and short-prompt generation tests. `risultati/2026-10-04-generation-large/` holds the large-batch runner, comparison matrices, token IDs/fingerprints, output text, command/environment metadata, benchmark results and GPU/system-memory telemetry. The final-option libraries and source hashes are unchanged from the previous synchronization report.
+
+## Answer-quality follow-up
+
+The [deterministic quality protocol](moe-quality-ab-rx6800.md) adds automatically graded complete-response tasks. The [pilot report](moe-quality-pilot-rx6800.md) records no additional solution errors in the small paired samples, native-reasoning/budget calibration, and a cross-batch JSON-format difference reproduced by unmodified upstream. These small samples do not establish general quality non-inferiority.

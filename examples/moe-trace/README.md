@@ -51,3 +51,7 @@ python3 examples/moe-trace/analyze.py agent-routing.csv --phase decode \
 `warm_lru` processes the prefill into an LRU cache, then counts hits and performs LRU updates during decode. `static_prefill` selects the most frequent prefill experts once and holds those slots fixed throughout decode; equal frequencies use ascending expert ID. It never uses decode frequencies to select experts. Each request checks its distinct top-k experts before any cache update. Layers have independent caches. Layers absent from prefill start empty; the trace must contain some prefill and must place all prefill rows before decode.
 
 Only decode activations enter the hit-rate denominator. Per-layer JSON includes training activation counts and `prefill_cache` hits, misses and rates. Existing output is unchanged when the option is omitted. These policies assume the initial slots are populated before decode and exclude priming cost, transfers, eviction synchronization and cache capacity shared with dense weights/KV. They measure logical coverage, not a working GPU cache or an end-to-end speedup. Validate prompt-informed placement on multiple held-out prompts before choosing a policy.
+
+## Answer-quality A/B
+
+The separate `llama-moe-quality` target and `quality-bench.py` compare answer correctness at ubatch 512 and 2048 using fixed synthetic tasks and automatic oracles. See the [protocol](../../docs/development/moe-quality-ab-rx6800.md) and [pilot results](../../docs/development/moe-quality-pilot-rx6800.md). The prepared larger datasets are not reported as completed evaluations.
