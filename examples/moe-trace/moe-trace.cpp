@@ -8,8 +8,8 @@
 // distribution on a real workload instead of guessing.
 //
 // It hooks the scheduler eval callback and captures only the "ffn_moe_topk"
-// id tensors (one tiny i32 tensor per MoE layer per ubatch), so tracing adds
-// negligible overhead to the evaluation itself.
+// id tensors (one i32 tensor per MoE layer per ubatch). The callback
+// synchronizes the scheduler, so use separate runs to measure throughput.
 //
 // Output (MOE_TRACE_OUT, default moe_trace.csv): one row per routed activation.
 //
@@ -53,13 +53,15 @@ static bool moe_cb(struct ggml_tensor * t, bool ask, void * user_data) {
     if (t->ne[0] <= 0 || t->ne[1] <= 0 || t->ne[2] != 1 || t->ne[3] != 1) {
         return true;
     }
-    const int64_t n = ggml_nelements(t);
-    std::vector<int32_t> ids(n);
-    ggml_backend_tensor_get(t, ids.data(), 0, n * sizeof(int32_t));
+    // Read the full view span once; argsort_top_k keeps the expert row stride.
+    std::vector<uint8_t> ids(ggml_nbytes(t));
+    ggml_backend_tensor_get(t, ids.data(), 0, ids.size());
     for (int64_t token = 0; token < t->ne[1]; ++token) {
         for (int64_t rank = 0; rank < t->ne[0]; ++rank) {
+            int32_t expert;
+            std::memcpy(&expert, ids.data() + token * t->nb[1] + rank * t->nb[0], sizeof(expert));
             fprintf(state->out, "%s,%zu,%d,%" PRId64 ",%" PRId32 "\n",
-                    state->phase, state->token_offset + token, il, rank, ids[token * t->ne[0] + rank]);
+                    state->phase, state->token_offset + token, il, rank, expert);
         }
     }
     return true;
@@ -137,7 +139,9 @@ int main(int argc, char ** argv) {
         trace.phase = "decode";
         trace.token_offset = tokens.size() + i;
         if (llama_decode(ctx, llama_batch_get_one(&best, 1))) {
-            break;
+            LOG_ERR("%s: decode failed at generated token %d\n", __func__, i);
+            fclose(trace.out);
+            return 1;
         }
         if ((i + 1) % 8 == 0) {
             LOG_INF("  decode %d/%d\n", i + 1, params.n_predict);

@@ -3,7 +3,8 @@
 
 import argparse
 import csv
-from collections import Counter, OrderedDict, defaultdict
+import json
+from collections import Counter, OrderedDict, defaultdict, deque
 
 
 def main():
@@ -11,13 +12,21 @@ def main():
     parser.add_argument("trace", help="CSV produced by llama-moe-trace")
     parser.add_argument("--phase", choices=("prefill", "decode", "all"), default="decode")
     parser.add_argument("--slots", default="0,16,32,48,64,96,128", help="slots per layer")
+    parser.add_argument("--json", dest="json_path", help="write per-layer statistics as JSON")
+    parser.add_argument("--window", type=int, default=32, help="working-set window in evaluated tokens per layer")
     args = parser.parse_args()
+    if args.window < 1:
+        parser.error("--window must be positive")
     slots = sorted(set(int(s) for s in args.slots.split(",")))
     if not slots or min(slots) < 0:
         parser.error("--slots must contain non-negative integers")
 
     caches = defaultdict(lambda: {size: OrderedDict() for size in slots})
     hits = Counter()
+    layer_hits = Counter()
+    windows = defaultdict(deque)
+    working_set = defaultdict(Counter)
+    window_sizes = defaultdict(list)
     activations = Counter()
     frequency = defaultdict(Counter)
     phases_seen = set()
@@ -33,9 +42,21 @@ def main():
         distinct = list(dict.fromkeys(selected))
         activations[phase] += len(distinct)
         frequency[(phase, layer)].update(distinct)
+        key = (phase, layer)
+        windows[key].append(distinct)
+        working_set[key].update(distinct)
+        if len(windows[key]) > args.window:
+            for expert in windows[key].popleft():
+                working_set[key][expert] -= 1
+                if working_set[key][expert] == 0:
+                    del working_set[key][expert]
+        if len(windows[key]) == args.window:
+            window_sizes[key].append(len(working_set[key]))
         for size in slots:
             cache = caches[(phase, layer)][size]
-            hits[(phase, size)] += sum(expert in cache for expert in distinct)
+            count = sum(expert in cache for expert in distinct)
+            hits[(phase, size)] += count
+            layer_hits[(phase, layer, size)] += count
             for expert in distinct:
                 if expert in cache:
                     cache.move_to_end(expert)
@@ -69,9 +90,24 @@ def main():
         count = sum(hits[(phase, size)] for phase in activations)
         total = sum(activations.values())
         print(f"{size:11d}  {count:8d}  {total:11d}  {count/total:8.2%}")
-    for (_, layer), counts in sorted(frequency.items()):
+    layers = []
+    for (phase, layer), counts in sorted(frequency.items()):
         total = counts.total()
+        sizes = window_sizes[(phase, layer)]
+        layers.append({"phase": phase, "layer": layer, "activations": total,
+                       "unique_experts": len(counts), "expert_frequency": dict(sorted(counts.items())),
+                       "top16_fraction": sum(count for _, count in counts.most_common(16)) / total,
+                       "window_tokens": args.window, "full_windows": len(sizes),
+                       "window_unique_mean": sum(sizes) / len(sizes) if sizes else None,
+                       "window_unique_max": max(sizes) if sizes else None,
+                       "cache": [{"slots": size, "hits": layer_hits[(phase, layer, size)],
+                                  "misses": total - layer_hits[(phase, layer, size)],
+                                  "hit_rate": layer_hits[(phase, layer, size)] / total} for size in slots]})
         print(f"layer {layer:3d}: unique={len(counts):4d} hottest={counts.most_common(1)[0][1]/total:.2%}")
+    if args.json_path:
+        with open(args.json_path, "w", encoding="utf-8") as stream:
+            json.dump({"trace": args.trace, "phase": args.phase, "layers": layers}, stream, indent=2)
+            stream.write("\n")
 
 
 if __name__ == "__main__":
