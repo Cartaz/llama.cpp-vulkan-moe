@@ -19,7 +19,8 @@ Obiettivo: inferenza locale affidabile e veloce su RX 6800 16 GB, Ryzen 7 5700X3
 | Qualita' risposte | Il primo confronto 64+64 non supera il gate; successiva validazione ub512 completata, ub2048 interrotta |
 | Sweep configurazione | ncmoe 0..40 completato e shortlist verificata; coordinate successive parziali; interazioni e matrice contesti da completare |
 | Profilo provvisorio dello sweep | `-ncmoe 12 -tb 8`, `GGML_VK_DISABLE_HOST_VISIBLE_VIDMEM=1`, librerie DEFAULT congelate; **non vincitore finale** |
-| Prossima modifica di ricerca | Profiling dei costi e budget; poi pool persistente minimo con cache OFF/ON e routing invariato |
+| Fondamenta S01/S02 | Tooling iniziale IMPLEMENTATO su `experiment/moe-profile-foundations`: manifest live con verifica freeze, entropia/riuso/finestre e stime cache in byte; corpus e gate ancora incompleti |
+| Prossima modifica di ricerca | Strumentazione S03 dei costi CPU/transfer/GPU e budget; poi pool persistente minimo con cache OFF/ON e routing invariato |
 
 Questo documento non avvia test. L'eventuale ripresa richiede una nuova richiesta dell'utente. I problemi riprodotti anche sulla v0.5.0 originale sono registrati come `ERRORE_BASELINE`, come richiesto dall'utente: non sono automaticamente regressioni del fork e non bloccano tutta la ricerca. Una misura con NaN, output nullo o fallback CPU involontario resta invalida per il ranking prestazionale.
 
@@ -97,6 +98,7 @@ Le percentuali sono osservazioni sul workload indicato, non previsioni su tutti 
 | R14 | Originale default vs fork default, prefisso512+PP3294 | ERRORE_BASELINE | Entrambi non finiti al token3805 con F16 K/V, logical2048/physical512. Auto-fit sceglie placement un po' diverso | **Non dimostrata una regressione del fork**; matched arguments, non identico placement. Escludere tempi invalidi, conservare riproduttore |
 | R15 | Sweep startup, ncmoe e coordinate CPU/fit | PAUSA / TEST_PARZIALI | 41 ncmoe screen conclusi + shortlist lunga; placement/fit/margine e thread generazione provati, thread batch incompleti; profilo ncmoe12/tb8 provvisorio. Interazioni/contesti non conclusi | **Nessun nuovo vincitore finale**; NON_MISURATO per matrice finale1/2/4/8 e qualita' |
 | R16 | Controlli dopo ripresa del 6 ottobre | INCONCLUDENTE per TG | Stesso profilo provvisorio, depth512/PP512/TG32: PP368.36 e368.13; TG24.42 e33.33 in due processi; endpoint corrispondenti identici | PP ripetibile nello screen; TG varia molto fra processi. Controllo finale coordinate04 interrotto: nessun vincitore thread adottato |
+| R17 | Tooling offline S01/S02: manifest live/freeze e analyzer esteso | IMPLEMENTATO; test offline superati | Compatibilita' di tutti i campi per-layer precedenti sul trace corretto salvato, 40 layer per prefill/decode/all; suite senza modello con oracle di riuso indipendente e snapshot del processo Python | PP/TG/TTFT/qualita' **NON_MISURATO**; nessuna campagna ripresa, cache GPU assente. [Report e comandi](docs/development/moe-profile-foundations-rx6800.md) |
 
 R12-R16 derivano dagli archivi locali del 5-6 ottobre e dallo stato dello sweep; alcuni report precedenti sulla repo descrivono ancora un pilot o una rivalidazione in corso. Questa snapshot aggiorna **lo stato**, senza fingere che quei report storici siano gia' stati riscritti.
 
@@ -171,13 +173,15 @@ La prima cache deve essere semplice e misurabile. Non iniziare con cache + looka
 
 ## Catalogo delle strategie con esperimento A/B
 
-Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R16 esplicitamente citate. Non e' dichiarata implementata perche' esiste in una fonte esterna. I protocolli T0-T7 sono definiti nella sezione successiva; gli A/B qui fissano la variabile e le metriche aggiuntive. Anche i gruppi nello stesso livello si provano uno alla volta.
+Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R17 esplicitamente citate. S01/S02 hanno il tooling iniziale implementato in R17, ma restano incompleti i gate runtime, il corpus e la verifica held-out. Non e' dichiarata implementata perche' esiste in una fonte esterna. I protocolli T0-T7 sono definiti nella sezione successiva; gli A/B qui fissano la variabile e le metriche aggiuntive. Anche i gruppi nello stesso livello si provano uno alla volta.
 
 ### P0: fondamenta e modello dei costi
 
 **S01 - Congelare baseline e runner riproducibile.** Collo: confondenti di default, librerie, fit e interferenza GPU. Utile su RX6800 per separare regimi di allocazione da effetti reali. Riusare replay/helper e manifest esistenti; aggiungere controllo librerie, device e processi prima del load. Costo: tempo di controllo, fuori dal timer. A/B T0/T1 B1 vs B2 senza feature; attribuire eventuali differenze prima di promuovere ottimizzazioni. Guardrail locali presenti; protocollo finale ancora da completare.
 
 **S02 - Profilo routing rappresentativo e costo per layer.** Collo: si ottimizza senza conoscere working set e percorso CPU/transfer/GPU. Estendere analyzer strided corretto con entropia, reuse distance, finestre1/8/32/128 token, cambi di dominio, hit byte-weighted e fasi prefill/decode. Trace a parte dai timing, perche' il callback sincronizza. T2 su italiano, codice, tool, chat lunga e held-out; confrontare cold/warm/static/LRU con quote uguali in byte. Nessuno speedup da un hit rate simulato.
+
+**Incremento R17 (2026-10-06).** `examples/moe-trace/manifest.py` cattura un processo gia' avviato fuori dai timer e puo' rifiutare drift rispetto a un manifest congelato della stessa variante. Non lancia inferenza; una libreria Vulkan mappata non dimostra esecuzione sulla GPU. L'analyzer aggiunge entropia, riuso atomico per top-k, finestre multiple e stime logiche in byte da metadata espliciti, senza alterare le metriche precedenti. Mancano corpus rappresentativo/held-out, misure di costo e validazione della campagna. [Definizioni, limiti e test](docs/development/moe-profile-foundations-rx6800.md).
 
 **S03 - Timeline CPU/GPU e accounting memoria.** Collo: TG puo' dipendere da CPU, copia o sincronizzazione anziche' shader. Aggiungere timestamp/query Vulkan e marker CPU opt-in, byte di upload/readback, attese e picchi pesi/KV/recurrent/compute/cache. Non dedurre PCIe da GTT. Costo: overhead misurare OFF/ON; backend senza profiling come riferimento. T1/T3 con T0: rapporto durata reale/strumentata e percentuale di tempo esposto per componente.
 
@@ -365,6 +369,7 @@ Checklist del prossimo lavoro, senza avviare benchmark ora:
 - [x] Separati risultati locali, video CUDA e Strata HIP.
 - [x] Documentati miglioramenti di workspace/PP, regressioni e risultati inconcludenti.
 - [x] Test e answer-quality sospesi per richiesta dell'utente.
+- [x] Implementato primo tooling offline S01/S02 e verifica senza modello; nessuna ripresa dei benchmark implicita.
 - [ ] Alla ripresa: controllo originale/fork a valori effettivi identici e dati hardware aggiornati.
 - [ ] Spiegare o contenere variabilita' fra processi prima di un vincitore CPU/placement.
 - [ ] Misurare costi CPU/transfer/GPU e budget VRAM/KV/recurrent/compute.
