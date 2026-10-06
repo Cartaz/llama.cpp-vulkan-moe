@@ -1,0 +1,4011 @@
+{
+  "campaign": "R20",
+  "date": "2026-10-07",
+  "archive": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile",
+  "original_freeze": {
+    "candidate_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+    "baseline_commit": "7fe450e19305b828c199d602c23a8337aaa1f03b",
+    "model": {
+      "path": "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+      "bytes": 21713462848,
+      "sha256": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f"
+    },
+    "workload_sha256": "85935136b367ed46e47e967b05495774bc290d2d32dd92776c0c242d744cf29c",
+    "artifacts": {
+      "frozen/BASE/libggml-base.so.0.25.1": "ed4b8f3d3ae59dfba891b43364fd7d5c4d297507fc483b4be8c95ccdde046084",
+      "frozen/BASE/libggml-cpu.so.0.25.1": "f4709ae474d658855aba3c9bb90c17a603b44943fa1793e433a46ee96e3d4226",
+      "frozen/BASE/libggml-vulkan.so.0.25.1": "a1d5ad88a266cb28f496da11726bee09d8021c1ff23e4d4cd9c9b1d06e61efd7",
+      "frozen/BASE/libggml.so.0.25.1": "8e8669c77ec573dd61fc2ab7f5d3d2ece7a2db9edacb354b300232ce7512b443",
+      "frozen/BASE/libllama.so.0.5.0": "61f97ce7a813603834536ce55d887c2cc749d107fe4233903b5462bf80478922",
+      "frozen/BASE/libllama-common.so.0.5.0": "57810254aec09155e20703ddda407c0ef48b415612ad65411ff35e9d246df077",
+      "frozen/BASE/replay": "17faa25e17b5a9b5f358bf3cb16456b4bc241e9f599654ed97855f97f7374723",
+      "frozen/CANDIDATE/libllama-common.so.0.5.0": "a6aa1a0bb74190f6a89e4a4b21c7dc00f89857176ef6a97def33e2dff20597c9",
+      "frozen/CANDIDATE/libllama.so.0.5.0": "725dfdf2abc3757c6a53e5c9574dd3717dda16a68ed992a2ee1cc64628c5fabc",
+      "frozen/CANDIDATE/libggml.so.0.25.1": "d9934432b991dd9fd1f168a4901b26b8f28748468501c61f24b2bc1bd8b21d15",
+      "frozen/CANDIDATE/libggml-vulkan.so.0.25.1": "af15bb2e57795c15e8053d87227da3db854dbfe7a1086774b3f6839101d02021",
+      "frozen/CANDIDATE/libggml-cpu.so.0.25.1": "da5b1f97b4ea5c811904fe83c091265d2eca25139158303c4e09130fa0974709",
+      "frozen/CANDIDATE/libggml-base.so.0.25.1": "6bdaf22371851cabb2372813c4dfc5d3fe6e782202977dfe4f178905b6989e4a",
+      "frozen/CANDIDATE/replay": "c560ae3d915c3f20d9eb07a3a50637b3c0d7456e5a7727107f1e5873c456f535"
+    },
+    "build_cache_sha256": {
+      "BASE-CMakeCache.txt": "b71e6dfe4da5c3d0def118431418522e054b7afb6b31a63df96859c12a207952",
+      "CANDIDATE-CMakeCache.txt": "6b4d7cb9e20d3b7e2541e44b7efd236363b2cf975f2a2343dde75162b729a0e1"
+    }
+  },
+  "logger_fixed_freeze": {
+    "label": "LOGGER_FIXED",
+    "source_commit": "5dcc3e6416a175986e451ff1cdc244e256c25a4b",
+    "artifacts": {
+      "frozen/LOGGER_FIXED/libllama-common.so.0.5.0": "10095cfef8ed923403b6245d1aed54d73ddede09b0a51a5ee1aeacd2a0c97401",
+      "frozen/LOGGER_FIXED/libllama.so.0.5.0": "725dfdf2abc3757c6a53e5c9574dd3717dda16a68ed992a2ee1cc64628c5fabc",
+      "frozen/LOGGER_FIXED/libggml.so.0.25.1": "d9934432b991dd9fd1f168a4901b26b8f28748468501c61f24b2bc1bd8b21d15",
+      "frozen/LOGGER_FIXED/libggml-vulkan.so.0.25.1": "7831061db2c1ed53abf16cd43f2dd04b4ec9b2f7a711c2d6ac25bc9df6ee963d",
+      "frozen/LOGGER_FIXED/libggml-cpu.so.0.25.1": "da5b1f97b4ea5c811904fe83c091265d2eca25139158303c4e09130fa0974709",
+      "frozen/LOGGER_FIXED/libggml-base.so.0.25.1": "e431f90a3f7c4578b44d48fbef1399e90f8131920b5460450be53c7621cfe134",
+      "frozen/LOGGER_FIXED/replay": "c560ae3d915c3f20d9eb07a3a50637b3c0d7456e5a7727107f1e5873c456f535",
+      "frozen/LOGGER_FIXED/scheduler-check": "d353d87413409ba937b350abd3eb234cc75d18fb9761be8981044a6607ef6022",
+      "frozen/LOGGER_FIXED/trace": "fa027b898fae43d3202306f0bb6393902e5ea100652f77b7a53beadaabe41e3b"
+    },
+    "cmake_cache_sha256": "6b4d7cb9e20d3b7e2541e44b7efd236363b2cf975f2a2343dde75162b729a0e1"
+  },
+  "source_publication": {
+    "local_tested_commit": "5dcc3e6416a175986e451ff1cdc244e256c25a4b",
+    "published_code_commit": "af0195af1cfe57dd74a19f4919712c89ed9e761c",
+    "identical_source_tree": "8f647dcf5b6d8a8ccab4aa7bee59ebc2d4d9f897"
+  },
+  "common_loaded_libraries": {
+    "/etc/ld.so.cache": "8940454d5fb1c3b0bc60a924f5c959c1b0889abcc20f7922285c8d865f1a7b44",
+    "/usr/lib/ld-linux-x86-64.so.2": "2a950d46575efa0210d22440988f5a6b4507ebddc6c86d9a42e6e7ef6f01463e",
+    "/usr/lib/libLLVM.so.23.1": "941dec5f3fd22e305eb8aafda3aacf1420b8ffe2f08c33d7ee2d3f284c47fe59",
+    "/usr/lib/libSPIRV-Tools.so": "002378c4ce5e5eafd271653d788fc60332cbffd2b7163e6e9b0fe6f09e0eced6",
+    "/usr/lib/libVkLayer_MESA_device_select.so": "af1067a33878036cf548a9ee6e2d0ea4ed3c65fdbd4e457ae780f4531c3f3f25",
+    "/usr/lib/libX11-xcb.so.1.0.0": "15d9b28c6c3afe823335f2ca994b0fb3789d98c77b411bb51e0f3b225f41b931",
+    "/usr/lib/libXau.so.6.0.0": "7336830145541e30e97108e103d794be559bea610f09740a1941371334b6aef0",
+    "/usr/lib/libXdmcp.so.6.0.0": "812b1b8a5551862ada50da7badd503572e8b5a540082001895ead6ebd8386d30",
+    "/usr/lib/libbrotlicommon.so.1.2.0": "0a5a0d15264043c6cb99d3076501d4503bafde11eaea28f353e399b4ce6b2981",
+    "/usr/lib/libbrotlidec.so.1.2.0": "f747ed8ca1a29c53744f6e2b12dbd70d78838682a5914505b173c1ad50db4ca9",
+    "/usr/lib/libbrotlienc.so.1.2.0": "dd19bedf12100d84f6a490af2017a49c8a5dff098dd4f2d03dea501ffaf47d56",
+    "/usr/lib/libc.so.6": "071e34179e645b25f8a8c2e7108894dc665caa9f5f8c939cd579a75b6638bc3f",
+    "/usr/lib/libcrypto.so.3": "ecbe60559ed67946cf526aeba3fad8103f3a1de31ad389ca6684d201e10c63b3",
+    "/usr/lib/libdisplay-info.so.0.3.0": "4f3904f22cd1e1f729a6815d9ea129dd2c41d3091fe0e600e9084674c5e2b30b",
+    "/usr/lib/libdrm.so.2.134.0": "014655a0b8cae1448a5d32ebb0761883b4509daf2085518bb7605dff775575da",
+    "/usr/lib/libdrm_amdgpu.so.1.134.0": "7949f0c075b123e810b4354fb28def707f280a1deb9ba2e04c94c5f90ee5726a",
+    "/usr/lib/libedit.so.0.0.78": "f41b34de241bf07bf956b791b9a9c5cd3b6ae5bb30f9e5767cd68ac3631888ea",
+    "/usr/lib/libelf-0.196.so": "13d3e3cb54d6120d87a0569ac67be05c029f8cd2e4bf44e75936b2721c8e08af",
+    "/usr/lib/libexpat.so.1.12.5": "1da51868f59e7ce5e2fd79315b3e2fc426ff1ba527a485bae4464d44239caeeb",
+    "/usr/lib/libffi.so.8.5.0": "ea7da6217398e85e0a83ae367e70cde716ec626c782d29221907b893fc43866e",
+    "/usr/lib/libgcc_s.so.1": "571745fb27883c763315fab54a536906064c1df6804d1a7884713dac259da68d",
+    "/usr/lib/libgomp.so.1.0.0": "843e95ac19bdc9c450e8b090204cf01aafaf680ab9ca64bf1ec5e3674c3a776f",
+    "/usr/lib/libicudata.so.78.3": "d72003b08760852bee4c80cff32c1e6248ae6b1fda5bd313482733a4d5e70dc9",
+    "/usr/lib/libicuuc.so.78.3": "a02f9e1ab2419219f990b416f981f20f779f5c6f301424c5d1948e52001c555c",
+    "/usr/lib/libm.so.6": "58b6b82e39d59d7810d402ba4ec34359fde058204fdb7cd5a269fda256a35421",
+    "/usr/lib/libncursesw.so.6.6": "f58d9552e04abc427fb21bd7118eee77e3f216b64b2aaafd768d74bf26507153",
+    "/usr/lib/libssl.so.3": "0dbcac8fcce57c08d2a1999a5a5cc0667e9685972c871a86a7d08bc4175fa2f9",
+    "/usr/lib/libstdc++.so.6.0.36": "412e0fc561a10581aaff2d101206939a31fa12c696590d8d4a5ec3655953ffe0",
+    "/usr/lib/libudev.so.1.7.15": "5e41a27ff6a9c8016b16f4b69b41a1d63d51973d0df2c6a895ab51ba006b880c",
+    "/usr/lib/libvulkan.so.1.4.363": "c3603ee46488ae6b581f3eeb65631a4c68c89c887d46a0b4ba0e7bff01307d88",
+    "/usr/lib/libvulkan_lvp.so": "6d75e9ab9e2fc660a8c9787a350c9ccf023b1e06a59c57a39ff89b091258fb21",
+    "/usr/lib/libvulkan_radeon.so": "beb888991d47606a01b0738dece66d28f2b1c01a7f48403c6505e4d55dbcd73b",
+    "/usr/lib/libwayland-client.so.0.26.0": "7628f449109d3d8502d740fd3be71cf11b1b901e245fc8040728155ab55686da",
+    "/usr/lib/libxcb-dri3.so.0.1.0": "17e24afc588a241e225dfdc08eadd137494594510e81bcfc189972a131595497",
+    "/usr/lib/libxcb-keysyms.so.1.0.0": "344a0b73c03b813eea07f693282eff707e5fdaec298dbd4ab2e17b1f443eb0a3",
+    "/usr/lib/libxcb-present.so.0.0.0": "6efdb442b4e9c01c768041f2a322a317c70e8f0997127ce0b4f9d11af90663cb",
+    "/usr/lib/libxcb-randr.so.0.1.0": "78bd310cf74a43b283fee545ddfada99625b3fff5e4951a790f25b465969f1f9",
+    "/usr/lib/libxcb-shm.so.0.0.0": "e5582bbcdac51b9cb857ca42945ad334b65e4506300548ef4de0670cc12c44e1",
+    "/usr/lib/libxcb-sync.so.1.0.0": "7e0b5e45b31f033a30335a66309c62e805e6570c063a9d256a13c48ace96f784",
+    "/usr/lib/libxcb-xfixes.so.0.0.0": "0e113e4a08a935bd68b0b0a3e16f1cd5908184ec3c72daeacdfa490032ba2578",
+    "/usr/lib/libxcb.so.1.1.0": "a28eaad3641660452c0dd421d9d4fe9ab0564db5e7e4705e61cd791681b0e7c7",
+    "/usr/lib/libxml2.so.16.1.4": "d5e78d2e770a0b0960f720682c447811b8643057d5c36a3495c82b000c2e65b9",
+    "/usr/lib/libxshmfence.so.1.0.0": "80249b1bbef0aef67ce970759be8b5f334fbfc4c9b52a91d9303664755b001b7",
+    "/usr/lib/libz.so.1.3.1.zlib-ng": "63e814634983bfa53890b48cb56760ca38840fbcf91f66a51222eef85eaa08b7",
+    "/usr/lib/libzstd.so.1.5.7": "f18105ff5aefdd6177cb99fd016f4822a676adf23706d4ddbdce632ed40882ca"
+  },
+  "raw_correctness": {
+    "correctness-base": {
+      "bytes": 128133120,
+      "sha256": "b7bb28a86e623daf75f436f9bddb786cee6c43d8a28d1b85333f3f25d9cbb662",
+      "all_finite": true,
+      "nonzero": true
+    },
+    "correctness-off": {
+      "bytes": 128133120,
+      "sha256": "b7bb28a86e623daf75f436f9bddb786cee6c43d8a28d1b85333f3f25d9cbb662",
+      "all_finite": true,
+      "every_call_nonzero": true,
+      "logits_vectors": 129,
+      "n_vocab": 248320
+    },
+    "correctness-on": {
+      "bytes": 128133120,
+      "sha256": "b7bb28a86e623daf75f436f9bddb786cee6c43d8a28d1b85333f3f25d9cbb662",
+      "all_finite": true,
+      "every_call_nonzero": true,
+      "logits_vectors": 129,
+      "n_vocab": 248320
+    },
+    "gpu-timestamps-fixed": {
+      "bytes": 128133120,
+      "sha256": "b7bb28a86e623daf75f436f9bddb786cee6c43d8a28d1b85333f3f25d9cbb662",
+      "all_finite": true,
+      "every_call_nonzero": true,
+      "logits_vectors": 129,
+      "n_vocab": 248320
+    },
+    "gpu-timestamps-original": {
+      "bytes": 128133120,
+      "sha256": "b7bb28a86e623daf75f436f9bddb786cee6c43d8a28d1b85333f3f25d9cbb662",
+      "all_finite": true,
+      "every_call_nonzero": true,
+      "logits_vectors": 129,
+      "n_vocab": 248320
+    },
+    "logger-fixed-off-correctness": {
+      "bytes": 128133120,
+      "sha256": "b7bb28a86e623daf75f436f9bddb786cee6c43d8a28d1b85333f3f25d9cbb662",
+      "all_finite": true,
+      "every_call_nonzero": true,
+      "logits_vectors": 129,
+      "n_vocab": 248320
+    }
+  },
+  "profiler_cost": {
+    "prefill_tokens_s": {
+      "off": [
+        167.15694804296209,
+        167.8410187858124,
+        166.39653749718696,
+        171.6153789886509,
+        169.44020843923346,
+        164.59491437691605,
+        168.84469402089107,
+        167.59922354851517
+      ],
+      "on": [
+        168.2041336395629,
+        168.42713674097632,
+        167.14274949822925,
+        166.45757139767738,
+        169.8114258035421,
+        169.4756326685119,
+        168.99828115819233,
+        166.75129522701755
+      ],
+      "off_mean": 167.936115462521,
+      "on_mean": 168.15852826671372,
+      "change_pct": 0.13243893582994826,
+      "ci95_pct": [
+        -0.8164591344764655,
+        1.0677817657383077
+      ],
+      "equivalence_margin_pct": 3,
+      "verdict": "EQUIVALENT",
+      "off_drift_pct": 4.265298620137337
+    },
+    "decode_tokens_s": {
+      "off": [
+        28.94982256925152,
+        29.11755827435701,
+        28.88193950647685,
+        28.846777935099556,
+        29.266891798166977,
+        28.96045321902602,
+        29.29116300867842,
+        29.0983666495739
+      ],
+      "on": [
+        27.535752377862803,
+        27.22316680151823,
+        26.993676309548295,
+        27.524245706647736,
+        27.3492020905901,
+        27.338572846759895,
+        27.38284403495049,
+        26.967818543661952
+      ],
+      "off_mean": 29.051621620078784,
+      "on_mean": 27.28940983894244,
+      "change_pct": -6.065794894968635,
+      "ci95_pct": [
+        -6.681551577739783,
+        -5.486677509782778
+      ],
+      "equivalence_margin_pct": 3,
+      "verdict": "REGRESSION",
+      "off_drift_pct": 1.5405015928595445
+    },
+    "decode_call_p95_ms": {
+      "off": [
+        40.5796,
+        40.35649999999999,
+        40.24785,
+        40.93935,
+        39.9123,
+        40.83839999999999,
+        39.876549999999995,
+        39.93665
+      ],
+      "on": [
+        41.8851,
+        43.07254999999999,
+        42.78724999999999,
+        42.0175,
+        43.12774999999999,
+        42.90825,
+        42.550549999999994,
+        43.011449999999996
+      ],
+      "off_mean": 40.335899999999995,
+      "on_mean": 42.670049999999996,
+      "change_pct": 5.7867805106617265,
+      "ci95_pct": [
+        4.703594631533207,
+        6.812655720930585
+      ],
+      "equivalence_margin_pct": 5,
+      "verdict": "INCONCLUSIVE",
+      "off_drift_pct": 2.6652255523609725
+    }
+  },
+  "upstream_off_comparison": {
+    "prefill_tokens_s": {
+      "base": [
+        170.92711849802697,
+        170.6414627050495,
+        170.63474025406393,
+        170.12727705017895
+      ],
+      "off": [
+        168.82534003775967,
+        167.1695455454797,
+        172.27635669396022,
+        169.2110350560419
+      ],
+      "base_mean": 170.58264962682983,
+      "off_mean": 169.37056933331036,
+      "change_pct": -0.7105530932782766,
+      "ci95_pct": [
+        -1.6850643567737689,
+        0.4689315968553265
+      ],
+      "margin_pct": 3,
+      "verdict": "EQUIVALENT"
+    },
+    "decode_tokens_s": {
+      "base": [
+        28.970700436846474,
+        29.102598634694026,
+        28.888814326324134,
+        29.194099173115156
+      ],
+      "off": [
+        28.104179852698966,
+        28.408292262143434,
+        28.80967428862612,
+        28.635925453825354
+      ],
+      "base_mean": 29.039053142744947,
+      "off_mean": 28.489517964323465,
+      "change_pct": -1.8924004709112818,
+      "ci95_pct": [
+        -2.8825212937918954,
+        -0.9739199004674237
+      ],
+      "margin_pct": 3,
+      "verdict": "EQUIVALENT"
+    },
+    "decode_call_p95_ms": {
+      "base": [
+        40.21329999999999,
+        39.7591,
+        41.32604999999999,
+        39.897549999999995
+      ],
+      "off": [
+        41.395649999999996,
+        41.33685,
+        41.17305,
+        40.93964999999999
+      ],
+      "base_mean": 40.29899999999999,
+      "off_mean": 41.211299999999994,
+      "change_pct": 2.2638278865480643,
+      "ci95_pct": [
+        0.4979248310432949,
+        3.6029229974807064
+      ],
+      "margin_pct": 5,
+      "verdict": "EQUIVALENT"
+    }
+  },
+  "host_phase_aggregate": {
+    "prefill": {
+      "evaluations": 24,
+      "elapsed_ms": 34826.0,
+      "events": [
+        {
+          "event": "compute_splits",
+          "source": "",
+          "destination": "",
+          "host_ms": 32350.016,
+          "bytes": 0,
+          "count": 24
+        },
+        {
+          "event": "split",
+          "source": "",
+          "destination": "Vulkan0",
+          "host_ms": 32341.342,
+          "bytes": 0,
+          "count": 1320
+        },
+        {
+          "event": "expert_upload",
+          "source": "CPU",
+          "destination": "Vulkan0",
+          "host_ms": 27077.977000000003,
+          "bytes": 129712435200,
+          "count": 76032
+        },
+        {
+          "event": "compute_call",
+          "source": "",
+          "destination": "Vulkan0",
+          "host_ms": 2618.704999999991,
+          "bytes": 0,
+          "count": 1320
+        },
+        {
+          "event": "scheduler_wait",
+          "source": "",
+          "destination": "Vulkan0",
+          "host_ms": 2373.427000000001,
+          "bytes": 0,
+          "count": 24
+        },
+        {
+          "event": "input_wait",
+          "source": "",
+          "destination": "Vulkan0",
+          "host_ms": 2217.8,
+          "bytes": 0,
+          "count": 1536
+        },
+        {
+          "event": "graph_allocate",
+          "source": "",
+          "destination": "",
+          "host_ms": 81.40200000000003,
+          "bytes": 0,
+          "count": 24
+        },
+        {
+          "event": "router_readback",
+          "source": "Vulkan0",
+          "destination": "",
+          "host_ms": 51.89299999999992,
+          "bytes": 107509248,
+          "count": 432
+        },
+        {
+          "event": "tensor_copy",
+          "source": "CPU",
+          "destination": "Vulkan0",
+          "host_ms": 10.936,
+          "bytes": 9870432,
+          "count": 168
+        },
+        {
+          "event": "split",
+          "source": "",
+          "destination": "CPU",
+          "host_ms": 4.35,
+          "bytes": 0,
+          "count": 24
+        },
+        {
+          "event": "compute_call",
+          "source": "",
+          "destination": "CPU",
+          "host_ms": 4.22,
+          "bytes": 0,
+          "count": 24
+        },
+        {
+          "event": "routing_scan",
+          "source": "",
+          "destination": "",
+          "host_ms": 1.7919999999999938,
+          "bytes": 0,
+          "count": 432
+        },
+        {
+          "event": "tensor_copy_async",
+          "source": "CPU",
+          "destination": "Vulkan0",
+          "host_ms": 0.10500000000000005,
+          "bytes": 47972448,
+          "count": 72
+        },
+        {
+          "event": "source_wait",
+          "source": "",
+          "destination": "CPU",
+          "host_ms": 0.08500000000000006,
+          "bytes": 0,
+          "count": 1296
+        },
+        {
+          "event": "scheduler_wait",
+          "source": "",
+          "destination": "CPU",
+          "host_ms": 0.003,
+          "bytes": 0,
+          "count": 24
+        }
+      ]
+    },
+    "decode": {
+      "evaluations": 24,
+      "elapsed_ms": 112577.319,
+      "events": [
+        {
+          "event": "compute_splits",
+          "source": "",
+          "destination": "",
+          "host_ms": 102628.293,
+          "bytes": 0,
+          "count": 3072
+        },
+        {
+          "event": "split",
+          "source": "",
+          "destination": "Vulkan0",
+          "host_ms": 51212.206999999995,
+          "bytes": 0,
+          "count": 58368
+        },
+        {
+          "event": "split",
+          "source": "",
+          "destination": "CPU",
+          "host_ms": 51019.50099999999,
+          "bytes": 0,
+          "count": 58368
+        },
+        {
+          "event": "compute_call",
+          "source": "",
+          "destination": "Vulkan0",
+          "host_ms": 46843.88600000001,
+          "bytes": 0,
+          "count": 58368
+        },
+        {
+          "event": "compute_call",
+          "source": "",
+          "destination": "CPU",
+          "host_ms": 23716.611000000015,
+          "bytes": 0,
+          "count": 58368
+        },
+        {
+          "event": "copy_wait",
+          "source": "Vulkan0",
+          "destination": "CPU",
+          "host_ms": 17713.048000000003,
+          "bytes": 0,
+          "count": 110592
+        },
+        {
+          "event": "scheduler_wait",
+          "source": "",
+          "destination": "Vulkan0",
+          "host_ms": 9589.657000000001,
+          "bytes": 0,
+          "count": 3072
+        },
+        {
+          "event": "tensor_copy",
+          "source": "Vulkan0",
+          "destination": "CPU",
+          "host_ms": 7489.156000000005,
+          "bytes": 454754304,
+          "count": 110592
+        },
+        {
+          "event": "input_wait",
+          "source": "",
+          "destination": "Vulkan0",
+          "host_ms": 1970.1190000000013,
+          "bytes": 0,
+          "count": 86016
+        },
+        {
+          "event": "tensor_copy",
+          "source": "CPU",
+          "destination": "Vulkan0",
+          "host_ms": 1268.6649999999997,
+          "bytes": 858746880,
+          "count": 21504
+        },
+        {
+          "event": "graph_allocate",
+          "source": "",
+          "destination": "",
+          "host_ms": 161.201,
+          "bytes": 0,
+          "count": 48
+        },
+        {
+          "event": "tensor_copy_async",
+          "source": "CPU",
+          "destination": "Vulkan0",
+          "host_ms": 120.25700000000012,
+          "bytes": 3649056768,
+          "count": 64512
+        },
+        {
+          "event": "input_wait",
+          "source": "",
+          "destination": "CPU",
+          "host_ms": 7.734999999999965,
+          "bytes": 0,
+          "count": 110592
+        },
+        {
+          "event": "tensor_copy_async",
+          "source": "Vulkan0",
+          "destination": "CPU",
+          "host_ms": 4.551999999999966,
+          "bytes": 0,
+          "count": 110592
+        },
+        {
+          "event": "scheduler_wait",
+          "source": "",
+          "destination": "CPU",
+          "host_ms": 0.20300000000000007,
+          "bytes": 0,
+          "count": 3072
+        }
+      ]
+    }
+  },
+  "sampled_memory": {
+    "overhead-01-off": {
+      "sampled_peaks": {
+        "rss_kib": 21343300,
+        "hwm_kib": 21359632,
+        "cgroup_memory_peak": 151506944,
+        "cgroup_swap_current": 0,
+        "mem_info_vram_used": 13871083520,
+        "mem_info_gtt_used": 784883712,
+        "mem_available_min": 26281943040
+      },
+      "drm_client_sampled_peaks": {
+        "drm-total-gtt": 512651264,
+        "drm-resident-gtt": 665694208,
+        "drm-total-vram": 12697948160,
+        "drm-resident-vram": 12544905216,
+        "drm-memory-vram": 12544905216,
+        "drm-memory-gtt": 665694208
+      }
+    },
+    "overhead-02-on": {
+      "sampled_peaks": {
+        "rss_kib": 21360516,
+        "hwm_kib": 21360516,
+        "cgroup_memory_peak": 156925952,
+        "cgroup_swap_current": 0,
+        "mem_info_vram_used": 13888700416,
+        "mem_info_gtt_used": 784883712,
+        "mem_available_min": 26372706304
+      },
+      "drm_client_sampled_peaks": {
+        "drm-total-gtt": 512651264,
+        "drm-resident-gtt": 665694208,
+        "drm-total-vram": 12697690112,
+        "drm-resident-vram": 12544647168,
+        "drm-memory-vram": 12544647168,
+        "drm-memory-gtt": 665694208
+      }
+    },
+    "overhead-03-on": {
+      "sampled_peaks": {
+        "rss_kib": 21358744,
+        "hwm_kib": 21359920,
+        "cgroup_memory_peak": 157020160,
+        "cgroup_swap_current": 0,
+        "mem_info_vram_used": 13859332096,
+        "mem_info_gtt_used": 784883712,
+        "mem_available_min": 26193190912
+      },
+      "drm_client_sampled_peaks": {
+        "drm-total-gtt": 512651264,
+        "drm-resident-gtt": 665694208,
+        "drm-total-vram": 12697444352,
+        "drm-resident-vram": 12544401408,
+        "drm-memory-vram": 12544401408,
+        "drm-memory-gtt": 665694208
+      }
+    },
+    "overhead-04-off": {
+      "sampled_peaks": {
+        "rss_kib": 21360552,
+        "hwm_kib": 21360552,
+        "cgroup_memory_peak": 147566592,
+        "cgroup_swap_current": 0,
+        "mem_info_vram_used": 13857189888,
+        "mem_info_gtt_used": 801660928,
+        "mem_available_min": 26299408384
+      },
+      "drm_client_sampled_peaks": {
+        "drm-total-gtt": 512651264,
+        "drm-resident-gtt": 665694208,
+        "drm-total-vram": 12697399296,
+        "drm-resident-vram": 12544356352,
+        "drm-memory-vram": 12544356352,
+        "drm-memory-gtt": 665694208
+      }
+    },
+    "overhead-05-off": {
+      "sampled_peaks": {
+        "rss_kib": 21360568,
+        "hwm_kib": 21360568,
+        "cgroup_memory_peak": 292012032,
+        "cgroup_swap_current": 0,
+        "mem_info_vram_used": 13865361408,
+        "mem_info_gtt_used": 791175168,
+        "mem_available_min": 26279583744
+      },
+      "drm_client_sampled_peaks": {
+        "drm-total-gtt": 512651264,
+        "drm-resident-gtt": 665694208,
+        "drm-total-vram": 12697403392,
+        "drm-resident-vram": 12544360448,
+        "drm-memory-vram": 12544360448,
+        "drm-memory-gtt": 665694208
+      }
+    },
+    "overhead-06-on": {
+      "sampled_peaks": {
+        "rss_kib": 21350060,
+        "hwm_kib": 21359792,
+        "cgroup_memory_peak": 250748928,
+        "cgroup_swap_current": 0,
+        "mem_info_vram_used": 13887160320,
+        "mem_info_gtt_used": 789078016,
+        "mem_available_min": 26441195520
+      },
+      "drm_client_sampled_peaks": {
+        "drm-total-gtt": 512651264,
+        "drm-resident-gtt": 665694208,
+        "drm-total-vram": 12697403392,
+        "drm-resident-vram": 12544360448,
+        "drm-memory-vram": 12544360448,
+        "drm-memory-gtt": 665694208
+      }
+    },
+    "overhead-07-on": {
+      "sampled_peaks": {
+        "rss_kib": 21356472,
+        "hwm_kib": 21359608,
+        "cgroup_memory_peak": 159416320,
+        "cgroup_swap_current": 0,
+        "mem_info_vram_used": 13859074048,
+        "mem_info_gtt_used": 812085248,
+        "mem_available_min": 26457124864
+      },
+      "drm_client_sampled_peaks": {
+        "drm-total-gtt": 512651264,
+        "drm-resident-gtt": 665694208,
+        "drm-total-vram": 12697399296,
+        "drm-resident-vram": 12544356352,
+        "drm-memory-vram": 12544356352,
+        "drm-memory-gtt": 665694208
+      }
+    },
+    "overhead-08-off": {
+      "sampled_peaks": {
+        "rss_kib": 21360472,
+        "hwm_kib": 21360472,
+        "cgroup_memory_peak": 280309760,
+        "cgroup_swap_current": 0,
+        "mem_info_vram_used": 13888954368,
+        "mem_info_gtt_used": 799502336,
+        "mem_available_min": 26452664320
+      },
+      "drm_client_sampled_peaks": {
+        "drm-total-gtt": 512651264,
+        "drm-resident-gtt": 665694208,
+        "drm-total-vram": 12697399296,
+        "drm-resident-vram": 12544356352,
+        "drm-memory-vram": 12544356352,
+        "drm-memory-gtt": 665694208
+      }
+    },
+    "overhead-09-off": {
+      "sampled_peaks": {
+        "rss_kib": 21360512,
+        "hwm_kib": 21360512,
+        "cgroup_memory_peak": 162803712,
+        "cgroup_swap_current": 0,
+        "mem_info_vram_used": 13883346944,
+        "mem_info_gtt_used": 803696640,
+        "mem_available_min": 26448580608
+      },
+      "drm_client_sampled_peaks": {
+        "drm-total-gtt": 512651264,
+        "drm-resident-gtt": 665694208,
+        "drm-total-vram": 12697399296,
+        "drm-resident-vram": 12544356352,
+        "drm-memory-vram": 12544356352,
+        "drm-memory-gtt": 665694208
+      }
+    },
+    "overhead-10-on": {
+      "sampled_peaks": {
+        "rss_kib": 21360488,
+        "hwm_kib": 21360488,
+        "cgroup_memory_peak": 157179904,
+        "cgroup_swap_current": 0,
+        "mem_info_vram_used": 13874257920,
+        "mem_info_gtt_used": 801599488,
+        "mem_available_min": 26467209216
+      },
+      "drm_client_sampled_peaks": {
+        "drm-total-gtt": 512651264,
+        "drm-resident-gtt": 665694208,
+        "drm-total-vram": 12697399296,
+        "drm-resident-vram": 12544356352,
+        "drm-memory-vram": 12544356352,
+        "drm-memory-gtt": 665694208
+      }
+    },
+    "overhead-11-on": {
+      "sampled_peaks": {
+        "rss_kib": 21360576,
+        "hwm_kib": 21360576,
+        "cgroup_memory_peak": 200273920,
+        "cgroup_swap_current": 0,
+        "mem_info_vram_used": 13862400000,
+        "mem_info_gtt_used": 801599488,
+        "mem_available_min": 26458648576
+      },
+      "drm_client_sampled_peaks": {
+        "drm-total-gtt": 512651264,
+        "drm-resident-gtt": 665694208,
+        "drm-total-vram": 12697403392,
+        "drm-resident-vram": 12544360448,
+        "drm-memory-vram": 12544360448,
+        "drm-memory-gtt": 665694208
+      }
+    },
+    "overhead-12-off": {
+      "sampled_peaks": {
+        "rss_kib": 21360484,
+        "hwm_kib": 21360484,
+        "cgroup_memory_peak": 275808256,
+        "cgroup_swap_current": 0,
+        "mem_info_vram_used": 13861179392,
+        "mem_info_gtt_used": 833056768,
+        "mem_available_min": 25949327360
+      },
+      "drm_client_sampled_peaks": {
+        "drm-total-gtt": 512651264,
+        "drm-resident-gtt": 665694208,
+        "drm-total-vram": 12697399296,
+        "drm-resident-vram": 12544356352,
+        "drm-memory-vram": 12544356352,
+        "drm-memory-gtt": 665694208
+      }
+    },
+    "overhead-13-off": {
+      "sampled_peaks": {
+        "rss_kib": 21360500,
+        "hwm_kib": 21360500,
+        "cgroup_memory_peak": 147705856,
+        "cgroup_swap_current": 0,
+        "mem_info_vram_used": 13877833728,
+        "mem_info_gtt_used": 805855232,
+        "mem_available_min": 26179735552
+      },
+      "drm_client_sampled_peaks": {
+        "drm-total-gtt": 512651264,
+        "drm-resident-gtt": 665694208,
+        "drm-total-vram": 12697399296,
+        "drm-resident-vram": 12544356352,
+        "drm-memory-vram": 12544356352,
+        "drm-memory-gtt": 665694208
+      }
+    },
+    "overhead-14-on": {
+      "sampled_peaks": {
+        "rss_kib": 21360556,
+        "hwm_kib": 21360556,
+        "cgroup_memory_peak": 157171712,
+        "cgroup_swap_current": 0,
+        "mem_info_vram_used": 13865484288,
+        "mem_info_gtt_used": 810049536,
+        "mem_available_min": 26235342848
+      },
+      "drm_client_sampled_peaks": {
+        "drm-total-gtt": 512651264,
+        "drm-resident-gtt": 665694208,
+        "drm-total-vram": 12697399296,
+        "drm-resident-vram": 12544356352,
+        "drm-memory-vram": 12544356352,
+        "drm-memory-gtt": 665694208
+      }
+    },
+    "overhead-15-on": {
+      "sampled_peaks": {
+        "rss_kib": 21360484,
+        "hwm_kib": 21360484,
+        "cgroup_memory_peak": 160866304,
+        "cgroup_swap_current": 0,
+        "mem_info_vram_used": 13878190080,
+        "mem_info_gtt_used": 807890944,
+        "mem_available_min": 26331320320
+      },
+      "drm_client_sampled_peaks": {
+        "drm-total-gtt": 512651264,
+        "drm-resident-gtt": 665694208,
+        "drm-total-vram": 12697399296,
+        "drm-resident-vram": 12544356352,
+        "drm-memory-vram": 12544356352,
+        "drm-memory-gtt": 665694208
+      }
+    },
+    "overhead-16-off": {
+      "sampled_peaks": {
+        "rss_kib": 21360552,
+        "hwm_kib": 21360552,
+        "cgroup_memory_peak": 149725184,
+        "cgroup_swap_current": 0,
+        "mem_info_vram_used": 13869694976,
+        "mem_info_gtt_used": 812146688,
+        "mem_available_min": 26337124352
+      },
+      "drm_client_sampled_peaks": {
+        "drm-total-gtt": 512651264,
+        "drm-resident-gtt": 665694208,
+        "drm-total-vram": 12697399296,
+        "drm-resident-vram": 12544356352,
+        "drm-memory-vram": 12544356352,
+        "drm-memory-gtt": 665694208
+      }
+    }
+  },
+  "runs": {
+    "baseline-01-base": {
+      "label": "BASE",
+      "source_commit": "7fe450e19305b828c199d602c23a8337aaa1f03b",
+      "profile": false,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/BASE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/BASE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 170.92711849802697,
+          "elapsed_ms": 4282.527,
+          "calls": 3,
+          "call_p50_ms": 1427.911,
+          "call_p95_ms": 1431.5497
+        },
+        "decode": {
+          "tokens_s": 28.970700436846474,
+          "elapsed_ms": 13254.771,
+          "calls": 384,
+          "call_p50_ms": 33.693,
+          "call_p95_ms": 40.21329999999999
+        }
+      },
+      "wall_s": 28.141191520000575,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "baseline-02-off": {
+      "label": "LOGGER_FIXED",
+      "source_commit": "5dcc3e6416a175986e451ff1cdc244e256c25a4b",
+      "profile": false,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/LOGGER_FIXED/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/LOGGER_FIXED",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 168.82534003775967,
+          "elapsed_ms": 4335.842,
+          "calls": 3,
+          "call_p50_ms": 1438.907,
+          "call_p95_ms": 1465.1708
+        },
+        "decode": {
+          "tokens_s": 28.104179852698966,
+          "elapsed_ms": 13663.448,
+          "calls": 384,
+          "call_p50_ms": 34.386,
+          "call_p95_ms": 41.395649999999996
+        }
+      },
+      "wall_s": 28.639989992000665,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "baseline-03-off": {
+      "label": "LOGGER_FIXED",
+      "source_commit": "5dcc3e6416a175986e451ff1cdc244e256c25a4b",
+      "profile": false,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/LOGGER_FIXED/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/LOGGER_FIXED",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 167.1695455454797,
+          "elapsed_ms": 4378.788,
+          "calls": 3,
+          "call_p50_ms": 1471.11,
+          "call_p95_ms": 1475.1771
+        },
+        "decode": {
+          "tokens_s": 28.408292262143434,
+          "elapsed_ms": 13517.18,
+          "calls": 384,
+          "call_p50_ms": 34.333,
+          "call_p95_ms": 41.33685
+        }
+      },
+      "wall_s": 28.140427446000103,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "baseline-04-base": {
+      "label": "BASE",
+      "source_commit": "7fe450e19305b828c199d602c23a8337aaa1f03b",
+      "profile": false,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/BASE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/BASE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 170.6414627050495,
+          "elapsed_ms": 4289.696,
+          "calls": 3,
+          "call_p50_ms": 1432.504,
+          "call_p95_ms": 1444.5343
+        },
+        "decode": {
+          "tokens_s": 29.102598634694026,
+          "elapsed_ms": 13194.698,
+          "calls": 384,
+          "call_p50_ms": 33.778,
+          "call_p95_ms": 39.7591
+        }
+      },
+      "wall_s": 28.138047747999735,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "baseline-05-base": {
+      "label": "BASE",
+      "source_commit": "7fe450e19305b828c199d602c23a8337aaa1f03b",
+      "profile": false,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/BASE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/BASE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 170.63474025406393,
+          "elapsed_ms": 4289.865,
+          "calls": 3,
+          "call_p50_ms": 1431.384,
+          "call_p95_ms": 1433.5737
+        },
+        "decode": {
+          "tokens_s": 28.888814326324134,
+          "elapsed_ms": 13292.342,
+          "calls": 384,
+          "call_p50_ms": 33.4055,
+          "call_p95_ms": 41.32604999999999
+        }
+      },
+      "wall_s": 28.14644682800008,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "baseline-06-off": {
+      "label": "LOGGER_FIXED",
+      "source_commit": "5dcc3e6416a175986e451ff1cdc244e256c25a4b",
+      "profile": false,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/LOGGER_FIXED/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/LOGGER_FIXED",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 172.27635669396022,
+          "elapsed_ms": 4248.987,
+          "calls": 3,
+          "call_p50_ms": 1415.265,
+          "call_p95_ms": 1418.4321
+        },
+        "decode": {
+          "tokens_s": 28.80967428862612,
+          "elapsed_ms": 13328.856,
+          "calls": 384,
+          "call_p50_ms": 33.9665,
+          "call_p95_ms": 41.17305
+        }
+      },
+      "wall_s": 28.141367126999285,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "baseline-07-off": {
+      "label": "LOGGER_FIXED",
+      "source_commit": "5dcc3e6416a175986e451ff1cdc244e256c25a4b",
+      "profile": false,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/LOGGER_FIXED/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/LOGGER_FIXED",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 169.2110350560419,
+          "elapsed_ms": 4325.959,
+          "calls": 3,
+          "call_p50_ms": 1434.614,
+          "call_p95_ms": 1455.1025
+        },
+        "decode": {
+          "tokens_s": 28.635925453825354,
+          "elapsed_ms": 13409.729,
+          "calls": 384,
+          "call_p50_ms": 34.2495,
+          "call_p95_ms": 40.93964999999999
+        }
+      },
+      "wall_s": 28.142325392000203,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "baseline-08-base": {
+      "label": "BASE",
+      "source_commit": "7fe450e19305b828c199d602c23a8337aaa1f03b",
+      "profile": false,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/BASE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/BASE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 170.12727705017895,
+          "elapsed_ms": 4302.661,
+          "calls": 3,
+          "call_p50_ms": 1432.426,
+          "call_p95_ms": 1441.6708
+        },
+        "decode": {
+          "tokens_s": 29.194099173115156,
+          "elapsed_ms": 13153.343,
+          "calls": 384,
+          "call_p50_ms": 33.712,
+          "call_p95_ms": 39.897549999999995
+        }
+      },
+      "wall_s": 28.146638949999215,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "correctness-base": {
+      "label": "BASE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": false,
+      "reps": 1,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/BASE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/BASE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/correctness-base-logits.bin"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 166.74958585963512,
+          "elapsed_ms": 1463.272,
+          "calls": 1,
+          "call_p50_ms": 1463.272,
+          "call_p95_ms": 1463.272
+        },
+        "decode": {
+          "tokens_s": 28.97312018774582,
+          "elapsed_ms": 4417.888,
+          "calls": 128,
+          "call_p50_ms": 33.751,
+          "call_p95_ms": 41.2096
+        }
+      },
+      "wall_s": 21.61055593399942,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "correctness-off": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": false,
+      "reps": 1,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/correctness-off-logits.bin"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 172.11776805578873,
+          "elapsed_ms": 1417.634,
+          "calls": 1,
+          "call_p50_ms": 1417.634,
+          "call_p95_ms": 1417.634
+        },
+        "decode": {
+          "tokens_s": 28.81779498840534,
+          "elapsed_ms": 4441.7,
+          "calls": 128,
+          "call_p50_ms": 33.9945,
+          "call_p95_ms": 40.85465
+        }
+      },
+      "wall_s": 16.085908516999552,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "correctness-on": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": true,
+      "reps": 1,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "GGML_SCHED_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/correctness-on-scheduler.csv",
+        "MOE_REPLAY_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/correctness-on-phases.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/correctness-on-logits.bin"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 170.3104256504253,
+          "elapsed_ms": 1432.678,
+          "calls": 1,
+          "call_p50_ms": 1432.678,
+          "call_p95_ms": 1432.678
+        },
+        "decode": {
+          "tokens_s": 26.94655151506986,
+          "elapsed_ms": 4750.144,
+          "calls": 128,
+          "call_p50_ms": 36.2555,
+          "call_p95_ms": 43.961349999999996
+        }
+      },
+      "wall_s": 16.594840644000215,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "gpu-timestamps-fixed": {
+      "label": "LOGGER_FIXED",
+      "source_commit": "5dcc3e6416a175986e451ff1cdc244e256c25a4b",
+      "profile": true,
+      "reps": 1,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/LOGGER_FIXED/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/LOGGER_FIXED",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "GGML_SCHED_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/gpu-timestamps-fixed-scheduler.csv",
+        "MOE_REPLAY_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/gpu-timestamps-fixed-phases.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/gpu-timestamps-fixed-logits.bin",
+        "GGML_VK_PERF_LOGGER": "1",
+        "GGML_VK_PERF_LOGGER_FREQUENCY": "1"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 163.71982170643022,
+          "elapsed_ms": 1490.351,
+          "calls": 1,
+          "call_p50_ms": 1490.351,
+          "call_p95_ms": 1490.351
+        },
+        "decode": {
+          "tokens_s": 16.295900969809807,
+          "elapsed_ms": 7854.736,
+          "calls": 128,
+          "call_p50_ms": 60.4025,
+          "call_p95_ms": 66.99625
+        }
+      },
+      "wall_s": 23.183801567000046,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "gpu-timestamps-original": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": true,
+      "reps": 1,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "GGML_SCHED_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/gpu-timestamps-original-scheduler.csv",
+        "MOE_REPLAY_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/gpu-timestamps-original-phases.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/gpu-timestamps-original-logits.bin",
+        "GGML_VK_PERF_LOGGER": "1"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 163.2552562839892,
+          "elapsed_ms": 1494.592,
+          "calls": 1,
+          "call_p50_ms": 1494.592,
+          "call_p95_ms": 1494.592
+        },
+        "decode": {
+          "tokens_s": 16.45442176590911,
+          "elapsed_ms": 7779.064,
+          "calls": 128,
+          "call_p50_ms": 59.7775,
+          "call_p95_ms": 65.67425
+        }
+      },
+      "wall_s": 22.693043909999687,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "logger-fixed-off-correctness": {
+      "label": "LOGGER_FIXED",
+      "source_commit": "5dcc3e6416a175986e451ff1cdc244e256c25a4b",
+      "profile": false,
+      "reps": 1,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/LOGGER_FIXED/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/LOGGER_FIXED",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/logger-fixed-off-correctness-logits.bin"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 168.83172597227008,
+          "elapsed_ms": 1445.226,
+          "calls": 1,
+          "call_p50_ms": 1445.226,
+          "call_p95_ms": 1445.226
+        },
+        "decode": {
+          "tokens_s": 27.935448163156984,
+          "elapsed_ms": 4581.992,
+          "calls": 128,
+          "call_p50_ms": 35.3405,
+          "call_p95_ms": 41.1326
+        }
+      },
+      "wall_s": 16.084344069000508,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "overhead-01-off": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": false,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 167.15694804296209,
+          "elapsed_ms": 4379.118,
+          "calls": 3,
+          "call_p50_ms": 1470.262,
+          "call_p95_ms": 1473.889
+        },
+        "decode": {
+          "tokens_s": 28.94982256925152,
+          "elapsed_ms": 13264.33,
+          "calls": 384,
+          "call_p50_ms": 33.7095,
+          "call_p95_ms": 40.5796
+        }
+      },
+      "wall_s": 28.14889148399925,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "overhead-02-on": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": true,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3",
+        "GGML_SCHED_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/overhead-02-on-scheduler.csv",
+        "MOE_REPLAY_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/overhead-02-on-phases.csv"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 168.2041336395629,
+          "elapsed_ms": 4351.855,
+          "calls": 3,
+          "call_p50_ms": 1453.143,
+          "call_p95_ms": 1459.8633
+        },
+        "decode": {
+          "tokens_s": 27.535752377862803,
+          "elapsed_ms": 13945.506,
+          "calls": 384,
+          "call_p50_ms": 35.5225,
+          "call_p95_ms": 41.8851
+        }
+      },
+      "wall_s": 29.153225484999894,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "overhead-03-on": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": true,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3",
+        "GGML_SCHED_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/overhead-03-on-scheduler.csv",
+        "MOE_REPLAY_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/overhead-03-on-phases.csv"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 168.42713674097632,
+          "elapsed_ms": 4346.093,
+          "calls": 3,
+          "call_p50_ms": 1452.699,
+          "call_p95_ms": 1455.0084
+        },
+        "decode": {
+          "tokens_s": 27.22316680151823,
+          "elapsed_ms": 14105.633,
+          "calls": 384,
+          "call_p50_ms": 35.603,
+          "call_p95_ms": 43.07254999999999
+        }
+      },
+      "wall_s": 29.15086566700029,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "overhead-04-off": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": false,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 167.8410187858124,
+          "elapsed_ms": 4361.27,
+          "calls": 3,
+          "call_p50_ms": 1465.132,
+          "call_p95_ms": 1466.2111
+        },
+        "decode": {
+          "tokens_s": 29.11755827435701,
+          "elapsed_ms": 13187.919,
+          "calls": 384,
+          "call_p50_ms": 33.4865,
+          "call_p95_ms": 40.35649999999999
+        }
+      },
+      "wall_s": 28.14833182700022,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "overhead-05-off": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": false,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 166.39653749718696,
+          "elapsed_ms": 4399.13,
+          "calls": 3,
+          "call_p50_ms": 1460.773,
+          "call_p95_ms": 1498.3597
+        },
+        "decode": {
+          "tokens_s": 28.88193950647685,
+          "elapsed_ms": 13295.506,
+          "calls": 384,
+          "call_p50_ms": 33.801,
+          "call_p95_ms": 40.24785
+        }
+      },
+      "wall_s": 28.135306694000064,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "overhead-06-on": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": true,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3",
+        "GGML_SCHED_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/overhead-06-on-scheduler.csv",
+        "MOE_REPLAY_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/overhead-06-on-phases.csv"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 167.14274949822925,
+          "elapsed_ms": 4379.49,
+          "calls": 3,
+          "call_p50_ms": 1459.387,
+          "call_p95_ms": 1464.4108
+        },
+        "decode": {
+          "tokens_s": 26.993676309548295,
+          "elapsed_ms": 14225.554,
+          "calls": 384,
+          "call_p50_ms": 36.1835,
+          "call_p95_ms": 42.78724999999999
+        }
+      },
+      "wall_s": 29.65930127499996,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "overhead-07-on": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": true,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3",
+        "GGML_SCHED_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/overhead-07-on-scheduler.csv",
+        "MOE_REPLAY_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/overhead-07-on-phases.csv"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 166.45757139767738,
+          "elapsed_ms": 4397.517,
+          "calls": 3,
+          "call_p50_ms": 1472.386,
+          "call_p95_ms": 1473.4102
+        },
+        "decode": {
+          "tokens_s": 27.524245706647736,
+          "elapsed_ms": 13951.336,
+          "calls": 384,
+          "call_p50_ms": 35.5435,
+          "call_p95_ms": 42.0175
+        }
+      },
+      "wall_s": 29.14895046499987,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "overhead-08-off": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": false,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 171.6153789886509,
+          "elapsed_ms": 4265.352,
+          "calls": 3,
+          "call_p50_ms": 1420.926,
+          "call_p95_ms": 1425.7923
+        },
+        "decode": {
+          "tokens_s": 28.846777935099556,
+          "elapsed_ms": 13311.712,
+          "calls": 384,
+          "call_p50_ms": 33.8725,
+          "call_p95_ms": 40.93935
+        }
+      },
+      "wall_s": 28.14203729899964,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "overhead-09-off": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": false,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 169.44020843923346,
+          "elapsed_ms": 4320.108,
+          "calls": 3,
+          "call_p50_ms": 1443.663,
+          "call_p95_ms": 1444.0041
+        },
+        "decode": {
+          "tokens_s": 29.266891798166977,
+          "elapsed_ms": 13120.628,
+          "calls": 384,
+          "call_p50_ms": 33.3125,
+          "call_p95_ms": 39.9123
+        }
+      },
+      "wall_s": 28.145291978000387,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "overhead-10-on": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": true,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3",
+        "GGML_SCHED_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/overhead-10-on-scheduler.csv",
+        "MOE_REPLAY_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/overhead-10-on-phases.csv"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 169.8114258035421,
+          "elapsed_ms": 4310.664,
+          "calls": 3,
+          "call_p50_ms": 1441.133,
+          "call_p95_ms": 1441.2851
+        },
+        "decode": {
+          "tokens_s": 27.3492020905901,
+          "elapsed_ms": 14040.629,
+          "calls": 384,
+          "call_p50_ms": 35.6375,
+          "call_p95_ms": 43.12774999999999
+        }
+      },
+      "wall_s": 29.15778841500014,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "overhead-11-on": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": true,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3",
+        "GGML_SCHED_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/overhead-11-on-scheduler.csv",
+        "MOE_REPLAY_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/overhead-11-on-phases.csv"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 169.4756326685119,
+          "elapsed_ms": 4319.205,
+          "calls": 3,
+          "call_p50_ms": 1428.056,
+          "call_p95_ms": 1460.3552
+        },
+        "decode": {
+          "tokens_s": 27.338572846759895,
+          "elapsed_ms": 14046.088,
+          "calls": 384,
+          "call_p50_ms": 35.6055,
+          "call_p95_ms": 42.90825
+        }
+      },
+      "wall_s": 29.151951703000123,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "overhead-12-off": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": false,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 164.59491437691605,
+          "elapsed_ms": 4447.282,
+          "calls": 3,
+          "call_p50_ms": 1445.509,
+          "call_p95_ms": 1575.343
+        },
+        "decode": {
+          "tokens_s": 28.96045321902602,
+          "elapsed_ms": 13259.461,
+          "calls": 384,
+          "call_p50_ms": 33.702,
+          "call_p95_ms": 40.83839999999999
+        }
+      },
+      "wall_s": 28.145268837000003,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "overhead-13-off": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": false,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 168.84469402089107,
+          "elapsed_ms": 4335.345,
+          "calls": 3,
+          "call_p50_ms": 1442.726,
+          "call_p95_ms": 1469.5568
+        },
+        "decode": {
+          "tokens_s": 29.29116300867842,
+          "elapsed_ms": 13109.756,
+          "calls": 384,
+          "call_p50_ms": 33.4195,
+          "call_p95_ms": 39.876549999999995
+        }
+      },
+      "wall_s": 27.642969991999962,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "overhead-14-on": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": true,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3",
+        "GGML_SCHED_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/overhead-14-on-scheduler.csv",
+        "MOE_REPLAY_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/overhead-14-on-phases.csv"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 168.99828115819233,
+          "elapsed_ms": 4331.405,
+          "calls": 3,
+          "call_p50_ms": 1445.07,
+          "call_p95_ms": 1445.3571000000002
+        },
+        "decode": {
+          "tokens_s": 27.38284403495049,
+          "elapsed_ms": 14023.379,
+          "calls": 384,
+          "call_p50_ms": 35.393,
+          "call_p95_ms": 42.550549999999994
+        }
+      },
+      "wall_s": 29.142068838999876,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "overhead-15-on": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": true,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3",
+        "GGML_SCHED_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/overhead-15-on-scheduler.csv",
+        "MOE_REPLAY_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/overhead-15-on-phases.csv"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 166.75129522701755,
+          "elapsed_ms": 4389.771,
+          "calls": 3,
+          "call_p50_ms": 1463.836,
+          "call_p95_ms": 1479.649
+        },
+        "decode": {
+          "tokens_s": 26.967818543661952,
+          "elapsed_ms": 14239.194,
+          "calls": 384,
+          "call_p50_ms": 36.3185,
+          "call_p95_ms": 43.011449999999996
+        }
+      },
+      "wall_s": 29.149050425000496,
+      "returncode": 0,
+      "stop_reason": null
+    },
+    "overhead-16-off": {
+      "label": "CANDIDATE",
+      "source_commit": "0ae4bbd609e93ce8c6a7a9cda5775b0cee5f557b",
+      "profile": false,
+      "reps": 3,
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/frozen/CANDIDATE",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-model-profile/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "metrics": {
+        "prefill": {
+          "tokens_s": 167.59922354851517,
+          "elapsed_ms": 4367.562,
+          "calls": 3,
+          "call_p50_ms": 1451.01,
+          "call_p95_ms": 1475.0283
+        },
+        "decode": {
+          "tokens_s": 29.0983666495739,
+          "elapsed_ms": 13196.617,
+          "calls": 384,
+          "call_p50_ms": 33.6055,
+          "call_p95_ms": 39.93665
+        }
+      },
+      "wall_s": 27.637232363000294,
+      "returncode": 0,
+      "stop_reason": null
+    }
+  },
+  "archive_artifacts": {
+    "BASE-CMakeCache.txt": {
+      "bytes": 35931,
+      "sha256": "b71e6dfe4da5c3d0def118431418522e054b7afb6b31a63df96859c12a207952"
+    },
+    "CANDIDATE-CMakeCache.txt": {
+      "bytes": 35821,
+      "sha256": "6b4d7cb9e20d3b7e2541e44b7efd236363b2cf975f2a2343dde75162b729a0e1"
+    },
+    "LOGGER_FIXED-CMakeCache.txt": {
+      "bytes": 35821,
+      "sha256": "6b4d7cb9e20d3b7e2541e44b7efd236363b2cf975f2a2343dde75162b729a0e1"
+    },
+    "PROTOCOL.md": {
+      "bytes": 3543,
+      "sha256": "9dbbdf367627b3de9e07ab7c6a65e42918fe7f7de6d50769b5c287ea5d449d23"
+    },
+    "analysis-primary.json": {
+      "bytes": 127180,
+      "sha256": "5df68a38ff24caea2e321f51d0426de52cc5d07a5bf6a1d5e2dc93c1ccfd8c7e"
+    },
+    "analysis.json": {
+      "bytes": 246859,
+      "sha256": "4764a4a79ab8195ab9eb0b085995956564b3c04468c4041e32819b100ee476cb"
+    },
+    "analyze-baseline.py": {
+      "bytes": 1526,
+      "sha256": "dc3b29a3d37bca0657201e9ce14d0e4f3ccc38f5dc0484f88cd98a470c875a9b"
+    },
+    "analyze.py": {
+      "bytes": 3515,
+      "sha256": "e4ad506b0c2f3505fad45080fbb49106414ab5c822ef61b97065f062332ea1c5"
+    },
+    "baseline-01-base-drm.jsonl": {
+      "bytes": 62589,
+      "sha256": "c48df5920a6dab4efa4dc65f92f4588046de86a85be6d27228459b56e309093c"
+    },
+    "baseline-01-base-maps.txt": {
+      "bytes": 33994,
+      "sha256": "9a8295a9617a73be8296279364df405f42a633634ec1e9ca8dd3fea8d213d099"
+    },
+    "baseline-01-base-planned.json": {
+      "bytes": 5983,
+      "sha256": "a3bdb9d993fae88d4b87f0796378b83cfaf9cd14b03f78d7d68e265ef8366366"
+    },
+    "baseline-01-base-result.json": {
+      "bytes": 13117,
+      "sha256": "c7c249737d390d05443d3f3cda7d67944f19fcd66f747e5db2eef869713f9077"
+    },
+    "baseline-01-base-telemetry.csv": {
+      "bytes": 13015,
+      "sha256": "b7742d787cd8c32f3c24ad800cb3ff6ef3766fd712d1ff4a0c4145b472e6d581"
+    },
+    "baseline-01-base.csv": {
+      "bytes": 14766,
+      "sha256": "64e0f9285b866706a26b0bd6858436258e7505c67ee6cd6d1392a840677639b0"
+    },
+    "baseline-01-base.log": {
+      "bytes": 16742,
+      "sha256": "6e2b7784591c392af6124097b05acf2ce84af89a448304b033658b54a6099213"
+    },
+    "baseline-02-off-drm.jsonl": {
+      "bytes": 63756,
+      "sha256": "347f9a8cd15c4be8f5fa08fee049850e8b8213d16ef293feda63a8a62401850f"
+    },
+    "baseline-02-off-maps.txt": {
+      "bytes": 101869,
+      "sha256": "797a0593222acb2c360235b917353e7beaf50b24880f00ed09b4da9fb47dc105"
+    },
+    "baseline-02-off-planned.json": {
+      "bytes": 6022,
+      "sha256": "8a10ec8ba1725fb482e20f669b076d70b12284afa19167ca70249faa4616d62e"
+    },
+    "baseline-02-off-result.json": {
+      "bytes": 13205,
+      "sha256": "99410733f02b57127a9ce2194412ac2f216f50b31992b349bfe9379693d311d3"
+    },
+    "baseline-02-off-telemetry.csv": {
+      "bytes": 13117,
+      "sha256": "66b3037296c6cab04f69479a1029357e68e4386f4b1d79665e48efbacbfdd78b"
+    },
+    "baseline-02-off.csv": {
+      "bytes": 14768,
+      "sha256": "cd33fa9a42d158cd598055a98cf1db2ef8af2e272b50bfad872ce15992baecca"
+    },
+    "baseline-02-off.log": {
+      "bytes": 16741,
+      "sha256": "5638bae3f13025f1fc85cac075d4cc503092e295e3a15a43bd060b64b3669cdd"
+    },
+    "baseline-03-off-drm.jsonl": {
+      "bytes": 62605,
+      "sha256": "b1aaa101abb1ea29678a5bfdb9458af2a2e63828560851043a2b95382880e562"
+    },
+    "baseline-03-off-maps.txt": {
+      "bytes": 101967,
+      "sha256": "357b37b113362116e9577e1b04412edd4c5933f42b08e7482217287813b56a50"
+    },
+    "baseline-03-off-planned.json": {
+      "bytes": 6022,
+      "sha256": "dc183f5b38afa5c800f130e008c5720c415d2657e54357b897baceb97ec6f64a"
+    },
+    "baseline-03-off-result.json": {
+      "bytes": 13192,
+      "sha256": "30b1dfc65ccfd949676e0cc3ea8ed59b419df5a37e49bb7c78eca52fae619765"
+    },
+    "baseline-03-off-telemetry.csv": {
+      "bytes": 13059,
+      "sha256": "9abb05086d24f987843a8bd4a4afb3c387fcd19ebf5827c556be56d218097cda"
+    },
+    "baseline-03-off.csv": {
+      "bytes": 14766,
+      "sha256": "9cdfc0904335a2f482dd5e5deeeb8b89d300f10a45d769caf549f888cf9f7d62"
+    },
+    "baseline-03-off.log": {
+      "bytes": 16741,
+      "sha256": "304502976a2a57398c093c2e0fffb79a4bca00bef97338efb4405958bbb82bfd"
+    },
+    "baseline-04-base-drm.jsonl": {
+      "bytes": 62605,
+      "sha256": "b6f7728d19d6989abc8fdbeb345299e794888b1cd72e6330b538fe729adea37a"
+    },
+    "baseline-04-base-maps.txt": {
+      "bytes": 101736,
+      "sha256": "01ed40f68fae871fb89d5cd805a20fbfedfccdc72bea110dfa42acc7cbbd4fc1"
+    },
+    "baseline-04-base-planned.json": {
+      "bytes": 5983,
+      "sha256": "de92675e3067a477b19d0288b088712cf5402599515a000fbd65520e492cf84e"
+    },
+    "baseline-04-base-result.json": {
+      "bytes": 13106,
+      "sha256": "554c49a8a4a44e84a4a82f76ed0ccc3af59a899fdab25feb0f1a082a8ccb038a"
+    },
+    "baseline-04-base-telemetry.csv": {
+      "bytes": 13068,
+      "sha256": "dedaef2bba0854bf617c56856a2cf7c8a251187c254528d62972772cb9254be8"
+    },
+    "baseline-04-base.csv": {
+      "bytes": 14766,
+      "sha256": "d7e2958d0f70b8c0de94d10478061f9d30f892caafd78da1b92760df52e87804"
+    },
+    "baseline-04-base.log": {
+      "bytes": 16742,
+      "sha256": "bd6da271298acac97618254aad685bb5639a51947210772542fc97c11a116da9"
+    },
+    "baseline-05-base-drm.jsonl": {
+      "bytes": 62606,
+      "sha256": "cfbba51aa2cb14c4b9b049945ea579380f973b0d72257fdaca8d56268f0c99f7"
+    },
+    "baseline-05-base-maps.txt": {
+      "bytes": 101638,
+      "sha256": "d8c20df8df0b7a6ce1751aeefd637508152ed7986fe9f569907ffb71c3219cfe"
+    },
+    "baseline-05-base-planned.json": {
+      "bytes": 5983,
+      "sha256": "043053de656f4fd46a4e5eca847a4e31f641117bf7627e35c320daa5d1c8cc0d"
+    },
+    "baseline-05-base-result.json": {
+      "bytes": 13117,
+      "sha256": "dfa4478c9349a1eccc2a10ef30da942caf58daf173571ea6c12afad64d47dc05"
+    },
+    "baseline-05-base-telemetry.csv": {
+      "bytes": 13023,
+      "sha256": "003d5d35555bf8f8c23c0ce16d3c5ae1702821074bf3de0cfdddd826f8a942cb"
+    },
+    "baseline-05-base.csv": {
+      "bytes": 14766,
+      "sha256": "36dc277259e87d367b27ca21d23063c4c438434b9cadc3ce06882e0caf46a7bb"
+    },
+    "baseline-05-base.log": {
+      "bytes": 16742,
+      "sha256": "dca5bc718dcb17ea0bd6e486cec39121f78a5c534bff17f54b5142cd55cd29e6"
+    },
+    "baseline-06-off-drm.jsonl": {
+      "bytes": 62591,
+      "sha256": "d95f1bc93b07b0f6915450f925bfbadb101b6660a3e11f4640f9ce1bd318528c"
+    },
+    "baseline-06-off-maps.txt": {
+      "bytes": 34452,
+      "sha256": "16ab667832eb6f8239c4520cfac13e331ccbe1c5bf118cd28d73565a77e81bac"
+    },
+    "baseline-06-off-planned.json": {
+      "bytes": 6022,
+      "sha256": "acc9ccedfdc62e4d119ddd57203d6c3a78be2301d4f6734c2032411207c2ebac"
+    },
+    "baseline-06-off-result.json": {
+      "bytes": 13195,
+      "sha256": "d426d2e83a69373ffa5c7555b7149146f5ec1aa317ba4c39dc6b24ca215a3e0d"
+    },
+    "baseline-06-off-telemetry.csv": {
+      "bytes": 13027,
+      "sha256": "5d2c074750ca272041bb5343c283125fbac89c74bf52312f65ec61f121cb4c59"
+    },
+    "baseline-06-off.csv": {
+      "bytes": 14766,
+      "sha256": "6cf7a44b13632e5ad5419b78f36f8b86f399a2e76e1a775860da1534c035ad11"
+    },
+    "baseline-06-off.log": {
+      "bytes": 16741,
+      "sha256": "b920ce45ef84cc56eda27d2ccb45f0d68b52a69aa5a646f41c284621e12adc29"
+    },
+    "baseline-07-off-drm.jsonl": {
+      "bytes": 62604,
+      "sha256": "ab08efab74963429097dd94ece625e05faae8ffc02ec90a1c7bb8004eb592252"
+    },
+    "baseline-07-off-maps.txt": {
+      "bytes": 101967,
+      "sha256": "76b99a460a5fa8b6044b28dc03589307e259d94e865c47e8622fd16fe3aaa163"
+    },
+    "baseline-07-off-planned.json": {
+      "bytes": 6022,
+      "sha256": "9e51c7932f27894df7d13160489ea965d4935ce9a3c3ebe1e1b86fb474160435"
+    },
+    "baseline-07-off-result.json": {
+      "bytes": 13204,
+      "sha256": "17cdda1877e3b6fc0a427ceda92aeabc769c82ad67b2668392e3f82b50870e70"
+    },
+    "baseline-07-off-telemetry.csv": {
+      "bytes": 12979,
+      "sha256": "b94d3eec4c57eb3b77b7b49bd5a49a05d0afdfb39446eebf59fe17e5f4884c1b"
+    },
+    "baseline-07-off.csv": {
+      "bytes": 14766,
+      "sha256": "359a459c6d2e17c2306709e8c639ade1a92ac307fc41fda7b90785e48c209086"
+    },
+    "baseline-07-off.log": {
+      "bytes": 16741,
+      "sha256": "6733d79b740054dbddb70c5082e33b7c080e774ec2a1ef44c0399acd64d296d9"
+    },
+    "baseline-08-base-drm.jsonl": {
+      "bytes": 61512,
+      "sha256": "05d3c5cb493b33748db7f093b61d4a6369bda72d440f8bbd34b50ce814d7e901"
+    },
+    "baseline-08-base-maps.txt": {
+      "bytes": 101687,
+      "sha256": "e8b92569fd1068045c27bf1030661a6624864baf16c07fc8fa040bfc3072f5bb"
+    },
+    "baseline-08-base-planned.json": {
+      "bytes": 5983,
+      "sha256": "3269af6f7849aa571435b6deed9c4c5374ccbeae9d6b2604ca43a00ffe6b540f"
+    },
+    "baseline-08-base-result.json": {
+      "bytes": 13118,
+      "sha256": "dbf892d300107f7440927ce6356ca5c471ce1385a673dd55782b74286d9ca754"
+    },
+    "baseline-08-base-telemetry.csv": {
+      "bytes": 13038,
+      "sha256": "17d16d8f9c3ad76a39003a62a0102bce325ac6d3aad68f960270874959e4cd73"
+    },
+    "baseline-08-base.csv": {
+      "bytes": 14766,
+      "sha256": "3dec86622847820fee4065fa701d78f606c7886ebb3af02206a8bfecb42594d7"
+    },
+    "baseline-08-base.log": {
+      "bytes": 16742,
+      "sha256": "8afc1cd7ab5972049bae796b8a9847d4cac8b8fc1f7ab43d0875417fb59fa790"
+    },
+    "baseline-analysis.json": {
+      "bytes": 113464,
+      "sha256": "1ddeca40a7387d840cdabfb2f7dbd9b0e8dca5710a7a5a87cd4f123aa0382dce"
+    },
+    "build.log": {
+      "bytes": 39686,
+      "sha256": "7bc5fd496a3813e6c3208a1c4a06cf5db3414e9b8774fb04fee80998d606263c"
+    },
+    "cache-plan-replay.json": {
+      "bytes": 326089,
+      "sha256": "796e797afbd643c3ef4c2bae34428ee10e50e3d608e88737660b6a740cd27f33"
+    },
+    "cache-plan-replay.log": {
+      "bytes": 1840,
+      "sha256": "a21cbaef93505800ec715733ac577fd322d8385effc3db1e85cb6d31f9e72c1e"
+    },
+    "cache-plan-tests.log": {
+      "bytes": 1679,
+      "sha256": "2890cf3614684a7f5cfcdec795d3ab1b805234bc2c635a3bf351e283f093f7e0"
+    },
+    "configure.log": {
+      "bytes": 2072,
+      "sha256": "0abe68fa16da412d092c5996c29dd596431ec5a38d6ce4fdffcd0824f04f0cc3"
+    },
+    "correctness-base-drm.jsonl": {
+      "bytes": 46607,
+      "sha256": "c8f70d2d670447ed341cf91007df4a6072c8bffd5b1d1c30e548ef0c1c28737b"
+    },
+    "correctness-base-maps.txt": {
+      "bytes": 101687,
+      "sha256": "cf326ece81f74c8ec3db85f6f56c397cdf7f7fa6ed59f68df2b335e565357301"
+    },
+    "correctness-base-planned.json": {
+      "bytes": 6296,
+      "sha256": "af07be7c802779127f29a25c9bbe98732c58e4fa87be128ca0f3ca6673671ac5"
+    },
+    "correctness-base-result.json": {
+      "bytes": 13582,
+      "sha256": "5a68a0c181b8928204fed2d9b1c2a7e702ee0effd2120d17a8de1afe1d64772e"
+    },
+    "correctness-base-telemetry.csv": {
+      "bytes": 10027,
+      "sha256": "32a70b961d862094ab5fd1dae45f4de0b568dfb82098c926da7abeba24e6abd1"
+    },
+    "correctness-base.csv": {
+      "bytes": 4956,
+      "sha256": "a6f277c7e6e2406eb0eea1a34d2b22575852398a570c62cd2a02ca8b6ff168dc"
+    },
+    "correctness-base.log": {
+      "bytes": 16736,
+      "sha256": "aa4a98ce12a79f8cc3da53b76215a8db850dcc95a84397d6b3e3fc303428b402"
+    },
+    "correctness-off-drm.jsonl": {
+      "bytes": 35091,
+      "sha256": "2b62c72c81388069cc9cbbe7ab658d47aa56d4e972e513f3e7321c9edd0131bc"
+    },
+    "correctness-off-maps.txt": {
+      "bytes": 101764,
+      "sha256": "37044403e572a0367ea55fded9dff7379f752322f7a476949a6675980c213554"
+    },
+    "correctness-off-planned.json": {
+      "bytes": 6318,
+      "sha256": "25f5cbb86bcd37ed33695ebffcd4fa288057da65c929f367db2316b855080725"
+    },
+    "correctness-off-result.json": {
+      "bytes": 13696,
+      "sha256": "06a10a6751f72d2cfb68ceffc81ad411be08cf3c21a06244e14a1ee266abf343"
+    },
+    "correctness-off-telemetry.csv": {
+      "bytes": 7487,
+      "sha256": "57ab81d312228bcbf8a69f0197c619f6f2951fac1396fefe7f3e08b6aefd8ebd"
+    },
+    "correctness-off.csv": {
+      "bytes": 4956,
+      "sha256": "a9c66af2d086f1f9d4bd0266a6f587eb476915cf569e6ed366f350c03681b565"
+    },
+    "correctness-off.log": {
+      "bytes": 16736,
+      "sha256": "e8a5d2c53f5b5e8e67df0a0b86519d47ed610cc8efcd39b3e7cdad4ba454ae3f"
+    },
+    "correctness-on-drm.jsonl": {
+      "bytes": 36279,
+      "sha256": "1bbc8838c71850dac526b95ee1fd008092c1f935c1c3c74b8f9f43af54ea7ca3"
+    },
+    "correctness-on-maps.txt": {
+      "bytes": 101813,
+      "sha256": "9a49fe58242874e17d452c123c9c69a6d8dc7bf1cfff41f22a8b8915154d475d"
+    },
+    "correctness-on-phases.csv": {
+      "bytes": 10269,
+      "sha256": "fb2efcc747d391c5b164b5572be0125fcb6188c1bf9cfd2f188c14fda95862e4"
+    },
+    "correctness-on-planned.json": {
+      "bytes": 6926,
+      "sha256": "5b96600cb4a10b7c20e5d5c243553ab580d53c4c243a3e96f7418f4914990756"
+    },
+    "correctness-on-result.json": {
+      "bytes": 14315,
+      "sha256": "1f995632035afd74e4f80285e3fd4fafb444c38ef119f05265790ea1a24ecba9"
+    },
+    "correctness-on-scheduler.csv": {
+      "bytes": 6120553,
+      "sha256": "13411f0a6fd39b0e672173f5fb7b9f3e054b9a1efce37017cb5722aae612c0cf"
+    },
+    "correctness-on-summary.json": {
+      "bytes": 515593,
+      "sha256": "1d0c9e9cb6a950a7f53892e14995bb40b7a58a587b121c8a2386656aa772ac7a"
+    },
+    "correctness-on-telemetry.csv": {
+      "bytes": 7754,
+      "sha256": "511627fc63a7536df18b21aad5fe30a7f1b72312d76db38b76506f4feb9a710f"
+    },
+    "correctness-on.csv": {
+      "bytes": 4956,
+      "sha256": "50ae01338ce999a1685f70aa1650ec6099ac0d4914b5faf2ab16af64afec5227"
+    },
+    "correctness-on.log": {
+      "bytes": 16735,
+      "sha256": "aea5bb410d0b55ed9446db9a8e3e23e31c52315a81e54355dcadfe99a2fe1569"
+    },
+    "expert-bytes.json": {
+      "bytes": 690,
+      "sha256": "cf3389deb718eeeb17e95c47700377d0bafc127698205733bf79a849131d9e93"
+    },
+    "expert-tensors.json": {
+      "bytes": 32239,
+      "sha256": "b69f9405b819667780525f6f30e912f5992262086bcedb2317ffa52f7966b011"
+    },
+    "freeze.json": {
+      "bytes": 2194,
+      "sha256": "b808b2a18bf557cb959ad1f93065cacb254ee5b3579dc853bf58053f741cefee"
+    },
+    "gpu-timestamps-fixed-drm.jsonl": {
+      "bytes": 51150,
+      "sha256": "22f579e2c08e6418ea2ede9aea8b83076bc11959252c124549bd49154dea9efb"
+    },
+    "gpu-timestamps-fixed-gpu-summary.json": {
+      "bytes": 1847608,
+      "sha256": "7e4857620b67103fdc90ecda30800d9de2f3e9cbb4d733bb26a611e3e78dd1c6"
+    },
+    "gpu-timestamps-fixed-maps.txt": {
+      "bytes": 102246,
+      "sha256": "d7ec50ba0483bc3b974571a04df7563cfc54a5fc9ee7396b82faaef7926cbbeb"
+    },
+    "gpu-timestamps-fixed-phases.csv": {
+      "bytes": 10269,
+      "sha256": "14e518fa41a4c5742ce25ffeb554e6c4ad40ad0eb5b34edf3810fded423084d9"
+    },
+    "gpu-timestamps-fixed-planned.json": {
+      "bytes": 7125,
+      "sha256": "b0554b10e24435533bddf89e2e29fd174d230d303c61b21b16fc6ab7d01cec84"
+    },
+    "gpu-timestamps-fixed-result.json": {
+      "bytes": 14524,
+      "sha256": "49df043a7c50e95d65db2cc264ea2b72e1525a62b8efc341478513afe7876d32"
+    },
+    "gpu-timestamps-fixed-scheduler.csv": {
+      "bytes": 6127480,
+      "sha256": "147d09a153edaf93e67c5feb402697d1000678e4d8d9d869506c66ceb9202779"
+    },
+    "gpu-timestamps-fixed-summary.json": {
+      "bytes": 515674,
+      "sha256": "af6762b844fe87f1e5624b2e81b54ec609132ac6783d8319c6b7da074a465e6b"
+    },
+    "gpu-timestamps-fixed-telemetry.csv": {
+      "bytes": 10555,
+      "sha256": "c8e7ad71f73e27151dc493717104b45ae44d6276e78f8da028424994c544c5a3"
+    },
+    "gpu-timestamps-fixed.csv": {
+      "bytes": 4956,
+      "sha256": "4c7b6da4ce33ff493e10535d0fbddd35c067c553657fe0364c854688a8fde63b"
+    },
+    "gpu-timestamps-fixed.log": {
+      "bytes": 7489091,
+      "sha256": "e977f06b4cdfbfb5caabaf2b25e0a9fce8b79518f615c0dab17bf7b9f95d94e0"
+    },
+    "gpu-timestamps-original-drm.jsonl": {
+      "bytes": 50011,
+      "sha256": "f48320f347d733f06dfd61274165d8ff712c85251de5c8ba16df00388a42d476"
+    },
+    "gpu-timestamps-original-maps.txt": {
+      "bytes": 102141,
+      "sha256": "8d5dadaf0e58d3e7830f953f1c27093284d46cce70fa021cddc4fcd2721073cf"
+    },
+    "gpu-timestamps-original-phases.csv": {
+      "bytes": 10269,
+      "sha256": "6ce962dcef9a22a6681c51e9b7497925fae83e3d9ec5b585195c9235c6cbb843"
+    },
+    "gpu-timestamps-original-planned.json": {
+      "bytes": 7050,
+      "sha256": "de759d97762425064bb4ba5eaedd2ce2904974d17a016ed171f5cccdbb0cd8a1"
+    },
+    "gpu-timestamps-original-result.json": {
+      "bytes": 14429,
+      "sha256": "1f4d6464bb48fc29c3c6ef9d9bd0e0c35f6b110d5a2157b456199c5e3d87372d"
+    },
+    "gpu-timestamps-original-scheduler.csv": {
+      "bytes": 6127358,
+      "sha256": "138533925d26d17b6bc316dd06a2d8676250d7389e9d11a87459f8d7a3f48cb5"
+    },
+    "gpu-timestamps-original-summary.json": {
+      "bytes": 515711,
+      "sha256": "18e763397238d289ec24e45151fa4f2cfe08e514ad3a76a56eeb83ee0e762e34"
+    },
+    "gpu-timestamps-original-telemetry.csv": {
+      "bytes": 10331,
+      "sha256": "c59cb63d9fed2ef316370a03ae02a2c890f598267db9a287b6f1034c95e066ba"
+    },
+    "gpu-timestamps-original.csv": {
+      "bytes": 4956,
+      "sha256": "badda39722f8b4ee0724ff40b3d6f387a8a5281868e8ff4bac3737126738a888"
+    },
+    "gpu-timestamps-original.log": {
+      "bytes": 7024638,
+      "sha256": "8efefcdcfcb041d19cb88e89a199635370880ecc8c972f4a0e3d358f9e9e8022"
+    },
+    "gpu-timestamps-toy-original.log": {
+      "bytes": 5137,
+      "sha256": "49e217cceb99bcf8682c9dcfcb85d416b696806b86223f1156bf960c5a6ba3cd"
+    },
+    "logger-fix-build.log": {
+      "bytes": 3487,
+      "sha256": "5406bff5cfba7bc3c4488f83bbddf2b972de09c05b29818682a51ea5f57f8fd3"
+    },
+    "logger-fix-committed-build.log": {
+      "bytes": 2495,
+      "sha256": "05679974d63c15cdf7af8fae44ef0ee5e721c56296c04a4496088a336839879a"
+    },
+    "logger-fix-toy-off.log": {
+      "bytes": 850,
+      "sha256": "e3c8bc974da360321509712d03aa066ed574e2145c6b98552cdaa2f1fee48586"
+    },
+    "logger-fix-toy-on.log": {
+      "bytes": 850,
+      "sha256": "eeddc9854ae971a64221a1e15941f7706bb93319a34eb8074945a319abf0fe38"
+    },
+    "logger-fixed-freeze.json": {
+      "bytes": 1221,
+      "sha256": "ecc4418544d8dba749594de34ad0ab98b1b346994b6626e06135459823925cea"
+    },
+    "logger-fixed-off-correctness-drm.jsonl": {
+      "bytes": 35124,
+      "sha256": "b0df9696bc5739b34adec3a88227c46b9b0b4f6322b170fe9f71517a5603482d"
+    },
+    "logger-fixed-off-correctness-maps.txt": {
+      "bytes": 101918,
+      "sha256": "c63286be55cd3bdaef8c9966ee24c02223ea233d5607cbd18be6ce38d51ca970"
+    },
+    "logger-fixed-off-correctness-planned.json": {
+      "bytes": 6372,
+      "sha256": "2d088c8673da87c231d123b2e3f562a65ffad211def1d5622d455a3e27e1672e"
+    },
+    "logger-fixed-off-correctness-result.json": {
+      "bytes": 13770,
+      "sha256": "4016fb1b0e0d8d26c0498826c045e6b4ec525da456d1917de3aec90bd3087718"
+    },
+    "logger-fixed-off-correctness-telemetry.csv": {
+      "bytes": 7505,
+      "sha256": "62318f2902085a9bef1fb16a6c5da93be362f9ccdd0b6203dca651abb06fff0c"
+    },
+    "logger-fixed-off-correctness.csv": {
+      "bytes": 4956,
+      "sha256": "b6a87f913761b6d2e2d566e7731e459afcadc509ef64d74c800d2212b9593450"
+    },
+    "logger-fixed-off-correctness.log": {
+      "bytes": 16749,
+      "sha256": "f5c3a50ba4b8bf15425be415f62c4b33fdd1480c447293237b4e581443e2d89f"
+    },
+    "overhead-01-off-drm.jsonl": {
+      "bytes": 62596,
+      "sha256": "6eff0b00d6e91706639e7b7f69050c4ba0fc1513217a3a32564714739a6ecd65"
+    },
+    "overhead-01-off-maps.txt": {
+      "bytes": 101862,
+      "sha256": "b010d80a940ff8aa7237a69e75d341fa3f3aafa7c0646e720b941d050658b265"
+    },
+    "overhead-01-off-planned.json": {
+      "bytes": 6007,
+      "sha256": "32f59c24a892f8ee986fe47c5c1d8d13867b4e801f52a9f4352f275ddeb4092b"
+    },
+    "overhead-01-off-result.json": {
+      "bytes": 13158,
+      "sha256": "2001dca37a1a4fa2e3b9b495a69b4ffe3ff729ca6b45e890a16b16724e595028"
+    },
+    "overhead-01-off-telemetry.csv": {
+      "bytes": 12951,
+      "sha256": "b9d7ed4b0df0a6d379bc2aaf6077cf4ab451c28dbf9c412eb48d519045e290b8"
+    },
+    "overhead-01-off.csv": {
+      "bytes": 14766,
+      "sha256": "f90d7fdd7d9065c7c6c26684826c9c4b0768a43b8e412ec336025043c9f470f8"
+    },
+    "overhead-01-off.log": {
+      "bytes": 16741,
+      "sha256": "2b7fbf3fd3b58170b5c717d42cfeda86275d2eacede5cd551f3359c6afeb901f"
+    },
+    "overhead-02-on-drm.jsonl": {
+      "bytes": 64899,
+      "sha256": "7227ba46391e8621c21edfa36af3cf75ce8108d35ca97d7683d1e82efd626237"
+    },
+    "overhead-02-on-maps.txt": {
+      "bytes": 101862,
+      "sha256": "eebeff5ba7257bab6139f9b38e274987ed9cd7330f297a9f43c7b9bf2ef5208c"
+    },
+    "overhead-02-on-phases.csv": {
+      "bytes": 20333,
+      "sha256": "78ddd3df267ad36b417d13fad7eadcde148a639e15b3158f6ccceca4313becbf"
+    },
+    "overhead-02-on-planned.json": {
+      "bytes": 6617,
+      "sha256": "093dd6d3f8571afcdc5a9b42cd2c8b9132da48d4e3655854a6a62cabd27a6b89"
+    },
+    "overhead-02-on-result.json": {
+      "bytes": 13771,
+      "sha256": "b9326b08d6b4dc267cfbd85b6b12ed0c50cd5d2917f910af969a44045ddd2379"
+    },
+    "overhead-02-on-scheduler.csv": {
+      "bytes": 12277229,
+      "sha256": "420fb52d02541562c2d7a9b06cf7db2232b279d00ca435f5499e4db033df6fca"
+    },
+    "overhead-02-on-summary.json": {
+      "bytes": 915129,
+      "sha256": "153a1b619b9da00e142596e9c95b2245a13fff7592343839c0abf347f484434c"
+    },
+    "overhead-02-on-telemetry.csv": {
+      "bytes": 13472,
+      "sha256": "0b693eb15dad1147331063a25e473ed3ba9fd8fe46c2fb33c6231bc63d40b18d"
+    },
+    "overhead-02-on.csv": {
+      "bytes": 14766,
+      "sha256": "6976dde77e0a8fcac1f1da71a343aa6feaeb0f0846d4e39c3da00ef0cf5a0b9b"
+    },
+    "overhead-02-on.log": {
+      "bytes": 16740,
+      "sha256": "d93ea9a14055a3af44e0f33c20a9ec024f0d4aaef3d4aa450bda107c2394472e"
+    },
+    "overhead-03-on-drm.jsonl": {
+      "bytes": 64893,
+      "sha256": "942e074e2b7febe5684baf93fe55d51807309db663da4c9f644d38cd6e728832"
+    },
+    "overhead-03-on-maps.txt": {
+      "bytes": 101862,
+      "sha256": "273acf555752a91363547fd4966882d682013095c90a639217c712e167b21bb9"
+    },
+    "overhead-03-on-phases.csv": {
+      "bytes": 20333,
+      "sha256": "181ca675b36ca0645927b98a0b11531b75ab95e0e6830cb446c40fcfb52c830f"
+    },
+    "overhead-03-on-planned.json": {
+      "bytes": 6617,
+      "sha256": "1ac364b35367d955fc28533b9bd4b3ab3aee1c7ffc2b54b82d15ba3f706a5677"
+    },
+    "overhead-03-on-result.json": {
+      "bytes": 13779,
+      "sha256": "fd2a6cf1d89a864f89a9ee4951cb77039750f52575f407fb93ac8a3819256082"
+    },
+    "overhead-03-on-scheduler.csv": {
+      "bytes": 12277530,
+      "sha256": "bf9119f3bf088842388252bceffea89e4f1ff0de49a23c72530f3cefcd3ea372"
+    },
+    "overhead-03-on-summary.json": {
+      "bytes": 915138,
+      "sha256": "4c0ddf85f172913089e2f23a3c8bd52580b8bb7cc0d8339e7905e7c0689be3a2"
+    },
+    "overhead-03-on-telemetry.csv": {
+      "bytes": 13452,
+      "sha256": "9df4cfc9703dc28925d0c98c29e28607ac11e71bd9d4b902b170c8facce71eb1"
+    },
+    "overhead-03-on.csv": {
+      "bytes": 14766,
+      "sha256": "af740e28b6c9d7537624c97a386112a6dc4a41e0a0c6214ba188b7eb2d138b92"
+    },
+    "overhead-03-on.log": {
+      "bytes": 16740,
+      "sha256": "e4f973f6e60702cb8f377a998d433dab02b57815fe713599e48eef9c26357acd"
+    },
+    "overhead-04-off-drm.jsonl": {
+      "bytes": 62592,
+      "sha256": "a20b3374d8337747e820aad8beb82868533c7cca8b97b4ed59a0b94009d501fa"
+    },
+    "overhead-04-off-maps.txt": {
+      "bytes": 34316,
+      "sha256": "d4d1d99249c632ddadc12701a08eaf651d117ca74b9d11805c7bda5b1fac4ee0"
+    },
+    "overhead-04-off-planned.json": {
+      "bytes": 6007,
+      "sha256": "dfeddd57207396da24f51efd58c23fe24faf883103610dad72007dacf789e46a"
+    },
+    "overhead-04-off-result.json": {
+      "bytes": 13168,
+      "sha256": "f101b23e6fbacf178d342bdf37b95c16175e08826293650f9887871042b85748"
+    },
+    "overhead-04-off-telemetry.csv": {
+      "bytes": 13001,
+      "sha256": "93cb118a2c4d523bdcfddd136a98c3007036b6557c1fdbd97dc36dc522efe96f"
+    },
+    "overhead-04-off.csv": {
+      "bytes": 14766,
+      "sha256": "56b00608aed43893718f320cbcd72ee7be07d45d91c9894f973e6cae98959627"
+    },
+    "overhead-04-off.log": {
+      "bytes": 16741,
+      "sha256": "d694b89cc20076a9a1ce367d382244f34f9b28c9d1b7f89c66d75b9c7d7fcb40"
+    },
+    "overhead-05-off-drm.jsonl": {
+      "bytes": 62559,
+      "sha256": "9ee65adbfd52ff480b36b4be560ef7ef4736d566b098dc97d436d11cbf23e0f4"
+    },
+    "overhead-05-off-maps.txt": {
+      "bytes": 101813,
+      "sha256": "86d2a882f9785a9e1a032fb131e8f57f68e307dae025dcf2c96a461d14e550d4"
+    },
+    "overhead-05-off-planned.json": {
+      "bytes": 6007,
+      "sha256": "c3626f239ed046cbea8d25c81c8edcb1e3309c17d7d179fa046dae9944875137"
+    },
+    "overhead-05-off-result.json": {
+      "bytes": 13160,
+      "sha256": "b830578e512ee4a32386fb150df176f00d4b58dd4b66032e8f98b356a7b2c6cf"
+    },
+    "overhead-05-off-telemetry.csv": {
+      "bytes": 13018,
+      "sha256": "93ce3407cc9709b145d61ddc8cd85b133d622380460438a73b18319ac0cb2521"
+    },
+    "overhead-05-off.csv": {
+      "bytes": 14766,
+      "sha256": "aa8cdb2f8a28f141b374bc6995cea872db5a2136c066ee83c8dca0bcf623c47e"
+    },
+    "overhead-05-off.log": {
+      "bytes": 16741,
+      "sha256": "9758bbe3a7f397204dfdcfceb1b92a16e32e973ae4ea3759f5efa021820fc67d"
+    },
+    "overhead-06-on-drm.jsonl": {
+      "bytes": 65981,
+      "sha256": "5b01c9a563e35293abcebdeb73ab2912ed114aa309ff45032ac9885904744490"
+    },
+    "overhead-06-on-maps.txt": {
+      "bytes": 101911,
+      "sha256": "17954ef227ec2afa4084c5fbab048a516539c6a486de028a66aad01490728ea9"
+    },
+    "overhead-06-on-phases.csv": {
+      "bytes": 20333,
+      "sha256": "b16c19fb2d5dc064bf76170aee89c748f200b0034d83ec0c13372567a8343244"
+    },
+    "overhead-06-on-planned.json": {
+      "bytes": 6617,
+      "sha256": "ecae98a33a1571def55bf389052be2b3c0206ad1b16e84791cd5cc116c6961c7"
+    },
+    "overhead-06-on-result.json": {
+      "bytes": 13780,
+      "sha256": "33fb86e01e81fe3a894a74dcefc93724777f71bad98b203606ecfec0b6c1c09b"
+    },
+    "overhead-06-on-scheduler.csv": {
+      "bytes": 12277776,
+      "sha256": "40ad4cd4be145b32d67ab51f802d5f218a1db1e22721a76337af5ddae0271770"
+    },
+    "overhead-06-on-summary.json": {
+      "bytes": 915178,
+      "sha256": "7ff26255bdf2adc2ddbebe3c917f1647d7cdde8413b0c1e65886dd0bf932f528"
+    },
+    "overhead-06-on-telemetry.csv": {
+      "bytes": 13600,
+      "sha256": "86b2782c1265c06c64bc4c829fb999cfa543fe4ea47adedea9821b25523b52ba"
+    },
+    "overhead-06-on.csv": {
+      "bytes": 14766,
+      "sha256": "24f53a37456b7217991ab47c818687d88d868479fb7f62b23c6a02665b2dd3ef"
+    },
+    "overhead-06-on.log": {
+      "bytes": 16740,
+      "sha256": "ba30d746e001f87d352994dabca176568fab6f0b8f3c6e8f987d3de1cb040c3e"
+    },
+    "overhead-07-on-drm.jsonl": {
+      "bytes": 64890,
+      "sha256": "ffebd4c50b8d2c4b594431fe7a4e2c3616ca0883d626b80737faa0871096bbd3"
+    },
+    "overhead-07-on-maps.txt": {
+      "bytes": 101862,
+      "sha256": "95e12804328b35cffc3162cb70582412a6b83c9e6c59c1124acfb1b3781acea8"
+    },
+    "overhead-07-on-phases.csv": {
+      "bytes": 20333,
+      "sha256": "1947bab7dcff3c9f3d7962f4800d683e123bd30c4e4ec106de59608551b7cd37"
+    },
+    "overhead-07-on-planned.json": {
+      "bytes": 6617,
+      "sha256": "1c88ed5d11d7db2e1d30f69ee52c1567017e862376f14a28fbe5fdbb05cbe51c"
+    },
+    "overhead-07-on-result.json": {
+      "bytes": 13771,
+      "sha256": "65d2021aa58f0219c2074dbac824253caf1140598f37a3a8a3ed4074d1ebccce"
+    },
+    "overhead-07-on-scheduler.csv": {
+      "bytes": 12277452,
+      "sha256": "fc11c5a6a661f1ac5297d8722d46a43414908088f7c126c7fa337447dc0172ec"
+    },
+    "overhead-07-on-summary.json": {
+      "bytes": 915148,
+      "sha256": "652de24eb8f249638382cc9a70ca5859a8f657d14a197738395dc9671d9f044b"
+    },
+    "overhead-07-on-telemetry.csv": {
+      "bytes": 13458,
+      "sha256": "0bf10959c02849eafbb2793e34c1c79e63a739966447ad41c9d999456d0915e6"
+    },
+    "overhead-07-on.csv": {
+      "bytes": 14766,
+      "sha256": "c2673b31b66fc40b24124a8656ebce8dae76cbffd7c91a5fccbc21ed2c1d44f2"
+    },
+    "overhead-07-on.log": {
+      "bytes": 16738,
+      "sha256": "8bcdcf39df745d6d544ace6cbc6459ac82d27ad3351c37b69f48c6f489cd3fd1"
+    },
+    "overhead-08-off-drm.jsonl": {
+      "bytes": 62522,
+      "sha256": "fcf6851df15be895cea43d64ec80c0ff03e6ce1579bee4ecf89686e87738f584"
+    },
+    "overhead-08-off-maps.txt": {
+      "bytes": 101764,
+      "sha256": "e1e4ae7c9f9b3cba82d07e5475cff53f3f0884f8d6aeb1cd94ca1edb102c9502"
+    },
+    "overhead-08-off-planned.json": {
+      "bytes": 6007,
+      "sha256": "d628221ea3c364bae3566b80bf69d0dcf918bc1475680cd702f9260c41f62fdf"
+    },
+    "overhead-08-off-result.json": {
+      "bytes": 13161,
+      "sha256": "7f9cb46887338ee75855a0c246c48fbe658e43355170e9f21a1953094613c6f6"
+    },
+    "overhead-08-off-telemetry.csv": {
+      "bytes": 12955,
+      "sha256": "63ff3b74923d39872400324df2d49ecfeaed9b97ba397ddafdb8fde888dd364a"
+    },
+    "overhead-08-off.csv": {
+      "bytes": 14766,
+      "sha256": "a71fac1788ba3e626c3198880005d9ebf0ba3b4219aaa2e7cc40efb1b5f7e596"
+    },
+    "overhead-08-off.log": {
+      "bytes": 16741,
+      "sha256": "657cf1c721b5cb29ce207f71d1f94286d1e51b668ce0276ba0f5479010bbc183"
+    },
+    "overhead-09-off-drm.jsonl": {
+      "bytes": 62562,
+      "sha256": "1780a8a8d29269db9f699c5f19351dce322a0c3a76307e2bbc5453d52ddd3cca"
+    },
+    "overhead-09-off-maps.txt": {
+      "bytes": 101715,
+      "sha256": "823a52ed73c03e95cec2d7f346480a63a1cc4472a40083fcc74730861ae073c2"
+    },
+    "overhead-09-off-planned.json": {
+      "bytes": 6007,
+      "sha256": "a00495cd6626de7c2c7c5dc33a07e20223ec04e605a1550449a7abb154f8c831"
+    },
+    "overhead-09-off-result.json": {
+      "bytes": 13162,
+      "sha256": "1dc880e5c1da66bb5f694de8b371fe56bf347170a9da4aa07d05c1b293136348"
+    },
+    "overhead-09-off-telemetry.csv": {
+      "bytes": 13027,
+      "sha256": "2a04df42118fe19457dbe3c54c948a47b590a9b848c0b31e537fdea311be8d4c"
+    },
+    "overhead-09-off.csv": {
+      "bytes": 14766,
+      "sha256": "fc1bc825bb951b438926b768e8e1c964bbc8bf8d041e90799dfaab412df5667e"
+    },
+    "overhead-09-off.log": {
+      "bytes": 16741,
+      "sha256": "eb622466cc7eed7f20e2365e5c7f7b167bbb157dbb9d9fb89a48a74f6b2ba4d6"
+    },
+    "overhead-10-on-drm.jsonl": {
+      "bytes": 64893,
+      "sha256": "ad91fd38a4eba30e986399948afc00ab40c13e2b023f63e609a9280f94cfe7d8"
+    },
+    "overhead-10-on-maps.txt": {
+      "bytes": 101813,
+      "sha256": "c438e51bfb54754c8146d0a33374307466be02274d6edf8c7eaf576477522bf0"
+    },
+    "overhead-10-on-phases.csv": {
+      "bytes": 20333,
+      "sha256": "dbf87fa06cae998892d2eb67abed7f94215003feb03939635728e032bb7a0814"
+    },
+    "overhead-10-on-planned.json": {
+      "bytes": 6617,
+      "sha256": "c5a5ccd77645eb7dff4201113d4ea7806d73d8ea177587df3815b08e557a3d7d"
+    },
+    "overhead-10-on-result.json": {
+      "bytes": 13778,
+      "sha256": "f9b413069028b3f3978cc34053d21255db6575fce25e4e71d8c1f59c05dd91ee"
+    },
+    "overhead-10-on-scheduler.csv": {
+      "bytes": 12277394,
+      "sha256": "ee1a0303f6f7dd2a6625f1f9590d0027feb6568431a42f549600f35f08474379"
+    },
+    "overhead-10-on-summary.json": {
+      "bytes": 915152,
+      "sha256": "0c4534aecf617197af2c8772fe6c90eece7e99973cd57ca66cc81794ddf66f22"
+    },
+    "overhead-10-on-telemetry.csv": {
+      "bytes": 13405,
+      "sha256": "075ae45f7ea6f2091c05d08994d16c09cc0fa91fa55744bcbea4879d88a8eea6"
+    },
+    "overhead-10-on.csv": {
+      "bytes": 14766,
+      "sha256": "8dfe7ba7a2dc8a406f49ce8bf341d66a33fb3839c181058a771b81eda9b26201"
+    },
+    "overhead-10-on.log": {
+      "bytes": 16740,
+      "sha256": "1256e863c5bc6b9df14d4ea7920c4aba3494967791578423d6775207a9897943"
+    },
+    "overhead-11-on-drm.jsonl": {
+      "bytes": 64884,
+      "sha256": "817d1e239b2174d84a9d05630180d28d0dd220d4e9b51217a62c8be9010af650"
+    },
+    "overhead-11-on-maps.txt": {
+      "bytes": 101813,
+      "sha256": "8a7e61d7cf3157f5bd2e1bfa79afc172ceaaeb86846649b80201541e9ffaaf02"
+    },
+    "overhead-11-on-phases.csv": {
+      "bytes": 20333,
+      "sha256": "786060abd6b35001f1e4127de4690d72070c65a834e227b6c33621bb5cd214c8"
+    },
+    "overhead-11-on-planned.json": {
+      "bytes": 6617,
+      "sha256": "27096a491a7366053152d63ca55af8604f815ee60ca72ac1aebf3cbd86950f16"
+    },
+    "overhead-11-on-result.json": {
+      "bytes": 13772,
+      "sha256": "905874d6e8ef6991e84b21b02acd732a688a644fa67457cffb129bfa5ad52b5d"
+    },
+    "overhead-11-on-scheduler.csv": {
+      "bytes": 12277352,
+      "sha256": "e93935bef473c86d6c6308cf8aa4cf41696948e8a0b70584e2c80f50ea921efd"
+    },
+    "overhead-11-on-summary.json": {
+      "bytes": 915137,
+      "sha256": "56112b5a877fd9ba1e122905a5af73d622ca3fdbb402332425f467c367d66de0"
+    },
+    "overhead-11-on-telemetry.csv": {
+      "bytes": 13392,
+      "sha256": "5e7246013d62a5f9e0e4ca7d531db3ec511179a572fd416c0a6d4a4a157acacb"
+    },
+    "overhead-11-on.csv": {
+      "bytes": 14766,
+      "sha256": "df6389317804904e4671388941ffb14bb2451d00db51ba58287faa81981604d0"
+    },
+    "overhead-11-on.log": {
+      "bytes": 16740,
+      "sha256": "c3cdca3e403f288de2dc03691e49e07093e769f50fc8159ec3f63f5396e6bc45"
+    },
+    "overhead-12-off-drm.jsonl": {
+      "bytes": 62551,
+      "sha256": "b3b5d19b6c7b333cc7565f8e68a1b7ecbfef0744863699c7531f38df26a85a16"
+    },
+    "overhead-12-off-maps.txt": {
+      "bytes": 101715,
+      "sha256": "1c7d3480d89ea6e9d5be20575c47c2ed20751a2ebd2ebc514d6e4255069c5512"
+    },
+    "overhead-12-off-planned.json": {
+      "bytes": 6007,
+      "sha256": "76a2b3f43a7a63e4e4dbf5a144f6cc9b89e3f4248a58697c72f4abfd3fb098c9"
+    },
+    "overhead-12-off-result.json": {
+      "bytes": 13169,
+      "sha256": "2c0ee9ed66db841c2decb9bd08141bf7a7988d314b2c482706d49f70733e09f5"
+    },
+    "overhead-12-off-telemetry.csv": {
+      "bytes": 13052,
+      "sha256": "2d74c632aca77fde22837f18b31bcd295c9907dc5aaa1e84d85fb07e320814a8"
+    },
+    "overhead-12-off.csv": {
+      "bytes": 14766,
+      "sha256": "ee5c058cec531b26815618616c4b005e1f3a040cca81067f216564a2dc087735"
+    },
+    "overhead-12-off.log": {
+      "bytes": 16739,
+      "sha256": "3e655aedd9ee96291f8e04d9327f4852e8fa7b29756ef5c298621cbe46c71782"
+    },
+    "overhead-13-off-drm.jsonl": {
+      "bytes": 61454,
+      "sha256": "0fd8a32384d4758c73919f98e92d34a6f910a6fcf5acee2565a36427ad9459a4"
+    },
+    "overhead-13-off-maps.txt": {
+      "bytes": 101862,
+      "sha256": "65c5214b1e2d2658f1040dd0fcee2926cda04db9b5fe9a84a5721f2e4ce34945"
+    },
+    "overhead-13-off-planned.json": {
+      "bytes": 6007,
+      "sha256": "fc41226cf47092613938a50dfc268537d698b0b023d621da0654e9011ce248af"
+    },
+    "overhead-13-off-result.json": {
+      "bytes": 13172,
+      "sha256": "32667699ed533ab48abfad3bf8c214426bd94f54d48c2d506ace2df78c696845"
+    },
+    "overhead-13-off-telemetry.csv": {
+      "bytes": 12757,
+      "sha256": "55373f15dad334fe909d78317b797e989e880aedfea3eb6627eace2f3cc24508"
+    },
+    "overhead-13-off.csv": {
+      "bytes": 14766,
+      "sha256": "086de89dec4f511347d12e7eb4746707ab63f6e6d54f54c3d695dfeed99e9b8b"
+    },
+    "overhead-13-off.log": {
+      "bytes": 16741,
+      "sha256": "cd0bfa6e6364dd7083d48b801acee6f95e833fbf92b43b0890c03c9daac805ee"
+    },
+    "overhead-14-on-drm.jsonl": {
+      "bytes": 64882,
+      "sha256": "f53daecd98d46e92f9262db451883f0a937fff4a7aca750bdbdf865869447382"
+    },
+    "overhead-14-on-maps.txt": {
+      "bytes": 34267,
+      "sha256": "95fdf1deed7a7947dc418a57db808e412bcd265f55ba4b0ddb66a7e2e9ded578"
+    },
+    "overhead-14-on-phases.csv": {
+      "bytes": 20333,
+      "sha256": "aa414e04f23b48162a6509330d610000decd28e260d42fef5716f70259eaf5ed"
+    },
+    "overhead-14-on-planned.json": {
+      "bytes": 6617,
+      "sha256": "5b48eb000975555748ea995e6c3515bd5c29e734132f9f7c1d7ac4efdb173c92"
+    },
+    "overhead-14-on-result.json": {
+      "bytes": 13789,
+      "sha256": "c0fb146e7f16c9ff0cbc65cb796f71f35cb4de3843f275a169bb546a2ea3ce9b"
+    },
+    "overhead-14-on-scheduler.csv": {
+      "bytes": 12277207,
+      "sha256": "1e72843db1fffd4626e042b639524992f1dddb6dcaf35fb109b04c88c8229fc7"
+    },
+    "overhead-14-on-summary.json": {
+      "bytes": 915170,
+      "sha256": "b270856698e194578c2c2b5381f4d29f9f8cdde4f8c76ed63e2b3be1b2b9ce45"
+    },
+    "overhead-14-on-telemetry.csv": {
+      "bytes": 13441,
+      "sha256": "33eb538484274cc82dc43a937bd96f2c3d778e855a4865f3329d9d3a2ff74c7e"
+    },
+    "overhead-14-on.csv": {
+      "bytes": 14766,
+      "sha256": "75b55c29aefe03cca59d70482fe20d87932435f2b75f4bb3f50e2653119a8ca7"
+    },
+    "overhead-14-on.log": {
+      "bytes": 16740,
+      "sha256": "d24d833d5358b52fbfe01d642a6c36ccbae3a41359dabfb045b388634b1d0035"
+    },
+    "overhead-15-on-drm.jsonl": {
+      "bytes": 64892,
+      "sha256": "193c88ef164180d1a86dbe0c7527a9f3a56b63739627abc50075e9b0494e5e76"
+    },
+    "overhead-15-on-maps.txt": {
+      "bytes": 101764,
+      "sha256": "44fbf3aa3ba66442dbb59d5da9496fa5970631786f7834e5015c48e84da27fbc"
+    },
+    "overhead-15-on-phases.csv": {
+      "bytes": 20333,
+      "sha256": "3f7ec9fbdc1e76d8bfa7d20845cd1ae22fcfc1c31c195cd19d8e1d52d04e65e3"
+    },
+    "overhead-15-on-planned.json": {
+      "bytes": 6617,
+      "sha256": "38ad61ea3c113e39a17793c5994ca5c05b0945c010a77b6185826a2c3a657d18"
+    },
+    "overhead-15-on-result.json": {
+      "bytes": 13782,
+      "sha256": "d8b9cf14db5d6f44ab070f90cd3256fff2f37a5a3abab857a8cdeb2c45b3a6e2"
+    },
+    "overhead-15-on-scheduler.csv": {
+      "bytes": 12277780,
+      "sha256": "f4bf87147e7c2c198e34d2d3aebd6ab01ca0229fb0d1afe73a0d8144c0e546a2"
+    },
+    "overhead-15-on-summary.json": {
+      "bytes": 915179,
+      "sha256": "76d5937c039a71b4123e15a4dcea33bd4616cf500f8afc7cee18dbfb235d0a34"
+    },
+    "overhead-15-on-telemetry.csv": {
+      "bytes": 13452,
+      "sha256": "4af5a82937697b818579ebf961528a8ff4bdea3bb62f3374c6ff95e520da7d85"
+    },
+    "overhead-15-on.csv": {
+      "bytes": 14766,
+      "sha256": "547f37ac70c08c5d5e11846dff8cf189cbc43733e92e1ca57e24593187649d66"
+    },
+    "overhead-15-on.log": {
+      "bytes": 16740,
+      "sha256": "3067ff0931fcfc8fd936bf00af9b2c06bf1f86fc676c6c8e6b5c39772b454562"
+    },
+    "overhead-16-off-drm.jsonl": {
+      "bytes": 61452,
+      "sha256": "3a707e4e8277c8d8f5572d1bf9a9708b0c5b27c627d0b2df0cc01ec882a0b2a1"
+    },
+    "overhead-16-off-maps.txt": {
+      "bytes": 101813,
+      "sha256": "581e58c729035a4ad2ac7c0b578e8ba316472286b68d69d06f18176b86f3f34f"
+    },
+    "overhead-16-off-planned.json": {
+      "bytes": 6007,
+      "sha256": "b6109f6a24fb3c68820622da47286c0153d2a7174f32de6f030f1dd04a214162"
+    },
+    "overhead-16-off-result.json": {
+      "bytes": 13160,
+      "sha256": "571d4873b1fd3432d83eab88551dc307f9e4c11f34bc8790070761f68b13c4c8"
+    },
+    "overhead-16-off-telemetry.csv": {
+      "bytes": 12702,
+      "sha256": "fd44f56d0d99ece8a77baaccfa9f94c8923a446e08deb58ff107ee2f9eb4627b"
+    },
+    "overhead-16-off.csv": {
+      "bytes": 14766,
+      "sha256": "0f8948750f54729f557d26e14f996d39126a863caf2b2c3f84100438bad11eb9"
+    },
+    "overhead-16-off.log": {
+      "bytes": 16741,
+      "sha256": "19dbee039b641cacd2df2df0da434e2d5f936853bf10ead9db4005f391312c1b"
+    },
+    "resumed-by-user.json": {
+      "bytes": 172,
+      "sha256": "9dfa934d644be429941bdde73496a9dba30ac10facd9ad02ad3acaa8f910f312"
+    },
+    "runner.py": {
+      "bytes": 10562,
+      "sha256": "80f19a388fa2587c8cc686d9cc97cb91913a8e68061934aec9f2b8db6f8ecd17"
+    },
+    "system.json": {
+      "bytes": 3488,
+      "sha256": "42ed67fe11a2151a6bda9b317d4153ed02e7045d03bfccffff8143fb1cddf402"
+    },
+    "tokens.csv": {
+      "bytes": 5949,
+      "sha256": "85935136b367ed46e47e967b05495774bc290d2d32dd92776c0c242d744cf29c"
+    },
+    "logger-parser-cpu.log": {
+      "bytes": 850,
+      "sha256": "397fd71b4d41497c19fb91e219accdb2dba49e70b7df15fd78613f9a5929790a"
+    },
+    "logger-parser-asan.log": {
+      "bytes": 850,
+      "sha256": "d6bf4c04499dde2e360049ffd9135b997edc3893bcef1e38569d920e89769402"
+    }
+  },
+  "limits": [
+    "One recorded 244+128 teacher-forced replay, one stream, context1024. No answer-quality, sampling TTFT or concurrency verdict.",
+    "Independent-process bootstrap is descriptive on this workload; repetitions in one process are not independent samples.",
+    "GPU logger serialized per operation; no normal-mode overlap/occupancy or calibrated global GPU timeline is certified.",
+    "Memory is sampled at2Hz. cgroup file-cache charges depend on run order; RSS mapped pages and global VRAM are not private or process-only allocations."
+  ],
+  "tests": {
+    "CPU Release": {
+      "tests": 6,
+      "passed": 6
+    },
+    "CPU ASan UBSan": {
+      "tests": 6,
+      "passed": 6
+    },
+    "RX6800 GPU logger OFF": {
+      "tests": 6,
+      "passed": 6
+    },
+    "RX6800 GPU logger ON": {
+      "tests": 6,
+      "passed": 6
+    }
+  }
+}
