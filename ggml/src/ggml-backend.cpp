@@ -842,6 +842,7 @@ struct ggml_backend_sched {
     int debug_prev_graph_size;
 
     FILE * profile;
+    FILE * route_profile;
     uint64_t profile_id;
     uint64_t profile_call;
 };
@@ -897,6 +898,51 @@ struct ggml_backend_sched_profile_scope {
         }
     }
 };
+
+static void ggml_backend_sched_profile_routes(ggml_backend_sched_t sched, const ggml_tensor * weights,
+        const ggml_tensor * ids, const void * data) {
+    if (!sched->route_profile) {
+        return;
+    }
+    std::lock_guard<std::mutex> lock(ggml_backend_sched_profile_mutex);
+    if (ids->type != GGML_TYPE_I32 || ids->ne[2] != 1 || ids->ne[3] != 1) {
+        GGML_LOG_ERROR("unsupported scheduler route shape; routing profile disabled\n");
+        fclose(sched->route_profile);
+        sched->route_profile = nullptr;
+        return;
+    }
+    const auto name = ggml_backend_sched_profile_quote(weights->name);
+    const int64_t now = ggml_time_us();
+    for (int64_t token = 0; token < ids->ne[1]; ++token) {
+        for (int64_t rank = 0; rank < ids->ne[0]; ++rank) {
+            int32_t expert;
+            memcpy(&expert, (const uint8_t *) data + token * ids->nb[1] + rank * ids->nb[0], sizeof(expert));
+            fprintf(sched->route_profile, "%llu,%llu,router,%s,%lld,%lld,%lld,%lld,%d,%lld\n",
+                    (unsigned long long) sched->profile_id, (unsigned long long) sched->profile_call, name.c_str(),
+                    (long long) weights->ne[2], (long long) ids->ne[1], (long long) token, (long long) rank,
+                    expert, (long long) now);
+        }
+    }
+    if (ferror(sched->route_profile)) {
+        GGML_LOG_ERROR("scheduler route profile write failed; routing profile disabled\n");
+        fclose(sched->route_profile);
+        sched->route_profile = nullptr;
+    }
+}
+
+static void ggml_backend_sched_profile_cpu_routes(ggml_backend_sched_t sched, ggml_backend_t backend,
+        const ggml_cgraph * graph) {
+    // Native CPU graph_compute returns after its worker pool finishes.
+    if (!sched->route_profile || strcmp(ggml_backend_name(backend), "CPU") != 0) {
+        return;
+    }
+    for (int i = 0; i < graph->n_nodes; ++i) {
+        const ggml_tensor * node = graph->nodes[i];
+        if (node->op == GGML_OP_MUL_MAT_ID && ggml_backend_buffer_is_host(node->src[2]->buffer)) {
+            ggml_backend_sched_profile_routes(sched, node->src[0], node->src[2], node->src[2]->data);
+        }
+    }
+}
 
 #define hash_id(tensor) ggml_hash_find_or_insert(&sched->hash_set, tensor)
 #define tensor_backend_id(tensor) sched->hv_tensor_backend_ids[hash_id(tensor)]
@@ -1821,6 +1867,9 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
 
                         prev_ids_tensor = ids_tensor;
                     }
+                    if (sched->route_profile) {
+                        ggml_backend_sched_profile_routes(sched, input, ids_tensor, ids.data());
+                    }
 
                     // group consecutive experts and copy them together
                     auto copy_experts = [&](int32_t first_id, int32_t last_id) {
@@ -1899,6 +1948,7 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
                 total_profile.status = split_profile.status = ec;
                 return ec;
             }
+            ggml_backend_sched_profile_cpu_routes(sched, split_backend, &split->graph);
         } else {
             // similar to ggml_backend_compare_graph_backend
             for (int j0 = 0; j0 < split->graph.n_nodes; j0++) {
@@ -1927,6 +1977,7 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
                     total_profile.status = split_profile.status = ec;
                     return ec;
                 }
+                ggml_backend_sched_profile_cpu_routes(sched, split_backend, &gv);
 
                 // TODO: pass backend to the callback, then the user can decide if they want to synchronize
                 {
@@ -1973,8 +2024,6 @@ ggml_backend_sched_t ggml_backend_sched_new(
             if (sched->profile) {
                 // Separate scheduler streams must publish complete rows before releasing the lock.
                 setvbuf(sched->profile, nullptr, _IONBF, 0);
-                static uint64_t next_id = 0;
-                sched->profile_id = ++next_id;
                 if (ftell(sched->profile) == 0) {
                     fprintf(sched->profile, "scheduler,call,split,event,source,destination,tensor,start_us,duration_us,bytes,padding_bytes,buffer_bytes,status\n");
                 }
@@ -1982,6 +2031,26 @@ ggml_backend_sched_t ggml_backend_sched_new(
                 GGML_LOG_ERROR("cannot open scheduler profile '%s'; profiling disabled\n", path);
             }
         }
+    }
+
+    if (const char * path = getenv("GGML_SCHED_ROUTE_PROFILE")) {
+        if (*path) {
+            std::lock_guard<std::mutex> lock(ggml_backend_sched_profile_mutex);
+            sched->route_profile = fopen(path, "ab");
+            if (sched->route_profile) {
+                setvbuf(sched->route_profile, nullptr, _IONBF, 0);
+                if (ftell(sched->route_profile) == 0) {
+                    fprintf(sched->route_profile, "scheduler,call,event,tensor,n_expert,n_tokens,token,rank,expert,host_us\n");
+                }
+            } else {
+                GGML_LOG_ERROR("cannot open scheduler route profile '%s'; routing profile disabled\n", path);
+            }
+        }
+    }
+    if (sched->profile || sched->route_profile) {
+        std::lock_guard<std::mutex> lock(ggml_backend_sched_profile_mutex);
+        static uint64_t next_id = 0;
+        sched->profile_id = ++next_id;
     }
 
     const char * GGML_SCHED_DEBUG = getenv("GGML_SCHED_DEBUG");
@@ -2054,6 +2123,14 @@ void ggml_backend_sched_free(ggml_backend_sched_t sched) {
         std::lock_guard<std::mutex> lock(ggml_backend_sched_profile_mutex);
         if (fclose(sched->profile) != 0) {
             GGML_LOG_ERROR("scheduler profile close failed\n");
+        }
+    }
+    if (sched->route_profile) {
+        std::lock_guard<std::mutex> lock(ggml_backend_sched_profile_mutex);
+        fprintf(sched->route_profile, "%llu,%llu,scheduler_end,\"\",0,0,-1,-1,-1,0\n",
+                (unsigned long long) sched->profile_id, (unsigned long long) sched->profile_call);
+        if (fclose(sched->route_profile) != 0) {
+            GGML_LOG_ERROR("scheduler route profile close failed\n");
         }
     }
     for (int b = 0; b < sched->n_backends; b++) {
@@ -2153,7 +2230,7 @@ enum ggml_status ggml_backend_sched_graph_compute(ggml_backend_sched_t sched, st
 
 enum ggml_status ggml_backend_sched_graph_compute_async(ggml_backend_sched_t sched, struct ggml_cgraph * graph) {
     GGML_ASSERT(sched);
-    if (sched->profile) {
+    if (sched->profile || sched->route_profile) {
         ++sched->profile_call;
     }
     if (!sched->is_reset && !sched->is_alloc) {

@@ -23,6 +23,7 @@
 #include <algorithm>
 #include <cinttypes>
 #include <clocale>
+#include <cmath>
 #include <cstdio>
 #include <memory>
 #include <cstring>
@@ -87,6 +88,7 @@ int main(int argc, char ** argv) {
 
     using file_ptr = std::unique_ptr<FILE, int (*)(FILE *)>;
     file_ptr token_output(nullptr, &std::fclose);
+    file_ptr logits_output(nullptr, &std::fclose);
     if (const char * path = std::getenv("MOE_TRACE_TOKENS_OUT")) {
         token_output.reset(std::fopen(path, "w"));
         if (!token_output) {
@@ -95,12 +97,22 @@ int main(int argc, char ** argv) {
         }
         std::fprintf(token_output.get(), "phase,token,id\n");
     }
+    if (const char * path = std::getenv("MOE_TRACE_LOGITS_OUT")) {
+        if (*path) {
+            logits_output.reset(std::fopen(path, "wx"));
+            if (!logits_output) {
+                LOG_ERR("%s: cannot create fresh logits output\n", __func__);
+                return 1;
+            }
+        }
+    }
 
     llama_backend_init();
     llama_numa_init(params.numa);
 
-    params.cb_eval           = moe_cb;
-    params.cb_eval_user_data = &trace;
+    const bool no_callback = std::getenv("MOE_TRACE_NO_CALLBACK") != nullptr;
+    params.cb_eval           = no_callback ? nullptr : moe_cb;
+    params.cb_eval_user_data = no_callback ? nullptr : &trace;
     params.warmup            = false;
 
     auto llama_init = common_init_from_params(params);
@@ -112,6 +124,31 @@ int main(int argc, char ** argv) {
     }
 
     const llama_vocab * vocab = llama_model_get_vocab(model);
+    const int n_vocab = llama_vocab_n_tokens(vocab);
+    auto record_logits = [&]() {
+        const float * logits = llama_get_logits_ith(ctx, -1);
+        if (!logits || n_vocab <= 0) {
+            LOG_ERR("no trace logits\n");
+            return false;
+        }
+        bool nonzero = false;
+        for (int v = 0; v < n_vocab; ++v) {
+            if (!std::isfinite(logits[v])) {
+                LOG_ERR("nonfinite trace logits\n");
+                return false;
+            }
+            nonzero = nonzero || logits[v] != 0.0f;
+        }
+        if (!nonzero) {
+            LOG_ERR("all-zero trace logits\n");
+            return false;
+        }
+        if (logits_output && std::fwrite(logits, sizeof(float), n_vocab, logits_output.get()) != size_t(n_vocab)) {
+            LOG_ERR("trace logits write failed\n");
+            return false;
+        }
+        return true;
+    };
     fprintf(trace.out, "phase,token,layer,rank,expert\n");
 
     std::vector<llama_token> tokens = common_tokenize(ctx, params.prompt,
@@ -137,6 +174,9 @@ int main(int argc, char ** argv) {
             LOG_ERR("%s: decode failed at token %zu\n", __func__, i);
             return 1;
         }
+        if (!record_logits()) {
+            return 1;
+        }
         LOG_INF("  prefill %zu/%zu\n", i + n, tokens.size());
         fflush(trace.out);
     }
@@ -144,7 +184,6 @@ int main(int argc, char ** argv) {
     // short greedy decode so pure-decode routing is represented as well
     for (int i = 0; i < params.n_predict; ++i) {
         const float * logits = llama_get_logits_ith(ctx, -1);
-        const int n_vocab = llama_vocab_n_tokens(vocab);
         llama_token best = 0;
         float best_v = logits[0];
         for (int v = 1; v < n_vocab; ++v) {
@@ -160,6 +199,9 @@ int main(int argc, char ** argv) {
             fclose(trace.out);
             return 1;
         }
+        if (!record_logits()) {
+            return 1;
+        }
         if (token_output) {
             std::fprintf(token_output.get(), "decode,%zu,%d\n", trace.token_offset, best);
         }
@@ -172,6 +214,13 @@ int main(int argc, char ** argv) {
     if (token_output && std::fflush(token_output.get()) != 0) {
         LOG_ERR("%s: cannot flush token output\n", __func__);
         return 1;
+    }
+    if (logits_output) {
+        FILE * out = logits_output.release();
+        if (std::fclose(out) != 0) {
+            LOG_ERR("trace logits close failed\n");
+            return 1;
+        }
     }
     fclose(trace.out);
     llama_backend_free();

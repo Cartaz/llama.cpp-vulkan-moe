@@ -92,6 +92,19 @@ class ProfileTests(unittest.TestCase):
         self.assertEqual((entry["capacity_bytes"], entry["requested_bytes"], entry["hit_bytes"], entry["miss_bytes"]), (100, 200, 10, 190))
         self.assertAlmostEqual(entry["byte_hit_rate"], 0.05)
 
+    def test_whole_request_coverage_and_layer_budget(self):
+        groups = [("decode", token, 0, experts) for token, experts in enumerate(([0, 1], [1, 2], [2, 3], [2, 3]))]
+        groups += [("decode", 0, 1, [9])]
+        report = self.run_trace(groups, "--layers", "0", "--slots", "0,1,2", sizes={"0": 64, "1": 1024})
+        self.assertEqual(report["selected_layers"], [0])
+        entries = report["cache_summary"]
+        self.assertEqual([entry["capacity_bytes"] for entry in entries], [0, 64, 128])
+        self.assertEqual(entries[0]["whole_request"], dict(requests=4, all_hit=0, all_miss=4, mixed=0, exceeds_capacity=4, all_hit_rate=0))
+        self.assertEqual(entries[2]["whole_request"], dict(requests=4, all_hit=1, all_miss=1, mixed=2, exceeds_capacity=0, all_hit_rate=0.25))
+        self.assertEqual(entries[2]["hits"], 4)
+        self.assertEqual(entries[1]["whole_request"]["exceeds_capacity"], 4)
+        self.run_trace(groups, "--layers", "2", valid=False)
+
     def test_warm_and_static_byte_summaries(self):
         groups = [("prefill", 0, 0, [1, 2]), ("decode", 1, 0, [1, 3]), ("decode", 2, 0, [3, 4])]
         entries = self.run_trace(groups, "--prefill-policies", "--slots", "2", sizes={"0": 64})["cache_summary"]

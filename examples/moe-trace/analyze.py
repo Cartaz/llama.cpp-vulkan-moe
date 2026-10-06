@@ -75,6 +75,7 @@ def main():
     parser.add_argument("--window", type=int, default=32, help="working-set window in evaluated tokens per layer")
     parser.add_argument("--windows", default="1,8,32,128", help="additional working-set windows in evaluated tokens per layer")
     parser.add_argument("--expert-bytes", help="JSON object mapping layer IDs to bytes for one complete gate/up/down expert")
+    parser.add_argument("--layers", help="comma-separated layer IDs; omitted selects all layers")
     parser.add_argument("--prefill-policies", action="store_true", help="compare decode with prefill-warmed LRU and fixed prefill-frequency slots")
     args = parser.parse_args()
     if args.window < 1:
@@ -83,6 +84,7 @@ def main():
         parser.error("--prefill-policies requires --phase decode")
     try:
         slots = parse_sizes(args.slots)
+        selected_layers = set(parse_sizes(args.layers)) if args.layers is not None else None
         window_lengths = parse_sizes(args.windows)
         if min(window_lengths) < 1:
             raise ValueError("--windows must be positive")
@@ -114,6 +116,7 @@ def main():
     warm_caches = defaultdict(lambda: {size: OrderedDict() for size in slots})
     static_slots = {}
     policy_hits = Counter()
+    requests = defaultdict(Counter)
     decoding_seen = False
     group = None
     selected = []
@@ -129,6 +132,18 @@ def main():
                     cache.popitem(last=False)
                 cache[expert] = None
         return count
+
+    def record_request(phase, layer, size, policy, count, distinct):
+        stats = requests[(phase, layer, size, policy)]
+        stats["requests"] += 1
+        stats["all_hit"] += count == len(distinct)
+        stats["all_miss"] += count == 0
+        stats["mixed"] += 0 < count < len(distinct)
+        stats["exceeds_capacity"] += len(distinct) > size
+
+    def request_report(stats):
+        return {key: stats[key] for key in ("requests", "all_hit", "all_miss", "mixed", "exceeds_capacity")} | {
+            "all_hit_rate": stats["all_hit"] / stats["requests"] if stats["requests"] else None}
 
     def process():
         if group is None:
@@ -151,8 +166,10 @@ def main():
                 ranked = sorted(prefill_frequency[layer], key=lambda expert: (-prefill_frequency[layer][expert], expert))
                 static_slots[layer] = {size: set(ranked[:size]) for size in slots}
             for size in slots:
-                policy_hits[(layer, size, "warm_lru")] += access(warm_caches[layer][size], size, distinct)
-                policy_hits[(layer, size, "static_prefill")] += sum(expert in static_slots[layer][size] for expert in distinct)
+                for policy, count in (("warm_lru", access(warm_caches[layer][size], size, distinct)),
+                                      ("static_prefill", sum(expert in static_slots[layer][size] for expert in distinct))):
+                    policy_hits[(layer, size, policy)] += count
+                    record_request(phase, layer, size, policy, count, distinct)
         if args.phase == "all":
             phase = "all"
         activations[phase] += len(distinct)
@@ -173,6 +190,7 @@ def main():
             count = access(cache, size, distinct)
             hits[(phase, size)] += count
             layer_hits[(phase, layer, size)] += count
+            record_request(phase, layer, size, "cold_lru", count, distinct)
 
     with open(args.trace, newline="", encoding="utf-8") as stream:
         reader = csv.DictReader(stream)
@@ -190,6 +208,8 @@ def main():
                     raise ValueError("negative token, layer, rank or expert")
             except (ValueError, TypeError) as error:
                 parser.error(f"CSV line {reader.line_num}: {error}")
+            if selected_layers is not None and layer not in selected_layers:
+                continue
             if args.prefill_policies:
                 if phase not in ("prefill", "decode") or (decoding_seen and phase == "prefill"):
                     parser.error("prefill policies require prefill rows before decode rows")
@@ -211,6 +231,8 @@ def main():
 
     if not activations:
         parser.error("trace has no matching expert activations")
+    if selected_layers is not None and selected_layers != {layer for _, layer in frequency}:
+        parser.error("--layers includes layers without matching activations")
     if args.prefill_policies and not any(prefill_frequency.values()):
         parser.error("prefill policies need prefill expert activations")
     if expert_bytes is not None:
@@ -235,7 +257,8 @@ def main():
                        "window_unique_max": max(sizes) if sizes else None,
                        "cache": [{"slots": size, "hits": layer_hits[(phase, layer, size)],
                                   "misses": total - layer_hits[(phase, layer, size)],
-                                  "hit_rate": layer_hits[(phase, layer, size)] / total} for size in slots]})
+                                  "hit_rate": layer_hits[(phase, layer, size)] / total,
+                                  "whole_request": request_report(requests[(phase, layer, size, "cold_lru")])} for size in slots]})
         print(f"layer {layer:3d}: unique={len(counts):4d} hottest={counts.most_common(1)[0][1]/total:.2%}")
         layers[-1].update(profiles[(phase, layer)].report(counts))
         if args.prefill_policies:
@@ -243,7 +266,8 @@ def main():
             layers[-1]["prefill_cache"] = [
                 {"policy": policy, "slots": size, "hits": policy_hits[(layer, size, policy)],
                  "misses": total - policy_hits[(layer, size, policy)],
-                 "hit_rate": policy_hits[(layer, size, policy)] / total}
+                 "hit_rate": policy_hits[(layer, size, policy)] / total,
+                 "whole_request": request_report(requests[(phase, layer, size, policy)])}
                 for policy in ("warm_lru", "static_prefill") for size in slots]
         if expert_bytes is not None:
             size_bytes = expert_bytes[layer]
@@ -271,6 +295,10 @@ def main():
                     return policy_hits[(layer["layer"], size, policy)]
                 entry = {"policy": policy, "slots_per_layer": size, "activations": sum(activations.values()),
                          "hits": sum(policy_count(layer) for layer in layers)}
+                combined = Counter()
+                for layer in layers:
+                    combined.update(requests[(layer["phase"], layer["layer"], size, policy)])
+                entry["whole_request"] = request_report(combined)
                 if expert_bytes is not None:
                     requested = sum(layer["activations"] * layer["expert_bytes"] for layer in layers)
                     hit_bytes = sum(policy_count(layer) * layer["expert_bytes"] for layer in layers)
@@ -279,7 +307,9 @@ def main():
                                   "miss_bytes": requested - hit_bytes, "byte_hit_rate": hit_bytes / requested})
                 summary.append(entry)
         with open(args.json_path, "w", encoding="utf-8") as stream:
-            json.dump({"schema_version": 2, "trace": args.trace, "phase": args.phase,
+            json.dump({"schema_version": 3, "trace": args.trace, "phase": args.phase,
+                       "selected_layers": sorted(selected_layers) if selected_layers is not None else None,
+                       "whole_request_metrics": "pre-request membership in logical caches; all_hit/all_miss/mixed partition token-layer requests; exceeds_capacity overlaps these counts; no runtime cache or transfer saving is implied",
                        "byte_metrics": "logical estimates, not measured transfers" if expert_bytes is not None else "unavailable",
                        "cache_summary": summary, "layers": layers}, stream, indent=2)
             stream.write("\n")

@@ -16,6 +16,9 @@ HERE = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("profile_summary", HERE / "profile-summary.py")
 summary = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(summary)
+route_spec = importlib.util.spec_from_file_location("route_summary", HERE / "route-summary.py")
+route_summary = importlib.util.module_from_spec(route_spec)
+route_spec.loader.exec_module(route_summary)
 CHECK = None
 VULKAN = False
 
@@ -87,6 +90,26 @@ class SummaryTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             summary.summarize(profile, vulkan_path=log)
 
+    def test_completed_routes_and_conflicting_or_missing_observations(self):
+        phases = self.phases([dict(start_us=100, end_us=500)])
+        path = phases.with_name("routes.csv")
+        valid = ("scheduler,call,event,tensor,n_expert,n_tokens,token,rank,expert,host_us\n"
+                 "1,1,router,blk.0.ffn_up_exps.weight,8,1,0,0,7,200\n"
+                 "1,1,router,blk.0.ffn_up_exps.weight,8,1,0,1,7,200\n"
+                 "1,1,router,blk.0.ffn_down_exps.weight,8,1,0,0,7,250\n"
+                 "1,1,router,blk.0.ffn_down_exps.weight,8,1,0,1,7,250\n"
+                 "1,1,scheduler_end,,0,0,-1,-1,-1,0\n")
+        path.write_text(valid)
+        rows, report = route_summary.convert(path, phases, {0}, 2, 8)
+        self.assertEqual(rows, [("prefill", 0, 0, 0, 7), ("prefill", 0, 0, 1, 7)])
+        self.assertEqual(report["observations"], 4)
+        for invalid in (valid.replace("0,0,7,250", "0,0,6,250"), valid.replace("0,1,7,200", "0,2,7,200"),
+                        valid.replace(",200\n", ",600\n"), valid[:valid.index("1,1,scheduler_end")],
+                        valid.replace("8,1,0", "8,2,0"), valid + valid.splitlines()[-1] + "\n"):
+            path.write_text(invalid)
+            with self.assertRaises(ValueError):
+                route_summary.convert(path, phases, {0}, 2, 8)
+
     def test_reject_invalid_or_incomplete_profiles(self):
         for rows in ([{}], [{}, {"event": "scheduler_end"}, {}], [{}, {}, {"event": "scheduler_end"}],
                      [{"duration_us": -1}], [{"status": -2}], [{"bytes": 1, "padding_bytes": 2}],
@@ -146,6 +169,42 @@ class RuntimeTests(unittest.TestCase):
             environment["GGML_SCHED_PROFILE"] = str(profile)
             subprocess.run(argv + ["--output-bin", str(root / "on.bin")], env=environment, capture_output=True, check=True)
             self.assertEqual((root / "off.bin").read_bytes(), (root / "on.bin").read_bytes())
+            route_environment = dict(environment)
+            route_environment.pop("GGML_SCHED_PROFILE", None)
+            route_environment.pop("MOE_REPLAY_PROFILE", None)
+            route_environment["GGML_SCHED_ROUTE_PROFILE"] = str(root / "routes.csv")
+            subprocess.run(argv + ["--output-bin", str(root / "routes.bin")], env=route_environment, capture_output=True, check=True)
+            self.assertEqual((root / "off.bin").read_bytes(), (root / "routes.bin").read_bytes())
+            with (root / "routes.csv").open() as stream:
+                route_rows = list(csv.DictReader(stream))
+            self.assertEqual({int(row["scheduler"]) for row in route_rows if row["event"] == "scheduler_end"}, set(range(1, 17)))
+            expected_routes = {}
+            selection = ((0, 1), (1, 4), (4, 7))
+            for scheduler in range(1, 17):
+                case = (scheduler - 1) % 8
+                if VULKAN and case in (2, 6):
+                    continue  # Full-copy fallback has no naturally host-read IDs.
+                for call in (1, 2):
+                    for token in range(1 if case < 4 else 3):
+                        for rank in range(2):
+                            expected_routes[(scheduler, call, token, rank)] = 7 if call == 2 else selection[token][rank]
+            actual_routes = {}
+            for row in route_rows:
+                if row["event"] == "router":
+                    self.assertEqual(int(row["n_expert"]), 8)
+                    key = tuple(int(row[k]) for k in ("scheduler", "call", "token", "rank"))
+                    self.assertNotIn(key, actual_routes)
+                    actual_routes[key] = int(row["expert"])
+            self.assertEqual(actual_routes, expected_routes)
+            for path in (str(root / "missing" / "routes.csv"), "/dev/full" if Path("/dev/full").exists() else ""):
+                route_environment["GGML_SCHED_ROUTE_PROFILE"] = path
+                result = subprocess.run(argv + ["--output-bin", str(root / "failed-routes.bin")], env=route_environment, capture_output=True, check=True)
+                if path:
+                    self.assertIn(b"route profile", result.stderr)
+                self.assertEqual((root / "off.bin").read_bytes(), (root / "failed-routes.bin").read_bytes())
+            route_environment["GGML_SCHED_ROUTE_PROFILE"] = ""
+            subprocess.run(argv + ["--output-bin", str(root / "empty-routes.bin")], env=route_environment, capture_output=True, check=True)
+            self.assertEqual((root / "off.bin").read_bytes(), (root / "empty-routes.bin").read_bytes())
             report = summary.summarize(profile)
             self.assertEqual((report["schedulers"], report["compute_calls"]), (16, 32))
             with profile.open(newline="") as stream:
