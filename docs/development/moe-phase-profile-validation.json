@@ -1,0 +1,59 @@
+{
+  "id": "R19-S03-phase-correlation",
+  "date": "2026-10-07",
+  "status": "IMPLEMENTATO_TEST_PARZIALI",
+  "base_commit": "0ffed2a10e4201ace20cb589900050ba8cde58df",
+  "source_sha256": {
+    "examples/moe-trace/phase-profile.h": "e8d3694ef7ad1ccaa1b338baa0a4823e00de92c428e899304c48ab0586d5129d",
+    "examples/moe-trace/moe-replay.cpp": "ba65a6c61f25b927dc924d82ce48647cab08d8373baae0c7fb69c7797ae1adf2",
+    "examples/moe-trace/profile-summary.py": "e2caa5a2c7f4435fb813222812d93ec70f071451d5f8e86d3604e5a645c17250",
+    "examples/moe-trace/scheduler-check.cpp": "54eaa92778a7aab933074e9d28ae252afdc1f6105e1ce1399130e2f841577277",
+    "examples/moe-trace/test-scheduler-profile.py": "665b4a92a4a97049aa9d7599a44b9fbb6df7f4e4a4f40b954c07c25e5839c1dd"
+  },
+  "binary_sha256": {
+    "/tmp/moe-s03-build/bin/llama-moe-scheduler-check": "0db46bcf4f62291d73733849aa775e1b9373bf88ff1c88106c2c313ce870927b",
+    "/tmp/moe-s03-build/bin/llama-moe-replay": "ef6ca71605250ad04e1c7ed0d45d4118ce03513242cd8c0a8f1666eeac200373",
+    "/tmp/moe-s03-build/bin/libggml.so.0.25.1": "50e95cb79d0320d0d84c1609ed1d2e0b939f32b9fbdeb522e952c1b4cf324757",
+    "/tmp/moe-s03-build/bin/libggml-base.so.0.25.1": "ccd95a6f30b2c01b9c08dd703fba83f99d6222b43808b6906625e930fffcfa7e",
+    "/tmp/moe-s03-build/bin/libggml-cpu.so.0.25.1": "2d37c13ceebd3ebd5d4eefd7aa4463bad47002093253110d3884a8cbac344715",
+    "/tmp/moe-s03-build/bin/libllama.so.0.5.0": "d12e636c547f6414c444c7b8a72503c8ff0865830553fafc0ad8cfebffe4f7e9",
+    "/tmp/moe-s03-build/bin/libllama-common.so.0.5.0": "5ec6e2572a9c9f8cd8c8c393357d1a3630c26df1683742d75e0b86258b88dc2e",
+    "/tmp/moe-phase-check-vulkan": "a505d8fa3b2d4501395eb559b7ba70d53d7030e27ed2c2255e8c1151c983e18a",
+    "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/build-control-off/bin/libggml-vulkan.so.0.25.1": "8e49e0d7336d7bf9473c6a56a46bac6bb01209b11a4e7a17fd51916a68a2db8c",
+    "/tmp/moe-s03-asan/bin/llama-moe-scheduler-check": "88bcb9ee067c777886fe3ee14338807d7f276c6c64fd6004929b30a48d3e2402",
+    "/tmp/moe-s03-check-vulkan": "a1c48c6bc37198f40f02ee878cba4891a03d36af1f26ffaf49785f9dd7e0c7dc"
+  },
+  "system": {
+    "kernel": "7.2.9-1-cachyos",
+    "gpu": "RX 6800 / RADV NAVI21",
+    "compiler": "c++ (GCC) 16.2.1 20260810",
+    "mesa": "26.2.4-arch3.1"
+  },
+  "environment": {},
+  "checks": {
+    "cpu": "5 PASS",
+    "rx6800_vulkan": "5 PASS",
+    "cpu_asan_ubsan": "5 PASS",
+    "foundations_offline": "13 PASS",
+    "compiled_replay": "PASS; no model execution",
+    "paired_scheduler_calls": "32/32 exact assignments",
+    "phase_upload_bytes": {
+      "prefill": 46080,
+      "decode": 12288
+    },
+    "overwrite_refusal": "PASS",
+    "phase_flush_failure_linux_rlimit": "PASS; incomplete file rejected",
+    "legacy_csv": "PASS; schema 1 without --phases"
+  },
+  "raw_output_sha256": "b8ccf66c028651dc191d799d009ffd6fc97887c28fbf4aa2a7781e48f1c7f5a2",
+  "model": "none; explicit phase labels on synthetic operator fixture",
+  "performance": "NON_MISURATO",
+  "quality": "NON_MISURATO",
+  "limits": [
+    "Actual model replay phase correlation is not runtime-validated.",
+    "GPU active durations, clock correlation, profiler overhead and full memory accounting remain incomplete.",
+    "Vulkan fixture reuses the unchanged prebuilt backend; not a clean full Vulkan rebuild.",
+    "Paired files must come from the same process; timestamp containment does not authenticate their identity."
+  ],
+  "artifact_archive": "risultati/2026-10-07-phase-profile"
+}

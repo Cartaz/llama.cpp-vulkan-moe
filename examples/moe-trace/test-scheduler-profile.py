@@ -6,6 +6,7 @@ import csv
 import importlib.util
 import os
 import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -20,6 +21,21 @@ VULKAN = False
 
 
 class SummaryTests(unittest.TestCase):
+    def phases(self, rows, finish=True):
+        directory = tempfile.TemporaryDirectory()
+        self.addCleanup(directory.cleanup)
+        path = Path(directory.name) / "phases.csv"
+        with path.open("w", newline="") as stream:
+            writer = csv.DictWriter(stream, fieldnames=summary.PHASE_FIELDS)
+            writer.writeheader()
+            for updates in rows:
+                row = dict(rep=0, phase="prefill", position=0, n_tokens=1, start_us=1000, end_us=1500, status=0)
+                row.update(updates)
+                writer.writerow(row)
+            if finish:
+                writer.writerow(dict(rep=-1, phase="profile_end", position=0, n_tokens=0, start_us=0, end_us=0, status=0))
+        return path
+
     def profile(self, rows):
         directory = tempfile.TemporaryDirectory()
         self.addCleanup(directory.cleanup)
@@ -52,6 +68,41 @@ class SummaryTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 summary.summarize(self.profile(rows))
 
+    def test_explicit_phases_warmup_and_milliseconds(self):
+        phases = self.phases([dict(rep=-1, start_us=300, end_us=500), {},
+                              dict(phase="decode", position=1, start_us=1700, end_us=1900)])
+        profile = self.profile([dict(call=0, event="scheduler_wait", start_us=20, duration_us=5),
+                                dict(call=1, start_us=450, duration_us=40),
+                                dict(call=2, event="expert_upload", start_us=1105, duration_us=20, bytes=80, padding_bytes=16),
+                                dict(call=2, start_us=1100, duration_us=50),
+                                dict(call=3, start_us=1750, duration_us=50),
+                                dict(call=3, event="scheduler_end")])
+        report = summary.summarize(profile, phases)
+        self.assertEqual([(entry["rep"], entry["phase"], entry["elapsed_ms"], entry["compute_calls"])
+                          for entry in report["phase_summary"]], [(-1, "prefill", 0.2, 1), (0, "decode", 0.2, 1), (0, "prefill", 0.5, 1)])
+        prefill = next(entry for entry in report["phase_summary"] if entry["rep"] == 0 and entry["phase"] == "prefill")
+        upload = next(entry for entry in prefill["events"] if entry["event"] == "expert_upload")
+        self.assertEqual((upload["host_duration_ms"], upload["bytes"], upload["padding_bytes"]), (0.02, 80, 16))
+        self.assertEqual(report["phase_evaluations"][2]["scheduler_calls"], [{"scheduler": 1, "call": 3}])
+        self.assertEqual(report["unattributed_events"][0]["host_duration_us"], 5)
+
+    def test_reject_invalid_phase_data_and_partial_scope_matches(self):
+        for rows in ([dict(phase="decode")], [dict(status=1)], [dict(end_us=999)], [dict(n_tokens=0)],
+                     [{}, dict(start_us=1200)], [{}, dict(rep=2, start_us=1600)],
+                     [{}, dict(phase="decode", position=2, start_us=1600)],
+                     [{}, dict(phase="profile_end"), {}]):
+            with self.assertRaises(ValueError):
+                summary.read_phases(self.phases(rows))
+        with self.assertRaises(ValueError):
+            summary.read_phases(self.phases([{}], finish=False))
+        for start, duration in ((900, 200), (1490, 20), (2000, 10)):
+            profile = self.profile([dict(start_us=start, duration_us=duration), dict(event="scheduler_end")])
+            with self.assertRaises(ValueError):
+                summary.summarize(profile, self.phases([{}]))
+        phases = summary.read_phases(self.phases([{}, dict(phase="decode", position=1, start_us=1500, end_us=1800)]))
+        with self.assertRaises(ValueError):
+            summary.phase_for_scope(phases, [1000, 1500], 1500, 0)
+
 
 class RuntimeTests(unittest.TestCase):
     def test_output_and_exact_copy_counters(self):
@@ -63,6 +114,7 @@ class RuntimeTests(unittest.TestCase):
             argv = [str(CHECK)] + (["--vulkan"] if VULKAN else [])
             environment = dict(os.environ)
             environment.pop("GGML_SCHED_PROFILE", None)
+            environment.pop("MOE_REPLAY_PROFILE", None)
             subprocess.run(argv + ["--output-bin", str(root / "off.bin")], env=environment, capture_output=True, check=True)
             self.assertFalse(profile.exists())
             environment["GGML_SCHED_PROFILE"] = str(profile)
@@ -96,11 +148,49 @@ class RuntimeTests(unittest.TestCase):
                             self.assertEqual(sum(int(row["bytes"]) for row in readback), expected_span)
             else:
                 self.assertFalse(uploads)
+            environment["MOE_REPLAY_PROFILE"] = str(root / "phases.csv")
+            environment["GGML_SCHED_PROFILE"] = str(root / "paired.csv")
+            subprocess.run(argv + ["--output-bin", str(root / "paired.bin")], env=environment, capture_output=True, check=True)
+            self.assertEqual((root / "off.bin").read_bytes(), (root / "paired.bin").read_bytes())
+            paired = summary.summarize(root / "paired.csv", root / "phases.csv")
+            self.assertEqual(len(paired["phase_evaluations"]), 32)
+            self.assertEqual(paired["unattributed_compute_calls"], 0)
+            self.assertEqual(sum(entry["compute_calls"] for entry in paired["phase_summary"]), 32)
+            for index, evaluation in enumerate(paired["phase_evaluations"]):
+                self.assertEqual(evaluation["phase"], "prefill" if index % 2 == 0 else "decode")
+                self.assertEqual(evaluation["scheduler_calls"], [{"scheduler": index // 2 + 1, "call": index % 2 + 1}])
+            if VULKAN:
+                uploads_by_phase = {phase: sum(event["bytes"] for entry in paired["phase_summary"] if entry["phase"] == phase
+                                              for event in entry["events"] if event["event"] == "expert_upload")
+                                    for phase in ("prefill", "decode")}
+                self.assertEqual(uploads_by_phase, {"prefill": 46080, "decode": 12288})
+            # A phase file is single-run output; refuse to overwrite a previous run.
+            result = subprocess.run(argv, env=environment, capture_output=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn(b"cannot create fresh replay phase profile", result.stderr)
+            environment.pop("MOE_REPLAY_PROFILE")
+            if sys.platform == "linux":
+                import resource
+                import signal
+
+                def fail_file_writes():
+                    signal.signal(signal.SIGXFSZ, signal.SIG_IGN)
+                    resource.setrlimit(resource.RLIMIT_FSIZE, (0, 0))
+
+                failed_environment = dict(environment)
+                failed_environment.pop("GGML_SCHED_PROFILE")
+                failed_environment["MOE_REPLAY_PROFILE"] = str(root / "failed-phases.csv")
+                result = subprocess.run(argv, env=failed_environment, capture_output=True, preexec_fn=fail_file_writes)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn(b"replay phase profile write failed", result.stderr)
+                with self.assertRaises(ValueError):
+                    summary.read_phases(root / "failed-phases.csv")
             environment["GGML_SCHED_PROFILE"] = str(root / "missing" / "profile.csv")
             result = subprocess.run(argv + ["--output-bin", str(root / "invalid-path.bin")], env=environment, capture_output=True, check=True)
             self.assertIn(b"cannot open scheduler profile", result.stderr)
             self.assertEqual((root / "off.bin").read_bytes(), (root / "invalid-path.bin").read_bytes())
             environment["GGML_SCHED_PROFILE"] = ""
+            environment["MOE_REPLAY_PROFILE"] = ""
             subprocess.run(argv + ["--output-bin", str(root / "empty-env.bin")], env=environment, capture_output=True, check=True)
             self.assertEqual((root / "off.bin").read_bytes(), (root / "empty-env.bin").read_bytes())
             if Path("/dev/full").exists():

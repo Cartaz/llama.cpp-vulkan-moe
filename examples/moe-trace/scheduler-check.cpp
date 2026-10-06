@@ -2,6 +2,7 @@
 #include "ggml-alloc.h"
 #include "ggml-backend.h"
 #include "ggml-cpu.h"
+#include "phase-profile.h"
 #ifdef GGML_SCHED_CHECK_VULKAN
 #include "ggml-vulkan.h"
 #endif
@@ -19,7 +20,7 @@ static float input_value(int pass, int token, int slot, int col) {
     return float((pass * 3 + token * 5 + slot * 2 + col) % 13 - 6) / 16;
 }
 
-static bool check(ggml_backend_t target, ggml_backend_t cpu, int tokens, bool strided, bool callback, bool parallel, FILE * output) {
+static bool check(ggml_backend_t target, ggml_backend_t cpu, int tokens, bool strided, bool callback, bool parallel, FILE * output, moe_phase_profile & profile, int rep) {
     const int k = 32, m = 8, experts = 8, topk = 2;
     ggml_context * leaves = ggml_init({65536, nullptr, true});
     ggml_context * ctx = ggml_init({65536, nullptr, true});
@@ -82,7 +83,10 @@ static bool check(ggml_backend_t target, ggml_backend_t cpu, int tokens, bool st
         }
         ggml_backend_tensor_set(storage, ids_data.data(), 0, ggml_nbytes(storage));
         ggml_backend_tensor_set(input, input_data.data(), 0, ggml_nbytes(input));
-        if (ggml_backend_sched_graph_compute(sched, graph) != GGML_STATUS_SUCCESS) {
+        const int64_t start = profile.enabled() ? ggml_time_us() : 0;
+        const auto status = ggml_backend_sched_graph_compute(sched, graph);
+        const int64_t end = profile.enabled() ? ggml_time_us() : 0;
+        if (!profile.record(rep, pass ? "decode" : "prefill", pass ? tokens : 0, tokens, start, end, status) || status != GGML_STATUS_SUCCESS) {
             ok = false;
             break;
         }
@@ -116,6 +120,10 @@ static bool check(ggml_backend_t target, ggml_backend_t cpu, int tokens, bool st
 }
 
 int main(int argc, char ** argv) {
+    moe_phase_profile profile;
+    if (!profile.good()) {
+        return 1;
+    }
     bool vulkan = false;
     bool serial = false;
     const char * output_path = nullptr;
@@ -157,6 +165,7 @@ int main(int argc, char ** argv) {
         return 1;
     }
     bool ok = true;
+    int rep = 0;
     for (bool parallel : {false, true}) {
         if (serial && parallel) {
             continue;
@@ -164,7 +173,7 @@ int main(int argc, char ** argv) {
         for (int tokens : {1, 3}) {
             for (bool strided : {false, true}) {
                 for (bool callback : {false, true}) {
-                    ok = check(target, cpu, tokens, strided, callback, parallel, output) && ok;
+                    ok = check(target, cpu, tokens, strided, callback, parallel, output, profile, rep++) && ok;
                 }
             }
         }
@@ -176,5 +185,5 @@ int main(int argc, char ** argv) {
         ggml_backend_free(target);
     }
     ggml_backend_free(cpu);
-    return ok ? 0 : 1;
+    return ok && profile.finish() ? 0 : 1;
 }
