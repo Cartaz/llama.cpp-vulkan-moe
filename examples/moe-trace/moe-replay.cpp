@@ -2,6 +2,7 @@
 #include "common.h"
 #include "llama.h"
 #include "log.h"
+#include "phase-profile.h"
 
 #include <algorithm>
 #include <cinttypes>
@@ -70,16 +71,22 @@ static uint64_t hash_logits(const float * logits, size_t count) {
     return hash;
 }
 
-static bool evaluate(llama_context * ctx, replay_workload & workload, int rep, int step, size_t n_vocab, FILE * raw) {
+static bool evaluate(llama_context * ctx, replay_workload & workload, int rep, int step, size_t n_vocab, FILE * raw, moe_phase_profile & profile) {
     llama_memory_clear(llama_get_memory(ctx), false);
     auto eval = [&](llama_token * tokens, int n, const char * phase, size_t position) {
         const int64_t start = ggml_time_us();
-        if (llama_decode(ctx, llama_batch_get_one(tokens, n)) != 0) {
+        const int status = llama_decode(ctx, llama_batch_get_one(tokens, n));
+        if (status != 0) {
+            profile.record(rep, phase, position, n, start, ggml_time_us(), status);
             LOG_ERR("replay decode failed at position %zu\n", position);
             return false;
         }
         llama_synchronize(ctx);
-        const int64_t elapsed = ggml_time_us() - start;
+        const int64_t end = ggml_time_us();
+        const int64_t elapsed = end - start;
+        if (!profile.record(rep, phase, position, n, start, end, status)) {
+            return false;
+        }
         const float * logits = llama_get_logits_ith(ctx, -1);
         if (!logits) {
             LOG_ERR("no replay logits at position %zu\n", position);
@@ -140,6 +147,10 @@ int main(int argc, char ** argv) {
     params.warmup = false;
     params.cb_eval = nullptr;
     params.cb_eval_user_data = nullptr;
+    moe_phase_profile profile;
+    if (!profile.good()) {
+        return 1;
+    }
     llama_backend_init();
     llama_numa_init(params.numa);
     auto initialized = common_init_from_params(params);
@@ -173,17 +184,17 @@ int main(int argc, char ** argv) {
     }
     LOG_INF("replay: %zu prompt tokens, %zu decode tokens, %d repetitions, step=%d\n",
             workload.prompt.size(), workload.decode.size(), reps, step);
-    if (!evaluate(ctx, workload, -1, step, n_vocab, nullptr)) {
+    if (!evaluate(ctx, workload, -1, step, n_vocab, nullptr, profile)) {
         return 1;
     }
     std::printf("rep,phase,position,n_tokens,elapsed_us,logits_hash\n");
     for (int rep = 0; rep < reps; ++rep) {
-        if (!evaluate(ctx, workload, rep, step, n_vocab, raw.get())) {
+        if (!evaluate(ctx, workload, rep, step, n_vocab, raw.get(), profile)) {
             return 1;
         }
     }
     if (std::fflush(stdout) != 0 || (raw && std::fflush(raw.get()) != 0)) {
         return 1;
     }
-    return 0;
+    return profile.finish() ? 0 : 1;
 }

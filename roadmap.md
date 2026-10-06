@@ -1,12 +1,12 @@
 # Roadmap: llama.cpp-vulkan-moe su RX 6800
 
-Aggiornamento: **2026-10-06**. Documento di lavoro per `Cartaz/llama.cpp-vulkan-moe`, branch `experiment/moe-trace-strides`. Snapshot del codice prima di questa roadmap: `c679dc22012ee9281db57336ff8fd17a93bc54b2`.
+Aggiornamento: **2026-10-07**. Documento di lavoro per `Cartaz/llama.cpp-vulkan-moe`, branch di riferimento `experiment/moe-trace-strides`; incrementi sperimentali R17-R19 su branch separati. Snapshot del codice prima di questa roadmap: `c679dc22012ee9281db57336ff8fd17a93bc54b2`.
 
 Obiettivo: inferenza locale affidabile e veloce su RX 6800 16 GB, Ryzen 7 5700X3D e 32 GB RAM, CachyOS/RADV. Prima una sequenza; poi 2, 4 e 8 richieste da agenti. PP, TG, TTFT, latenza completa, throughput aggregato e throughput per richiesta sono risultati distinti.
 
 ## Stato leggibile in un minuto
 
-| Voce | Stato al 2026-10-06 |
+| Voce | Stato al 2026-10-07 |
 | --- | --- |
 | Esecuzione benchmark | **PAUSA richiesta dall'utente. Nessun riavvio automatico.** |
 | Baseline originale | llama.cpp v0.5.0, `7fe450e19305b828c199d602c23a8337aaa1f03b`, senza modifiche |
@@ -20,8 +20,8 @@ Obiettivo: inferenza locale affidabile e veloce su RX 6800 16 GB, Ryzen 7 5700X3
 | Sweep configurazione | ncmoe 0..40 completato e shortlist verificata; coordinate successive parziali; interazioni e matrice contesti da completare |
 | Profilo provvisorio dello sweep | `-ncmoe 12 -tb 8`, `GGML_VK_DISABLE_HOST_VISIBLE_VIDMEM=1`, librerie DEFAULT congelate; **non vincitore finale** |
 | Fondamenta S01/S02 | Tooling iniziale IMPLEMENTATO su `experiment/moe-profile-foundations`: manifest live con verifica freeze, entropia/riuso/finestre e stime cache in byte; corpus e gate ancora incompleti |
-| Fondamenta S03 | Scope host opt-in e contatori copie IMPLEMENTATI su `experiment/moe-scheduler-profile`; check CPU/RX6800 e sanitizer superati, correlazione PP/TG e timeline GPU ancora incomplete |
-| Prossima modifica di ricerca | Completare correlazione fasi e accounting memoria S03; poi disegno del pool persistente minimo con cache OFF/ON e routing invariato |
+| Fondamenta S03 | Scope host/contatori copie R18 e correlazione esplicita PP/TG R19 IMPLEMENTATI su branch separati; check CPU/RX6800 e sanitizer superati. Correlazione sul modello, timeline GPU e budget restano da validare |
+| Prossima modifica di ricerca | Completare timeline GPU e accounting memoria S03; alla ripresa validare join/overhead sul modello, poi disegno del pool persistente minimo |
 
 Questo documento non avvia test. L'eventuale ripresa richiede una nuova richiesta dell'utente. I problemi riprodotti anche sulla v0.5.0 originale sono registrati come `ERRORE_BASELINE`, come richiesto dall'utente: non sono automaticamente regressioni del fork e non bloccano tutta la ricerca. Una misura con NaN, output nullo o fallback CPU involontario resta invalida per il ranking prestazionale.
 
@@ -101,6 +101,7 @@ Le percentuali sono osservazioni sul workload indicato, non previsioni su tutti 
 | R16 | Controlli dopo ripresa del 6 ottobre | INCONCLUDENTE per TG | Stesso profilo provvisorio, depth512/PP512/TG32: PP368.36 e368.13; TG24.42 e33.33 in due processi; endpoint corrispondenti identici | PP ripetibile nello screen; TG varia molto fra processi. Controllo finale coordinate04 interrotto: nessun vincitore thread adottato |
 | R17 | Tooling offline S01/S02: manifest live/freeze e analyzer esteso | IMPLEMENTATO; test offline superati | Compatibilita' di tutti i campi per-layer precedenti sul trace corretto salvato, 40 layer per prefill/decode/all; suite senza modello con oracle di riuso indipendente e snapshot del processo Python | PP/TG/TTFT/qualita' **NON_MISURATO**; nessuna campagna ripresa, cache GPU assente. [Report e comandi](docs/development/moe-profile-foundations-rx6800.md) |
 | R18 | S03 iniziale: scope scheduler host e payload copie opt-in | IMPLEMENTATO / TEST_PARZIALI | 32 valutazioni operatore per invocazione, CPU/RX6800, output scalare esatto e identico OFF/ON/controllo; byte/padding/stride/fallback verificati; sanitizer CPU superati | PP/TG/TTFT/overhead **NON_MISURATO**. Logger GPU esistente fallisce anche nel controllo per un caso parallel/view; seriale passa. Timeline, fasi e budget completo restano incompleti. [Report e metadata](docs/development/moe-scheduler-profile-rx6800.md) |
+| R19 | S03: intervalli espliciti replay PP/TG e join scheduler | IMPLEMENTATO / TEST_PARZIALI | 32/32 associazioni sintetiche esatte; warmup separato, tempi ms e payload per fase; 5 test CPU/RX6800/sanitizer per suite, output invariato; replay compilato senza modello | Correlazione runtime sul modello, overhead e prestazioni **NON_MISURATI**; timeline GPU/budget ancora incompleti. [Report e metadata](docs/development/moe-phase-profile-rx6800.md) |
 
 R12-R16 derivano dagli archivi locali del 5-6 ottobre e dallo stato dello sweep; alcuni report precedenti sulla repo descrivono ancora un pilot o una rivalidazione in corso. Questa snapshot aggiorna **lo stato**, senza fingere che quei report storici siano gia' stati riscritti.
 
@@ -175,7 +176,7 @@ La prima cache deve essere semplice e misurabile. Non iniziare con cache + looka
 
 ## Catalogo delle strategie con esperimento A/B
 
-Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R18 esplicitamente citate. S01/S02 hanno il tooling iniziale implementato in R17, ma restano incompleti i gate runtime, il corpus e la verifica held-out. S03 ha scope host e contatori copie iniziali in R18; non ha ancora timeline GPU/PP/TG e budget completo validati. Non e' dichiarata implementata perche' esiste in una fonte esterna. I protocolli T0-T7 sono definiti nella sezione successiva; gli A/B qui fissano la variabile e le metriche aggiuntive. Anche i gruppi nello stesso livello si provano uno alla volta.
+Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R19 esplicitamente citate. S01/S02 hanno il tooling iniziale implementato in R17, ma restano incompleti i gate runtime, il corpus e la verifica held-out. S03 ha scope host/contatori copie R18 e intervalli/aggregazione PP/TG R19; non ha ancora join sul modello, timeline GPU e budget completo validati. Non e' dichiarata implementata perche' esiste in una fonte esterna. I protocolli T0-T7 sono definiti nella sezione successiva; gli A/B qui fissano la variabile e le metriche aggiuntive. Anche i gruppi nello stesso livello si provano uno alla volta.
 
 ### P0: fondamenta e modello dei costi
 
@@ -188,6 +189,8 @@ Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R18
 **S03 - Timeline CPU/GPU e accounting memoria.** Collo: TG puo' dipendere da CPU, copia o sincronizzazione anziche' shader. Aggiungere timestamp/query Vulkan e marker CPU opt-in, byte di upload/readback, attese e picchi pesi/KV/recurrent/compute/cache. Non dedurre PCIe da GTT. Costo: overhead misurare OFF/ON; backend senza profiling come riferimento. T1/T3 con T0: rapporto durata reale/strumentata e percentuale di tempo esposto per componente.
 
 **Incremento R18 (2026-10-06).** `GGML_SCHED_PROFILE=PATH` registra scope host e payload API delle copie, padding, attese e buffer riservati dallo scheduler; assente/vuoto e' OFF. Parser e fixture indipendente verificano output e contatori CPU/RX6800 senza modello. Riusato il logger timestamp Vulkan esistente: il caso parallel/view fallisce anche nel controllo, seriale passa. Nessuna nuova sincronizzazione GPU; nessuna stima implicita del traffico PCIe o assegnazione PP/TG. [Limiti, metadati e comandi](docs/development/moe-scheduler-profile-rx6800.md).
+
+**Incremento R19 (2026-10-07).** `MOE_REPLAY_PROFILE=PATH` registra intervalli dichiarati prefill/decode, warmup incluso e distinto; `profile-summary.py --phases` associa scope contenuti e aggrega ms/byte per ripetizione/fase. La fase non viene dedotta dal numero di token; scope ambigui o attraversanti confini sono rifiutati. Fixture CPU/RX6800 verifica 32 associazioni e output invariato; replay compilato, join sul modello non eseguito. [Limiti, metadati e comandi](docs/development/moe-phase-profile-rx6800.md).
 
 ### P1: cache esperti e percorso ibrido
 
@@ -375,6 +378,7 @@ Checklist del prossimo lavoro, senza avviare benchmark ora:
 - [x] Test e answer-quality sospesi per richiesta dell'utente.
 - [x] Implementato primo tooling offline S01/S02 e verifica senza modello; nessuna ripresa dei benchmark implicita.
 - [x] Implementati scope host/contatori copie S03 opt-in, controlli operatori CPU/RX6800 e sanitizer; timeline completa e gate sul modello ancora da completare.
+- [x] Implementati intervalli espliciti replay PP/TG e aggregazione per fase in ms; verificata correlazione sintetica, gate sul modello ancora in pausa.
 - [ ] Alla ripresa: controllo originale/fork a valori effettivi identici e dati hardware aggiornati.
 - [ ] Spiegare o contenere variabilita' fra processi prima di un vincitore CPU/placement.
 - [ ] Misurare costi CPU/transfer/GPU e budget VRAM/KV/recurrent/compute.
