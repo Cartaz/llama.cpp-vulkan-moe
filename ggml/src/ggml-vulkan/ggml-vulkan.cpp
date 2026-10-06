@@ -13902,6 +13902,7 @@ static int32_t find_first_set(uint32_t x) {
 
 static ggml_status ggml_backend_vk_graph_compute(ggml_backend_t backend, ggml_cgraph * cgraph) {
     VK_LOG_DEBUG("ggml_backend_vk_graph_compute(" << cgraph->n_nodes << " nodes)");
+    const int64_t perf_start_us = vk_perf_logger_enabled ? ggml_time_us() : 0;
     ggml_backend_vk_context * ctx = (ggml_backend_vk_context *)backend->context;
 
     ctx->device->diag_cgraph = nullptr;
@@ -13959,7 +13960,7 @@ static ggml_status ggml_backend_vk_graph_compute(ggml_backend_t backend, ggml_cg
         std::fill(ctx->query_nodes.begin(), ctx->query_nodes.end(), nullptr);
         std::fill(ctx->query_node_idx.begin(), ctx->query_node_idx.end(), 0);
 
-        GGML_ASSERT(ctx->compute_ctx.expired());
+        // Copies and event waits can already have opened this context.
         compute_ctx = ggml_vk_get_compute_ctx(ctx);
         ctx->query_idx = 0;
         compute_ctx->s->buffer->buf.writeTimestamp(vk::PipelineStageFlagBits::eAllCommands, ctx->query_pool, ctx->query_idx++);
@@ -14382,6 +14383,11 @@ static ggml_status ggml_backend_vk_graph_compute(ggml_backend_t backend, ggml_cg
                 prev_node_idx = cur_node_idx;
                 ctx->perf_logger->log_timing(nodes, names, uint64_t((timestamps[i] - timestamps[i-1]) * ctx->device->properties.limits.timestampPeriod));
             }
+        }
+        if (vk_perf_logger_frequency == 1) {
+            std::cerr << "Vulkan graph: backend=" << ctx->name << ",start_us=" << perf_start_us
+                      << ",end_us=" << ggml_time_us() << ",queries=" << ctx->query_idx - 1
+                      << ",concurrent=" << int(vk_perf_logger_concurrent) << std::endl;
         }
         ctx->perf_logger->print_timings();
     }
@@ -16276,4 +16282,3 @@ void ggml_vk_debug_label::begin(vk_context & ctx, const std::string & name) {
     subctx->debug_labels.push_back(name);
     ggml_vk_cmd_label_begin(subctx->s->buffer->buf, subctx->debug_labels.back().c_str());
 }
-

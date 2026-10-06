@@ -1,6 +1,6 @@
 # Roadmap: llama.cpp-vulkan-moe su RX 6800
 
-Aggiornamento: **2026-10-07**. Documento di lavoro per `Cartaz/llama.cpp-vulkan-moe`, branch di riferimento `experiment/moe-trace-strides`; incrementi sperimentali R17-R19 su branch separati. Snapshot del codice prima di questa roadmap: `c679dc22012ee9281db57336ff8fd17a93bc54b2`.
+Aggiornamento: **2026-10-07**. Documento di lavoro per `Cartaz/llama.cpp-vulkan-moe`, branch di riferimento `experiment/moe-trace-strides`; incrementi sperimentali R17-R20 su branch separati. Snapshot del codice prima di questa roadmap: `c679dc22012ee9281db57336ff8fd17a93bc54b2`.
 
 Obiettivo: inferenza locale affidabile e veloce su RX 6800 16 GB, Ryzen 7 5700X3D e 32 GB RAM, CachyOS/RADV. Prima una sequenza; poi 2, 4 e 8 richieste da agenti. PP, TG, TTFT, latenza completa, throughput aggregato e throughput per richiesta sono risultati distinti.
 
@@ -8,7 +8,7 @@ Obiettivo: inferenza locale affidabile e veloce su RX 6800 16 GB, Ryzen 7 5700X3
 
 | Voce | Stato al 2026-10-07 |
 | --- | --- |
-| Esecuzione benchmark | **PAUSA richiesta dall'utente. Nessun riavvio automatico.** |
+| Esecuzione benchmark | **Ripresa autorizzata esplicitamente dall'utente il 2026-10-07. R20 concluso; preparazione M2/corpus in corso.** |
 | Baseline originale | llama.cpp v0.5.0, `7fe450e19305b828c199d602c23a8337aaa1f03b`, senza modifiche |
 | Modello di riferimento | Ornith-1.5-35B-Q4_K_M.gguf; identita' completa nella sezione baseline |
 | Cache GPU persistente di esperti | **Non implementata**. Disponibili tracing corretto e simulazioni offline |
@@ -20,10 +20,10 @@ Obiettivo: inferenza locale affidabile e veloce su RX 6800 16 GB, Ryzen 7 5700X3
 | Sweep configurazione | ncmoe 0..40 completato e shortlist verificata; coordinate successive parziali; interazioni e matrice contesti da completare |
 | Profilo provvisorio dello sweep | `-ncmoe 12 -tb 8`, `GGML_VK_DISABLE_HOST_VISIBLE_VIDMEM=1`, librerie DEFAULT congelate; **non vincitore finale** |
 | Fondamenta S01/S02 | Tooling iniziale IMPLEMENTATO su `experiment/moe-profile-foundations`: manifest live con verifica freeze, entropia/riuso/finestre e stime cache in byte; corpus e gate ancora incompleti |
-| Fondamenta S03 | Scope host/contatori copie R18 e correlazione esplicita PP/TG R19 IMPLEMENTATI su branch separati; check CPU/RX6800 e sanitizer superati. Correlazione sul modello, timeline GPU e budget restano da validare |
-| Prossima modifica di ricerca | Completare timeline GPU e accounting memoria S03; alla ripresa validare join/overhead sul modello, poi disegno del pool persistente minimo |
+| Fondamenta S03 | R20: join host PP/TG sul modello VALIDATO, costo profiler TG -6.07%, logger timestamp corretto e correlato, accounting memoria sul replay breve; timeline normale calibrata e contesti lunghi incompleti |
+| Prossima modifica di ricerca | M2: corpus/held-out e disponibilita' dell'intero top-k per budget in byte; disegno S04/S05 deve includere placement CPU/GPU, richieste miste e lifetime |
 
-Questo documento non avvia test. L'eventuale ripresa richiede una nuova richiesta dell'utente. I problemi riprodotti anche sulla v0.5.0 originale sono registrati come `ERRORE_BASELINE`, come richiesto dall'utente: non sono automaticamente regressioni del fork e non bloccano tutta la ricerca. Una misura con NaN, output nullo o fallback CPU involontario resta invalida per il ranking prestazionale.
+Questo documento registra la ripresa richiesta dall'utente il 2026-10-07; gli archivi interrotti R13/R15 restano conservati. I problemi riprodotti anche sulla v0.5.0 originale sono registrati come `ERRORE_BASELINE`, come richiesto dall'utente: non sono automaticamente regressioni del fork e non bloccano tutta la ricerca. Una misura con NaN, output nullo o fallback CPU involontario resta invalida per il ranking prestazionale.
 
 ## Come aggiornare stato e verdetto
 
@@ -102,6 +102,7 @@ Le percentuali sono osservazioni sul workload indicato, non previsioni su tutti 
 | R17 | Tooling offline S01/S02: manifest live/freeze e analyzer esteso | IMPLEMENTATO; test offline superati | Compatibilita' di tutti i campi per-layer precedenti sul trace corretto salvato, 40 layer per prefill/decode/all; suite senza modello con oracle di riuso indipendente e snapshot del processo Python | PP/TG/TTFT/qualita' **NON_MISURATO**; nessuna campagna ripresa, cache GPU assente. [Report e comandi](docs/development/moe-profile-foundations-rx6800.md) |
 | R18 | S03 iniziale: scope scheduler host e payload copie opt-in | IMPLEMENTATO / TEST_PARZIALI | 32 valutazioni operatore per invocazione, CPU/RX6800, output scalare esatto e identico OFF/ON/controllo; byte/padding/stride/fallback verificati; sanitizer CPU superati | PP/TG/TTFT/overhead **NON_MISURATO**. Logger GPU esistente fallisce anche nel controllo per un caso parallel/view; seriale passa. Timeline, fasi e budget completo restano incompleti. [Report e metadata](docs/development/moe-scheduler-profile-rx6800.md) |
 | R19 | S03: intervalli espliciti replay PP/TG e join scheduler | IMPLEMENTATO / TEST_PARZIALI | 32/32 associazioni sintetiche esatte; warmup separato, tempi ms e payload per fase; 5 test CPU/RX6800/sanitizer per suite, output invariato; replay compilato senza modello | Correlazione runtime sul modello, overhead e prestazioni **NON_MISURATI**; timeline GPU/budget ancora incompleti. [Report e metadata](docs/development/moe-phase-profile-rx6800.md) |
+| R20 | S03 sul modello: correttezza, overhead, timestamp e memoria | VALIDATO sul replay / TEST_PARZIALI S03 | 30 processi singoli; 6 dump logits completi finiti/nonzero e identici; OFF/ON 8 processi/variante: PP +0.13%, TG -6.07%; B1/fork-OFF 4 processi/variante entro margini 3% PP/TG e5% p95; 55/2432 graph GPU associati a PP/decode128 | **REGRESSIONE TG da strumentazione**, PP equivalente; nessun guadagno del fork OFF dimostrato. Memoria breve/diagnostica GPU misurata, timeline normale e contesti lunghi incompleti. [Report e metadata](docs/development/moe-model-profile-rx6800.md) |
 
 R12-R16 derivano dagli archivi locali del 5-6 ottobre e dallo stato dello sweep; alcuni report precedenti sulla repo descrivono ancora un pilot o una rivalidazione in corso. Questa snapshot aggiorna **lo stato**, senza fingere che quei report storici siano gia' stati riscritti.
 
@@ -154,8 +155,8 @@ Ordine decisionale per **questa macchina**, non classifica universale. Priorita'
 
 | Ordine | Strategie | Potenziale principale | Evidenza / costo / rischio | Prima condizione di avanzamento |
 | ---: | --- | --- | --- | --- |
-| 0 | S01-S03 | Misure corrette e spiegazione PP/TG | Necessario; costo basso-medio; nessun speedup promesso | Controlli puliti, budget e tempi per fase |
-| 1 | S04-S06 | Cache reale, meno upload nel decode | Hit logici locali; costo medio; lifetime/remap da validare | Pool minimo, stesso output, byte H2D e TG misurati |
+| 0 | S01-S03 | Misure corrette e spiegazione PP/TG | R20 verifica replay; costo profiler TG misurato, nessun speedup promesso | Controlli puliti, budget e tempi per fase |
+| 1 | S04-S06 | Cache reale e placement esatti; nel decode R20 gli esperti CPU non sono caricati sulla GPU | Hit logici locali; costo medio; lifetime/remap da validare | Pool minimo, stesso output, byte H2D e TG misurati |
 | 2 | S07-S08 | Hit GPU + miss CPU, overlap senza trasferire pesi freddi | Strata/Fiddler come disegno; costo alto; riordino/sync rischiosi | Confronto contro pool tutto-GPU, non solo contro CPU |
 | 3 | S09 | Placement e quote per layer da profilo | Dati tracing disponibili; costo medio; profili possono generalizzare male | Held-out + stessa VRAM + distribuzione quote |
 | 4 | S10-S11 | Trasferimenti selettivi e overlap prefill | R06 positivo PP, R07 negativo; costo medio-alto | Dimostrare overlap e TTFT, rispettare RAM32GB |
@@ -176,7 +177,7 @@ La prima cache deve essere semplice e misurabile. Non iniziare con cache + looka
 
 ## Catalogo delle strategie con esperimento A/B
 
-Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R19 esplicitamente citate. S01/S02 hanno il tooling iniziale implementato in R17, ma restano incompleti i gate runtime, il corpus e la verifica held-out. S03 ha scope host/contatori copie R18 e intervalli/aggregazione PP/TG R19; non ha ancora join sul modello, timeline GPU e budget completo validati. Non e' dichiarata implementata perche' esiste in una fonte esterna. I protocolli T0-T7 sono definiti nella sezione successiva; gli A/B qui fissano la variabile e le metriche aggiuntive. Anche i gruppi nello stesso livello si provano uno alla volta.
+Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R20 esplicitamente citate. S01/S02 hanno il tooling iniziale implementato in R17, ma restano incompleti i gate runtime, il corpus e la verifica held-out. S03 ha scope host/contatori copie R18, intervalli/aggregazione PP/TG R19 e verifica sul modello R20 con timestamp diagnostici e memoria breve; timeline calibrata nel percorso normale e budget per contesti lunghi restano incompleti. Non e' dichiarata implementata perche' esiste in una fonte esterna. I protocolli T0-T7 sono definiti nella sezione successiva; gli A/B qui fissano la variabile e le metriche aggiuntive. Anche i gruppi nello stesso livello si provano uno alla volta.
 
 ### P0: fondamenta e modello dei costi
 
@@ -192,9 +193,11 @@ Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R19
 
 **Incremento R19 (2026-10-07).** `MOE_REPLAY_PROFILE=PATH` registra intervalli dichiarati prefill/decode, warmup incluso e distinto; `profile-summary.py --phases` associa scope contenuti e aggrega ms/byte per ripetizione/fase. La fase non viene dedotta dal numero di token; scope ambigui o attraversanti confini sono rifiutati. Fixture CPU/RX6800 verifica 32 associazioni e output invariato; replay compilato, join sul modello non eseguito. [Limiti, metadati e comandi](docs/development/moe-phase-profile-rx6800.md).
 
+**Incremento R20 (2026-10-07).** Ripresa autorizzata. Join sul modello e correttezza completa validati; overhead del profiler host -6.07% TG, PP equivalente nel margine3%. Logger Vulkan riusa correttamente un contesto gia' aperto da copie/eventi e produce marker per il join per fase; output invariato, 32 join sintetici e 55/2432 graph PP/decode128 reali. Misurati allocator, DRM per-client e VRAM globale; i timestamp sono diagnostici serializzati, non una timeline normale calibrata. [Report](docs/development/moe-model-profile-rx6800.md).
+
 ### P1: cache esperti e percorso ibrido
 
-**S04 - Pool GPU persistente minimo, routing esatto.** Collo: pesi degli stessi esperti ricopiati nel decode. Slot `(layer,expert)` con triplet gate/up/down, upload dei soli miss e remap ID per i kernel `MUL_MAT_ID` esistenti. Su16GB puo' tenere il working set caldo senza spostare interi layer. Costo: VRAM sottratta a KV/compute e miss sincroni. T0/T2/T3 B2 cacheOFF vsON, capacita'0/16/32/64/96/128 per layer compatibilmente col budget; TG, H2D, evictions, cold/warm e casi tutti-miss/tutti-hit.
+**S04 - Pool GPU persistente minimo, routing esatto.** Collo: pesi ricopiati quando gli esperti CPU sono eseguiti sulla GPU. R20 non misura tali upload nel decode a ncmoe18: una cache decode deve cambiare anche placement; richieste miste e costo miss CPU/upload sono parte del disegno. Slot `(layer,expert)` con triplet gate/up/down, upload dei soli miss e remap ID per i kernel `MUL_MAT_ID` esistenti. Su16GB puo' tenere il working set caldo senza spostare interi layer. Costo: VRAM sottratta a KV/compute e miss sincroni. T0/T2/T3 B2 cacheOFF vsON, capacita'0/16/32/64/96/128 per layer compatibilmente col budget; TG, H2D, evictions, cold/warm e casi tutti-miss/tutti-hit.
 
 **S05 - LRU e fallback del pool al percorso originale.** Collo: una cache piena non deve fare thrashing o fallire l'allocazione. Iniziare con LRU deterministica per layer, pin degli slot in-flight e bypass quando il batch usa piu' esperti della capacita'. Riusare transfer originale per bypass; non cambiare il router. Costo: lookup e doppia rappresentazione degli ID. T0/T2: cacheOFF/LRU/bypass, ID ripetuti, capacita'1, pressione KV, batch oltre capacita', abort e ripresa; T3 quantifica costo dei miss.
 
@@ -361,27 +364,27 @@ Misurare cold process (load incluso), warm process/nuova conversazione e turni c
 | Milestone | Stato | Lavoro / dipendenze | Definizione di completamento |
 | --- | --- | --- | --- |
 | M0 - Snapshot e basi | PARZIALE | R01-R16, B0/B1/B2, freeze libs, pausa registrata | Questa roadmap e fonti pubblicate; manifest piccoli delle prossime campagne sempre versionati |
-| M1 - Misura senza confondenti | PAUSA | Ripresa richiesta; S01-S03, R15/R16 e difetti condivisi catalogati | T0/T1 su controlli puliti, break-down costi e budget; nessun vincitore scelto da TG instabile |
+| M1 - Misura senza confondenti | TEST_PARZIALI | Ripresa autorizzata; R20 sul modello per S03, R15/R16 e difetti condivisi catalogati | T0/T1 su controlli puliti, break-down costi e budget; nessun vincitore scelto da TG instabile |
 | M2 - Profili e disegno minimo | PROPOSTO | S02/S06/S09; scegliere un unico budget e fallback | Corpus/held-out, quote per layer e schema remap/lifetime; costo miss CPU/upload misurato |
 | M3 - Cache GPU esatta | PROPOSTO | S04/S05, M1-M2 | T0 all-hit/all-miss/eviction, T2/T3 e verdict; feature separabile OFF di default |
 | M4 - Ibrido e transfer | PROPOSTO | S07/S08 e S10/S11 su branch distinti | Confronto contro M3, non solo vecchio default; timeline dimostra o smentisce overlap |
 | M5 - Policy e memoria | PROPOSTO | S13/S14/S19/S21 e CPU se profilata dominante | Budget reale32GB, held-out, headroom e TG/TTFT migliori o tradeoff esplicito |
-| M6 - Applicazione e agenti | PAUSA / PROPOSTO | T5 completo dopo richiesta; S28/S29, T4/T6/T7 | Qualita' dichiarata e matrice1/2/4/8, cold/warm, latenza e memoria; limiti pubblicati |
+| M6 - Applicazione e agenti | PROPOSTO | Ripresa autorizzata; T5 completo, S28/S29, T4/T6/T7 ancora da eseguire | Qualita' dichiarata e matrice1/2/4/8, cold/warm, latenza e memoria; limiti pubblicati |
 | M7 - Kernel/speculazione/modelli | PROPOSTO | S24-S27/S30-S42, solo bottleneck dimostrati | Una variante alla volta; benchmark e qualita' propri, nessuna fusione di speedup non confrontabili |
 | M8 - Promozione profilo o integrazione | PROPOSTO | Milestone rilevanti superate | B3 aggiornato con SHA/hash/config, report replicabile e rollback; integrazione quando richiesta dal proprietario |
 
-Checklist del prossimo lavoro, senza avviare benchmark ora:
+Checklist del lavoro dopo la ripresa autorizzata:
 
 - [x] Baseline v0.5.0 e SHA del fork identificati.
 - [x] Separati risultati locali, video CUDA e Strata HIP.
 - [x] Documentati miglioramenti di workspace/PP, regressioni e risultati inconcludenti.
-- [x] Test e answer-quality sospesi per richiesta dell'utente.
+- [x] Pausa precedente conservata; ripresa benchmark autorizzata il 2026-10-07.
 - [x] Implementato primo tooling offline S01/S02 e verifica senza modello; nessuna ripresa dei benchmark implicita.
-- [x] Implementati scope host/contatori copie S03 opt-in, controlli operatori CPU/RX6800 e sanitizer; timeline completa e gate sul modello ancora da completare.
-- [x] Implementati intervalli espliciti replay PP/TG e aggregazione per fase in ms; verificata correlazione sintetica, gate sul modello ancora in pausa.
-- [ ] Alla ripresa: controllo originale/fork a valori effettivi identici e dati hardware aggiornati.
+- [x] Implementati scope host/contatori copie S03 opt-in; R20 completa il gate sul replay, timestamp diagnostici e memoria breve. Timeline normale e budget esteso restano da completare.
+- [x] Implementati intervalli espliciti replay PP/TG; R20 valida correlazione sul modello e overhead, warmup distinto e output identico.
+- [x] Controllo originale/fork a valori effettivi identici e dati hardware aggiornati in R20; logits completi finiti/nonzero e identici.
 - [ ] Spiegare o contenere variabilita' fra processi prima di un vincitore CPU/placement.
-- [ ] Misurare costi CPU/transfer/GPU e budget VRAM/KV/recurrent/compute.
+- [x] Misurati costi host CPU/transfer, timestamp GPU diagnostici e memoria VRAM/KV/recurrent/compute sul replay244+128 in R20; contesti lunghi restano aperti.
 - [ ] Preparare corpus routing held-out e confrontare quote/policy a byte uguali.
 - [ ] Implementare S04/S05 separabili; poi decidere S07/S08 dalle misure.
 - [ ] Confermare PP/TG/TTFT, qualita' e1/2/4/8 nei limiti autorizzati.
