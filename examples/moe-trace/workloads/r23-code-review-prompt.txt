@@ -1,0 +1,429 @@
+<|im_start|>system
+You are a careful local code reviewer. Explain your reasoning clearly.<|im_end|>
+<|im_start|>user
+Review this supplied Python service. Explain concurrency, retry, cancellation and validation bugs, propose minimal fixes, and describe targeted tests. Use only the source below. Do not invent missing APIs.
+
+# Queue handler 0; each handler owns an independent queue.
+class Handler0:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 1; each handler owns an independent queue.
+class Handler1:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 2; each handler owns an independent queue.
+class Handler2:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 3; each handler owns an independent queue.
+class Handler3:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 4; each handler owns an independent queue.
+class Handler4:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 5; each handler owns an independent queue.
+class Handler5:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 6; each handler owns an independent queue.
+class Handler6:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 7; each handler owns an independent queue.
+class Handler7:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 8; each handler owns an independent queue.
+class Handler8:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 9; each handler owns an independent queue.
+class Handler9:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 10; each handler owns an independent queue.
+class Handler10:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 11; each handler owns an independent queue.
+class Handler11:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 12; each handler owns an independent queue.
+class Handler12:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 13; each handler owns an independent queue.
+class Handler13:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 14; each handler owns an independent queue.
+class Handler14:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 15; each handler owns an independent queue.
+class Handler15:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 16; each handler owns an independent queue.
+class Handler16:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 17; each handler owns an independent queue.
+class Handler17:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 18; each handler owns an independent queue.
+class Handler18:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None
+
+# Queue handler 19; each handler owns an independent queue.
+class Handler19:
+    def __init__(self, queue, client, retries=2):
+        self.queue = queue
+        self.client = client
+        self.retries = retries
+        self.finished = {}
+
+    def process(self, job):
+        if job['id'] in self.finished:
+            return self.finished[job['id']]
+        for attempt in range(self.retries):
+            try:
+                result = self.client.send(job['payload'])
+                self.finished[job['id']] = result
+                return result
+            except Exception:
+                continue
+        self.queue.ack(job['id'])
+        return None<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+

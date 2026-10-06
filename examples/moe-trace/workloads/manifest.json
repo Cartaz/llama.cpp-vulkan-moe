@@ -1,0 +1,13 @@
+{
+  "model_sha256": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f",
+  "template_sha256": "f55f52930aa8bf44ab5cb85f99370fcc3c56e9a85640b812086d5330bce5d86b",
+  "files": {
+    "r22-244-128.csv": "85935136b367ed46e47e967b05495774bc290d2d32dd92776c0c242d744cf29c",
+    "r23-code-review-3107-128.csv": "487fee2134b6f69f2ab1e1cef26e64757f1b5ec240a71e9bb014e6e916ceac4f",
+    "r23-code-review-messages.json": "30a07bf2a97c00ea99bee9a0a139284efcb5f5786d65765a78eb3632debe36b3",
+    "r23-code-review-prompt.txt": "e7638993c464ae36a10ceb1ca8c2747aae05a337190780129f77583f3311bc37",
+    "r24-prefix-1024-32.csv": "2ac906b87a8730bdb5c5dfd0d59e8dbba1cd482dc84d766a82acfa0645f781bc",
+    "r24-prefix-1536-32.csv": "c720b5641d6d3373629a6db1324102f0b35b8cff208e291c04228fdc0887ffdf"
+  },
+  "limits": "R22 fixed teacher forcing; R23 curated synthetic code review generated without callback; R24 truncates R23 prompt and reuses32 old continuation IDs for determinism only. No semantic quality scores or application timing inferred."
+}

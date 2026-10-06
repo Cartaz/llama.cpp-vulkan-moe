@@ -1,0 +1,2589 @@
+{
+  "id": "R22",
+  "status": "VALIDATO for fixed244+128 teacher-forced replay, no general profile promotion",
+  "archive": "risultati/2026-10-07-host-transfer-recheck",
+  "freeze": {
+    "candidate_commit": "9375d46b7f7e1099bdee4d92cc6fc091057a0194",
+    "baseline_commit": "7fe450e19305b828c199d602c23a8337aaa1f03b",
+    "model": {
+      "path": "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+      "bytes": 21713462848,
+      "sha256": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f",
+      "sha256_rechecked": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f"
+    },
+    "workload_sha256": "85935136b367ed46e47e967b05495774bc290d2d32dd92776c0c242d744cf29c",
+    "artifacts": {
+      "frozen/COLLECTOR/libllama-common.so.0.5.0": "25ea3d08cfc8b513e01fbf0e5e7f36df634271d8e2f031710d2fb60c810f4143",
+      "frozen/COLLECTOR/libllama.so.0.5.0": "725dfdf2abc3757c6a53e5c9574dd3717dda16a68ed992a2ee1cc64628c5fabc",
+      "frozen/COLLECTOR/libggml.so.0.25.1": "d9934432b991dd9fd1f168a4901b26b8f28748468501c61f24b2bc1bd8b21d15",
+      "frozen/COLLECTOR/libggml-vulkan.so.0.25.1": "7831061db2c1ed53abf16cd43f2dd04b4ec9b2f7a711c2d6ac25bc9df6ee963d",
+      "frozen/COLLECTOR/libggml-cpu.so.0.25.1": "da5b1f97b4ea5c811904fe83c091265d2eca25139158303c4e09130fa0974709",
+      "frozen/COLLECTOR/libggml-base.so.0.25.1": "1171dd185e1183b20430b7670717d69e505e1eeeadc71a3eab725f9fa9d53f05",
+      "frozen/COLLECTOR/replay": "c560ae3d915c3f20d9eb07a3a50637b3c0d7456e5a7727107f1e5873c456f535",
+      "frozen/COLLECTOR/trace": "7c6c284ca0c1cf0b8d728b30ff4ff47c074db7dc8bab298555a521c561f22019",
+      "frozen/COLLECTOR/scheduler-check": "d353d87413409ba937b350abd3eb234cc75d18fb9761be8981044a6607ef6022"
+    },
+    "build_cache_sha256": {
+      "COLLECTOR-CMakeCache.txt": "6b4d7cb9e20d3b7e2541e44b7efd236363b2cf975f2a2343dde75162b729a0e1"
+    },
+    "source_tree": "b6464350c9251c43bc38f5ca1d61566b54667840"
+  },
+  "protocol": "# R22 host transfer recheck, S10 prerequisite\n\nPreregistered before model runs: target the1128ms mean prefill upload host window from R20. Compare mmap/none on the SAME frozen COLLECTOR engine source9375d46b7f7e1099bdee4d92cc6fc091057a0194, same recorded244+128 teacher-forced workload, ncmoe18/t8/tb8/context1024/b512/ub512/Q8KV/FAon/fitOFF. One stream. All inherited experiment flags cleared, explicit load-mode only. GPU voltage/clocks unchanged. The model SHA is freshly rechecked; binaries/libraries frozen and checked for every run.\n\nT0 fresh mmap and none raw dumps must equal the untouched upstream B1 mmap canonical dump, all129 vectors finite/nonzero. Placement/counts must remain the same; requested buffer type, memory and transfer path are allowed to change because these are the intended variable. No performance ranking of dump runs.\n\nT1 four processes/condition, order mmap/none/none/mmap repeated twice, each warmup+three measured repetitions. No raw dumps or profiling. Process-level50,000-sample bootstrap, seed20261009. Practical margins3% PP/TG and5% decode p95. One fixed campaign; uncertainty remains INCONCLUDENTE, no adaptive extension. Retain all samples. >20% control drift invalidates ranking. All repeated per-call hashes must match the finite-checked original B1. Analyze PP and TG separately; no default/B3 promotion from a mixed tradeoff.\n\nTime to replay-ready log message is warm-file-cache process initialization, not application TTFT or cold-disk startup. Report2Hz sampled RAM/RSS, cgroup charges with page-cache caveat, global/driver VRAM/GTT, swap, GPU power/temp/clocks. Runtime safety: service MemoryMax24G, MemorySwapMax2G, MemAvailable floor6GiB, GPU identity/pre-load VRAM check,600s timeout. One NONE host-profile diagnostic after timing runs; do not compare its rate to uninstrumented speed.\n",
+  "analysis": {
+    "protocol": "four processes/condition, three measured repetitions/process, one warmup; ratio of means, process bootstrap 50000, seed20261009",
+    "samples": {
+      "mmap": [
+        {
+          "run": "performance-01",
+          "prefill_tokens_s": 171.41516331041086,
+          "decode_tokens_s": 28.718669446095394,
+          "decode_p95_ms": 40.598549999999996,
+          "ready_warm_file_cache_s": 5.563003,
+          "telemetry": {
+            "rss_kib": {
+              "min": 1220772,
+              "max": 21361256
+            },
+            "hwm_kib": {
+              "min": 1220772,
+              "max": 21361256
+            },
+            "mem_available": {
+              "min": 26634014720,
+              "max": 27466326016
+            },
+            "swap_free": {
+              "min": 32427651072,
+              "max": 32427696128
+            },
+            "cgroup_memory_current": {
+              "min": 545239040,
+              "max": 6195982336
+            },
+            "cgroup_memory_peak": {
+              "min": 545239040,
+              "max": 6197456896
+            },
+            "cgroup_swap_current": {
+              "min": 0,
+              "max": 0
+            },
+            "mem_info_vram_used": {
+              "min": 1275936768,
+              "max": 13847601152
+            },
+            "mem_info_gtt_used": {
+              "min": 124239872,
+              "max": 799502336
+            },
+            "power1_average": {
+              "min": 23000000,
+              "max": 140000000
+            },
+            "freq1_input": {
+              "min": 7000000,
+              "max": 2604000000
+            },
+            "freq2_input": {
+              "min": 96000000,
+              "max": 1074000000
+            },
+            "temp1_input": {
+              "min": 31000,
+              "max": 34000
+            },
+            "temp2_input": {
+              "min": 32000,
+              "max": 41000
+            },
+            "temp3_input": {
+              "min": 36000,
+              "max": 42000
+            }
+          },
+          "drm_sampled_peak_bytes": {
+            "drm-total-vram": 12697399296,
+            "drm-resident-vram": 12544356352,
+            "drm-total-gtt": 512651264,
+            "drm-resident-gtt": 665694208
+          }
+        },
+        {
+          "run": "performance-04",
+          "prefill_tokens_s": 167.52201301041865,
+          "decode_tokens_s": 28.33156310250684,
+          "decode_p95_ms": 41.341,
+          "ready_warm_file_cache_s": 5.242467,
+          "telemetry": {
+            "rss_kib": {
+              "min": 1099592,
+              "max": 21359692
+            },
+            "hwm_kib": {
+              "min": 1099592,
+              "max": 21359692
+            },
+            "mem_available": {
+              "min": 28006092800,
+              "max": 28852609024
+            },
+            "swap_free": {
+              "min": 31255781376,
+              "max": 31259467776
+            },
+            "cgroup_memory_current": {
+              "min": 518193152,
+              "max": 4484841472
+            },
+            "cgroup_memory_peak": {
+              "min": 518193152,
+              "max": 4484927488
+            },
+            "cgroup_swap_current": {
+              "min": 0,
+              "max": 0
+            },
+            "mem_info_vram_used": {
+              "min": 1284321280,
+              "max": 13841305600
+            },
+            "mem_info_gtt_used": {
+              "min": 134725632,
+              "max": 805793792
+            },
+            "power1_average": {
+              "min": 22000000,
+              "max": 185000000
+            },
+            "freq1_input": {
+              "min": 8000000,
+              "max": 2601000000
+            },
+            "freq2_input": {
+              "min": 96000000,
+              "max": 1074000000
+            },
+            "temp1_input": {
+              "min": 33000,
+              "max": 38000
+            },
+            "temp2_input": {
+              "min": 34000,
+              "max": 46000
+            },
+            "temp3_input": {
+              "min": 36000,
+              "max": 42000
+            }
+          },
+          "drm_sampled_peak_bytes": {
+            "drm-total-vram": 12697399296,
+            "drm-resident-vram": 12544356352,
+            "drm-total-gtt": 512651264,
+            "drm-resident-gtt": 665694208
+          }
+        },
+        {
+          "run": "performance-05",
+          "prefill_tokens_s": 169.1749393674244,
+          "decode_tokens_s": 29.186324048611343,
+          "decode_p95_ms": 40.726549999999996,
+          "ready_warm_file_cache_s": 3.988539,
+          "telemetry": {
+            "rss_kib": {
+              "min": 4870444,
+              "max": 21359664
+            },
+            "hwm_kib": {
+              "min": 4870444,
+              "max": 21359664
+            },
+            "mem_available": {
+              "min": 28045697024,
+              "max": 28849324032
+            },
+            "swap_free": {
+              "min": 31259484160,
+              "max": 31261437952
+            },
+            "cgroup_memory_current": {
+              "min": 111120384,
+              "max": 145567744
+            },
+            "cgroup_memory_peak": {
+              "min": 111120384,
+              "max": 146935808
+            },
+            "cgroup_swap_current": {
+              "min": 0,
+              "max": 0
+            },
+            "mem_info_vram_used": {
+              "min": 1275904000,
+              "max": 13851336704
+            },
+            "mem_info_gtt_used": {
+              "min": 132624384,
+              "max": 807890944
+            },
+            "power1_average": {
+              "min": 25000000,
+              "max": 172000000
+            },
+            "freq1_input": {
+              "min": 6000000,
+              "max": 2602000000
+            },
+            "freq2_input": {
+              "min": 96000000,
+              "max": 1074000000
+            },
+            "temp1_input": {
+              "min": 33000,
+              "max": 37000
+            },
+            "temp2_input": {
+              "min": 34000,
+              "max": 48000
+            },
+            "temp3_input": {
+              "min": 38000,
+              "max": 44000
+            }
+          },
+          "drm_sampled_peak_bytes": {
+            "drm-total-vram": 12697399296,
+            "drm-resident-vram": 12544356352,
+            "drm-total-gtt": 512651264,
+            "drm-resident-gtt": 665694208
+          }
+        },
+        {
+          "run": "performance-08",
+          "prefill_tokens_s": 167.18260314275886,
+          "decode_tokens_s": 29.175679913007848,
+          "decode_p95_ms": 40.35095,
+          "ready_warm_file_cache_s": 5.275842,
+          "telemetry": {
+            "rss_kib": {
+              "min": 774756,
+              "max": 21359184
+            },
+            "hwm_kib": {
+              "min": 870540,
+              "max": 21359184
+            },
+            "mem_available": {
+              "min": 27941036032,
+              "max": 28932452352
+            },
+            "swap_free": {
+              "min": 30629089280,
+              "max": 30724132864
+            },
+            "cgroup_memory_current": {
+              "min": 523681792,
+              "max": 4268744704
+            },
+            "cgroup_memory_peak": {
+              "min": 523681792,
+              "max": 4269604864
+            },
+            "cgroup_swap_current": {
+              "min": 0,
+              "max": 0
+            },
+            "mem_info_vram_used": {
+              "min": 1284329472,
+              "max": 13851648000
+            },
+            "mem_info_gtt_used": {
+              "min": 132624384,
+              "max": 807890944
+            },
+            "power1_average": {
+              "min": 22000000,
+              "max": 125000000
+            },
+            "freq1_input": {
+              "min": 9000000,
+              "max": 2601000000
+            },
+            "freq2_input": {
+              "min": 96000000,
+              "max": 1074000000
+            },
+            "temp1_input": {
+              "min": 33000,
+              "max": 36000
+            },
+            "temp2_input": {
+              "min": 34000,
+              "max": 43000
+            },
+            "temp3_input": {
+              "min": 38000,
+              "max": 44000
+            }
+          },
+          "drm_sampled_peak_bytes": {
+            "drm-total-vram": 12697399296,
+            "drm-resident-vram": 12544356352,
+            "drm-total-gtt": 512651264,
+            "drm-resident-gtt": 665694208
+          }
+        }
+      ],
+      "none": [
+        {
+          "run": "performance-02",
+          "prefill_tokens_s": 223.95690237008816,
+          "decode_tokens_s": 28.950662868400013,
+          "decode_p95_ms": 40.67605,
+          "ready_warm_file_cache_s": 9.318702,
+          "telemetry": {
+            "rss_kib": {
+              "min": 152280,
+              "max": 485572
+            },
+            "hwm_kib": {
+              "min": 155840,
+              "max": 485572
+            },
+            "mem_available": {
+              "min": 18190123008,
+              "max": 27636969472
+            },
+            "swap_free": {
+              "min": 31519776768,
+              "max": 32427720704
+            },
+            "cgroup_memory_current": {
+              "min": 101212160,
+              "max": 5427249152
+            },
+            "cgroup_memory_peak": {
+              "min": 101724160,
+              "max": 5427249152
+            },
+            "cgroup_swap_current": {
+              "min": 0,
+              "max": 0
+            },
+            "mem_info_vram_used": {
+              "min": 1294856192,
+              "max": 13856272384
+            },
+            "mem_info_gtt_used": {
+              "min": 133808128,
+              "max": 10397011968
+            },
+            "power1_average": {
+              "min": 23000000,
+              "max": 161000000
+            },
+            "freq1_input": {
+              "min": 12000000,
+              "max": 2602000000
+            },
+            "freq2_input": {
+              "min": 96000000,
+              "max": 1074000000
+            },
+            "temp1_input": {
+              "min": 31000,
+              "max": 36000
+            },
+            "temp2_input": {
+              "min": 33000,
+              "max": 48000
+            },
+            "temp3_input": {
+              "min": 36000,
+              "max": 44000
+            }
+          },
+          "drm_sampled_peak_bytes": {
+            "drm-total-vram": 12709380096,
+            "drm-resident-vram": 12556337152,
+            "drm-total-gtt": 10124222464,
+            "drm-resident-gtt": 10277265408
+          }
+        },
+        {
+          "run": "performance-03",
+          "prefill_tokens_s": 226.42833125722476,
+          "decode_tokens_s": 28.80309633285578,
+          "decode_p95_ms": 40.98085,
+          "ready_warm_file_cache_s": 9.790802999999999,
+          "telemetry": {
+            "rss_kib": {
+              "min": 154724,
+              "max": 489712
+            },
+            "hwm_kib": {
+              "min": 154724,
+              "max": 489712
+            },
+            "mem_available": {
+              "min": 18310795264,
+              "max": 28172447744
+            },
+            "swap_free": {
+              "min": 31247708160,
+              "max": 31533649920
+            },
+            "cgroup_memory_current": {
+              "min": 115912704,
+              "max": 17344651264
+            },
+            "cgroup_memory_peak": {
+              "min": 115945472,
+              "max": 17397346304
+            },
+            "cgroup_swap_current": {
+              "min": 0,
+              "max": 0
+            },
+            "mem_info_vram_used": {
+              "min": 1306984448,
+              "max": 13852151808
+            },
+            "mem_info_gtt_used": {
+              "min": 131710976,
+              "max": 10422013952
+            },
+            "power1_average": {
+              "min": 22000000,
+              "max": 175000000
+            },
+            "freq1_input": {
+              "min": 5000000,
+              "max": 2604000000
+            },
+            "freq2_input": {
+              "min": 96000000,
+              "max": 1074000000
+            },
+            "temp1_input": {
+              "min": 31000,
+              "max": 37000
+            },
+            "temp2_input": {
+              "min": 33000,
+              "max": 47000
+            },
+            "temp3_input": {
+              "min": 36000,
+              "max": 44000
+            }
+          },
+          "drm_sampled_peak_bytes": {
+            "drm-total-vram": 12704047104,
+            "drm-resident-vram": 12551004160,
+            "drm-total-gtt": 10147028992,
+            "drm-resident-gtt": 10300071936
+          }
+        },
+        {
+          "run": "performance-06",
+          "prefill_tokens_s": 227.19647311617032,
+          "decode_tokens_s": 28.90286747305165,
+          "decode_p95_ms": 40.266549999999995,
+          "ready_warm_file_cache_s": 11.42419,
+          "telemetry": {
+            "rss_kib": {
+              "min": 153036,
+              "max": 488196
+            },
+            "hwm_kib": {
+              "min": 154156,
+              "max": 488196
+            },
+            "mem_available": {
+              "min": 18763141120,
+              "max": 28861538304
+            },
+            "swap_free": {
+              "min": 30562357248,
+              "max": 31261483008
+            },
+            "cgroup_memory_current": {
+              "min": 101666816,
+              "max": 17558568960
+            },
+            "cgroup_memory_peak": {
+              "min": 101703680,
+              "max": 17558568960
+            },
+            "cgroup_swap_current": {
+              "min": 0,
+              "max": 114688
+            },
+            "mem_info_vram_used": {
+              "min": 1283821568,
+              "max": 13858672640
+            },
+            "mem_info_gtt_used": {
+              "min": 134721536,
+              "max": 10416050176
+            },
+            "power1_average": {
+              "min": 22000000,
+              "max": 145000000
+            },
+            "freq1_input": {
+              "min": 11000000,
+              "max": 2604000000
+            },
+            "freq2_input": {
+              "min": 96000000,
+              "max": 1074000000
+            },
+            "temp1_input": {
+              "min": 32000,
+              "max": 36000
+            },
+            "temp2_input": {
+              "min": 34000,
+              "max": 47000
+            },
+            "temp3_input": {
+              "min": 38000,
+              "max": 44000
+            }
+          },
+          "drm_sampled_peak_bytes": {
+            "drm-total-vram": 12708466688,
+            "drm-resident-vram": 12555423744,
+            "drm-total-gtt": 10132578304,
+            "drm-resident-gtt": 10285621248
+          }
+        },
+        {
+          "run": "performance-07",
+          "prefill_tokens_s": 225.98618890963516,
+          "decode_tokens_s": 28.690161867054123,
+          "decode_p95_ms": 40.48415,
+          "ready_warm_file_cache_s": 9.037729,
+          "telemetry": {
+            "rss_kib": {
+              "min": 154244,
+              "max": 488748
+            },
+            "hwm_kib": {
+              "min": 154244,
+              "max": 488748
+            },
+            "mem_available": {
+              "min": 18793381888,
+              "max": 28470079488
+            },
+            "swap_free": {
+              "min": 30620315648,
+              "max": 30681595904
+            },
+            "cgroup_memory_current": {
+              "min": 105598976,
+              "max": 17430806528
+            },
+            "cgroup_memory_peak": {
+              "min": 105598976,
+              "max": 17617502208
+            },
+            "cgroup_swap_current": {
+              "min": 0,
+              "max": 0
+            },
+            "mem_info_vram_used": {
+              "min": 1303248896,
+              "max": 13845774336
+            },
+            "mem_info_gtt_used": {
+              "min": 132624384,
+              "max": 10409267200
+            },
+            "power1_average": {
+              "min": 22000000,
+              "max": 155000000
+            },
+            "freq1_input": {
+              "min": 8000000,
+              "max": 2603000000
+            },
+            "freq2_input": {
+              "min": 96000000,
+              "max": 1074000000
+            },
+            "temp1_input": {
+              "min": 32000,
+              "max": 36000
+            },
+            "temp2_input": {
+              "min": 33000,
+              "max": 44000
+            },
+            "temp3_input": {
+              "min": 36000,
+              "max": 44000
+            }
+          },
+          "drm_sampled_peak_bytes": {
+            "drm-total-vram": 12703956992,
+            "drm-resident-vram": 12550914048,
+            "drm-total-gtt": 10125795328,
+            "drm-resident-gtt": 10278838272
+          }
+        }
+      ]
+    },
+    "results": {
+      "prefill_tokens_s": {
+        "mmap_mean": 168.8236797077532,
+        "none_mean": 225.8919739132796,
+        "change_percent": 33.803489122092365,
+        "bootstrap_95_percent": [
+          32.26076012176551,
+          35.17326842713613
+        ],
+        "practical_margin_percent": 3,
+        "verdict": "MIGLIORAMENTO",
+        "control_first_last_change_percent": -2.4691865561434434
+      },
+      "decode_tokens_s": {
+        "mmap_mean": 28.853059127555355,
+        "none_mean": 28.83669713534039,
+        "change_percent": -0.05670799807614424,
+        "bootstrap_95_percent": [
+          -1.2208411984639178,
+          1.2493907464525833
+        ],
+        "practical_margin_percent": 3,
+        "verdict": "NESSUN_CAMBIAMENTO",
+        "control_first_last_change_percent": 1.5913357955885
+      },
+      "decode_p95_ms": {
+        "mmap_mean": 40.754262499999996,
+        "none_mean": 40.6019,
+        "change_percent": -0.37385659966241436,
+        "bootstrap_95_percent": [
+          -1.4876769198056916,
+          0.6414290076486973
+        ],
+        "practical_margin_percent": 5,
+        "verdict": "NESSUN_CAMBIAMENTO",
+        "control_first_last_change_percent": -0.609873997962973
+      }
+    },
+    "memory": {
+      "mmap": {
+        "telemetry_campaign_range": {
+          "rss_kib": {
+            "min": 774756,
+            "max": 21361256
+          },
+          "hwm_kib": {
+            "min": 870540,
+            "max": 21361256
+          },
+          "mem_available": {
+            "min": 26634014720,
+            "max": 28932452352
+          },
+          "swap_free": {
+            "min": 30629089280,
+            "max": 32427696128
+          },
+          "cgroup_memory_current": {
+            "min": 111120384,
+            "max": 6195982336
+          },
+          "cgroup_memory_peak": {
+            "min": 111120384,
+            "max": 6197456896
+          },
+          "cgroup_swap_current": {
+            "min": 0,
+            "max": 0
+          },
+          "mem_info_vram_used": {
+            "min": 1275904000,
+            "max": 13851648000
+          },
+          "mem_info_gtt_used": {
+            "min": 124239872,
+            "max": 807890944
+          },
+          "power1_average": {
+            "min": 22000000,
+            "max": 185000000
+          },
+          "freq1_input": {
+            "min": 6000000,
+            "max": 2604000000
+          },
+          "freq2_input": {
+            "min": 96000000,
+            "max": 1074000000
+          },
+          "temp1_input": {
+            "min": 31000,
+            "max": 38000
+          },
+          "temp2_input": {
+            "min": 32000,
+            "max": 48000
+          },
+          "temp3_input": {
+            "min": 36000,
+            "max": 44000
+          }
+        },
+        "drm_peak_range_bytes": {
+          "drm-total-vram": [
+            12697399296,
+            12697399296
+          ],
+          "drm-resident-vram": [
+            12544356352,
+            12544356352
+          ],
+          "drm-total-gtt": [
+            512651264,
+            512651264
+          ],
+          "drm-resident-gtt": [
+            665694208,
+            665694208
+          ]
+        },
+        "ready_warm_file_cache_s_mean": 5.01746275
+      },
+      "none": {
+        "telemetry_campaign_range": {
+          "rss_kib": {
+            "min": 152280,
+            "max": 489712
+          },
+          "hwm_kib": {
+            "min": 154156,
+            "max": 489712
+          },
+          "mem_available": {
+            "min": 18190123008,
+            "max": 28861538304
+          },
+          "swap_free": {
+            "min": 30562357248,
+            "max": 32427720704
+          },
+          "cgroup_memory_current": {
+            "min": 101212160,
+            "max": 17558568960
+          },
+          "cgroup_memory_peak": {
+            "min": 101703680,
+            "max": 17617502208
+          },
+          "cgroup_swap_current": {
+            "min": 0,
+            "max": 114688
+          },
+          "mem_info_vram_used": {
+            "min": 1283821568,
+            "max": 13858672640
+          },
+          "mem_info_gtt_used": {
+            "min": 131710976,
+            "max": 10422013952
+          },
+          "power1_average": {
+            "min": 22000000,
+            "max": 175000000
+          },
+          "freq1_input": {
+            "min": 5000000,
+            "max": 2604000000
+          },
+          "freq2_input": {
+            "min": 96000000,
+            "max": 1074000000
+          },
+          "temp1_input": {
+            "min": 31000,
+            "max": 37000
+          },
+          "temp2_input": {
+            "min": 33000,
+            "max": 48000
+          },
+          "temp3_input": {
+            "min": 36000,
+            "max": 44000
+          }
+        },
+        "drm_peak_range_bytes": {
+          "drm-total-vram": [
+            12703956992,
+            12709380096
+          ],
+          "drm-resident-vram": [
+            12550914048,
+            12556337152
+          ],
+          "drm-total-gtt": [
+            10124222464,
+            10147028992
+          ],
+          "drm-resident-gtt": [
+            10277265408,
+            10300071936
+          ]
+        },
+        "ready_warm_file_cache_s_mean": 9.892856
+      }
+    },
+    "none_host_diagnostic_separate_campaign": [
+      {
+        "phase": "decode",
+        "elapsed_ms": 4692.389,
+        "events": {
+          "compute_call": {
+            "host_duration_us": 2971811,
+            "bytes": 0,
+            "count": 4864
+          },
+          "compute_splits": {
+            "host_duration_us": 4277970,
+            "bytes": 0,
+            "count": 128
+          },
+          "copy_wait": {
+            "host_duration_us": 707990,
+            "bytes": 0,
+            "count": 4608
+          },
+          "graph_allocate": {
+            "host_duration_us": 6759,
+            "bytes": 0,
+            "count": 2
+          },
+          "input_wait": {
+            "host_duration_us": 82767,
+            "bytes": 0,
+            "count": 8192
+          },
+          "scheduler_wait": {
+            "host_duration_us": 399217,
+            "bytes": 0,
+            "count": 256
+          },
+          "split": {
+            "host_duration_us": 4261255,
+            "bytes": 0,
+            "count": 4864
+          },
+          "tensor_copy": {
+            "host_duration_us": 362479,
+            "bytes": 54729216,
+            "count": 5504
+          },
+          "tensor_copy_async": {
+            "host_duration_us": 5428,
+            "bytes": 152044032,
+            "count": 7296
+          }
+        }
+      },
+      {
+        "phase": "prefill",
+        "elapsed_ms": 1144.219,
+        "events": {
+          "compute_call": {
+            "host_duration_us": 113538,
+            "bytes": 0,
+            "count": 56
+          },
+          "compute_splits": {
+            "host_duration_us": 995154,
+            "bytes": 0,
+            "count": 1
+          },
+          "expert_upload": {
+            "host_duration_us": 1725,
+            "bytes": 5404684800,
+            "count": 3168
+          },
+          "graph_allocate": {
+            "host_duration_us": 3429,
+            "bytes": 0,
+            "count": 1
+          },
+          "input_wait": {
+            "host_duration_us": 863794,
+            "bytes": 0,
+            "count": 64
+          },
+          "router_readback": {
+            "host_duration_us": 2415,
+            "bytes": 4479552,
+            "count": 18
+          },
+          "routing_scan": {
+            "host_duration_us": 70,
+            "bytes": 0,
+            "count": 18
+          },
+          "scheduler_wait": {
+            "host_duration_us": 144718,
+            "bytes": 0,
+            "count": 2
+          },
+          "source_wait": {
+            "host_duration_us": 16,
+            "bytes": 0,
+            "count": 54
+          },
+          "split": {
+            "host_duration_us": 994941,
+            "bytes": 0,
+            "count": 56
+          },
+          "tensor_copy": {
+            "host_duration_us": 828,
+            "bytes": 411268,
+            "count": 7
+          },
+          "tensor_copy_async": {
+            "host_duration_us": 5,
+            "bytes": 1998852,
+            "count": 3
+          }
+        }
+      }
+    ],
+    "limits": "2Hz sampled peaks, RSS includes file maps, cgroup cache charges depend on order, DRM total/requested differs from resident, no application TTFT or cold-disk startup. Diagnostic timings are not uninstrumented performance."
+  },
+  "system_files": {
+    "uname.txt": "Linux PARR-2026c 7.2.9-1-cachyos #1 SMP PREEMPT_DYNAMIC Sat, 03 Oct 2026 18:34:55 +0000 x86_64 GNU/Linux\n",
+    "packages.txt": "mesa 3:26.2.4-1\nvulkan-radeon 3:26.2.4-1\ngcc 16.2.1+r23+gd564253eb6c8-1\ncmake 4.4.4-1.1\nninja 1.13.2-3.1\n",
+    "vulkan-summary.txt": "==========\nVULKANINFO\n==========\n\nVulkan Instance Version: 1.4.363\n\n\nInstance Extensions: count = 26\n-------------------------------\nVK_EXT_acquire_drm_display             : extension revision 1\nVK_EXT_acquire_xlib_display            : extension revision 1\nVK_EXT_debug_report                    : extension revision 10\nVK_EXT_debug_utils                     : extension revision 2\nVK_EXT_direct_mode_display             : extension revision 1\nVK_EXT_display_surface_counter         : extension revision 1\nVK_EXT_headless_surface                : extension revision 1\nVK_EXT_layer_settings                  : extension revision 2\nVK_EXT_surface_maintenance1            : extension revision 1\nVK_EXT_swapchain_colorspace            : extension revision 5\nVK_KHR_device_group_creation           : extension revision 1\nVK_KHR_display                         : extension revision 23\nVK_KHR_external_fence_capabilities     : extension revision 1\nVK_KHR_external_memory_capabilities    : extension revision 1\nVK_KHR_external_semaphore_capabilities : extension revision 1\nVK_KHR_get_display_properties2         : extension revision 1\nVK_KHR_get_physical_device_properties2 : extension revision 2\nVK_KHR_get_surface_capabilities2       : extension revision 1\nVK_KHR_portability_enumeration         : extension revision 1\nVK_KHR_surface                         : extension revision 25\nVK_KHR_surface_maintenance1            : extension revision 1\nVK_KHR_surface_protected_capabilities  : extension revision 1\nVK_KHR_wayland_surface                 : extension revision 6\nVK_KHR_xcb_surface                     : extension revision 6\nVK_KHR_xlib_surface                    : extension revision 6\nVK_LUNARG_direct_driver_loading        : extension revision 1\n\nInstance Layers: count = 2\n--------------------------\nVK_LAYER_MESA_anti_lag      Open-source implementation of the VK_AMD_anti_lag extension. 1.4.303  version 1\nVK_LAYER_MESA_device_select Linux device selection layer                                 1.4.303  version 1\n\nDevices:\n========\nGPU0:\n\tapiVersion         = 1.4.354\n\tdriverVersion      = 26.2.4\n\tvendorID           = 0x1002\n\tdeviceID           = 0x73bf\n\tdeviceType         = PHYSICAL_DEVICE_TYPE_DISCRETE_GPU\n\tdeviceName         = AMD Radeon RX 6800 (RADV NAVI21)\n\tdriverID           = DRIVER_ID_MESA_RADV\n\tdriverName         = radv\n\tdriverInfo         = Mesa 26.2.4-arch3.1\n\tconformanceVersion = 1.4.5.3\n\tdeviceUUID         = 00000000-0900-0000-0000-000000000000\n\tdriverUUID         = 414d442d-4d45-5341-2d44-525600000000\nGPU1:\n\tapiVersion         = 1.4.354\n\tdriverVersion      = 26.2.4\n\tvendorID           = 0x10005\n\tdeviceID           = 0x0000\n\tdeviceType         = PHYSICAL_DEVICE_TYPE_CPU\n\tdeviceName         = llvmpipe (LLVM 23.1.1, 256 bits)\n\tdriverID           = DRIVER_ID_MESA_LLVMPIPE\n\tdriverName         = llvmpipe\n\tdriverInfo         = Mesa 26.2.4-arch3.1 (LLVM 23.1.1)\n\tconformanceVersion = 1.3.1.1\n\tdeviceUUID         = 6d657361-3236-2e32-2e34-2d6172636800\n\tdriverUUID         = 6c6c766d-7069-7065-5555-494400000000\n"
+  },
+  "processes": 11,
+  "runs": {
+    "mmap/correctness-result.json": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/mmap/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/mmap/correctness-logits.bin"
+      },
+      "started_utc": "2026-10-06T23:31:43.264205+00:00",
+      "source_commit": "9375d46b7f7e1099bdee4d92cc6fc091057a0194",
+      "label": "COLLECTOR",
+      "profile": false,
+      "reps": 1,
+      "returncode": 0,
+      "stop_reason": null,
+      "loaded_libraries": {
+        "/etc/ld.so.cache": "8940454d5fb1c3b0bc60a924f5c959c1b0889abcc20f7922285c8d865f1a7b44",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-base.so.0.25.1": "1171dd185e1183b20430b7670717d69e505e1eeeadc71a3eab725f9fa9d53f05",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-cpu.so.0.25.1": "da5b1f97b4ea5c811904fe83c091265d2eca25139158303c4e09130fa0974709",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-vulkan.so.0.25.1": "7831061db2c1ed53abf16cd43f2dd04b4ec9b2f7a711c2d6ac25bc9df6ee963d",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml.so.0.25.1": "d9934432b991dd9fd1f168a4901b26b8f28748468501c61f24b2bc1bd8b21d15",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama-common.so.0.5.0": "25ea3d08cfc8b513e01fbf0e5e7f36df634271d8e2f031710d2fb60c810f4143",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama.so.0.5.0": "725dfdf2abc3757c6a53e5c9574dd3717dda16a68ed992a2ee1cc64628c5fabc",
+        "/usr/lib/ld-linux-x86-64.so.2": "2a950d46575efa0210d22440988f5a6b4507ebddc6c86d9a42e6e7ef6f01463e",
+        "/usr/lib/libLLVM.so.23.1": "941dec5f3fd22e305eb8aafda3aacf1420b8ffe2f08c33d7ee2d3f284c47fe59",
+        "/usr/lib/libSPIRV-Tools.so": "002378c4ce5e5eafd271653d788fc60332cbffd2b7163e6e9b0fe6f09e0eced6",
+        "/usr/lib/libVkLayer_MESA_device_select.so": "af1067a33878036cf548a9ee6e2d0ea4ed3c65fdbd4e457ae780f4531c3f3f25",
+        "/usr/lib/libX11-xcb.so.1.0.0": "15d9b28c6c3afe823335f2ca994b0fb3789d98c77b411bb51e0f3b225f41b931",
+        "/usr/lib/libXau.so.6.0.0": "7336830145541e30e97108e103d794be559bea610f09740a1941371334b6aef0",
+        "/usr/lib/libXdmcp.so.6.0.0": "812b1b8a5551862ada50da7badd503572e8b5a540082001895ead6ebd8386d30",
+        "/usr/lib/libbrotlicommon.so.1.2.0": "0a5a0d15264043c6cb99d3076501d4503bafde11eaea28f353e399b4ce6b2981",
+        "/usr/lib/libbrotlidec.so.1.2.0": "f747ed8ca1a29c53744f6e2b12dbd70d78838682a5914505b173c1ad50db4ca9",
+        "/usr/lib/libbrotlienc.so.1.2.0": "dd19bedf12100d84f6a490af2017a49c8a5dff098dd4f2d03dea501ffaf47d56",
+        "/usr/lib/libc.so.6": "071e34179e645b25f8a8c2e7108894dc665caa9f5f8c939cd579a75b6638bc3f",
+        "/usr/lib/libcrypto.so.3": "ecbe60559ed67946cf526aeba3fad8103f3a1de31ad389ca6684d201e10c63b3",
+        "/usr/lib/libdisplay-info.so.0.3.0": "4f3904f22cd1e1f729a6815d9ea129dd2c41d3091fe0e600e9084674c5e2b30b",
+        "/usr/lib/libdrm.so.2.134.0": "014655a0b8cae1448a5d32ebb0761883b4509daf2085518bb7605dff775575da",
+        "/usr/lib/libdrm_amdgpu.so.1.134.0": "7949f0c075b123e810b4354fb28def707f280a1deb9ba2e04c94c5f90ee5726a",
+        "/usr/lib/libedit.so.0.0.78": "f41b34de241bf07bf956b791b9a9c5cd3b6ae5bb30f9e5767cd68ac3631888ea",
+        "/usr/lib/libelf-0.196.so": "13d3e3cb54d6120d87a0569ac67be05c029f8cd2e4bf44e75936b2721c8e08af",
+        "/usr/lib/libexpat.so.1.12.5": "1da51868f59e7ce5e2fd79315b3e2fc426ff1ba527a485bae4464d44239caeeb",
+        "/usr/lib/libffi.so.8.5.0": "ea7da6217398e85e0a83ae367e70cde716ec626c782d29221907b893fc43866e",
+        "/usr/lib/libgcc_s.so.1": "571745fb27883c763315fab54a536906064c1df6804d1a7884713dac259da68d",
+        "/usr/lib/libgomp.so.1.0.0": "843e95ac19bdc9c450e8b090204cf01aafaf680ab9ca64bf1ec5e3674c3a776f",
+        "/usr/lib/libicudata.so.78.3": "d72003b08760852bee4c80cff32c1e6248ae6b1fda5bd313482733a4d5e70dc9",
+        "/usr/lib/libicuuc.so.78.3": "a02f9e1ab2419219f990b416f981f20f779f5c6f301424c5d1948e52001c555c",
+        "/usr/lib/libm.so.6": "58b6b82e39d59d7810d402ba4ec34359fde058204fdb7cd5a269fda256a35421",
+        "/usr/lib/libncursesw.so.6.6": "f58d9552e04abc427fb21bd7118eee77e3f216b64b2aaafd768d74bf26507153",
+        "/usr/lib/libssl.so.3": "0dbcac8fcce57c08d2a1999a5a5cc0667e9685972c871a86a7d08bc4175fa2f9",
+        "/usr/lib/libstdc++.so.6.0.36": "412e0fc561a10581aaff2d101206939a31fa12c696590d8d4a5ec3655953ffe0",
+        "/usr/lib/libudev.so.1.7.15": "5e41a27ff6a9c8016b16f4b69b41a1d63d51973d0df2c6a895ab51ba006b880c",
+        "/usr/lib/libvulkan.so.1.4.363": "c3603ee46488ae6b581f3eeb65631a4c68c89c887d46a0b4ba0e7bff01307d88",
+        "/usr/lib/libvulkan_lvp.so": "6d75e9ab9e2fc660a8c9787a350c9ccf023b1e06a59c57a39ff89b091258fb21",
+        "/usr/lib/libvulkan_radeon.so": "beb888991d47606a01b0738dece66d28f2b1c01a7f48403c6505e4d55dbcd73b",
+        "/usr/lib/libwayland-client.so.0.26.0": "7628f449109d3d8502d740fd3be71cf11b1b901e245fc8040728155ab55686da",
+        "/usr/lib/libxcb-dri3.so.0.1.0": "17e24afc588a241e225dfdc08eadd137494594510e81bcfc189972a131595497",
+        "/usr/lib/libxcb-keysyms.so.1.0.0": "344a0b73c03b813eea07f693282eff707e5fdaec298dbd4ab2e17b1f443eb0a3",
+        "/usr/lib/libxcb-present.so.0.0.0": "6efdb442b4e9c01c768041f2a322a317c70e8f0997127ce0b4f9d11af90663cb",
+        "/usr/lib/libxcb-randr.so.0.1.0": "78bd310cf74a43b283fee545ddfada99625b3fff5e4951a790f25b465969f1f9",
+        "/usr/lib/libxcb-shm.so.0.0.0": "e5582bbcdac51b9cb857ca42945ad334b65e4506300548ef4de0670cc12c44e1",
+        "/usr/lib/libxcb-sync.so.1.0.0": "7e0b5e45b31f033a30335a66309c62e805e6570c063a9d256a13c48ace96f784",
+        "/usr/lib/libxcb-xfixes.so.0.0.0": "0e113e4a08a935bd68b0b0a3e16f1cd5908184ec3c72daeacdfa490032ba2578",
+        "/usr/lib/libxcb.so.1.1.0": "a28eaad3641660452c0dd421d9d4fe9ab0564db5e7e4705e61cd791681b0e7c7",
+        "/usr/lib/libxml2.so.16.1.4": "d5e78d2e770a0b0960f720682c447811b8643057d5c36a3495c82b000c2e65b9",
+        "/usr/lib/libxshmfence.so.1.0.0": "80249b1bbef0aef67ce970759be8b5f334fbfc4c9b52a91d9303664755b001b7",
+        "/usr/lib/libz.so.1.3.1.zlib-ng": "63e814634983bfa53890b48cb56760ca38840fbcf91f66a51222eef85eaa08b7",
+        "/usr/lib/libzstd.so.1.5.7": "f18105ff5aefdd6177cb99fd016f4822a676adf23706d4ddbdce632ed40882ca"
+      },
+      "init_lines": [
+        "0.00.942.517 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.00.942.524 I load_tensors:   CPU_Mapped model buffer size =  9049.31 MiB",
+        "0.00.942.525 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.03.947.905 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.03.947.987 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.03.949.139 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.03.971.943 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.03.971.946 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.03.972.091 I replay: 244 prompt tokens, 128 decode tokens, 1 repetitions, step=512"
+      ],
+      "metrics": {
+        "prefill": {
+          "tokens_s": 173.11348866248545,
+          "elapsed_ms": 1409.48,
+          "calls": 1,
+          "call_p50_ms": 1409.48,
+          "call_p95_ms": 1409.48
+        },
+        "decode": {
+          "tokens_s": 28.71444960457062,
+          "elapsed_ms": 4457.686,
+          "calls": 128,
+          "call_p50_ms": 33.864,
+          "call_p95_ms": 40.466
+        }
+      },
+      "raw": {
+        "bytes": 128133120,
+        "sha256": "b7bb28a86e623daf75f436f9bddb786cee6c43d8a28d1b85333f3f25d9cbb662",
+        "all_finite": true,
+        "every_call_nonzero": true,
+        "logits_vectors": 129,
+        "n_vocab": 248320
+      },
+      "clocks": "OD_SCLK:\n0: 500Mhz\n1: 2600Mhz\nOD_MCLK:\n0: 97Mhz\n1: 1075MHz\nOD_RANGE:\nSCLK:     500Mhz       2600Mhz\nMCLK:     674Mhz       1075Mhz\nOD_VDDGFX_OFFSET:\n-100mV",
+      "power_cap": {
+        "power1_cap": "186000000"
+      }
+    },
+    "mmap/performance-01-result.json": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/mmap/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "started_utc": "2026-10-06T23:32:22.327432+00:00",
+      "source_commit": "9375d46b7f7e1099bdee4d92cc6fc091057a0194",
+      "label": "COLLECTOR",
+      "profile": false,
+      "reps": 3,
+      "returncode": 0,
+      "stop_reason": null,
+      "loaded_libraries": {
+        "/etc/ld.so.cache": "8940454d5fb1c3b0bc60a924f5c959c1b0889abcc20f7922285c8d865f1a7b44",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-base.so.0.25.1": "1171dd185e1183b20430b7670717d69e505e1eeeadc71a3eab725f9fa9d53f05",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-cpu.so.0.25.1": "da5b1f97b4ea5c811904fe83c091265d2eca25139158303c4e09130fa0974709",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-vulkan.so.0.25.1": "7831061db2c1ed53abf16cd43f2dd04b4ec9b2f7a711c2d6ac25bc9df6ee963d",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml.so.0.25.1": "d9934432b991dd9fd1f168a4901b26b8f28748468501c61f24b2bc1bd8b21d15",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama-common.so.0.5.0": "25ea3d08cfc8b513e01fbf0e5e7f36df634271d8e2f031710d2fb60c810f4143",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama.so.0.5.0": "725dfdf2abc3757c6a53e5c9574dd3717dda16a68ed992a2ee1cc64628c5fabc",
+        "/usr/lib/ld-linux-x86-64.so.2": "2a950d46575efa0210d22440988f5a6b4507ebddc6c86d9a42e6e7ef6f01463e",
+        "/usr/lib/libLLVM.so.23.1": "941dec5f3fd22e305eb8aafda3aacf1420b8ffe2f08c33d7ee2d3f284c47fe59",
+        "/usr/lib/libSPIRV-Tools.so": "002378c4ce5e5eafd271653d788fc60332cbffd2b7163e6e9b0fe6f09e0eced6",
+        "/usr/lib/libVkLayer_MESA_device_select.so": "af1067a33878036cf548a9ee6e2d0ea4ed3c65fdbd4e457ae780f4531c3f3f25",
+        "/usr/lib/libX11-xcb.so.1.0.0": "15d9b28c6c3afe823335f2ca994b0fb3789d98c77b411bb51e0f3b225f41b931",
+        "/usr/lib/libXau.so.6.0.0": "7336830145541e30e97108e103d794be559bea610f09740a1941371334b6aef0",
+        "/usr/lib/libXdmcp.so.6.0.0": "812b1b8a5551862ada50da7badd503572e8b5a540082001895ead6ebd8386d30",
+        "/usr/lib/libbrotlicommon.so.1.2.0": "0a5a0d15264043c6cb99d3076501d4503bafde11eaea28f353e399b4ce6b2981",
+        "/usr/lib/libbrotlidec.so.1.2.0": "f747ed8ca1a29c53744f6e2b12dbd70d78838682a5914505b173c1ad50db4ca9",
+        "/usr/lib/libbrotlienc.so.1.2.0": "dd19bedf12100d84f6a490af2017a49c8a5dff098dd4f2d03dea501ffaf47d56",
+        "/usr/lib/libc.so.6": "071e34179e645b25f8a8c2e7108894dc665caa9f5f8c939cd579a75b6638bc3f",
+        "/usr/lib/libcrypto.so.3": "ecbe60559ed67946cf526aeba3fad8103f3a1de31ad389ca6684d201e10c63b3",
+        "/usr/lib/libdisplay-info.so.0.3.0": "4f3904f22cd1e1f729a6815d9ea129dd2c41d3091fe0e600e9084674c5e2b30b",
+        "/usr/lib/libdrm.so.2.134.0": "014655a0b8cae1448a5d32ebb0761883b4509daf2085518bb7605dff775575da",
+        "/usr/lib/libdrm_amdgpu.so.1.134.0": "7949f0c075b123e810b4354fb28def707f280a1deb9ba2e04c94c5f90ee5726a",
+        "/usr/lib/libedit.so.0.0.78": "f41b34de241bf07bf956b791b9a9c5cd3b6ae5bb30f9e5767cd68ac3631888ea",
+        "/usr/lib/libelf-0.196.so": "13d3e3cb54d6120d87a0569ac67be05c029f8cd2e4bf44e75936b2721c8e08af",
+        "/usr/lib/libexpat.so.1.12.5": "1da51868f59e7ce5e2fd79315b3e2fc426ff1ba527a485bae4464d44239caeeb",
+        "/usr/lib/libffi.so.8.5.0": "ea7da6217398e85e0a83ae367e70cde716ec626c782d29221907b893fc43866e",
+        "/usr/lib/libgcc_s.so.1": "571745fb27883c763315fab54a536906064c1df6804d1a7884713dac259da68d",
+        "/usr/lib/libgomp.so.1.0.0": "843e95ac19bdc9c450e8b090204cf01aafaf680ab9ca64bf1ec5e3674c3a776f",
+        "/usr/lib/libicudata.so.78.3": "d72003b08760852bee4c80cff32c1e6248ae6b1fda5bd313482733a4d5e70dc9",
+        "/usr/lib/libicuuc.so.78.3": "a02f9e1ab2419219f990b416f981f20f779f5c6f301424c5d1948e52001c555c",
+        "/usr/lib/libm.so.6": "58b6b82e39d59d7810d402ba4ec34359fde058204fdb7cd5a269fda256a35421",
+        "/usr/lib/libncursesw.so.6.6": "f58d9552e04abc427fb21bd7118eee77e3f216b64b2aaafd768d74bf26507153",
+        "/usr/lib/libssl.so.3": "0dbcac8fcce57c08d2a1999a5a5cc0667e9685972c871a86a7d08bc4175fa2f9",
+        "/usr/lib/libstdc++.so.6.0.36": "412e0fc561a10581aaff2d101206939a31fa12c696590d8d4a5ec3655953ffe0",
+        "/usr/lib/libudev.so.1.7.15": "5e41a27ff6a9c8016b16f4b69b41a1d63d51973d0df2c6a895ab51ba006b880c",
+        "/usr/lib/libvulkan.so.1.4.363": "c3603ee46488ae6b581f3eeb65631a4c68c89c887d46a0b4ba0e7bff01307d88",
+        "/usr/lib/libvulkan_lvp.so": "6d75e9ab9e2fc660a8c9787a350c9ccf023b1e06a59c57a39ff89b091258fb21",
+        "/usr/lib/libvulkan_radeon.so": "beb888991d47606a01b0738dece66d28f2b1c01a7f48403c6505e4d55dbcd73b",
+        "/usr/lib/libwayland-client.so.0.26.0": "7628f449109d3d8502d740fd3be71cf11b1b901e245fc8040728155ab55686da",
+        "/usr/lib/libxcb-dri3.so.0.1.0": "17e24afc588a241e225dfdc08eadd137494594510e81bcfc189972a131595497",
+        "/usr/lib/libxcb-keysyms.so.1.0.0": "344a0b73c03b813eea07f693282eff707e5fdaec298dbd4ab2e17b1f443eb0a3",
+        "/usr/lib/libxcb-present.so.0.0.0": "6efdb442b4e9c01c768041f2a322a317c70e8f0997127ce0b4f9d11af90663cb",
+        "/usr/lib/libxcb-randr.so.0.1.0": "78bd310cf74a43b283fee545ddfada99625b3fff5e4951a790f25b465969f1f9",
+        "/usr/lib/libxcb-shm.so.0.0.0": "e5582bbcdac51b9cb857ca42945ad334b65e4506300548ef4de0670cc12c44e1",
+        "/usr/lib/libxcb-sync.so.1.0.0": "7e0b5e45b31f033a30335a66309c62e805e6570c063a9d256a13c48ace96f784",
+        "/usr/lib/libxcb-xfixes.so.0.0.0": "0e113e4a08a935bd68b0b0a3e16f1cd5908184ec3c72daeacdfa490032ba2578",
+        "/usr/lib/libxcb.so.1.1.0": "a28eaad3641660452c0dd421d9d4fe9ab0564db5e7e4705e61cd791681b0e7c7",
+        "/usr/lib/libxml2.so.16.1.4": "d5e78d2e770a0b0960f720682c447811b8643057d5c36a3495c82b000c2e65b9",
+        "/usr/lib/libxshmfence.so.1.0.0": "80249b1bbef0aef67ce970759be8b5f334fbfc4c9b52a91d9303664755b001b7",
+        "/usr/lib/libz.so.1.3.1.zlib-ng": "63e814634983bfa53890b48cb56760ca38840fbcf91f66a51222eef85eaa08b7",
+        "/usr/lib/libzstd.so.1.5.7": "f18105ff5aefdd6177cb99fd016f4822a676adf23706d4ddbdce632ed40882ca"
+      },
+      "init_lines": [
+        "0.02.623.144 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.02.623.149 I load_tensors:   CPU_Mapped model buffer size =  9049.31 MiB",
+        "0.02.623.151 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.05.537.780 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.05.537.861 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.05.540.447 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.05.562.935 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.05.562.938 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.05.563.003 I replay: 244 prompt tokens, 128 decode tokens, 3 repetitions, step=512"
+      ],
+      "metrics": {
+        "prefill": {
+          "tokens_s": 171.41516331041086,
+          "elapsed_ms": 4270.334,
+          "calls": 3,
+          "call_p50_ms": 1426.368,
+          "call_p95_ms": 1431.2433
+        },
+        "decode": {
+          "tokens_s": 28.718669446095394,
+          "elapsed_ms": 13371.093,
+          "calls": 384,
+          "call_p50_ms": 34.1555,
+          "call_p95_ms": 40.598549999999996
+        }
+      },
+      "clocks": "OD_SCLK:\n0: 500Mhz\n1: 2600Mhz\nOD_MCLK:\n0: 97Mhz\n1: 1075MHz\nOD_RANGE:\nSCLK:     500Mhz       2600Mhz\nMCLK:     674Mhz       1075Mhz\nOD_VDDGFX_OFFSET:\n-100mV",
+      "power_cap": {
+        "power1_cap": "186000000"
+      }
+    },
+    "mmap/performance-04-result.json": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/mmap/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "started_utc": "2026-10-06T23:33:57.435026+00:00",
+      "source_commit": "9375d46b7f7e1099bdee4d92cc6fc091057a0194",
+      "label": "COLLECTOR",
+      "profile": false,
+      "reps": 3,
+      "returncode": 0,
+      "stop_reason": null,
+      "loaded_libraries": {
+        "/etc/ld.so.cache": "8940454d5fb1c3b0bc60a924f5c959c1b0889abcc20f7922285c8d865f1a7b44",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-base.so.0.25.1": "1171dd185e1183b20430b7670717d69e505e1eeeadc71a3eab725f9fa9d53f05",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-cpu.so.0.25.1": "da5b1f97b4ea5c811904fe83c091265d2eca25139158303c4e09130fa0974709",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-vulkan.so.0.25.1": "7831061db2c1ed53abf16cd43f2dd04b4ec9b2f7a711c2d6ac25bc9df6ee963d",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml.so.0.25.1": "d9934432b991dd9fd1f168a4901b26b8f28748468501c61f24b2bc1bd8b21d15",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama-common.so.0.5.0": "25ea3d08cfc8b513e01fbf0e5e7f36df634271d8e2f031710d2fb60c810f4143",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama.so.0.5.0": "725dfdf2abc3757c6a53e5c9574dd3717dda16a68ed992a2ee1cc64628c5fabc",
+        "/usr/lib/ld-linux-x86-64.so.2": "2a950d46575efa0210d22440988f5a6b4507ebddc6c86d9a42e6e7ef6f01463e",
+        "/usr/lib/libLLVM.so.23.1": "941dec5f3fd22e305eb8aafda3aacf1420b8ffe2f08c33d7ee2d3f284c47fe59",
+        "/usr/lib/libSPIRV-Tools.so": "002378c4ce5e5eafd271653d788fc60332cbffd2b7163e6e9b0fe6f09e0eced6",
+        "/usr/lib/libVkLayer_MESA_device_select.so": "af1067a33878036cf548a9ee6e2d0ea4ed3c65fdbd4e457ae780f4531c3f3f25",
+        "/usr/lib/libX11-xcb.so.1.0.0": "15d9b28c6c3afe823335f2ca994b0fb3789d98c77b411bb51e0f3b225f41b931",
+        "/usr/lib/libXau.so.6.0.0": "7336830145541e30e97108e103d794be559bea610f09740a1941371334b6aef0",
+        "/usr/lib/libXdmcp.so.6.0.0": "812b1b8a5551862ada50da7badd503572e8b5a540082001895ead6ebd8386d30",
+        "/usr/lib/libbrotlicommon.so.1.2.0": "0a5a0d15264043c6cb99d3076501d4503bafde11eaea28f353e399b4ce6b2981",
+        "/usr/lib/libbrotlidec.so.1.2.0": "f747ed8ca1a29c53744f6e2b12dbd70d78838682a5914505b173c1ad50db4ca9",
+        "/usr/lib/libbrotlienc.so.1.2.0": "dd19bedf12100d84f6a490af2017a49c8a5dff098dd4f2d03dea501ffaf47d56",
+        "/usr/lib/libc.so.6": "071e34179e645b25f8a8c2e7108894dc665caa9f5f8c939cd579a75b6638bc3f",
+        "/usr/lib/libcrypto.so.3": "ecbe60559ed67946cf526aeba3fad8103f3a1de31ad389ca6684d201e10c63b3",
+        "/usr/lib/libdisplay-info.so.0.3.0": "4f3904f22cd1e1f729a6815d9ea129dd2c41d3091fe0e600e9084674c5e2b30b",
+        "/usr/lib/libdrm.so.2.134.0": "014655a0b8cae1448a5d32ebb0761883b4509daf2085518bb7605dff775575da",
+        "/usr/lib/libdrm_amdgpu.so.1.134.0": "7949f0c075b123e810b4354fb28def707f280a1deb9ba2e04c94c5f90ee5726a",
+        "/usr/lib/libedit.so.0.0.78": "f41b34de241bf07bf956b791b9a9c5cd3b6ae5bb30f9e5767cd68ac3631888ea",
+        "/usr/lib/libelf-0.196.so": "13d3e3cb54d6120d87a0569ac67be05c029f8cd2e4bf44e75936b2721c8e08af",
+        "/usr/lib/libexpat.so.1.12.5": "1da51868f59e7ce5e2fd79315b3e2fc426ff1ba527a485bae4464d44239caeeb",
+        "/usr/lib/libffi.so.8.5.0": "ea7da6217398e85e0a83ae367e70cde716ec626c782d29221907b893fc43866e",
+        "/usr/lib/libgcc_s.so.1": "571745fb27883c763315fab54a536906064c1df6804d1a7884713dac259da68d",
+        "/usr/lib/libgomp.so.1.0.0": "843e95ac19bdc9c450e8b090204cf01aafaf680ab9ca64bf1ec5e3674c3a776f",
+        "/usr/lib/libicudata.so.78.3": "d72003b08760852bee4c80cff32c1e6248ae6b1fda5bd313482733a4d5e70dc9",
+        "/usr/lib/libicuuc.so.78.3": "a02f9e1ab2419219f990b416f981f20f779f5c6f301424c5d1948e52001c555c",
+        "/usr/lib/libm.so.6": "58b6b82e39d59d7810d402ba4ec34359fde058204fdb7cd5a269fda256a35421",
+        "/usr/lib/libncursesw.so.6.6": "f58d9552e04abc427fb21bd7118eee77e3f216b64b2aaafd768d74bf26507153",
+        "/usr/lib/libssl.so.3": "0dbcac8fcce57c08d2a1999a5a5cc0667e9685972c871a86a7d08bc4175fa2f9",
+        "/usr/lib/libstdc++.so.6.0.36": "412e0fc561a10581aaff2d101206939a31fa12c696590d8d4a5ec3655953ffe0",
+        "/usr/lib/libudev.so.1.7.15": "5e41a27ff6a9c8016b16f4b69b41a1d63d51973d0df2c6a895ab51ba006b880c",
+        "/usr/lib/libvulkan.so.1.4.363": "c3603ee46488ae6b581f3eeb65631a4c68c89c887d46a0b4ba0e7bff01307d88",
+        "/usr/lib/libvulkan_lvp.so": "6d75e9ab9e2fc660a8c9787a350c9ccf023b1e06a59c57a39ff89b091258fb21",
+        "/usr/lib/libvulkan_radeon.so": "beb888991d47606a01b0738dece66d28f2b1c01a7f48403c6505e4d55dbcd73b",
+        "/usr/lib/libwayland-client.so.0.26.0": "7628f449109d3d8502d740fd3be71cf11b1b901e245fc8040728155ab55686da",
+        "/usr/lib/libxcb-dri3.so.0.1.0": "17e24afc588a241e225dfdc08eadd137494594510e81bcfc189972a131595497",
+        "/usr/lib/libxcb-keysyms.so.1.0.0": "344a0b73c03b813eea07f693282eff707e5fdaec298dbd4ab2e17b1f443eb0a3",
+        "/usr/lib/libxcb-present.so.0.0.0": "6efdb442b4e9c01c768041f2a322a317c70e8f0997127ce0b4f9d11af90663cb",
+        "/usr/lib/libxcb-randr.so.0.1.0": "78bd310cf74a43b283fee545ddfada99625b3fff5e4951a790f25b465969f1f9",
+        "/usr/lib/libxcb-shm.so.0.0.0": "e5582bbcdac51b9cb857ca42945ad334b65e4506300548ef4de0670cc12c44e1",
+        "/usr/lib/libxcb-sync.so.1.0.0": "7e0b5e45b31f033a30335a66309c62e805e6570c063a9d256a13c48ace96f784",
+        "/usr/lib/libxcb-xfixes.so.0.0.0": "0e113e4a08a935bd68b0b0a3e16f1cd5908184ec3c72daeacdfa490032ba2578",
+        "/usr/lib/libxcb.so.1.1.0": "a28eaad3641660452c0dd421d9d4fe9ab0564db5e7e4705e61cd791681b0e7c7",
+        "/usr/lib/libxml2.so.16.1.4": "d5e78d2e770a0b0960f720682c447811b8643057d5c36a3495c82b000c2e65b9",
+        "/usr/lib/libxshmfence.so.1.0.0": "80249b1bbef0aef67ce970759be8b5f334fbfc4c9b52a91d9303664755b001b7",
+        "/usr/lib/libz.so.1.3.1.zlib-ng": "63e814634983bfa53890b48cb56760ca38840fbcf91f66a51222eef85eaa08b7",
+        "/usr/lib/libzstd.so.1.5.7": "f18105ff5aefdd6177cb99fd016f4822a676adf23706d4ddbdce632ed40882ca"
+      },
+      "init_lines": [
+        "0.02.278.819 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.02.278.825 I load_tensors:   CPU_Mapped model buffer size =  9049.31 MiB",
+        "0.02.278.826 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.05.218.687 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.05.218.770 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.05.220.167 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.05.242.398 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.05.242.400 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.05.242.467 I replay: 244 prompt tokens, 128 decode tokens, 3 repetitions, step=512"
+      ],
+      "metrics": {
+        "prefill": {
+          "tokens_s": 167.52201301041865,
+          "elapsed_ms": 4369.575,
+          "calls": 3,
+          "call_p50_ms": 1454.734,
+          "call_p95_ms": 1472.3101000000001
+        },
+        "decode": {
+          "tokens_s": 28.33156310250684,
+          "elapsed_ms": 13553.788,
+          "calls": 384,
+          "call_p50_ms": 34.3905,
+          "call_p95_ms": 41.341
+        }
+      },
+      "clocks": "OD_SCLK:\n0: 500Mhz\n1: 2600Mhz\nOD_MCLK:\n0: 97Mhz\n1: 1075MHz\nOD_RANGE:\nSCLK:     500Mhz       2600Mhz\nMCLK:     674Mhz       1075Mhz\nOD_VDDGFX_OFFSET:\n-100mV",
+      "power_cap": {
+        "power1_cap": "186000000"
+      }
+    },
+    "mmap/performance-05-result.json": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/mmap/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "started_utc": "2026-10-06T23:34:27.386127+00:00",
+      "source_commit": "9375d46b7f7e1099bdee4d92cc6fc091057a0194",
+      "label": "COLLECTOR",
+      "profile": false,
+      "reps": 3,
+      "returncode": 0,
+      "stop_reason": null,
+      "loaded_libraries": {
+        "/etc/ld.so.cache": "8940454d5fb1c3b0bc60a924f5c959c1b0889abcc20f7922285c8d865f1a7b44",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-base.so.0.25.1": "1171dd185e1183b20430b7670717d69e505e1eeeadc71a3eab725f9fa9d53f05",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-cpu.so.0.25.1": "da5b1f97b4ea5c811904fe83c091265d2eca25139158303c4e09130fa0974709",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-vulkan.so.0.25.1": "7831061db2c1ed53abf16cd43f2dd04b4ec9b2f7a711c2d6ac25bc9df6ee963d",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml.so.0.25.1": "d9934432b991dd9fd1f168a4901b26b8f28748468501c61f24b2bc1bd8b21d15",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama-common.so.0.5.0": "25ea3d08cfc8b513e01fbf0e5e7f36df634271d8e2f031710d2fb60c810f4143",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama.so.0.5.0": "725dfdf2abc3757c6a53e5c9574dd3717dda16a68ed992a2ee1cc64628c5fabc",
+        "/usr/lib/ld-linux-x86-64.so.2": "2a950d46575efa0210d22440988f5a6b4507ebddc6c86d9a42e6e7ef6f01463e",
+        "/usr/lib/libLLVM.so.23.1": "941dec5f3fd22e305eb8aafda3aacf1420b8ffe2f08c33d7ee2d3f284c47fe59",
+        "/usr/lib/libSPIRV-Tools.so": "002378c4ce5e5eafd271653d788fc60332cbffd2b7163e6e9b0fe6f09e0eced6",
+        "/usr/lib/libVkLayer_MESA_device_select.so": "af1067a33878036cf548a9ee6e2d0ea4ed3c65fdbd4e457ae780f4531c3f3f25",
+        "/usr/lib/libX11-xcb.so.1.0.0": "15d9b28c6c3afe823335f2ca994b0fb3789d98c77b411bb51e0f3b225f41b931",
+        "/usr/lib/libXau.so.6.0.0": "7336830145541e30e97108e103d794be559bea610f09740a1941371334b6aef0",
+        "/usr/lib/libXdmcp.so.6.0.0": "812b1b8a5551862ada50da7badd503572e8b5a540082001895ead6ebd8386d30",
+        "/usr/lib/libbrotlicommon.so.1.2.0": "0a5a0d15264043c6cb99d3076501d4503bafde11eaea28f353e399b4ce6b2981",
+        "/usr/lib/libbrotlidec.so.1.2.0": "f747ed8ca1a29c53744f6e2b12dbd70d78838682a5914505b173c1ad50db4ca9",
+        "/usr/lib/libbrotlienc.so.1.2.0": "dd19bedf12100d84f6a490af2017a49c8a5dff098dd4f2d03dea501ffaf47d56",
+        "/usr/lib/libc.so.6": "071e34179e645b25f8a8c2e7108894dc665caa9f5f8c939cd579a75b6638bc3f",
+        "/usr/lib/libcrypto.so.3": "ecbe60559ed67946cf526aeba3fad8103f3a1de31ad389ca6684d201e10c63b3",
+        "/usr/lib/libdisplay-info.so.0.3.0": "4f3904f22cd1e1f729a6815d9ea129dd2c41d3091fe0e600e9084674c5e2b30b",
+        "/usr/lib/libdrm.so.2.134.0": "014655a0b8cae1448a5d32ebb0761883b4509daf2085518bb7605dff775575da",
+        "/usr/lib/libdrm_amdgpu.so.1.134.0": "7949f0c075b123e810b4354fb28def707f280a1deb9ba2e04c94c5f90ee5726a",
+        "/usr/lib/libedit.so.0.0.78": "f41b34de241bf07bf956b791b9a9c5cd3b6ae5bb30f9e5767cd68ac3631888ea",
+        "/usr/lib/libelf-0.196.so": "13d3e3cb54d6120d87a0569ac67be05c029f8cd2e4bf44e75936b2721c8e08af",
+        "/usr/lib/libexpat.so.1.12.5": "1da51868f59e7ce5e2fd79315b3e2fc426ff1ba527a485bae4464d44239caeeb",
+        "/usr/lib/libffi.so.8.5.0": "ea7da6217398e85e0a83ae367e70cde716ec626c782d29221907b893fc43866e",
+        "/usr/lib/libgcc_s.so.1": "571745fb27883c763315fab54a536906064c1df6804d1a7884713dac259da68d",
+        "/usr/lib/libgomp.so.1.0.0": "843e95ac19bdc9c450e8b090204cf01aafaf680ab9ca64bf1ec5e3674c3a776f",
+        "/usr/lib/libicudata.so.78.3": "d72003b08760852bee4c80cff32c1e6248ae6b1fda5bd313482733a4d5e70dc9",
+        "/usr/lib/libicuuc.so.78.3": "a02f9e1ab2419219f990b416f981f20f779f5c6f301424c5d1948e52001c555c",
+        "/usr/lib/libm.so.6": "58b6b82e39d59d7810d402ba4ec34359fde058204fdb7cd5a269fda256a35421",
+        "/usr/lib/libncursesw.so.6.6": "f58d9552e04abc427fb21bd7118eee77e3f216b64b2aaafd768d74bf26507153",
+        "/usr/lib/libssl.so.3": "0dbcac8fcce57c08d2a1999a5a5cc0667e9685972c871a86a7d08bc4175fa2f9",
+        "/usr/lib/libstdc++.so.6.0.36": "412e0fc561a10581aaff2d101206939a31fa12c696590d8d4a5ec3655953ffe0",
+        "/usr/lib/libudev.so.1.7.15": "5e41a27ff6a9c8016b16f4b69b41a1d63d51973d0df2c6a895ab51ba006b880c",
+        "/usr/lib/libvulkan.so.1.4.363": "c3603ee46488ae6b581f3eeb65631a4c68c89c887d46a0b4ba0e7bff01307d88",
+        "/usr/lib/libvulkan_lvp.so": "6d75e9ab9e2fc660a8c9787a350c9ccf023b1e06a59c57a39ff89b091258fb21",
+        "/usr/lib/libvulkan_radeon.so": "beb888991d47606a01b0738dece66d28f2b1c01a7f48403c6505e4d55dbcd73b",
+        "/usr/lib/libwayland-client.so.0.26.0": "7628f449109d3d8502d740fd3be71cf11b1b901e245fc8040728155ab55686da",
+        "/usr/lib/libxcb-dri3.so.0.1.0": "17e24afc588a241e225dfdc08eadd137494594510e81bcfc189972a131595497",
+        "/usr/lib/libxcb-keysyms.so.1.0.0": "344a0b73c03b813eea07f693282eff707e5fdaec298dbd4ab2e17b1f443eb0a3",
+        "/usr/lib/libxcb-present.so.0.0.0": "6efdb442b4e9c01c768041f2a322a317c70e8f0997127ce0b4f9d11af90663cb",
+        "/usr/lib/libxcb-randr.so.0.1.0": "78bd310cf74a43b283fee545ddfada99625b3fff5e4951a790f25b465969f1f9",
+        "/usr/lib/libxcb-shm.so.0.0.0": "e5582bbcdac51b9cb857ca42945ad334b65e4506300548ef4de0670cc12c44e1",
+        "/usr/lib/libxcb-sync.so.1.0.0": "7e0b5e45b31f033a30335a66309c62e805e6570c063a9d256a13c48ace96f784",
+        "/usr/lib/libxcb-xfixes.so.0.0.0": "0e113e4a08a935bd68b0b0a3e16f1cd5908184ec3c72daeacdfa490032ba2578",
+        "/usr/lib/libxcb.so.1.1.0": "a28eaad3641660452c0dd421d9d4fe9ab0564db5e7e4705e61cd791681b0e7c7",
+        "/usr/lib/libxml2.so.16.1.4": "d5e78d2e770a0b0960f720682c447811b8643057d5c36a3495c82b000c2e65b9",
+        "/usr/lib/libxshmfence.so.1.0.0": "80249b1bbef0aef67ce970759be8b5f334fbfc4c9b52a91d9303664755b001b7",
+        "/usr/lib/libz.so.1.3.1.zlib-ng": "63e814634983bfa53890b48cb56760ca38840fbcf91f66a51222eef85eaa08b7",
+        "/usr/lib/libzstd.so.1.5.7": "f18105ff5aefdd6177cb99fd016f4822a676adf23706d4ddbdce632ed40882ca"
+      },
+      "init_lines": [
+        "0.01.021.147 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.01.021.152 I load_tensors:   CPU_Mapped model buffer size =  9049.31 MiB",
+        "0.01.021.153 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.03.963.938 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.03.964.020 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.03.965.826 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.03.988.470 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.03.988.473 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.03.988.539 I replay: 244 prompt tokens, 128 decode tokens, 3 repetitions, step=512"
+      ],
+      "metrics": {
+        "prefill": {
+          "tokens_s": 169.1749393674244,
+          "elapsed_ms": 4326.882,
+          "calls": 3,
+          "call_p50_ms": 1440.944,
+          "call_p95_ms": 1449.3851000000002
+        },
+        "decode": {
+          "tokens_s": 29.186324048611343,
+          "elapsed_ms": 13156.847,
+          "calls": 384,
+          "call_p50_ms": 33.108,
+          "call_p95_ms": 40.726549999999996
+        }
+      },
+      "clocks": "OD_SCLK:\n0: 500Mhz\n1: 2600Mhz\nOD_MCLK:\n0: 97Mhz\n1: 1075MHz\nOD_RANGE:\nSCLK:     500Mhz       2600Mhz\nMCLK:     674Mhz       1075Mhz\nOD_VDDGFX_OFFSET:\n-100mV",
+      "power_cap": {
+        "power1_cap": "186000000"
+      }
+    },
+    "mmap/performance-08-result.json": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/mmap/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "started_utc": "2026-10-06T23:36:02.534615+00:00",
+      "source_commit": "9375d46b7f7e1099bdee4d92cc6fc091057a0194",
+      "label": "COLLECTOR",
+      "profile": false,
+      "reps": 3,
+      "returncode": 0,
+      "stop_reason": null,
+      "loaded_libraries": {
+        "/etc/ld.so.cache": "8940454d5fb1c3b0bc60a924f5c959c1b0889abcc20f7922285c8d865f1a7b44",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-base.so.0.25.1": "1171dd185e1183b20430b7670717d69e505e1eeeadc71a3eab725f9fa9d53f05",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-cpu.so.0.25.1": "da5b1f97b4ea5c811904fe83c091265d2eca25139158303c4e09130fa0974709",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-vulkan.so.0.25.1": "7831061db2c1ed53abf16cd43f2dd04b4ec9b2f7a711c2d6ac25bc9df6ee963d",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml.so.0.25.1": "d9934432b991dd9fd1f168a4901b26b8f28748468501c61f24b2bc1bd8b21d15",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama-common.so.0.5.0": "25ea3d08cfc8b513e01fbf0e5e7f36df634271d8e2f031710d2fb60c810f4143",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama.so.0.5.0": "725dfdf2abc3757c6a53e5c9574dd3717dda16a68ed992a2ee1cc64628c5fabc",
+        "/usr/lib/ld-linux-x86-64.so.2": "2a950d46575efa0210d22440988f5a6b4507ebddc6c86d9a42e6e7ef6f01463e",
+        "/usr/lib/libLLVM.so.23.1": "941dec5f3fd22e305eb8aafda3aacf1420b8ffe2f08c33d7ee2d3f284c47fe59",
+        "/usr/lib/libSPIRV-Tools.so": "002378c4ce5e5eafd271653d788fc60332cbffd2b7163e6e9b0fe6f09e0eced6",
+        "/usr/lib/libVkLayer_MESA_device_select.so": "af1067a33878036cf548a9ee6e2d0ea4ed3c65fdbd4e457ae780f4531c3f3f25",
+        "/usr/lib/libX11-xcb.so.1.0.0": "15d9b28c6c3afe823335f2ca994b0fb3789d98c77b411bb51e0f3b225f41b931",
+        "/usr/lib/libXau.so.6.0.0": "7336830145541e30e97108e103d794be559bea610f09740a1941371334b6aef0",
+        "/usr/lib/libXdmcp.so.6.0.0": "812b1b8a5551862ada50da7badd503572e8b5a540082001895ead6ebd8386d30",
+        "/usr/lib/libbrotlicommon.so.1.2.0": "0a5a0d15264043c6cb99d3076501d4503bafde11eaea28f353e399b4ce6b2981",
+        "/usr/lib/libbrotlidec.so.1.2.0": "f747ed8ca1a29c53744f6e2b12dbd70d78838682a5914505b173c1ad50db4ca9",
+        "/usr/lib/libbrotlienc.so.1.2.0": "dd19bedf12100d84f6a490af2017a49c8a5dff098dd4f2d03dea501ffaf47d56",
+        "/usr/lib/libc.so.6": "071e34179e645b25f8a8c2e7108894dc665caa9f5f8c939cd579a75b6638bc3f",
+        "/usr/lib/libcrypto.so.3": "ecbe60559ed67946cf526aeba3fad8103f3a1de31ad389ca6684d201e10c63b3",
+        "/usr/lib/libdisplay-info.so.0.3.0": "4f3904f22cd1e1f729a6815d9ea129dd2c41d3091fe0e600e9084674c5e2b30b",
+        "/usr/lib/libdrm.so.2.134.0": "014655a0b8cae1448a5d32ebb0761883b4509daf2085518bb7605dff775575da",
+        "/usr/lib/libdrm_amdgpu.so.1.134.0": "7949f0c075b123e810b4354fb28def707f280a1deb9ba2e04c94c5f90ee5726a",
+        "/usr/lib/libedit.so.0.0.78": "f41b34de241bf07bf956b791b9a9c5cd3b6ae5bb30f9e5767cd68ac3631888ea",
+        "/usr/lib/libelf-0.196.so": "13d3e3cb54d6120d87a0569ac67be05c029f8cd2e4bf44e75936b2721c8e08af",
+        "/usr/lib/libexpat.so.1.12.5": "1da51868f59e7ce5e2fd79315b3e2fc426ff1ba527a485bae4464d44239caeeb",
+        "/usr/lib/libffi.so.8.5.0": "ea7da6217398e85e0a83ae367e70cde716ec626c782d29221907b893fc43866e",
+        "/usr/lib/libgcc_s.so.1": "571745fb27883c763315fab54a536906064c1df6804d1a7884713dac259da68d",
+        "/usr/lib/libgomp.so.1.0.0": "843e95ac19bdc9c450e8b090204cf01aafaf680ab9ca64bf1ec5e3674c3a776f",
+        "/usr/lib/libicudata.so.78.3": "d72003b08760852bee4c80cff32c1e6248ae6b1fda5bd313482733a4d5e70dc9",
+        "/usr/lib/libicuuc.so.78.3": "a02f9e1ab2419219f990b416f981f20f779f5c6f301424c5d1948e52001c555c",
+        "/usr/lib/libm.so.6": "58b6b82e39d59d7810d402ba4ec34359fde058204fdb7cd5a269fda256a35421",
+        "/usr/lib/libncursesw.so.6.6": "f58d9552e04abc427fb21bd7118eee77e3f216b64b2aaafd768d74bf26507153",
+        "/usr/lib/libssl.so.3": "0dbcac8fcce57c08d2a1999a5a5cc0667e9685972c871a86a7d08bc4175fa2f9",
+        "/usr/lib/libstdc++.so.6.0.36": "412e0fc561a10581aaff2d101206939a31fa12c696590d8d4a5ec3655953ffe0",
+        "/usr/lib/libudev.so.1.7.15": "5e41a27ff6a9c8016b16f4b69b41a1d63d51973d0df2c6a895ab51ba006b880c",
+        "/usr/lib/libvulkan.so.1.4.363": "c3603ee46488ae6b581f3eeb65631a4c68c89c887d46a0b4ba0e7bff01307d88",
+        "/usr/lib/libvulkan_lvp.so": "6d75e9ab9e2fc660a8c9787a350c9ccf023b1e06a59c57a39ff89b091258fb21",
+        "/usr/lib/libvulkan_radeon.so": "beb888991d47606a01b0738dece66d28f2b1c01a7f48403c6505e4d55dbcd73b",
+        "/usr/lib/libwayland-client.so.0.26.0": "7628f449109d3d8502d740fd3be71cf11b1b901e245fc8040728155ab55686da",
+        "/usr/lib/libxcb-dri3.so.0.1.0": "17e24afc588a241e225dfdc08eadd137494594510e81bcfc189972a131595497",
+        "/usr/lib/libxcb-keysyms.so.1.0.0": "344a0b73c03b813eea07f693282eff707e5fdaec298dbd4ab2e17b1f443eb0a3",
+        "/usr/lib/libxcb-present.so.0.0.0": "6efdb442b4e9c01c768041f2a322a317c70e8f0997127ce0b4f9d11af90663cb",
+        "/usr/lib/libxcb-randr.so.0.1.0": "78bd310cf74a43b283fee545ddfada99625b3fff5e4951a790f25b465969f1f9",
+        "/usr/lib/libxcb-shm.so.0.0.0": "e5582bbcdac51b9cb857ca42945ad334b65e4506300548ef4de0670cc12c44e1",
+        "/usr/lib/libxcb-sync.so.1.0.0": "7e0b5e45b31f033a30335a66309c62e805e6570c063a9d256a13c48ace96f784",
+        "/usr/lib/libxcb-xfixes.so.0.0.0": "0e113e4a08a935bd68b0b0a3e16f1cd5908184ec3c72daeacdfa490032ba2578",
+        "/usr/lib/libxcb.so.1.1.0": "a28eaad3641660452c0dd421d9d4fe9ab0564db5e7e4705e61cd791681b0e7c7",
+        "/usr/lib/libxml2.so.16.1.4": "d5e78d2e770a0b0960f720682c447811b8643057d5c36a3495c82b000c2e65b9",
+        "/usr/lib/libxshmfence.so.1.0.0": "80249b1bbef0aef67ce970759be8b5f334fbfc4c9b52a91d9303664755b001b7",
+        "/usr/lib/libz.so.1.3.1.zlib-ng": "63e814634983bfa53890b48cb56760ca38840fbcf91f66a51222eef85eaa08b7",
+        "/usr/lib/libzstd.so.1.5.7": "f18105ff5aefdd6177cb99fd016f4822a676adf23706d4ddbdce632ed40882ca"
+      },
+      "init_lines": [
+        "0.02.295.144 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.02.295.149 I load_tensors:   CPU_Mapped model buffer size =  9049.31 MiB",
+        "0.02.295.150 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.05.251.400 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.05.251.488 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.05.252.735 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.05.275.750 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.05.275.753 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.05.275.842 I replay: 244 prompt tokens, 128 decode tokens, 3 repetitions, step=512"
+      ],
+      "metrics": {
+        "prefill": {
+          "tokens_s": 167.18260314275886,
+          "elapsed_ms": 4378.446,
+          "calls": 3,
+          "call_p50_ms": 1464.458,
+          "call_p95_ms": 1479.2198
+        },
+        "decode": {
+          "tokens_s": 29.175679913007848,
+          "elapsed_ms": 13161.647,
+          "calls": 384,
+          "call_p50_ms": 33.506,
+          "call_p95_ms": 40.35095
+        }
+      },
+      "clocks": "OD_SCLK:\n0: 500Mhz\n1: 2600Mhz\nOD_MCLK:\n0: 97Mhz\n1: 1075MHz\nOD_RANGE:\nSCLK:     500Mhz       2600Mhz\nMCLK:     674Mhz       1075Mhz\nOD_VDDGFX_OFFSET:\n-100mV",
+      "power_cap": {
+        "power1_cap": "186000000"
+      }
+    },
+    "none/correctness-result.json": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "none"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/none/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/none/correctness-logits.bin"
+      },
+      "started_utc": "2026-10-06T23:31:59.744527+00:00",
+      "source_commit": "9375d46b7f7e1099bdee4d92cc6fc091057a0194",
+      "label": "COLLECTOR",
+      "profile": false,
+      "reps": 1,
+      "returncode": 0,
+      "stop_reason": null,
+      "loaded_libraries": {
+        "/etc/ld.so.cache": "8940454d5fb1c3b0bc60a924f5c959c1b0889abcc20f7922285c8d865f1a7b44",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-base.so.0.25.1": "1171dd185e1183b20430b7670717d69e505e1eeeadc71a3eab725f9fa9d53f05",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-cpu.so.0.25.1": "da5b1f97b4ea5c811904fe83c091265d2eca25139158303c4e09130fa0974709",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-vulkan.so.0.25.1": "7831061db2c1ed53abf16cd43f2dd04b4ec9b2f7a711c2d6ac25bc9df6ee963d",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml.so.0.25.1": "d9934432b991dd9fd1f168a4901b26b8f28748468501c61f24b2bc1bd8b21d15",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama-common.so.0.5.0": "25ea3d08cfc8b513e01fbf0e5e7f36df634271d8e2f031710d2fb60c810f4143",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama.so.0.5.0": "725dfdf2abc3757c6a53e5c9574dd3717dda16a68ed992a2ee1cc64628c5fabc",
+        "/usr/lib/ld-linux-x86-64.so.2": "2a950d46575efa0210d22440988f5a6b4507ebddc6c86d9a42e6e7ef6f01463e",
+        "/usr/lib/libLLVM.so.23.1": "941dec5f3fd22e305eb8aafda3aacf1420b8ffe2f08c33d7ee2d3f284c47fe59",
+        "/usr/lib/libSPIRV-Tools.so": "002378c4ce5e5eafd271653d788fc60332cbffd2b7163e6e9b0fe6f09e0eced6",
+        "/usr/lib/libVkLayer_MESA_device_select.so": "af1067a33878036cf548a9ee6e2d0ea4ed3c65fdbd4e457ae780f4531c3f3f25",
+        "/usr/lib/libX11-xcb.so.1.0.0": "15d9b28c6c3afe823335f2ca994b0fb3789d98c77b411bb51e0f3b225f41b931",
+        "/usr/lib/libXau.so.6.0.0": "7336830145541e30e97108e103d794be559bea610f09740a1941371334b6aef0",
+        "/usr/lib/libXdmcp.so.6.0.0": "812b1b8a5551862ada50da7badd503572e8b5a540082001895ead6ebd8386d30",
+        "/usr/lib/libbrotlicommon.so.1.2.0": "0a5a0d15264043c6cb99d3076501d4503bafde11eaea28f353e399b4ce6b2981",
+        "/usr/lib/libbrotlidec.so.1.2.0": "f747ed8ca1a29c53744f6e2b12dbd70d78838682a5914505b173c1ad50db4ca9",
+        "/usr/lib/libbrotlienc.so.1.2.0": "dd19bedf12100d84f6a490af2017a49c8a5dff098dd4f2d03dea501ffaf47d56",
+        "/usr/lib/libc.so.6": "071e34179e645b25f8a8c2e7108894dc665caa9f5f8c939cd579a75b6638bc3f",
+        "/usr/lib/libcrypto.so.3": "ecbe60559ed67946cf526aeba3fad8103f3a1de31ad389ca6684d201e10c63b3",
+        "/usr/lib/libdisplay-info.so.0.3.0": "4f3904f22cd1e1f729a6815d9ea129dd2c41d3091fe0e600e9084674c5e2b30b",
+        "/usr/lib/libdrm.so.2.134.0": "014655a0b8cae1448a5d32ebb0761883b4509daf2085518bb7605dff775575da",
+        "/usr/lib/libdrm_amdgpu.so.1.134.0": "7949f0c075b123e810b4354fb28def707f280a1deb9ba2e04c94c5f90ee5726a",
+        "/usr/lib/libedit.so.0.0.78": "f41b34de241bf07bf956b791b9a9c5cd3b6ae5bb30f9e5767cd68ac3631888ea",
+        "/usr/lib/libelf-0.196.so": "13d3e3cb54d6120d87a0569ac67be05c029f8cd2e4bf44e75936b2721c8e08af",
+        "/usr/lib/libexpat.so.1.12.5": "1da51868f59e7ce5e2fd79315b3e2fc426ff1ba527a485bae4464d44239caeeb",
+        "/usr/lib/libffi.so.8.5.0": "ea7da6217398e85e0a83ae367e70cde716ec626c782d29221907b893fc43866e",
+        "/usr/lib/libgcc_s.so.1": "571745fb27883c763315fab54a536906064c1df6804d1a7884713dac259da68d",
+        "/usr/lib/libgomp.so.1.0.0": "843e95ac19bdc9c450e8b090204cf01aafaf680ab9ca64bf1ec5e3674c3a776f",
+        "/usr/lib/libicudata.so.78.3": "d72003b08760852bee4c80cff32c1e6248ae6b1fda5bd313482733a4d5e70dc9",
+        "/usr/lib/libicuuc.so.78.3": "a02f9e1ab2419219f990b416f981f20f779f5c6f301424c5d1948e52001c555c",
+        "/usr/lib/libm.so.6": "58b6b82e39d59d7810d402ba4ec34359fde058204fdb7cd5a269fda256a35421",
+        "/usr/lib/libncursesw.so.6.6": "f58d9552e04abc427fb21bd7118eee77e3f216b64b2aaafd768d74bf26507153",
+        "/usr/lib/libssl.so.3": "0dbcac8fcce57c08d2a1999a5a5cc0667e9685972c871a86a7d08bc4175fa2f9",
+        "/usr/lib/libstdc++.so.6.0.36": "412e0fc561a10581aaff2d101206939a31fa12c696590d8d4a5ec3655953ffe0",
+        "/usr/lib/libudev.so.1.7.15": "5e41a27ff6a9c8016b16f4b69b41a1d63d51973d0df2c6a895ab51ba006b880c",
+        "/usr/lib/libvulkan.so.1.4.363": "c3603ee46488ae6b581f3eeb65631a4c68c89c887d46a0b4ba0e7bff01307d88",
+        "/usr/lib/libvulkan_lvp.so": "6d75e9ab9e2fc660a8c9787a350c9ccf023b1e06a59c57a39ff89b091258fb21",
+        "/usr/lib/libvulkan_radeon.so": "beb888991d47606a01b0738dece66d28f2b1c01a7f48403c6505e4d55dbcd73b",
+        "/usr/lib/libwayland-client.so.0.26.0": "7628f449109d3d8502d740fd3be71cf11b1b901e245fc8040728155ab55686da",
+        "/usr/lib/libxcb-dri3.so.0.1.0": "17e24afc588a241e225dfdc08eadd137494594510e81bcfc189972a131595497",
+        "/usr/lib/libxcb-keysyms.so.1.0.0": "344a0b73c03b813eea07f693282eff707e5fdaec298dbd4ab2e17b1f443eb0a3",
+        "/usr/lib/libxcb-present.so.0.0.0": "6efdb442b4e9c01c768041f2a322a317c70e8f0997127ce0b4f9d11af90663cb",
+        "/usr/lib/libxcb-randr.so.0.1.0": "78bd310cf74a43b283fee545ddfada99625b3fff5e4951a790f25b465969f1f9",
+        "/usr/lib/libxcb-shm.so.0.0.0": "e5582bbcdac51b9cb857ca42945ad334b65e4506300548ef4de0670cc12c44e1",
+        "/usr/lib/libxcb-sync.so.1.0.0": "7e0b5e45b31f033a30335a66309c62e805e6570c063a9d256a13c48ace96f784",
+        "/usr/lib/libxcb-xfixes.so.0.0.0": "0e113e4a08a935bd68b0b0a3e16f1cd5908184ec3c72daeacdfa490032ba2578",
+        "/usr/lib/libxcb.so.1.1.0": "a28eaad3641660452c0dd421d9d4fe9ab0564db5e7e4705e61cd791681b0e7c7",
+        "/usr/lib/libxml2.so.16.1.4": "d5e78d2e770a0b0960f720682c447811b8643057d5c36a3495c82b000c2e65b9",
+        "/usr/lib/libxshmfence.so.1.0.0": "80249b1bbef0aef67ce970759be8b5f334fbfc4c9b52a91d9303664755b001b7",
+        "/usr/lib/libz.so.1.3.1.zlib-ng": "63e814634983bfa53890b48cb56760ca38840fbcf91f66a51222eef85eaa08b7",
+        "/usr/lib/libzstd.so.1.5.7": "f18105ff5aefdd6177cb99fd016f4822a676adf23706d4ddbdce632ed40882ca"
+      },
+      "init_lines": [
+        "0.00.743.465 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.00.743.472 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.00.743.472 I load_tensors:  Vulkan_Host model buffer size =  8642.81 MiB",
+        "0.10.726.655 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.10.726.742 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.10.731.005 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.10.753.282 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.10.753.284 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.10.753.450 I replay: 244 prompt tokens, 128 decode tokens, 1 repetitions, step=512"
+      ],
+      "metrics": {
+        "prefill": {
+          "tokens_s": 226.33899459105461,
+          "elapsed_ms": 1078.029,
+          "calls": 1,
+          "call_p50_ms": 1078.029,
+          "call_p95_ms": 1078.029
+        },
+        "decode": {
+          "tokens_s": 28.50736971185508,
+          "elapsed_ms": 4490.067,
+          "calls": 128,
+          "call_p50_ms": 34.703,
+          "call_p95_ms": 41.938550000000006
+        }
+      },
+      "raw": {
+        "bytes": 128133120,
+        "sha256": "b7bb28a86e623daf75f436f9bddb786cee6c43d8a28d1b85333f3f25d9cbb662",
+        "all_finite": true,
+        "every_call_nonzero": true,
+        "logits_vectors": 129,
+        "n_vocab": 248320
+      },
+      "clocks": "OD_SCLK:\n0: 500Mhz\n1: 2600Mhz\nOD_MCLK:\n0: 97Mhz\n1: 1075MHz\nOD_RANGE:\nSCLK:     500Mhz       2600Mhz\nMCLK:     674Mhz       1075Mhz\nOD_VDDGFX_OFFSET:\n-100mV",
+      "power_cap": {
+        "power1_cap": "186000000"
+      }
+    },
+    "none/host-diagnostic-result.json": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "none"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/none/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "GGML_SCHED_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/none/host-diagnostic-scheduler.csv",
+        "MOE_REPLAY_PROFILE": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/none/host-diagnostic-phases.csv"
+      },
+      "started_utc": "2026-10-06T23:36:32.481047+00:00",
+      "source_commit": "9375d46b7f7e1099bdee4d92cc6fc091057a0194",
+      "label": "COLLECTOR",
+      "profile": true,
+      "reps": 1,
+      "returncode": 0,
+      "stop_reason": null,
+      "loaded_libraries": {
+        "/etc/ld.so.cache": "8940454d5fb1c3b0bc60a924f5c959c1b0889abcc20f7922285c8d865f1a7b44",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-base.so.0.25.1": "1171dd185e1183b20430b7670717d69e505e1eeeadc71a3eab725f9fa9d53f05",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-cpu.so.0.25.1": "da5b1f97b4ea5c811904fe83c091265d2eca25139158303c4e09130fa0974709",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-vulkan.so.0.25.1": "7831061db2c1ed53abf16cd43f2dd04b4ec9b2f7a711c2d6ac25bc9df6ee963d",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml.so.0.25.1": "d9934432b991dd9fd1f168a4901b26b8f28748468501c61f24b2bc1bd8b21d15",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama-common.so.0.5.0": "25ea3d08cfc8b513e01fbf0e5e7f36df634271d8e2f031710d2fb60c810f4143",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama.so.0.5.0": "725dfdf2abc3757c6a53e5c9574dd3717dda16a68ed992a2ee1cc64628c5fabc",
+        "/usr/lib/ld-linux-x86-64.so.2": "2a950d46575efa0210d22440988f5a6b4507ebddc6c86d9a42e6e7ef6f01463e",
+        "/usr/lib/libLLVM.so.23.1": "941dec5f3fd22e305eb8aafda3aacf1420b8ffe2f08c33d7ee2d3f284c47fe59",
+        "/usr/lib/libSPIRV-Tools.so": "002378c4ce5e5eafd271653d788fc60332cbffd2b7163e6e9b0fe6f09e0eced6",
+        "/usr/lib/libVkLayer_MESA_device_select.so": "af1067a33878036cf548a9ee6e2d0ea4ed3c65fdbd4e457ae780f4531c3f3f25",
+        "/usr/lib/libX11-xcb.so.1.0.0": "15d9b28c6c3afe823335f2ca994b0fb3789d98c77b411bb51e0f3b225f41b931",
+        "/usr/lib/libXau.so.6.0.0": "7336830145541e30e97108e103d794be559bea610f09740a1941371334b6aef0",
+        "/usr/lib/libXdmcp.so.6.0.0": "812b1b8a5551862ada50da7badd503572e8b5a540082001895ead6ebd8386d30",
+        "/usr/lib/libbrotlicommon.so.1.2.0": "0a5a0d15264043c6cb99d3076501d4503bafde11eaea28f353e399b4ce6b2981",
+        "/usr/lib/libbrotlidec.so.1.2.0": "f747ed8ca1a29c53744f6e2b12dbd70d78838682a5914505b173c1ad50db4ca9",
+        "/usr/lib/libbrotlienc.so.1.2.0": "dd19bedf12100d84f6a490af2017a49c8a5dff098dd4f2d03dea501ffaf47d56",
+        "/usr/lib/libc.so.6": "071e34179e645b25f8a8c2e7108894dc665caa9f5f8c939cd579a75b6638bc3f",
+        "/usr/lib/libcrypto.so.3": "ecbe60559ed67946cf526aeba3fad8103f3a1de31ad389ca6684d201e10c63b3",
+        "/usr/lib/libdisplay-info.so.0.3.0": "4f3904f22cd1e1f729a6815d9ea129dd2c41d3091fe0e600e9084674c5e2b30b",
+        "/usr/lib/libdrm.so.2.134.0": "014655a0b8cae1448a5d32ebb0761883b4509daf2085518bb7605dff775575da",
+        "/usr/lib/libdrm_amdgpu.so.1.134.0": "7949f0c075b123e810b4354fb28def707f280a1deb9ba2e04c94c5f90ee5726a",
+        "/usr/lib/libedit.so.0.0.78": "f41b34de241bf07bf956b791b9a9c5cd3b6ae5bb30f9e5767cd68ac3631888ea",
+        "/usr/lib/libelf-0.196.so": "13d3e3cb54d6120d87a0569ac67be05c029f8cd2e4bf44e75936b2721c8e08af",
+        "/usr/lib/libexpat.so.1.12.5": "1da51868f59e7ce5e2fd79315b3e2fc426ff1ba527a485bae4464d44239caeeb",
+        "/usr/lib/libffi.so.8.5.0": "ea7da6217398e85e0a83ae367e70cde716ec626c782d29221907b893fc43866e",
+        "/usr/lib/libgcc_s.so.1": "571745fb27883c763315fab54a536906064c1df6804d1a7884713dac259da68d",
+        "/usr/lib/libgomp.so.1.0.0": "843e95ac19bdc9c450e8b090204cf01aafaf680ab9ca64bf1ec5e3674c3a776f",
+        "/usr/lib/libicudata.so.78.3": "d72003b08760852bee4c80cff32c1e6248ae6b1fda5bd313482733a4d5e70dc9",
+        "/usr/lib/libicuuc.so.78.3": "a02f9e1ab2419219f990b416f981f20f779f5c6f301424c5d1948e52001c555c",
+        "/usr/lib/libm.so.6": "58b6b82e39d59d7810d402ba4ec34359fde058204fdb7cd5a269fda256a35421",
+        "/usr/lib/libncursesw.so.6.6": "f58d9552e04abc427fb21bd7118eee77e3f216b64b2aaafd768d74bf26507153",
+        "/usr/lib/libssl.so.3": "0dbcac8fcce57c08d2a1999a5a5cc0667e9685972c871a86a7d08bc4175fa2f9",
+        "/usr/lib/libstdc++.so.6.0.36": "412e0fc561a10581aaff2d101206939a31fa12c696590d8d4a5ec3655953ffe0",
+        "/usr/lib/libudev.so.1.7.15": "5e41a27ff6a9c8016b16f4b69b41a1d63d51973d0df2c6a895ab51ba006b880c",
+        "/usr/lib/libvulkan.so.1.4.363": "c3603ee46488ae6b581f3eeb65631a4c68c89c887d46a0b4ba0e7bff01307d88",
+        "/usr/lib/libvulkan_lvp.so": "6d75e9ab9e2fc660a8c9787a350c9ccf023b1e06a59c57a39ff89b091258fb21",
+        "/usr/lib/libvulkan_radeon.so": "beb888991d47606a01b0738dece66d28f2b1c01a7f48403c6505e4d55dbcd73b",
+        "/usr/lib/libwayland-client.so.0.26.0": "7628f449109d3d8502d740fd3be71cf11b1b901e245fc8040728155ab55686da",
+        "/usr/lib/libxcb-dri3.so.0.1.0": "17e24afc588a241e225dfdc08eadd137494594510e81bcfc189972a131595497",
+        "/usr/lib/libxcb-keysyms.so.1.0.0": "344a0b73c03b813eea07f693282eff707e5fdaec298dbd4ab2e17b1f443eb0a3",
+        "/usr/lib/libxcb-present.so.0.0.0": "6efdb442b4e9c01c768041f2a322a317c70e8f0997127ce0b4f9d11af90663cb",
+        "/usr/lib/libxcb-randr.so.0.1.0": "78bd310cf74a43b283fee545ddfada99625b3fff5e4951a790f25b465969f1f9",
+        "/usr/lib/libxcb-shm.so.0.0.0": "e5582bbcdac51b9cb857ca42945ad334b65e4506300548ef4de0670cc12c44e1",
+        "/usr/lib/libxcb-sync.so.1.0.0": "7e0b5e45b31f033a30335a66309c62e805e6570c063a9d256a13c48ace96f784",
+        "/usr/lib/libxcb-xfixes.so.0.0.0": "0e113e4a08a935bd68b0b0a3e16f1cd5908184ec3c72daeacdfa490032ba2578",
+        "/usr/lib/libxcb.so.1.1.0": "a28eaad3641660452c0dd421d9d4fe9ab0564db5e7e4705e61cd791681b0e7c7",
+        "/usr/lib/libxml2.so.16.1.4": "d5e78d2e770a0b0960f720682c447811b8643057d5c36a3495c82b000c2e65b9",
+        "/usr/lib/libxshmfence.so.1.0.0": "80249b1bbef0aef67ce970759be8b5f334fbfc4c9b52a91d9303664755b001b7",
+        "/usr/lib/libz.so.1.3.1.zlib-ng": "63e814634983bfa53890b48cb56760ca38840fbcf91f66a51222eef85eaa08b7",
+        "/usr/lib/libzstd.so.1.5.7": "f18105ff5aefdd6177cb99fd016f4822a676adf23706d4ddbdce632ed40882ca"
+      },
+      "init_lines": [
+        "0.01.753.377 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.01.753.385 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.01.753.385 I load_tensors:  Vulkan_Host model buffer size =  8642.81 MiB",
+        "0.08.113.263 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.08.113.356 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.08.118.835 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.08.143.879 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.08.143.883 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.08.144.025 I replay: 244 prompt tokens, 128 decode tokens, 1 repetitions, step=512"
+      ],
+      "metrics": {
+        "prefill": {
+          "tokens_s": 213.24589086529764,
+          "elapsed_ms": 1144.219,
+          "calls": 1,
+          "call_p50_ms": 1144.219,
+          "call_p95_ms": 1144.219
+        },
+        "decode": {
+          "tokens_s": 27.278215851243363,
+          "elapsed_ms": 4692.389,
+          "calls": 128,
+          "call_p50_ms": 35.85,
+          "call_p95_ms": 42.52
+        }
+      },
+      "clocks": "OD_SCLK:\n0: 500Mhz\n1: 2600Mhz\nOD_MCLK:\n0: 97Mhz\n1: 1075MHz\nOD_RANGE:\nSCLK:     500Mhz       2600Mhz\nMCLK:     674Mhz       1075Mhz\nOD_VDDGFX_OFFSET:\n-100mV",
+      "power_cap": {
+        "power1_cap": "186000000"
+      }
+    },
+    "none/performance-02-result.json": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "none"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/none/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "started_utc": "2026-10-06T23:32:52.272800+00:00",
+      "source_commit": "9375d46b7f7e1099bdee4d92cc6fc091057a0194",
+      "label": "COLLECTOR",
+      "profile": false,
+      "reps": 3,
+      "returncode": 0,
+      "stop_reason": null,
+      "loaded_libraries": {
+        "/etc/ld.so.cache": "8940454d5fb1c3b0bc60a924f5c959c1b0889abcc20f7922285c8d865f1a7b44",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-base.so.0.25.1": "1171dd185e1183b20430b7670717d69e505e1eeeadc71a3eab725f9fa9d53f05",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-cpu.so.0.25.1": "da5b1f97b4ea5c811904fe83c091265d2eca25139158303c4e09130fa0974709",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-vulkan.so.0.25.1": "7831061db2c1ed53abf16cd43f2dd04b4ec9b2f7a711c2d6ac25bc9df6ee963d",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml.so.0.25.1": "d9934432b991dd9fd1f168a4901b26b8f28748468501c61f24b2bc1bd8b21d15",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama-common.so.0.5.0": "25ea3d08cfc8b513e01fbf0e5e7f36df634271d8e2f031710d2fb60c810f4143",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama.so.0.5.0": "725dfdf2abc3757c6a53e5c9574dd3717dda16a68ed992a2ee1cc64628c5fabc",
+        "/usr/lib/ld-linux-x86-64.so.2": "2a950d46575efa0210d22440988f5a6b4507ebddc6c86d9a42e6e7ef6f01463e",
+        "/usr/lib/libLLVM.so.23.1": "941dec5f3fd22e305eb8aafda3aacf1420b8ffe2f08c33d7ee2d3f284c47fe59",
+        "/usr/lib/libSPIRV-Tools.so": "002378c4ce5e5eafd271653d788fc60332cbffd2b7163e6e9b0fe6f09e0eced6",
+        "/usr/lib/libVkLayer_MESA_device_select.so": "af1067a33878036cf548a9ee6e2d0ea4ed3c65fdbd4e457ae780f4531c3f3f25",
+        "/usr/lib/libX11-xcb.so.1.0.0": "15d9b28c6c3afe823335f2ca994b0fb3789d98c77b411bb51e0f3b225f41b931",
+        "/usr/lib/libXau.so.6.0.0": "7336830145541e30e97108e103d794be559bea610f09740a1941371334b6aef0",
+        "/usr/lib/libXdmcp.so.6.0.0": "812b1b8a5551862ada50da7badd503572e8b5a540082001895ead6ebd8386d30",
+        "/usr/lib/libbrotlicommon.so.1.2.0": "0a5a0d15264043c6cb99d3076501d4503bafde11eaea28f353e399b4ce6b2981",
+        "/usr/lib/libbrotlidec.so.1.2.0": "f747ed8ca1a29c53744f6e2b12dbd70d78838682a5914505b173c1ad50db4ca9",
+        "/usr/lib/libbrotlienc.so.1.2.0": "dd19bedf12100d84f6a490af2017a49c8a5dff098dd4f2d03dea501ffaf47d56",
+        "/usr/lib/libc.so.6": "071e34179e645b25f8a8c2e7108894dc665caa9f5f8c939cd579a75b6638bc3f",
+        "/usr/lib/libcrypto.so.3": "ecbe60559ed67946cf526aeba3fad8103f3a1de31ad389ca6684d201e10c63b3",
+        "/usr/lib/libdisplay-info.so.0.3.0": "4f3904f22cd1e1f729a6815d9ea129dd2c41d3091fe0e600e9084674c5e2b30b",
+        "/usr/lib/libdrm.so.2.134.0": "014655a0b8cae1448a5d32ebb0761883b4509daf2085518bb7605dff775575da",
+        "/usr/lib/libdrm_amdgpu.so.1.134.0": "7949f0c075b123e810b4354fb28def707f280a1deb9ba2e04c94c5f90ee5726a",
+        "/usr/lib/libedit.so.0.0.78": "f41b34de241bf07bf956b791b9a9c5cd3b6ae5bb30f9e5767cd68ac3631888ea",
+        "/usr/lib/libelf-0.196.so": "13d3e3cb54d6120d87a0569ac67be05c029f8cd2e4bf44e75936b2721c8e08af",
+        "/usr/lib/libexpat.so.1.12.5": "1da51868f59e7ce5e2fd79315b3e2fc426ff1ba527a485bae4464d44239caeeb",
+        "/usr/lib/libffi.so.8.5.0": "ea7da6217398e85e0a83ae367e70cde716ec626c782d29221907b893fc43866e",
+        "/usr/lib/libgcc_s.so.1": "571745fb27883c763315fab54a536906064c1df6804d1a7884713dac259da68d",
+        "/usr/lib/libgomp.so.1.0.0": "843e95ac19bdc9c450e8b090204cf01aafaf680ab9ca64bf1ec5e3674c3a776f",
+        "/usr/lib/libicudata.so.78.3": "d72003b08760852bee4c80cff32c1e6248ae6b1fda5bd313482733a4d5e70dc9",
+        "/usr/lib/libicuuc.so.78.3": "a02f9e1ab2419219f990b416f981f20f779f5c6f301424c5d1948e52001c555c",
+        "/usr/lib/libm.so.6": "58b6b82e39d59d7810d402ba4ec34359fde058204fdb7cd5a269fda256a35421",
+        "/usr/lib/libncursesw.so.6.6": "f58d9552e04abc427fb21bd7118eee77e3f216b64b2aaafd768d74bf26507153",
+        "/usr/lib/libssl.so.3": "0dbcac8fcce57c08d2a1999a5a5cc0667e9685972c871a86a7d08bc4175fa2f9",
+        "/usr/lib/libstdc++.so.6.0.36": "412e0fc561a10581aaff2d101206939a31fa12c696590d8d4a5ec3655953ffe0",
+        "/usr/lib/libudev.so.1.7.15": "5e41a27ff6a9c8016b16f4b69b41a1d63d51973d0df2c6a895ab51ba006b880c",
+        "/usr/lib/libvulkan.so.1.4.363": "c3603ee46488ae6b581f3eeb65631a4c68c89c887d46a0b4ba0e7bff01307d88",
+        "/usr/lib/libvulkan_lvp.so": "6d75e9ab9e2fc660a8c9787a350c9ccf023b1e06a59c57a39ff89b091258fb21",
+        "/usr/lib/libvulkan_radeon.so": "beb888991d47606a01b0738dece66d28f2b1c01a7f48403c6505e4d55dbcd73b",
+        "/usr/lib/libwayland-client.so.0.26.0": "7628f449109d3d8502d740fd3be71cf11b1b901e245fc8040728155ab55686da",
+        "/usr/lib/libxcb-dri3.so.0.1.0": "17e24afc588a241e225dfdc08eadd137494594510e81bcfc189972a131595497",
+        "/usr/lib/libxcb-keysyms.so.1.0.0": "344a0b73c03b813eea07f693282eff707e5fdaec298dbd4ab2e17b1f443eb0a3",
+        "/usr/lib/libxcb-present.so.0.0.0": "6efdb442b4e9c01c768041f2a322a317c70e8f0997127ce0b4f9d11af90663cb",
+        "/usr/lib/libxcb-randr.so.0.1.0": "78bd310cf74a43b283fee545ddfada99625b3fff5e4951a790f25b465969f1f9",
+        "/usr/lib/libxcb-shm.so.0.0.0": "e5582bbcdac51b9cb857ca42945ad334b65e4506300548ef4de0670cc12c44e1",
+        "/usr/lib/libxcb-sync.so.1.0.0": "7e0b5e45b31f033a30335a66309c62e805e6570c063a9d256a13c48ace96f784",
+        "/usr/lib/libxcb-xfixes.so.0.0.0": "0e113e4a08a935bd68b0b0a3e16f1cd5908184ec3c72daeacdfa490032ba2578",
+        "/usr/lib/libxcb.so.1.1.0": "a28eaad3641660452c0dd421d9d4fe9ab0564db5e7e4705e61cd791681b0e7c7",
+        "/usr/lib/libxml2.so.16.1.4": "d5e78d2e770a0b0960f720682c447811b8643057d5c36a3495c82b000c2e65b9",
+        "/usr/lib/libxshmfence.so.1.0.0": "80249b1bbef0aef67ce970759be8b5f334fbfc4c9b52a91d9303664755b001b7",
+        "/usr/lib/libz.so.1.3.1.zlib-ng": "63e814634983bfa53890b48cb56760ca38840fbcf91f66a51222eef85eaa08b7",
+        "/usr/lib/libzstd.so.1.5.7": "f18105ff5aefdd6177cb99fd016f4822a676adf23706d4ddbdce632ed40882ca"
+      },
+      "init_lines": [
+        "0.03.283.987 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.03.283.997 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.03.283.998 I load_tensors:  Vulkan_Host model buffer size =  8642.81 MiB",
+        "0.09.293.977 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.09.294.076 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.09.295.473 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.09.318.583 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.09.318.586 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.09.318.702 I replay: 244 prompt tokens, 128 decode tokens, 3 repetitions, step=512"
+      ],
+      "metrics": {
+        "prefill": {
+          "tokens_s": 223.95690237008816,
+          "elapsed_ms": 3268.486,
+          "calls": 3,
+          "call_p50_ms": 1087.392,
+          "call_p95_ms": 1113.456
+        },
+        "decode": {
+          "tokens_s": 28.950662868400013,
+          "elapsed_ms": 13263.945,
+          "calls": 384,
+          "call_p50_ms": 33.8645,
+          "call_p95_ms": 40.67605
+        }
+      },
+      "clocks": "OD_SCLK:\n0: 500Mhz\n1: 2600Mhz\nOD_MCLK:\n0: 97Mhz\n1: 1075MHz\nOD_RANGE:\nSCLK:     500Mhz       2600Mhz\nMCLK:     674Mhz       1075Mhz\nOD_VDDGFX_OFFSET:\n-100mV",
+      "power_cap": {
+        "power1_cap": "186000000"
+      }
+    },
+    "none/performance-03-result.json": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "none"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/none/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "started_utc": "2026-10-06T23:33:24.845239+00:00",
+      "source_commit": "9375d46b7f7e1099bdee4d92cc6fc091057a0194",
+      "label": "COLLECTOR",
+      "profile": false,
+      "reps": 3,
+      "returncode": 0,
+      "stop_reason": null,
+      "loaded_libraries": {
+        "/etc/ld.so.cache": "8940454d5fb1c3b0bc60a924f5c959c1b0889abcc20f7922285c8d865f1a7b44",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-base.so.0.25.1": "1171dd185e1183b20430b7670717d69e505e1eeeadc71a3eab725f9fa9d53f05",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-cpu.so.0.25.1": "da5b1f97b4ea5c811904fe83c091265d2eca25139158303c4e09130fa0974709",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-vulkan.so.0.25.1": "7831061db2c1ed53abf16cd43f2dd04b4ec9b2f7a711c2d6ac25bc9df6ee963d",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml.so.0.25.1": "d9934432b991dd9fd1f168a4901b26b8f28748468501c61f24b2bc1bd8b21d15",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama-common.so.0.5.0": "25ea3d08cfc8b513e01fbf0e5e7f36df634271d8e2f031710d2fb60c810f4143",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama.so.0.5.0": "725dfdf2abc3757c6a53e5c9574dd3717dda16a68ed992a2ee1cc64628c5fabc",
+        "/usr/lib/ld-linux-x86-64.so.2": "2a950d46575efa0210d22440988f5a6b4507ebddc6c86d9a42e6e7ef6f01463e",
+        "/usr/lib/libLLVM.so.23.1": "941dec5f3fd22e305eb8aafda3aacf1420b8ffe2f08c33d7ee2d3f284c47fe59",
+        "/usr/lib/libSPIRV-Tools.so": "002378c4ce5e5eafd271653d788fc60332cbffd2b7163e6e9b0fe6f09e0eced6",
+        "/usr/lib/libVkLayer_MESA_device_select.so": "af1067a33878036cf548a9ee6e2d0ea4ed3c65fdbd4e457ae780f4531c3f3f25",
+        "/usr/lib/libX11-xcb.so.1.0.0": "15d9b28c6c3afe823335f2ca994b0fb3789d98c77b411bb51e0f3b225f41b931",
+        "/usr/lib/libXau.so.6.0.0": "7336830145541e30e97108e103d794be559bea610f09740a1941371334b6aef0",
+        "/usr/lib/libXdmcp.so.6.0.0": "812b1b8a5551862ada50da7badd503572e8b5a540082001895ead6ebd8386d30",
+        "/usr/lib/libbrotlicommon.so.1.2.0": "0a5a0d15264043c6cb99d3076501d4503bafde11eaea28f353e399b4ce6b2981",
+        "/usr/lib/libbrotlidec.so.1.2.0": "f747ed8ca1a29c53744f6e2b12dbd70d78838682a5914505b173c1ad50db4ca9",
+        "/usr/lib/libbrotlienc.so.1.2.0": "dd19bedf12100d84f6a490af2017a49c8a5dff098dd4f2d03dea501ffaf47d56",
+        "/usr/lib/libc.so.6": "071e34179e645b25f8a8c2e7108894dc665caa9f5f8c939cd579a75b6638bc3f",
+        "/usr/lib/libcrypto.so.3": "ecbe60559ed67946cf526aeba3fad8103f3a1de31ad389ca6684d201e10c63b3",
+        "/usr/lib/libdisplay-info.so.0.3.0": "4f3904f22cd1e1f729a6815d9ea129dd2c41d3091fe0e600e9084674c5e2b30b",
+        "/usr/lib/libdrm.so.2.134.0": "014655a0b8cae1448a5d32ebb0761883b4509daf2085518bb7605dff775575da",
+        "/usr/lib/libdrm_amdgpu.so.1.134.0": "7949f0c075b123e810b4354fb28def707f280a1deb9ba2e04c94c5f90ee5726a",
+        "/usr/lib/libedit.so.0.0.78": "f41b34de241bf07bf956b791b9a9c5cd3b6ae5bb30f9e5767cd68ac3631888ea",
+        "/usr/lib/libelf-0.196.so": "13d3e3cb54d6120d87a0569ac67be05c029f8cd2e4bf44e75936b2721c8e08af",
+        "/usr/lib/libexpat.so.1.12.5": "1da51868f59e7ce5e2fd79315b3e2fc426ff1ba527a485bae4464d44239caeeb",
+        "/usr/lib/libffi.so.8.5.0": "ea7da6217398e85e0a83ae367e70cde716ec626c782d29221907b893fc43866e",
+        "/usr/lib/libgcc_s.so.1": "571745fb27883c763315fab54a536906064c1df6804d1a7884713dac259da68d",
+        "/usr/lib/libgomp.so.1.0.0": "843e95ac19bdc9c450e8b090204cf01aafaf680ab9ca64bf1ec5e3674c3a776f",
+        "/usr/lib/libicudata.so.78.3": "d72003b08760852bee4c80cff32c1e6248ae6b1fda5bd313482733a4d5e70dc9",
+        "/usr/lib/libicuuc.so.78.3": "a02f9e1ab2419219f990b416f981f20f779f5c6f301424c5d1948e52001c555c",
+        "/usr/lib/libm.so.6": "58b6b82e39d59d7810d402ba4ec34359fde058204fdb7cd5a269fda256a35421",
+        "/usr/lib/libncursesw.so.6.6": "f58d9552e04abc427fb21bd7118eee77e3f216b64b2aaafd768d74bf26507153",
+        "/usr/lib/libssl.so.3": "0dbcac8fcce57c08d2a1999a5a5cc0667e9685972c871a86a7d08bc4175fa2f9",
+        "/usr/lib/libstdc++.so.6.0.36": "412e0fc561a10581aaff2d101206939a31fa12c696590d8d4a5ec3655953ffe0",
+        "/usr/lib/libudev.so.1.7.15": "5e41a27ff6a9c8016b16f4b69b41a1d63d51973d0df2c6a895ab51ba006b880c",
+        "/usr/lib/libvulkan.so.1.4.363": "c3603ee46488ae6b581f3eeb65631a4c68c89c887d46a0b4ba0e7bff01307d88",
+        "/usr/lib/libvulkan_lvp.so": "6d75e9ab9e2fc660a8c9787a350c9ccf023b1e06a59c57a39ff89b091258fb21",
+        "/usr/lib/libvulkan_radeon.so": "beb888991d47606a01b0738dece66d28f2b1c01a7f48403c6505e4d55dbcd73b",
+        "/usr/lib/libwayland-client.so.0.26.0": "7628f449109d3d8502d740fd3be71cf11b1b901e245fc8040728155ab55686da",
+        "/usr/lib/libxcb-dri3.so.0.1.0": "17e24afc588a241e225dfdc08eadd137494594510e81bcfc189972a131595497",
+        "/usr/lib/libxcb-keysyms.so.1.0.0": "344a0b73c03b813eea07f693282eff707e5fdaec298dbd4ab2e17b1f443eb0a3",
+        "/usr/lib/libxcb-present.so.0.0.0": "6efdb442b4e9c01c768041f2a322a317c70e8f0997127ce0b4f9d11af90663cb",
+        "/usr/lib/libxcb-randr.so.0.1.0": "78bd310cf74a43b283fee545ddfada99625b3fff5e4951a790f25b465969f1f9",
+        "/usr/lib/libxcb-shm.so.0.0.0": "e5582bbcdac51b9cb857ca42945ad334b65e4506300548ef4de0670cc12c44e1",
+        "/usr/lib/libxcb-sync.so.1.0.0": "7e0b5e45b31f033a30335a66309c62e805e6570c063a9d256a13c48ace96f784",
+        "/usr/lib/libxcb-xfixes.so.0.0.0": "0e113e4a08a935bd68b0b0a3e16f1cd5908184ec3c72daeacdfa490032ba2578",
+        "/usr/lib/libxcb.so.1.1.0": "a28eaad3641660452c0dd421d9d4fe9ab0564db5e7e4705e61cd791681b0e7c7",
+        "/usr/lib/libxml2.so.16.1.4": "d5e78d2e770a0b0960f720682c447811b8643057d5c36a3495c82b000c2e65b9",
+        "/usr/lib/libxshmfence.so.1.0.0": "80249b1bbef0aef67ce970759be8b5f334fbfc4c9b52a91d9303664755b001b7",
+        "/usr/lib/libz.so.1.3.1.zlib-ng": "63e814634983bfa53890b48cb56760ca38840fbcf91f66a51222eef85eaa08b7",
+        "/usr/lib/libzstd.so.1.5.7": "f18105ff5aefdd6177cb99fd016f4822a676adf23706d4ddbdce632ed40882ca"
+      },
+      "init_lines": [
+        "0.00.840.235 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.00.840.245 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.00.840.247 I load_tensors:  Vulkan_Host model buffer size =  8642.81 MiB",
+        "0.09.764.524 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.09.764.612 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.09.766.719 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.09.790.685 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.09.790.688 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.09.790.803 I replay: 244 prompt tokens, 128 decode tokens, 3 repetitions, step=512"
+      ],
+      "metrics": {
+        "prefill": {
+          "tokens_s": 226.42833125722476,
+          "elapsed_ms": 3232.811,
+          "calls": 3,
+          "call_p50_ms": 1078.192,
+          "call_p95_ms": 1090.423
+        },
+        "decode": {
+          "tokens_s": 28.80309633285578,
+          "elapsed_ms": 13331.9,
+          "calls": 384,
+          "call_p50_ms": 33.778,
+          "call_p95_ms": 40.98085
+        }
+      },
+      "clocks": "OD_SCLK:\n0: 500Mhz\n1: 2600Mhz\nOD_MCLK:\n0: 97Mhz\n1: 1075MHz\nOD_RANGE:\nSCLK:     500Mhz       2600Mhz\nMCLK:     674Mhz       1075Mhz\nOD_VDDGFX_OFFSET:\n-100mV",
+      "power_cap": {
+        "power1_cap": "186000000"
+      }
+    },
+    "none/performance-06-result.json": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "none"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/none/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "started_utc": "2026-10-06T23:34:55.815665+00:00",
+      "source_commit": "9375d46b7f7e1099bdee4d92cc6fc091057a0194",
+      "label": "COLLECTOR",
+      "profile": false,
+      "reps": 3,
+      "returncode": 0,
+      "stop_reason": null,
+      "loaded_libraries": {
+        "/etc/ld.so.cache": "8940454d5fb1c3b0bc60a924f5c959c1b0889abcc20f7922285c8d865f1a7b44",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-base.so.0.25.1": "1171dd185e1183b20430b7670717d69e505e1eeeadc71a3eab725f9fa9d53f05",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-cpu.so.0.25.1": "da5b1f97b4ea5c811904fe83c091265d2eca25139158303c4e09130fa0974709",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-vulkan.so.0.25.1": "7831061db2c1ed53abf16cd43f2dd04b4ec9b2f7a711c2d6ac25bc9df6ee963d",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml.so.0.25.1": "d9934432b991dd9fd1f168a4901b26b8f28748468501c61f24b2bc1bd8b21d15",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama-common.so.0.5.0": "25ea3d08cfc8b513e01fbf0e5e7f36df634271d8e2f031710d2fb60c810f4143",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama.so.0.5.0": "725dfdf2abc3757c6a53e5c9574dd3717dda16a68ed992a2ee1cc64628c5fabc",
+        "/usr/lib/ld-linux-x86-64.so.2": "2a950d46575efa0210d22440988f5a6b4507ebddc6c86d9a42e6e7ef6f01463e",
+        "/usr/lib/libLLVM.so.23.1": "941dec5f3fd22e305eb8aafda3aacf1420b8ffe2f08c33d7ee2d3f284c47fe59",
+        "/usr/lib/libSPIRV-Tools.so": "002378c4ce5e5eafd271653d788fc60332cbffd2b7163e6e9b0fe6f09e0eced6",
+        "/usr/lib/libVkLayer_MESA_device_select.so": "af1067a33878036cf548a9ee6e2d0ea4ed3c65fdbd4e457ae780f4531c3f3f25",
+        "/usr/lib/libX11-xcb.so.1.0.0": "15d9b28c6c3afe823335f2ca994b0fb3789d98c77b411bb51e0f3b225f41b931",
+        "/usr/lib/libXau.so.6.0.0": "7336830145541e30e97108e103d794be559bea610f09740a1941371334b6aef0",
+        "/usr/lib/libXdmcp.so.6.0.0": "812b1b8a5551862ada50da7badd503572e8b5a540082001895ead6ebd8386d30",
+        "/usr/lib/libbrotlicommon.so.1.2.0": "0a5a0d15264043c6cb99d3076501d4503bafde11eaea28f353e399b4ce6b2981",
+        "/usr/lib/libbrotlidec.so.1.2.0": "f747ed8ca1a29c53744f6e2b12dbd70d78838682a5914505b173c1ad50db4ca9",
+        "/usr/lib/libbrotlienc.so.1.2.0": "dd19bedf12100d84f6a490af2017a49c8a5dff098dd4f2d03dea501ffaf47d56",
+        "/usr/lib/libc.so.6": "071e34179e645b25f8a8c2e7108894dc665caa9f5f8c939cd579a75b6638bc3f",
+        "/usr/lib/libcrypto.so.3": "ecbe60559ed67946cf526aeba3fad8103f3a1de31ad389ca6684d201e10c63b3",
+        "/usr/lib/libdisplay-info.so.0.3.0": "4f3904f22cd1e1f729a6815d9ea129dd2c41d3091fe0e600e9084674c5e2b30b",
+        "/usr/lib/libdrm.so.2.134.0": "014655a0b8cae1448a5d32ebb0761883b4509daf2085518bb7605dff775575da",
+        "/usr/lib/libdrm_amdgpu.so.1.134.0": "7949f0c075b123e810b4354fb28def707f280a1deb9ba2e04c94c5f90ee5726a",
+        "/usr/lib/libedit.so.0.0.78": "f41b34de241bf07bf956b791b9a9c5cd3b6ae5bb30f9e5767cd68ac3631888ea",
+        "/usr/lib/libelf-0.196.so": "13d3e3cb54d6120d87a0569ac67be05c029f8cd2e4bf44e75936b2721c8e08af",
+        "/usr/lib/libexpat.so.1.12.5": "1da51868f59e7ce5e2fd79315b3e2fc426ff1ba527a485bae4464d44239caeeb",
+        "/usr/lib/libffi.so.8.5.0": "ea7da6217398e85e0a83ae367e70cde716ec626c782d29221907b893fc43866e",
+        "/usr/lib/libgcc_s.so.1": "571745fb27883c763315fab54a536906064c1df6804d1a7884713dac259da68d",
+        "/usr/lib/libgomp.so.1.0.0": "843e95ac19bdc9c450e8b090204cf01aafaf680ab9ca64bf1ec5e3674c3a776f",
+        "/usr/lib/libicudata.so.78.3": "d72003b08760852bee4c80cff32c1e6248ae6b1fda5bd313482733a4d5e70dc9",
+        "/usr/lib/libicuuc.so.78.3": "a02f9e1ab2419219f990b416f981f20f779f5c6f301424c5d1948e52001c555c",
+        "/usr/lib/libm.so.6": "58b6b82e39d59d7810d402ba4ec34359fde058204fdb7cd5a269fda256a35421",
+        "/usr/lib/libncursesw.so.6.6": "f58d9552e04abc427fb21bd7118eee77e3f216b64b2aaafd768d74bf26507153",
+        "/usr/lib/libssl.so.3": "0dbcac8fcce57c08d2a1999a5a5cc0667e9685972c871a86a7d08bc4175fa2f9",
+        "/usr/lib/libstdc++.so.6.0.36": "412e0fc561a10581aaff2d101206939a31fa12c696590d8d4a5ec3655953ffe0",
+        "/usr/lib/libudev.so.1.7.15": "5e41a27ff6a9c8016b16f4b69b41a1d63d51973d0df2c6a895ab51ba006b880c",
+        "/usr/lib/libvulkan.so.1.4.363": "c3603ee46488ae6b581f3eeb65631a4c68c89c887d46a0b4ba0e7bff01307d88",
+        "/usr/lib/libvulkan_lvp.so": "6d75e9ab9e2fc660a8c9787a350c9ccf023b1e06a59c57a39ff89b091258fb21",
+        "/usr/lib/libvulkan_radeon.so": "beb888991d47606a01b0738dece66d28f2b1c01a7f48403c6505e4d55dbcd73b",
+        "/usr/lib/libwayland-client.so.0.26.0": "7628f449109d3d8502d740fd3be71cf11b1b901e245fc8040728155ab55686da",
+        "/usr/lib/libxcb-dri3.so.0.1.0": "17e24afc588a241e225dfdc08eadd137494594510e81bcfc189972a131595497",
+        "/usr/lib/libxcb-keysyms.so.1.0.0": "344a0b73c03b813eea07f693282eff707e5fdaec298dbd4ab2e17b1f443eb0a3",
+        "/usr/lib/libxcb-present.so.0.0.0": "6efdb442b4e9c01c768041f2a322a317c70e8f0997127ce0b4f9d11af90663cb",
+        "/usr/lib/libxcb-randr.so.0.1.0": "78bd310cf74a43b283fee545ddfada99625b3fff5e4951a790f25b465969f1f9",
+        "/usr/lib/libxcb-shm.so.0.0.0": "e5582bbcdac51b9cb857ca42945ad334b65e4506300548ef4de0670cc12c44e1",
+        "/usr/lib/libxcb-sync.so.1.0.0": "7e0b5e45b31f033a30335a66309c62e805e6570c063a9d256a13c48ace96f784",
+        "/usr/lib/libxcb-xfixes.so.0.0.0": "0e113e4a08a935bd68b0b0a3e16f1cd5908184ec3c72daeacdfa490032ba2578",
+        "/usr/lib/libxcb.so.1.1.0": "a28eaad3641660452c0dd421d9d4fe9ab0564db5e7e4705e61cd791681b0e7c7",
+        "/usr/lib/libxml2.so.16.1.4": "d5e78d2e770a0b0960f720682c447811b8643057d5c36a3495c82b000c2e65b9",
+        "/usr/lib/libxshmfence.so.1.0.0": "80249b1bbef0aef67ce970759be8b5f334fbfc4c9b52a91d9303664755b001b7",
+        "/usr/lib/libz.so.1.3.1.zlib-ng": "63e814634983bfa53890b48cb56760ca38840fbcf91f66a51222eef85eaa08b7",
+        "/usr/lib/libzstd.so.1.5.7": "f18105ff5aefdd6177cb99fd016f4822a676adf23706d4ddbdce632ed40882ca"
+      },
+      "init_lines": [
+        "0.02.930.358 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.02.930.368 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.02.930.369 I load_tensors:  Vulkan_Host model buffer size =  8642.81 MiB",
+        "0.11.392.317 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.11.392.406 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.11.401.548 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.11.424.070 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.11.424.073 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.11.424.190 I replay: 244 prompt tokens, 128 decode tokens, 3 repetitions, step=512"
+      ],
+      "metrics": {
+        "prefill": {
+          "tokens_s": 227.19647311617032,
+          "elapsed_ms": 3221.881,
+          "calls": 3,
+          "call_p50_ms": 1078.499,
+          "call_p95_ms": 1080.3188
+        },
+        "decode": {
+          "tokens_s": 28.90286747305165,
+          "elapsed_ms": 13285.879,
+          "calls": 384,
+          "call_p50_ms": 33.955,
+          "call_p95_ms": 40.266549999999995
+        }
+      },
+      "clocks": "OD_SCLK:\n0: 500Mhz\n1: 2600Mhz\nOD_MCLK:\n0: 97Mhz\n1: 1075MHz\nOD_RANGE:\nSCLK:     500Mhz       2600Mhz\nMCLK:     674Mhz       1075Mhz\nOD_VDDGFX_OFFSET:\n-100mV",
+      "power_cap": {
+        "power1_cap": "186000000"
+      }
+    },
+    "none/performance-07-result.json": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "none"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0r6q0cx:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/none/tokens.csv",
+        "MOE_REPLAY_REPS": "3"
+      },
+      "started_utc": "2026-10-06T23:35:30.475927+00:00",
+      "source_commit": "9375d46b7f7e1099bdee4d92cc6fc091057a0194",
+      "label": "COLLECTOR",
+      "profile": false,
+      "reps": 3,
+      "returncode": 0,
+      "stop_reason": null,
+      "loaded_libraries": {
+        "/etc/ld.so.cache": "8940454d5fb1c3b0bc60a924f5c959c1b0889abcc20f7922285c8d865f1a7b44",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-base.so.0.25.1": "1171dd185e1183b20430b7670717d69e505e1eeeadc71a3eab725f9fa9d53f05",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-cpu.so.0.25.1": "da5b1f97b4ea5c811904fe83c091265d2eca25139158303c4e09130fa0974709",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml-vulkan.so.0.25.1": "7831061db2c1ed53abf16cd43f2dd04b4ec9b2f7a711c2d6ac25bc9df6ee963d",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libggml.so.0.25.1": "d9934432b991dd9fd1f168a4901b26b8f28748468501c61f24b2bc1bd8b21d15",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama-common.so.0.5.0": "25ea3d08cfc8b513e01fbf0e5e7f36df634271d8e2f031710d2fb60c810f4143",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-07-host-transfer-recheck/frozen/COLLECTOR/libllama.so.0.5.0": "725dfdf2abc3757c6a53e5c9574dd3717dda16a68ed992a2ee1cc64628c5fabc",
+        "/usr/lib/ld-linux-x86-64.so.2": "2a950d46575efa0210d22440988f5a6b4507ebddc6c86d9a42e6e7ef6f01463e",
+        "/usr/lib/libLLVM.so.23.1": "941dec5f3fd22e305eb8aafda3aacf1420b8ffe2f08c33d7ee2d3f284c47fe59",
+        "/usr/lib/libSPIRV-Tools.so": "002378c4ce5e5eafd271653d788fc60332cbffd2b7163e6e9b0fe6f09e0eced6",
+        "/usr/lib/libVkLayer_MESA_device_select.so": "af1067a33878036cf548a9ee6e2d0ea4ed3c65fdbd4e457ae780f4531c3f3f25",
+        "/usr/lib/libX11-xcb.so.1.0.0": "15d9b28c6c3afe823335f2ca994b0fb3789d98c77b411bb51e0f3b225f41b931",
+        "/usr/lib/libXau.so.6.0.0": "7336830145541e30e97108e103d794be559bea610f09740a1941371334b6aef0",
+        "/usr/lib/libXdmcp.so.6.0.0": "812b1b8a5551862ada50da7badd503572e8b5a540082001895ead6ebd8386d30",
+        "/usr/lib/libbrotlicommon.so.1.2.0": "0a5a0d15264043c6cb99d3076501d4503bafde11eaea28f353e399b4ce6b2981",
+        "/usr/lib/libbrotlidec.so.1.2.0": "f747ed8ca1a29c53744f6e2b12dbd70d78838682a5914505b173c1ad50db4ca9",
+        "/usr/lib/libbrotlienc.so.1.2.0": "dd19bedf12100d84f6a490af2017a49c8a5dff098dd4f2d03dea501ffaf47d56",
+        "/usr/lib/libc.so.6": "071e34179e645b25f8a8c2e7108894dc665caa9f5f8c939cd579a75b6638bc3f",
+        "/usr/lib/libcrypto.so.3": "ecbe60559ed67946cf526aeba3fad8103f3a1de31ad389ca6684d201e10c63b3",
+        "/usr/lib/libdisplay-info.so.0.3.0": "4f3904f22cd1e1f729a6815d9ea129dd2c41d3091fe0e600e9084674c5e2b30b",
+        "/usr/lib/libdrm.so.2.134.0": "014655a0b8cae1448a5d32ebb0761883b4509daf2085518bb7605dff775575da",
+        "/usr/lib/libdrm_amdgpu.so.1.134.0": "7949f0c075b123e810b4354fb28def707f280a1deb9ba2e04c94c5f90ee5726a",
+        "/usr/lib/libedit.so.0.0.78": "f41b34de241bf07bf956b791b9a9c5cd3b6ae5bb30f9e5767cd68ac3631888ea",
+        "/usr/lib/libelf-0.196.so": "13d3e3cb54d6120d87a0569ac67be05c029f8cd2e4bf44e75936b2721c8e08af",
+        "/usr/lib/libexpat.so.1.12.5": "1da51868f59e7ce5e2fd79315b3e2fc426ff1ba527a485bae4464d44239caeeb",
+        "/usr/lib/libffi.so.8.5.0": "ea7da6217398e85e0a83ae367e70cde716ec626c782d29221907b893fc43866e",
+        "/usr/lib/libgcc_s.so.1": "571745fb27883c763315fab54a536906064c1df6804d1a7884713dac259da68d",
+        "/usr/lib/libgomp.so.1.0.0": "843e95ac19bdc9c450e8b090204cf01aafaf680ab9ca64bf1ec5e3674c3a776f",
+        "/usr/lib/libicudata.so.78.3": "d72003b08760852bee4c80cff32c1e6248ae6b1fda5bd313482733a4d5e70dc9",
+        "/usr/lib/libicuuc.so.78.3": "a02f9e1ab2419219f990b416f981f20f779f5c6f301424c5d1948e52001c555c",
+        "/usr/lib/libm.so.6": "58b6b82e39d59d7810d402ba4ec34359fde058204fdb7cd5a269fda256a35421",
+        "/usr/lib/libncursesw.so.6.6": "f58d9552e04abc427fb21bd7118eee77e3f216b64b2aaafd768d74bf26507153",
+        "/usr/lib/libssl.so.3": "0dbcac8fcce57c08d2a1999a5a5cc0667e9685972c871a86a7d08bc4175fa2f9",
+        "/usr/lib/libstdc++.so.6.0.36": "412e0fc561a10581aaff2d101206939a31fa12c696590d8d4a5ec3655953ffe0",
+        "/usr/lib/libudev.so.1.7.15": "5e41a27ff6a9c8016b16f4b69b41a1d63d51973d0df2c6a895ab51ba006b880c",
+        "/usr/lib/libvulkan.so.1.4.363": "c3603ee46488ae6b581f3eeb65631a4c68c89c887d46a0b4ba0e7bff01307d88",
+        "/usr/lib/libvulkan_lvp.so": "6d75e9ab9e2fc660a8c9787a350c9ccf023b1e06a59c57a39ff89b091258fb21",
+        "/usr/lib/libvulkan_radeon.so": "beb888991d47606a01b0738dece66d28f2b1c01a7f48403c6505e4d55dbcd73b",
+        "/usr/lib/libwayland-client.so.0.26.0": "7628f449109d3d8502d740fd3be71cf11b1b901e245fc8040728155ab55686da",
+        "/usr/lib/libxcb-dri3.so.0.1.0": "17e24afc588a241e225dfdc08eadd137494594510e81bcfc189972a131595497",
+        "/usr/lib/libxcb-keysyms.so.1.0.0": "344a0b73c03b813eea07f693282eff707e5fdaec298dbd4ab2e17b1f443eb0a3",
+        "/usr/lib/libxcb-present.so.0.0.0": "6efdb442b4e9c01c768041f2a322a317c70e8f0997127ce0b4f9d11af90663cb",
+        "/usr/lib/libxcb-randr.so.0.1.0": "78bd310cf74a43b283fee545ddfada99625b3fff5e4951a790f25b465969f1f9",
+        "/usr/lib/libxcb-shm.so.0.0.0": "e5582bbcdac51b9cb857ca42945ad334b65e4506300548ef4de0670cc12c44e1",
+        "/usr/lib/libxcb-sync.so.1.0.0": "7e0b5e45b31f033a30335a66309c62e805e6570c063a9d256a13c48ace96f784",
+        "/usr/lib/libxcb-xfixes.so.0.0.0": "0e113e4a08a935bd68b0b0a3e16f1cd5908184ec3c72daeacdfa490032ba2578",
+        "/usr/lib/libxcb.so.1.1.0": "a28eaad3641660452c0dd421d9d4fe9ab0564db5e7e4705e61cd791681b0e7c7",
+        "/usr/lib/libxml2.so.16.1.4": "d5e78d2e770a0b0960f720682c447811b8643057d5c36a3495c82b000c2e65b9",
+        "/usr/lib/libxshmfence.so.1.0.0": "80249b1bbef0aef67ce970759be8b5f334fbfc4c9b52a91d9303664755b001b7",
+        "/usr/lib/libz.so.1.3.1.zlib-ng": "63e814634983bfa53890b48cb56760ca38840fbcf91f66a51222eef85eaa08b7",
+        "/usr/lib/libzstd.so.1.5.7": "f18105ff5aefdd6177cb99fd016f4822a676adf23706d4ddbdce632ed40882ca"
+      },
+      "init_lines": [
+        "0.00.777.212 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.00.777.220 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.00.777.221 I load_tensors:  Vulkan_Host model buffer size =  8642.81 MiB",
+        "0.09.012.627 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.09.012.713 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.09.014.281 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.09.037.611 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.09.037.614 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.09.037.729 I replay: 244 prompt tokens, 128 decode tokens, 3 repetitions, step=512"
+      ],
+      "metrics": {
+        "prefill": {
+          "tokens_s": 225.98618890963516,
+          "elapsed_ms": 3239.136,
+          "calls": 3,
+          "call_p50_ms": 1073.763,
+          "call_p95_ms": 1105.1982
+        },
+        "decode": {
+          "tokens_s": 28.690161867054123,
+          "elapsed_ms": 13384.379,
+          "calls": 384,
+          "call_p50_ms": 34.003,
+          "call_p95_ms": 40.48415
+        }
+      },
+      "clocks": "OD_SCLK:\n0: 500Mhz\n1: 2600Mhz\nOD_MCLK:\n0: 97Mhz\n1: 1075MHz\nOD_RANGE:\nSCLK:     500Mhz       2600Mhz\nMCLK:     674Mhz       1075Mhz\nOD_VDDGFX_OFFSET:\n-100mV",
+      "power_cap": {
+        "power1_cap": "186000000"
+      }
+    }
+  },
+  "archive_small_file_sha256": {
+    "COLLECTOR-CMakeCache.txt": "6b4d7cb9e20d3b7e2541e44b7efd236363b2cf975f2a2343dde75162b729a0e1",
+    "PROTOCOL.md": "07b7abf4edbb96549589aef6d2d1f27a7f8830c8fba1a3feaf74d7e0da57ebe6",
+    "analysis.json": "39c9797fd96757d6c26796a5f21bcfab4a3da13ee8817f29e0a01f2bac957460",
+    "analyze.py": "00499dfd2a3df08e031fc643113dcebe3d1b2361889b0ff771e5eb4d3c23ef0d",
+    "freeze.json": "0a0396f1becea6b842335fdbc05ee049e932419e2883b88daee1e7fc062613e1",
+    "mmap/correctness-base.csv": "a6f277c7e6e2406eb0eea1a34d2b22575852398a570c62cd2a02ca8b6ff168dc",
+    "mmap/correctness-drm.jsonl": "2b8a3e9c0b1775945b6871e867471a313c96c3200d930eeda6c85ab21e7a561a",
+    "mmap/correctness-maps.txt": "df0dfd4d27e0d344606232cee35d740dddb651ddf865f9c7f53a5dd43236025c",
+    "mmap/correctness-planned.json": "eebdc2d99dbe0a4c38660b518138362a93fc924faf1ce8346fe6b101053bed41",
+    "mmap/correctness-result.json": "5134dff8801f3cacb363c7c208fc921a9dc6e7fbb15a1dc0b9b25e92e9c681cd",
+    "mmap/correctness-telemetry.csv": "63ba91fcf2611f247491140294d21bdeded1f42cf8b40f3d28196c845c9e4cc8",
+    "mmap/correctness.csv": "8974b3e144fdbd7b35a723c31e4d989dbe51529ff0c4ad18df56f5686db07201",
+    "mmap/correctness.log": "d364ee7320c8f346c913ae7f7b1122621dc547c1698b3fb3b189a39837f8a906",
+    "mmap/performance-01-drm.jsonl": "879218961f417d7d723048975be75d300fa5b2590ec67a19d1cfe76d34a2a667",
+    "mmap/performance-01-maps.txt": "8ef828e139394b935f23b572e849cc6e1fbae7ab38b09e5aa70439f87581eaab",
+    "mmap/performance-01-planned.json": "895c065ae6b95a522f09c5cf9e6c013e52c3df144ddb3cb57368bb1fc158964f",
+    "mmap/performance-01-result.json": "c3e97dc79355da9efbbfb021574e2412fbd776ac6c369e353dfdb483b9a7d326",
+    "mmap/performance-01-telemetry.csv": "49395706f6862e2f39079f9fc2c13f7effb7c0fd55db3b6512a03dbe6b729758",
+    "mmap/performance-01.csv": "52e0eecbf2172868c81a16fc2958e7c11868655d1e82ad97b9a7e3b8910ad5c5",
+    "mmap/performance-01.log": "dc5beea92249fb478ca46fb6df00842ba5320ee82d54644e421c3cc9f165f65b",
+    "mmap/performance-04-drm.jsonl": "2fa76c4900582e7c4a14ea9e09cda86fb32845ba54cdb9a34fdde74ace08d94a",
+    "mmap/performance-04-maps.txt": "457f5b2ccc87ac9709a9448ce1bd4e0c277bf453e9011b70bed840a0f5f21723",
+    "mmap/performance-04-planned.json": "8bdf2173e9d2b09cad53ce09742728377b4a79df710cb9727e836a3b958d6d7a",
+    "mmap/performance-04-result.json": "37618f2f5be8d5c1346b78ec7a4f5299664bbf4c9f144670e55c303ff6123e54",
+    "mmap/performance-04-telemetry.csv": "938680f9172b67fd3e3d346ac91c17678324116fd372a3f20bd8ff8081bdb4ca",
+    "mmap/performance-04.csv": "43622e59ed4bf8a23b10cd60d136802d0ee9bdcd8922c8c0587a0f110d5d5075",
+    "mmap/performance-04.log": "03874df07b25a4929cc7d5e5af85d50866a91e16909aea3535b22def85fdd9fd",
+    "mmap/performance-05-drm.jsonl": "6620a304e4bb98bbbeac503d73567baa2b835bef58ecb92faf8cf25b2260f97c",
+    "mmap/performance-05-maps.txt": "6ba81f4ad138a25fcba665089236941a225bbc77f61fd3c1b7e140398455f025",
+    "mmap/performance-05-planned.json": "601110c144d4104d00e91cf8a2ed8dd7b67d0cfbff07c5a5381239a87ada10fb",
+    "mmap/performance-05-result.json": "c89cba0e299dc25e969bcf89a5e0185513e70de1cde4022c354736ec83d203f3",
+    "mmap/performance-05-telemetry.csv": "d002003250c21249cf45a25a6bb32ef8686d4c76825a8b9e1bb271093cca80bc",
+    "mmap/performance-05.csv": "95afea64ddfa46be90e9f00b786bb9c226e238c79a69a6f5bb89c69b6aa8b666",
+    "mmap/performance-05.log": "326e7e9f5d45b33aa9cb4cac52b2cd41d09c0c4b5e69b916a1d65891a034e7b4",
+    "mmap/performance-08-drm.jsonl": "0ea3259cd936b07bbac225fde23716f0949c8469748d0ff9865daaaa446cba0b",
+    "mmap/performance-08-maps.txt": "aecb9cd9ad2a31607748daa24985a123b0da606a85be502f6cba06839035c3e3",
+    "mmap/performance-08-planned.json": "60012dfebaf773d4bd4ce0f0005604cc6283b2d04c4fbc3258c5d20db9f67f3f",
+    "mmap/performance-08-result.json": "179b94caf5012faf7de3bf72ecfa1e438c6dfa27f1a1fed914d1c1d65d21e5ea",
+    "mmap/performance-08-telemetry.csv": "ce04eccb9d31406d856bc2549608d8640c18b3bd0a07fa351a6b7d1b48561478",
+    "mmap/performance-08.csv": "063f6765891544a0b01f316420ec284ff7e1f6dca2cc4121c58f594ce2df6338",
+    "mmap/performance-08.log": "8e72d33c899e340ed8a90c60a99c12408b517d6f5475017ca706ed6a30d79e60",
+    "mmap/tokens.csv": "85935136b367ed46e47e967b05495774bc290d2d32dd92776c0c242d744cf29c",
+    "none/correctness-base.csv": "a6f277c7e6e2406eb0eea1a34d2b22575852398a570c62cd2a02ca8b6ff168dc",
+    "none/correctness-drm.jsonl": "a1ec1b5621de8cdf66bfa4f5340a9864904899f0be987b3c98de7e6797495129",
+    "none/correctness-maps.txt": "dd931a749bcf09b500db8102246124520c8ba6faf08a86daba1f766e81c7118c",
+    "none/correctness-planned.json": "365bf9a203d16f52dd01c345928eb7eb9537420a45dc1726c75b6c54e86d7e02",
+    "none/correctness-result.json": "8aa4abec48c3da1b0058f871146191cf0a351ea132f65c92a1a8975ff6cd891a",
+    "none/correctness-telemetry.csv": "5ad95c6d0dea5377c495c1bcd5fa1f9707b2db95e7a94b84ee51eec1366e599c",
+    "none/correctness.csv": "1996b589f62d9d6ecdd01fa7e6b12dc64d156bc1f199fd03c5831f32d77b3672",
+    "none/correctness.log": "d8ee6768ee9aeae1c815ef9db58236e95b68e6df81d4910e98af1ea70f6f4895",
+    "none/host-diagnostic-drm.jsonl": "7204f97d0ff0f4909aaab67ce48a7690ca846b6ac476a7196ab47ca0aebca5a5",
+    "none/host-diagnostic-maps.txt": "7b60822f03b3e70922c155a0d4d981e4ebeea0ac096a00699d3924b028130d33",
+    "none/host-diagnostic-phases.csv": "c11984de3c5004b4eb0baaec87d65b7655f7ef8565a2bda7f94ed288b871be9f",
+    "none/host-diagnostic-planned.json": "1c2e01c9aabe4d22128c09581bf6a8fde1199161c9bd8dab4fce4d81841dec22",
+    "none/host-diagnostic-result.json": "3140456bdfe68178a26c880cc7fb7c4f5ac6acd47efe6fffec07b6fba8ba5998",
+    "none/host-diagnostic-scheduler.csv": "3833bd253513ea28767e2bedb6f1154e77c3f3221d9f7af46558365369603fc5",
+    "none/host-diagnostic-summary.json": "ae4a21738539bc78028386d925296eaa5a1f7d00788512f87d3fe80f60a16efd",
+    "none/host-diagnostic-telemetry.csv": "dbce7593e50175c670240d2805113502a3df93aa7779bff06e34fd1798fdd42f",
+    "none/host-diagnostic.csv": "0f0f5fd5ba79e0f1e7231eaaaeae54ec038697676d984faff637b454449d3ad6",
+    "none/host-diagnostic.log": "28cabda9e6a7086c5a6df33a80c14236cfbd9fc68264496cfbd0a3b0182b6fe9",
+    "none/performance-02-drm.jsonl": "b9aa7601edc24c606a69f40c7898bc150401c30afaac32e51550da68eb6c4629",
+    "none/performance-02-maps.txt": "c9ca6ec7b38289cb3a9c768f374960b2a0419870e022d150f8b2c06b9310b00d",
+    "none/performance-02-planned.json": "ee73da6026ea4c086bd625c6421c72127d667adf8627bbbf6445038cf9c00584",
+    "none/performance-02-result.json": "d7ae947f45b1ad10474cf3399edd6fad043f0cbfeb7767a8381ede9418687ba1",
+    "none/performance-02-telemetry.csv": "739ceafd2a47d8c56be37a8bb109c34a191cd890f7548ac90428fde1fb8a861b",
+    "none/performance-02.csv": "c71311bc036c7e5d4ab7341c86b2454dbec15aa574799e183881c28e4614624f",
+    "none/performance-02.log": "62a710d113053588798a14392ece4455d7b99f4f88d2a1e420955b610ea79e89",
+    "none/performance-03-drm.jsonl": "0adebabf6d3ce2d113071a4e43abc7f7ae71b8af4d10a1e80d417172a8c0d23f",
+    "none/performance-03-maps.txt": "b2c74ef2eb60849c251d08a43a9c0dfb698a564ffdfaecee2da446a851776e7b",
+    "none/performance-03-planned.json": "a1939abe321a687868af238536c24d04667b9aafab39d5628c8dd4172f50e8c0",
+    "none/performance-03-result.json": "ce6fd24cfd1ee29ee738ac65374f2bbb18f358013dc623471dd5d6d214752f70",
+    "none/performance-03-telemetry.csv": "c8aea806385a756caff4d77c095de93bca7cf604cb2d10932038f10db4bba118",
+    "none/performance-03.csv": "910e0a58ef685d6041e81b94fdedcd7cad7f6e7317a9e7df9a76394517ead3bb",
+    "none/performance-03.log": "af8fb4dae8fe72049b1ccacb84399947a7602d9ba665342f47522c5185b84323",
+    "none/performance-06-drm.jsonl": "4aff4d224b4cf18917b56512389d6bcdc4930b61ad2ad19af31b23929ded26c2",
+    "none/performance-06-maps.txt": "78f033446491736901c3fc4e33a08b95af7b97b2e9fa5baf68a60c853845d698",
+    "none/performance-06-planned.json": "8a84fdf0bd7220e5989897ff9d5b488f3a1d103c40e0fcb58a9cc30cbf88d67c",
+    "none/performance-06-result.json": "f8cc30e8a692039b2cdc716aadbd6994fb892a2d76149b623f27bed19722476e",
+    "none/performance-06-telemetry.csv": "1c1889e71c1b803a80fa0894db43cd2cb635fcec4460d5022162d127eb661456",
+    "none/performance-06.csv": "ca32b38066603726de799a0c7bcd9c4ad0fab1ed9cf071f00d1caa490ecc76cd",
+    "none/performance-06.log": "cdb53fcb8b46f8c30e8e3bd2b6522de204a6314abfdc711782e4ed496e45acff",
+    "none/performance-07-drm.jsonl": "e7d25408b4c8e9d453f762d7edd82397807dadf7f50d5f0996964c877be12901",
+    "none/performance-07-maps.txt": "4c4d6bf3bcefcdd02b96b1f24f8d61e1b217e3819fd58d054eecb8e7155519b6",
+    "none/performance-07-planned.json": "cf24334460079850f1f691a54c95ba5c88f51bcfe520b4d1a7956b4b8485e46d",
+    "none/performance-07-result.json": "1d10de12abbd77330c6f0ee5b2eaf5d466697ac8756135b279d331f4aa5f9dac",
+    "none/performance-07-telemetry.csv": "11394e9a56506f6b62064f9ae7273558843110970e6cded7a57dd2f8dabc4711",
+    "none/performance-07.csv": "6560bda2e282a147d232ac468c9e7b0e928e169bf46d929d847b2ed1f3e8160c",
+    "none/performance-07.log": "c0dbb379294e7b463fe7822b11e81f1802d7bb1639de7090380f43f4b50efb0b",
+    "none/tokens.csv": "85935136b367ed46e47e967b05495774bc290d2d32dd92776c0c242d744cf29c",
+    "packages.txt": "71bff69ddc3120482ac3e7d0cf9f3d7ae48bb95f67b573b27d37b99a4521885b",
+    "runner.py": "657c78162a5865f40447cd0afb50fd114dddee42dc96d63a91a08e5937c7eca0",
+    "system-R20.json": "42ed67fe11a2151a6bda9b317d4153ed02e7045d03bfccffff8143fb1cddf402",
+    "uname.txt": "2905b71d42b59798c6c300c945b6ba302a078c2f01a32cdfea47d112545dcbeb",
+    "vulkan-probe.log": "506a8abc4ccb79ae6431d5dd6f1db3f3eeaadebd8e840776ee53de155eafad4c",
+    "vulkan-summary.txt": "2dbd7a5634cab4a303ec5bfc15b58bcfbf17a03ffcd515ea456e43ad63ba3101"
+  },
+  "decision": "retain none as an explicit existing load mode; no runtime default change, long context/concurrency and semantic quality remain separate gates"
+}

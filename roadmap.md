@@ -1,6 +1,6 @@
 # Roadmap: llama.cpp-vulkan-moe su RX 6800
 
-Aggiornamento: **2026-10-07**. Documento di lavoro per `Cartaz/llama.cpp-vulkan-moe`, branch di riferimento `experiment/moe-trace-strides`; incrementi sperimentali R17-R21 su branch separati. Snapshot del codice prima di questa roadmap: `c679dc22012ee9281db57336ff8fd17a93bc54b2`.
+Aggiornamento: **2026-10-07**. Documento di lavoro per `Cartaz/llama.cpp-vulkan-moe`, branch di riferimento `experiment/moe-trace-strides`; incrementi sperimentali R17-R24 su branch separati. Snapshot del codice prima di questa roadmap: `c679dc22012ee9281db57336ff8fd17a93bc54b2`.
 
 Obiettivo: inferenza locale affidabile e veloce su RX 6800 16 GB, Ryzen 7 5700X3D e 32 GB RAM, CachyOS/RADV. Prima una sequenza; poi 2, 4 e 8 richieste da agenti. PP, TG, TTFT, latenza completa, throughput aggregato e throughput per richiesta sono risultati distinti.
 
@@ -8,20 +8,20 @@ Obiettivo: inferenza locale affidabile e veloce su RX 6800 16 GB, Ryzen 7 5700X3
 
 | Voce | Stato al 2026-10-07 |
 | --- | --- |
-| Esecuzione benchmark | **Ripresa autorizzata esplicitamente dall'utente il 2026-10-07. R20/R21 conclusi sul perimetro dichiarato; M2 ancora parziale.** |
+| Esecuzione benchmark | **Ripresa autorizzata esplicitamente dall'utente il 2026-10-07. R20-R24 conclusi sul perimetro dichiarato; PP breve +33.8% none, gate lungo fallito anche B1.** |
 | Baseline originale | llama.cpp v0.5.0, `7fe450e19305b828c199d602c23a8337aaa1f03b`, senza modifiche |
 | Modello di riferimento | Ornith-1.5-35B-Q4_K_M.gguf; identita' completa nella sezione baseline |
 | Cache GPU persistente di esperti | **Non implementata**. Disponibili collector normale validato su CPU18 e simulazioni offline; callback storico diverge dal percorso normale |
 | CPU routing compatto | Implementato, opzionale e OFF di default; riduzione del workspace verificata, incremento PP/TG non dimostrato |
 | CPU traversal degli esperti attivi | Implementato, opzionale e OFF di default; incremento PP/TG non dimostrato |
-| Caricamento `none` / Vulkan_Host | Beneficio PP misurato; costo RAM/GTT e startup misurato; beneficio TG non dimostrato |
+| Caricamento `none` / Vulkan_Host | R22 su build9375: PP +33.80% [32.26,35.17], TG/p95 equivalenti; GTT residente0.62->9.57GiB, avvio5.02->9.89s. Valido replay breve, gate lungo R23 fallito |
 | Ubatch 2048 | Forte beneficio su un replay 4096; **candidato**, non configurazione universalmente validata |
-| Qualita' risposte | Il primo confronto 64+64 non supera il gate; successiva validazione ub512 completata, ub2048 interrotta |
+| Qualita' risposte | R12/R13 conservati; R23 su3107token ha logits finiti ma non ripetibili anche B1: nessun ranking lungo o nuovo score semantico |
 | Sweep configurazione | ncmoe 0..40 completato e shortlist verificata; coordinate successive parziali; interazioni e matrice contesti da completare |
 | Profilo provvisorio dello sweep | `-ncmoe 12 -tb 8`, `GGML_VK_DISABLE_HOST_VISIBLE_VIDMEM=1`, librerie DEFAULT congelate; **non vincitore finale** |
 | Fondamenta S01/S02 | Tooling iniziale IMPLEMENTATO su `experiment/moe-profile-foundations`: manifest live con verifica freeze, entropia/riuso/finestre e stime cache in byte; R21 valida quattro prompt brevi/held-out, richieste top-k complete e byte; corpus esteso e runtime cache incompleti |
 | Fondamenta S03 | R20: join host PP/TG sul modello VALIDATO, costo profiler TG -6.07%, logger timestamp corretto e correlato, accounting memoria sul replay breve; timeline normale calibrata e contesti lunghi incompleti |
-| Prossima modifica di ricerca | M2: ampliare corpus; circa490MiB danno meno1.4% richieste complete LRU sul pilot R21. Disegno S04/S05: richieste miste, admission CPU-bypass, remap e lifetime |
+| Prossima modifica di ricerca | R23 fallisce anche B1, prefix1024/1536 R24 coincidono: isolare history/reset/shape; M2/remap/lifetime e bounded staging S10/S11 sui controlli brevi validati, senza promozione generale |
 
 Questo documento registra la ripresa richiesta dall'utente il 2026-10-07; gli archivi interrotti R13/R15 restano conservati. I problemi riprodotti anche sulla v0.5.0 originale sono registrati come `ERRORE_BASELINE`, come richiesto dall'utente: non sono automaticamente regressioni del fork e non bloccano tutta la ricerca. Una misura con NaN, output nullo o fallback CPU involontario resta invalida per il ranking prestazionale.
 
@@ -104,6 +104,9 @@ Le percentuali sono osservazioni sul workload indicato, non previsioni su tutti 
 | R19 | S03: intervalli espliciti replay PP/TG e join scheduler | IMPLEMENTATO / TEST_PARZIALI | 32/32 associazioni sintetiche esatte; warmup separato, tempi ms e payload per fase; 5 test CPU/RX6800/sanitizer per suite, output invariato; replay compilato senza modello | Correlazione runtime sul modello, overhead e prestazioni **NON_MISURATI**; timeline GPU/budget ancora incompleti. [Report e metadata](docs/development/moe-phase-profile-rx6800.md) |
 | R20 | S03 sul modello: correttezza, overhead, timestamp e memoria | VALIDATO sul replay / TEST_PARZIALI S03 | 30 processi singoli; 6 dump logits completi finiti/nonzero e identici; OFF/ON 8 processi/variante: PP +0.13%, TG -6.07%; B1/fork-OFF 4 processi/variante entro margini 3% PP/TG e5% p95; 55/2432 graph GPU associati a PP/decode128 | **REGRESSIONE TG da strumentazione**, PP equivalente; nessun guadagno del fork OFF dimostrato. Memoria breve/diagnostica GPU misurata, timeline normale e contesti lunghi incompleti. [Report e metadata](docs/development/moe-model-profile-rx6800.md) |
 | R21 | S02/S06: collector normale, corpus e richieste complete | VALIDATO pilot / TEST_PARZIALI M2 | 19 processi; quattro prompt train/held-out, generator/B1/collector con logits identici; CPU18/top8 completi. A490.43MiB LRU completa0.52..1.39%, statico train->held-out0%; callback storico altera logits anche con engine B1 | **ERRORE_BASELINE nel callback diagnostico**, causa aperta. Simulazione logica, nessuna cache runtime/TG gain. [Report e metadata](docs/development/moe-cache-plan-rx6800.md) |
+| R22 | S10 prerequisito: replica load-mode sul bottleneck PP | VALIDATO replay breve | Build9375, 11 processi; mmap/none4processi/variante: PP168.824->225.892 (+33.80%, CI32.26..35.17), TG28.853->28.837 entro3%, p95 entro5%; rawB1 identici | **MIGLIORAMENTO PP / MISTO memoria-avvio**: GTT residente0.62->9.57GiB, init5.02->9.89s. Config gia' esistente, non nuova cache/overlap. [Report](docs/development/moe-host-transfer-recheck-rx6800.md) |
+| R23 | T4: prompt code-review3107+128, replay ub512 | ERRORE_BASELINE ripetibilita' / gate FAILED | Sei dump completi finiti/nonzero; due run B1 differiscono in133/135vettori dal terzo chunk, maxabs3.43184 e2argmax PP diversi; fork anche variabile | Nessun processo di speed ranking; causa non stabilita, nessuna regressione fork o fix driver dimostrati. [Report](docs/development/moe-long-prefill-recheck-rx6800.md) |
+| R24 | Riduzione R23: prefix B1 1024/1536+32 | TEST_PARZIALI, coppie identiche | Quattro processi originali, due/prefix; tutti34/35vettori finiti/nonzero e bit-identici dentro coppia; un launch CRLF rifiutato prima del load e conservato | Il solo terzo chunk non riproduce il difetto lungo; root cause aperta, nessun ranking velocita'. [Report](docs/development/moe-chunk-repeatability-rx6800.md) |
 
 R12-R16 derivano dagli archivi locali del 5-6 ottobre e dallo stato dello sweep; alcuni report precedenti sulla repo descrivono ancora un pilot o una rivalidazione in corso. Questa snapshot aggiorna **lo stato**, senza fingere che quei report storici siano gia' stati riscritti.
 
@@ -178,7 +181,7 @@ La prima cache deve essere semplice e misurabile. Non iniziare con cache + looka
 
 ## Catalogo delle strategie con esperimento A/B
 
-Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R21 esplicitamente citate. S01/S02 hanno il tooling iniziale implementato in R17, ma restano incompleti i gate runtime, il corpus e la verifica held-out. S03 ha scope host/contatori copie R18, intervalli/aggregazione PP/TG R19 e verifica sul modello R20 con timestamp diagnostici e memoria breve; timeline calibrata nel percorso normale e budget per contesti lunghi restano incompleti. Non e' dichiarata implementata perche' esiste in una fonte esterna. I protocolli T0-T7 sono definiti nella sezione successiva; gli A/B qui fissano la variabile e le metriche aggiuntive. Anche i gruppi nello stesso livello si provano uno alla volta.
+Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R24 esplicitamente citate. S01/S02 hanno il tooling iniziale implementato in R17, ma restano incompleti i gate runtime, il corpus e la verifica held-out. S03 ha scope host/contatori copie R18, intervalli/aggregazione PP/TG R19 e verifica sul modello R20 con timestamp diagnostici e memoria breve; timeline calibrata nel percorso normale e budget per contesti lunghi restano incompleti. Non e' dichiarata implementata perche' esiste in una fonte esterna. I protocolli T0-T7 sono definiti nella sezione successiva; gli A/B qui fissano la variabile e le metriche aggiuntive. Anche i gruppi nello stesso livello si provano uno alla volta.
 
 ### P0: fondamenta e modello dei costi
 
@@ -215,6 +218,8 @@ Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R21
 ### P1/P2: trasferimenti e policy
 
 **S10 - Upload selettivi raggruppati.** Collo: molte piccole copie/ID readback durante prefill. Usare l'unione reale degli ID, accorpare intervalli contigui, ordinare i trasferimenti e scatter/remap; contare padding e gap copiati. RADV puo' beneficiare di meno regioni, ma copiare tutto ha gia' perso R07. Costo: preprocessing CPU e bytes inutili. T1/T3 selettivo attuale vs intervalli vs full-copy archiviato come controllo, PP512/2048/4096, payload reale e numero di submit; T0 strided/quant.
+
+**Incremento R22/R23 (2026-10-07).** R22 replica sullo stesso engine9375 il load-mode esistente: PP breve +33.80%, TG/p95 entro margini, raw identici B1; GTT residente circa9.57GiB e avvio +4.88s. Il tempo host upload scende ma attesa si sposta in input_wait: niente prova di banda fisica/overlap. R23 tenta il prompt lungo3107token: dal terzo chunk B1 stesso non ripete i logits (finiti/nonzero), quindi gate fallito e nessun ranking lungo. Bounded staging e pool richiedono protocolli propri; B3 non aggiornato. [Replica host](docs/development/moe-host-transfer-recheck-rx6800.md), [gate lungo](docs/development/moe-long-prefill-recheck-rx6800.md).
 
 **S11 - Prefill asincrono con staging ring e queue.** Collo: H2D e compute serializzati, ispirazione principale del video. Prima dimostrare queue/features RADV disponibili; ring3 slot per gate/up/down o numero misurato, eventi/fence e lifetime esplicite. Copia anticipata completa e copia selettiva sono varianti distinte. Costo: piu' staging/VRAM/RAM, traffico e contention bandwidth. T0/T1/T3 stesso load mode, sync vs async, ring1/2/3, PP512/2048/4096 e TTFT; shader/timeline devono provare overlap, fallback senza UAF obbligatorio.
 
@@ -367,10 +372,10 @@ Misurare cold process (load incluso), warm process/nuova conversazione e turni c
 | Milestone | Stato | Lavoro / dipendenze | Definizione di completamento |
 | --- | --- | --- | --- |
 | M0 - Snapshot e basi | PARZIALE | R01-R16, B0/B1/B2, freeze libs, pausa registrata | Questa roadmap e fonti pubblicate; manifest piccoli delle prossime campagne sempre versionati |
-| M1 - Misura senza confondenti | TEST_PARZIALI | Ripresa autorizzata; R20 sul modello per S03, R15/R16 e difetti condivisi catalogati | T0/T1 su controlli puliti, break-down costi e budget; nessun vincitore scelto da TG instabile |
+| M1 - Misura senza confondenti | TEST_PARZIALI | R20 S03, R22 replica breve controllata; R23 fallisce ripetibilita' lunga anche B1; R15/R16 e difetti condivisi catalogati | T0/T1 su controlli puliti, break-down costi e budget; nessun vincitore scelto da TG instabile |
 | M2 - Profili e disegno minimo | TEST_PARZIALI | R21 valida corpus breve/held-out CPU18 e top-k completo; ampliare corpus, scegliere budget/admission/fallback | Corpus/held-out, quote per layer e schema remap/lifetime; costo miss CPU/upload misurato |
 | M3 - Cache GPU esatta | PROPOSTO | S04/S05, M1-M2 | T0 all-hit/all-miss/eviction, T2/T3 e verdict; feature separabile OFF di default |
-| M4 - Ibrido e transfer | PROPOSTO | S07/S08 e S10/S11 su branch distinti | Confronto contro M3, non solo vecchio default; timeline dimostra o smentisce overlap |
+| M4 - Ibrido e transfer | TEST_PARZIALI prerequisiti | R22 replica host positivo PP/costo memoria; S07/S08 e staging ring S10/S11 ancora proposti su branch distinti | Confronto contro M3, non solo vecchio default; timeline dimostra o smentisce overlap |
 | M5 - Policy e memoria | PROPOSTO | S13/S14/S19/S21 e CPU se profilata dominante | Budget reale32GB, held-out, headroom e TG/TTFT migliori o tradeoff esplicito |
 | M6 - Applicazione e agenti | PROPOSTO | Ripresa autorizzata; T5 completo, S28/S29, T4/T6/T7 ancora da eseguire | Qualita' dichiarata e matrice1/2/4/8, cold/warm, latenza e memoria; limiti pubblicati |
 | M7 - Kernel/speculazione/modelli | PROPOSTO | S24-S27/S30-S42, solo bottleneck dimostrati | Una variante alla volta; benchmark e qualita' propri, nessuna fusione di speedup non confrontabili |
@@ -391,7 +396,10 @@ Checklist del lavoro dopo la ripresa autorizzata:
 - [x] R21: pilot routing train/held-out normale, logits identici B1, quote uniformi a byte uguali e richieste complete; callback storico con difetto condiviso archiviato.
 - [ ] Ampliare famiglie/seed T2 e confrontare quote per layer; definire remap/lifetime, admission e costo miss per cache runtime.
 - [ ] Implementare S04/S05 separabili; poi decidere S07/S08 dalle misure.
-- [ ] Confermare PP/TG/TTFT, qualita' e1/2/4/8 nei limiti autorizzati.
+- [x] R22: A/B mmap/none breve a build/config identici, raw gate,4processi/variante, PP/TG/p95 e memoria/startup separati.
+- [x] R23: provato prompt3107+128; fallita ripetibilita' anche B1, sei dump finiti/nonzero e controlli conservati, nessun ranking lungo.
+- [x] R24: screen B1 con prefix1024/1536+32, due processi ciascuno identici; non riproduce il3107, causa aperta. Token/prompt R22-R24 versionati.
+- [ ] Isolare history/reset/shape e controllare B4 separato; poi confermare PP/TG/TTFT, qualita' e1/2/4/8 nei limiti autorizzati.
 - [ ] Aggiornare B3 e registro con il verdetto, anche se REGRESSIONE o NESSUN_CAMBIAMENTO.
 
 ## Scheda da compilare per ogni nuovo tentativo
