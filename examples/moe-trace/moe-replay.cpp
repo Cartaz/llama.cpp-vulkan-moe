@@ -71,8 +71,8 @@ static uint64_t hash_logits(const float * logits, size_t count) {
     return hash;
 }
 
-static bool evaluate(llama_context * ctx, replay_workload & workload, int rep, int step, size_t n_vocab, FILE * raw, moe_phase_profile & profile) {
-    llama_memory_clear(llama_get_memory(ctx), false);
+static bool evaluate(llama_context * ctx, replay_workload & workload, int rep, int step, size_t n_vocab, FILE * raw, moe_phase_profile & profile, bool clear_data) {
+    llama_memory_clear(llama_get_memory(ctx), clear_data);
     auto eval = [&](llama_token * tokens, int n, const char * phase, size_t position) {
         const int64_t start = ggml_time_us();
         const int status = llama_decode(ctx, llama_batch_get_one(tokens, n));
@@ -144,6 +144,16 @@ int main(int argc, char ** argv) {
         }
         reps = static_cast<int>(parsed);
     }
+    bool clear_data = false;
+    if (const char * value = std::getenv("MOE_REPLAY_CLEAR_DATA")) {
+        const std::string option(value);
+        if (option == "1") {
+            clear_data = true;
+        } else if (!option.empty() && option != "0") {
+            LOG_ERR("MOE_REPLAY_CLEAR_DATA must be 0 or 1\n");
+            return 1;
+        }
+    }
     params.warmup = false;
     params.cb_eval = nullptr;
     params.cb_eval_user_data = nullptr;
@@ -182,14 +192,14 @@ int main(int argc, char ** argv) {
             return 1;
         }
     }
-    LOG_INF("replay: %zu prompt tokens, %zu decode tokens, %d repetitions, step=%d\n",
-            workload.prompt.size(), workload.decode.size(), reps, step);
-    if (!evaluate(ctx, workload, -1, step, n_vocab, nullptr, profile)) {
+    LOG_INF("replay: %zu prompt tokens, %zu decode tokens, %d repetitions, step=%d, clear_data=%d\n",
+            workload.prompt.size(), workload.decode.size(), reps, step, int(clear_data));
+    if (!evaluate(ctx, workload, -1, step, n_vocab, nullptr, profile, clear_data)) {
         return 1;
     }
     std::printf("rep,phase,position,n_tokens,elapsed_us,logits_hash\n");
     for (int rep = 0; rep < reps; ++rep) {
-        if (!evaluate(ctx, workload, rep, step, n_vocab, raw.get(), profile)) {
+        if (!evaluate(ctx, workload, rep, step, n_vocab, raw.get(), profile, clear_data)) {
             return 1;
         }
     }
