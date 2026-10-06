@@ -61,6 +61,32 @@ class SummaryTests(unittest.TestCase):
         self.assertEqual((upload["host_duration_us"], upload["bytes"], upload["padding_bytes"]), (3, 100, 20))
         self.assertEqual(upload["tensor"], 'blk.0,"expert"')
 
+    def test_correlate_vulkan_queries_with_exact_call_and_phase(self):
+        profile = self.profile([{"start_us": 100, "duration_us": 300},
+                                {"event": "compute_call", "destination": "Vulkan0", "start_us": 120, "duration_us": 100},
+                                {"event": "scheduler_end"}])
+        phases = self.phases([dict(start_us=100, end_us=500)])
+        log = profile.with_name("vulkan.log")
+        content = ("Vulkan graph: backend=Vulkan0,start_us=130,end_us=200,queries=2,concurrent=0\n"
+                   "----------------\nVulkan Timings:\n"
+                   "MUL_MAT_ID q4_K: 1 x 12.5 us = 12.5 us (10 GFLOPS/s)\n"
+                   "RMS_NORM(8,1,1,1): 1 x 1.5 us = 1.5 us\nTotal time: 14 us.\n")
+        log.write_text(content)
+        report = summary.summarize(profile, phases, log)
+        self.assertEqual(report["schema_version"], 3)
+        graph = report["gpu_graphs"][0]
+        self.assertEqual((graph["scheduler"], graph["call"], graph["rep"], graph["phase"]), (1, 1, 0, "prefill"))
+        self.assertEqual(graph["gpu_timestamp_ms"], 0.014)
+        self.assertEqual(sum(op["count"] for op in report["gpu_phase_operations"]), 2)
+        for invalid in (content.replace("queries=2", "queries=3"), content.replace("14 us.", "15 us."),
+                        content.replace("end_us=200", "end_us=221"), content.replace("concurrent=0", "concurrent=1"),
+                        content[:content.index("Total time:")], content + content):
+            log.write_text(invalid)
+            with self.assertRaises(ValueError):
+                summary.summarize(profile, phases, log)
+        with self.assertRaises(ValueError):
+            summary.summarize(profile, vulkan_path=log)
+
     def test_reject_invalid_or_incomplete_profiles(self):
         for rows in ([{}], [{}, {"event": "scheduler_end"}, {}], [{}, {}, {"event": "scheduler_end"}],
                      [{"duration_us": -1}], [{"status": -2}], [{"bytes": 1, "padding_bytes": 2}],
@@ -150,7 +176,7 @@ class RuntimeTests(unittest.TestCase):
                 self.assertFalse(uploads)
             environment["MOE_REPLAY_PROFILE"] = str(root / "phases.csv")
             environment["GGML_SCHED_PROFILE"] = str(root / "paired.csv")
-            subprocess.run(argv + ["--output-bin", str(root / "paired.bin")], env=environment, capture_output=True, check=True)
+            paired_process = subprocess.run(argv + ["--output-bin", str(root / "paired.bin")], env=environment, capture_output=True, check=True)
             self.assertEqual((root / "off.bin").read_bytes(), (root / "paired.bin").read_bytes())
             paired = summary.summarize(root / "paired.csv", root / "phases.csv")
             self.assertEqual(len(paired["phase_evaluations"]), 32)
@@ -164,6 +190,13 @@ class RuntimeTests(unittest.TestCase):
                                               for event in entry["events"] if event["event"] == "expert_upload")
                                     for phase in ("prefill", "decode")}
                 self.assertEqual(uploads_by_phase, {"prefill": 46080, "decode": 12288})
+                if "GGML_VK_PERF_LOGGER" in environment:
+                    log = root / "vulkan.log"
+                    log.write_bytes(paired_process.stderr)
+                    gpu = summary.summarize(root / "paired.csv", root / "phases.csv", log)
+                    self.assertEqual(len(gpu["gpu_graphs"]), 32)
+                    for graph in gpu["gpu_graphs"]:
+                        self.assertEqual(graph["phase"], "prefill" if graph["call"] == 1 else "decode")
             # A phase file is single-run output; refuse to overwrite a previous run.
             result = subprocess.run(argv, env=environment, capture_output=True)
             self.assertNotEqual(result.returncode, 0)
