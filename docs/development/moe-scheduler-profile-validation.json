@@ -1,0 +1,59 @@
+{
+  "id": "R18-S03-initial",
+  "status": "IMPLEMENTATO_TEST_PARZIALI",
+  "date": "2026-10-06",
+  "base_commit": "fad18a1af87c9567a97fdc3645057858156b419e",
+  "source_sha256": {
+    "ggml/src/ggml-backend.cpp": "527d3c3deff8c6c388558ac471cd90b06cd6f8d048a2ec2c01e6f4612e3fab60",
+    "examples/moe-trace/CMakeLists.txt": "a8909fdd989b5438bb5ec5450ab5146f2929f623fff5096c40ab23fdbfd43569",
+    "examples/moe-trace/scheduler-check.cpp": "2c933692d146fde8cc13ec3cbabc82d9c6529edc9b17ab53914b094c873953bd",
+    "examples/moe-trace/profile-summary.py": "44dcff8d09f6542e009672d62d2af9fe79d1ed2f2eb1094cc91ec2b014144f71",
+    "examples/moe-trace/test-scheduler-profile.py": "c5c855ccb226a5b44acc640bbd5d90ac6e326d9177aff9b4f748f1ddbb885902"
+  },
+  "system": {
+    "kernel": "7.2.9-1-cachyos",
+    "gpu": "AMD Radeon RX 6800 16 GB / RADV NAVI21",
+    "mesa": "26.2.4-arch3.1",
+    "vulkan_api": "1.4.354",
+    "compiler": "GCC 16.2.1 20260810",
+    "cmake": "4.4.4",
+    "ninja": "1.13.2"
+  },
+  "environment": {},
+  "binary_sha256": {
+    "/tmp/moe-s03-build/bin/libggml.so.0.25.1": "50e95cb79d0320d0d84c1609ed1d2e0b939f32b9fbdeb522e952c1b4cf324757",
+    "/tmp/moe-s03-build/bin/libggml-base.so.0.25.1": "241732107e9a9713bfb5d61427393eea07873fad380b1a92c1f5adbc338b12e2",
+    "/tmp/moe-s03-build/bin/libggml-cpu.so.0.25.1": "2d37c13ceebd3ebd5d4eefd7aa4463bad47002093253110d3884a8cbac344715",
+    "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/build-control-off/bin/libggml.so.0.25.1": "2d1c3e997a6ca7e7477a73f4cbd2fe6117e2dd93efaaa9f5b6ea879106ffd7f5",
+    "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/build-control-off/bin/libggml-base.so.0.25.1": "a2687390b2af872ccfdec874ccbc0347b977524a2bb4d7ee4b6659538d641d98",
+    "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/build-control-off/bin/libggml-cpu.so.0.25.1": "08d0a7dbacd02d8df34ac163cb606e912711c9905acf918ba31e6a38abd2157e",
+    "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/build-control-off/bin/libggml-vulkan.so.0.25.1": "8e49e0d7336d7bf9473c6a56a46bac6bb01209b11a4e7a17fd51916a68a2db8c",
+    "/tmp/moe-s03-check-vulkan": "a1c48c6bc37198f40f02ee878cba4891a03d36af1f26ffaf49785f9dd7e0c7dc",
+    "/tmp/moe-s03-check-control": "168295cf6cb632d04d8e2476cf3aa154e66b0c1f86a62755abb14be3b2254932",
+    "build-B/bin/test-backend-ops": "b8acc6a0e0f9b1fb399b47490e32e1ee7f7f12c999b338e79775af50b4761e7f"
+  },
+  "checks": {
+    "cpu_release": "PASS",
+    "cpu_asan_ubsan": "PASS",
+    "rx6800_vulkan": "PASS",
+    "foundations_offline": "13 PASS",
+    "scheduler_suites": "3 tests each; 32 operator evaluations per invocation",
+    "scalar_reference": "all elements finite, nonzero output, exact F32 values",
+    "profiler_off_on_control": "byte-identical outputs",
+    "open_write_failure_empty_env": "PASS",
+    "copy_payloads_and_padding": "exact counters PASS",
+    "gpu_timestamps_serial": "16 evaluations PASS",
+    "gpu_timestamps_parallel_view": "control and candidate abort at compute_ctx.expired assertion",
+    "backend_ops_cpu": "4/4 Q4_K/Q6_K MUL_MAT_ID broadcast OFF/ON PASS; profiler OFF"
+  },
+  "raw_output_sha256": "b8ccf66c028651dc191d799d009ffd6fc97887c28fbf4aa2a7781e48f1c7f5a2",
+  "performance": "NON_MISURATO",
+  "quality": "NON_MISURATO",
+  "model": "none; synthetic F32 operator",
+  "artifact_archive": "risultati/2026-10-06-scheduler-profile",
+  "limits": [
+    "Prebuilt Vulkan backend reused unchanged with newly built scheduler/base/CPU; not a clean full Vulkan rebuild.",
+    "Prebuilt library hashes establish artifact identity; source commit of those older binaries is not independently certified.",
+    "No PP/TG phase correlation, overlap measurement, full VRAM accounting or model benchmark."
+  ]
+}
