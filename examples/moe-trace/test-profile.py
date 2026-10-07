@@ -29,6 +29,7 @@ def module(name):
 
 analyze = module("analyze")
 manifest = module("manifest")
+layer_budget = module("layer-budget")
 
 
 class ProfileTests(unittest.TestCase):
@@ -206,6 +207,84 @@ class ManifestTests(unittest.TestCase):
             args.require_vulkan = True
             with self.assertRaisesRegex(ValueError, "no mapped libggml-vulkan"):
                 manifest.snapshot(args)
+
+
+class LayerBudgetTests(unittest.TestCase):
+    def test_heterogeneous_cost_and_determinism(self):
+        traces = [{(0, 0): frozenset([1]), (0, 1): frozenset([2]), (1, 0): frozenset([1]), (1, 1): frozenset([2])}]
+        sizes = {0: 3, 1: 7}
+        for policy in ("uniform_frequency", "global_frequency_per_byte", "request_bundle"):
+            for budget in (0, 2, 3, 7, 9, 10):
+                result = layer_budget.plan(traces, sizes, budget, policy)
+                self.assertEqual(result, layer_budget.plan(traces, sizes, budget, policy))
+                self.assertLessEqual(result["payload_bytes"], budget)
+                self.assertEqual(result["payload_bytes"] + result["slack_bytes"], budget)
+                self.assertEqual(result["payload_bytes"], sum(v["slots"] * sizes[int(k)] for k, v in result["layers"].items()))
+        result = layer_budget.plan(traces, sizes, 9, "global_frequency_per_byte")
+        self.assertEqual(result["layers"]["0"]["experts"], [1])
+        self.assertEqual(result["zero_quota_layers"], [1])
+
+    def test_indivisible_bundle_and_shared_gain(self):
+        traces = [{(0, 0): frozenset([0, 1]), (1, 0): frozenset([0, 1]), (2, 0): frozenset([1, 2])}]
+        self.assertEqual(layer_budget.plan(traces, {0: 4}, 7, "request_bundle")["payload_bytes"], 0)
+        allocation = layer_budget.plan(traces, {0: 4}, 8, "request_bundle")
+        self.assertEqual(allocation["layers"]["0"]["experts"], [0, 1])
+        stats = layer_budget.score(traces[0], allocation, {0: 4})
+        self.assertEqual((stats["all_hit"], stats["mixed"], stats["all_miss"]), (2, 1, 0))
+        self.assertEqual(stats["hits"], 5)
+        self.assertEqual(stats["all_layer_hit_tokens"], 2)
+
+    def test_whole_token_and_partition(self):
+        groups = {(0, 0): frozenset([1, 2]), (0, 1): frozenset([1, 2]), (1, 0): frozenset([3, 4]), (1, 1): frozenset([2, 3])}
+        allocation = {"layers": {"0": {"experts": [1, 2]}, "1": {"experts": [1, 2]}}}
+        stats = layer_budget.score(groups, allocation, {0: 2, 1: 5})
+        self.assertEqual((stats["all_hit"], stats["all_miss"], stats["mixed"]), (2, 1, 1))
+        self.assertEqual(stats["hit_bytes"], 19)
+        self.assertEqual(stats["all_layer_hit_tokens"], 1)
+        with self.assertRaises(ValueError):
+            layer_budget.score({(0, 0): groups[0, 0]}, allocation, {0: 2, 1: 5})
+
+    def test_manifest_geometry_identity_and_heldout_isolation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            sizes = root / "sizes.json"
+            sizes.write_text('{"0": 4}')
+            cases = []
+            for name, split, ids in (("train", "train", [0, 1]), ("heldout", "heldout", [2, 3])):
+                path = root / (name + ".csv")
+                with path.open("w", newline="") as stream:
+                    writer = csv.writer(stream)
+                    writer.writerow(["phase", "token", "layer", "rank", "expert"])
+                    for token, phase in ((0, "prefill"), (1, "decode")):
+                        for rank, expert in enumerate(ids):
+                            writer.writerow([phase, token, 0, rank, expert])
+                cases.append(dict(name=name, split=split, path=path.name, sha256=layer_budget.sha(path), model_sha256="a" * 64, prompt_tokens=1, decode_tokens=1))
+            data = dict(model_sha256="a" * 64, geometry=dict(layers=1, experts=4, top_k=2), selected_layers=[0],
+                        expert_bytes_path=sizes.name, expert_bytes_sha256=layer_budget.sha(sizes), cases=cases, budgets_bytes=[8])
+            path = root / "manifest.json"
+            def run():
+                path.write_text(json.dumps(data))
+                return layer_budget.run(path)
+            before = run()
+            heldout = root / cases[1]["path"]
+            heldout.write_text(heldout.read_text().replace(",2", ",0"))
+            cases[1]["sha256"] = layer_budget.sha(heldout)
+            after = run()
+            self.assertEqual([{k: v for k, v in item.items() if k != "scores"} for item in before["allocations"]],
+                             [{k: v for k, v in item.items() if k != "scores"} for item in after["allocations"]])
+            self.assertNotEqual(before["allocations"][0]["scores"]["heldout"], after["allocations"][0]["scores"]["heldout"])
+            cases[1]["model_sha256"] = "b" * 64
+            with self.assertRaisesRegex(ValueError, "identity"):
+                run()
+            cases[1]["model_sha256"] = "a" * 64
+            cases[1]["sha256"] = "c" * 64
+            with self.assertRaisesRegex(ValueError, "SHA"):
+                run()
+            cases[1]["sha256"] = layer_budget.sha(heldout)
+            heldout.write_text(heldout.read_text().replace("decode,1,0,1,3", "decode,1,0,1,0"))
+            cases[1]["sha256"] = layer_budget.sha(heldout)
+            with self.assertRaisesRegex(ValueError, "top-k"):
+                run()
 
 
 if __name__ == "__main__":

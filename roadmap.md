@@ -1,6 +1,6 @@
 # Roadmap: llama.cpp-vulkan-moe su RX 6800
 
-Aggiornamento: **2026-10-07**. Documento di lavoro per `Cartaz/llama.cpp-vulkan-moe`, branch di riferimento `experiment/moe-trace-strides`; incrementi sperimentali R17-R25 su branch separati. Snapshot del codice prima di questa roadmap: `c679dc22012ee9281db57336ff8fd17a93bc54b2`.
+Aggiornamento: **2026-10-07**. Documento di lavoro per `Cartaz/llama.cpp-vulkan-moe`, branch di riferimento `experiment/moe-trace-strides`; incrementi sperimentali R17-R27 su branch separati. Snapshot del codice prima di questa roadmap: `c679dc22012ee9281db57336ff8fd17a93bc54b2`.
 
 Obiettivo: inferenza locale affidabile e veloce su RX 6800 16 GB, Ryzen 7 5700X3D e 32 GB RAM, CachyOS/RADV. Prima una sequenza; poi 2, 4 e 8 richieste da agenti. PP, TG, TTFT, latenza completa, throughput aggregato e throughput per richiesta sono risultati distinti.
 
@@ -8,20 +8,20 @@ Obiettivo: inferenza locale affidabile e veloce su RX 6800 16 GB, Ryzen 7 5700X3
 
 | Voce | Stato al 2026-10-07 |
 | --- | --- |
-| Esecuzione benchmark | **Ripresa autorizzata esplicitamente dall'utente il 2026-10-07. R20-R25 conclusi sul perimetro dichiarato; PP breve +33.8% none, gate lungo fallito anche B1.** |
+| Esecuzione benchmark | **Ripresa autorizzata esplicitamente dall'utente il 2026-10-07. R20-R27 conclusi sul perimetro dichiarato:91processi modello R20-R26; B4 breve none PP+37.32%, TG/p95 equivalenti; R27 quote layer offline.** |
 | Baseline originale | llama.cpp v0.5.0, `7fe450e19305b828c199d602c23a8337aaa1f03b`, senza modifiche |
 | Modello di riferimento | Ornith-1.5-35B-Q4_K_M.gguf; identita' completa nella sezione baseline |
-| Cache GPU persistente di esperti | **Non implementata**. Disponibili collector normale validato su CPU18 e simulazioni offline; callback storico diverge dal percorso normale |
+| Cache GPU persistente di esperti | **Non implementata**. Disponibili collector normale CPU18 e planner TRAIN in byte/quote layer R27; nessuna cache/remap runtime. Callback storico diverge dal percorso normale |
 | CPU routing compatto | Implementato, opzionale e OFF di default; riduzione del workspace verificata, incremento PP/TG non dimostrato |
 | CPU traversal degli esperti attivi | Implementato, opzionale e OFF di default; incremento PP/TG non dimostrato |
-| Caricamento `none` / Vulkan_Host | R22 su build9375: PP +33.80% [32.26,35.17], TG/p95 equivalenti; GTT residente0.62->9.57GiB, avvio5.02->9.89s. Valido replay breve, gate lungo R23 fallito |
+| Caricamento `none` / Vulkan_Host | R22 build9375 PP+33.80%; R26 dentroB4f498 PP+37.32%[36.92,37.38], TG/p95 equivalenti, GTT0.627->9.566..9.646GiB/init5.528->8.729s. A/B distinti sul breve; nessun ranking tra versioni |
 | Ubatch 2048 | Forte beneficio su un replay 4096; **candidato**, non configurazione universalmente validata |
-| Qualita' risposte | R12/R13 conservati; R23 su3107token ha logits finiti ma non ripetibili anche B1: nessun ranking lungo o nuovo score semantico |
+| Qualita' risposte | R12/R13 conservati; R23 B1 lungo non ripetibile; R26 coppiaB4lungo bit-identica ma breve29/129vettori diversi daB1. Nessun nuovo score semantico/equivalenza generale |
 | Sweep configurazione | ncmoe 0..40 completato e shortlist verificata; coordinate successive parziali; interazioni e matrice contesti da completare |
 | Profilo provvisorio dello sweep | `-ncmoe 12 -tb 8`, `GGML_VK_DISABLE_HOST_VISIBLE_VIDMEM=1`, librerie DEFAULT congelate; **non vincitore finale** |
-| Fondamenta S01/S02 | Tooling iniziale IMPLEMENTATO su `experiment/moe-profile-foundations`: manifest live con verifica freeze, entropia/riuso/finestre e stime cache in byte; R21 valida quattro prompt brevi/held-out, richieste top-k complete e byte; corpus esteso e runtime cache incompleti |
+| Fondamenta S01/S02 | Tooling iniziale IMPLEMENTATO su `experiment/moe-profile-foundations`: manifest live con verifica freeze, entropia/riuso/finestre e stime cache in byte; R21 valida quattro prompt brevi/held-out; R27 aggiunge planner statico quote layer in byte e copertura completa; corpus esteso/remap/runtime cache incompleti |
 | Fondamenta S03 | R20: join host PP/TG sul modello VALIDATO, costo profiler TG -6.07%, logger timestamp corretto e correlato, accounting memoria sul replay breve; timeline normale calibrata e contesti lunghi incompleti |
-| Prossima modifica di ricerca | R23 fallisce anche B1; R24 prefix brevi coincidono, R25 reset dati non risolve: controllare B4/history/shape; M2/remap/lifetime e bounded staging S10/S11 sui controlli brevi validati, senza promozione generale |
+| Prossima modifica di ricerca | R26 B4 screen bit-ripetibile ma29/129logits brevi diversi daB1; R27 bundle aumenta richieste complete sacrificando copertura e15layer. Ampliare corpus/riserva minima, poi remap/lifetime e bounded staging S10/S11 |
 
 Questo documento registra la ripresa richiesta dall'utente il 2026-10-07; gli archivi interrotti R13/R15 restano conservati. I problemi riprodotti anche sulla v0.5.0 originale sono registrati come `ERRORE_BASELINE`, come richiesto dall'utente: non sono automaticamente regressioni del fork e non bloccano tutta la ricerca. Una misura con NaN, output nullo o fallback CPU involontario resta invalida per il ranking prestazionale.
 
@@ -108,6 +108,8 @@ Le percentuali sono osservazioni sul workload indicato, non previsioni su tutti 
 | R23 | T4: prompt code-review3107+128, replay ub512 | ERRORE_BASELINE ripetibilita' / gate FAILED | Sei dump completi finiti/nonzero; due run B1 differiscono in133/135vettori dal terzo chunk, maxabs3.43184 e2argmax PP diversi; fork anche variabile | Nessun processo di speed ranking; causa non stabilita, nessuna regressione fork o fix driver dimostrati. [Report](docs/development/moe-long-prefill-recheck-rx6800.md) |
 | R24 | Riduzione R23: prefix B1 1024/1536+32 | TEST_PARZIALI, coppie identiche | Quattro processi originali, due/prefix; tutti34/35vettori finiti/nonzero e bit-identici dentro coppia; un launch CRLF rifiutato prima del load e conservato | Il solo terzo chunk non riproduce il difetto lungo; root cause aperta, nessun ranking velocita'. [Report](docs/development/moe-chunk-repeatability-rx6800.md) |
 | R25 | Controllo helper reset dati dopo warmup | IMPLEMENTATO, default compatibile; gate lungo FAILED | Helper79c7778 MOE_REPLAY_CLEAR_DATA=1; quattro run3107+128 finiti/nonzero, coppia B1 diff134/135vettori gia' dal secondo chunk. Assente/0/vuoto: tre run244+128 identiciB1; sei CLIcheck senza modello | True clearing **non risolve** ripetibilita' originale; opt-in diagnostico, nessun fix/TG gain/default change. [Report](docs/development/moe-state-reset-rx6800.md) |
+| R26 | Controllo upstream B4 separato + A/B load-mode breve | VALIDATO replay breve / TEST_PARZIALI B4 | Upstream f498f864 pulito;14processi, sei dump finiti/nonzero, coppie B4 brevi/lunghe identiche. Breve29/129diversi daB1; mmap/none4processi/modalita': PP179.537->246.548,+37.324%[36.922,37.383], TG/p95 equivalenti | **MIGLIORAMENTO PP / MISTO memoria-avvio**: GTT residente0.627->9.566..9.646GiB, init5.528->8.729s. Nessun fix generale/ranking cross-version/promozione. [Report](docs/development/moe-upstream-control-rx6800.md) |
+| R27 | S06 planner statico TRAIN budget in byte/quote layer | IMPLEMENTATO, VALIDATO offline pilot | Tre policy a cap228.867/490.430/1013.555MiB, due TRAIN/due HELDOUT normali R21;18testPASS. Cap490.43bundle completa3.819%/2.344%, ma15layer senza slot; uniforme0% | Copertura logica, zero nuovi processi modello; nessuna cache runtime, risparmio PCIe o TG gain. [Report](docs/development/moe-layer-budget-rx6800.md) |
 
 R12-R16 derivano dagli archivi locali del 5-6 ottobre e dallo stato dello sweep; alcuni report precedenti sulla repo descrivono ancora un pilot o una rivalidazione in corso. Questa snapshot aggiorna **lo stato**, senza fingere che quei report storici siano gia' stati riscritti.
 
@@ -182,7 +184,7 @@ La prima cache deve essere semplice e misurabile. Non iniziare con cache + looka
 
 ## Catalogo delle strategie con esperimento A/B
 
-Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R25 esplicitamente citate. S01/S02 hanno il tooling iniziale implementato in R17, ma restano incompleti i gate runtime, il corpus e la verifica held-out. S03 ha scope host/contatori copie R18, intervalli/aggregazione PP/TG R19 e verifica sul modello R20 con timestamp diagnostici e memoria breve; timeline calibrata nel percorso normale e budget per contesti lunghi restano incompleti. Non e' dichiarata implementata perche' esiste in una fonte esterna. I protocolli T0-T7 sono definiti nella sezione successiva; gli A/B qui fissano la variabile e le metriche aggiuntive. Anche i gruppi nello stesso livello si provano uno alla volta.
+Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R27 esplicitamente citate. S01/S02 hanno il tooling iniziale implementato in R17, ma restano incompleti i gate runtime, il corpus e la verifica held-out. S03 ha scope host/contatori copie R18, intervalli/aggregazione PP/TG R19 e verifica sul modello R20 con timestamp diagnostici e memoria breve; timeline calibrata nel percorso normale e budget per contesti lunghi restano incompleti. Non e' dichiarata implementata perche' esiste in una fonte esterna. I protocolli T0-T7 sono definiti nella sezione successiva; gli A/B qui fissano la variabile e le metriche aggiuntive. Anche i gruppi nello stesso livello si provano uno alla volta.
 
 ### P0: fondamenta e modello dei costi
 
@@ -208,7 +210,7 @@ Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R25
 
 **Incremento R21 (2026-10-07).** Collector normale opt-in senza nuovi readback/sync, join con fasi esplicite, filtro layer e statistiche all-hit/all-miss/mixed. Quattro prompt brevi train/held-out superano il gate raw B1; a15slot CPU18 il payload e490.43MiB e richieste complete LRU0.52..1.39%, non il37..43% di singole activation hit. Il callback storico diverge anche con engine originale; R05 e' conservato ma non validato per inferenza normale. M2 resta parziale: corpus esteso, remap/lifetime e costo miss. [Report](docs/development/moe-cache-plan-rx6800.md).
 
-**S06 - Budget cache in byte e quote per layer.** Collo: quote uniformi possono sprecare memoria e i primi layer possono monopolizzare un pool globale. Budget dopo pesi densi, KV/recurrent, compute worst-case e margine desktop misurato. Confrontare uniforme, minima quota + distribuzione a beneficio marginale, globale con riserva per layer. Riusare planner, non nuovo allocator globale. T2/T3 a budget0/256/512/1024/2048 MiB solo se disponibili; stessa memoria, byte salvati/ms e p95 dei miss. Dipende S03/S04.
+**S06 - Budget cache in byte e quote per layer.** Collo: quote uniformi possono sprecare memoria e i primi layer possono monopolizzare un pool globale. R27 implementa confronto offline uniforme/global-frequency/bundle con cap in byte e quote persistite; nessuna quota minima o cache runtime. Budget dopo pesi densi, KV/recurrent, compute worst-case e margine desktop misurato. Confrontare uniforme, minima quota + distribuzione a beneficio marginale, globale con riserva per layer. Riusare planner, non nuovo allocator globale. T2/T3 a budget0/256/512/1024/2048 MiB solo se disponibili; stessa memoria, byte salvati/ms e p95 dei miss. Dipende S03/S04.
 
 **S07 - Hit GPU, miss CPU, merge esatto.** Collo: trasferire un esperto freddo puo' costare piu' che calcolarlo su5700X3D. Separare attivazioni/ID hit e miss, GPU per residenti, CPU per altri, scatter nell'ordine originale top-k e stessa riduzione. Adattare scheduler/backend, riusare CPU SIMD; evitare diversa quantizzazione delle attivazioni fra i due percorsi. Costo: readback attivazioni, sincronizzazione e possibile rounding diverso. T0/T3 pool tutto-GPU vs ibrido, miss0/25/50/75/100%, stessi slot e pesi; logits completi, TTFT/TG/CPU busy, non solo hit rate.
 
@@ -373,10 +375,10 @@ Misurare cold process (load incluso), warm process/nuova conversazione e turni c
 | Milestone | Stato | Lavoro / dipendenze | Definizione di completamento |
 | --- | --- | --- | --- |
 | M0 - Snapshot e basi | PARZIALE | R01-R16, B0/B1/B2, freeze libs, pausa registrata | Questa roadmap e fonti pubblicate; manifest piccoli delle prossime campagne sempre versionati |
-| M1 - Misura senza confondenti | TEST_PARZIALI | R20 S03, R22 replica breve controllata; R23 fallisce ripetibilita' lunga anche B1; R15/R16 e difetti condivisi catalogati | T0/T1 su controlli puliti, break-down costi e budget; nessun vincitore scelto da TG instabile |
-| M2 - Profili e disegno minimo | TEST_PARZIALI | R21 valida corpus breve/held-out CPU18 e top-k completo; ampliare corpus, scegliere budget/admission/fallback | Corpus/held-out, quote per layer e schema remap/lifetime; costo miss CPU/upload misurato |
+| M1 - Misura senza confondenti | TEST_PARZIALI | R20 S03, R22 replica breve controllata; R23 fallisce ripetibilita' lunga anche B1; R26 screen B4 ripetibile ma diverso daB1; R15/R16 e difetti condivisi catalogati | T0/T1 su controlli puliti, break-down costi e budget; nessun vincitore scelto da TG instabile |
+| M2 - Profili e disegno minimo | TEST_PARZIALI | R21 corpus normale; R27 planner quote layer statiche TRAIN/HELDOUT; ampliare corpus/riserva minima, definire admission/fallback/remap/lifetime | Corpus/held-out, quote per layer e schema remap/lifetime; costo miss CPU/upload misurato |
 | M3 - Cache GPU esatta | PROPOSTO | S04/S05, M1-M2 | T0 all-hit/all-miss/eviction, T2/T3 e verdict; feature separabile OFF di default |
-| M4 - Ibrido e transfer | TEST_PARZIALI prerequisiti | R22 replica host positivo PP/costo memoria; S07/S08 e staging ring S10/S11 ancora proposti su branch distinti | Confronto contro M3, non solo vecchio default; timeline dimostra o smentisce overlap |
+| M4 - Ibrido e transfer | TEST_PARZIALI prerequisiti | R22 replica host positivo PP/costo memoria, R26 controllo dentroB4; S07/S08 e staging ring S10/S11 ancora proposti su branch distinti | Confronto contro M3, non solo vecchio default; timeline dimostra o smentisce overlap |
 | M5 - Policy e memoria | PROPOSTO | S13/S14/S19/S21 e CPU se profilata dominante | Budget reale32GB, held-out, headroom e TG/TTFT migliori o tradeoff esplicito |
 | M6 - Applicazione e agenti | PROPOSTO | Ripresa autorizzata; T5 completo, S28/S29, T4/T6/T7 ancora da eseguire | Qualita' dichiarata e matrice1/2/4/8, cold/warm, latenza e memoria; limiti pubblicati |
 | M7 - Kernel/speculazione/modelli | PROPOSTO | S24-S27/S30-S42, solo bottleneck dimostrati | Una variante alla volta; benchmark e qualita' propri, nessuna fusione di speedup non confrontabili |
@@ -395,13 +397,15 @@ Checklist del lavoro dopo la ripresa autorizzata:
 - [ ] Spiegare o contenere variabilita' fra processi prima di un vincitore CPU/placement.
 - [x] Misurati costi host CPU/transfer, timestamp GPU diagnostici e memoria VRAM/KV/recurrent/compute sul replay244+128 in R20; contesti lunghi restano aperti.
 - [x] R21: pilot routing train/held-out normale, logits identici B1, quote uniformi a byte uguali e richieste complete; callback storico con difetto condiviso archiviato.
-- [ ] Ampliare famiglie/seed T2 e confrontare quote per layer; definire remap/lifetime, admission e costo miss per cache runtime.
+- [x] R27: confrontate quote uniformi/globali/bundle a cap uguale, input/hash e split TRAIN/HELDOUT,18test offline; evidenziato rischio di concentrazione.
+- [ ] Ampliare famiglie/seed T2 e quote con riserva minima; definire remap/lifetime, admission e costo miss per cache runtime.
 - [ ] Implementare S04/S05 separabili; poi decidere S07/S08 dalle misure.
 - [x] R22: A/B mmap/none breve a build/config identici, raw gate,4processi/variante, PP/TG/p95 e memoria/startup separati.
 - [x] R23: provato prompt3107+128; fallita ripetibilita' anche B1, sei dump finiti/nonzero e controlli conservati, nessun ranking lungo.
 - [x] R24: screen B1 con prefix1024/1536+32, due processi ciascuno identici; non riproduce il3107, causa aperta. Token/prompt R22-R24 versionati.
 - [x] R25: controllo reset dati nel solo helper; default/0/vuoto compatibili sul breve, true-clear non risolve B1 lungo. Fonte/helper e engine originali separati, gate fallito conservato.
-- [ ] Isolare history/shape e controllare B4 separato; poi confermare PP/TG/TTFT, qualita' e1/2/4/8 nei limiti autorizzati.
+- [x] R26: B4 separato, coppie brevi/lunghe bit-ripetibili;29/129vettori brevi diversi daB1. A/B mmap/none dentroB4: PP+37.32%, TG/p95 equivalenti, memoria/avvio registrati.
+- [ ] Isolare history/shape e cambi upstream, estendere correttezza/qualita'; confermare PP/TG/TTFT e1/2/4/8 nei limiti autorizzati.
 - [ ] Aggiornare B3 e registro con il verdetto, anche se REGRESSIONE o NESSUN_CAMBIAMENTO.
 
 ## Scheda da compilare per ogni nuovo tentativo
