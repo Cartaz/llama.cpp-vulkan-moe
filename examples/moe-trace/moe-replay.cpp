@@ -154,6 +154,16 @@ int main(int argc, char ** argv) {
             return 1;
         }
     }
+    bool warmup = true;
+    if (const char * value = std::getenv("MOE_REPLAY_WARMUP")) {
+        const std::string option(value);
+        if (option == "0") {
+            warmup = false;
+        } else if (!option.empty() && option != "1") {
+            LOG_ERR("MOE_REPLAY_WARMUP must be 0 or 1\n");
+            return 1;
+        }
+    }
     params.warmup = false;
     params.cb_eval = nullptr;
     params.cb_eval_user_data = nullptr;
@@ -192,9 +202,9 @@ int main(int argc, char ** argv) {
             return 1;
         }
     }
-    LOG_INF("replay: %zu prompt tokens, %zu decode tokens, %d repetitions, step=%d, clear_data=%d\n",
-            workload.prompt.size(), workload.decode.size(), reps, step, int(clear_data));
-    if (!evaluate(ctx, workload, -1, step, n_vocab, nullptr, profile, clear_data)) {
+    LOG_INF("replay: %zu prompt tokens, %zu decode tokens, %d repetitions, step=%d, clear_data=%d, warmup=%d\n",
+            workload.prompt.size(), workload.decode.size(), reps, step, int(clear_data), int(warmup));
+    if (warmup && !evaluate(ctx, workload, -1, step, n_vocab, nullptr, profile, clear_data)) {
         return 1;
     }
     std::printf("rep,phase,position,n_tokens,elapsed_us,logits_hash\n");
