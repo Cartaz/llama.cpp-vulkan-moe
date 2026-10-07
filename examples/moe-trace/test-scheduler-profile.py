@@ -156,6 +156,71 @@ class SummaryTests(unittest.TestCase):
             summary.phase_for_scope(phases, [1000, 1500], 1500, 0)
 
 
+replay_spec = importlib.util.spec_from_file_location("replay_summary", HERE / "replay-summary.py")
+replay_summary = importlib.util.module_from_spec(replay_spec)
+replay_spec.loader.exec_module(replay_summary)
+
+
+class ReplaySummaryTests(unittest.TestCase):
+    def setUp(self):
+        directory = tempfile.TemporaryDirectory()
+        self.addCleanup(directory.cleanup)
+        self.root = Path(directory.name)
+        self.tokens = self.root / "tokens.csv"
+        with self.tokens.open("w", newline="") as stream:
+            writer = csv.DictWriter(stream, fieldnames=replay_summary.TOKEN_FIELDS)
+            writer.writeheader()
+            for position in range(12):
+                writer.writerow(dict(phase="prefill" if position < 9 else "decode", token=position, id=position))
+        self.rows = [dict(rep=0, phase="prefill", position=p, n_tokens=n, elapsed_us=t, logits_hash="0000000000000001")
+                     for p, n, t in [(0, 4, 1000), (4, 4, 2000), (8, 1, 3000)]]
+        self.rows += [dict(rep=0, phase="decode", position=9+i, n_tokens=1, elapsed_us=100*(i+1), logits_hash="0000000000000001") for i in range(3)]
+
+    def calls(self, rows, name="calls.csv"):
+        path = self.root / name
+        with path.open("w", newline="") as stream:
+            writer = csv.DictWriter(stream, fieldnames=replay_summary.CALL_FIELDS)
+            writer.writeheader()
+            writer.writerows(rows)
+        return path
+
+    def test_aggregate_every_prefill_chunk_and_repetition(self):
+        path = self.calls(self.rows + [row | {"rep": 1} for row in self.rows])
+        result = replay_summary.summarize(path, self.tokens, 4)
+        self.assertEqual(result["calls"], 12)
+        self.assertEqual(len(result["repetitions"]), 2)
+        for rep in result["repetitions"]:
+            self.assertEqual((rep["prefill_calls"], rep["pp_elapsed_ms"], rep["pp_tps"]), (3, 6, 1500))
+            self.assertEqual(rep["tg_tps"], 5000)
+            self.assertAlmostEqual(rep["tg_p95_ms"], 0.29)
+
+    def test_reject_partial_chunks_and_invalid_hashes(self):
+        for rows in [self.rows[1:], self.rows[:-1], self.rows[:2]+self.rows[3:],
+                     [self.rows[0] | {"n_tokens": 3}]+self.rows[1:],
+                     [self.rows[0] | {"elapsed_us": 0}]+self.rows[1:],
+                     [self.rows[0] | {"logits_hash": "bad"}]+self.rows[1:],
+                     [self.rows[0] | {"rep": 1}]+self.rows[1:]]:
+            with self.assertRaises(ValueError):
+                replay_summary.summarize(self.calls(rows), self.tokens, 4)
+
+    def test_reference_checks_each_call(self):
+        reference = self.calls(self.rows, "reference.csv")
+        replay_summary.summarize(self.calls(self.rows), self.tokens, 4, reference)
+        with self.assertRaisesRegex(ValueError, "logits mismatch"):
+            replay_summary.summarize(self.calls(self.rows[:-1]+[self.rows[-1] | {"logits_hash": "0000000000000002"}]), self.tokens, 4, reference)
+
+    def test_raw_gate_before_digest(self):
+        import array
+        path = self.root / "logits.bin"
+        values = array.array("f", [1]*24)
+        path.write_bytes(values.tobytes())
+        self.assertEqual(replay_summary.check_logits(path, 6, 4)["vectors"], 6)
+        for invalid in [array.array("f", [1]*23), array.array("f", [float("nan")]+[1]*23), array.array("f", [0]*4+[1]*20)]:
+            path.write_bytes(invalid.tobytes())
+            with self.assertRaises(ValueError):
+                replay_summary.check_logits(path, 6, 4)
+
+
 class RuntimeTests(unittest.TestCase):
     def test_output_and_exact_copy_counters(self):
         if CHECK is None:
