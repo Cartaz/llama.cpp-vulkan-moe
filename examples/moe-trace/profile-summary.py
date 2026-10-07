@@ -13,7 +13,7 @@ from collections import defaultdict
 FIELDS = ["scheduler", "call", "split", "event", "source", "destination", "tensor",
           "start_us", "duration_us", "bytes", "padding_bytes", "buffer_bytes", "status"]
 EVENTS = {"compute_splits", "split", "split_wait", "input_wait", "event_wait_enqueue", "source_wait",
-          "router_readback", "routing_scan", "expert_upload", "tensor_copy_async", "copy_wait", "tensor_copy",
+          "router_readback", "routing_scan", "expert_upload", "expert_pool_admit", "tensor_copy_async", "copy_wait", "tensor_copy",
           "compute_call", "callback_wait", "scheduler_wait", "graph_allocate", "scheduler_end"}
 PHASE_FIELDS = ["rep", "phase", "position", "n_tokens", "start_us", "end_us", "status"]
 

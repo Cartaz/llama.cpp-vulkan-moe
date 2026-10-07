@@ -123,6 +123,7 @@ class SummaryTests(unittest.TestCase):
         profile = self.profile([dict(call=0, event="scheduler_wait", start_us=20, duration_us=5),
                                 dict(call=1, start_us=450, duration_us=40),
                                 dict(call=2, event="expert_upload", start_us=1105, duration_us=20, bytes=80, padding_bytes=16),
+                                dict(call=2, event="expert_pool_admit", start_us=1125, duration_us=10, bytes=64),
                                 dict(call=2, start_us=1100, duration_us=50),
                                 dict(call=3, start_us=1750, duration_us=50),
                                 dict(call=3, event="scheduler_end")])
@@ -132,6 +133,8 @@ class SummaryTests(unittest.TestCase):
         prefill = next(entry for entry in report["phase_summary"] if entry["rep"] == 0 and entry["phase"] == "prefill")
         upload = next(entry for entry in prefill["events"] if entry["event"] == "expert_upload")
         self.assertEqual((upload["host_duration_ms"], upload["bytes"], upload["padding_bytes"]), (0.02, 80, 16))
+        pool = next(entry for entry in prefill["events"] if entry["event"] == "expert_pool_admit")
+        self.assertEqual((pool["host_duration_ms"], pool["bytes"], pool["padding_bytes"]), (0.01, 64, 0))
         self.assertEqual(report["phase_evaluations"][2]["scheduler_calls"], [{"scheduler": 1, "call": 3}])
         self.assertEqual(report["unattributed_events"][0]["host_duration_us"], 5)
 
