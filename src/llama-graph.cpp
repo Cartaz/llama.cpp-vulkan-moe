@@ -16,13 +16,20 @@
 #include "llama-memory-hybrid-iswa.h"
 #include "llama-memory-recurrent.h"
 
+#ifdef LLAMA_MOE_INPUT_DIAGNOSTICS
+#include "ggml-cpu.h"
+#include "../ggml/src/ggml-quants.h"
+#endif
+
 #include <cassert>
 #include <cmath>
 #include <cstring>
+#include <cstdlib>
 #include <numeric>
 #include <sstream>
 #include <string>
 #include <unordered_set>
+#include <vector>
 
 // dedup helpers
 
@@ -1542,12 +1549,80 @@ ggml_tensor * llm_graph_context::build_lora_mm(
     return res;
 }
 
+#ifdef LLAMA_MOE_INPUT_DIAGNOSTICS
+static void llama_moe_copy_input(ggml_tensor * dst, const ggml_tensor * input, int ith, int nth, void * userdata) {
+    GGML_UNUSED(nth);
+    GGML_UNUSED(userdata);
+    if (ith != 0) {
+        return;
+    }
+    for (int64_t row = 0; row < input->ne[1]; ++row) {
+        memcpy((char *) dst->data + row * dst->nb[1], (const char *) input->data + row * input->nb[1], input->ne[0] * sizeof(float));
+    }
+}
+
+static void llama_moe_q8k_input(ggml_tensor * dst, const ggml_tensor * input, int ith, int nth, void * userdata) {
+    GGML_UNUSED(nth);
+    GGML_UNUSED(userdata);
+    if (ith != 0) {
+        return;
+    }
+    const auto convert = ggml_get_type_traits_cpu(GGML_TYPE_Q8_K)->from_float;
+    GGML_ASSERT(convert);
+    std::vector<block_q8_K> packed(input->ne[0] / QK_K);
+    for (int64_t row = 0; row < input->ne[1]; ++row) {
+        const auto * src = (const float *) ((const char *) input->data + row * input->nb[1]);
+        for (int64_t col = 0; col < input->ne[0]; ++col) {
+            GGML_ASSERT(std::isfinite(src[col]));
+        }
+        convert(src, packed.data(), input->ne[0]);
+        dequantize_row_q8_K(packed.data(), (float *) ((char *) dst->data + row * dst->nb[1]), input->ne[0]);
+    }
+}
+
+static ggml_tensor * llama_moe_control_input(ggml_context * ctx, const ggml_tensor * w, ggml_tensor * input) {
+    const char * mode = std::getenv("LLAMA_MOE_INPUT_CONTROL");
+    if (!mode || !*mode || strcmp(mode, "0") == 0 || strcmp(mode, "f32") == 0) {
+        return input;
+    }
+    const bool copy = strcmp(mode, "copy") == 0;
+    const bool all = strcmp(mode, "all") == 0;
+    const char * projections[] = {"gate", "up", "down"};
+    const char * names[] = {"blk.17.ffn_gate_exps.weight", "blk.17.ffn_up_exps.weight", "blk.17.ffn_down_exps.weight"};
+    int selected = 0;
+    while (selected < 3 && strcmp(mode, projections[selected]) != 0) {
+        ++selected;
+    }
+    if (!copy && !all && selected == 3) {
+        GGML_ABORT("LLAMA_MOE_INPUT_CONTROL must be 0, f32, copy, gate, up, down or all");
+    }
+    int projection = 0;
+    while (projection < 3 && strcmp(w->name, names[projection]) != 0) {
+        ++projection;
+    }
+    if (projection == 3 || (!copy && !all && selected != projection) || input->ne[2] != 1 || input->ne[3] != 1) {
+        return input;
+    }
+    GGML_ASSERT(w->type == GGML_TYPE_Q4_K && w->ne[2] == 256);
+    GGML_ASSERT(input->type == GGML_TYPE_F32 && input->nb[0] == sizeof(float));
+    GGML_ASSERT(input->ne[0] == (projection == 2 ? 512 : 2048) && input->ne[1] == (projection == 2 ? 8 : 1));
+    auto * result = ggml_map_custom1(ctx, input, copy ? llama_moe_copy_input : llama_moe_q8k_input, 1, nullptr);
+    ggml_format_name(result, "moe-input-%s-%s-17", copy ? "copy" : "q8k", projections[projection]);
+    return result;
+}
+#endif
+
 ggml_tensor * llm_graph_context::build_lora_mm_id(
           ggml_tensor * w,   // ggml_tensor * as
           ggml_tensor * cur, // ggml_tensor * b
           ggml_tensor * ids,
           ggml_tensor * w_s) const {
-    ggml_tensor * res = ggml_mul_mat_id(ctx0, w, cur, ids);
+    ggml_tensor * input = cur;
+#ifdef LLAMA_MOE_INPUT_DIAGNOSTICS
+    input = llama_moe_control_input(ctx0, w, cur);
+    GGML_ASSERT(input == cur || loras->empty());
+#endif
+    ggml_tensor * res = ggml_mul_mat_id(ctx0, w, input, ids);
 
     if (w_s) {
         const int64_t n_expert = w_s->ne[0];
