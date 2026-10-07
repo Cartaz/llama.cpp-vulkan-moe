@@ -1,15 +1,20 @@
 #include "expert-pool.h"
 #include "ggml-cpu.h"
+#include "../../ggml/src/ggml-quants.h"
 
 #include <cmath>
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
 #include <string>
+#include <algorithm>
+#include <cstdint>
+#include <memory>
 
 bool check_expert_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * output);
 bool check_scheduler_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * output);
 bool check_expert_placement(ggml_backend_t target, ggml_backend_t cpu, FILE * output);
+bool check_operator_numerics(ggml_backend_t target, FILE * output);
 
 namespace {
 constexpr int experts = 256, topk = 8, width = 256, rows = 256, outputs = 8;
@@ -657,4 +662,163 @@ bool check_expert_placement(ggml_backend_t target, ggml_backend_t cpu, FILE * ou
     ok = identical(disabled.read(target), reference.read(cpu)) && ok;
     printf("expert placement op_offload=0 backend=CPU %s\n", ok ? "OK" : "FAIL");
     return ok;
+}
+
+namespace {
+float numerics_random(uint32_t & state) {
+    state ^= state << 13;
+    state ^= state >> 17;
+    state ^= state << 5;
+    return float(int32_t(state & 0xffff) - 32768) / 32768.0f;
+}
+
+bool numerics_dump(const char * prefix, const std::string & suffix, const void * data, size_t bytes) {
+    if (!prefix || !*prefix) {
+        return true;
+    }
+    FILE * file = fopen((std::string(prefix) + suffix).c_str(), "wb");
+    if (!file) {
+        return false;
+    }
+    const bool ok = fwrite(data, 1, bytes, file) == bytes;
+    return fclose(file) == 0 && ok;
+}
+}
+
+bool check_operator_numerics(ggml_backend_t target, FILE * output) {
+    const char * option = getenv("MOE_OPERATOR_INPUT_Q8_K");
+    if (option && *option && strcmp(option, "0") != 0 && strcmp(option, "1") != 0) {
+        fprintf(stderr, "MOE_OPERATOR_INPUT_Q8_K must be 0 or 1\n");
+        return false;
+    }
+    const bool rounded = option && strcmp(option, "1") == 0;
+    const char * prefix = getenv("MOE_OPERATOR_DATA_PREFIX");
+    const auto * weights_trait = ggml_get_type_traits(GGML_TYPE_Q4_K);
+    const auto convert = ggml_get_type_traits_cpu(GGML_TYPE_Q8_K)->from_float;
+    if (!convert || !weights_trait->from_float_ref || !weights_trait->to_float) {
+        return false;
+    }
+    using file_ptr = std::unique_ptr<FILE, int (*)(FILE *)>;
+    const char * oracle_prefix = getenv("MOE_OPERATOR_ORACLE_PREFIX");
+    file_ptr fp32(nullptr, fclose), q8k(nullptr, fclose);
+    if (oracle_prefix && *oracle_prefix) {
+        fp32.reset(fopen((std::string(oracle_prefix) + "-fp32.bin").c_str(), "wb"));
+        q8k.reset(fopen((std::string(oracle_prefix) + "-q8k.bin").c_str(), "wb"));
+        if (!fp32 || !q8k) {
+            return false;
+        }
+    }
+    printf("operator,pass,k,m,input_slots,backend,rounded_input,fp32_max_abs,fp32_RMS,q8k_max_abs,q8k_RMS\n");
+    const int selected[8] = {0, 1, 7, 31, 63, 127, 191, 255};
+    for (int projection = 0; projection < 3; ++projection) {
+        const char * name = projection == 0 ? "gate" : projection == 1 ? "up" : "down";
+        const int k = projection == 2 ? 512 : 2048;
+        const int m = projection == 2 ? 2048 : 512;
+        const int slots = projection == 2 ? 8 : 1;
+        tensor_store store;
+        if (!store.ctx) {
+            return false;
+        }
+        auto * weights = ggml_new_tensor_3d(store.ctx, GGML_TYPE_Q4_K, k, m, 256);
+        auto * input = ggml_new_tensor_3d(store.ctx, GGML_TYPE_F32, k, slots, 1);
+        auto * ids = ggml_new_tensor_2d(store.ctx, GGML_TYPE_I32, 8, 1);
+        auto * result = ggml_mul_mat_id(store.ctx, weights, input, ids);
+        ggml_format_name(weights, "blk.17.ffn_%s_exps.weight", name);
+        ggml_format_name(result, "operator-%s", name);
+        auto * graph = ggml_new_graph_custom(store.ctx, 16, false);
+        ggml_build_forward_expand(graph, result);
+        if (!ggml_backend_supports_op(target, result)) {
+            fprintf(stderr, "operator %s unsupported by %s\n", name, ggml_backend_name(target));
+            return false;
+        }
+        store.buffer = ggml_backend_alloc_ctx_tensors(store.ctx, target);
+        if (!store.buffer) {
+            return false;
+        }
+        // Populate the selected experts; the other experts are unused zero blocks.
+        std::vector<uint8_t> packed(ggml_nbytes(weights), 0);
+        std::vector<float> row(k);
+        for (int expert : selected) {
+            uint32_t state = 0x9e3779b9u + uint32_t(projection * 257 + expert);
+            for (int r = 0; r < m; ++r) {
+                for (float & value : row) {
+                    value = numerics_random(state) / 16.0f;
+                }
+                weights_trait->from_float_ref(row.data(), packed.data() + expert * weights->nb[2] + r * weights->nb[1], k);
+            }
+        }
+        ggml_backend_tensor_set(weights, packed.data(), 0, packed.size());
+        if (!numerics_dump(prefix, std::string("-") + name + "-weights.bin", packed.data(), packed.size())) {
+            return false;
+        }
+        fprintf(stderr, "operator numerics begin %s k=%d m=%d input_slots=%d backend=%s rounded=%d\n", name, k, m, slots, ggml_backend_name(target), int(rounded));
+        for (int pass = 0; pass < 3; ++pass) {
+            std::vector<float> original(k * slots), converted(k * slots);
+            std::vector<uint8_t> quantized(ggml_row_size(GGML_TYPE_Q8_K, k));
+            uint32_t state = 0x12345678u + uint32_t(projection * 97 + pass * 65537);
+            for (float & value : original) {
+                value = numerics_random(state);
+            }
+            for (int slot = 0; slot < slots; ++slot) {
+                convert(original.data() + slot * k, quantized.data(), k);
+                dequantize_row_q8_K(reinterpret_cast<const block_q8_K *>(quantized.data()), converted.data() + slot * k, k);
+            }
+            const auto & actual_input = rounded ? converted : original;
+            int32_t id_data[8];
+            for (int slot = 0; slot < 8; ++slot) {
+                id_data[slot] = selected[(slot + pass) % 8];
+            }
+            ggml_backend_tensor_set(input, actual_input.data(), 0, ggml_nbytes(input));
+            ggml_backend_tensor_set(ids, id_data, 0, sizeof(id_data));
+            if (ggml_backend_graph_compute(target, graph) != GGML_STATUS_SUCCESS) {
+                return false;
+            }
+            ggml_backend_synchronize(target);
+            std::vector<float> actual(8 * m);
+            ggml_backend_tensor_get(result, actual.data(), 0, ggml_nbytes(result));
+            std::vector<double> ref32(8 * m), ref8(8 * m);
+            double max32 = 0, max8 = 0, sum32 = 0, sum8 = 0;
+            for (int slot = 0; slot < 8; ++slot) {
+                bool nonzero = false, ref_nonzero = false;
+                for (int r = 0; r < m; ++r) {
+                    weights_trait->to_float(packed.data() + id_data[slot] * weights->nb[2] + r * weights->nb[1], row.data(), k);
+                    const int index = slot * m + r;
+                    for (int col = 0; col < k; ++col) {
+                        if (!std::isfinite(row[col])) {
+                            return false;
+                        }
+                        ref32[index] += double(row[col]) * original[(slot % slots) * k + col];
+                        ref8[index] += double(row[col]) * converted[(slot % slots) * k + col];
+                    }
+                    if (!std::isfinite(actual[index]) || !std::isfinite(ref32[index]) || !std::isfinite(ref8[index])) {
+                        return false;
+                    }
+                    nonzero = nonzero || actual[index] != 0;
+                    ref_nonzero = ref_nonzero || (ref32[index] != 0 && ref8[index] != 0);
+                    const double d32 = actual[index] - ref32[index], d8 = actual[index] - ref8[index];
+                    max32 = std::max(max32, std::abs(d32));
+                    max8 = std::max(max8, std::abs(d8));
+                    sum32 += d32 * d32;
+                    sum8 += d8 * d8;
+                }
+                if (!nonzero || !ref_nonzero) {
+                    return false;
+                }
+            }
+            const std::string tag = std::string("-") + name + "-" + std::to_string(pass);
+            if (!numerics_dump(prefix, tag + "-original.bin", original.data(), original.size() * sizeof(float)) ||
+                !numerics_dump(prefix, tag + "-input.bin", actual_input.data(), actual_input.size() * sizeof(float)) ||
+                !numerics_dump(prefix, tag + "-ids.bin", id_data, sizeof(id_data))) {
+                return false;
+            }
+            if ((output && fwrite(actual.data(), sizeof(float), actual.size(), output) != actual.size()) ||
+                (fp32 && fwrite(ref32.data(), sizeof(double), ref32.size(), fp32.get()) != ref32.size()) ||
+                (q8k && fwrite(ref8.data(), sizeof(double), ref8.size(), q8k.get()) != ref8.size())) {
+                return false;
+            }
+            printf("%s,%d,%d,%d,%d,%s,%d,%.9g,%.9g,%.9g,%.9g\n", name, pass, k, m, slots, ggml_backend_name(target), int(rounded), max32, std::sqrt(sum32 / actual.size()), max8, std::sqrt(sum8 / actual.size()));
+        }
+        fprintf(stderr, "operator numerics end %s\n", name);
+    }
+    return (!fp32 || fflush(fp32.get()) == 0) && (!q8k || fflush(q8k.get()) == 0);
 }
