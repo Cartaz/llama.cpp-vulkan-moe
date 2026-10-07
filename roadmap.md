@@ -1,6 +1,6 @@
 # Roadmap: llama.cpp-vulkan-moe su RX 6800
 
-Aggiornamento: **2026-10-07**. Documento di lavoro per `Cartaz/llama.cpp-vulkan-moe`, branch di riferimento `experiment/moe-trace-strides`; incrementi sperimentali R17-R30 su branch separati. Snapshot del codice prima di questa roadmap: `c679dc22012ee9281db57336ff8fd17a93bc54b2`.
+Aggiornamento: **2026-10-07**. Documento di lavoro per `Cartaz/llama.cpp-vulkan-moe`, branch di riferimento `experiment/moe-trace-strides`; incrementi sperimentali R17-R31 su branch separati. Snapshot del codice prima di questa roadmap: `c679dc22012ee9281db57336ff8fd17a93bc54b2`.
 
 Obiettivo: inferenza locale affidabile e veloce su RX 6800 16 GB, Ryzen 7 5700X3D e 32 GB RAM, CachyOS/RADV. Prima una sequenza; poi 2, 4 e 8 richieste da agenti. PP, TG, TTFT, latenza completa, throughput aggregato e throughput per richiesta sono risultati distinti.
 
@@ -14,7 +14,7 @@ Percorso corrente: S01/S02/S03 misurazione e routing; S06 budget/policy offline;
 
 | Voce | Stato al 2026-10-07 |
 | --- | --- |
-| Esecuzione benchmark | **Ripresa autorizzata esplicitamente dall'utente il 2026-10-07. R20-R28:127processi modello; R29 solo fixture; R30 aggiunge17processi modello, totale144; B4 breve none PP+37.32%, TG/p95 equivalenti; R28 corpus12nuovi prompt e riserva quote layer validati sul pilot.** |
+| Esecuzione benchmark | **Ripresa autorizzata esplicitamente dall'utente il 2026-10-07. R20-R28:127processi modello; R29 solo fixture; R30 aggiunge17processi; R31 aggiunge16processi, totale160; B4 breve none PP+37.32%, TG/p95 equivalenti; R28 corpus12nuovi prompt e riserva quote layer validati sul pilot.** |
 | Baseline originale | llama.cpp v0.5.0, `7fe450e19305b828c199d602c23a8337aaa1f03b`, senza modifiche |
 | Modello di riferimento | Ornith-1.5-35B-Q4_K_M.gguf; identita' completa nella sezione baseline |
 | Cache GPU persistente di esperti | **R30 integra un layer/stream1 nello scheduler, OFF di default**: gate breve raw B1/OFF/ON PASS,22casi runtime e sanitizer; pool32slot/54MiB, byte pesi layer17 TG-62.04%. PP/TG/p95 equivalenti nelle fasce +/-3%/+/-5%; profilo normale TGCPU fa bypass |
@@ -27,7 +27,7 @@ Percorso corrente: S01/S02/S03 misurazione e routing; S06 budget/policy offline;
 | Profilo provvisorio dello sweep | `-ncmoe 12 -tb 8`, `GGML_VK_DISABLE_HOST_VISIBLE_VIDMEM=1`, librerie DEFAULT congelate; **non vincitore finale** |
 | Fondamenta S01/S02 | Tooling iniziale IMPLEMENTATO su `experiment/moe-profile-foundations`: manifest live con verifica freeze, entropia/riuso/finestre e stime cache in byte; R21 valida quattro prompt; R27/R28 planner statico con riserva,12nuovi prompt/sei famiglie; T2completo/remap/runtime cache incompleti |
 | Fondamenta S03 | R20: join host PP/TG sul modello VALIDATO, costo profiler TG -6.07%, logger timestamp corretto e correlato, accounting memoria sul replay breve; timeline normale calibrata e contesti lunghi incompleti |
-| Prossima modifica di ricerca | R31: coppia breve/lungo richiesta dall'utente, lungo circa10kPP/200TG; somma chunk PP e gate B1 ripetibile prima del ranking. Poi S14 admission lazy per evitare54MiB inutilizzati e S04/S09 placement mirato, senza soglia globale1. R30 breve corretto; T2esteso, pressione KV e concurrency restano aperti |
+| Prossima modifica di ricerca | S14 admission lazy per evitare54MiB inutilizzati, poi S04/S09 placement mirato senza soglia globale1. R31 valida i riferimenti512PP+200TG e10000PP+200TG, con PP aggregato e B1/forkOFF raw identici; nessuna nuova ottimizzazione misurata. T2poolON lungo, corpus, pressione KV e concurrency restano aperti |
 
 Questo documento registra la ripresa richiesta dall'utente il 2026-10-07; gli archivi interrotti R13/R15 restano conservati. I problemi riprodotti anche sulla v0.5.0 originale sono registrati come `ERRORE_BASELINE`, come richiesto dall'utente: non sono automaticamente regressioni del fork e non bloccano tutta la ricerca. Una misura con NaN, output nullo o fallback CPU involontario resta invalida per il ranking prestazionale.
 
@@ -119,6 +119,7 @@ Le percentuali sono osservazioni sul workload indicato, non previsioni su tutti 
 | R28 | S02/S06: corpus sei famiglie e riserva minima per layer | IMPLEMENTATO, VALIDATO pilot / T2 PARZIALE | 36processi,12prompt nuovi/6TRAIN+6HELDOUT;65vettori per caso identici generator/B1/collector;20testPASS/defaultR27identico.19/21allocazioni fattibili.490.43MiB bundle riserva0/4/8: completa4.456/4.181/2.459%, layerquotezero16/0/0 | Copertura logica con tradeoff; min8non entra228.87MiB; nessun token all-hit su18layer, cache runtime/TG gain/score semantico assenti. [Report](docs/development/moe-layer-reservations-rx6800.md) |
 | R29 | S04/S05: prototipo pool GPU persistente e remap esatto | IMPLEMENTATO, VALIDATO su fixture / modello NON_MISURATO | fa4afd46,48combinazioni/384richieste;256grafi residenti+128fallback per processo;1152vettori finiti/nonzero e2captureGPUidentiche;LRU,lease,destructor e sanitizer mirato PASS, default9375 raw identico | Input duplicati top8/33token falliscono anche B1, ERRORE_BASELINE sintetico; fallbackCPU esplicito. Nessuna integrazione scheduler modello, speedup o nuova concurrency. [Report](docs/development/moe-expert-pool-rx6800.md) |
 | R30 | S04/S05: pool opzionale nel scheduler, layer17/stream1 | IMPLEMENTATO, VALIDATO breve / T2 PARZIALE | 17processi,903vettori raw finiti/nonzero e identici nei controlli abbinati;22fixture/132richieste e ASAN/UBSAN/leak PASS; pool32slot54MiB, hit62.01%, payload TG layer17-62.04%, miss p50/p95 0.356/0.725ms | PP-0.45%[-2.31,+0.99], TG+1.08%[+0.73,+1.44], p95-0.90%[-1.79,-0.07]: NESSUN_CAMBIAMENTO nelle fasce +/-3%/+/-5%; soglia1 identica OFF/ON/B1, non confronto al default. TG normale CPU non usa cache; arena completa invariata, +54MiB allocati; M3parziale. [Report](docs/development/moe-scheduler-pool-rx6800.md) |
+| R31 | S01/S02: coppia benchmark breve/lungo e PP multi-chunk | IMPLEMENTATO, VALIDATO riferimenti / T2 PARZIALE | 512PP+200TG/c1024 e10000PP+200TG/c12288;16processi,1684vettori raw finiti/nonzero, coldB1/warmB1/forkOFF bitwise identici;11test PASS e5052hash timing coerenti | Baseline PP 259.04/246.76t/s, TG 22.34/16.52t/s (breve/lungo),4processi per caso/3rep dopo warmup, CI95 nel report. Non e' uno speedup e non risolve i precedenti workload instabili; poolON lungo/concurrency/corpus aperti. [Report](docs/development/moe-short-long-rx6800.md) |
 
 R12-R16 derivano dagli archivi locali del 5-6 ottobre e dallo stato dello sweep; alcuni report precedenti sulla repo descrivono ancora un pilot o una rivalidazione in corso. Questa snapshot aggiorna **lo stato**, senza fingere che quei report storici siano gia' stati riscritti.
 
@@ -193,7 +194,7 @@ La prima cache deve essere semplice e misurabile. Non iniziare con cache + looka
 
 ## Catalogo delle strategie con esperimento A/B
 
-Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R30 esplicitamente citate. S01/S02 hanno il tooling iniziale implementato in R17, ma restano incompleti i gate runtime, il corpus e la verifica held-out. S03 ha scope host/contatori copie R18, intervalli/aggregazione PP/TG R19 e verifica sul modello R20 con timestamp diagnostici e memoria breve; timeline calibrata nel percorso normale e budget per contesti lunghi restano incompleti. Non e' dichiarata implementata perche' esiste in una fonte esterna. I protocolli T0-T7 sono definiti nella sezione successiva; gli A/B qui fissano la variabile e le metriche aggiuntive. Anche i gruppi nello stesso livello si provano uno alla volta.
+Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R31 esplicitamente citate. S01/S02 hanno il tooling iniziale implementato in R17, ma restano incompleti i gate runtime, il corpus e la verifica held-out. S03 ha scope host/contatori copie R18, intervalli/aggregazione PP/TG R19 e verifica sul modello R20 con timestamp diagnostici e memoria breve; timeline calibrata nel percorso normale e budget per contesti lunghi restano incompleti. Non e' dichiarata implementata perche' esiste in una fonte esterna. I protocolli T0-T7 sono definiti nella sezione successiva; gli A/B qui fissano la variabile e le metriche aggiuntive. Anche i gruppi nello stesso livello si provano uno alla volta.
 
 ### P0: fondamenta e modello dei costi
 
@@ -243,7 +244,7 @@ Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R30
 
 **S13 - Policy di admission/eviction adattiva.** Collo: LRU soffre scansioni, LFU conserva esperti non piu' utili. Dopo S05 provare LFU con decay, SLRU/2Q, admission tipo TinyLFU e cost-weighted (byte/latency evitati) una alla volta. Costo: counters/metadati e CPU, non sempre piu' hit equivale a piu' TG. T2 corpus held-out prima, T3 solo migliori2 a stessa memoria: miss byte-weighted, tempo miss, evictions, adattamento dopo cambio dominio; includere overhead lookup.
 
-**S14 - Cache distinta prefill/decode e warm-start.** Collo: un prefill grande puo' espellere tutto il working set decode. Provare bypass prefill, partizione protetta, warm LRU da prompt, profilo decayed del decode precedente e reintegro bounded. Costo: priming e cattiva previsione; la cache fredda puo' vincere sui prompt brevi. T2/T3 cold vs warm, PP244/512/4096, pause tra turni e cambio task; includere priming in TTFT/end-to-end. Dipende S04; statico R05 non basta a scegliere.
+**S14 - Cache distinta prefill/decode e warm-start.** Collo: un prefill grande puo' espellere tutto il working set decode. Provare bypass prefill, partizione protetta, warm LRU da prompt, profilo decayed del decode precedente e reintegro bounded. Costo: priming e cattiva previsione; la cache fredda puo' vincere sui prompt brevi. T2/T3 cold vs warm, PP244/512/4096/10000 e TG200 nei nuovi riferimenti R31, pause tra turni e cambio task; includere priming in TTFT/end-to-end. Dipende S04; statico R05 non basta a scegliere.
 
 ### P2: CPU, prefetch e memoria host
 
@@ -415,7 +416,7 @@ Checklist del lavoro dopo la ripresa autorizzata:
 - [ ] Completare T2: almeno3prompt/famiglia e3continuazioni, turni/contesti estesi; estendere remap/lifetime/admission oltre il singolo layer e misurare costo miss CPU.
 - [x] R29: prototipo S04/S05 con bufferGPU reali, remap/lease/LRU/fallback,48casi e controlli di compatibilita'; nessun gate modello o beneficio PP/TG dichiarato.
 - [x] R30: S04/S05 nel modello, un layer/stream1 OFF di default; gate raw normale/min-batch1, costo miss/attese/memoria e8processi A/B. PP/TG/p95 equivalenti nelle fasce +/-3%/+/-5%; perimetro breve, M3parziale.
-- [ ] R31: test breve e lungo circa10kPP/200TG, PP aggregato fra chunk e gate raw B1 ripetibile prima di confrontare varianti.
+- [x] R31:512PP+200TG e10000PP+200TG, PP aggregato fra chunk; coldB1/warmB1/forkOFF raw identici,8processi timing puliti e riferimenti separati. PoolON lungo e corpus T2 restano da provare.
 - [ ] S14: admission lazy e bypass PP prima di allocazione; confronto di logits e memoria. Poi placement mirato per layer e compute CPU/GPU, total/resident VRAM/GTT, prima di allargare cache o passare a S07/S08.
 - [x] R22: A/B mmap/none breve a build/config identici, raw gate,4processi/variante, PP/TG/p95 e memoria/startup separati.
 - [x] R23: provato prompt3107+128; fallita ripetibilita' anche B1, sei dump finiti/nonzero e controlli conservati, nessun ranking lungo.
