@@ -835,6 +835,7 @@ struct ggml_backend_sched {
     size_t context_buffer_size;
 
     bool op_offload;
+    int expert_gpu_layer;
 
     int debug;
 
@@ -1246,6 +1247,20 @@ static int ggml_backend_sched_backend_id(ggml_backend_sched_t sched, ggml_backen
     return -1;
 }
 
+static bool ggml_backend_sched_expert_gpu_op(ggml_backend_sched_t sched, const ggml_tensor * op) {
+    if (sched->expert_gpu_layer < 0 || op->op != GGML_OP_MUL_MAT_ID || !op->src[0]) {
+        return false;
+    }
+    for (const char * projection : {"gate", "up", "down"}) {
+        char expected[GGML_MAX_NAME];
+        snprintf(expected, sizeof(expected), "blk.%d.ffn_%s_exps.weight", sched->expert_gpu_layer, projection);
+        if (strcmp(op->src[0]->name, expected) == 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
 static int ggml_backend_sched_backend_from_buffer(ggml_backend_sched_t sched, const struct ggml_tensor * tensor, const struct ggml_tensor * op) {
     ggml_backend_buffer_t buffer = tensor->view_src ? tensor->view_src->buffer : tensor->buffer;
     if (buffer == NULL) {
@@ -1330,7 +1345,12 @@ static int ggml_backend_sched_backend_id_from_cur(ggml_backend_sched_t sched, st
                 // check if a backend with higher prio wants to offload the op
                 if (sched->op_offload && src_backend_id == sched->n_backends - 1 && ggml_backend_buffer_is_host(src->buffer)) {
                     for (int b = 0; b < src_backend_id; b++) {
-                        if (ggml_backend_supports_op(sched->backends[b], tensor) && ggml_backend_offload_op(sched->backends[b], tensor)) {
+                        bool expert_gpu = false;
+                        if (ggml_backend_sched_expert_gpu_op(sched, tensor)) {
+                            const auto type = ggml_backend_dev_type(ggml_backend_get_device(sched->backends[b]));
+                            expert_gpu = type == GGML_BACKEND_DEVICE_TYPE_GPU || type == GGML_BACKEND_DEVICE_TYPE_IGPU;
+                        }
+                        if (ggml_backend_supports_op(sched->backends[b], tensor) && (expert_gpu || ggml_backend_offload_op(sched->backends[b], tensor))) {
                             SET_CAUSE(tensor, "1.off");
                             return b;
                         }
@@ -2349,6 +2369,22 @@ ggml_backend_sched_t ggml_backend_sched_new(
     struct ggml_backend_sched * sched = (ggml_backend_sched *) calloc(1, sizeof(struct ggml_backend_sched));
 
     sched->expert_pool = ggml_backend_sched_expert_pool::from_env();
+    sched->expert_gpu_layer = -1;
+    if (const char * value = getenv("GGML_SCHED_EXPERT_GPU_LAYER")) {
+        if (*value) {
+            unsigned layer = 0;
+            const char * cursor = value;
+            while (*cursor >= '0' && *cursor <= '9' && layer <= 4096) {
+                layer = layer * 10 + unsigned(*cursor++ - '0');
+            }
+            if (*cursor || layer > 4096) {
+                GGML_LOG_WARN("expert GPU placement: invalid layer '%s'; disabled\n", value);
+            } else {
+                sched->expert_gpu_layer = int(layer);
+                GGML_LOG_INFO("expert GPU placement: layer=%d (host gate/up/down only)\n", sched->expert_gpu_layer);
+            }
+        }
+    }
 
     if (const char * path = getenv("GGML_SCHED_PROFILE")) {
         if (*path) {

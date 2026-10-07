@@ -9,6 +9,7 @@
 
 bool check_expert_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * output);
 bool check_scheduler_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * output);
+bool check_expert_placement(ggml_backend_t target, ggml_backend_t cpu, FILE * output);
 
 namespace {
 constexpr int experts = 256, topk = 8, width = 256, rows = 256, outputs = 8;
@@ -42,7 +43,7 @@ struct graph_run {
         ggml_backend_buffer_free(buffer);
         ggml_free(ctx);
     }
-    bool init(ggml_backend_t backend, const std::array<ggml_tensor *, 3> & weights, int tokens, bool broadcast, bool strided, ggml_backend_t cpu = nullptr, bool parallel = false, bool callback = false) {
+    bool init(ggml_backend_t backend, const std::array<ggml_tensor *, 3> & weights, int tokens, bool broadcast, bool strided, ggml_backend_t cpu = nullptr, bool parallel = false, bool callback = false, bool placement = false, bool op_offload = true) {
         ctx = ggml_init({1024 * 1024, nullptr, true});
         if (!ctx) {
             return false;
@@ -69,7 +70,7 @@ struct graph_run {
             ggml_set_input(input);
             ggml_set_input(storage);
             std::vector<ggml_backend_t> backends = backend == cpu ? std::vector<ggml_backend_t>{cpu} : std::vector<ggml_backend_t>{backend, cpu};
-            sched = ggml_backend_sched_new(backends.data(), nullptr, backends.size(), 128, parallel, true);
+            sched = ggml_backend_sched_new(backends.data(), nullptr, backends.size(), 128, parallel, op_offload);
             if (callback) {
                 ggml_backend_sched_set_eval_callback(sched, [](ggml_tensor *, bool, void *) { return true; }, nullptr);
             }
@@ -77,7 +78,9 @@ struct graph_run {
             ggml_backend_sched_set_tensor_backend(sched, storage, cpu);
             for (int i = 0; i < ggml_graph_n_nodes(graph); ++i) {
                 auto * node = ggml_graph_node(graph, i);
-                ggml_backend_sched_set_tensor_backend(sched, node, ggml_is_view(node) ? cpu : backend);
+                if (!placement) {
+                    ggml_backend_sched_set_tensor_backend(sched, node, ggml_is_view(node) ? cpu : backend);
+                }
             }
             return ggml_backend_sched_alloc_graph(sched, graph);
         }
@@ -165,15 +168,22 @@ struct saved_env {
 };
 
 bool scheduler_case(ggml_backend_t target, ggml_backend_t cpu, const std::array<ggml_tensor *, 3> & source,
-        int quant, int tokens, bool broadcast, bool strided, FILE * output, const char * config, bool parallel, bool callback) {
+        int quant, int tokens, bool broadcast, bool strided, FILE * output, const char * config, bool parallel, bool callback, bool placement) {
     saved_env env("GGML_SCHED_EXPERT_POOL");
+    saved_env place_env("GGML_SCHED_EXPERT_GPU_LAYER");
+    if (placement) {
+        setenv(place_env.key, "3", 1);
+    }
     graph_run off, on;
     unsetenv(env.key);
     bool ok = off.init(target, source, tokens, broadcast, strided, cpu, parallel, callback);
     setenv(env.key, config, 1);
-    ok = on.init(target, source, tokens, broadcast, strided, cpu, parallel, callback) && ok;
+    ok = on.init(target, source, tokens, broadcast, strided, cpu, parallel, callback, placement) && ok;
     if (!ok) {
         return false;
+    }
+    for (auto * node : on.result) {
+        ok = ggml_backend_sched_get_tensor_backend(on.sched, node) == target && ok;
     }
     for (int pass : {0, 1, 2, 3, 6, 7}) {
         std::vector<int32_t> ids(tokens * topk);
@@ -228,7 +238,7 @@ bool scheduler_case(ggml_backend_t target, ggml_backend_t cpu, const std::array<
     return ok;
 }
 
-bool check_pool_case(ggml_backend_t target, ggml_backend_t cpu, int quant, int tokens, bool broadcast, bool strided, FILE * output, const char * config = nullptr, bool parallel = false, bool callback = false) {
+bool check_pool_case(ggml_backend_t target, ggml_backend_t cpu, int quant, int tokens, bool broadcast, bool strided, FILE * output, const char * config = nullptr, bool parallel = false, bool callback = false, bool placement = false) {
     tensor_store source_store, full_store;
     auto * source_ctx = source_store.ctx;
     auto * full_ctx = full_store.ctx;
@@ -276,7 +286,7 @@ bool check_pool_case(ggml_backend_t target, ggml_backend_t cpu, int quant, int t
     }
     if (config) {
         ggml_backend_buffer_set_usage(source_buffer, GGML_BACKEND_BUFFER_USAGE_WEIGHTS);
-        return scheduler_case(target, cpu, source, quant, tokens, broadcast, strided, output, config, parallel, callback);
+        return scheduler_case(target, cpu, source, quant, tokens, broadcast, strided, output, config, parallel, callback, placement);
     }
     bool ok = true;
     uint64_t misses = 0, hits = 0, evictions = 0, uploads = 0;
@@ -570,5 +580,81 @@ bool check_scheduler_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * outp
     ok = check_pool_case(target, cpu, 1, 3, false, false, output, "3:12:16", true) && ok;
     ok = check_pool_case(target, cpu, 1, 3, false, false, output, "3:12:16", false, true) && ok;
     ok = check_pool_case(target, cpu, 0, 1, false, false, output, "3:128:65") && ok;
+    return ok;
+}
+
+bool check_expert_placement(ggml_backend_t target, ggml_backend_t cpu, FILE * output) {
+    bool ok = true;
+    for (int quant : {0, 1, 2, 3}) {
+        for (int tokens : {1, 33}) {
+            for (bool broadcast : {false, true}) {
+                ok = check_pool_case(target, cpu, quant, tokens, broadcast, true, output, "3:12:16", false, false, true) && ok;
+            }
+        }
+    }
+    saved_env pool_env("GGML_SCHED_EXPERT_POOL"), place_env("GGML_SCHED_EXPERT_GPU_LAYER");
+    unsetenv(pool_env.key);
+    tensor_store store;
+    std::array<ggml_tensor *, 3> weights{};
+    for (int i = 0; i < 3; ++i) {
+        weights[i] = ggml_new_tensor_3d(store.ctx, GGML_TYPE_F32, width, i == 2 ? outputs : rows, experts);
+    }
+    store.buffer = ggml_backend_alloc_ctx_tensors(store.ctx, cpu);
+    if (!store.buffer) {
+        return false;
+    }
+    ggml_backend_buffer_set_usage(store.buffer, GGML_BACKEND_BUFFER_USAGE_WEIGHTS);
+    for (int i = 0; i < 3; ++i) {
+        std::vector<float> data(ggml_nelements(weights[i]));
+        for (int e = 0; e < experts; ++e) {
+            for (int r = 0; r < weights[i]->ne[1]; ++r) {
+                for (int c = 0; c < width; ++c) {
+                    data[(e * weights[i]->ne[1] + r) * width + c] = source_value(i, e, r, c);
+                }
+            }
+        }
+        ggml_backend_tensor_set(weights[i], data.data(), 0, ggml_nbytes(weights[i]));
+    }
+    for (const char * config : {"3", "", "-1", "3x", "4097", "999999999999999", "0", "4"}) {
+        for (bool shared : {false, true}) {
+            const char * names[] = {"gate", "up", "down"};
+            for (int i = 0; i < 3; ++i) {
+                ggml_format_name(weights[i], "blk.3.ffn_%s_%s.weight", names[i], shared ? "shexp" : "exps");
+            }
+            setenv(place_env.key, config, 1);
+            graph_run actual, reference;
+            const bool selected = strcmp(config, "3") == 0 && !shared;
+            auto * expected = selected ? target : cpu;
+            if (!actual.init(target, weights, 1, false, true, cpu, false, false, true) ||
+                    !reference.init(expected, weights, 1, false, true, cpu)) {
+                return false;
+            }
+            for (auto * node : actual.result) {
+                ok = ggml_backend_sched_get_tensor_backend(actual.sched, node) == expected && ok;
+            }
+            std::vector<int32_t> ids{0, 1, 2, 3, 4, 5, 6, 7};
+            ok = actual.submit(target, ids) && reference.submit(expected, ids) && ok;
+            ok = identical(actual.read(target), reference.read(expected)) && ok;
+            printf("expert placement config='%s' shared=%d backend=%s %s\n", config, shared,
+                    ggml_backend_name(expected), ok ? "OK" : "FAIL");
+        }
+    }
+    const char * names[] = {"gate", "up", "down"};
+    for (int i = 0; i < 3; ++i) {
+        ggml_format_name(weights[i], "blk.3.ffn_%s_exps.weight", names[i]);
+    }
+    setenv(place_env.key, "3", 1);
+    graph_run disabled, reference;
+    if (!disabled.init(target, weights, 1, false, true, cpu, false, false, true, false) ||
+            !reference.init(cpu, weights, 1, false, true, cpu)) {
+        return false;
+    }
+    for (auto * node : disabled.result) {
+        ok = ggml_backend_sched_get_tensor_backend(disabled.sched, node) == cpu && ok;
+    }
+    std::vector<int32_t> ids{0, 1, 2, 3, 4, 5, 6, 7};
+    ok = disabled.submit(target, ids) && reference.submit(cpu, ids) && ok;
+    ok = identical(disabled.read(target), reference.read(cpu)) && ok;
+    printf("expert placement op_offload=0 backend=CPU %s\n", ok ? "OK" : "FAIL");
     return ok;
 }

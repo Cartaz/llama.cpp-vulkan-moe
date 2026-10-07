@@ -14,6 +14,7 @@
 
 bool check_expert_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * output);
 bool check_scheduler_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * output);
+bool check_expert_placement(ggml_backend_t target, ggml_backend_t cpu, FILE * output);
 
 static float weight_value(int expert, int row, int col) {
     return float((expert * 7 + row * 3 + col) % 17 - 8) / 16;
@@ -131,6 +132,7 @@ int main(int argc, char ** argv) {
     bool serial = false;
     bool expert_pool = false;
     bool scheduler_pool = false;
+    bool expert_placement = false;
     const char * output_path = nullptr;
     for (int i = 1; i < argc; ++i) {
         if (strcmp(argv[i], "--vulkan") == 0) {
@@ -139,6 +141,8 @@ int main(int argc, char ** argv) {
             expert_pool = true;
         } else if (strcmp(argv[i], "--scheduler-pool") == 0) {
             scheduler_pool = true;
+        } else if (strcmp(argv[i], "--expert-placement") == 0) {
+            expert_placement = true;
         } else if (strcmp(argv[i], "--serial") == 0) {
             serial = true;
         } else if (i + 1 < argc && strcmp(argv[i], "--output-bin") == 0) {
@@ -175,9 +179,10 @@ int main(int argc, char ** argv) {
     }
     bool ok = !expert_pool || check_expert_pool(target, cpu, output);
     ok = (!scheduler_pool || check_scheduler_pool(target, cpu, output)) && ok;
+    ok = (!expert_placement || check_expert_placement(target, cpu, output)) && ok;
     int rep = 0;
     for (bool parallel : {false, true}) {
-        if (expert_pool || scheduler_pool) {
+        if (expert_pool || scheduler_pool || expert_placement) {
             break;
         }
         if (serial && parallel) {
