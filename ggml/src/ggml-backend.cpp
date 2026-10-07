@@ -12,6 +12,7 @@
 #include "ggml-backend-impl.h"
 #include "ggml-alloc.h"
 #include "ggml-impl.h"
+#include "ggml-expert-pool.h"
 
 #include <assert.h>
 #include <limits.h>
@@ -785,6 +786,8 @@ struct ggml_backend_sched_split {
     struct ggml_cgraph graph;
 };
 
+struct ggml_backend_sched_expert_pool;
+
 struct ggml_backend_sched {
     bool is_reset; // true if the scheduler has been reset since the last graph split
     bool is_alloc;
@@ -841,6 +844,7 @@ struct ggml_backend_sched {
     int debug_graph_size;
     int debug_prev_graph_size;
 
+    ggml_backend_sched_expert_pool * expert_pool;
     FILE * profile;
     FILE * route_profile;
     uint64_t profile_id;
@@ -943,6 +947,256 @@ static void ggml_backend_sched_profile_cpu_routes(ggml_backend_sched_t sched, gg
         }
     }
 }
+
+struct ggml_backend_sched_expert_pool {
+    int layer, slots;
+    size_t budget;
+    ggml_backend_expert_pool pool;
+    std::array<ggml_tensor *, 3> weights{};
+    ggml_backend_t backend = nullptr;
+    ggml_context * ids_ctx = nullptr;
+    ggml_backend_buffer_t ids_buffer = nullptr;
+    ggml_tensor * mapped_ids = nullptr;
+    std::vector<int32_t> original_ids;
+    FILE * log = nullptr;
+    uint64_t id = 0, call = 0;
+    ggml_backend_expert_pool::counters before{};
+    bool prepared = false, attempted = false, ready = false;
+    int last_split = -1, projections = 0;
+    int64_t tokens = 0, admit_us = 0, wait_us = 0, prepare_us = 0, start_us = 0;
+    const char * reason = "not_used";
+
+    ggml_backend_sched_expert_pool(int layer, int slots, size_t budget) : layer(layer), slots(slots), budget(budget) {
+        std::lock_guard<std::mutex> lock(ggml_backend_sched_profile_mutex);
+        static uint64_t next_id = 0;
+        id = ++next_id;
+        if (const char * path = getenv("GGML_SCHED_EXPERT_POOL_LOG")) {
+            if (*path) {
+                log = fopen(path, "ab");
+                if (log) {
+                    setvbuf(log, nullptr, _IONBF, 0);
+                    if (ftell(log) == 0) {
+                        fprintf(log, "pool,call,layer,n_tokens,reason,projections,hits,misses,evictions,upload_bytes,pool_bytes,remap_bytes,admit_us,wait_us,prepare_us,start_us,end_us\n");
+                    }
+                } else {
+                    GGML_LOG_WARN("expert pool: cannot open log '%s'\n", path);
+                }
+            }
+        }
+    }
+
+    ~ggml_backend_sched_expert_pool() {
+        pool.release();
+        ggml_backend_buffer_free(ids_buffer);
+        ggml_free(ids_ctx);
+        if (log) {
+            std::lock_guard<std::mutex> lock(ggml_backend_sched_profile_mutex);
+            fclose(log);
+        }
+    }
+
+    static ggml_backend_sched_expert_pool * from_env() {
+        const char * config = getenv("GGML_SCHED_EXPERT_POOL");
+        if (!config || !*config || strcmp(config, "0") == 0) {
+            return nullptr;
+        }
+        unsigned values[3]{};
+        const char * cursor = config;
+        for (int i = 0; i < 3; ++i) {
+            const char * start = cursor;
+            while (*cursor >= '0' && *cursor <= '9') {
+                if (values[i] > 4096) {
+                    break;
+                }
+                values[i] = values[i] * 10 + unsigned(*cursor++ - '0');
+            }
+            if (cursor == start || (i < 2 ? *cursor++ != ':' : *cursor != '\0') || values[i] > 4096) {
+                GGML_LOG_WARN("expert pool: invalid config '%s'; disabled (expected layer:slots:budget_MiB)\n", config);
+                return nullptr;
+            }
+        }
+        if (values[1] == 0 || values[1] > 256 || values[2] == 0 || values[2] > 2048) {
+            GGML_LOG_WARN("expert pool: invalid slots/budget; disabled\n");
+            return nullptr;
+        }
+        return new ggml_backend_sched_expert_pool(int(values[0]), int(values[1]), size_t(values[2]) * 1024 * 1024);
+    }
+
+    static ggml_tensor * first_compute(const ggml_cgraph & graph) {
+        for (int i = 0; i < graph.n_nodes; ++i) {
+            if (!ggml_is_view(graph.nodes[i])) {
+                return graph.nodes[i];
+            }
+        }
+        return nullptr;
+    }
+
+    int projection(const ggml_tensor * weight) const {
+        const char * names[] = {"gate", "up", "down"};
+        for (int i = 0; i < 3; ++i) {
+            char expected[GGML_MAX_NAME];
+            snprintf(expected, sizeof(expected), "blk.%d.ffn_%s_exps.weight", layer, names[i]);
+            if (strcmp(weight->name, expected) == 0) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    void begin() {
+        pool.release();
+        ++call;
+        before = pool.counts();
+        prepared = attempted = ready = false;
+        last_split = -1;
+        projections = 0;
+        tokens = admit_us = wait_us = prepare_us = 0;
+        start_us = log ? ggml_time_us() : 0;
+        reason = "not_used";
+        original_ids.clear();
+    }
+
+    bool prepare(ggml_backend_t target, const std::array<ggml_tensor *, 3> & source) {
+        const int64_t start = log ? ggml_time_us() : 0;
+        if (!backend) {
+            if (!pool.init(target, source, slots, budget)) {
+                reason = "unavailable";
+                prepare_us = log ? ggml_time_us() - start : 0;
+                return false;
+            }
+            backend = target;
+            weights = source;
+            GGML_LOG_INFO("expert pool: layer=%d slots=%d payload=%zu allocated=%zu backend=%s\n", layer, slots,
+                    pool.payload_bytes(), pool.allocated_bytes(), ggml_backend_name(backend));
+        }
+        prepared = backend == target && weights == source;
+        if (!prepared) {
+            reason = "binding_changed";
+        }
+        prepare_us = log ? ggml_time_us() - start : 0;
+        return prepared;
+    }
+
+    bool allocate_ids(int64_t topk, int64_t n_tokens) {
+        if (ids_buffer && mapped_ids && mapped_ids->ne[0] == topk && mapped_ids->ne[1] == n_tokens) {
+            return true;
+        }
+        ggml_backend_buffer_free(ids_buffer);
+        ggml_free(ids_ctx);
+        ids_buffer = nullptr;
+        mapped_ids = nullptr;
+        ids_ctx = ggml_init({ggml_tensor_overhead() + 1024, nullptr, true});
+        if (!ids_ctx) {
+            return false;
+        }
+        mapped_ids = ggml_new_tensor_2d(ids_ctx, GGML_TYPE_I32, topk, n_tokens);
+        ggml_set_name(mapped_ids, "expert_pool.ids");
+        const auto buft = ggml_backend_get_default_buffer_type(backend);
+        if (ggml_backend_buft_get_alloc_size(buft, mapped_ids) > budget - pool.allocated_bytes()) {
+            return false;
+        }
+        ids_buffer = ggml_backend_alloc_ctx_tensors(ids_ctx, backend);
+        if (!ids_buffer || ggml_backend_buffer_get_size(ids_buffer) > budget - pool.allocated_bytes()) {
+            ggml_backend_buffer_free(ids_buffer);
+            ids_buffer = nullptr;
+            return false;
+        }
+        return true;
+    }
+
+    bool admit(const ggml_tensor * ids, const std::vector<int32_t> & storage) {
+        if (!prepared || ids->type != GGML_TYPE_I32 || ids->ne[2] != 1 || ids->ne[3] != 1) {
+            return false;
+        }
+        const int64_t start = log ? ggml_time_us() : 0;
+        std::vector<int32_t> packed;
+        for (int64_t token = 0; token < ids->ne[1]; ++token) {
+            for (int64_t rank = 0; rank < ids->ne[0]; ++rank) {
+                const size_t offset = token * ids->nb[1] / sizeof(int32_t) + rank * ids->nb[0] / sizeof(int32_t);
+                if (offset >= storage.size()) {
+                    return false;
+                }
+                packed.push_back(storage[offset]);
+            }
+        }
+        if (attempted) {
+            return ready && original_ids == packed;
+        }
+        attempted = true;
+        tokens = ids->ne[1];
+        if (!allocate_ids(ids->ne[0], ids->ne[1])) {
+            reason = "ids_unavailable";
+        } else {
+            std::vector<int32_t> remapped;
+            const auto status = pool.acquire(packed, remapped, ids->ne[0]);
+            using result = ggml_backend_expert_pool::status;
+            switch (status) {
+                case result::ready:
+                    ggml_backend_tensor_set(mapped_ids, remapped.data(), 0, remapped.size() * sizeof(int32_t));
+                    original_ids = std::move(packed);
+                    ready = true;
+                    reason = "ready";
+                    break;
+                case result::capacity: reason = "capacity"; break;
+                case result::routing: reason = "routing_bypass"; break;
+                case result::invalid: reason = "invalid"; break;
+                default: reason = "unavailable"; break;
+            }
+        }
+        admit_us = log ? ggml_time_us() - start : 0;
+        return ready;
+    }
+
+    void finish() {
+        pool.release();
+        if (log) {
+            std::lock_guard<std::mutex> lock(ggml_backend_sched_profile_mutex);
+            const auto & after = pool.counts();
+            fprintf(log, "%llu,%llu,%d,%lld,%s,%d,%llu,%llu,%llu,%llu,%zu,%zu,%lld,%lld,%lld,%lld,%lld\n",
+                    (unsigned long long) id, (unsigned long long) call, layer, (long long) tokens, reason, projections,
+                    (unsigned long long) (after.hits - before.hits), (unsigned long long) (after.misses - before.misses),
+                    (unsigned long long) (after.evictions - before.evictions), (unsigned long long) (after.upload_bytes - before.upload_bytes),
+                    pool.allocated_bytes(), ids_buffer ? ggml_backend_buffer_get_size(ids_buffer) : 0,
+                    (long long) admit_us, (long long) wait_us, (long long) prepare_us, (long long) start_us, (long long) ggml_time_us());
+        }
+    }
+};
+
+struct ggml_backend_sched_pool_call {
+    ggml_backend_sched_expert_pool * state;
+    explicit ggml_backend_sched_pool_call(ggml_backend_sched_expert_pool * state) : state(state) {}
+    ~ggml_backend_sched_pool_call() { if (state) { state->finish(); } }
+};
+
+struct ggml_backend_sched_pool_patch {
+    ggml_backend_t backend;
+    ggml_backend_sched_expert_pool * state;
+    struct entry { ggml_tensor * node; ggml_tensor * weight; ggml_tensor * ids; int projection; };
+    std::vector<entry> entries;
+    bool applied = false;
+    ggml_backend_sched_pool_patch(ggml_backend_t backend, ggml_backend_sched_expert_pool * state) : backend(backend), state(state) {}
+    void apply() {
+        for (auto & entry : entries) {
+            entry.node->src[0] = state->pool.weight(entry.projection);
+            entry.node->src[2] = state->mapped_ids;
+            ++state->projections;
+        }
+        applied = !entries.empty();
+    }
+    void restore() {
+        if (applied) {
+            const int64_t start = state->log ? ggml_time_us() : 0;
+            ggml_backend_synchronize(backend);
+            state->wait_us += state->log ? ggml_time_us() - start : 0;
+            for (auto & entry : entries) {
+                entry.node->src[0] = entry.weight;
+                entry.node->src[2] = entry.ids;
+            }
+            applied = false;
+        }
+    }
+    ~ggml_backend_sched_pool_patch() { restore(); }
+};
 
 #define hash_id(tensor) ggml_hash_find_or_insert(&sched->hash_set, tensor)
 #define tensor_backend_id(tensor) sched->hv_tensor_backend_ids[hash_id(tensor)]
@@ -1757,11 +2011,49 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
     std::vector<ggml_bitset_t> used_ids;
 
     int prev_backend_id = -1;
+    ggml_backend_sched_pool_call pool_call(sched->expert_pool);
+    if (sched->expert_pool) {
+        auto * cache = sched->expert_pool;
+        cache->begin();
+        if (sched->n_copies == 1 && !sched->callback_eval) {
+            std::array<ggml_tensor *, 3> weights{};
+            ggml_backend_t target = nullptr;
+            bool same_backend = true;
+            for (int split_id = 0; split_id < sched->n_splits; ++split_id) {
+                auto & split = splits[split_id];
+                auto backend = sched->backends[split.backend_id];
+                if (strncmp(ggml_backend_name(backend), "Vulkan", 6) != 0 || split.graph.n_nodes == 0) {
+                    continue;
+                }
+                auto * node = cache->first_compute(split.graph);
+                if (!node) {
+                    continue;
+                }
+                for (int i = 0; i < split.n_inputs; ++i) {
+                    auto * input = split.inputs[i];
+                    const int projection = cache->projection(input);
+                    if (projection >= 0 && node->op == GGML_OP_MUL_MAT_ID &&
+                            node->src[0] == tensor_copy(input, split.backend_id, sched->cur_copy)) {
+                        same_backend = same_backend && (!target || target == backend);
+                        target = backend;
+                        weights[projection] = input;
+                        cache->last_split = split_id;
+                    }
+                }
+            }
+            if (same_backend && target && weights[0] && weights[1] && weights[2]) {
+                cache->prepare(target, weights);
+            }
+        } else {
+            cache->reason = "unsupported_scheduler";
+        }
+    }
 
     for (int split_id = 0; split_id < sched->n_splits; split_id++) {
         struct ggml_backend_sched_split * split = &splits[split_id];
         int split_backend_id = split->backend_id;
         ggml_backend_t split_backend = sched->backends[split_backend_id];
+        ggml_backend_sched_pool_patch pool_patch(split_backend, sched->expert_pool);
         ggml_backend_sched_profile_scope split_profile(sched, split_id, "split", nullptr, split_backend);
         if (sched->profile) {
             split_profile.buffer_bytes = ggml_backend_sched_get_buffer_size(sched, split_backend);
@@ -1811,7 +2103,10 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
 
                 // when offloading MoE weights, we can reduce the amount of data copied by copying only the experts that are used
                 ggml_tensor * node = split->graph.nodes[0];
-                if (split->graph.n_nodes > 0 &&
+                if (sched->expert_pool && sched->expert_pool->prepared && sched->expert_pool->projection(input) >= 0) {
+                    node = sched->expert_pool->first_compute(split->graph);
+                }
+                if (split->graph.n_nodes > 0 && node &&
                     ggml_backend_buffer_get_usage(input->buffer) == GGML_BACKEND_BUFFER_USAGE_WEIGHTS &&
                     ggml_backend_buffer_is_host(input->buffer) && (
                     (node->src[0] == input_cpy && node->op == GGML_OP_MUL_MAT_ID)
@@ -1869,6 +2164,33 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
                     }
                     if (sched->route_profile) {
                         ggml_backend_sched_profile_routes(sched, input, ids_tensor, ids.data());
+                    }
+
+                    if (sched->expert_pool && sched->expert_pool->prepared) {
+                        auto * cache = sched->expert_pool;
+                        const int projection = cache->projection(input);
+                        bool single_use = projection >= 0 && cache->weights[projection] == input && cache->backend == split_backend;
+                        for (int n = 0; n < split->graph.n_nodes && single_use; ++n) {
+                            if (split->graph.nodes[n] == node) {
+                                continue;
+                            }
+                            for (auto * source : split->graph.nodes[n]->src) {
+                                if (source == input_cpy) {
+                                    single_use = false;
+                                }
+                            }
+                        }
+                        if (single_use) {
+                            ggml_backend_sched_profile_scope profile(sched, split_id, "expert_pool_admit", input_backend, split_backend, input);
+                            const auto before = cache->pool.counts().upload_bytes;
+                            const bool admitted = cache->admit(ids_tensor, ids);
+                            profile.bytes = cache->pool.counts().upload_bytes - before;
+                            profile.buffer_bytes = cache->pool.allocated_bytes();
+                            if (admitted) {
+                                pool_patch.entries.push_back({node, node->src[0], node->src[2], projection});
+                                continue;
+                            }
+                        }
                     }
 
                     // group consecutive experts and copy them together
@@ -1940,6 +2262,7 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
             }
         }
 
+        pool_patch.apply();
         if (!sched->callback_eval) {
             ggml_backend_sched_profile_scope profile(sched, split_id, "compute_call", nullptr, split_backend, split->graph.n_nodes ? split->graph.nodes[0] : nullptr);
             enum ggml_status ec = ggml_backend_graph_compute_async(split_backend, &split->graph);
@@ -1993,6 +2316,11 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
             }
         }
 
+        pool_patch.restore();
+        if (sched->expert_pool && split_id == sched->expert_pool->last_split) {
+            sched->expert_pool->pool.release();
+        }
+
         // record the event of this split
         if (sched->events[split_backend_id][sched->cur_copy] != NULL) {
             ggml_backend_event_record(sched->events[split_backend_id][sched->cur_copy], split_backend);
@@ -2016,6 +2344,8 @@ ggml_backend_sched_t ggml_backend_sched_new(
     GGML_ASSERT(ggml_backend_dev_type(ggml_backend_get_device(backends[n_backends - 1])) == GGML_BACKEND_DEVICE_TYPE_CPU);
 
     struct ggml_backend_sched * sched = (ggml_backend_sched *) calloc(1, sizeof(struct ggml_backend_sched));
+
+    sched->expert_pool = ggml_backend_sched_expert_pool::from_env();
 
     if (const char * path = getenv("GGML_SCHED_PROFILE")) {
         if (*path) {
@@ -2138,6 +2468,7 @@ void ggml_backend_sched_free(ggml_backend_sched_t sched) {
             ggml_backend_event_free(sched->events[b][c]);
         }
     }
+    delete sched->expert_pool;
     ggml_gallocr_free(sched->galloc);
     ggml_free(sched->ctx);
     ggml_hash_set_free(&sched->hash_set);
