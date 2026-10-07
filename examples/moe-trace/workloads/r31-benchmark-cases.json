@@ -1,0 +1,81 @@
+{
+  "id": "R31",
+  "model_sha256": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f",
+  "engine_baseline_commit": "7fe450e19305b828c199d602c23a8337aaa1f03b",
+  "baseline_greedy_helper_sha256": "854f00aa1abb13f442078993dfe7a9457bfa16d34fedc81571238d737a25162e",
+  "helper_source_snapshot_sha256": "1f65d77dfeb58f9b7356b234e41e2e25f87c598f52c3fad002c236743a80152c",
+  "tooling_commit": "925d3ec0e1868280b0c2ba2dd76607de7bb45bc8",
+  "generation": "Greedy baseline, no evaluation callback, proper Qwen chat delimiters, 200 actual decode tokens; --no-escape",
+  "measurement": "Full prompt PP aggregation at step512; TG200samecasecontinuation; c1024short/c12288long",
+  "cases": [
+    {
+      "name": "short",
+      "prompt_tokens": 512,
+      "target_prompt_tokens": 512,
+      "decode_tokens": 200,
+      "context": 1024,
+      "prompt_sha256": "4f95fd258226b3db6eba85e0947c59ff68015e7b6b5f0a4d96f1945a1c56103c",
+      "prompt_ids_sha256": "e2b0a803fc6dad9fdaa4692524e505f4b385e7a536f8fe9ede094632841d0fe7",
+      "source_references": [
+        {
+          "path": "ggml/src/ggml-backend.cpp",
+          "sha256": "fea0a96c951bce000e345cc75b72eea7d7ec27d238cbb7b962817fdb94853790"
+        },
+        {
+          "path": "ggml/src/ggml-vulkan/ggml-vulkan-buffers.cpp",
+          "sha256": "d821d92595086242e762c4bb4aa981203f4787740bc0862de87f03ec13599c4e"
+        },
+        {
+          "path": "src/llama-context.cpp",
+          "sha256": "21340d0540c6ca98b78b733906f026a7ded450b283e47c3d1c9a84a19de43132"
+        }
+      ],
+      "tokens_file": "r31-short-512-200.csv",
+      "tokens_sha256": "711949862bf3674e00add770c2add1b3fac53d0f3695ee28769ca8a082c7052d",
+      "prompt_file": "r31-short-prompt.txt",
+      "generator_raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "70a46c02e881eccb8f109aeda82cbde51990391b077edd3515c206814f7c0424"
+      },
+      "generator_prompt_ids_match": true
+    },
+    {
+      "name": "long",
+      "prompt_tokens": 10000,
+      "target_prompt_tokens": 10000,
+      "decode_tokens": 200,
+      "context": 12288,
+      "prompt_sha256": "ffe4c1b547129b8e907925324326eaed9a82e1c22d85c7d72deac65477927fee",
+      "prompt_ids_sha256": "0e848272ef1c22d71af9505983c01f080b15a63608c57ea86d42c3a31f31472c",
+      "source_references": [
+        {
+          "path": "ggml/src/ggml-backend.cpp",
+          "sha256": "fea0a96c951bce000e345cc75b72eea7d7ec27d238cbb7b962817fdb94853790"
+        },
+        {
+          "path": "ggml/src/ggml-vulkan/ggml-vulkan-buffers.cpp",
+          "sha256": "d821d92595086242e762c4bb4aa981203f4787740bc0862de87f03ec13599c4e"
+        },
+        {
+          "path": "src/llama-context.cpp",
+          "sha256": "21340d0540c6ca98b78b733906f026a7ded450b283e47c3d1c9a84a19de43132"
+        }
+      ],
+      "tokens_file": "r31-long-10000-200.csv",
+      "tokens_sha256": "b51f817559a54e37e34d64e9a5c37d0a7dc38101792ab3bdd9fbe01c44157889",
+      "prompt_file": "r31-long-prompt.txt",
+      "generator_raw": {
+        "bytes": 218521600,
+        "vectors": 220,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "416e6948b1229aaf8cca9b272bd0af5d5c5da9750d28ca80d67e466fe6734494"
+      },
+      "generator_prompt_ids_match": true
+    }
+  ],
+  "limits": "Synthetic code-review task, source snapshot prefixes; source_references list the candidate document inputs, prefix cuts may include only the first file. No semantic quality score or real-agent claim."
+}

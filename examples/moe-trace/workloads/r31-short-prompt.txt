@@ -1,0 +1,68 @@
+<|im_start|>system
+You are a careful local C++ code reviewer. Use only the provided source. Explain limitations when context is missing.<|im_end|>
+<|im_start|>user
+Review the supplied inference code for scheduling, transfers, memory lifetime and cancellation. Provide 25 numbered findings. For each, explain the evidence, propose a small change preserving output correctness, and give a targeted A/B test. State uncertainty explicitly. Write at least 1000 words.
+
+Source excerpt:
+
+// File: ggml/src/ggml-backend.cpp
+// Note: porting this file to C++ is a work in progress
+
+#ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
+#ifndef NOMINMAX
+#   define NOMINMAX
+#endif
+#include <windows.h>
+#endif
+
+#include "ggml-backend.h"
+#include "ggml-backend-impl.h"
+#include "ggml-alloc.h"
+#include "ggml-impl.h"
+#include "ggml-expert-pool.h"
+
+#include <assert.h>
+#include <limits.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <algorithm>
+#include <mutex>
+#include <string>
+#include <unordered_map>
+#include <vector>
+
+#ifdef __APPLE__
+#include <sys/types.h>
+#include <sys/sysctl.h>
+#endif
+
+
+// backend buffer type
+
+const char * ggml_backend_buft_name(ggml_backend_buffer_type_t buft) {
+    GGML_ASSERT(buft);
+    return buft->iface.get_name(buft);
+}
+
+ggml_backend_buffer_t ggml_backend_buft_alloc_buffer(ggml_backend_buffer_type_t buft, size_t size) {
+    GGML_ASSERT(buft);
+    if (size == 0) {
+        // return a dummy buffer for zero-sized allocations
+        return ggml_backend_buffer_init(buft, {}, NULL, 0);
+    }
+    return buft->iface.alloc_buffer(buft, size);
+}
+
+size_t ggml_backend_buft_get_alignment(ggml_backend_buffer_type_t buft) {
+    GGML_ASSERT(buft);
+    return buft->iface.get_alignment(buft);
+}
+
+size_t ggml_backend_buft_get_max_size(ggml_backend_buffer_type_t buft
+
+End of supplied excerpt. Begin your detailed review.<|im_end|>
+<|im_start|>assistant
+<think>
