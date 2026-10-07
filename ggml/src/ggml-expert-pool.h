@@ -28,7 +28,7 @@ public:
         ggml_free(ctx);
     }
 
-    bool init(ggml_backend_t target, const std::array<ggml_tensor *, 3> & weights, int capacity, size_t byte_budget) {
+    bool init(ggml_backend_t target, const std::array<ggml_tensor *, 3> & weights, int capacity, size_t byte_budget, bool lazy = false) {
         if (ctx || !target || capacity <= 0 || !weights[0]) {
             return false;
         }
@@ -68,55 +68,31 @@ public:
             }
             allocated += bytes + pad;
         }
-        buffer = ggml_backend_alloc_ctx_tensors(ctx, target);
-        if (!buffer || ggml_backend_buffer_get_size(buffer) > byte_budget) {
-            ggml_backend_buffer_free(buffer);
-            buffer = nullptr;
-            return false;
-        }
-        // Initialize unused slots and backend padding before quantized kernels can read them.
-        ggml_backend_buffer_clear(buffer, 0);
-        ggml_backend_buffer_set_usage(buffer, GGML_BACKEND_BUFFER_USAGE_WEIGHTS);
         backend = target;
         sources = weights;
         slot_experts.assign(capacity, -1);
         ages.assign(capacity, 0);
         expert_slots.assign(experts, -1);
         slot_bytes = per_slot;
-        return true;
+        reserved = allocated;
+        budget = byte_budget;
+        return lazy || allocate();
+    }
+
+    status request_status(const std::vector<int32_t> & ids, size_t top_k = 1) const {
+        std::vector<int32_t> requested;
+        return validate_request(ids, top_k, requested);
     }
 
     status acquire(const std::vector<int32_t> & ids, std::vector<int32_t> & remapped, size_t top_k = 1) {
         remapped.clear();
-        if (!buffer) {
+        std::vector<int32_t> requested;
+        const auto checked = validate_request(ids, top_k, requested);
+        if (checked != status::ready) {
+            return checked;
+        }
+        if (!buffer && !allocate()) {
             return status::unavailable;
-        }
-        if (leased) {
-            return status::busy;
-        }
-        if (ids.empty() || top_k == 0 || ids.size() % top_k != 0) {
-            return status::invalid;
-        }
-        std::vector<int32_t> requested = ids;
-        for (int32_t id : requested) {
-            if (id < 0 || size_t(id) >= expert_slots.size()) {
-                return status::invalid;
-            }
-        }
-        // Vulkan matrix kernels can assume distinct experts within each token's top-k.
-        for (size_t token = 0; token < ids.size(); token += top_k) {
-            for (size_t i = 0; i < top_k; ++i) {
-                for (size_t j = 0; j < i; ++j) {
-                    if (ids[token + i] == ids[token + j]) {
-                        return status::routing;
-                    }
-                }
-            }
-        }
-        std::sort(requested.begin(), requested.end());
-        requested.erase(std::unique(requested.begin(), requested.end()), requested.end());
-        if (requested.size() > slot_experts.size()) {
-            return status::capacity;
         }
         // Plan every slot before the first write. Never evict an expert needed by this request.
         auto planned = slot_experts;
@@ -181,9 +157,57 @@ public:
     const counters & counts() const { return stats; }
     const std::vector<int32_t> & residents() const { return slot_experts; }
     size_t payload_bytes() const { return slot_bytes * slot_experts.size(); }
+    size_t reserved_bytes() const { return std::max(reserved, allocated_bytes()); }
     size_t allocated_bytes() const { return buffer ? ggml_backend_buffer_get_size(buffer) : 0; }
 
 private:
+    status validate_request(const std::vector<int32_t> & ids, size_t top_k, std::vector<int32_t> & requested) const {
+        if (!backend) {
+            return status::unavailable;
+        }
+        if (leased) {
+            return status::busy;
+        }
+        if (ids.empty() || top_k == 0 || ids.size() % top_k != 0) {
+            return status::invalid;
+        }
+        requested = ids;
+        for (int32_t id : requested) {
+            if (id < 0 || size_t(id) >= expert_slots.size()) {
+                return status::invalid;
+            }
+        }
+        // Vulkan matrix kernels can assume distinct experts within each token's top-k.
+        for (size_t token = 0; token < ids.size(); token += top_k) {
+            for (size_t i = 0; i < top_k; ++i) {
+                for (size_t j = 0; j < i; ++j) {
+                    if (ids[token + i] == ids[token + j]) {
+                        return status::routing;
+                    }
+                }
+            }
+        }
+        std::sort(requested.begin(), requested.end());
+        requested.erase(std::unique(requested.begin(), requested.end()), requested.end());
+        if (requested.size() > slot_experts.size()) {
+            return status::capacity;
+        }
+        return status::ready;
+    }
+
+    bool allocate() {
+        buffer = ggml_backend_alloc_ctx_tensors(ctx, backend);
+        if (!buffer || ggml_backend_buffer_get_size(buffer) > budget) {
+            ggml_backend_buffer_free(buffer);
+            buffer = nullptr;
+            return false;
+        }
+        // Clear unused slots and backend padding before the first quantized kernel.
+        ggml_backend_buffer_clear(buffer, 0);
+        ggml_backend_buffer_set_usage(buffer, GGML_BACKEND_BUFFER_USAGE_WEIGHTS);
+        return true;
+    }
+
     ggml_context * ctx = nullptr;
     ggml_backend_buffer_t buffer = nullptr;
     ggml_backend_t backend = nullptr;
@@ -192,6 +216,6 @@ private:
     std::vector<uint64_t> ages;
     counters stats;
     uint64_t clock = 0;
-    size_t slot_bytes = 0;
+    size_t slot_bytes = 0, reserved = 0, budget = 0;
     bool leased = false;
 };

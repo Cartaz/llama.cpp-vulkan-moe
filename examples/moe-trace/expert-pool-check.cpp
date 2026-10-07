@@ -458,6 +458,32 @@ bool check_management(ggml_backend_t target, ggml_backend_t cpu) {
         first.release();
         ok = first.counts().misses == 1 && first.counts().hits == 2 && second.counts().misses == 1 && ok;
     }
+    moe_expert_pool lazy;
+    ok = lazy.init(target, a, 4, 65536, true) && lazy.allocated_bytes() == 0 &&
+         lazy.reserved_bytes() >= lazy.payload_bytes() && lazy.weight(0) == nullptr && ok;
+    std::vector<int32_t> lazy_ids;
+    const auto empty_counts = lazy.counts();
+    const auto empty_residents = lazy.residents();
+    for (const auto & request : std::vector<std::vector<int32_t>>{{0, 1, 2, 3, 4}, {1, 1}, {-1, 0}}) {
+        const auto expected = request.size() == 5 ? status::capacity : request[0] < 0 ? status::invalid : status::routing;
+        ok = lazy.request_status(request, request.size() == 5 ? 1 : 2) == expected &&
+             lazy.acquire(request, lazy_ids, request.size() == 5 ? 1 : 2) == expected && lazy_ids.empty() &&
+             lazy.allocated_bytes() == 0 && lazy.residents() == empty_residents && same_counts(lazy.counts(), empty_counts) && ok;
+    }
+    ok = lazy.acquire({7}, lazy_ids) == status::ready && lazy_ids == std::vector<int32_t>({0}) &&
+         lazy.allocated_bytes() >= lazy.payload_bytes() && ok;
+    lazy.release();
+    for (int i = 0; i < 3 && ok; ++i) {
+        std::vector<float> data(32 * 8 * 4);
+        ggml_backend_tensor_get(lazy.weight(i), data.data(), 0, data.size() * sizeof(float));
+        ok = std::all_of(data.begin(), data.begin() + 32 * 8, [i](float value) { return value == float(i * 16 + 8); }) &&
+             std::all_of(data.begin() + 32 * 8, data.end(), [](float value) { return value == 0; }) && ok;
+    }
+    const auto lazy_bytes = lazy.allocated_bytes();
+    ok = lazy.acquire({7}, lazy_ids) == status::ready && lazy.allocated_bytes() == lazy_bytes &&
+         lazy.counts().hits == 1 && lazy.counts().misses == 1 && ok;
+    lazy.release();
+    printf("pool lazy capacity/routing/invalid_no_alloc=1 first_admission=1 zero_padding=1 all_hit_reuse=1 %s\n", ok ? "OK" : "FAIL");
     moe_expert_pool lru;
     ok = lru.init(target, a, 2, 65536) && ok;
     std::vector<int32_t> remapped;
@@ -543,5 +569,6 @@ bool check_scheduler_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * outp
     }
     ok = check_pool_case(target, cpu, 1, 3, false, false, output, "3:12:16", true) && ok;
     ok = check_pool_case(target, cpu, 1, 3, false, false, output, "3:12:16", false, true) && ok;
+    ok = check_pool_case(target, cpu, 0, 1, false, false, output, "3:128:65") && ok;
     return ok;
 }

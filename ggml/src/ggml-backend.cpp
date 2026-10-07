@@ -1059,7 +1059,7 @@ struct ggml_backend_sched_expert_pool {
     bool prepare(ggml_backend_t target, const std::array<ggml_tensor *, 3> & source) {
         const int64_t start = log ? ggml_time_us() : 0;
         if (!backend) {
-            if (!pool.init(target, source, slots, budget)) {
+            if (!pool.init(target, source, slots, budget, true)) {
                 reason = "unavailable";
                 prepare_us = log ? ggml_time_us() - start : 0;
                 return false;
@@ -1092,11 +1092,11 @@ struct ggml_backend_sched_expert_pool {
         mapped_ids = ggml_new_tensor_2d(ids_ctx, GGML_TYPE_I32, topk, n_tokens);
         ggml_set_name(mapped_ids, "expert_pool.ids");
         const auto buft = ggml_backend_get_default_buffer_type(backend);
-        if (ggml_backend_buft_get_alloc_size(buft, mapped_ids) > budget - pool.allocated_bytes()) {
+        if (ggml_backend_buft_get_alloc_size(buft, mapped_ids) > budget - pool.reserved_bytes()) {
             return false;
         }
         ids_buffer = ggml_backend_alloc_ctx_tensors(ids_ctx, backend);
-        if (!ids_buffer || ggml_backend_buffer_get_size(ids_buffer) > budget - pool.allocated_bytes()) {
+        if (!ids_buffer || ggml_backend_buffer_get_size(ids_buffer) > budget - pool.reserved_bytes()) {
             ggml_backend_buffer_free(ids_buffer);
             ids_buffer = nullptr;
             return false;
@@ -1124,12 +1124,15 @@ struct ggml_backend_sched_expert_pool {
         }
         attempted = true;
         tokens = ids->ne[1];
-        if (!allocate_ids(ids->ne[0], ids->ne[1])) {
+        using result = ggml_backend_expert_pool::status;
+        auto status = pool.request_status(packed, ids->ne[0]);
+        if (status == result::ready && !allocate_ids(ids->ne[0], ids->ne[1])) {
             reason = "ids_unavailable";
         } else {
             std::vector<int32_t> remapped;
-            const auto status = pool.acquire(packed, remapped, ids->ne[0]);
-            using result = ggml_backend_expert_pool::status;
+            if (status == result::ready) {
+                status = pool.acquire(packed, remapped, ids->ne[0]);
+            }
             switch (status) {
                 case result::ready:
                     ggml_backend_tensor_set(mapped_ids, remapped.data(), 0, remapped.size() * sizeof(int32_t));
