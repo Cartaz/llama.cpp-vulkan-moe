@@ -1,6 +1,6 @@
 # Roadmap: llama.cpp-vulkan-moe su RX 6800
 
-Aggiornamento: **2026-10-07**. Documento di lavoro per `Cartaz/llama.cpp-vulkan-moe`, branch di riferimento `experiment/moe-trace-strides`; incrementi sperimentali R17-R24 su branch separati. Snapshot del codice prima di questa roadmap: `c679dc22012ee9281db57336ff8fd17a93bc54b2`.
+Aggiornamento: **2026-10-07**. Documento di lavoro per `Cartaz/llama.cpp-vulkan-moe`, branch di riferimento `experiment/moe-trace-strides`; incrementi sperimentali R17-R25 su branch separati. Snapshot del codice prima di questa roadmap: `c679dc22012ee9281db57336ff8fd17a93bc54b2`.
 
 Obiettivo: inferenza locale affidabile e veloce su RX 6800 16 GB, Ryzen 7 5700X3D e 32 GB RAM, CachyOS/RADV. Prima una sequenza; poi 2, 4 e 8 richieste da agenti. PP, TG, TTFT, latenza completa, throughput aggregato e throughput per richiesta sono risultati distinti.
 
@@ -8,7 +8,7 @@ Obiettivo: inferenza locale affidabile e veloce su RX 6800 16 GB, Ryzen 7 5700X3
 
 | Voce | Stato al 2026-10-07 |
 | --- | --- |
-| Esecuzione benchmark | **Ripresa autorizzata esplicitamente dall'utente il 2026-10-07. R20-R24 conclusi sul perimetro dichiarato; PP breve +33.8% none, gate lungo fallito anche B1.** |
+| Esecuzione benchmark | **Ripresa autorizzata esplicitamente dall'utente il 2026-10-07. R20-R25 conclusi sul perimetro dichiarato; PP breve +33.8% none, gate lungo fallito anche B1.** |
 | Baseline originale | llama.cpp v0.5.0, `7fe450e19305b828c199d602c23a8337aaa1f03b`, senza modifiche |
 | Modello di riferimento | Ornith-1.5-35B-Q4_K_M.gguf; identita' completa nella sezione baseline |
 | Cache GPU persistente di esperti | **Non implementata**. Disponibili collector normale validato su CPU18 e simulazioni offline; callback storico diverge dal percorso normale |
@@ -21,7 +21,7 @@ Obiettivo: inferenza locale affidabile e veloce su RX 6800 16 GB, Ryzen 7 5700X3
 | Profilo provvisorio dello sweep | `-ncmoe 12 -tb 8`, `GGML_VK_DISABLE_HOST_VISIBLE_VIDMEM=1`, librerie DEFAULT congelate; **non vincitore finale** |
 | Fondamenta S01/S02 | Tooling iniziale IMPLEMENTATO su `experiment/moe-profile-foundations`: manifest live con verifica freeze, entropia/riuso/finestre e stime cache in byte; R21 valida quattro prompt brevi/held-out, richieste top-k complete e byte; corpus esteso e runtime cache incompleti |
 | Fondamenta S03 | R20: join host PP/TG sul modello VALIDATO, costo profiler TG -6.07%, logger timestamp corretto e correlato, accounting memoria sul replay breve; timeline normale calibrata e contesti lunghi incompleti |
-| Prossima modifica di ricerca | R23 fallisce anche B1, prefix1024/1536 R24 coincidono: isolare history/reset/shape; M2/remap/lifetime e bounded staging S10/S11 sui controlli brevi validati, senza promozione generale |
+| Prossima modifica di ricerca | R23 fallisce anche B1; R24 prefix brevi coincidono, R25 reset dati non risolve: controllare B4/history/shape; M2/remap/lifetime e bounded staging S10/S11 sui controlli brevi validati, senza promozione generale |
 
 Questo documento registra la ripresa richiesta dall'utente il 2026-10-07; gli archivi interrotti R13/R15 restano conservati. I problemi riprodotti anche sulla v0.5.0 originale sono registrati come `ERRORE_BASELINE`, come richiesto dall'utente: non sono automaticamente regressioni del fork e non bloccano tutta la ricerca. Una misura con NaN, output nullo o fallback CPU involontario resta invalida per il ranking prestazionale.
 
@@ -107,6 +107,7 @@ Le percentuali sono osservazioni sul workload indicato, non previsioni su tutti 
 | R22 | S10 prerequisito: replica load-mode sul bottleneck PP | VALIDATO replay breve | Build9375, 11 processi; mmap/none4processi/variante: PP168.824->225.892 (+33.80%, CI32.26..35.17), TG28.853->28.837 entro3%, p95 entro5%; rawB1 identici | **MIGLIORAMENTO PP / MISTO memoria-avvio**: GTT residente0.62->9.57GiB, init5.02->9.89s. Config gia' esistente, non nuova cache/overlap. [Report](docs/development/moe-host-transfer-recheck-rx6800.md) |
 | R23 | T4: prompt code-review3107+128, replay ub512 | ERRORE_BASELINE ripetibilita' / gate FAILED | Sei dump completi finiti/nonzero; due run B1 differiscono in133/135vettori dal terzo chunk, maxabs3.43184 e2argmax PP diversi; fork anche variabile | Nessun processo di speed ranking; causa non stabilita, nessuna regressione fork o fix driver dimostrati. [Report](docs/development/moe-long-prefill-recheck-rx6800.md) |
 | R24 | Riduzione R23: prefix B1 1024/1536+32 | TEST_PARZIALI, coppie identiche | Quattro processi originali, due/prefix; tutti34/35vettori finiti/nonzero e bit-identici dentro coppia; un launch CRLF rifiutato prima del load e conservato | Il solo terzo chunk non riproduce il difetto lungo; root cause aperta, nessun ranking velocita'. [Report](docs/development/moe-chunk-repeatability-rx6800.md) |
+| R25 | Controllo helper reset dati dopo warmup | IMPLEMENTATO, default compatibile; gate lungo FAILED | Helper79c7778 MOE_REPLAY_CLEAR_DATA=1; quattro run3107+128 finiti/nonzero, coppia B1 diff134/135vettori gia' dal secondo chunk. Assente/0/vuoto: tre run244+128 identiciB1; sei CLIcheck senza modello | True clearing **non risolve** ripetibilita' originale; opt-in diagnostico, nessun fix/TG gain/default change. [Report](docs/development/moe-state-reset-rx6800.md) |
 
 R12-R16 derivano dagli archivi locali del 5-6 ottobre e dallo stato dello sweep; alcuni report precedenti sulla repo descrivono ancora un pilot o una rivalidazione in corso. Questa snapshot aggiorna **lo stato**, senza fingere che quei report storici siano gia' stati riscritti.
 
@@ -181,7 +182,7 @@ La prima cache deve essere semplice e misurabile. Non iniziare con cache + looka
 
 ## Catalogo delle strategie con esperimento A/B
 
-Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R24 esplicitamente citate. S01/S02 hanno il tooling iniziale implementato in R17, ma restano incompleti i gate runtime, il corpus e la verifica held-out. S03 ha scope host/contatori copie R18, intervalli/aggregazione PP/TG R19 e verifica sul modello R20 con timestamp diagnostici e memoria breve; timeline calibrata nel percorso normale e budget per contesti lunghi restano incompleti. Non e' dichiarata implementata perche' esiste in una fonte esterna. I protocolli T0-T7 sono definiti nella sezione successiva; gli A/B qui fissano la variabile e le metriche aggiuntive. Anche i gruppi nello stesso livello si provano uno alla volta.
+Ogni strategia seguente e' **PROPOSTA**, salvo i prerequisiti e le prove R01-R25 esplicitamente citate. S01/S02 hanno il tooling iniziale implementato in R17, ma restano incompleti i gate runtime, il corpus e la verifica held-out. S03 ha scope host/contatori copie R18, intervalli/aggregazione PP/TG R19 e verifica sul modello R20 con timestamp diagnostici e memoria breve; timeline calibrata nel percorso normale e budget per contesti lunghi restano incompleti. Non e' dichiarata implementata perche' esiste in una fonte esterna. I protocolli T0-T7 sono definiti nella sezione successiva; gli A/B qui fissano la variabile e le metriche aggiuntive. Anche i gruppi nello stesso livello si provano uno alla volta.
 
 ### P0: fondamenta e modello dei costi
 
@@ -399,7 +400,8 @@ Checklist del lavoro dopo la ripresa autorizzata:
 - [x] R22: A/B mmap/none breve a build/config identici, raw gate,4processi/variante, PP/TG/p95 e memoria/startup separati.
 - [x] R23: provato prompt3107+128; fallita ripetibilita' anche B1, sei dump finiti/nonzero e controlli conservati, nessun ranking lungo.
 - [x] R24: screen B1 con prefix1024/1536+32, due processi ciascuno identici; non riproduce il3107, causa aperta. Token/prompt R22-R24 versionati.
-- [ ] Isolare history/reset/shape e controllare B4 separato; poi confermare PP/TG/TTFT, qualita' e1/2/4/8 nei limiti autorizzati.
+- [x] R25: controllo reset dati nel solo helper; default/0/vuoto compatibili sul breve, true-clear non risolve B1 lungo. Fonte/helper e engine originali separati, gate fallito conservato.
+- [ ] Isolare history/shape e controllare B4 separato; poi confermare PP/TG/TTFT, qualita' e1/2/4/8 nei limiti autorizzati.
 - [ ] Aggiornare B3 e registro con il verdetto, anche se REGRESSIONE o NESSUN_CAMBIAMENTO.
 
 ## Scheda da compilare per ogni nuovo tentativo
