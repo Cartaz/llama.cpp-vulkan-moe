@@ -9,7 +9,7 @@ if (GGML_CPU AND NOT GGML_BACKEND_DL)
     target_link_libraries(llama-moe-routing-check PRIVATE ggml ggml-cpu)
     target_compile_features(llama-moe-routing-check PRIVATE cxx_std_17)
 
-    add_executable(llama-moe-scheduler-check scheduler-check.cpp)
+    add_executable(llama-moe-scheduler-check scheduler-check.cpp expert-pool-check.cpp)
     target_link_libraries(llama-moe-scheduler-check PRIVATE ggml ggml-cpu)
     target_compile_features(llama-moe-scheduler-check PRIVATE cxx_std_17)
     if (GGML_VULKAN)
