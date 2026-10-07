@@ -63,6 +63,8 @@ I log registrano buffer KV GPU di 10.62 MiB nel breve e 127.50 MiB nel lungo; co
 
 ## Limiti e prossimo passo
 
+Aggiornamento R32 (2026-10-07): una nuova esecuzione dell'identico motore B1, con gli stessi argomenti e SHA di tutte le librerie/driver, differisce dal raw lungo R31 in tutti i 220 vettori (max_abs3.71424, RMS0.108724, argmax invariati). R32 classifica ERRORE_BASELINE ed esclude il ranking lungo. I campioni R31 sono conservati e risultavano coerenti nella propria campagna; non costituiscono una garanzia di ripetibilita' fra campagne. [Diagnosi e controlli R32](moe-pool-lazy-rx6800.md).
+
 Il lungo e' un gate nuovo: non eredita la validita' del breve. R23/R25 avevano gia' trovato instabilita' anche nel motore B1 a contesto lungo. Due processi B1 freschi devono produrre raw ripetibili alle condizioni registrate; se non coincidono, segnare ERRORE_BASELINE per quel caso e conservare tutto. Il breve puo' proseguire. Non allargare la tolleranza dopo aver visto i risultati e non pubblicare un vincitore sul lungo invalido.
 
 Dopo gate valido, 4 processi nuovi/3 rep dopo warmup definiscono il riferimento temporale del singolo caso. Nel presente incremento non si confronta una nuova ottimizzazione del motore. Le future patch useranno la stessa coppia B1/B2OFF/ON, kernel/profiler separati dal timing, contesto/placement/KV fissi entro ciascun caso e verifica source/build/libs/token.
