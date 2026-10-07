@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "model_sha256": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f",
+  "template_sha256": "f55f52930aa8bf44ab5cb85f99370fcc3c56e9a85640b812086d5330bce5d86b",
+  "prompts": {
+    "train-code": {
+      "prompt": "<|im_start|>system\nYou are a careful local assistant. Explain your reasoning clearly and use only the information provided.<|im_end|>\n<|im_start|>user\nReview a Python in-memory cache. Each entry stores value and expires_at. Reads compare expires_at with time.time(), while writes compute expiry with time.monotonic(). Some entries disappear immediately and others never expire. Explain the defect, propose a minimal corrected get/set design with one injected clock, and describe tests for expiry boundaries, clock changes and missing keys. Preserve the public interface and distinguish correctness from performance.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+      "prompt_sha256": "095cdc4d8ebd8f16ff1e59cb39e369ad51fe8adbcccc71e9bbcfbfe41975d8c8"
+    },
+    "heldout-code": {
+      "prompt": "<|im_start|>system\nYou are a careful local assistant. Explain your reasoning clearly and use only the information provided.<|im_end|>\n<|im_start|>user\nReview a Python function that opens a file, obtains a lock, parses records and returns early when a header is invalid. Cleanup currently occurs only at the end of the function. Explain what leaks on early return or parsing errors, propose a minimal context-manager design that releases resources in reverse order, and describe tests for invalid headers, exceptions and successful parsing. Preserve error information and explain each change.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+      "prompt_sha256": "738a3f27eb453ccbc4f7c7440fd30adb05bd2620f3d7e82be650b21fccbccebe"
+    },
+    "train-planning": {
+      "prompt": "<|im_start|>system\nYou are a careful local assistant. Explain your reasoning clearly and use only the information provided.<|im_end|>\n<|im_start|>user\nPlan work for one local coding agent. Task A reads a regression report; B reproduces the failure after A; C reads independent API documentation; D designs a patch after B and C; E runs tests after D; F writes a review summary after E. Only one task may use the GPU at a time, and B and E require it. Give a valid execution order, explain useful CPU-only overlap, and specify the evidence required at each checkpoint. Do not invent successful test results.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+      "prompt_sha256": "50bbfd81ca587fa7d995a122175c0593b51dfe0caca05dfb0fb4c45d63c48635"
+    },
+    "heldout-planning": {
+      "prompt": "<|im_start|>system\nYou are a careful local assistant. Explain your reasoning clearly and use only the information provided.<|im_end|>\n<|im_start|>user\nPlan a small repository migration. A inventories config keys; B captures current behavior after A; C inventories callers independently; D edits a compatibility adapter after B and C; E verifies old and new config after D; F removes dead code only after E. One developer and one GPU are available. Give a dependency-aware sequence, identify reversible checkpoints and rollback artifacts, and explain which tasks can overlap without invalidating measurements.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+      "prompt_sha256": "4b4deefaeb4572b1da38cb6c7b614a305a31b8e73acc4a313382c3a7cda8cc83"
+    },
+    "train-retrieval": {
+      "prompt": "<|im_start|>system\nYou are a careful local assistant. Explain your reasoning clearly and use only the information provided.<|im_end|>\n<|im_start|>user\nUse only these notes: Cedar processed 200 prompt tokens in 1.0 second and generated 80 tokens in 4.0 seconds. Pine processed the same prompt in 0.8 second and generated 80 tokens in 5.0 seconds. Both used one stream, identical model and output tokens, warm caches and batch512. Only one run per mode exists; memory and quality checks were not recorded. Calculate separate PP and TG throughput, assess the claim that Pine is always faster, and specify missing repeatability and memory evidence.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+      "prompt_sha256": "6e51920f567c97df759f6b1fe832272cb4bcac3412b9d0bf5e0cb1fcc1ca36b6"
+    },
+    "heldout-retrieval": {
+      "prompt": "<|im_start|>system\nYou are a careful local assistant. Explain your reasoning clearly and use only the information provided.<|im_end|>\n<|im_start|>user\nUse only these notes: Rowan completed 30 tasks with median total latency 12 seconds and p95 19 seconds. Willow completed 30 different tasks with median 10 seconds and p95 24 seconds. Rowan ran one request at a time; Willow ran four simultaneously. Models match, but prompt lengths and generated token counts were not saved. Explain which claims these notes support, why per-stream throughput cannot be calculated, and propose a controlled experiment without inventing numbers.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+      "prompt_sha256": "9d56b153f05eac0a2a78cebec8278043815d8c5619bc5262fe2e3e265138d275"
+    },
+    "train-arithmetic": {
+      "prompt": "<|im_start|>system\nYou are a careful local assistant. Explain your reasoning clearly and use only the information provided.<|im_end|>\n<|im_start|>user\nA local job has a 90-minute time budget. Inspection takes 12 minutes, each of three sequential benchmark runs takes 14 minutes, analysis takes 9 minutes, and report writing takes 8 minutes. Setup additionally takes 6 minutes before the first run. Compute time used and remaining. A fourth run would require another14minutes plus3minutes for saving traces. Determine whether it fits and by how much. Explain every subtotal and finish with a compact table.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+      "prompt_sha256": "4d5a6bd352a292a4fb2f60a3e7e7beaafe56194746e2c4e7ae8f9bcad6026439"
+    },
+    "heldout-arithmetic": {
+      "prompt": "<|im_start|>system\nYou are a careful local assistant. Explain your reasoning clearly and use only the information provided.<|im_end|>\n<|im_start|>user\nAn experiment transfers six buffers of 48 MiB and four buffers of 80 MiB from RAM to VRAM. A retry retransfers two48MiB buffers; it does not allocate additional persistent storage. Persistent VRAM contains all ten original buffers. Calculate original payload, total transferred payload including retries, and persistent bytes using1MiB=1048576bytes. Explain why transferred volume differs from resident memory and show the arithmetic in a table.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+      "prompt_sha256": "36d3719b50e43175a67d04e1f2c74dc6b6f5940ab84da34d159a90bc43607a28"
+    },
+    "train-structured": {
+      "prompt": "<|im_start|>system\nYou are a careful local assistant. Explain your reasoning clearly and use only the information provided.<|im_end|>\n<|im_start|>user\nAn agent may call inspect_file(path) and run_tests(target). The user reports that retries fail in src/retry.py and says tests/test_retry.py covers that behavior. No commands have run yet. Explain a safe evidence-first sequence, then emit a JSON object with keys steps and evidence_needed. Each step must contain exactly tool and arguments; use only the two supplied tools and exact supplied paths. Do not claim a cause or passing tests before inspection.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+      "prompt_sha256": "bde38b4eeba949618696d84e351fd888d426551d921a5d128497f66cf88d9775"
+    },
+    "heldout-structured": {
+      "prompt": "<|im_start|>system\nYou are a careful local assistant. Explain your reasoning clearly and use only the information provided.<|im_end|>\n<|im_start|>user\nAn agent may call read_log(path) and inspect_file(path). The supplied notes say an allocation error is recorded in logs/run07.txt and the loader implementation is src/loader.py. No files have been read. Explain the first two diagnostic steps, then emit a JSON object with keys steps and unresolved. Each step contains exactly tool and arguments. Use only supplied tools and paths; list what remains unknown and do not claim a fix or a benchmark result.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+      "prompt_sha256": "1229f51f5311d317bb63c7312e014ed67305dc5ee8dd5d003d5b19e4a2edea50"
+    },
+    "train-italian": {
+      "prompt": "<|im_start|>system\nYou are a careful local assistant. Explain your reasoning clearly and use only the information provided.<|im_end|>\n<|im_start|>user\nRispondi in italiano. Un programma registra tre durate: calcolo CPU8ms, invio dei comandi GPU2ms e attesa della GPU11ms. Questi intervalli sono sequenziali nella misura disponibile. Un collega sostiene che il kernel GPU duri soltanto2ms. Spiega che cosa misurano i tre valori, calcola la durata totale e indica quali misure servono per conoscere il tempo del kernel. Non attribuire una causa alle attese senza dati. Concludi con tre passi concreti per verificare la spiegazione.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+      "prompt_sha256": "3e812879d08580dcebe3186d4b3edf7e979467bb13343154313ed0e6e8abc3d2"
+    },
+    "heldout-italian": {
+      "prompt": "<|im_start|>system\nYou are a careful local assistant. Explain your reasoning clearly and use only the information provided.<|im_end|>\n<|im_start|>user\nRispondi in italiano. Due configurazioni completano lo stesso lavoro: A impiega20secondi e usa8GiB di memoria; B impiega16secondi e usa14GiB. La macchina ha16GiB disponibili al processo, ma non sono stati misurati i picchi temporanei. Calcola la riduzione percentuale del tempo, distinguila dall incremento percentuale della velocita e spiega il rischio del margine di memoria ridotto. Proponi controlli di correttezza, ripetibilita e memoria prima di scegliere una configurazione.<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+      "prompt_sha256": "781265633c4763a0d6f60034e14b9e2bb8b35e0d9fdc4317e2e07885e827de73"
+    }
+  }
+}

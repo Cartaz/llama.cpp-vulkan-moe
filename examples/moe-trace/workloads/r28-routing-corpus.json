@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "id": "R28",
+  "enable_thinking": false,
+  "sampler": "greedy argmax in frozen helper; no stochastic seed sweep",
+  "n_predict_cap": 64,
+  "model_sha256": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f",
+  "template_sha256": "f55f52930aa8bf44ab5cb85f99370fcc3c56e9a85640b812086d5330bce5d86b",
+  "cases": [
+    {
+      "name": "train-code",
+      "split": "train",
+      "family": "code",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a careful local assistant. Explain your reasoning clearly and use only the information provided."
+        },
+        {
+          "role": "user",
+          "content": "Review a Python in-memory cache. Each entry stores value and expires_at. Reads compare expires_at with time.time(), while writes compute expiry with time.monotonic(). Some entries disappear immediately and others never expire. Explain the defect, propose a minimal corrected get/set design with one injected clock, and describe tests for expiry boundaries, clock changes and missing keys. Preserve the public interface and distinguish correctness from performance."
+        }
+      ]
+    },
+    {
+      "name": "heldout-code",
+      "split": "heldout",
+      "family": "code",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a careful local assistant. Explain your reasoning clearly and use only the information provided."
+        },
+        {
+          "role": "user",
+          "content": "Review a Python function that opens a file, obtains a lock, parses records and returns early when a header is invalid. Cleanup currently occurs only at the end of the function. Explain what leaks on early return or parsing errors, propose a minimal context-manager design that releases resources in reverse order, and describe tests for invalid headers, exceptions and successful parsing. Preserve error information and explain each change."
+        }
+      ]
+    },
+    {
+      "name": "train-planning",
+      "split": "train",
+      "family": "planning",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a careful local assistant. Explain your reasoning clearly and use only the information provided."
+        },
+        {
+          "role": "user",
+          "content": "Plan work for one local coding agent. Task A reads a regression report; B reproduces the failure after A; C reads independent API documentation; D designs a patch after B and C; E runs tests after D; F writes a review summary after E. Only one task may use the GPU at a time, and B and E require it. Give a valid execution order, explain useful CPU-only overlap, and specify the evidence required at each checkpoint. Do not invent successful test results."
+        }
+      ]
+    },
+    {
+      "name": "heldout-planning",
+      "split": "heldout",
+      "family": "planning",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a careful local assistant. Explain your reasoning clearly and use only the information provided."
+        },
+        {
+          "role": "user",
+          "content": "Plan a small repository migration. A inventories config keys; B captures current behavior after A; C inventories callers independently; D edits a compatibility adapter after B and C; E verifies old and new config after D; F removes dead code only after E. One developer and one GPU are available. Give a dependency-aware sequence, identify reversible checkpoints and rollback artifacts, and explain which tasks can overlap without invalidating measurements."
+        }
+      ]
+    },
+    {
+      "name": "train-retrieval",
+      "split": "train",
+      "family": "retrieval",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a careful local assistant. Explain your reasoning clearly and use only the information provided."
+        },
+        {
+          "role": "user",
+          "content": "Use only these notes: Cedar processed 200 prompt tokens in 1.0 second and generated 80 tokens in 4.0 seconds. Pine processed the same prompt in 0.8 second and generated 80 tokens in 5.0 seconds. Both used one stream, identical model and output tokens, warm caches and batch512. Only one run per mode exists; memory and quality checks were not recorded. Calculate separate PP and TG throughput, assess the claim that Pine is always faster, and specify missing repeatability and memory evidence."
+        }
+      ]
+    },
+    {
+      "name": "heldout-retrieval",
+      "split": "heldout",
+      "family": "retrieval",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a careful local assistant. Explain your reasoning clearly and use only the information provided."
+        },
+        {
+          "role": "user",
+          "content": "Use only these notes: Rowan completed 30 tasks with median total latency 12 seconds and p95 19 seconds. Willow completed 30 different tasks with median 10 seconds and p95 24 seconds. Rowan ran one request at a time; Willow ran four simultaneously. Models match, but prompt lengths and generated token counts were not saved. Explain which claims these notes support, why per-stream throughput cannot be calculated, and propose a controlled experiment without inventing numbers."
+        }
+      ]
+    },
+    {
+      "name": "train-arithmetic",
+      "split": "train",
+      "family": "arithmetic",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a careful local assistant. Explain your reasoning clearly and use only the information provided."
+        },
+        {
+          "role": "user",
+          "content": "A local job has a 90-minute time budget. Inspection takes 12 minutes, each of three sequential benchmark runs takes 14 minutes, analysis takes 9 minutes, and report writing takes 8 minutes. Setup additionally takes 6 minutes before the first run. Compute time used and remaining. A fourth run would require another14minutes plus3minutes for saving traces. Determine whether it fits and by how much. Explain every subtotal and finish with a compact table."
+        }
+      ]
+    },
+    {
+      "name": "heldout-arithmetic",
+      "split": "heldout",
+      "family": "arithmetic",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a careful local assistant. Explain your reasoning clearly and use only the information provided."
+        },
+        {
+          "role": "user",
+          "content": "An experiment transfers six buffers of 48 MiB and four buffers of 80 MiB from RAM to VRAM. A retry retransfers two48MiB buffers; it does not allocate additional persistent storage. Persistent VRAM contains all ten original buffers. Calculate original payload, total transferred payload including retries, and persistent bytes using1MiB=1048576bytes. Explain why transferred volume differs from resident memory and show the arithmetic in a table."
+        }
+      ]
+    },
+    {
+      "name": "train-structured",
+      "split": "train",
+      "family": "structured",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a careful local assistant. Explain your reasoning clearly and use only the information provided."
+        },
+        {
+          "role": "user",
+          "content": "An agent may call inspect_file(path) and run_tests(target). The user reports that retries fail in src/retry.py and says tests/test_retry.py covers that behavior. No commands have run yet. Explain a safe evidence-first sequence, then emit a JSON object with keys steps and evidence_needed. Each step must contain exactly tool and arguments; use only the two supplied tools and exact supplied paths. Do not claim a cause or passing tests before inspection."
+        }
+      ]
+    },
+    {
+      "name": "heldout-structured",
+      "split": "heldout",
+      "family": "structured",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a careful local assistant. Explain your reasoning clearly and use only the information provided."
+        },
+        {
+          "role": "user",
+          "content": "An agent may call read_log(path) and inspect_file(path). The supplied notes say an allocation error is recorded in logs/run07.txt and the loader implementation is src/loader.py. No files have been read. Explain the first two diagnostic steps, then emit a JSON object with keys steps and unresolved. Each step contains exactly tool and arguments. Use only supplied tools and paths; list what remains unknown and do not claim a fix or a benchmark result."
+        }
+      ]
+    },
+    {
+      "name": "train-italian",
+      "split": "train",
+      "family": "italian",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a careful local assistant. Explain your reasoning clearly and use only the information provided."
+        },
+        {
+          "role": "user",
+          "content": "Rispondi in italiano. Un programma registra tre durate: calcolo CPU8ms, invio dei comandi GPU2ms e attesa della GPU11ms. Questi intervalli sono sequenziali nella misura disponibile. Un collega sostiene che il kernel GPU duri soltanto2ms. Spiega che cosa misurano i tre valori, calcola la durata totale e indica quali misure servono per conoscere il tempo del kernel. Non attribuire una causa alle attese senza dati. Concludi con tre passi concreti per verificare la spiegazione."
+        }
+      ]
+    },
+    {
+      "name": "heldout-italian",
+      "split": "heldout",
+      "family": "italian",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are a careful local assistant. Explain your reasoning clearly and use only the information provided."
+        },
+        {
+          "role": "user",
+          "content": "Rispondi in italiano. Due configurazioni completano lo stesso lavoro: A impiega20secondi e usa8GiB di memoria; B impiega16secondi e usa14GiB. La macchina ha16GiB disponibili al processo, ma non sono stati misurati i picchi temporanei. Calcola la riduzione percentuale del tempo, distinguila dall incremento percentuale della velocita e spiega il rischio del margine di memoria ridotto. Proponi controlli di correttezza, ripetibilita e memoria prima di scegliere una configurazione."
+        }
+      ]
+    }
+  ]
+}

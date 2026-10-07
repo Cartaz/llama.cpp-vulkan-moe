@@ -44,12 +44,23 @@ def frequencies(traces, sizes):
     return result
 
 
-def plan(traces, sizes, budget, policy):
+def plan(traces, sizes, budget, policy, minimum_slots=0):
     if type(budget) is not int or budget < 0 or not sizes or any(type(size) is not int or size < 1 for size in sizes.values()):
         raise ValueError("invalid payload budget or expert sizes")
+    if type(minimum_slots) is not int or minimum_slots < 0 or policy not in ("uniform_frequency", "global_frequency_per_byte", "request_bundle"):
+        raise ValueError("invalid minimum slots or policy")
+    if policy == "uniform_frequency" and minimum_slots:
+        raise ValueError("uniform policy does not take a reservation")
     counts = frequencies(traces, sizes)
+    required = minimum_slots * sum(sizes.values())
+    if required > budget or any(len(freq) < minimum_slots for freq in counts.values()):
+        return {"policy": policy, "minimum_slots": minimum_slots, "budget_bytes": budget, "status": "INFEASIBLE",
+                "required_minimum_bytes": required, "reason": "minimum payload exceeds cap" if required > budget else "insufficient observed TRAIN experts"}
     selected = {layer: set() for layer in sizes}
-    used = 0
+    used = required
+    if minimum_slots:
+        for layer in sorted(sizes):
+            selected[layer].update(sorted(counts[layer], key=lambda expert: (-counts[layer][expert], expert))[:minimum_slots])
     if policy == "uniform_frequency":
         slots = budget // sum(sizes.values())
         for layer in sorted(sizes):
@@ -59,7 +70,7 @@ def plan(traces, sizes, budget, policy):
         ranked = sorted(((layer, expert, count) for layer, freq in counts.items() for expert, count in freq.items()),
                         key=lambda item: (-Fraction(item[2], sizes[item[0]]), item[0], item[1]))
         for layer, expert, _ in ranked:
-            if used + sizes[layer] <= budget:
+            if expert not in selected[layer] and used + sizes[layer] <= budget:
                 selected[layer].add(expert)
                 used += sizes[layer]
     elif policy == "request_bundle":
@@ -91,7 +102,7 @@ def plan(traces, sizes, budget, policy):
     else:
         raise ValueError("unknown policy")
     assert used == sum(len(ids) * sizes[layer] for layer, ids in selected.items()) and used <= budget
-    return {"policy": policy, "budget_bytes": budget, "payload_bytes": used, "slack_bytes": budget - used,
+    return {**({"minimum_slots": minimum_slots} if minimum_slots else {}), "policy": policy, "budget_bytes": budget, "payload_bytes": used, "slack_bytes": budget - used,
             "zero_quota_layers": [layer for layer in sorted(sizes) if not selected[layer]],
             "layers": {str(layer): {"slots": len(ids), "expert_bytes": sizes[layer], "payload_bytes": len(ids) * sizes[layer],
                                      "experts": sorted(ids)} for layer, ids in sorted(selected.items())}}
@@ -113,7 +124,7 @@ def score(groups, allocation, sizes):
                 all_hit_rate=stats["all_hit"] / stats["requests"], tokens=len(per_token), all_layer_hit_tokens=sum(all(value) for value in per_token.values()))
 
 
-def run(manifest_path):
+def run(manifest_path, plans_path=None):
     root = Path(manifest_path).resolve().parent
     manifest = json.loads(Path(manifest_path).read_text())
     model_sha = manifest["model_sha256"]
@@ -130,7 +141,7 @@ def run(manifest_path):
         raise ValueError("expert byte layout SHA mismatch")
     all_sizes = json.loads(layout.read_text())
     sizes = {layer: all_sizes[str(layer)] for layer in layers}
-    cases, train, identities = {}, [], set()
+    cases, train, identities, heldout = {}, [], set(), []
     for case in manifest["cases"]:
         path = (root / case["path"]).resolve()
         if case["split"] not in ("train", "heldout") or case["name"] in cases or case["sha256"] in identities:
@@ -139,19 +150,33 @@ def run(manifest_path):
             raise ValueError("trace identity or SHA mismatch")
         if type(case["prompt_tokens"]) is not int or case["prompt_tokens"] < 1 or type(case["decode_tokens"]) is not int or case["decode_tokens"] < 1:
             raise ValueError("invalid workload geometry")
-        groups = read_routes(path, layers, geometry["layers"], geometry["top_k"], geometry["experts"], case["prompt_tokens"], case["decode_tokens"])
-        cases[case["name"]] = groups
+        cases[case["name"]] = None
         identities.add(case["sha256"])
         if case["split"] == "train":
+            groups = read_routes(path, layers, geometry["layers"], geometry["top_k"], geometry["experts"], case["prompt_tokens"], case["decode_tokens"])
+            cases[case["name"]] = groups
             train.append(groups)
+        else:
+            heldout.append((case, path))
     if not train or not any(case["split"] == "heldout" for case in manifest["cases"]):
         raise ValueError("separate TRAIN and HELDOUT traces required")
-    allocations = [plan(train, sizes, budget, policy) for budget in manifest["budgets_bytes"]
-                   for policy in ("uniform_frequency", "global_frequency_per_byte", "request_bundle")]
-    # Freeze each plan before scoring held-out data.
+    minima = manifest.get("minimum_slots", [0])
+    if not minima or sorted(set(minima)) != minima or any(type(value) is not int or value < 0 or value > geometry["experts"] for value in minima):
+        raise ValueError("invalid minimum slots list")
+    allocations = [plan(train, sizes, budget, policy, minimum) for budget in manifest["budgets_bytes"]
+                   for minimum in minima for policy in ("uniform_frequency", "global_frequency_per_byte", "request_bundle")
+                   if not (policy == "uniform_frequency" and minimum)]
+    if plans_path:
+        Path(plans_path).write_text(json.dumps({"schema_version": 1, "model_sha256": model_sha, "manifest_sha256": sha(manifest_path),
+                                               "training": [case for case in manifest["cases"] if case["split"] == "train"],
+                                               "allocations": allocations}, indent=2) + "\n")
+    # Fit and persist plans before parsing HELDOUT routing data.
+    for case, path in heldout:
+        cases[case["name"]] = read_routes(path, layers, geometry["layers"], geometry["top_k"], geometry["experts"], case["prompt_tokens"], case["decode_tokens"])
     for allocation in allocations:
-        allocation["scores"] = {name: score(groups, allocation, sizes) for name, groups in cases.items()}
-    return {"schema_version": 1, "manifest_sha256": sha(manifest_path), "inputs": manifest, "allocations": allocations,
+        if allocation.get("status") != "INFEASIBLE":
+            allocation["scores"] = {name: score(groups, allocation, sizes) for name, groups in cases.items()}
+    return {"schema_version": 2 if minima != [0] else 1, "manifest_sha256": sha(manifest_path), "inputs": manifest, "allocations": allocations,
             "limits": "Static logical payload coverage only; no runtime cache, measured transfers, latency or speedup. Bundle greedy is not optimal. All-hit is per token/layer; all-layer coverage includes only selected layers. Payload excludes allocator metadata, in-flight slots and reserved memory."}
 
 
@@ -159,9 +184,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("manifest")
     parser.add_argument("--json", required=True)
+    parser.add_argument("--plans-json", help="persist TRAIN allocations before parsing HELDOUT routes")
     args = parser.parse_args()
     try:
-        result = run(args.manifest)
+        result = run(args.manifest, args.plans_json)
         Path(args.json).write_text(json.dumps(result, indent=2) + "\n")
     except (ValueError, TypeError, KeyError, OSError, json.JSONDecodeError) as error:
         parser.error(str(error))

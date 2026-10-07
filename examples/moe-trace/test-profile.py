@@ -244,6 +244,38 @@ class LayerBudgetTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             layer_budget.score({(0, 0): groups[0, 0]}, allocation, {0: 2, 1: 5})
 
+    def test_reservations_fit_and_residual_choice(self):
+        traces = [{(0, 0): frozenset([1, 2]), (0, 1): frozenset([3, 4]), (1, 0): frozenset([1, 5]), (1, 1): frozenset([3, 4])}]
+        for policy in ("global_frequency_per_byte", "request_bundle"):
+            exact = layer_budget.plan(traces, {0: 3, 1: 5}, 8, policy, minimum_slots=1)
+            self.assertEqual(exact["payload_bytes"], 8)
+            self.assertEqual(exact["layers"]["0"]["experts"], [1])
+            self.assertEqual(exact["layers"]["1"]["experts"], [3])
+            self.assertEqual(exact["zero_quota_layers"], [])
+            larger = layer_budget.plan(traces, {0: 3, 1: 5}, 13, policy, minimum_slots=1)
+            self.assertLessEqual(larger["payload_bytes"], 13)
+            self.assertTrue(all(layer["slots"] >= 1 for layer in larger["layers"].values()))
+            if policy == "request_bundle":
+                self.assertEqual(larger["layers"]["1"]["experts"], [3, 4])
+                self.assertEqual(layer_budget.score(traces[0], larger, {0: 3, 1: 5})["all_hit"], 2)
+            self.assertEqual(layer_budget.plan(traces, {0: 3, 1: 5}, 13, policy),
+                             layer_budget.plan(traces, {0: 3, 1: 5}, 13, policy, minimum_slots=0))
+
+    def test_infeasible_minima_without_unseen_padding(self):
+        traces = [{(0, 0): frozenset([1]), (0, 1): frozenset([2])}]
+        for policy in ("global_frequency_per_byte", "request_bundle"):
+            result = layer_budget.plan(traces, {0: 3, 1: 7}, 9, policy, minimum_slots=1)
+            self.assertEqual(result["status"], "INFEASIBLE")
+            self.assertEqual(result["required_minimum_bytes"], 10)
+            self.assertNotIn("layers", result)
+            unsupported = layer_budget.plan(traces, {0: 3, 1: 7}, 100, policy, minimum_slots=2)
+            self.assertEqual(unsupported["status"], "INFEASIBLE")
+            self.assertEqual(unsupported["reason"], "insufficient observed TRAIN experts")
+        with self.assertRaises(ValueError):
+            layer_budget.plan(traces, {0: 3, 1: 7}, 10, "uniform_frequency", minimum_slots=1)
+        with self.assertRaises(ValueError):
+            layer_budget.plan(traces, {0: 3, 1: 7}, 10, "request_bundle", minimum_slots=-1)
+
     def test_manifest_geometry_identity_and_heldout_isolation(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -283,8 +315,14 @@ class LayerBudgetTests(unittest.TestCase):
             cases[1]["sha256"] = layer_budget.sha(heldout)
             heldout.write_text(heldout.read_text().replace("decode,1,0,1,3", "decode,1,0,1,0"))
             cases[1]["sha256"] = layer_budget.sha(heldout)
+            path.write_text(json.dumps(data))
+            plans = root / "train-plans.json"
             with self.assertRaisesRegex(ValueError, "top-k"):
-                run()
+                layer_budget.run(path, plans)
+            saved = json.loads(plans.read_text())
+            self.assertTrue(all("scores" not in item for item in saved["allocations"]))
+            self.assertEqual([case["name"] for case in saved["training"]], ["train"])
+            self.assertEqual(saved["allocations"], [{k: v for k, v in item.items() if k != "scores"} for item in before["allocations"]])
 
 
 if __name__ == "__main__":
