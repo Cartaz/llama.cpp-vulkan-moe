@@ -1,0 +1,1979 @@
+{
+  "experiment": "R40",
+  "protocol": {
+    "id": "R40",
+    "registered_utc": "2026-10-08T15:27:46.033405+00:00",
+    "source_commit": "3a423b9804ffec74d600f003374592874232bbe0",
+    "engine_freeze": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/freeze.json",
+    "order": [
+      "control",
+      "copy-off",
+      "copy-on",
+      "gate-off",
+      "gate-on",
+      "up-off",
+      "up-on",
+      "down-off",
+      "down-on",
+      "all-off",
+      "all-on",
+      "all-repeat"
+    ],
+    "same_workload": "R39 512PP+200TG, stream1, context1024, Q8KV, mmap, no warmup",
+    "control": "original CPU layer17, diagnostics absent",
+    "intervention": "existing R37 LLAMA_MOE_INPUT_CONTROL modes on same WORK frozen engine",
+    "observer_gate": "For each intervention observer OFF/ON full raw logits byte-exact, finite/nonzero; all-on/repeat full captures byte-exact. Control equals R39. No fidelity thresholds relaxed.",
+    "capture": "600 completed CPU projection records per captured process, Q8_K work bytes and original F32 inputs, ids, outputs; allow different gate/up inputs only for explicit interventions",
+    "comparison": "For every projection and decode step compare F32 input, IDs, Q8_K block scales/quants/sums and projection output. First nonzero divergence and direct quantization of pre-downstream inputs reported.",
+    "performance_ranked": false,
+    "scope": "CPU roundtrip cause isolation, does not certify CPU/GPU placement or quality",
+    "parser_sha256": "7bffbaa5c17b75623112aff0aeb896160d754bb7847d69235a18227eb7776103"
+  },
+  "summary": {
+    "id": "R40",
+    "processes": 12,
+    "complete_raw_vectors": 2412,
+    "captured_model_processes": 6,
+    "projection_records": 3600,
+    "projection_output_vectors": 28800,
+    "first_step_projected_vector_count_per_mode": 24,
+    "observer_gates_all_pass": true,
+    "all_capture_repeat_exact": true,
+    "interventions": {
+      "copy": {
+        "capture_sha256": "614240d6211d99387ad3e336351b3c69cd4611f269ea7b8185246f3c5bd0edaf",
+        "first_step": [
+          {
+            "decode_step": 1,
+            "projection": "gate",
+            "ids_equal": true,
+            "input": {
+              "values": 2048,
+              "different": 0,
+              "max_abs": 0.0,
+              "RMS": 0.0
+            },
+            "quantized": {
+              "scale_different": 0,
+              "scale_max_abs": 0.0,
+              "quants_different": 0,
+              "sums_different": 0,
+              "bytes_different": 0
+            },
+            "output": {
+              "values": 4096,
+              "different": 0,
+              "max_abs": 0.0,
+              "RMS": 0.0
+            }
+          },
+          {
+            "decode_step": 1,
+            "projection": "up",
+            "ids_equal": true,
+            "input": {
+              "values": 2048,
+              "different": 0,
+              "max_abs": 0.0,
+              "RMS": 0.0
+            },
+            "quantized": {
+              "scale_different": 0,
+              "scale_max_abs": 0.0,
+              "quants_different": 0,
+              "sums_different": 0,
+              "bytes_different": 0
+            },
+            "output": {
+              "values": 4096,
+              "different": 0,
+              "max_abs": 0.0,
+              "RMS": 0.0
+            }
+          },
+          {
+            "decode_step": 1,
+            "projection": "down",
+            "ids_equal": true,
+            "input": {
+              "values": 4096,
+              "different": 0,
+              "max_abs": 0.0,
+              "RMS": 0.0
+            },
+            "quantized": {
+              "scale_different": 0,
+              "scale_max_abs": 0.0,
+              "quants_different": 0,
+              "sums_different": 0,
+              "bytes_different": 0
+            },
+            "output": {
+              "values": 16384,
+              "different": 0,
+              "max_abs": 0.0,
+              "RMS": 0.0
+            }
+          }
+        ],
+        "first_output_difference": null,
+        "first_ids_difference": null,
+        "logits": {
+          "prefill_exact": true,
+          "first_difference": null,
+          "first_decode": {
+            "call": 1,
+            "different": 0,
+            "max_abs": 0.0,
+            "RMS": 0.0,
+            "KL": 0.0,
+            "argmax_equal": true
+          },
+          "max_abs": 0.0,
+          "max_RMS": 0.0,
+          "max_KL": 0.0,
+          "argmax_different": 0,
+          "screen": "PASS"
+        },
+        "observer_raw_exact": true
+      },
+      "gate": {
+        "capture_sha256": "86960facf073d24d96b6f82b61898eacd2b139b6e258e6efb94578de43537e30",
+        "first_step": [
+          {
+            "decode_step": 1,
+            "projection": "gate",
+            "ids_equal": true,
+            "input": {
+              "values": 2048,
+              "different": 2044,
+              "max_abs": 0.06880387663841248,
+              "RMS": 0.01767945320160064
+            },
+            "quantized": {
+              "scale_different": 1,
+              "scale_max_abs": 1.862645149230957e-09,
+              "quants_different": 0,
+              "sums_different": 0,
+              "bytes_different": 1
+            },
+            "output": {
+              "values": 4096,
+              "different": 2257,
+              "max_abs": 4.76837158203125e-07,
+              "RMS": 1.0485576570150842e-07
+            }
+          },
+          {
+            "decode_step": 1,
+            "projection": "up",
+            "ids_equal": true,
+            "input": {
+              "values": 2048,
+              "different": 0,
+              "max_abs": 0.0,
+              "RMS": 0.0
+            },
+            "quantized": {
+              "scale_different": 0,
+              "scale_max_abs": 0.0,
+              "quants_different": 0,
+              "sums_different": 0,
+              "bytes_different": 0
+            },
+            "output": {
+              "values": 4096,
+              "different": 0,
+              "max_abs": 0.0,
+              "RMS": 0.0
+            }
+          },
+          {
+            "decode_step": 1,
+            "projection": "down",
+            "ids_equal": true,
+            "input": {
+              "values": 4096,
+              "different": 1981,
+              "max_abs": 3.5762786865234375e-07,
+              "RMS": 2.3431536520772504e-08
+            },
+            "quantized": {
+              "scale_different": 9,
+              "scale_max_abs": 1.862645149230957e-09,
+              "quants_different": 0,
+              "sums_different": 0,
+              "bytes_different": 9
+            },
+            "output": {
+              "values": 16384,
+              "different": 9018,
+              "max_abs": 5.960464477539063e-08,
+              "RMS": 8.624877657931957e-09
+            }
+          }
+        ],
+        "first_output_difference": {
+          "decode_step": 1,
+          "projection": "gate",
+          "ids_equal": true,
+          "input": {
+            "values": 2048,
+            "different": 2044,
+            "max_abs": 0.06880387663841248,
+            "RMS": 0.01767945320160064
+          },
+          "quantized": {
+            "scale_different": 1,
+            "scale_max_abs": 1.862645149230957e-09,
+            "quants_different": 0,
+            "sums_different": 0,
+            "bytes_different": 1
+          },
+          "output": {
+            "values": 4096,
+            "different": 2257,
+            "max_abs": 4.76837158203125e-07,
+            "RMS": 1.0485576570150842e-07
+          }
+        },
+        "first_ids_difference": null,
+        "logits": {
+          "prefill_exact": true,
+          "first_difference": {
+            "call": 1,
+            "different": 248320,
+            "max_abs": 0.22041606903076172,
+            "RMS": 0.04537746092631195,
+            "KL": 4.03116033635298e-05,
+            "argmax_equal": true
+          },
+          "first_decode": {
+            "call": 1,
+            "different": 248320,
+            "max_abs": 0.22041606903076172,
+            "RMS": 0.04537746092631195,
+            "KL": 4.03116033635298e-05,
+            "argmax_equal": true
+          },
+          "max_abs": 2.33651065826416,
+          "max_RMS": 0.5162668726511745,
+          "max_KL": 0.03044910273506988,
+          "argmax_different": 3,
+          "screen": "FAIL"
+        },
+        "observer_raw_exact": true
+      },
+      "up": {
+        "capture_sha256": "30c8f471250a2b93d063512a0ca072f0a8e12be54d2790e73823cb9fdfeac4fd",
+        "first_step": [
+          {
+            "decode_step": 1,
+            "projection": "gate",
+            "ids_equal": true,
+            "input": {
+              "values": 2048,
+              "different": 0,
+              "max_abs": 0.0,
+              "RMS": 0.0
+            },
+            "quantized": {
+              "scale_different": 0,
+              "scale_max_abs": 0.0,
+              "quants_different": 0,
+              "sums_different": 0,
+              "bytes_different": 0
+            },
+            "output": {
+              "values": 4096,
+              "different": 0,
+              "max_abs": 0.0,
+              "RMS": 0.0
+            }
+          },
+          {
+            "decode_step": 1,
+            "projection": "up",
+            "ids_equal": true,
+            "input": {
+              "values": 2048,
+              "different": 2044,
+              "max_abs": 0.06880387663841248,
+              "RMS": 0.01767945320160064
+            },
+            "quantized": {
+              "scale_different": 1,
+              "scale_max_abs": 1.862645149230957e-09,
+              "quants_different": 0,
+              "sums_different": 0,
+              "bytes_different": 1
+            },
+            "output": {
+              "values": 4096,
+              "different": 2297,
+              "max_abs": 3.5762786865234375e-07,
+              "RMS": 9.587195803499119e-08
+            }
+          },
+          {
+            "decode_step": 1,
+            "projection": "down",
+            "ids_equal": true,
+            "input": {
+              "values": 4096,
+              "different": 2269,
+              "max_abs": 3.5762786865234375e-07,
+              "RMS": 2.42269285318914e-08
+            },
+            "quantized": {
+              "scale_different": 10,
+              "scale_max_abs": 2.7939677238464355e-09,
+              "quants_different": 0,
+              "sums_different": 0,
+              "bytes_different": 10
+            },
+            "output": {
+              "values": 16384,
+              "different": 10726,
+              "max_abs": 5.960464477539063e-08,
+              "RMS": 9.750626315651163e-09
+            }
+          }
+        ],
+        "first_output_difference": {
+          "decode_step": 1,
+          "projection": "up",
+          "ids_equal": true,
+          "input": {
+            "values": 2048,
+            "different": 2044,
+            "max_abs": 0.06880387663841248,
+            "RMS": 0.01767945320160064
+          },
+          "quantized": {
+            "scale_different": 1,
+            "scale_max_abs": 1.862645149230957e-09,
+            "quants_different": 0,
+            "sums_different": 0,
+            "bytes_different": 1
+          },
+          "output": {
+            "values": 4096,
+            "different": 2297,
+            "max_abs": 3.5762786865234375e-07,
+            "RMS": 9.587195803499119e-08
+          }
+        },
+        "first_ids_difference": null,
+        "logits": {
+          "prefill_exact": true,
+          "first_difference": {
+            "call": 1,
+            "different": 248320,
+            "max_abs": 0.23769664764404297,
+            "RMS": 0.060315297994755344,
+            "KL": 1.7349789832303462e-06,
+            "argmax_equal": true
+          },
+          "first_decode": {
+            "call": 1,
+            "different": 248320,
+            "max_abs": 0.23769664764404297,
+            "RMS": 0.060315297994755344,
+            "KL": 1.7349789832303462e-06,
+            "argmax_equal": true
+          },
+          "max_abs": 2.392941474914551,
+          "max_RMS": 0.6517882491224258,
+          "max_KL": 0.03178199828288968,
+          "argmax_different": 1,
+          "screen": "FAIL"
+        },
+        "observer_raw_exact": true
+      },
+      "down": {
+        "capture_sha256": "e9cbf5730e6c2b3f95d2d55a26b8a4f35ec65f7fb608cdb2306f670a17839c54",
+        "first_step": [
+          {
+            "decode_step": 1,
+            "projection": "gate",
+            "ids_equal": true,
+            "input": {
+              "values": 2048,
+              "different": 0,
+              "max_abs": 0.0,
+              "RMS": 0.0
+            },
+            "quantized": {
+              "scale_different": 0,
+              "scale_max_abs": 0.0,
+              "quants_different": 0,
+              "sums_different": 0,
+              "bytes_different": 0
+            },
+            "output": {
+              "values": 4096,
+              "different": 0,
+              "max_abs": 0.0,
+              "RMS": 0.0
+            }
+          },
+          {
+            "decode_step": 1,
+            "projection": "up",
+            "ids_equal": true,
+            "input": {
+              "values": 2048,
+              "different": 0,
+              "max_abs": 0.0,
+              "RMS": 0.0
+            },
+            "quantized": {
+              "scale_different": 0,
+              "scale_max_abs": 0.0,
+              "quants_different": 0,
+              "sums_different": 0,
+              "bytes_different": 0
+            },
+            "output": {
+              "values": 4096,
+              "different": 0,
+              "max_abs": 0.0,
+              "RMS": 0.0
+            }
+          },
+          {
+            "decode_step": 1,
+            "projection": "down",
+            "ids_equal": true,
+            "input": {
+              "values": 4096,
+              "different": 4084,
+              "max_abs": 0.008264154195785522,
+              "RMS": 0.002146803185480935
+            },
+            "quantized": {
+              "scale_different": 0,
+              "scale_max_abs": 0.0,
+              "quants_different": 0,
+              "sums_different": 0,
+              "bytes_different": 0
+            },
+            "output": {
+              "values": 16384,
+              "different": 0,
+              "max_abs": 0.0,
+              "RMS": 0.0
+            }
+          }
+        ],
+        "first_output_difference": {
+          "decode_step": 2,
+          "projection": "down",
+          "ids_equal": true,
+          "input": {
+            "values": 4096,
+            "different": 4084,
+            "max_abs": 0.004879742860794067,
+            "RMS": 0.0018645666516859819
+          },
+          "quantized": {
+            "scale_different": 1,
+            "scale_max_abs": 4.656612873077393e-10,
+            "quants_different": 0,
+            "sums_different": 0,
+            "bytes_different": 1
+          },
+          "output": {
+            "values": 16384,
+            "different": 1365,
+            "max_abs": 2.9802322387695312e-08,
+            "RMS": 2.2973713748327126e-09
+          }
+        },
+        "first_ids_difference": null,
+        "logits": {
+          "prefill_exact": true,
+          "first_difference": {
+            "call": 2,
+            "different": 248313,
+            "max_abs": 0.07437849044799805,
+            "RMS": 0.012603743344040562,
+            "KL": 8.418261402791368e-07,
+            "argmax_equal": true
+          },
+          "first_decode": {
+            "call": 1,
+            "different": 0,
+            "max_abs": 0.0,
+            "RMS": 0.0,
+            "KL": 0.0,
+            "argmax_equal": true
+          },
+          "max_abs": 2.3244376182556152,
+          "max_RMS": 0.42320653644914075,
+          "max_KL": 0.0208440766685059,
+          "argmax_different": 2,
+          "screen": "FAIL"
+        },
+        "observer_raw_exact": true
+      },
+      "all": {
+        "capture_sha256": "33f65d80d75c90af787389a4dec40a4f97829c955aecb898e3a35a66bd6bcff6",
+        "first_step": [
+          {
+            "decode_step": 1,
+            "projection": "gate",
+            "ids_equal": true,
+            "input": {
+              "values": 2048,
+              "different": 2044,
+              "max_abs": 0.06880387663841248,
+              "RMS": 0.01767945320160064
+            },
+            "quantized": {
+              "scale_different": 1,
+              "scale_max_abs": 1.862645149230957e-09,
+              "quants_different": 0,
+              "sums_different": 0,
+              "bytes_different": 1
+            },
+            "output": {
+              "values": 4096,
+              "different": 2257,
+              "max_abs": 4.76837158203125e-07,
+              "RMS": 1.0485576570150842e-07
+            }
+          },
+          {
+            "decode_step": 1,
+            "projection": "up",
+            "ids_equal": true,
+            "input": {
+              "values": 2048,
+              "different": 2044,
+              "max_abs": 0.06880387663841248,
+              "RMS": 0.01767945320160064
+            },
+            "quantized": {
+              "scale_different": 1,
+              "scale_max_abs": 1.862645149230957e-09,
+              "quants_different": 0,
+              "sums_different": 0,
+              "bytes_different": 1
+            },
+            "output": {
+              "values": 4096,
+              "different": 2297,
+              "max_abs": 3.5762786865234375e-07,
+              "RMS": 9.587195803499119e-08
+            }
+          },
+          {
+            "decode_step": 1,
+            "projection": "down",
+            "ids_equal": true,
+            "input": {
+              "values": 4096,
+              "different": 4095,
+              "max_abs": 0.008264154195785522,
+              "RMS": 0.002146802150340326
+            },
+            "quantized": {
+              "scale_different": 11,
+              "scale_max_abs": 4.6566128730773926e-09,
+              "quants_different": 0,
+              "sums_different": 0,
+              "bytes_different": 11
+            },
+            "output": {
+              "values": 16384,
+              "different": 12305,
+              "max_abs": 5.960464477539063e-08,
+              "RMS": 1.1598380813316062e-08
+            }
+          }
+        ],
+        "first_output_difference": {
+          "decode_step": 1,
+          "projection": "gate",
+          "ids_equal": true,
+          "input": {
+            "values": 2048,
+            "different": 2044,
+            "max_abs": 0.06880387663841248,
+            "RMS": 0.01767945320160064
+          },
+          "quantized": {
+            "scale_different": 1,
+            "scale_max_abs": 1.862645149230957e-09,
+            "quants_different": 0,
+            "sums_different": 0,
+            "bytes_different": 1
+          },
+          "output": {
+            "values": 4096,
+            "different": 2257,
+            "max_abs": 4.76837158203125e-07,
+            "RMS": 1.0485576570150842e-07
+          }
+        },
+        "first_ids_difference": null,
+        "logits": {
+          "prefill_exact": true,
+          "first_difference": {
+            "call": 1,
+            "different": 248320,
+            "max_abs": 0.22041702270507812,
+            "RMS": 0.04537736490836948,
+            "KL": 4.031162838921382e-05,
+            "argmax_equal": true
+          },
+          "first_decode": {
+            "call": 1,
+            "different": 248320,
+            "max_abs": 0.22041702270507812,
+            "RMS": 0.04537736490836948,
+            "KL": 4.031162838921382e-05,
+            "argmax_equal": true
+          },
+          "max_abs": 2.4580695629119873,
+          "max_RMS": 0.7010150515461798,
+          "max_KL": 0.033246955985451,
+          "argmax_different": 2,
+          "screen": "FAIL"
+        },
+        "observer_raw_exact": true
+      }
+    },
+    "performance_ranked": false,
+    "quality_certified": false
+  },
+  "model_runs": {
+    "control": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0sOSaKJ:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/r40-control-logits.bin",
+        "MOE_REPLAY_WARMUP": "0"
+      },
+      "started_utc": "2026-10-08T15:27:47.947712+00:00",
+      "source_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_source_sha256": "fdc50753e3b516f25db68c6ac65cae1e801b634641cba93d5de8508c64ac2d41",
+      "label": "WORK",
+      "profile": false,
+      "reps": 1,
+      "returncode": 0,
+      "wall_s": 19.595785908000835,
+      "pid": 7932,
+      "stop_reason": null,
+      "init_lines": [
+        "0.06.634.255 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.06.634.261 I load_tensors:   CPU_Mapped model buffer size =  9049.31 MiB",
+        "0.06.634.262 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.10.794.307 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.10.794.390 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.10.802.742 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.10.824.446 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.10.824.448 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.10.824.613 I replay: 512 prompt tokens, 200 decode tokens, 1 repetitions, step=512, clear_data=0, warmup=0"
+      ],
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "70a46c02e881eccb8f109aeda82cbde51990391b077edd3515c206814f7c0424"
+      },
+      "metrics": {
+        "schema_version": 1,
+        "prefill_tokens": 512,
+        "decode_tokens": 200,
+        "step": 512,
+        "calls": 201,
+        "repetitions": [
+          {
+            "rep": 0,
+            "prefill_calls": 1,
+            "decode_calls": 200,
+            "pp_elapsed_ms": 1900.909,
+            "tg_elapsed_ms": 6416.477,
+            "pp_tps": 269.3448239763187,
+            "tg_tps": 31.169752498138777,
+            "tg_p50_ms": 31.2995,
+            "tg_p95_ms": 37.18655,
+            "first_pp_chunk_ms": 1900.909,
+            "last_pp_chunk_ms": 1900.909
+          }
+        ],
+        "timing_scope": "decode plus synchronize; model load, inter-call hashes and raw I/O excluded; not application TTFT"
+      },
+      "engine_libraries": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-base.so.0.25.1": "21691b6ddf7c1d3d420e68188ea27468ac30bcaa357afff03d788790ed2a44c1",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-cpu.so.0.25.1": "813eea209fd238cb6be91d967d46a89ce1346e2d2076ff34fc9820d20b3553f3",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-vulkan.so.0.25.1": "92550c31e1817cea32d006539e05d54a5a7639ab24efb9cb7ff7ac2ccb71753b",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml.so.0.25.1": "6b04bffa1a08145c278cd8ccbacbb9eb117ab2e1decd1aca27888432e8f1a8a0",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama-common.so.0.5.0": "a43eeaa3d3d9f59545b23f66e5c9d1d7197b682a83e0ca1c1d81fc9eda382643",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama.so.0.5.0": "2554f1d140cd0e6a647d451dcbecd96b77fba1ab54fb553c9bf88564a61de913"
+      }
+    },
+    "copy-off": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0sOSaKJ:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/r40-copy-off-logits.bin",
+        "MOE_REPLAY_WARMUP": "0",
+        "LLAMA_MOE_INPUT_CONTROL": "copy"
+      },
+      "started_utc": "2026-10-08T15:28:08.633826+00:00",
+      "source_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_source_sha256": "fdc50753e3b516f25db68c6ac65cae1e801b634641cba93d5de8508c64ac2d41",
+      "label": "WORK",
+      "profile": false,
+      "reps": 1,
+      "returncode": 0,
+      "wall_s": 14.073789553999632,
+      "pid": 7991,
+      "stop_reason": null,
+      "init_lines": [
+        "0.00.921.106 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.00.921.111 I load_tensors:   CPU_Mapped model buffer size =  9049.31 MiB",
+        "0.00.921.112 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.04.933.290 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.04.933.371 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.04.935.006 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.04.958.299 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.04.958.301 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.04.958.424 I replay: 512 prompt tokens, 200 decode tokens, 1 repetitions, step=512, clear_data=0, warmup=0"
+      ],
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "70a46c02e881eccb8f109aeda82cbde51990391b077edd3515c206814f7c0424"
+      },
+      "metrics": {
+        "schema_version": 1,
+        "prefill_tokens": 512,
+        "decode_tokens": 200,
+        "step": 512,
+        "calls": 201,
+        "repetitions": [
+          {
+            "rep": 0,
+            "prefill_calls": 1,
+            "decode_calls": 200,
+            "pp_elapsed_ms": 1913.549,
+            "tg_elapsed_ms": 6405.415,
+            "pp_tps": 267.5656594108643,
+            "tg_tps": 31.223581922482776,
+            "tg_p50_ms": 31.367,
+            "tg_p95_ms": 36.74375,
+            "first_pp_chunk_ms": 1913.549,
+            "last_pp_chunk_ms": 1913.549
+          }
+        ],
+        "timing_scope": "decode plus synchronize; model load, inter-call hashes and raw I/O excluded; not application TTFT"
+      },
+      "engine_libraries": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-base.so.0.25.1": "21691b6ddf7c1d3d420e68188ea27468ac30bcaa357afff03d788790ed2a44c1",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-cpu.so.0.25.1": "813eea209fd238cb6be91d967d46a89ce1346e2d2076ff34fc9820d20b3553f3",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-vulkan.so.0.25.1": "92550c31e1817cea32d006539e05d54a5a7639ab24efb9cb7ff7ac2ccb71753b",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml.so.0.25.1": "6b04bffa1a08145c278cd8ccbacbb9eb117ab2e1decd1aca27888432e8f1a8a0",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama-common.so.0.5.0": "a43eeaa3d3d9f59545b23f66e5c9d1d7197b682a83e0ca1c1d81fc9eda382643",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama.so.0.5.0": "2554f1d140cd0e6a647d451dcbecd96b77fba1ab54fb553c9bf88564a61de913"
+      }
+    },
+    "copy-on": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0sOSaKJ:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/r40-copy-on-logits.bin",
+        "MOE_REPLAY_WARMUP": "0",
+        "LLAMA_MOE_INPUT_CONTROL": "copy",
+        "GGML_CPU_MOE_CAPTURE_WORK": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/copy-on-work.bin"
+      },
+      "started_utc": "2026-10-08T15:28:23.780682+00:00",
+      "source_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_source_sha256": "fdc50753e3b516f25db68c6ac65cae1e801b634641cba93d5de8508c64ac2d41",
+      "label": "WORK",
+      "profile": false,
+      "reps": 1,
+      "returncode": 0,
+      "wall_s": 14.071902473000591,
+      "pid": 8063,
+      "stop_reason": null,
+      "init_lines": [
+        "0.00.924.158 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.00.924.163 I load_tensors:   CPU_Mapped model buffer size =  9049.31 MiB",
+        "0.00.924.164 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.04.936.818 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.04.936.898 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.04.938.191 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.04.961.291 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.04.961.293 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.04.961.393 I replay: 512 prompt tokens, 200 decode tokens, 1 repetitions, step=512, clear_data=0, warmup=0"
+      ],
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "70a46c02e881eccb8f109aeda82cbde51990391b077edd3515c206814f7c0424"
+      },
+      "metrics": {
+        "schema_version": 1,
+        "prefill_tokens": 512,
+        "decode_tokens": 200,
+        "step": 512,
+        "calls": 201,
+        "repetitions": [
+          {
+            "rep": 0,
+            "prefill_calls": 1,
+            "decode_calls": 200,
+            "pp_elapsed_ms": 1913.756,
+            "tg_elapsed_ms": 6531.453,
+            "pp_tps": 267.5367183695309,
+            "tg_tps": 30.621057825877337,
+            "tg_p50_ms": 31.6405,
+            "tg_p95_ms": 37.974,
+            "first_pp_chunk_ms": 1913.756,
+            "last_pp_chunk_ms": 1913.756
+          }
+        ],
+        "timing_scope": "decode plus synchronize; model load, inter-call hashes and raw I/O excluded; not application TTFT"
+      },
+      "engine_libraries": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-base.so.0.25.1": "21691b6ddf7c1d3d420e68188ea27468ac30bcaa357afff03d788790ed2a44c1",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-cpu.so.0.25.1": "813eea209fd238cb6be91d967d46a89ce1346e2d2076ff34fc9820d20b3553f3",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-vulkan.so.0.25.1": "92550c31e1817cea32d006539e05d54a5a7639ab24efb9cb7ff7ac2ccb71753b",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml.so.0.25.1": "6b04bffa1a08145c278cd8ccbacbb9eb117ab2e1decd1aca27888432e8f1a8a0",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama-common.so.0.5.0": "a43eeaa3d3d9f59545b23f66e5c9d1d7197b682a83e0ca1c1d81fc9eda382643",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama.so.0.5.0": "2554f1d140cd0e6a647d451dcbecd96b77fba1ab54fb553c9bf88564a61de913"
+      }
+    },
+    "gate-off": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0sOSaKJ:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/r40-gate-off-logits.bin",
+        "MOE_REPLAY_WARMUP": "0",
+        "LLAMA_MOE_INPUT_CONTROL": "gate"
+      },
+      "started_utc": "2026-10-08T15:28:38.932588+00:00",
+      "source_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_source_sha256": "fdc50753e3b516f25db68c6ac65cae1e801b634641cba93d5de8508c64ac2d41",
+      "label": "WORK",
+      "profile": false,
+      "reps": 1,
+      "returncode": 0,
+      "wall_s": 14.071076760999858,
+      "pid": 8120,
+      "stop_reason": null,
+      "init_lines": [
+        "0.00.927.842 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.00.927.848 I load_tensors:   CPU_Mapped model buffer size =  9049.31 MiB",
+        "0.00.927.850 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.04.947.931 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.04.948.008 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.04.950.387 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.04.971.860 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.04.971.863 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.04.971.973 I replay: 512 prompt tokens, 200 decode tokens, 1 repetitions, step=512, clear_data=0, warmup=0"
+      ],
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "a95fccdd315a4225aa396b977b7db9ee9c1337a3ad53a0fc7d9797d304e3c5ff"
+      },
+      "metrics": {
+        "schema_version": 1,
+        "prefill_tokens": 512,
+        "decode_tokens": 200,
+        "step": 512,
+        "calls": 201,
+        "repetitions": [
+          {
+            "rep": 0,
+            "prefill_calls": 1,
+            "decode_calls": 200,
+            "pp_elapsed_ms": 1899.737,
+            "tg_elapsed_ms": 6440.62,
+            "pp_tps": 269.51099020548634,
+            "tg_tps": 31.052911055146865,
+            "tg_p50_ms": 31.2285,
+            "tg_p95_ms": 37.56715,
+            "first_pp_chunk_ms": 1899.737,
+            "last_pp_chunk_ms": 1899.737
+          }
+        ],
+        "timing_scope": "decode plus synchronize; model load, inter-call hashes and raw I/O excluded; not application TTFT"
+      },
+      "engine_libraries": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-base.so.0.25.1": "21691b6ddf7c1d3d420e68188ea27468ac30bcaa357afff03d788790ed2a44c1",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-cpu.so.0.25.1": "813eea209fd238cb6be91d967d46a89ce1346e2d2076ff34fc9820d20b3553f3",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-vulkan.so.0.25.1": "92550c31e1817cea32d006539e05d54a5a7639ab24efb9cb7ff7ac2ccb71753b",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml.so.0.25.1": "6b04bffa1a08145c278cd8ccbacbb9eb117ab2e1decd1aca27888432e8f1a8a0",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama-common.so.0.5.0": "a43eeaa3d3d9f59545b23f66e5c9d1d7197b682a83e0ca1c1d81fc9eda382643",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama.so.0.5.0": "2554f1d140cd0e6a647d451dcbecd96b77fba1ab54fb553c9bf88564a61de913"
+      }
+    },
+    "gate-on": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0sOSaKJ:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/r40-gate-on-logits.bin",
+        "MOE_REPLAY_WARMUP": "0",
+        "LLAMA_MOE_INPUT_CONTROL": "gate",
+        "GGML_CPU_MOE_CAPTURE_WORK": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/gate-on-work.bin"
+      },
+      "started_utc": "2026-10-08T15:28:54.075539+00:00",
+      "source_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_source_sha256": "fdc50753e3b516f25db68c6ac65cae1e801b634641cba93d5de8508c64ac2d41",
+      "label": "WORK",
+      "profile": false,
+      "reps": 1,
+      "returncode": 0,
+      "wall_s": 14.577057034000063,
+      "pid": 8178,
+      "stop_reason": null,
+      "init_lines": [
+        "0.00.935.036 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.00.935.042 I load_tensors:   CPU_Mapped model buffer size =  9049.31 MiB",
+        "0.00.935.043 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.04.955.184 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.04.955.264 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.04.957.300 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.04.979.568 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.04.979.571 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.04.979.661 I replay: 512 prompt tokens, 200 decode tokens, 1 repetitions, step=512, clear_data=0, warmup=0"
+      ],
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "a95fccdd315a4225aa396b977b7db9ee9c1337a3ad53a0fc7d9797d304e3c5ff"
+      },
+      "metrics": {
+        "schema_version": 1,
+        "prefill_tokens": 512,
+        "decode_tokens": 200,
+        "step": 512,
+        "calls": 201,
+        "repetitions": [
+          {
+            "rep": 0,
+            "prefill_calls": 1,
+            "decode_calls": 200,
+            "pp_elapsed_ms": 1914.588,
+            "tg_elapsed_ms": 6912.317,
+            "pp_tps": 267.4204580828878,
+            "tg_tps": 28.933858212810552,
+            "tg_p50_ms": 33.301,
+            "tg_p95_ms": 39.64099999999999,
+            "first_pp_chunk_ms": 1914.588,
+            "last_pp_chunk_ms": 1914.588
+          }
+        ],
+        "timing_scope": "decode plus synchronize; model load, inter-call hashes and raw I/O excluded; not application TTFT"
+      },
+      "engine_libraries": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-base.so.0.25.1": "21691b6ddf7c1d3d420e68188ea27468ac30bcaa357afff03d788790ed2a44c1",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-cpu.so.0.25.1": "813eea209fd238cb6be91d967d46a89ce1346e2d2076ff34fc9820d20b3553f3",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-vulkan.so.0.25.1": "92550c31e1817cea32d006539e05d54a5a7639ab24efb9cb7ff7ac2ccb71753b",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml.so.0.25.1": "6b04bffa1a08145c278cd8ccbacbb9eb117ab2e1decd1aca27888432e8f1a8a0",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama-common.so.0.5.0": "a43eeaa3d3d9f59545b23f66e5c9d1d7197b682a83e0ca1c1d81fc9eda382643",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama.so.0.5.0": "2554f1d140cd0e6a647d451dcbecd96b77fba1ab54fb553c9bf88564a61de913"
+      }
+    },
+    "up-off": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0sOSaKJ:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/r40-up-off-logits.bin",
+        "MOE_REPLAY_WARMUP": "0",
+        "LLAMA_MOE_INPUT_CONTROL": "up"
+      },
+      "started_utc": "2026-10-08T15:29:09.739395+00:00",
+      "source_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_source_sha256": "fdc50753e3b516f25db68c6ac65cae1e801b634641cba93d5de8508c64ac2d41",
+      "label": "WORK",
+      "profile": false,
+      "reps": 1,
+      "returncode": 0,
+      "wall_s": 14.071585951000088,
+      "pid": 8796,
+      "stop_reason": null,
+      "init_lines": [
+        "0.00.924.706 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.00.924.712 I load_tensors:   CPU_Mapped model buffer size =  9049.31 MiB",
+        "0.00.924.713 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.04.939.079 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.04.939.160 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.04.941.227 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.04.963.315 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.04.963.317 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.04.963.434 I replay: 512 prompt tokens, 200 decode tokens, 1 repetitions, step=512, clear_data=0, warmup=0"
+      ],
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "bfe158a26ad18b39a7359df3f87cd819f1d3483227d57d97d2c4040f7c3977ba"
+      },
+      "metrics": {
+        "schema_version": 1,
+        "prefill_tokens": 512,
+        "decode_tokens": 200,
+        "step": 512,
+        "calls": 201,
+        "repetitions": [
+          {
+            "rep": 0,
+            "prefill_calls": 1,
+            "decode_calls": 200,
+            "pp_elapsed_ms": 1917.622,
+            "tg_elapsed_ms": 6621.288,
+            "pp_tps": 266.9973540145034,
+            "tg_tps": 30.205603501916848,
+            "tg_p50_ms": 32.151,
+            "tg_p95_ms": 38.12015,
+            "first_pp_chunk_ms": 1917.622,
+            "last_pp_chunk_ms": 1917.622
+          }
+        ],
+        "timing_scope": "decode plus synchronize; model load, inter-call hashes and raw I/O excluded; not application TTFT"
+      },
+      "engine_libraries": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-base.so.0.25.1": "21691b6ddf7c1d3d420e68188ea27468ac30bcaa357afff03d788790ed2a44c1",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-cpu.so.0.25.1": "813eea209fd238cb6be91d967d46a89ce1346e2d2076ff34fc9820d20b3553f3",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-vulkan.so.0.25.1": "92550c31e1817cea32d006539e05d54a5a7639ab24efb9cb7ff7ac2ccb71753b",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml.so.0.25.1": "6b04bffa1a08145c278cd8ccbacbb9eb117ab2e1decd1aca27888432e8f1a8a0",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama-common.so.0.5.0": "a43eeaa3d3d9f59545b23f66e5c9d1d7197b682a83e0ca1c1d81fc9eda382643",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama.so.0.5.0": "2554f1d140cd0e6a647d451dcbecd96b77fba1ab54fb553c9bf88564a61de913"
+      }
+    },
+    "up-on": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0sOSaKJ:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/r40-up-on-logits.bin",
+        "MOE_REPLAY_WARMUP": "0",
+        "LLAMA_MOE_INPUT_CONTROL": "up",
+        "GGML_CPU_MOE_CAPTURE_WORK": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/up-on-work.bin"
+      },
+      "started_utc": "2026-10-08T15:29:24.888349+00:00",
+      "source_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_source_sha256": "fdc50753e3b516f25db68c6ac65cae1e801b634641cba93d5de8508c64ac2d41",
+      "label": "WORK",
+      "profile": false,
+      "reps": 1,
+      "returncode": 0,
+      "wall_s": 14.07532473900028,
+      "pid": 8857,
+      "stop_reason": null,
+      "init_lines": [
+        "0.00.924.817 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.00.924.823 I load_tensors:   CPU_Mapped model buffer size =  9049.31 MiB",
+        "0.00.924.824 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.04.937.562 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.04.937.648 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.04.939.310 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.04.961.377 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.04.961.380 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.04.961.470 I replay: 512 prompt tokens, 200 decode tokens, 1 repetitions, step=512, clear_data=0, warmup=0"
+      ],
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "bfe158a26ad18b39a7359df3f87cd819f1d3483227d57d97d2c4040f7c3977ba"
+      },
+      "metrics": {
+        "schema_version": 1,
+        "prefill_tokens": 512,
+        "decode_tokens": 200,
+        "step": 512,
+        "calls": 201,
+        "repetitions": [
+          {
+            "rep": 0,
+            "prefill_calls": 1,
+            "decode_calls": 200,
+            "pp_elapsed_ms": 1919.096,
+            "tg_elapsed_ms": 6532.588,
+            "pp_tps": 266.79228136580974,
+            "tg_tps": 30.615737591288475,
+            "tg_p50_ms": 31.7575,
+            "tg_p95_ms": 37.93214999999999,
+            "first_pp_chunk_ms": 1919.096,
+            "last_pp_chunk_ms": 1919.096
+          }
+        ],
+        "timing_scope": "decode plus synchronize; model load, inter-call hashes and raw I/O excluded; not application TTFT"
+      },
+      "engine_libraries": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-base.so.0.25.1": "21691b6ddf7c1d3d420e68188ea27468ac30bcaa357afff03d788790ed2a44c1",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-cpu.so.0.25.1": "813eea209fd238cb6be91d967d46a89ce1346e2d2076ff34fc9820d20b3553f3",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-vulkan.so.0.25.1": "92550c31e1817cea32d006539e05d54a5a7639ab24efb9cb7ff7ac2ccb71753b",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml.so.0.25.1": "6b04bffa1a08145c278cd8ccbacbb9eb117ab2e1decd1aca27888432e8f1a8a0",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama-common.so.0.5.0": "a43eeaa3d3d9f59545b23f66e5c9d1d7197b682a83e0ca1c1d81fc9eda382643",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama.so.0.5.0": "2554f1d140cd0e6a647d451dcbecd96b77fba1ab54fb553c9bf88564a61de913"
+      }
+    },
+    "down-off": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0sOSaKJ:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/r40-down-off-logits.bin",
+        "MOE_REPLAY_WARMUP": "0",
+        "LLAMA_MOE_INPUT_CONTROL": "down"
+      },
+      "started_utc": "2026-10-08T15:29:40.055658+00:00",
+      "source_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_source_sha256": "fdc50753e3b516f25db68c6ac65cae1e801b634641cba93d5de8508c64ac2d41",
+      "label": "WORK",
+      "profile": false,
+      "reps": 1,
+      "returncode": 0,
+      "wall_s": 14.07395471700056,
+      "pid": 8966,
+      "stop_reason": null,
+      "init_lines": [
+        "0.00.929.339 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.00.929.344 I load_tensors:   CPU_Mapped model buffer size =  9049.31 MiB",
+        "0.00.929.345 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.04.944.580 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.04.944.670 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.04.945.979 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.04.969.557 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.04.969.560 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.04.969.675 I replay: 512 prompt tokens, 200 decode tokens, 1 repetitions, step=512, clear_data=0, warmup=0"
+      ],
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "28b27442c811da62b1a506983727349e6359bdc7a58d6e8fd0529a2585a98a92"
+      },
+      "metrics": {
+        "schema_version": 1,
+        "prefill_tokens": 512,
+        "decode_tokens": 200,
+        "step": 512,
+        "calls": 201,
+        "repetitions": [
+          {
+            "rep": 0,
+            "prefill_calls": 1,
+            "decode_calls": 200,
+            "pp_elapsed_ms": 1914.818,
+            "tg_elapsed_ms": 6433.105,
+            "pp_tps": 267.38833664609376,
+            "tg_tps": 31.08918632604318,
+            "tg_p50_ms": 31.259,
+            "tg_p95_ms": 37.39655,
+            "first_pp_chunk_ms": 1914.818,
+            "last_pp_chunk_ms": 1914.818
+          }
+        ],
+        "timing_scope": "decode plus synchronize; model load, inter-call hashes and raw I/O excluded; not application TTFT"
+      },
+      "engine_libraries": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-base.so.0.25.1": "21691b6ddf7c1d3d420e68188ea27468ac30bcaa357afff03d788790ed2a44c1",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-cpu.so.0.25.1": "813eea209fd238cb6be91d967d46a89ce1346e2d2076ff34fc9820d20b3553f3",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-vulkan.so.0.25.1": "92550c31e1817cea32d006539e05d54a5a7639ab24efb9cb7ff7ac2ccb71753b",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml.so.0.25.1": "6b04bffa1a08145c278cd8ccbacbb9eb117ab2e1decd1aca27888432e8f1a8a0",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama-common.so.0.5.0": "a43eeaa3d3d9f59545b23f66e5c9d1d7197b682a83e0ca1c1d81fc9eda382643",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama.so.0.5.0": "2554f1d140cd0e6a647d451dcbecd96b77fba1ab54fb553c9bf88564a61de913"
+      }
+    },
+    "down-on": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0sOSaKJ:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/r40-down-on-logits.bin",
+        "MOE_REPLAY_WARMUP": "0",
+        "LLAMA_MOE_INPUT_CONTROL": "down",
+        "GGML_CPU_MOE_CAPTURE_WORK": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/down-on-work.bin"
+      },
+      "started_utc": "2026-10-08T15:29:55.220681+00:00",
+      "source_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_source_sha256": "fdc50753e3b516f25db68c6ac65cae1e801b634641cba93d5de8508c64ac2d41",
+      "label": "WORK",
+      "profile": false,
+      "reps": 1,
+      "returncode": 0,
+      "wall_s": 14.072625568999683,
+      "pid": 9021,
+      "stop_reason": null,
+      "init_lines": [
+        "0.00.927.907 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.00.927.913 I load_tensors:   CPU_Mapped model buffer size =  9049.31 MiB",
+        "0.00.927.914 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.04.943.712 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.04.943.795 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.04.945.071 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.04.968.631 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.04.968.634 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.04.968.732 I replay: 512 prompt tokens, 200 decode tokens, 1 repetitions, step=512, clear_data=0, warmup=0"
+      ],
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "28b27442c811da62b1a506983727349e6359bdc7a58d6e8fd0529a2585a98a92"
+      },
+      "metrics": {
+        "schema_version": 1,
+        "prefill_tokens": 512,
+        "decode_tokens": 200,
+        "step": 512,
+        "calls": 201,
+        "repetitions": [
+          {
+            "rep": 0,
+            "prefill_calls": 1,
+            "decode_calls": 200,
+            "pp_elapsed_ms": 1966.643,
+            "tg_elapsed_ms": 6621.61,
+            "pp_tps": 260.3421159813957,
+            "tg_tps": 30.204134643991416,
+            "tg_p50_ms": 32.1725,
+            "tg_p95_ms": 38.24859999999999,
+            "first_pp_chunk_ms": 1966.643,
+            "last_pp_chunk_ms": 1966.643
+          }
+        ],
+        "timing_scope": "decode plus synchronize; model load, inter-call hashes and raw I/O excluded; not application TTFT"
+      },
+      "engine_libraries": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-base.so.0.25.1": "21691b6ddf7c1d3d420e68188ea27468ac30bcaa357afff03d788790ed2a44c1",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-cpu.so.0.25.1": "813eea209fd238cb6be91d967d46a89ce1346e2d2076ff34fc9820d20b3553f3",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-vulkan.so.0.25.1": "92550c31e1817cea32d006539e05d54a5a7639ab24efb9cb7ff7ac2ccb71753b",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml.so.0.25.1": "6b04bffa1a08145c278cd8ccbacbb9eb117ab2e1decd1aca27888432e8f1a8a0",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama-common.so.0.5.0": "a43eeaa3d3d9f59545b23f66e5c9d1d7197b682a83e0ca1c1d81fc9eda382643",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama.so.0.5.0": "2554f1d140cd0e6a647d451dcbecd96b77fba1ab54fb553c9bf88564a61de913"
+      }
+    },
+    "all-off": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0sOSaKJ:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/r40-all-off-logits.bin",
+        "MOE_REPLAY_WARMUP": "0",
+        "LLAMA_MOE_INPUT_CONTROL": "all"
+      },
+      "started_utc": "2026-10-08T15:30:10.371608+00:00",
+      "source_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_source_sha256": "fdc50753e3b516f25db68c6ac65cae1e801b634641cba93d5de8508c64ac2d41",
+      "label": "WORK",
+      "profile": false,
+      "reps": 1,
+      "returncode": 0,
+      "wall_s": 14.078015983000114,
+      "pid": 9098,
+      "stop_reason": null,
+      "init_lines": [
+        "0.00.932.499 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.00.932.504 I load_tensors:   CPU_Mapped model buffer size =  9049.31 MiB",
+        "0.00.932.505 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.04.948.968 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.04.949.051 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.04.950.325 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.04.973.736 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.04.973.738 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.04.973.867 I replay: 512 prompt tokens, 200 decode tokens, 1 repetitions, step=512, clear_data=0, warmup=0"
+      ],
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "657983a5afc2203117c6421a3db418945daf98097bb892e4a533af57602dc1a2"
+      },
+      "metrics": {
+        "schema_version": 1,
+        "prefill_tokens": 512,
+        "decode_tokens": 200,
+        "step": 512,
+        "calls": 201,
+        "repetitions": [
+          {
+            "rep": 0,
+            "prefill_calls": 1,
+            "decode_calls": 200,
+            "pp_elapsed_ms": 1919.909,
+            "tg_elapsed_ms": 6403.349,
+            "pp_tps": 266.6793061546146,
+            "tg_tps": 31.233656013439216,
+            "tg_p50_ms": 30.926,
+            "tg_p95_ms": 37.2051,
+            "first_pp_chunk_ms": 1919.909,
+            "last_pp_chunk_ms": 1919.909
+          }
+        ],
+        "timing_scope": "decode plus synchronize; model load, inter-call hashes and raw I/O excluded; not application TTFT"
+      },
+      "engine_libraries": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-base.so.0.25.1": "21691b6ddf7c1d3d420e68188ea27468ac30bcaa357afff03d788790ed2a44c1",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-cpu.so.0.25.1": "813eea209fd238cb6be91d967d46a89ce1346e2d2076ff34fc9820d20b3553f3",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-vulkan.so.0.25.1": "92550c31e1817cea32d006539e05d54a5a7639ab24efb9cb7ff7ac2ccb71753b",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml.so.0.25.1": "6b04bffa1a08145c278cd8ccbacbb9eb117ab2e1decd1aca27888432e8f1a8a0",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama-common.so.0.5.0": "a43eeaa3d3d9f59545b23f66e5c9d1d7197b682a83e0ca1c1d81fc9eda382643",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama.so.0.5.0": "2554f1d140cd0e6a647d451dcbecd96b77fba1ab54fb553c9bf88564a61de913"
+      }
+    },
+    "all-on": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0sOSaKJ:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/r40-all-on-logits.bin",
+        "MOE_REPLAY_WARMUP": "0",
+        "LLAMA_MOE_INPUT_CONTROL": "all",
+        "GGML_CPU_MOE_CAPTURE_WORK": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/all-on-work.bin"
+      },
+      "started_utc": "2026-10-08T15:30:25.525714+00:00",
+      "source_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_source_sha256": "fdc50753e3b516f25db68c6ac65cae1e801b634641cba93d5de8508c64ac2d41",
+      "label": "WORK",
+      "profile": false,
+      "reps": 1,
+      "returncode": 0,
+      "wall_s": 14.073483770999701,
+      "pid": 9159,
+      "stop_reason": null,
+      "init_lines": [
+        "0.00.927.953 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.00.927.958 I load_tensors:   CPU_Mapped model buffer size =  9049.31 MiB",
+        "0.00.927.959 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.04.943.162 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.04.943.250 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.04.945.304 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.04.968.043 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.04.968.045 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.04.968.141 I replay: 512 prompt tokens, 200 decode tokens, 1 repetitions, step=512, clear_data=0, warmup=0"
+      ],
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "657983a5afc2203117c6421a3db418945daf98097bb892e4a533af57602dc1a2"
+      },
+      "metrics": {
+        "schema_version": 1,
+        "prefill_tokens": 512,
+        "decode_tokens": 200,
+        "step": 512,
+        "calls": 201,
+        "repetitions": [
+          {
+            "rep": 0,
+            "prefill_calls": 1,
+            "decode_calls": 200,
+            "pp_elapsed_ms": 1915.577,
+            "tg_elapsed_ms": 6544.034,
+            "pp_tps": 267.28239063216984,
+            "tg_tps": 30.5621883993879,
+            "tg_p50_ms": 31.858,
+            "tg_p95_ms": 38.15299999999999,
+            "first_pp_chunk_ms": 1915.577,
+            "last_pp_chunk_ms": 1915.577
+          }
+        ],
+        "timing_scope": "decode plus synchronize; model load, inter-call hashes and raw I/O excluded; not application TTFT"
+      },
+      "engine_libraries": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-base.so.0.25.1": "21691b6ddf7c1d3d420e68188ea27468ac30bcaa357afff03d788790ed2a44c1",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-cpu.so.0.25.1": "813eea209fd238cb6be91d967d46a89ce1346e2d2076ff34fc9820d20b3553f3",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-vulkan.so.0.25.1": "92550c31e1817cea32d006539e05d54a5a7639ab24efb9cb7ff7ac2ccb71753b",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml.so.0.25.1": "6b04bffa1a08145c278cd8ccbacbb9eb117ab2e1decd1aca27888432e8f1a8a0",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama-common.so.0.5.0": "a43eeaa3d3d9f59545b23f66e5c9d1d7197b682a83e0ca1c1d81fc9eda382643",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama.so.0.5.0": "2554f1d140cd0e6a647d451dcbecd96b77fba1ab54fb553c9bf88564a61de913"
+      }
+    },
+    "all-repeat": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0sOSaKJ:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "DISPLAY": ":0",
+        "WAYLAND_DISPLAY": "wayland-0",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK",
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/tokens.csv",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/r40-all-repeat-logits.bin",
+        "MOE_REPLAY_WARMUP": "0",
+        "LLAMA_MOE_INPUT_CONTROL": "all",
+        "GGML_CPU_MOE_CAPTURE_WORK": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/all-repeat-work.bin"
+      },
+      "started_utc": "2026-10-08T15:30:40.677577+00:00",
+      "source_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_commit": "f3a5150eb0c6eb57e60effe6498b7f6319e73136",
+      "helper_source_sha256": "fdc50753e3b516f25db68c6ac65cae1e801b634641cba93d5de8508c64ac2d41",
+      "label": "WORK",
+      "profile": false,
+      "reps": 1,
+      "returncode": 0,
+      "wall_s": 14.074242255000172,
+      "pid": 9250,
+      "stop_reason": null,
+      "init_lines": [
+        "0.00.937.676 I load_tensors: offloaded 42/42 layers to GPU",
+        "0.00.937.681 I load_tensors:   CPU_Mapped model buffer size =  9049.31 MiB",
+        "0.00.937.682 I load_tensors:      Vulkan0 model buffer size = 11532.90 MiB",
+        "0.04.951.964 I llama_context: Vulkan_Host  output buffer size =     0.95 MiB",
+        "0.04.952.043 I llama_kv_cache:    Vulkan0 KV buffer size =    10.62 MiB",
+        "0.04.953.405 I llama_memory_recurrent:    Vulkan0 RS buffer size =    62.81 MiB",
+        "0.04.976.358 I sched_reserve:    Vulkan0 compute buffer size =   498.52 MiB",
+        "0.04.976.361 I sched_reserve: Vulkan_Host compute buffer size =     9.29 MiB",
+        "0.04.976.458 I replay: 512 prompt tokens, 200 decode tokens, 1 repetitions, step=512, clear_data=0, warmup=0"
+      ],
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "657983a5afc2203117c6421a3db418945daf98097bb892e4a533af57602dc1a2"
+      },
+      "metrics": {
+        "schema_version": 1,
+        "prefill_tokens": 512,
+        "decode_tokens": 200,
+        "step": 512,
+        "calls": 201,
+        "repetitions": [
+          {
+            "rep": 0,
+            "prefill_calls": 1,
+            "decode_calls": 200,
+            "pp_elapsed_ms": 1918.723,
+            "tg_elapsed_ms": 6796.477,
+            "pp_tps": 266.8441458199021,
+            "tg_tps": 29.427010493819076,
+            "tg_p50_ms": 33.121,
+            "tg_p95_ms": 38.66575,
+            "first_pp_chunk_ms": 1918.723,
+            "last_pp_chunk_ms": 1918.723
+          }
+        ],
+        "timing_scope": "decode plus synchronize; model load, inter-call hashes and raw I/O excluded; not application TTFT"
+      },
+      "engine_libraries": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-base.so.0.25.1": "21691b6ddf7c1d3d420e68188ea27468ac30bcaa357afff03d788790ed2a44c1",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-cpu.so.0.25.1": "813eea209fd238cb6be91d967d46a89ce1346e2d2076ff34fc9820d20b3553f3",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml-vulkan.so.0.25.1": "92550c31e1817cea32d006539e05d54a5a7639ab24efb9cb7ff7ac2ccb71753b",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libggml.so.0.25.1": "6b04bffa1a08145c278cd8ccbacbb9eb117ab2e1decd1aca27888432e8f1a8a0",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama-common.so.0.5.0": "a43eeaa3d3d9f59545b23f66e5c9d1d7197b682a83e0ca1c1d81fc9eda382643",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/frozen/WORK/libllama.so.0.5.0": "2554f1d140cd0e6a647d451dcbecd96b77fba1ab54fb553c9bf88564a61de913"
+      }
+    }
+  },
+  "artifact_sha256": {
+    "run.py": "e597540dddd059f225fa681fa34f3d077ceb4fd6371f8d6d3939f7cb8338a346",
+    "analyze.py": "1a4da7de686c95e33fd03671614a96588280945f9af8f02eb655b41c510d43a8",
+    "copy-intermediates.json": "51102b5391be28fa29b8b2c9d5d36467dc65bea28c58333122289b215a56dbcb",
+    "gate-intermediates.json": "5c9b38c5c1c65b8a8469121c8d66ec18e800d8fd7a9fb90c025878c3f38f6635",
+    "up-intermediates.json": "1c0d511247f281bed4682c509d71ea0173882312fdee437c5cbc49fbff614605",
+    "down-intermediates.json": "80287d85465c7b62d143eed926fc12163eb0150b33c4406e6b190d3fb1760f09",
+    "all-intermediates.json": "6fc5b90b3395778f6605aeae398a1073d7351d82510727404d4beab1acae4ca3",
+    "copy-logits-vs-control.csv": "b9033ab63c74903a5a86c4b6117e0f208bbf603aec5dd86819892f10e9ac5aa0",
+    "gate-logits-vs-control.csv": "10b8242de622e84421c627d0a0738ed2330d8b6db5f56a6c72df83abd3166df0",
+    "up-logits-vs-control.csv": "69ae3369d6fa9c0fcdf00ab54e4bc1df81132501f2ff5e635a63648c3a6a9281",
+    "down-logits-vs-control.csv": "c940b4d40227e9087a04b8ee3905ba3313dffe1f88e81856ee2427a1e9be7bd9",
+    "all-logits-vs-control.csv": "9ea78647b4f8782350b8b37748238748bb597bad7f379f03d4b04ea00a08db24"
+  },
+  "baseline_freeze": "moe-quantized-work-validation.json",
+  "tests": {
+    "profile": {
+      "passed": 24
+    },
+    "scheduler_offline": {
+      "passed": 10,
+      "runtime_skipped_pending": 1
+    }
+  }
+}
