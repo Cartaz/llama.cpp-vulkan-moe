@@ -11,7 +11,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-ENV_PREFIXES = ("GGML_", "RADV_", "VK_", "MOE_REPLAY_", "MOE_TRACE_")
+ENV_PREFIXES = ("GGML_", "RADV_", "VK_", "MESA_", "MOE_", "LLAMA_MOE_", "OMP_")
 ENV_KEYS = ("LD_LIBRARY_PATH", "GGML_VK_DISABLE_HOST_VISIBLE_VIDMEM", "GGML_VK_FA_Q8_SYNC",
             "RADV_PERFTEST")
 
@@ -64,10 +64,37 @@ def mapped_libraries(maps):
     return list(libraries.values())
 
 
+def device_snapshot(card):
+    device = card / "device"
+    values = {}
+    stable_names = ("vendor", "device", "subsystem_vendor", "subsystem_device", "mem_info_vram_total",
+                    "mem_info_vis_vram_total", "max_link_speed", "max_link_width")
+    for name in stable_names + ("mem_info_vram_used", "mem_info_vis_vram_used", "mem_info_gtt_used",
+                                "gpu_busy_percent", "current_link_speed", "current_link_width"):
+        path = device / name
+        if path.exists():
+            values[name] = path.read_text().strip()
+    identity = {name: values[name] for name in stable_names if name in values}
+    identity["device_address"] = device.resolve().name
+    driver = device / "driver"
+    if driver.exists():
+        identity["driver"] = driver.resolve().name
+    resource = device / "resource"
+    if resource.exists():
+        resources = []
+        for index, line in enumerate(resource.read_text().splitlines()):
+            start, end, flags = (int(value, 16) for value in line.split())
+            if end < start:
+                raise ValueError(f"invalid PCI resource range: {resource}")
+            resources.append({"index": index, "bytes": end - start + 1 if flags else 0, "flags": flags})
+        identity["pci_resources"] = resources
+    return {"card": card.name, "values": values, "identity": identity}
+
+
 def verify_frozen(report, expected):
     if not isinstance(expected, dict):
         raise ValueError("expected a manifest JSON object")
-    fields = ("binary", "cmake_cache", "build", "environment", "environment_explicit_absent", "workloads", "model", "command", "affinity")
+    fields = ("binary", "cmake_cache", "build", "environment", "environment_explicit_absent", "workloads", "model", "command", "affinity", "hardware")
     for field in fields:
         if report.get(field) != expected.get(field):
             raise ValueError(f"frozen manifest mismatch: {field}")
@@ -98,7 +125,7 @@ def snapshot(args):
         if key.startswith(("GGML_", "LLAMA_", "CMAKE_C_", "CMAKE_CXX_")) or key in ("CMAKE_BUILD_TYPE", "CMAKE_GENERATOR"):
             build[key] = value
     report = {
-        "schema_version": 1,
+        "schema_version": 2,
         "captured_utc": datetime.now(timezone.utc).isoformat(),
         "kind": "runtime_snapshot",
         "pid": args.pid,
@@ -141,14 +168,9 @@ def snapshot(args):
     for card in sorted(Path("/sys/class/drm").glob("card[0-9]*")):
         if "-" in card.name:
             continue
-        device = card / "device"
-        fields = {}
-        for name in ("vendor", "device", "mem_info_vram_total", "mem_info_vram_used", "mem_info_gtt_used", "gpu_busy_percent"):
-            path = device / name
-            if path.exists():
-                fields[name] = path.read_text().strip()
-        if fields:
-            report["devices"].append({"card": card.name, "values": fields})
+        report["devices"].append(device_snapshot(card))
+    report["hardware"] = {"kernel": report["kernel"], "machine": report["machine"], "cpu": report["cpu"],
+                          "devices": sorted((entry["identity"] for entry in report["devices"]), key=lambda entry: entry["device_address"])}
     if args.log:
         log = Path(args.log)
         report["initialization_log"] = fingerprint(log)

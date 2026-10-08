@@ -92,3 +92,12 @@ After a requested campaign resume, first freeze separate B1/B2 controls with the
 ## Source review
 
 Read target and baseline `ggml/src/ggml-backend.cpp`; those files are byte-identical in the checked local snapshots. Also consulted the [upstream scheduler](https://github.com/ggml-org/llama.cpp/blob/master/ggml/src/ggml-backend.cpp), [routing trace PR #28544](https://github.com/ggml-org/llama.cpp/pull/28544), [pool RFC #28248](https://github.com/ggml-org/llama.cpp/discussions/28248) and [prefill transfer issue #25859](https://github.com/ggml-org/llama.cpp/issues/25859) on 2026-10-06. These references motivate measurement and lifetime checks; their reported performance is not a result for this RX 6800 implementation.
+
+
+## ReBAR identity guard (R38, 2026-10-08)
+
+Manifest schema2 records PCI device address, driver, vendor/device/subsystem IDs, total and CPU-visible VRAM, PCI resource sizes/flags and maximum link capabilities. Current link speed/width and used memory remain snapshots. Hardware verification compares stable identity, kernel, CPU and architecture; it excludes PCI base addresses, DRM card numbering, busy counters, used memory and current link state, which can change with power management.
+
+`--expect` now rejects a different BAR aperture or visible VRAM, including the256MiB to16GiB transition. Regenerate schema1 freeze manifests before using the schema2 hardware guard: missing identity cannot verify the old hardware. The manifest records measurements; it does not change firmware/ReBAR or assign a throughput gain to a transfer mechanism. Linux documents `mem_info_vis_vram_total` as CPU-visible VRAM [here](https://docs.kernel.org/gpu/amdgpu/driver-misc.html).
+
+Target environment capture also includes `LLAMA_MOE_`, all `MOE_`, `MESA_` and `OMP_` variables so input-precision, fixture and CPU-thread controls participate in freeze checks. None of these fields run in the inference path. The existing offline suite tests small/large BAR transitions, unused resources, invalid ranges, dynamic busy counters and a live Linux snapshot;21tests pass. R38 real-model results and exact protocol are in the separate ReBAR report.
