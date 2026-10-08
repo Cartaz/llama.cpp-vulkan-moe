@@ -7470,6 +7470,15 @@ static void ggml_vk_mul_mat_vec_id_q_f16(ggml_backend_vk_context * ctx, vk_conte
     const bool f16_f32_kernel = src1->type == GGML_TYPE_F32;
     bool quantize_y = ctx->device->integer_dot_product && src1->type == GGML_TYPE_F32 && ggml_is_contiguous(src1) && !y_non_contig && (ne11 * ne10) % 4 == 0 && ggml_vk_should_use_mmvq(ctx->device, ne01, ne12, ne10, src0->type);
 
+#ifdef LLAMA_MOE_INPUT_DIAGNOSTICS
+    const char * control = getenv("LLAMA_MOE_INPUT_CONTROL");
+    const bool selected = strcmp(src0->name, "blk.17.ffn_gate_exps.weight") == 0 ||
+        strcmp(src0->name, "blk.17.ffn_up_exps.weight") == 0 || strcmp(src0->name, "blk.17.ffn_down_exps.weight") == 0;
+    if (selected && ne12 == 1 && ((control && strcmp(control, "f32") == 0) || strstr(src1->name, "moe-input-") != nullptr)) {
+        quantize_y = false;
+    }
+#endif
+
     vk_pipeline to_fp16_vk_0 = nullptr;
     vk_pipeline to_fp16_vk_1 = nullptr;
     if (x_non_contig) {

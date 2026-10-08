@@ -70,6 +70,15 @@ target_compile_features   (llama PRIVATE cxx_std_17) # don't bump
 
 target_link_libraries(llama PUBLIC ggml)
 
+if (LLAMA_MOE_INPUT_DIAGNOSTICS)
+    if (GGML_BACKEND_DL OR NOT TARGET ggml-cpu OR NOT TARGET ggml-vulkan)
+        message(FATAL_ERROR "LLAMA_MOE_INPUT_DIAGNOSTICS requires built-in CPU and Vulkan backends")
+    endif()
+    target_link_libraries(llama PRIVATE ggml-cpu)
+    target_compile_definitions(llama PRIVATE LLAMA_MOE_INPUT_DIAGNOSTICS)
+    target_compile_definitions(ggml-vulkan PRIVATE LLAMA_MOE_INPUT_DIAGNOSTICS)
+endif()
+
 if (BUILD_SHARED_LIBS)
     set_target_properties(llama PROPERTIES POSITION_INDEPENDENT_CODE ON)
     target_compile_definitions(llama PRIVATE LLAMA_BUILD)
