@@ -8,6 +8,7 @@
 #include <cinttypes>
 #include <climits>
 #include <clocale>
+#include <cmath>
 #include <cstdio>
 #include <cstdlib>
 #include <fstream>
@@ -90,6 +91,18 @@ static bool evaluate(llama_context * ctx, replay_workload & workload, int rep, i
         const float * logits = llama_get_logits_ith(ctx, -1);
         if (!logits) {
             LOG_ERR("no replay logits at position %zu\n", position);
+            return false;
+        }
+        bool nonzero = false;
+        for (size_t i = 0; i < n_vocab; ++i) {
+            if (!std::isfinite(logits[i])) {
+                LOG_ERR("non-finite replay logits at rep %d, phase %s, position %zu, index %zu\n", rep, phase, position, i);
+                return false;
+            }
+            nonzero = nonzero || logits[i] != 0.0f;
+        }
+        if (!nonzero) {
+            LOG_ERR("all-zero replay logits at rep %d, phase %s, position %zu\n", rep, phase, position);
             return false;
         }
         if (rep >= 0) {

@@ -4625,5 +4625,86 @@
   "source_review": {
     "upstream_sha": "9c2e0e491a822adae1f0b1c831adb4160057d24f",
     "cache_PR": "https://github.com/ggml-org/llama.cpp/pull/29887"
+  },
+  "build_configuration": {
+    "OLD": {
+      "BUILD_SHARED_LIBS": "ON",
+      "CMAKE_BUILD_TYPE": "Release",
+      "CMAKE_CXX_COMPILER": "/usr/bin/c++",
+      "CMAKE_CXX_FLAGS": "",
+      "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+      "CMAKE_C_COMPILER": "/usr/bin/cc",
+      "CMAKE_C_FLAGS": "",
+      "CMAKE_C_FLAGS_RELEASE": "-O3 -DNDEBUG",
+      "GGML_BACKEND_DL": "OFF",
+      "GGML_CPU_MOE_ACTIVE": "OFF",
+      "GGML_CPU_MOE_COMPACT": "OFF",
+      "GGML_NATIVE": "ON",
+      "GGML_OPENMP": "ON",
+      "GGML_VULKAN": "ON",
+      "LLAMA_MOE_INPUT_DIAGNOSTICS": "ON",
+      "CMAKE_GENERATOR": "Ninja"
+    },
+    "WORK": {
+      "BUILD_SHARED_LIBS": "ON",
+      "CMAKE_BUILD_TYPE": "Release",
+      "CMAKE_CXX_COMPILER": "/usr/bin/c++",
+      "CMAKE_CXX_FLAGS": "",
+      "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+      "CMAKE_C_COMPILER": "/usr/bin/cc",
+      "CMAKE_C_FLAGS": "",
+      "CMAKE_C_FLAGS_RELEASE": "-O3 -DNDEBUG",
+      "GGML_BACKEND_DL": "OFF",
+      "GGML_CPU_MOE_ACTIVE": "OFF",
+      "GGML_CPU_MOE_COMPACT": "OFF",
+      "GGML_NATIVE": "ON",
+      "GGML_OPENMP": "ON",
+      "GGML_VULKAN": "OFF",
+      "LLAMA_MOE_INPUT_DIAGNOSTICS": "OFF",
+      "CMAKE_GENERATOR": "Ninja"
+    },
+    "UPSTREAM": {
+      "BUILD_SHARED_LIBS": "ON",
+      "CMAKE_BUILD_TYPE": "Release",
+      "CMAKE_CXX_COMPILER": "/usr/bin/c++",
+      "CMAKE_CXX_FLAGS": "",
+      "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+      "CMAKE_C_COMPILER": "/usr/bin/cc",
+      "CMAKE_C_FLAGS": "",
+      "CMAKE_C_FLAGS_RELEASE": "-O3 -DNDEBUG",
+      "GGML_BACKEND_DL": "OFF",
+      "GGML_NATIVE": "ON",
+      "GGML_OPENMP": "ON",
+      "GGML_VULKAN": "ON",
+      "CMAKE_GENERATOR": "Ninja"
+    },
+    "ASAN": {
+      "BUILD_SHARED_LIBS": "ON",
+      "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+      "CMAKE_CXX_COMPILER": "/usr/bin/c++",
+      "CMAKE_CXX_FLAGS": "",
+      "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+      "CMAKE_C_COMPILER": "/usr/bin/cc",
+      "CMAKE_C_FLAGS": "",
+      "CMAKE_C_FLAGS_RELEASE": "-O3 -DNDEBUG",
+      "GGML_BACKEND_DL": "OFF",
+      "GGML_CPU_MOE_ACTIVE": "OFF",
+      "GGML_CPU_MOE_COMPACT": "OFF",
+      "GGML_NATIVE": "ON",
+      "GGML_OPENMP": "ON",
+      "GGML_VULKAN": "OFF",
+      "LLAMA_MOE_INPUT_DIAGNOSTICS": "OFF",
+      "CMAKE_GENERATOR": "Ninja"
+    }
+  },
+  "build_composition": "R39 WORK: CPU library rebuilt CPU-only (Vulkan OFF, diagnostics OFF); remaining frozen R37 libraries built Vulkan ON/diagnostics ON. Source and artifact hashes in inherited R39 validation. Guard changes helper only.",
+  "tests": {
+    "scheduler": {
+      "passed": 11,
+      "skipped": 0,
+      "CPU_Vulkan_profiler_parity": true,
+      "completed_in": "R41",
+      "log_sha256": "57c686f11286a76542224d78e7bb08186fea9c03a7f322e207cbbbcfafaa1ccf"
+    }
   }
 }
