@@ -157,6 +157,47 @@ class ProfileTests(unittest.TestCase):
 
 
 class ManifestTests(unittest.TestCase):
+    def test_rebar_identity_and_dynamic_counters(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            device = root / "0000:09:00.0"
+            device.mkdir()
+            card = root / "card3"
+            card.mkdir()
+            (card / "device").symlink_to(device, target_is_directory=True)
+            (device / "vendor").write_text("0x1002\n")
+            (device / "device").write_text("0x73bf\n")
+            (device / "mem_info_vis_vram_total").write_text(str(256 * 1024**2))
+            (device / "gpu_busy_percent").write_text("0")
+            (device / "resource").write_text("0x7800000000 0x780fffffff 0x14220c\n0x0 0x0 0x0\n")
+            small = manifest.device_snapshot(card)
+            self.assertEqual(small["identity"]["pci_resources"][0]["bytes"], 256 * 1024**2)
+            self.assertEqual(small["identity"]["pci_resources"][1]["bytes"], 0)
+            (device / "gpu_busy_percent").write_text("99")
+            self.assertEqual(manifest.device_snapshot(card)["identity"], small["identity"])
+            (device / "current_link_speed").write_text("2.5 GT/s PCIe")
+            self.assertEqual(manifest.device_snapshot(card)["identity"], small["identity"])
+            (device / "mem_info_vis_vram_total").write_text(str(16 * 1024**3))
+            visible_only = manifest.device_snapshot(card)
+            (device / "resource").write_text("0x7800000000 0x7bffffffff 0x14220c\n0x0 0x0 0x0\n")
+            large = manifest.device_snapshot(card)
+            self.assertEqual(large["identity"]["pci_resources"][0]["bytes"], 16 * 1024**3)
+            (device / "resource").write_text("0x8000000000 0x83ffffffff 0x14220c\n0x0 0x0 0x0\n")
+            self.assertEqual(manifest.device_snapshot(card)["identity"], large["identity"])
+            expected = {"repository": {"commit": "commit", "tracked_diff": ""}, "libraries": [],
+                        "hardware": {"devices": [small["identity"]]}}
+            for identity in (visible_only["identity"], large["identity"]):
+                changed = copy.deepcopy(expected)
+                changed["hardware"]["devices"] = [identity]
+                with self.assertRaisesRegex(ValueError, "mismatch: hardware"):
+                    manifest.verify_frozen(changed, expected)
+            changed.pop("hardware")
+            with self.assertRaisesRegex(ValueError, "mismatch: hardware"):
+                manifest.verify_frozen(changed, expected)
+            (device / "resource").write_text("0x2 0x1 0x14220c\n")
+            with self.assertRaisesRegex(ValueError, "invalid PCI resource"):
+                manifest.device_snapshot(card)
+
     def test_freeze_rejects_changed_libraries_and_present_zero(self):
         expected = {"binary": {"sha256": "binary"}, "environment": {},
                     "repository": {"commit": "commit", "tracked_diff": ""},
