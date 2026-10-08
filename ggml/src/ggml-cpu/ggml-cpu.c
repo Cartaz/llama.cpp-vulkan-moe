@@ -1555,12 +1555,7 @@ static void * incr_ptr_aligned(void ** p, size_t size, size_t align) {
     return ptr;
 }
 
-// Single-token layer 17 input capture for operator replay. No graph callback or tensor writes.
-static void ggml_cpu_moe_capture(const struct ggml_tensor * dst) {
-    const char * path = getenv("GGML_CPU_MOE_CAPTURE");
-    if (!path || !*path) {
-        return;
-    }
+static int ggml_cpu_moe_capture_projection(const struct ggml_tensor * dst) {
     const struct ggml_tensor * weights = dst->src[0];
     const struct ggml_tensor * input = dst->src[1];
     const struct ggml_tensor * ids = dst->src[2];
@@ -1570,30 +1565,56 @@ static void ggml_cpu_moe_capture(const struct ggml_tensor * dst) {
         ++projection;
     }
     if (projection == 3 || ids->ne[1] != 1 || input->ne[2] != 1 || input->ne[3] != 1) {
+        return -1;
+    }
+    return projection;
+}
+
+// Single-token layer 17 capture. Work mode reads completed Q8_K inputs and outputs.
+static void ggml_cpu_moe_capture(const struct ggml_tensor * dst, const void * work) {
+    const char * path = getenv(work ? "GGML_CPU_MOE_CAPTURE_WORK" : "GGML_CPU_MOE_CAPTURE");
+    if (!path || !*path) {
         return;
     }
+    const int projection = ggml_cpu_moe_capture_projection(dst);
+    if (projection < 0) {
+        return;
+    }
+    const struct ggml_tensor * weights = dst->src[0];
+    const struct ggml_tensor * input = dst->src[1];
+    const struct ggml_tensor * ids = dst->src[2];
     GGML_ASSERT(weights->type == GGML_TYPE_Q4_K && weights->ne[2] == 256);
     GGML_ASSERT(input->type == GGML_TYPE_F32 && input->nb[0] == sizeof(float));
     GGML_ASSERT(input->ne[0] == (projection == 2 ? 512 : 2048));
     GGML_ASSERT(input->ne[1] == (projection == 2 ? 8 : 1));
     GGML_ASSERT(ids->type == GGML_TYPE_I32 && ids->ne[0] == 8 && ids->ne[2] == 1 && ids->ne[3] == 1);
-    const uint64_t header[] = {0x31454f4d55504347ULL, 1, (uint64_t) projection, (uint64_t) input->ne[0],
-        (uint64_t) weights->ne[1], (uint64_t) input->ne[1], 8, 256};
+    const size_t row_size = ggml_row_size(GGML_TYPE_Q8_K, input->ne[0]);
+    const uint64_t header[] = {0x31454f4d55504347ULL, work ? 2 : 1, (uint64_t) projection, (uint64_t) input->ne[0],
+        (uint64_t) weights->ne[1], (uint64_t) input->ne[1], 8, 256, GGML_TYPE_Q8_K, row_size};
     ggml_critical_section_start();
     FILE * file = fopen(path, "ab");
-    bool ok = file && fwrite(header, sizeof(header), 1, file) == 1;
+    const size_t header_size = work ? sizeof(header) : 8 * sizeof(uint64_t);
+    bool ok = file && fwrite(header, header_size, 1, file) == 1;
     for (int64_t row = 0; ok && row < input->ne[1]; ++row) {
         ok = fwrite((const char *) input->data + row * input->nb[1], sizeof(float), input->ne[0], file) == (size_t) input->ne[0];
     }
     for (int64_t slot = 0; ok && slot < 8; ++slot) {
         ok = fwrite((const char *) ids->data + slot * ids->nb[0], sizeof(int32_t), 1, file) == 1;
     }
+    if (work) {
+        GGML_ASSERT(dst->type == GGML_TYPE_F32 && dst->nb[0] == sizeof(float));
+        GGML_ASSERT(dst->ne[0] == weights->ne[1] && dst->ne[1] == 8 && dst->ne[2] == 1 && dst->ne[3] == 1);
+        ok = ok && fwrite(work, row_size, input->ne[1], file) == (size_t) input->ne[1];
+        for (int64_t slot = 0; ok && slot < 8; ++slot) {
+            ok = fwrite((const char *) dst->data + slot * dst->nb[1], sizeof(float), dst->ne[0], file) == (size_t) dst->ne[0];
+        }
+    }
     if (file) {
         ok = fclose(file) == 0 && ok;
     }
     ggml_critical_section_end();
     if (!ok) {
-        GGML_ABORT("cannot write GGML_CPU_MOE_CAPTURE");
+        GGML_ABORT("cannot write CPU MoE capture");
     }
 }
 
@@ -1613,7 +1634,7 @@ static void ggml_compute_forward_mul_mat_id(
     const enum ggml_type type = src0->type;
 
     if (ith == 0) {
-        ggml_cpu_moe_capture(dst);
+        ggml_cpu_moe_capture(dst, NULL);
     }
 
     const bool src1_cont = ggml_is_contiguous(src1);
@@ -1850,6 +1871,16 @@ static void ggml_compute_forward_mul_mat_id(
             }
 
             current_chunk = atomic_fetch_add_explicit(current_chunk_ctr, 1, memory_order_relaxed);
+        }
+    }
+
+    const char * capture_work = getenv("GGML_CPU_MOE_CAPTURE_WORK");
+    if (capture_work && *capture_work && ggml_cpu_moe_capture_projection(dst) >= 0) {
+        GGML_ASSERT(vec_dot_type == GGML_TYPE_Q8_K && src1->type == GGML_TYPE_F32);
+        // All output chunks must finish before thread 0 reads them. The next node protects work-buffer reuse.
+        ggml_barrier(params->threadpool);
+        if (ith == 0) {
+            ggml_cpu_moe_capture(dst, params->wdata);
         }
     }
 }

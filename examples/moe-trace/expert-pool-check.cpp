@@ -701,10 +701,22 @@ bool check_operator_numerics(ggml_backend_t target, FILE * output) {
         fprintf(stderr, "MOE_OPERATOR_INPUT_Q8_K must be 0 or 1\n");
         return false;
     }
-    const bool rounded = option && strcmp(option, "1") == 0;
+    const bool rounded_option = option && strcmp(option, "1") == 0;
+    const char * captured_option = getenv("MOE_OPERATOR_CAPTURED_Q8_K");
+    if (captured_option && *captured_option && strcmp(captured_option, "0") != 0 && strcmp(captured_option, "1") != 0) {
+        fprintf(stderr, "MOE_OPERATOR_CAPTURED_Q8_K must be 0 or 1\n");
+        return false;
+    }
+    const bool captured = captured_option && strcmp(captured_option, "1") == 0;
+    const bool rounded = rounded_option || captured;
     const char * prefix = getenv("MOE_OPERATOR_DATA_PREFIX");
     const char * input_prefix = getenv("MOE_OPERATOR_INPUT_PREFIX");
     const bool external = input_prefix && *input_prefix;
+    if (captured && (!external || (option && strcmp(option, "0") == 0))) {
+        fprintf(stderr, "captured Q8_K needs external inputs and cannot use MOE_OPERATOR_INPUT_Q8_K=0\n");
+        return false;
+    }
+    const bool direct_q8k = captured && ggml_backend_is_cpu(target);
     const auto * weights_trait = ggml_get_type_traits(GGML_TYPE_Q4_K);
     const auto convert = ggml_get_type_traits_cpu(GGML_TYPE_Q8_K)->from_float;
     if (!convert || !weights_trait->from_float_ref || !weights_trait->to_float) {
@@ -732,7 +744,7 @@ bool check_operator_numerics(ggml_backend_t target, FILE * output) {
             return false;
         }
         auto * weights = ggml_new_tensor_3d(store.ctx, GGML_TYPE_Q4_K, k, m, 256);
-        auto * input = ggml_new_tensor_3d(store.ctx, GGML_TYPE_F32, k, slots, 1);
+        auto * input = ggml_new_tensor_3d(store.ctx, direct_q8k ? GGML_TYPE_Q8_K : GGML_TYPE_F32, k, slots, 1);
         auto * ids = ggml_new_tensor_2d(store.ctx, GGML_TYPE_I32, 8, 1);
         auto * result = ggml_mul_mat_id(store.ctx, weights, input, ids);
         ggml_format_name(weights, "blk.17.ffn_%s_exps.weight", name);
@@ -769,10 +781,11 @@ bool check_operator_numerics(ggml_backend_t target, FILE * output) {
         if (!numerics_dump(prefix, std::string("-") + name + "-weights.bin", packed.data(), packed.size())) {
             return false;
         }
-        fprintf(stderr, "operator numerics begin %s k=%d m=%d input_slots=%d backend=%s rounded=%d\n", name, k, m, slots, ggml_backend_name(target), int(rounded));
+        fprintf(stderr, "operator numerics begin %s k=%d m=%d input_slots=%d backend=%s rounded=%d captured=%d direct_q8k=%d\n", name, k, m, slots, ggml_backend_name(target), int(rounded), int(captured), int(direct_q8k));
         for (int pass = 0; pass < 3; ++pass) {
             std::vector<float> original(k * slots), converted(k * slots);
-            std::vector<uint8_t> quantized(ggml_row_size(GGML_TYPE_Q8_K, k));
+            const size_t q8k_row_size = ggml_row_size(GGML_TYPE_Q8_K, k);
+            std::vector<uint8_t> quantized(q8k_row_size * slots);
             const std::string tag = std::string("-") + name + "-" + std::to_string(pass);
             uint32_t state = 0x12345678u + uint32_t(projection * 97 + pass * 65537);
             for (float & value : original) {
@@ -780,6 +793,26 @@ bool check_operator_numerics(ggml_backend_t target, FILE * output) {
             }
             if (external && !numerics_load(input_prefix, tag + "-original.bin", original.data(), original.size() * sizeof(float))) {
                 return false;
+            }
+            if (captured && !numerics_load(input_prefix, tag + "-quantized.bin", quantized.data(), quantized.size())) {
+                return false;
+            }
+            if (captured) {
+                const auto * blocks = reinterpret_cast<const block_q8_K *>(quantized.data());
+                for (size_t i = 0; i < quantized.size() / sizeof(block_q8_K); ++i) {
+                    if (!std::isfinite(blocks[i].d)) {
+                        return false;
+                    }
+                    for (int group = 0; group < 16; ++group) {
+                        int sum = 0;
+                        for (int col = 0; col < 16; ++col) {
+                            sum += blocks[i].qs[group * 16 + col];
+                        }
+                        if (sum != blocks[i].bsums[group]) {
+                            return false;
+                        }
+                    }
+                }
             }
             for (int slot = 0; slot < slots; ++slot) {
                 bool nonzero = false;
@@ -793,8 +826,16 @@ bool check_operator_numerics(ggml_backend_t target, FILE * output) {
                 if (!nonzero) {
                     return false;
                 }
-                convert(original.data() + slot * k, quantized.data(), k);
-                dequantize_row_q8_K(reinterpret_cast<const block_q8_K *>(quantized.data()), converted.data() + slot * k, k);
+                auto * quantized_row = quantized.data() + slot * q8k_row_size;
+                if (!captured) {
+                    convert(original.data() + slot * k, quantized_row, k);
+                }
+                dequantize_row_q8_K(reinterpret_cast<const block_q8_K *>(quantized_row), converted.data() + slot * k, k);
+                for (int col = 0; col < k; ++col) {
+                    if (!std::isfinite(converted[slot * k + col])) {
+                        return false;
+                    }
+                }
             }
             const auto & actual_input = rounded ? converted : original;
             int32_t id_data[8];
@@ -809,7 +850,7 @@ bool check_operator_numerics(ggml_backend_t target, FILE * output) {
                     return false;
                 }
             }
-            ggml_backend_tensor_set(input, actual_input.data(), 0, ggml_nbytes(input));
+            ggml_backend_tensor_set(input, direct_q8k ? static_cast<const void *>(quantized.data()) : actual_input.data(), 0, ggml_nbytes(input));
             ggml_backend_tensor_set(ids, id_data, 0, sizeof(id_data));
             if (ggml_backend_graph_compute(target, graph) != GGML_STATUS_SUCCESS) {
                 return false;
@@ -848,6 +889,7 @@ bool check_operator_numerics(ggml_backend_t target, FILE * output) {
             }
             if (!numerics_dump(prefix, tag + "-original.bin", original.data(), original.size() * sizeof(float)) ||
                 !numerics_dump(prefix, tag + "-input.bin", actual_input.data(), actual_input.size() * sizeof(float)) ||
+                !numerics_dump(prefix, tag + "-quantized.bin", quantized.data(), quantized.size()) ||
                 !numerics_dump(prefix, tag + "-ids.bin", id_data, sizeof(id_data))) {
                 return false;
             }

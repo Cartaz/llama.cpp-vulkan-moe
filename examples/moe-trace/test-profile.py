@@ -10,6 +10,7 @@ import math
 import os
 import random
 import subprocess
+import struct
 import sys
 import tempfile
 import unittest
@@ -30,6 +31,67 @@ def module(name):
 analyze = module("analyze")
 manifest = module("manifest")
 layer_budget = module("layer-budget")
+cpu_capture = module("cpu-capture")
+
+
+class CpuCaptureTests(unittest.TestCase):
+    def capture(self, version):
+        raw = b''
+        for projection, (k, m, slots) in enumerate(cpu_capture.SHAPES):
+            raw += struct.pack('<8Q', cpu_capture.MAGIC, version, projection, k, m, slots, 8, 256)
+            if version == 2:
+                raw += struct.pack('<2Q', 15, k // 256 * 292)
+            raw += struct.pack('<f', 0.125) * (k * slots) + struct.pack('<8i', *range(8))
+            if version == 2:
+                block = struct.pack('<f', 0.125) + bytes([1])*256 + struct.pack('<16h', *([16]*16))
+                raw += block * (k // 256 * slots) + struct.pack('<f', 1) * (m * 8)
+        return raw
+
+    def test_versions_and_safe_extraction(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = root / 'capture.bin'
+            for version in (1, 2):
+                path.write_bytes(self.capture(version))
+                records = cpu_capture.read_capture(path)
+                self.assertEqual(len(records), 3)
+                self.assertEqual(records[0]['version'], version)
+                target = root / str(version)
+                files = cpu_capture.extract(records, [1], target)
+                self.assertEqual(len(files), 6 if version == 1 else 12)
+                with self.assertRaisesRegex(ValueError, 'overwrite'):
+                    cpu_capture.extract(records, [1], target)
+                with self.assertRaisesRegex(ValueError, 'outside'):
+                    cpu_capture.extract(records, [2], root/'invalid')
+                self.assertFalse((root/'invalid').exists())
+
+    def test_corrupt_work_capture_rejected(self):
+        raw = self.capture(2)
+        qoffset = 80 + 2048*4 + 32
+        bad_scale = raw[:qoffset] + struct.pack('<f', math.nan) + raw[qoffset+4:]
+        bad_sum = raw[:qoffset+260] + struct.pack('<h', 0) + raw[qoffset+262:]
+        bad_layout = raw[:72] + struct.pack('<Q', 1) + raw[80:]
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory)/'capture.bin'
+            for data in (b'', raw[:-1], b'X'+raw[1:], raw+b'X', bad_scale, bad_sum, bad_layout):
+                path.write_bytes(data)
+                with self.assertRaises(ValueError):
+                    cpu_capture.read_capture(path)
+
+    def test_input_intervention_preserves_validation(self):
+        raw = self.capture(2)
+        changed = raw[:80] + struct.pack('<f', 0.25) + raw[84:]
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'capture.bin'
+            path.write_bytes(changed)
+            with self.assertRaisesRegex(ValueError, 'gate/up input'):
+                cpu_capture.read_capture(path)
+            records = cpu_capture.read_capture(path, allow_different_inputs=True)
+            self.assertNotEqual(records[0]['original'], records[1]['original'])
+            for data in (changed[:-1], changed[:80] + struct.pack('<f', math.nan) + changed[84:]):
+                path.write_bytes(data)
+                with self.assertRaises(ValueError):
+                    cpu_capture.read_capture(path, allow_different_inputs=True)
 
 
 class ProfileTests(unittest.TestCase):
