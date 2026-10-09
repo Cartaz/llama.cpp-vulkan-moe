@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "g++",
+    "-std=c++17",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-Icommon",
+    "-Iinclude",
+    "-Iggml/include",
+    "-Ivendor",
+    "examples/moe-trace/moe-corpus.cpp",
+    "-o",
+    "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/DIAG-WORK/corpus",
+    "-L/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/DIAG-WORK",
+    "-Wl,-rpath,$ORIGIN",
+    "-lllama-common",
+    "-lllama",
+    "-lggml",
+    "-lggml-base"
+  ],
+  "source_sha256": "94a9764b8963f54340a6f212aa4a6410712f006fa94078c87d65b2f35df17990"
+}

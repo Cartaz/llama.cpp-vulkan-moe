@@ -16,7 +16,8 @@ FIELDS = ["scheduler", "call", "event", "tensor", "n_expert", "n_tokens", "token
 
 
 def convert(path, phase_path, layers, top_k=8, n_experts=256, rep=0):
-    if not layers or min(layers) < 0 or top_k < 1 or n_experts < top_k or rep < 0:
+    """Convert one repetition, or return rows by repetition when rep is None."""
+    if not layers or min(layers) < 0 or top_k < 1 or n_experts < top_k or (rep is not None and rep < 0):
         raise ValueError("invalid layers, top-k, expert count or repetition")
     phases = profile.read_phases(phase_path)
     starts = [phase["start_us"] for phase in phases]
@@ -63,7 +64,7 @@ def convert(path, phase_path, layers, top_k=8, n_experts=256, rep=0):
             observations += 1
     if schedulers != ended or not schedulers or not groups:
         raise ValueError("empty/incomplete scheduler route profile")
-    rows = []
+    by_rep = {}
     phase_calls = []
     for index, phase in enumerate(phases):
         selected = {key: value for key, value in groups.items() if key[0] == index}
@@ -75,16 +76,17 @@ def convert(path, phase_path, layers, top_k=8, n_experts=256, rep=0):
         if any(set(value) != expected for value in selected.values()):
             raise ValueError("routing phase has missing tokens or ranks")
         phase_calls.append(dict(rep=phase["rep"], phase=phase["phase"], position=phase["position"], scheduler=scheduler, call=call))
-        if phase["rep"] == rep:
+        if rep is None or phase["rep"] == rep:
             for token in range(phase["n_tokens"]):
                 for layer in sorted(layers):
                     for rank in range(top_k):
-                        rows.append((phase["phase"], phase["position"] + token, layer, rank, selected[(index, scheduler, call, layer)][(token, rank)]))
+                        by_rep.setdefault(phase["rep"], []).append((phase["phase"], phase["position"] + token, layer, rank, selected[(index, scheduler, call, layer)][(token, rank)]))
+    rows = by_rep if rep is None else by_rep.get(rep, [])
     if not rows:
         raise ValueError("selected repetition has no routing observations")
     return rows, dict(schema_version=1, route_profile=str(path), phase_profile=str(phase_path), rep=rep,
                      layers=sorted(layers), top_k=top_k, n_experts=n_experts, observations=observations,
-                     output_rows=len(rows), phase_calls=phase_calls,
+                     output_rows=sum(map(len, by_rep.values())), phase_calls=phase_calls,
                      limits="Only naturally CPU-visible IDs are observed. Duplicate triplet observations must agree. Conversion supports one complete scheduler call per phase and requires paired process provenance.")
 
 

@@ -12,7 +12,15 @@
       "tests": 24,
       "gate": "PASS"
     },
-    "current_helper_build": "PASS"
+    "current_helper_build": "PASS",
+    "scheduler_profile_cpu_all_reps": {
+      "tests": 12,
+      "gate": "PASS"
+    },
+    "profile_planner_oracle": {
+      "tests": 25,
+      "gate": "PASS"
+    }
   },
   "files": {
     "callback-after-up-protocol.json": "0def7f6361cec31983b8ed1c1100d1ad22b1d06c9d355503e8d7d4ca354eb299",
@@ -26,6 +34,11 @@
     "long10000-prior-differences.json": "dd0cc3338b977805b681a81adfe10e22fb7a81d47148535209a694ccf190f1ca",
     "state-amendment.json": "db670cc283aae2adcc50467f4760c7ca01a3275ca464ed41585c273a8992236d",
     "model-identity.json": "23e9f2932b42e18fd18deaf539ca02916a888934d52f95362cd6c55450cd0b99",
-    "upstream-review.json": "f43fb50494e285312de5bdff5ce9ecbe0640633cf961833b2b26ae9dd6da9907"
+    "upstream-review.json": "f43fb50494e285312de5bdff5ce9ecbe0640633cf961833b2b26ae9dd6da9907",
+    "DIAG-BASE-compile.json": "707d74eaabf4eec9629bf4c2c854d2abee6a22b1bbca0659433884ef1bda4014",
+    "DIAG-WORK-compile.json": "587a5923806b972b145e943656c2feb1aee3df8cb61271fa428b546d329ceb78",
+    "policy-registration.json": "8bc773108a26563a8cfc5cfd167c28287cc05a1c91dc790b736664ab9a74cabe",
+    "planner-scaling-amendment.json": "4baf7e6259d2103f990e312317eae4faee557e74c5cc8f7a609882c21f930106",
+    "priority-scheduling-incident.json": "b1e057575b493c92d880d5a360f48a88c522590943bda949108589742d74953f"
   }
 }

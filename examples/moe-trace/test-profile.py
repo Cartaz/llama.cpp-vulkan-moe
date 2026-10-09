@@ -313,6 +313,34 @@ class ManifestTests(unittest.TestCase):
 
 
 class LayerBudgetTests(unittest.TestCase):
+    def test_bundle_gain_matches_subset_oracle_and_full_plans(self):
+        import random
+        from collections import Counter, defaultdict
+        randomizer = random.Random(49)
+        missing = Counter()
+        for _ in range(600):
+            missing[frozenset(randomizer.sample(range(12), randomizer.randrange(1, 9)))] += randomizer.randrange(1, 10)
+        by_size = defaultdict(dict)
+        for ids, count in missing.items():
+            by_size[len(ids)][ids] = count
+        for ids in missing:
+            self.assertEqual(layer_budget.bundle_gain(ids, by_size),
+                             sum(count for other, count in missing.items() if other <= ids))
+        traces = [{(token, layer): frozenset(randomizer.sample(range(12), 4))
+                   for token in range(40) for layer in range(3)}]
+        original = layer_budget.bundle_gain
+        def oracle(rest, grouped):
+            return sum(count for requests in grouped.values() for other, count in requests.items() if other <= rest)
+        try:
+            for minimum in (0, 2, 4):
+                for budget in (36, 96, 144):
+                    layer_budget.bundle_gain = original
+                    actual = layer_budget.plan(traces, {0: 2, 1: 3, 2: 4}, budget, "request_bundle", minimum)
+                    layer_budget.bundle_gain = oracle
+                    self.assertEqual(actual, layer_budget.plan(traces, {0: 2, 1: 3, 2: 4}, budget, "request_bundle", minimum))
+        finally:
+            layer_budget.bundle_gain = original
+
     def test_heterogeneous_cost_and_determinism(self):
         traces = [{(0, 0): frozenset([1]), (0, 1): frozenset([2]), (1, 0): frozenset([1]), (1, 1): frozenset([2])}]
         sizes = {0: 3, 1: 7}

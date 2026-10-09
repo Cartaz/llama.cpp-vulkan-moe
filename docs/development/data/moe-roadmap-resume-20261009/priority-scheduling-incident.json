@@ -1,0 +1,7 @@
+{
+  "time": 1791508110.192415,
+  "classification": "HARNESS_ERROR",
+  "cause": "Pause watcher checked WORK but omitted BASE process; paused corpus guard while baseline remained active",
+  "containment": "No second model loaded: VRAM preflight rejected attempted fixture/diagnostic launches. Priority orchestrator terminated and corpus guard resumed. Original rejection logs retained.",
+  "required_fix": "Use all frozen corpus labels; wait next uncreated result before pause, check model process and VRAM before fixture queue, rerun only scheduling-rejected cells in fresh archive."
+}

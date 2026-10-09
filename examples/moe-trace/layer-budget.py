@@ -5,6 +5,8 @@ import argparse
 import csv
 import hashlib
 import json
+from itertools import combinations
+from math import comb
 from collections import Counter, defaultdict
 from fractions import Fraction
 from pathlib import Path
@@ -42,6 +44,19 @@ def frequencies(traces, sizes):
         for (_, layer), ids in groups.items():
             result[layer].update(ids)
     return result
+
+
+def bundle_gain(rest, by_size):
+    """Count complete requests contained in rest, using the cheaper exact lookup."""
+    gain = by_size[len(rest)].get(rest, 0)
+    for size, requests in by_size.items():
+        if size >= len(rest):
+            continue
+        if len(requests) <= comb(len(rest), size):
+            gain += sum(count for other, count in requests.items() if other <= rest)
+        else:
+            gain += sum(requests.get(frozenset(ids), 0) for ids in combinations(rest, size))
+    return gain
 
 
 def plan(traces, sizes, budget, policy, minimum_slots=0):
@@ -86,11 +101,14 @@ def plan(traces, sizes, budget, policy, minimum_slots=0):
                     rest = ids - selected[layer]
                     if rest:
                         missing[rest] += count
+                by_size = defaultdict(dict)
+                for rest, count in missing.items():
+                    by_size[len(rest)][rest] = count
                 for rest in missing:
                     cost = len(rest) * sizes[layer]
                     if used + cost > budget:
                         continue
-                    gain = sum(count for other, count in missing.items() if other <= rest)
+                    gain = bundle_gain(rest, by_size)
                     key = (-Fraction(gain, cost), cost, layer, tuple(sorted(rest)))
                     if best is None or key < best[0]:
                         best = key, layer, rest, cost
