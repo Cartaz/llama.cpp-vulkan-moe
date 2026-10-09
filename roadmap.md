@@ -6,7 +6,7 @@ Obiettivo: inferenza locale affidabile e veloce su RX 6800 16 GB, Ryzen 7 5700X3
 
 Ripresa autonoma del 2026-10-09: M0-M3 restano TEST_PARZIALI. Corpus normale e osservatore autonomo completano 108 casi ciascuno; stato/memoria e controlli separati passano 34 processi; timing breve 1/2/4 layer passa 54 processi. Il pool migliora TG rispetto alla copia dinamica, ma regredisce rispetto agli stessi layer residenti. Instabilita raw lunga, contratto di ripristino logits e fedelta CPU/GPU restano aperti; pressione KV in corso. Nessun default promosso. [Report della ripresa](docs/development/moe-roadmap-resume-rx6800.md).
 
-Resume07: pressione ripresa da17/36 con hash verificati, FAIL e partial conservati; R61/S14 attende pressione+audit sotto lock. R62 prefill nativo B1 registrato e audit source/oracoli PASS, ancora da eseguire. Stato live in CHECKPOINT locale; nessuna nuova qualifica generale.
+Resume07: pressione36/36 conclusa,32PASS4FAIL;540casi/72612raw finiti/nonzero,569vettori divergenti e3argmax successivi diversi. TreFAILresidentiB1,uno pool;nessunrankinglungo o M0-M3completo. R61/S14GPUin corso dopoaudit, R62 prefill nativo B1 attendejoin. Stato live in CHECKPOINT locale; nessuna nuova qualifica generale.
 
 ## Come leggere le sigle
 
@@ -147,7 +147,7 @@ Le percentuali sono osservazioni sul workload indicato, non previsioni su tutti 
 | R58/R59 | Coefficienti router e ampiezza scarti roundtrip | DIAGNOSTICA COMPLETA, fedelta FAIL |13processi/2613raw osservatore esatti; coefficienti40x8 finiti; metriche R40 e soglie R39 invariate |up RMS0.0603 al token512 prima della membership513; tutti4screen FAIL. Nessuna attribuzione causale o fix. [Report](docs/development/moe-roadmap-resume-rx6800.md)|
 | R60 | Checkpoint client autonomo,4layer | DIAGNOSTICA COMPLETA; controlli raw FAIL |6controlli indipendenti senza ripristino:4PASS,2FAIL;6checkpoint/36casi/72snapshot PASS |Pool1 diverge PP2559 con ID esatti;transfer2 diverge PP7167 e cambia ID generato28;residenti entrambi esatti. Il client conserva logits e sampler;API originale resta aperta. [Report](docs/development/moe-roadmap-resume-rx6800.md)|
 
-| R61 | S14 optional single-token pool admission | IMPLEMENTATO; GPU/model/timing pending |8-line scheduler opt-in,defaultOFF;12CPU Release/ASAN controls raw-exact;7replay inputs preregistered |Batched prompt/decode bypass uses original copies; possible coldTG miss tradeoff. Original pressure campaign runs first; no performance claim. [Report](docs/development/moe-roadmap-resume-rx6800.md)|
+| R61 | S14 optional single-token pool admission | IMPLEMENTATO;24CPU/GPUfixturePASS;model/timing pending |8-line scheduler opt-in,defaultOFF;12CPU Release/ASAN+12Vulkan/validation controls raw-exact;7replay inputs preregistered |Batched prompt/decode bypass uses original copies; possible coldTG miss tradeoff. Original pressure campaign runs first; no performance claim. [Report](docs/development/moe-roadmap-resume-rx6800.md)|
 | R62 | Diagnostica B1 prefill logico/fisico | PRONTO, non avviato |8casi,CPU17/GPU17,2processi/configurazione;source/oracoli/artifact audit PASS |64token diagnostici,nessun gate semantico o ranking. [Report](docs/development/moe-roadmap-resume-rx6800.md)|
 
 R12-R16 derivano dagli archivi locali del 5-6 ottobre e dallo stato dello sweep; alcuni report precedenti sulla repo descrivono ancora un pilot o una rivalidazione in corso. Questa snapshot aggiorna **lo stato**, senza fingere che quei report storici siano gia' stati riscritti.

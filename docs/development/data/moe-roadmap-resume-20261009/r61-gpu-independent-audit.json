@@ -1,0 +1,103 @@
+{
+  "utc": "2026-10-09T18:16:01.671311+00:00",
+  "gate": "PASS_12_VULKAN_FIXTURES",
+  "fixtures": {
+    "scheduler-pool-FIXED-OFF": {
+      "gate": "PASS",
+      "raw_sha256": "b1e96c06632ebd6ff278f70aca4026a1a23c9e316c14e6522e8281eae5700306",
+      "raw_f32_elements": 7213440,
+      "ready_single_token_triplets": 54,
+      "batched_skips": 0,
+      "validation_layer_loaded": false
+    },
+    "scheduler-pool-FIXED-ON": {
+      "gate": "PASS",
+      "raw_sha256": "b1e96c06632ebd6ff278f70aca4026a1a23c9e316c14e6522e8281eae5700306",
+      "raw_f32_elements": 7213440,
+      "ready_single_token_triplets": 54,
+      "batched_skips": 0,
+      "validation_layer_loaded": false
+    },
+    "scheduler-pool-R61-V2-OFF": {
+      "gate": "PASS",
+      "raw_sha256": "b1e96c06632ebd6ff278f70aca4026a1a23c9e316c14e6522e8281eae5700306",
+      "raw_f32_elements": 7213440,
+      "ready_single_token_triplets": 54,
+      "batched_skips": 0,
+      "validation_layer_loaded": false
+    },
+    "scheduler-pool-R61-V2-ON": {
+      "gate": "PASS",
+      "raw_sha256": "b1e96c06632ebd6ff278f70aca4026a1a23c9e316c14e6522e8281eae5700306",
+      "raw_f32_elements": 7213440,
+      "ready_single_token_triplets": 54,
+      "batched_skips": 48,
+      "validation_layer_loaded": false
+    },
+    "scheduler-pool-R61-V2-validation-OFF": {
+      "gate": "PASS",
+      "raw_sha256": "b1e96c06632ebd6ff278f70aca4026a1a23c9e316c14e6522e8281eae5700306",
+      "raw_f32_elements": 7213440,
+      "ready_single_token_triplets": 54,
+      "batched_skips": 0,
+      "validation_layer_loaded": true
+    },
+    "scheduler-pool-R61-V2-validation-ON": {
+      "gate": "PASS",
+      "raw_sha256": "b1e96c06632ebd6ff278f70aca4026a1a23c9e316c14e6522e8281eae5700306",
+      "raw_f32_elements": 7213440,
+      "ready_single_token_triplets": 54,
+      "batched_skips": 48,
+      "validation_layer_loaded": true
+    },
+    "multi-pool-FIXED-OFF": {
+      "gate": "PASS",
+      "raw_sha256": "31b9aa4d24382e8cd078d0f2c16ce8eebfcb216c156e4f1694ef31b99a95d914",
+      "raw_f32_elements": 12280320,
+      "ready_single_token_triplets": 168,
+      "batched_skips": 0,
+      "validation_layer_loaded": false
+    },
+    "multi-pool-FIXED-ON": {
+      "gate": "PASS",
+      "raw_sha256": "31b9aa4d24382e8cd078d0f2c16ce8eebfcb216c156e4f1694ef31b99a95d914",
+      "raw_f32_elements": 12280320,
+      "ready_single_token_triplets": 168,
+      "batched_skips": 0,
+      "validation_layer_loaded": false
+    },
+    "multi-pool-R61-V2-OFF": {
+      "gate": "PASS",
+      "raw_sha256": "31b9aa4d24382e8cd078d0f2c16ce8eebfcb216c156e4f1694ef31b99a95d914",
+      "raw_f32_elements": 12280320,
+      "ready_single_token_triplets": 168,
+      "batched_skips": 0,
+      "validation_layer_loaded": false
+    },
+    "multi-pool-R61-V2-ON": {
+      "gate": "PASS",
+      "raw_sha256": "31b9aa4d24382e8cd078d0f2c16ce8eebfcb216c156e4f1694ef31b99a95d914",
+      "raw_f32_elements": 12280320,
+      "ready_single_token_triplets": 168,
+      "batched_skips": 288,
+      "validation_layer_loaded": false
+    },
+    "multi-pool-R61-V2-validation-OFF": {
+      "gate": "PASS",
+      "raw_sha256": "31b9aa4d24382e8cd078d0f2c16ce8eebfcb216c156e4f1694ef31b99a95d914",
+      "raw_f32_elements": 12280320,
+      "ready_single_token_triplets": 168,
+      "batched_skips": 0,
+      "validation_layer_loaded": true
+    },
+    "multi-pool-R61-V2-validation-ON": {
+      "gate": "PASS",
+      "raw_sha256": "31b9aa4d24382e8cd078d0f2c16ce8eebfcb216c156e4f1694ef31b99a95d914",
+      "raw_f32_elements": 12280320,
+      "ready_single_token_triplets": 168,
+      "batched_skips": 288,
+      "validation_layer_loaded": true
+    }
+  },
+  "limits": "Independently reads complete float32 raw files and external counter/layer evidence;existing fixture tests CPU reference,abort/retry/graphsources. No model or performance qualification."
+}

@@ -238,3 +238,22 @@ R61 source review confirms the shape bypass occurs before packed-ID construction
 R62 is a separate B1 native-prefill diagnostic, registered and audited before launch. Eight fixed cases include two90-record tasks, four short controls and two long duplicates. Structured retrieval and code-trace oracles, duplicate identity, source, binary and B1 library hashes pass the prelaunch audit. It crosses CPU17/GPU17 weight placement with logical application batches versus legacy physical chunks, in two balanced fresh processes per configuration. Every emitted pre-sampling vector is retained and checked; invalid cases remain failures. The64-token cap does not qualify semantic answer quality. Differing autonomous histories are not a matched-input causal contrast. It starts only after R61 has joined, with one model process.
 
 Upstream50e3e3e was checked from current code plus issues/PRs. The nine new commits include RMS workgroup overflow correction5e4878e/PR30145, static backend-sampler topology a518119/PR30223 and chat API refactoring8b54361/PR30210. The RMS change clamps dispatch dimensions and loops over excess channels/samples; no captured local shape establishes it as the cause of the archived divergences. Current helpers use CPU sampling, and all engines remain frozen. Any adoption needs a separate B4 gate and A/B on RX6800; no speedup or correctness fix is inferred here.
+
+## R46 pressure completed: original gates retained
+
+All36 registered processes finish with return0 and all540 fixed-token cases:32PASS and4FAIL. An independent audit checks72,612 complete248,320-element vectors against the original first-resident references. All vectors are finite/nonzero;569 differ and three later argmax positions change. All four failed processes diverge in prefill, and the first mismatching vector retains its argmax:
+
+| Process | Case | First vector, zero based | Prefill token, zero based | Different vectors | Later argmax changes | First max abs / RMS |
+| --- | --- | --- | --- | --- | --- | --- |
+|Q8/ub512/resident1|depth16128/rep1|11|6143|149|1|0.159593/0.031174|
+|Q8/ub512/resident2|depth16128/rep1|13|7167|147|0|1.612819/0.312954|
+|Q8/ub2048/pool2|depth16128/rep1|5|12287|131|1|0.780067/0.134448|
+|F16/ub512/resident2|depth8192/rep2|2|1535|142|1|0.765440/0.144926|
+
+The other cases in these four processes are reference-exact. Every same-GPU uncached transfer process passes the original gate in this campaign. The two controls for each placement in Q8/ub1024,F16/ub1024 and F16/ub2048 also pass. These are bounded observations, not equivalent reliability or a causal proof. Three failed processes use unmodified B1 without a pool; the one pool failure remains separately ineligible. Exact later controls do not repair either kind of failure. Teacher-forced IDs are fixed by design, so later argmax changes do not represent generated-token parity.
+
+Overall pressure qualification is FAIL_EXTENDED_PRESSURE. No timing ranking, new default or M0-M3 closure follows. Original output/protocol/order/partial folders remain; `pressure-completed-summary.json` and `stress-independent-audit-resume07.json` contain the full per-case hashes, first-difference geometry and separate finite checks. R61 GPU fixtures start after this completed audit under the same exclusive lock; its independent short gate and timing remain separate.
+
+## R61 GPU mechanism gate
+
+All12 fresh Vulkan fixture processes pass full raw parity to the previous candidate, including all four Khronos synchronization-validation conditions. An independent parser also verifies finite/nonzero float32 raw files, loaded validation libraries and both output streams. ON confirms48 batched skips in each scheduler fixture and288 in each multilayer fixture, with zero pool projection/hit/miss/eviction/upload counters on every skip. Single-token triplets are admitted in every fixture. OFF retains batched admission. Input resize,abort/retry and graph-source restoration remain checked by the existing helpers. Together with the12 prior CPU Release/ASAN controls, this closes the bounded mechanism gate, not model correctness or performance. All28 preregistered raw model gates are now running; timing remains gated on all seven replay cells.
