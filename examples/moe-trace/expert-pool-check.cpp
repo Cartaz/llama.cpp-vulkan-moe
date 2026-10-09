@@ -1,6 +1,10 @@
 #include "expert-pool.h"
 #include "ggml-cpu.h"
 #include "../../ggml/src/ggml-quants.h"
+#include "../../ggml/src/ggml-backend-impl.h"
+#if defined(__x86_64__) || defined(__i386__)
+#include <emmintrin.h>
+#endif
 
 #include <cmath>
 #include <cstdio>
@@ -15,6 +19,8 @@ bool check_expert_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * output)
 bool check_scheduler_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * output);
 bool check_expert_placement(ggml_backend_t target, ggml_backend_t cpu, FILE * output);
 bool check_operator_numerics(ggml_backend_t target, FILE * output);
+bool check_multilayer_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * output);
+bool check_transfer_cost(ggml_backend_t target);
 
 namespace {
 constexpr int experts = 256, topk = 8, width = 256, rows = 256, outputs = 8;
@@ -42,13 +48,15 @@ struct graph_run {
     ggml_backend_buffer_t buffer = nullptr;
     ggml_tensor * input = nullptr, * storage = nullptr;
     std::array<ggml_tensor *, 3> result{};
+    std::vector<std::array<ggml_tensor *, 3>> layer_results;
     ggml_cgraph * graph = nullptr;
     ~graph_run() {
         if (sched) { ggml_backend_sched_free(sched); }
         ggml_backend_buffer_free(buffer);
         ggml_free(ctx);
     }
-    bool init(ggml_backend_t backend, const std::array<ggml_tensor *, 3> & weights, int tokens, bool broadcast, bool strided, ggml_backend_t cpu = nullptr, bool parallel = false, bool callback = false, bool placement = false, bool op_offload = true) {
+    bool init(ggml_backend_t backend, const std::array<ggml_tensor *, 3> & weights, int tokens, bool broadcast, bool strided, ggml_backend_t cpu = nullptr, bool parallel = false, bool callback = false, bool placement = false, bool op_offload = true,
+            const std::vector<std::array<ggml_tensor *, 3>> * layers = nullptr, ggml_backend_sched_t reuse = nullptr) {
         ctx = ggml_init({1024 * 1024, nullptr, true});
         if (!ctx) {
             return false;
@@ -56,17 +64,29 @@ struct graph_run {
         input = ggml_new_tensor_3d(ctx, GGML_TYPE_F32, width, broadcast ? 1 : topk, tokens);
         storage = ggml_new_tensor_2d(ctx, GGML_TYPE_I32, strided ? 16 : topk, tokens);
         auto * ids = strided ? ggml_view_2d(ctx, storage, topk, tokens, storage->nb[1], sizeof(int32_t)) : storage;
-        result[0] = ggml_mul_mat_id(ctx, weights[0], input, ids);
-        result[1] = ggml_mul_mat_id(ctx, weights[1], input, ids);
-        auto * intermediate = ggml_mul(ctx, ggml_silu(ctx, result[0]), result[1]);
-        result[2] = ggml_mul_mat_id(ctx, weights[2], intermediate, ids);
         graph = ggml_new_graph_custom(ctx, 128, false);
-        for (auto * tensor : result) {
-            ggml_set_output(tensor);
-            ggml_build_forward_expand(graph, tensor);
+        const auto all_weights = layers ? *layers : std::vector<std::array<ggml_tensor *, 3>>{weights};
+        auto * layer_input = input;
+        for (const auto & layer : all_weights) {
+            std::array<ggml_tensor *, 3> computed{};
+            computed[0] = ggml_mul_mat_id(ctx, layer[0], layer_input, ids);
+            // CPU bridges give each projection a separate scheduler split.
+            auto * up_input = layers ? ggml_add(ctx,layer_input,ggml_scale(ctx,ggml_sum(ctx,computed[0]),0)) : layer_input;
+            computed[1] = ggml_mul_mat_id(ctx, layer[1], up_input, ids);
+            auto * intermediate = ggml_mul(ctx, ggml_silu(ctx, computed[0]), computed[1]);
+            computed[2] = ggml_mul_mat_id(ctx, layer[2], intermediate, ids);
+            if (layers) { layer_input = ggml_add(ctx,input,ggml_scale(ctx,ggml_sum(ctx,computed[2]),0)); }
+            layer_results.push_back(computed);
+            for (auto * tensor : computed) {
+                ggml_set_output(tensor);
+                ggml_build_forward_expand(graph, tensor);
+            }
         }
+        result = layer_results.front();
         for (int i = 0; i < ggml_graph_n_nodes(graph); ++i) {
-            if (!ggml_backend_supports_op(backend, ggml_graph_node(graph, i))) {
+            auto * node = ggml_graph_node(graph,i);
+            auto * expected = layers && cpu && node->op != GGML_OP_MUL_MAT_ID ? cpu : backend;
+            if (!ggml_backend_supports_op(expected, node)) {
                 fprintf(stderr, "pool fixture: unsupported op %s\n", ggml_op_name(ggml_graph_node(graph, i)->op));
                 return false;
             }
@@ -74,8 +94,10 @@ struct graph_run {
         if (cpu) {
             ggml_set_input(input);
             ggml_set_input(storage);
+            if (layers) { ggml_set_output(storage); }
             std::vector<ggml_backend_t> backends = backend == cpu ? std::vector<ggml_backend_t>{cpu} : std::vector<ggml_backend_t>{backend, cpu};
-            sched = ggml_backend_sched_new(backends.data(), nullptr, backends.size(), 128, parallel, op_offload);
+            sched = reuse ? reuse : ggml_backend_sched_new(backends.data(), nullptr, backends.size(), 128, parallel, op_offload);
+            if (reuse) { ggml_backend_sched_reset(sched); }
             if (callback) {
                 ggml_backend_sched_set_eval_callback(sched, [](ggml_tensor *, bool, void *) { return true; }, nullptr);
             }
@@ -83,7 +105,9 @@ struct graph_run {
             ggml_backend_sched_set_tensor_backend(sched, storage, cpu);
             for (int i = 0; i < ggml_graph_n_nodes(graph); ++i) {
                 auto * node = ggml_graph_node(graph, i);
-                if (!placement) {
+                if (layers && node->op != GGML_OP_MUL_MAT_ID) {
+                    ggml_backend_sched_set_tensor_backend(sched,node,cpu);
+                } else if (!placement) {
                     ggml_backend_sched_set_tensor_backend(sched, node, ggml_is_view(node) ? cpu : backend);
                 }
             }
@@ -92,7 +116,7 @@ struct graph_run {
         buffer = ggml_backend_alloc_ctx_tensors(ctx, backend);
         return buffer != nullptr;
     }
-    bool submit(ggml_backend_t backend, const std::vector<int32_t> & ids) {
+    bool submit(ggml_backend_t backend, const std::vector<int32_t> & ids, int epoch = 0) {
         std::vector<int32_t> id_data(ggml_nelements(storage), -1);
         const bool strided = storage->ne[0] != topk;
         for (int token = 0; token < storage->ne[1]; ++token) {
@@ -104,7 +128,7 @@ struct graph_run {
         for (int token = 0; token < input->ne[2]; ++token) {
             for (int slot = 0; slot < input->ne[1]; ++slot) {
                 for (int col = 0; col < width; ++col) {
-                    data[(token * input->ne[1] + slot) * width + col] = activation_value(token, slot, col);
+                    data[(token * input->ne[1] + slot) * width + col] = activation_value(token + epoch, slot, col);
                 }
             }
         }
@@ -171,6 +195,47 @@ struct saved_env {
     explicit saved_env(const char * key) : key(key), present(getenv(key) != nullptr), value(present ? getenv(key) : "") {}
     ~saved_env() { if (present) { setenv(key, value.c_str(), 1); } else { unsetenv(key); } }
 };
+
+struct fail_allocation {
+    // Test process only. No graph runs while this allocator is replaced.
+    ggml_backend_buffer_type_t buft;
+    ggml_backend_buffer_t (*saved)(ggml_backend_buffer_type_t, size_t);
+    size_t calls = 0;
+    static fail_allocation * active;
+    static ggml_backend_buffer_t reject(ggml_backend_buffer_type_t, size_t) {
+        ++active->calls;
+        return nullptr;
+    }
+    explicit fail_allocation(ggml_backend_t backend) : buft(ggml_backend_get_default_buffer_type(backend)), saved(buft->iface.alloc_buffer) {
+        active = this;
+        buft->iface.alloc_buffer = reject;
+    }
+    ~fail_allocation() { buft->iface.alloc_buffer = saved; active = nullptr; }
+};
+fail_allocation * fail_allocation::active = nullptr;
+
+struct abort_pool_graph {
+    ggml_backend_t backend;
+    ggml_status (*saved)(ggml_backend_t, ggml_cgraph *);
+    int calls = 0;
+    static abort_pool_graph * active;
+    static ggml_status compute(ggml_backend_t backend, ggml_cgraph * graph) {
+        for (int i = 0; i < ggml_graph_n_nodes(graph); ++i) {
+            auto * node = ggml_graph_node(graph,i);
+            if (node->op == GGML_OP_MUL_MAT_ID && strncmp(node->src[0]->name,"pool.",5) == 0) {
+                ++active->calls;
+                return GGML_STATUS_ABORTED;
+            }
+        }
+        return active->saved(backend,graph);
+    }
+    explicit abort_pool_graph(ggml_backend_t backend) : backend(backend), saved(backend->iface.graph_compute) {
+        active = this;
+        backend->iface.graph_compute = compute;
+    }
+    ~abort_pool_graph() { backend->iface.graph_compute = saved; active = nullptr; }
+};
+abort_pool_graph * abort_pool_graph::active = nullptr;
 
 bool scheduler_case(ggml_backend_t target, ggml_backend_t cpu, const std::array<ggml_tensor *, 3> & source,
         int quant, int tokens, bool broadcast, bool strided, FILE * output, const char * config, bool parallel, bool callback, bool placement) {
@@ -437,6 +502,50 @@ bool check_management(ggml_backend_t target, ggml_backend_t cpu) {
     }
     using status = moe_expert_pool::status;
     bool ok = true;
+    moe_expert_pool allocation_retry;
+    ok = allocation_retry.init(target,a,4,65536,true) && ok;
+    const auto retry_residents = allocation_retry.residents();
+    const auto retry_counts = allocation_retry.counts();
+    std::vector<int32_t> retry_ids;
+    {
+        fail_allocation fault(target);
+        ok = allocation_retry.acquire({1},retry_ids) == status::unavailable && retry_ids.empty() && fault.calls == 1 &&
+                allocation_retry.allocated_bytes() == 0 && allocation_retry.residents() == retry_residents &&
+                same_counts(allocation_retry.counts(),retry_counts) && ok;
+    }
+    ok = allocation_retry.acquire({1},retry_ids) == status::ready && retry_ids == std::vector<int32_t>{0} && ok;
+    allocation_retry.release();
+    for (int i = 0; i < 3; ++i) {
+        std::vector<float> actual(32*8);
+        ggml_backend_tensor_get(allocation_retry.weight(i),actual.data(),0,a[i]->nb[2]);
+        ok = std::all_of(actual.begin(),actual.end(),[i](float value) { return value == float(i*16+2); }) && ok;
+    }
+    printf("pool actual_allocator_failure=1 unchanged_state=1 retry=1 raw_payload_exact=1 %s\n",ok ? "OK" : "FAIL");
+    for (int misses = 0; misses <= 4; ++misses) {
+        moe_expert_pool mixed;
+        std::vector<int32_t> mapped, requested;
+        ok = mixed.init(target,a,4,65536) && mixed.acquire({0,1,2,3},mapped,4) == status::ready && ok;
+        mixed.release();
+        const auto before = mixed.counts();
+        for (int i = 0; i < 4-misses; ++i) { requested.push_back(i); }
+        for (int i = 0; i < misses; ++i) { requested.push_back(4+i); }
+        ok = mixed.acquire(requested,mapped,4) == status::ready && ok;
+        mixed.release();
+        const auto after = mixed.counts();
+        ok = after.misses-before.misses == uint64_t(misses) && after.hits-before.hits == uint64_t(4-misses) &&
+                after.evictions-before.evictions == uint64_t(misses) &&
+                after.upload_bytes-before.upload_bytes == uint64_t(misses)*3*a[0]->nb[2] && ok;
+        for (int i = 0; i < 3; ++i) {
+            for (size_t rank = 0; rank < requested.size(); ++rank) {
+                std::vector<float> actual(32*8);
+                ggml_backend_tensor_get(mixed.weight(i),actual.data(),mapped[rank]*a[i]->nb[2],a[i]->nb[2]);
+                ok = std::all_of(actual.begin(),actual.end(),[&](float value) { return value == float(i*16+requested[rank]+1); }) && ok;
+            }
+        }
+        printf("pool controlled_miss_percent=%d hits=%llu misses=%llu evictions=%llu raw_payload_exact=1 %s\n",misses*25,
+                (unsigned long long)(after.hits-before.hits),(unsigned long long)(after.misses-before.misses),
+                (unsigned long long)(after.evictions-before.evictions),ok ? "OK" : "FAIL");
+    }
     for (int capacity : {1, 2, 4, 8}) {
         moe_expert_pool first, second;
         ok = first.init(target, a, capacity, 65536) && second.init(target, b, capacity, 65536) && ok;
@@ -553,6 +662,152 @@ bool check_management(ggml_backend_t target, ggml_backend_t cpu) {
 }
 } // namespace
 
+bool check_multilayer_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * output) {
+    saved_env pool_env("GGML_SCHED_EXPERT_POOL"), place_env("GGML_SCHED_EXPERT_GPU_LAYER");
+    bool ok = true;
+    for (int count : {2, 4}) {
+      for (int quant : {0, 1}) {
+        tensor_store source_store, full_store;
+        std::vector<std::array<ggml_tensor *, 3>> source(count), full(count);
+        const char * names[] = {"gate", "up", "down"};
+        std::string config, layers;
+        for (int layer = 0; layer < count; ++layer) {
+            config += (layer ? ";" : "") + std::to_string(layer+3) + ":12:16";
+            layers += (layer ? "," : "") + std::to_string(layer+3);
+            for (int i = 0; i < 3; ++i) {
+                const auto type = quant == 0 ? GGML_TYPE_F32 : i == 2 ? GGML_TYPE_Q6_K : GGML_TYPE_Q4_K;
+                source[layer][i] = ggml_new_tensor_3d(source_store.ctx, type, width, i == 2 ? outputs : rows, experts);
+                full[layer][i] = ggml_new_tensor_3d(full_store.ctx, type, width, i == 2 ? outputs : rows, experts);
+                ggml_format_name(source[layer][i], "blk.%d.ffn_%s_exps.weight", layer+3, names[i]);
+                ggml_format_name(full[layer][i], "blk.%d.ffn_%s_exps.weight", layer+3, names[i]);
+            }
+        }
+        source_store.buffer = ggml_backend_alloc_ctx_tensors(source_store.ctx, cpu);
+        full_store.buffer = ggml_backend_alloc_ctx_tensors(full_store.ctx, target);
+        if (!source_store.buffer || !full_store.buffer) { return false; }
+        ggml_backend_buffer_set_usage(source_store.buffer, GGML_BACKEND_BUFFER_USAGE_WEIGHTS);
+        for (int layer = 0; layer < count; ++layer) {
+            for (int i = 0; i < 3; ++i) {
+                auto * weight = source[layer][i];
+                std::vector<uint8_t> packed(ggml_nbytes(weight));
+                std::vector<float> row(width);
+                for (int expert = 0; expert < experts; ++expert) {
+                    for (int r = 0; r < weight->ne[1]; ++r) {
+                        for (int col = 0; col < width; ++col) { row[col] = source_value(layer*3+i, expert, r, col); }
+                        auto * destination = packed.data()+expert*weight->nb[2]+r*weight->nb[1];
+                        if (weight->type == GGML_TYPE_F32) { memcpy(destination,row.data(),width*sizeof(float)); }
+                        else { ggml_get_type_traits(weight->type)->from_float_ref(row.data(),destination,width); }
+                    }
+                }
+                ggml_backend_tensor_set(weight,packed.data(),0,packed.size());
+                ggml_backend_tensor_set(full[layer][i],packed.data(),0,packed.size());
+            }
+        }
+        std::unique_ptr<graph_run> previous;
+        for (int tokens : {1, 3, 33, 3, 1}) {
+            unsetenv(pool_env.key);
+            unsetenv(place_env.key);
+            graph_run off;
+            auto current = std::make_unique<graph_run>();
+            auto & on = *current;
+            ggml_backend_sched_t reuse = previous ? previous->sched : nullptr;
+            if (previous) { previous->sched = nullptr; }
+            if (!off.init(target,full.front(),tokens,false,true,cpu,false,false,false,true,&full)) { return false; }
+            setenv(pool_env.key,config.c_str(),1);
+            setenv(place_env.key,layers.c_str(),1);
+            if (!on.init(target,source.front(),tokens,false,true,cpu,false,false,true,true,&source,reuse)) { return false; }
+            previous.reset();
+            for (const auto & layer : on.layer_results) {
+                for (auto * tensor : layer) {
+                    auto * actual_backend = ggml_backend_sched_get_tensor_backend(on.sched,tensor);
+                    if (actual_backend != target) { fprintf(stderr,"multilayer placement: %s backend=%s expected=%s\n",tensor->name,ggml_backend_name(actual_backend),ggml_backend_name(target)); }
+                    ok = actual_backend == target && ok;
+                }
+            }
+            for (int pass = 0; pass < 6; ++pass) {
+                std::vector<int32_t> ids(tokens*topk);
+                for (int token = 0; token < tokens; ++token) {
+                    for (int rank = 0; rank < topk; ++rank) {
+                        ids[token*topk+rank] = pass == 0 ? rank : pass == 1 ? 7-rank : pass == 2 ? rank+4 :
+                                pass == 3 ? (token*topk+rank)%experts : pass == 4 ? 248+rank : 255-rank;
+                    }
+                }
+                const bool off_submitted = off.submit(target,ids,pass), on_submitted = on.submit(target,ids,pass);
+                if (!off_submitted || !on_submitted) { fprintf(stderr,"multilayer submit: off=%d on=%d\n",off_submitted,on_submitted); }
+                ok = off_submitted && on_submitted && ok;
+                ggml_backend_synchronize(target);
+                for (int layer = 0; layer < count; ++layer) {
+                    values actual, reference;
+                    for (int i = 0; i < 3; ++i) {
+                        auto * tensor = on.layer_results[layer][i];
+                        actual[i].resize(ggml_nelements(tensor));
+                        reference[i].resize(actual[i].size());
+                        ggml_backend_tensor_get(tensor,actual[i].data(),0,ggml_nbytes(tensor));
+                        ggml_backend_tensor_get(off.layer_results[layer][i],reference[i].data(),0,ggml_nbytes(tensor));
+                        if (output) { ok = fwrite(actual[i].data(),sizeof(float),actual[i].size(),output) == actual[i].size() && ok; }
+                    }
+                    const bool same = identical(actual,reference);
+                    if (!same) {
+                        for (int projection=0;projection<3;++projection) {
+                            double delta=0;size_t different=0;
+                            for (size_t v=0;v<actual[projection].size();++v) { delta=std::max(delta,std::abs(double(actual[projection][v])-reference[projection][v]));different+=memcmp(&actual[projection][v],&reference[projection][v],sizeof(float))!=0; }
+                            fprintf(stderr,"multilayer raw: count=%d quant=%d tokens=%d pass=%d layer=%d projection=%d diff=%zu maxabs=%g valid=%d/%d\n",count,quant,tokens,pass,layer,projection,different,delta,valid(actual),valid(reference));
+                        }
+                    }
+                    ok = same && ok;
+                }
+                std::vector<int32_t> stored(ggml_nelements(on.storage));
+                ggml_backend_tensor_get(on.storage,stored.data(),0,ggml_nbytes(on.storage));
+                for (int token = 0; token < tokens; ++token) {
+                    for (int rank = 0; rank < topk; ++rank) {
+                        if (stored[token*16+rank+1] != ids[token*topk+rank]) { fprintf(stderr,"multilayer source ids: tokens=%d pass=%d token=%d rank=%d actual=%d expected=%d\n",tokens,pass,token,rank,stored[token*16+rank+1],ids[token*topk+rank]); }
+                        ok = stored[token*16+rank+1] == ids[token*topk+rank] && ok;
+                    }
+                }
+            }
+            if (!ggml_backend_is_cpu(target)) {
+                std::vector<int32_t> ids(tokens*topk);
+                for (size_t i = 0; i < ids.size(); ++i) { ids[i] = i%topk; }
+                ok = off.submit(target,ids,6) && ok;
+                std::vector<std::array<ggml_tensor *,GGML_MAX_SRC>> original_sources;
+                for (int i = 0; i < ggml_graph_n_nodes(on.graph); ++i) {
+                    std::array<ggml_tensor *,GGML_MAX_SRC> sources;
+                    std::copy_n(ggml_graph_node(on.graph,i)->src,GGML_MAX_SRC,sources.begin());
+                    original_sources.push_back(sources);
+                }
+                {
+                    abort_pool_graph fault(target);
+                    const bool submitted = on.submit(target,ids,6);
+                    fprintf(stderr,"abort fixture: submitted=%d calls=%d prior_ok=%d\n",submitted,fault.calls,ok);
+                    ok = !submitted && fault.calls == 1 && ok;
+                }
+                for (int i = 0; i < ggml_graph_n_nodes(on.graph); ++i) {
+                    const bool restored = std::equal(original_sources[i].begin(),original_sources[i].end(),ggml_graph_node(on.graph,i)->src);
+                    if (!restored) { fprintf(stderr,"abort fixture: sources changed node=%d name=%s\n",i,ggml_graph_node(on.graph,i)->name); }
+                    ok = restored && ok;
+                }
+                ok = on.submit(target,ids,6) && ok;
+                ggml_backend_synchronize(target);
+                for (int layer = 0; layer < count; ++layer) {
+                    values actual,reference;
+                    for (int i = 0; i < 3; ++i) {
+                        auto * tensor = on.layer_results[layer][i];
+                        actual[i].resize(ggml_nelements(tensor));reference[i].resize(actual[i].size());
+                        ggml_backend_tensor_get(tensor,actual[i].data(),0,ggml_nbytes(tensor));
+                        ggml_backend_tensor_get(off.layer_results[layer][i],reference[i].data(),0,ggml_nbytes(tensor));
+                    }
+                    ok = identical(actual,reference) && ok;
+                }
+                printf("pool abort_after_admission=1 graph_sources_restored=1 retry_raw_exact=1 %s\n",ok ? "OK" : "FAIL");
+            }
+            printf("multilayer pool layers=%d quant=%d tokens=%d changed_input=1 strided=1 resize_reused_scheduler=1 raw_exact=1 %s\n",count,quant,tokens,ok ? "OK" : "FAIL");
+            previous = std::move(current);
+        }
+      }
+    }
+    return ok;
+}
+
 bool check_expert_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * output) {
     bool ok = check_management(target, cpu);
     for (int quant : {0, 1, 2, 3}) {
@@ -579,7 +834,7 @@ bool check_scheduler_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * outp
             }
         }
     }
-    for (const char * config : {"3:4:16", "3:12:1", "3:12:0", "3:12:16:1"}) {
+    for (const char * config : {"3:4:16", "3:12:1", "3:12:0", "3:12:16:1", "3:12:16;", ";3:12:16", "3:12:16;3:12:16", "3:12:16;4:12:2048", "3:12:16;4:12:0", "3:12:16;4:12:16"}) {
         ok = check_pool_case(target, cpu, 0, 1, false, false, output, config) && ok;
     }
     ok = check_pool_case(target, cpu, 1, 3, false, false, output, "3:12:16", true) && ok;
@@ -620,7 +875,7 @@ bool check_expert_placement(ggml_backend_t target, ggml_backend_t cpu, FILE * ou
         }
         ggml_backend_tensor_set(weights[i], data.data(), 0, ggml_nbytes(weights[i]));
     }
-    for (const char * config : {"3", "", "-1", "3x", "4097", "999999999999999", "0", "4"}) {
+    for (const char * config : {"3", "", "-1", "3x", "4097", "999999999999999", "0", "4", "3,4", "4,3", "3,", ",3", "3,3", "3,4097"}) {
         for (bool shared : {false, true}) {
             const char * names[] = {"gate", "up", "down"};
             for (int i = 0; i < 3; ++i) {
@@ -628,7 +883,7 @@ bool check_expert_placement(ggml_backend_t target, ggml_backend_t cpu, FILE * ou
             }
             setenv(place_env.key, config, 1);
             graph_run actual, reference;
-            const bool selected = strcmp(config, "3") == 0 && !shared;
+            const bool selected = (strcmp(config, "3") == 0 || strcmp(config, "3,4") == 0 || strcmp(config, "4,3") == 0) && !shared;
             auto * expected = selected ? target : cpu;
             if (!actual.init(target, weights, 1, false, true, cpu, false, false, true) ||
                     !reference.init(expected, weights, 1, false, true, cpu)) {
@@ -693,6 +948,72 @@ bool numerics_load(const char * prefix, const std::string & suffix, void * data,
     const bool ok = fread(data, 1, bytes, file) == bytes && fgetc(file) == EOF && !ferror(file);
     return fclose(file) == 0 && ok;
 }
+
+bool operator_cost(ggml_backend_t target, ggml_tensor * weights, const void * input_data, ggml_type input_type,
+        const int32_t * route, int slots, const float * full_result, const char * name, int pass, FILE * cost) {
+    if (!cost) { return true; }
+    const bool cold_weights = getenv("MOE_OPERATOR_COLD_WEIGHTS") != nullptr;
+    if (cold_weights) {
+        if (!ggml_backend_is_cpu(target) || !ggml_backend_buffer_is_host(weights->buffer)) { return false; }
+#if !defined(__x86_64__) && !defined(__i386__)
+        fprintf(stderr,"cold weight timing requires x86 cache-line flush support\n");
+        return false;
+#endif
+    }
+    for (int selected : {0, 2, 4, 6, 8}) {
+        tensor_store partial;
+        ggml_tensor * result = nullptr;
+        ggml_cgraph * graph = nullptr;
+        if (selected) {
+            auto * input = ggml_new_tensor_3d(partial.ctx,input_type,weights->ne[0],slots == 1 ? 1 : selected,1);
+            auto * ids = ggml_new_tensor_2d(partial.ctx,GGML_TYPE_I32,selected,1);
+            result = ggml_mul_mat_id(partial.ctx,weights,input,ids);
+            graph = ggml_new_graph_custom(partial.ctx,16,false);
+            ggml_build_forward_expand(graph,result);
+            if (!ggml_backend_supports_op(target,result)) { return false; }
+            partial.buffer = ggml_backend_alloc_ctx_tensors(partial.ctx,target);
+            if (!partial.buffer) { return false; }
+            ggml_backend_tensor_set(input,input_data,0,ggml_nbytes(input));
+            ggml_backend_tensor_set(ids,route,0,selected*sizeof(int32_t));
+            if (ggml_backend_graph_compute(target,graph) != GGML_STATUS_SUCCESS) { return false; }
+            ggml_backend_synchronize(target);
+        }
+        std::vector<float> reference(selected*weights->ne[1]), actual(reference.size());
+        if (selected) {
+            ggml_backend_tensor_get(result,reference.data(),0,ggml_nbytes(result));
+            if (memcmp(reference.data(),full_result,reference.size()*sizeof(float))) {
+                fprintf(stderr,"operator cost subset differs %s pass=%d selected=%d\n",name,pass,selected);
+                return false;
+            }
+        }
+        for (int rep = 0; rep < 30; ++rep) {
+#if defined(__x86_64__) || defined(__i386__)
+            if (cold_weights) {
+                ggml_backend_synchronize(target);
+                for (int expert = 0; expert < selected; ++expert) {
+                    if (route[expert] < 0 || route[expert] >= weights->ne[2]) { return false; }
+                    const char * data = static_cast<const char *>(weights->data) + route[expert]*weights->nb[2];
+                    for (size_t offset = 0; offset < weights->nb[2]; offset += 64) { _mm_clflush(data+offset); }
+                }
+                _mm_mfence();
+            }
+#endif
+            const int64_t start = ggml_time_us();
+            const auto status = selected ? ggml_backend_graph_compute_async(target,graph) : GGML_STATUS_SUCCESS;
+            ggml_backend_synchronize(target);
+            const int64_t elapsed = ggml_time_us()-start;
+            if (status != GGML_STATUS_SUCCESS) { return false; }
+            if (selected) {
+                ggml_backend_tensor_get(result,actual.data(),0,ggml_nbytes(result));
+                if (actual != reference || std::any_of(actual.begin(),actual.end(),[](float v) { return !std::isfinite(v); }) ||
+                        std::all_of(actual.begin(),actual.end(),[](float v) { return v == 0; })) { return false; }
+            }
+            if (fprintf(cost,"%s,%d,%s,%s,%d,%d,%lld\n",name,pass,ggml_backend_name(target),ggml_type_name(input_type),
+                    selected,rep,(long long)elapsed) < 0) { return false; }
+        }
+    }
+    return true;
+}
 }
 
 bool check_operator_numerics(ggml_backend_t target, FILE * output) {
@@ -723,6 +1044,11 @@ bool check_operator_numerics(ggml_backend_t target, FILE * output) {
         return false;
     }
     using file_ptr = std::unique_ptr<FILE, int (*)(FILE *)>;
+    file_ptr cost(nullptr,fclose);
+    if (const char * path = getenv("MOE_OPERATOR_COST_OUT")) {
+        cost.reset(fopen(path,"wx"));
+        if (!cost || fprintf(cost.get(),"projection,pass,backend,input_type,selected_experts,repetition,compute_sync_us\n") < 0) { return false; }
+    }
     const char * oracle_prefix = getenv("MOE_OPERATOR_ORACLE_PREFIX");
     file_ptr fp32(nullptr, fclose), q8k(nullptr, fclose);
     if (oracle_prefix && *oracle_prefix) {
@@ -858,6 +1184,8 @@ bool check_operator_numerics(ggml_backend_t target, FILE * output) {
             ggml_backend_synchronize(target);
             std::vector<float> actual(8 * m);
             ggml_backend_tensor_get(result, actual.data(), 0, ggml_nbytes(result));
+            if (!operator_cost(target,weights,direct_q8k ? static_cast<const void *>(quantized.data()) : actual_input.data(),
+                    input->type,id_data,slots,actual.data(),name,pass,cost.get())) { return false; }
             std::vector<double> ref32(8 * m), ref8(8 * m);
             double max32 = 0, max8 = 0, sum32 = 0, sum8 = 0;
             for (int slot = 0; slot < 8; ++slot) {
@@ -902,5 +1230,81 @@ bool check_operator_numerics(ggml_backend_t target, FILE * output) {
         }
         fprintf(stderr, "operator numerics end %s\n", name);
     }
-    return (!fp32 || fflush(fp32.get()) == 0) && (!q8k || fflush(q8k.get()) == 0);
+    return (!fp32 || fflush(fp32.get()) == 0) && (!q8k || fflush(q8k.get()) == 0) && (!cost || fclose(cost.release()) == 0);
+}
+
+bool check_transfer_cost(ggml_backend_t target) {
+    const char * prefix = getenv("MOE_OPERATOR_INPUT_PREFIX");
+    const char * path = getenv("MOE_TRANSFER_COST_OUT");
+    if (!prefix || !*prefix || !path || ggml_backend_is_cpu(target)) { return false; }
+    FILE * cost = fopen(path,"wx");
+    if (!cost) { return false; }
+    tensor_store store;
+    std::array<ggml_tensor *,3> weights{};
+    std::array<std::vector<uint8_t>,3> host;
+    std::array<size_t,3> stride{};
+    int32_t route[8];
+    bool ok = numerics_load(prefix,"-gate-0-ids.bin",route,sizeof(route));
+    const char * names[] = {"gate","up","down"};
+    for (int i = 0; i < 3 && ok; ++i) {
+        const int k = i == 2 ? 512 : 2048, m = i == 2 ? 2048 : 512;
+        weights[i] = ggml_new_tensor_3d(store.ctx,GGML_TYPE_Q4_K,k,m,9);
+        stride[i] = weights[i]->nb[2];
+        std::vector<uint8_t> full(stride[i]*256);
+        ok = numerics_load(prefix,std::string("-")+names[i]+"-weights.bin",full.data(),full.size());
+        host[i].assign(stride[i]*9,0);
+        for (int expert = 0; expert < 8 && ok; ++expert) {
+            ok = route[expert] >= 0 && route[expert] < 256;
+            if (ok) { memcpy(host[i].data()+expert*stride[i],full.data()+route[expert]*stride[i],stride[i]); }
+        }
+    }
+    if (!ok) { fclose(cost); return false; }
+    store.buffer = ggml_backend_alloc_ctx_tensors(store.ctx,target);
+    if (!store.buffer) { fclose(cost); return false; }
+    ggml_backend_buffer_clear(store.buffer,0);
+    fprintf(cost,"pattern,direction,selected_experts,repetition,payload_bytes,padding_bytes,api_calls,allocated_bytes,copy_sync_us\n");
+    for (const char * pattern : {"grouped","per_expert","per_expert_padding512"}) {
+      for (int selected : {0,2,4,6,8}) {
+        for (int rep = -1; rep < 30; ++rep) {
+            size_t payload = 0, padding = 0, calls = 0;
+            ggml_backend_synchronize(target);
+            const int64_t start = ggml_time_us();
+            for (int expert = 0; expert < selected;) {
+                const int count = strcmp(pattern,"grouped") == 0 ? selected : 1;
+                for (int i = 0; i < 3; ++i) {
+                    const size_t extra = strcmp(pattern,"per_expert_padding512") == 0 ? 512 : 0;
+                    const size_t bytes = stride[i]*count;
+                    ggml_backend_tensor_set(weights[i],host[i].data()+expert*stride[i],expert*stride[i],bytes+extra);
+                    payload += bytes; padding += extra; ++calls;
+                }
+                expert += count;
+            }
+            ggml_backend_synchronize(target);
+            const int64_t upload_us = ggml_time_us()-start;
+            std::array<std::vector<uint8_t>,3> downloaded;
+            for (int i = 0; i < 3; ++i) { downloaded[i].resize(selected*stride[i]); }
+            const int64_t read_start = ggml_time_us();
+            for (int expert = 0; expert < selected;) {
+                const int count = strcmp(pattern,"grouped") == 0 ? selected : 1;
+                for (int i = 0; i < 3; ++i) {
+                    ggml_backend_tensor_get(weights[i],downloaded[i].data()+expert*stride[i],expert*stride[i],count*stride[i]);
+                }
+                expert += count;
+            }
+            ggml_backend_synchronize(target);
+            const int64_t read_us = ggml_time_us()-read_start;
+            for (int i = 0; i < 3; ++i) {
+                ok = (!selected || memcmp(downloaded[i].data(),host[i].data(),downloaded[i].size()) == 0) && ok;
+            }
+            if (rep >= 0) {
+                ok = fprintf(cost,"%s,H2D,%d,%d,%zu,%zu,%zu,%zu,%lld\n",pattern,selected,rep,payload,padding,calls,
+                        ggml_backend_buffer_get_size(store.buffer),(long long)upload_us) >= 0 && ok;
+                ok = fprintf(cost,"%s,D2H,%d,%d,%zu,0,%zu,%zu,%lld\n",pattern,selected,rep,payload,calls,
+                        ggml_backend_buffer_get_size(store.buffer),(long long)read_us) >= 0 && ok;
+            }
+        }
+      }
+    }
+    printf("expert triplet transfer actual_weight_bytes=1 raw_payload_exact=1 padding=0,512 %s\n",ok ? "OK" : "FAIL");
+    return fclose(cost) == 0 && ok;
 }

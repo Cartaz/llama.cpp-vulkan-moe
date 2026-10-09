@@ -1,0 +1,53 @@
+{
+  "utc": "2026-10-09T01:42:21.229722+00:00",
+  "label": "COST",
+  "compile": [
+    "g++",
+    "-O3",
+    "-DNDEBUG",
+    "-DGGML_BACKEND_SHARED",
+    "-DGGML_SCHED_CHECK_VULKAN",
+    "-DGGML_SHARED",
+    "-DGGML_USE_CPU",
+    "-DGGML_USE_VULKAN",
+    "-Iggml/include",
+    "examples/moe-trace/scheduler-check.cpp",
+    "examples/moe-trace/expert-pool-check.cpp",
+    "-L/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/COST",
+    "-Wl,-rpath,$ORIGIN",
+    "-lggml",
+    "-lggml-cpu",
+    "-lggml-vulkan",
+    "-lggml-base",
+    "-o",
+    "risultati/2026-10-09-roadmap-resume/frozen/COST/scheduler-check"
+  ],
+  "artifacts": {
+    "frozen/COST/libggml-base.so.0.25.1": "167ef8f0d9a0aabd4c0f87637a47dec24461e6810ef990962ed38f119fb9068e",
+    "frozen/COST/libggml-cpu.so.0.25.1": "d939874c41448f224794190e80548a7d09a309686450ac53c797b040eb2d995b",
+    "frozen/COST/libggml-vulkan.so.0.25.1": "4442d44cfa70f0cf12b5d6290f6bd74fbe1b24e4a90fe71759ab40efffeb22d4",
+    "frozen/COST/libggml.so.0.25.1": "dc0917f5b55bb86ecfa89c7d1734c5ab6579fb90ad97cd5a94735fa9eb9e5f22",
+    "frozen/COST/libllama.so.0.5.0": "d8cd670eab39b9ae327c11e5446e6b6faa4ae8f8250796ff7aabd031aeaca504",
+    "frozen/COST/libllama-common.so.0.5.0": "12c8b2dfbdd57b1ee7e095bd6d0756c0c5dcfb05e9dc8eb4bab1beb009515528",
+    "frozen/COST/libggml-base.so.0": "167ef8f0d9a0aabd4c0f87637a47dec24461e6810ef990962ed38f119fb9068e",
+    "frozen/COST/libggml-base.so": "167ef8f0d9a0aabd4c0f87637a47dec24461e6810ef990962ed38f119fb9068e",
+    "frozen/COST/libggml-cpu.so.0": "d939874c41448f224794190e80548a7d09a309686450ac53c797b040eb2d995b",
+    "frozen/COST/libggml-cpu.so": "d939874c41448f224794190e80548a7d09a309686450ac53c797b040eb2d995b",
+    "frozen/COST/libggml-vulkan.so.0": "4442d44cfa70f0cf12b5d6290f6bd74fbe1b24e4a90fe71759ab40efffeb22d4",
+    "frozen/COST/libggml-vulkan.so": "4442d44cfa70f0cf12b5d6290f6bd74fbe1b24e4a90fe71759ab40efffeb22d4",
+    "frozen/COST/libggml.so.0": "dc0917f5b55bb86ecfa89c7d1734c5ab6579fb90ad97cd5a94735fa9eb9e5f22",
+    "frozen/COST/libggml.so": "dc0917f5b55bb86ecfa89c7d1734c5ab6579fb90ad97cd5a94735fa9eb9e5f22",
+    "frozen/COST/libllama.so.0": "d8cd670eab39b9ae327c11e5446e6b6faa4ae8f8250796ff7aabd031aeaca504",
+    "frozen/COST/libllama.so": "d8cd670eab39b9ae327c11e5446e6b6faa4ae8f8250796ff7aabd031aeaca504",
+    "frozen/COST/libllama-common.so.0": "12c8b2dfbdd57b1ee7e095bd6d0756c0c5dcfb05e9dc8eb4bab1beb009515528",
+    "frozen/COST/libllama-common.so": "12c8b2dfbdd57b1ee7e095bd6d0756c0c5dcfb05e9dc8eb4bab1beb009515528",
+    "frozen/COST/scheduler-check": "6b73a4eb77145ba5faf5396680980583818e1b3177fbd5af24dc883bbe3dfcf1"
+  },
+  "source": {
+    "examples/moe-trace/scheduler-check.cpp": "4e85c5a09d59bb66102cb0264efa1adf7aed14caabe1f42684ed44baacd33005",
+    "examples/moe-trace/expert-pool-check.cpp": "18ff0b7bdf1c2c309a56329696a72c8ffa4d1f73c066640a121ced0e0d8abfec"
+  },
+  "protocol_sha256": "0845f05a819091b5ee50a6b8a352476947e8fb4f49f99a4865f8cd139d23fed6",
+  "libraries": "Byte-exact FIXED archived engine; standalone helper linked directly to these libraries",
+  "cmake_amendment": "CMake reran after671653e and recompiled ggml.c with updated GGML_COMMIT; hash changed. Do not use or qualify rebuilt libraries in this cost experiment."
+}
