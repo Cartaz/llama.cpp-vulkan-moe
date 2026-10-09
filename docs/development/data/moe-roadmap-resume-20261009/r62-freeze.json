@@ -1,0 +1,38 @@
+{
+  "model": {
+    "path": "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+    "bytes": 21713462848,
+    "sha256": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f"
+  },
+  "candidate_commit": "bc77a7b02086b984dc81a37f30b85ba4b979298d;standalone observer only",
+  "utc": "2026-10-09T00:34:39.932730+00:00",
+  "helper_source_sha256": "525b355f337cfb60904535315d5dc9ae8ae555e04e9d8c7d8fc8014e13fac7f8",
+  "variants": {
+    "R62-BASE": "B1 unmodified7fe450e;uniform native-prefill prototype"
+  },
+  "artifacts": {
+    "frozen/R62-BASE/libggml-base.so.0.25.1": "ed4b8f3d3ae59dfba891b43364fd7d5c4d297507fc483b4be8c95ccdde046084",
+    "frozen/R62-BASE/libggml-cpu.so.0.25.1": "f4709ae474d658855aba3c9bb90c17a603b44943fa1793e433a46ee96e3d4226",
+    "frozen/R62-BASE/libggml-vulkan.so.0.25.1": "a1d5ad88a266cb28f496da11726bee09d8021c1ff23e4d4cd9c9b1d06e61efd7",
+    "frozen/R62-BASE/libggml.so.0.25.1": "8e8669c77ec573dd61fc2ab7f5d3d2ece7a2db9edacb354b300232ce7512b443",
+    "frozen/R62-BASE/libllama.so.0.5.0": "61f97ce7a813603834536ce55d887c2cc749d107fe4233903b5462bf80478922",
+    "frozen/R62-BASE/libllama-common.so.0.5.0": "57810254aec09155e20703ddda407c0ef48b415612ad65411ff35e9d246df077",
+    "frozen/R62-BASE/corpus": "ec15cb80f7a0ea4942a0d2b6700f3329e168d8d9329bf1deaec2b48dbfdeabee"
+  },
+  "source": {
+    "ggml/src/ggml-backend.cpp": "e7149e50ffaaa57cd2b5fbab36cd9e0592850bbd6506553644c19b6622095993",
+    "examples/moe-trace/expert-pool-check.cpp": "76f4b5c618e2fa0892107968f79da9be9974b66aef0f357bdf416efaa8ed4d01",
+    "examples/moe-trace/scheduler-check.cpp": "4e85c5a09d59bb66102cb0264efa1adf7aed14caabe1f42684ed44baacd33005",
+    "examples/moe-trace/state-check.cpp": "042685bd603803ddb6ec9a4cc15382f98a94c5ba880ab854973fcd6ca22cfd57",
+    "examples/moe-trace/moe-corpus.cpp": "5bbf28aa5b07399ac3472b34a774638e37fa075e04882739c95d72ec683a39c5"
+  },
+  "state_inputs": {
+    "stress/state-512.json": "9f8d206a56ac22d29589b44b3d0617771bf2eb75a3d67b36ed1e8e41d3df70b0",
+    "stress/state-8192.json": "ac4ee2bf67eb19043bfade81663f3d857344edfc3ab63e3d1ef0515cd3489937",
+    "stress/state-control-512.jsonl": "46924807464035a74322712106765f0e430be03fa8a68d189cd24643e0ca85db",
+    "stress/state-control-8192.jsonl": "ff4e0116e68de312fa986d4375c2951a7e3f1ac123b570f3db0a4a0aa1a529da"
+  },
+  "stress_input_sha256": "ee850f5dbf6c448d2b863d28968daabd7d65a44634018d18bd4a45729d83f5c8",
+  "protocol_sha256": "9def85404283c66b2bc8c9b8e52aae383f17a949cab602f035a4eeca3fe94038",
+  "cases_sha256": "95ef40f87589e7b909b72e3ce1318a81fc8d6f68c8daee904b8770d8b00faadb"
+}

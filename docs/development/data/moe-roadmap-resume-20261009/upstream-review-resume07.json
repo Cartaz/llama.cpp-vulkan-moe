@@ -1,0 +1,270 @@
+{
+  "utc": "2026-10-09T16:40:02.488337+00:00",
+  "previous": "609290be6b15db02f9d73443435403cbff6e7802",
+  "current": "50e3e3e480c80b9ee0ea067e475602d540dc62c8",
+  "commits": [
+    "50e3e3e480c80b9ee0ea067e475602d540dc62c8 CUDA: Remove redundant CUDA copies after SSM_SCAN (#29807)",
+    "64df9183f5ca178c049a392f35e795d8e97c97b3 opencl: fix kernel compilation for a6x GPUs (#30176)",
+    "6184e92c57dcd34de8a3e381d7641a5e75250d5f model : use exact GELU for ModernBERT encoders (#30108)",
+    "8b543610254aafe121942eaf79a23c3847177270 chat : refactor API (#30210)",
+    "a518119d30cade6260f7494120863428a3fe8ee5 llama: keep the backend sampling graph static across ubatches (#30223)",
+    "8ae386707bed05f02354dbfc6fa5ee0cf58e5f0f ggml: fix OOB write in ggml_acc with negative offset (#30135)",
+    "e60eff95fda7b6e46bf402a8e9f1e86d88ab29c8 meta : handle host views (#30217)",
+    "ba6439a6b595224c480d71572c0e4ac91d3e6afd webgpu: use 2D workgroup dispatch for all the ops which use 1D dispatch (e.g., rms_norm) (#30219)",
+    "5e4878e9787fff9bcc5c12478c47618b73268610 vulkan: fix rms_norm workgroup count overflow (#30145)"
+  ],
+  "changed_paths": [
+    "common/chat-auto-parser-generator.cpp",
+    "common/chat.cpp",
+    "common/chat.h",
+    "common/parsers/cohere2moe.cpp",
+    "common/parsers/deepseek.cpp",
+    "common/parsers/functionary-v3-2.cpp",
+    "common/parsers/gemma4.cpp",
+    "common/parsers/gigachat-v3.cpp",
+    "common/parsers/gpt-oss.cpp",
+    "common/parsers/k2-horizon.cpp",
+    "common/parsers/kimi-k2.cpp",
+    "common/parsers/kimi-k3.cpp",
+    "common/parsers/lfm2.cpp",
+    "common/parsers/ling3.cpp",
+    "common/parsers/llm-jp-harmony.cpp",
+    "common/parsers/minicpm5.cpp",
+    "common/parsers/minimax-m3.cpp",
+    "common/parsers/ministral3.cpp",
+    "common/parsers/muse-glimmer.cpp",
+    "common/parsers/qwen3-coder.cpp",
+    "common/parsers/translate-gemma.cpp",
+    "common/peg-parser.cpp",
+    "common/peg-parser.h",
+    "common/sampling.cpp",
+    "common/sampling.h",
+    "ggml/src/ggml-backend-meta.cpp",
+    "ggml/src/ggml-cuda/ggml-cuda.cu",
+    "ggml/src/ggml-cuda/ssm-scan.cu",
+    "ggml/src/ggml-cuda/ssm-scan.cuh",
+    "ggml/src/ggml-opencl/ggml-opencl.cpp",
+    "ggml/src/ggml-opencl/kernels/cpy.cl",
+    "ggml/src/ggml-opencl/kernels/gemv_noshuffle_q4_0_f32.cl",
+    "ggml/src/ggml-opencl/kernels/gemv_noshuffle_q4_k_f32.cl",
+    "ggml/src/ggml-vulkan/ggml-vulkan.cpp",
+    "ggml/src/ggml-vulkan/vulkan-shaders/rms_norm.comp",
+    "ggml/src/ggml-webgpu/ggml-webgpu.cpp",
+    "ggml/src/ggml-webgpu/wgsl-shaders/concat.wgsl",
+    "ggml/src/ggml-webgpu/wgsl-shaders/cumsum.wgsl",
+    "ggml/src/ggml-webgpu/wgsl-shaders/glu.wgsl",
+    "ggml/src/ggml-webgpu/wgsl-shaders/pad.wgsl",
+    "ggml/src/ggml-webgpu/wgsl-shaders/repeat.wgsl",
+    "ggml/src/ggml-webgpu/wgsl-shaders/rms_norm_mul.wgsl",
+    "ggml/src/ggml-webgpu/wgsl-shaders/rope.wgsl",
+    "ggml/src/ggml-webgpu/wgsl-shaders/row_norm.wgsl",
+    "ggml/src/ggml-webgpu/wgsl-shaders/set.wgsl",
+    "ggml/src/ggml-webgpu/wgsl-shaders/set_rows.wgsl",
+    "ggml/src/ggml-webgpu/wgsl-shaders/soft_max.wgsl",
+    "ggml/src/ggml-webgpu/wgsl-shaders/sum_rows.wgsl",
+    "ggml/src/ggml.c",
+    "src/llama-arch.cpp",
+    "src/llama-context.cpp",
+    "src/llama-graph.cpp",
+    "src/llama-graph.h",
+    "src/llama-model.cpp",
+    "src/models/modern-bert.cpp",
+    "tests/CMakeLists.txt",
+    "tests/peg-parser/test-json-serialization.cpp",
+    "tests/peg-parser/tests.h",
+    "tests/test-backend-ops.cpp",
+    "tests/test-chat-auto-parser.cpp",
+    "tests/test-chat.cpp",
+    "tests/test-peg-parser.cpp",
+    "tools/server/README.md",
+    "tools/server/server-common.cpp",
+    "tools/server/server-common.h",
+    "tools/server/server-context.cpp",
+    "tools/server/server-context.h",
+    "tools/server/server-queue.cpp",
+    "tools/server/server-queue.h",
+    "tools/server/server-schema.cpp",
+    "tools/server/server-task.cpp",
+    "tools/server/server-task.h"
+  ],
+  "critical_changed_paths": [
+    "common/chat-auto-parser-generator.cpp",
+    "common/chat.cpp",
+    "common/chat.h",
+    "common/sampling.cpp",
+    "common/sampling.h",
+    "ggml/src/ggml-backend-meta.cpp",
+    "ggml/src/ggml-vulkan/ggml-vulkan.cpp",
+    "ggml/src/ggml-vulkan/vulkan-shaders/rms_norm.comp",
+    "src/llama-context.cpp"
+  ],
+  "adoption": "NONE; frozen experimental engines unchanged",
+  "selected_patch": "upstream-resume07-selected.patch",
+  "issues": {
+    "url": "https://api.github.com/search/issues?q=repo%3Aggml-org%2Fllama.cpp+is%3Aissue+vulkan+NaN&sort=updated&order=desc&per_page=10",
+    "total": 58,
+    "items": [
+      {
+        "number": 30171,
+        "title": "ggml-cuda: GGML_OP_NORM returns all-NaN rows for some constant inputs (one-pass variance)",
+        "html_url": "https://github.com/ggml-org/llama.cpp/issues/30171",
+        "state": "closed",
+        "updated_at": "2026-10-09T06:46:45Z"
+      },
+      {
+        "number": 27506,
+        "title": "Eval bug: [ROCm] Severe PPL explosion starting from b10040",
+        "html_url": "https://github.com/ggml-org/llama.cpp/issues/27506",
+        "state": "closed",
+        "updated_at": "2026-10-05T11:57:22Z"
+      },
+      {
+        "number": 27572,
+        "title": "Misc. bug: [draft-mtp] Draft acceptance collapses to 0.0 under `-np N` with multi-ubatch batches \u2014 async `t_h_nextn` device\u2192host copy race",
+        "html_url": "https://github.com/ggml-org/llama.cpp/issues/27572",
+        "state": "open",
+        "updated_at": "2026-10-04T01:51:55Z"
+      },
+      {
+        "number": 28290,
+        "title": "Eval bug: unpack8() corrupts MAT_MUL + CPY on Qualcomm Snapdragon X Elite",
+        "html_url": "https://github.com/ggml-org/llama.cpp/issues/28290",
+        "state": "open",
+        "updated_at": "2026-10-04T01:51:08Z"
+      },
+      {
+        "number": 27454,
+        "title": "Eval bug: Loading a draft model crashes with \"invalid vector subscript\" when the target model has filled the GPU (NaN in `splits` \u2192 `devices.at()` out of range)",
+        "html_url": "https://github.com/ggml-org/llama.cpp/issues/27454",
+        "state": "open",
+        "updated_at": "2026-10-03T01:14:38Z"
+      },
+      {
+        "number": 29774,
+        "title": "Eval bug: Flash attention on CPU (one-chunk) overflows to inf/NaN, has F16 accumulator instead of F32.",
+        "html_url": "https://github.com/ggml-org/llama.cpp/issues/29774",
+        "state": "open",
+        "updated_at": "2026-10-01T15:50:38Z"
+      },
+      {
+        "number": 23577,
+        "title": "Eval bug: MTP with Qwen3.6 27B outputs repeated //// after long session",
+        "html_url": "https://github.com/ggml-org/llama.cpp/issues/23577",
+        "state": "open",
+        "updated_at": "2026-10-01T15:49:38Z"
+      },
+      {
+        "number": 26209,
+        "title": "Regression after c7d8722: llama-server generates infinite \"/\" tokens in agent mode",
+        "html_url": "https://github.com/ggml-org/llama.cpp/issues/26209",
+        "state": "open",
+        "updated_at": "2026-10-01T01:28:24Z"
+      },
+      {
+        "number": 28964,
+        "title": "Eval bug: \"Invalid vector subscript\" when loading model if all devices with VRAM report zero free VRAM",
+        "html_url": "https://github.com/ggml-org/llama.cpp/issues/28964",
+        "state": "open",
+        "updated_at": "2026-09-29T21:07:21Z"
+      },
+      {
+        "number": 28158,
+        "title": "bug: Qwen3.8 DFlash/MTP speculative emits OOB token id == n_vocab (248320) on Vulkan",
+        "html_url": "https://github.com/ggml-org/llama.cpp/issues/28158",
+        "state": "open",
+        "updated_at": "2026-09-29T09:56:50Z"
+      }
+    ]
+  },
+  "prs": {
+    "url": "https://api.github.com/search/issues?q=repo%3Aggml-org%2Fllama.cpp+is%3Apr+vulkan&sort=updated&order=desc&per_page=10",
+    "total": 1597,
+    "items": [
+      {
+        "number": 29353,
+        "title": "cuda, hip: GDN chunked kernel",
+        "html_url": "https://github.com/ggml-org/llama.cpp/pull/29353",
+        "state": "open",
+        "updated_at": "2026-10-09T16:14:58Z"
+      },
+      {
+        "number": 30164,
+        "title": "vulkan: specialize quant block size for CM2 matmul",
+        "html_url": "https://github.com/ggml-org/llama.cpp/pull/30164",
+        "state": "open",
+        "updated_at": "2026-10-09T15:34:37Z"
+      },
+      {
+        "number": 30190,
+        "title": "vulkan: fold verify tokens and GQA heads into one flash-attention row\u2026",
+        "html_url": "https://github.com/ggml-org/llama.cpp/pull/30190",
+        "state": "open",
+        "updated_at": "2026-10-09T14:11:32Z"
+      },
+      {
+        "number": 30149,
+        "title": "vulkan: add tiled concat for transposed inputs",
+        "html_url": "https://github.com/ggml-org/llama.cpp/pull/30149",
+        "state": "open",
+        "updated_at": "2026-10-09T14:10:15Z"
+      },
+      {
+        "number": 28851,
+        "title": "ggml: support non-contiguous SUM (CPU, CUDA, Vulkan)",
+        "html_url": "https://github.com/ggml-org/llama.cpp/pull/28851",
+        "state": "open",
+        "updated_at": "2026-10-09T13:01:04Z"
+      },
+      {
+        "number": 30145,
+        "title": "vulkan: fix rms_norm workgroup count overflow",
+        "html_url": "https://github.com/ggml-org/llama.cpp/pull/30145",
+        "state": "closed",
+        "updated_at": "2026-10-09T13:00:18Z"
+      },
+      {
+        "number": 29882,
+        "title": "vulkan: rms norm optimization using subgroup reductions",
+        "html_url": "https://github.com/ggml-org/llama.cpp/pull/29882",
+        "state": "open",
+        "updated_at": "2026-10-09T11:20:18Z"
+      },
+      {
+        "number": 30216,
+        "title": "Fix CI: Fix models Backend webgpu by supporting GGML_OP_DUP",
+        "html_url": "https://github.com/ggml-org/llama.cpp/pull/30216",
+        "state": "closed",
+        "updated_at": "2026-10-09T10:27:33Z"
+      },
+      {
+        "number": 30215,
+        "title": "vulkan: Use L2-friendly workgroup scheduling for cm2 mulmat on DGX Spark",
+        "html_url": "https://github.com/ggml-org/llama.cpp/pull/30215",
+        "state": "open",
+        "updated_at": "2026-10-09T09:21:03Z"
+      },
+      {
+        "number": 25557,
+        "title": "quant : extend Q8_0 to use full byte range like Q4_0 (Python+CPU)",
+        "html_url": "https://github.com/ggml-org/llama.cpp/pull/25557",
+        "state": "open",
+        "updated_at": "2026-10-09T07:33:23Z"
+      }
+    ]
+  },
+  "source_review": {
+    "rms_norm": "5e4878e clamps dispatch y/z to device limits and iterates excess channels/samples in shader; changes backend/shader source. No local shape/capture establishes thisoverflow as cause of observed R43/R47/R55/R57/pressure divergences. Separate future B4 test required.",
+    "backend_sampling": "a518119 holds backend-sampler graph topology static across ubatches. Current frozen helpers use CPU common_sampler and no llama sampler attached to backend; no asserted fix for these runs.",
+    "ggml_acc": "8ae3867 asserts largeoffset<2^30 beforeint32 narrowing; no current case has captured evidence of this fault.",
+    "host_views": "e60eff9 changes meta backend handling; current model engine directlyCPU/Vulkan, not adopted.",
+    "chat": "8b54361 refactorsAPI/common parser; native R62 uses frozenB1 template/parser and CPU sampler, no updated ABI injected.",
+    "relevant_prs": [
+      "30145 merged RMSoverflow",
+      "29882 open RMSsubgroupoptimization",
+      "30164 open CM2quantblock",
+      "30190 open flashattention verify/GQA",
+      "30215 open CM2scheduling onDGXSpark"
+    ],
+    "decision": "Freeze preserved; no claimed RX6800correctness/performance improvement based on nonlocal results."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "utc": "2026-10-09T16:49:35.930018+00:00",
+  "stage": "Registered before independent audit;model order/source/gates unchanged",
+  "reason": "Account for every registered process, including nonzero exits and incomplete references. Preserve all original PASS/FAIL; unavailable first baseline reference is never replaced. Audit finite/nonzero and bitparity separately, with exact first difference and original geometry.",
+  "archive": "stress-independent-audit-resume07-before-classification.py",
+  "acceptance": "DESCRIPTIVE_COMPLETE means all36records audited/classified,not36PASS or a milestone. No ranking."
+}

@@ -6,6 +6,8 @@ Obiettivo: inferenza locale affidabile e veloce su RX 6800 16 GB, Ryzen 7 5700X3
 
 Ripresa autonoma del 2026-10-09: M0-M3 restano TEST_PARZIALI. Corpus normale e osservatore autonomo completano 108 casi ciascuno; stato/memoria e controlli separati passano 34 processi; timing breve 1/2/4 layer passa 54 processi. Il pool migliora TG rispetto alla copia dinamica, ma regredisce rispetto agli stessi layer residenti. Instabilita raw lunga, contratto di ripristino logits e fedelta CPU/GPU restano aperti; pressione KV in corso. Nessun default promosso. [Report della ripresa](docs/development/moe-roadmap-resume-rx6800.md).
 
+Resume07: pressione ripresa da17/36 con hash verificati, FAIL e partial conservati; R61/S14 attende pressione+audit sotto lock. R62 prefill nativo B1 registrato e audit source/oracoli PASS, ancora da eseguire. Stato live in CHECKPOINT locale; nessuna nuova qualifica generale.
+
 ## Come leggere le sigle
 
 Le sigle non sono quattro liste da eseguire in successione. **S** identifica una strategia/funzionalita', **R** un incremento o esperimento registrato, **M** una milestone complessiva e **T** un protocollo di verifica. Gli incrementi R sviluppano e verificano le strategie S: R27 e R28, per esempio, avanzano S06. Una strategia puo' richiedere piu' incrementi e un incremento puo' verificare prerequisiti di piu' strategie. L'ordine dipende dai colli di bottiglia e dalle dipendenze, non dal dover terminare tutti gli R prima degli S.
@@ -14,7 +16,7 @@ Percorso corrente: S01/S02/S03 misurazione e routing; S06 budget/policy offline;
 
 ## Stato leggibile in un minuto
 
-| Voce | Stato al 2026-10-08 |
+| Voce | Stato al 2026-10-09 |
 | --- | --- |
 | Esecuzione benchmark | **Ripresa autorizzata il2026-10-07 e confermata il2026-10-08. R20-R38:287processi; R39+11=298; R40+12=310; R41+67=377;R42+48=425, inclusi tentativi interrotti e controlli. R41:21cold raw gates/4221vettori esatti,9diagnostici/4623vettori,28timing process con guard diretto e6profili. R42 aggiunge12repeat/7236raw e6famiglie heldout,totale9576raw esatti;PSS/affinita acquisiti. Primo timing16slot invalido conservato, non riprodotto; nessuna promozione generale.** |
 | Baseline originale | llama.cpp v0.5.0, `7fe450e19305b828c199d602c23a8337aaa1f03b`, senza modifiche |
@@ -146,6 +148,7 @@ Le percentuali sono osservazioni sul workload indicato, non previsioni su tutti 
 | R60 | Checkpoint client autonomo,4layer | DIAGNOSTICA COMPLETA; controlli raw FAIL |6controlli indipendenti senza ripristino:4PASS,2FAIL;6checkpoint/36casi/72snapshot PASS |Pool1 diverge PP2559 con ID esatti;transfer2 diverge PP7167 e cambia ID generato28;residenti entrambi esatti. Il client conserva logits e sampler;API originale resta aperta. [Report](docs/development/moe-roadmap-resume-rx6800.md)|
 
 | R61 | S14 optional single-token pool admission | IMPLEMENTATO; GPU/model/timing pending |8-line scheduler opt-in,defaultOFF;12CPU Release/ASAN controls raw-exact;7replay inputs preregistered |Batched prompt/decode bypass uses original copies; possible coldTG miss tradeoff. Original pressure campaign runs first; no performance claim. [Report](docs/development/moe-roadmap-resume-rx6800.md)|
+| R62 | Diagnostica B1 prefill logico/fisico | PRONTO, non avviato |8casi,CPU17/GPU17,2processi/configurazione;source/oracoli/artifact audit PASS |64token diagnostici,nessun gate semantico o ranking. [Report](docs/development/moe-roadmap-resume-rx6800.md)|
 
 R12-R16 derivano dagli archivi locali del 5-6 ottobre e dallo stato dello sweep; alcuni report precedenti sulla repo descrivono ancora un pilot o una rivalidazione in corso. Questa snapshot aggiorna **lo stato**, senza fingere che quei report storici siano gia' stati riscritti.
 
