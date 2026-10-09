@@ -135,3 +135,52 @@ Both pool ON/OFF validation processes complete warmup plus3repetitions at10000PP
 ON rep0 first differs at physical prefill vector11,last position6143:209/220 vectors differ thereafter;first maxabs0.229533,RMSE0.048247,and every vocabulary element differs in that first vector. Argmax agrees throughout this particular fixed continuation. ON reps1/2 match the frozen reference;OFF all3reps are fully repeatable/reference-exact. Thus a full raw divergence occurs with synchronization validation active and no reported error. This does not exclude a race or prove the cause;default duplicate suppression10 is retained. R55's separate OFF failure still prevents accepting asyncOFF as containment. No timing ranking. [Validation evidence](data/moe-roadmap-resume-20261009/r57-validation-completed-summary.json).
 
 The full autonomous40-layer after-up observer cohort is running. A separately frozen R58 prototype adds final selected-expert coefficient bit capture at the same callback stage,without changing engine DSOs or the repository helper. It will run serially after the observer cohort and all CPU analysis exit,before registered timing. Any raw/route/geometry/identity/repeat failure stops attribution;no coefficient hypothesis is accepted before those gates.
+
+## Autonomous after-up observer complete
+
+All six fresh batches pass108autonomous TRAIN/HELDOUT continuations:13,362 full raw vectors and generated token IDs byte-exact to the corresponding B1resident trajectories. Ordered40x8 routes are complete,and all108 CPU18subtraces exactly match the independently archived callback-free native profiles. All324case/phase analyses complete and all worker subprocesses exit before subsequent model timing. The legacy callback's six autonomous failures remain archived. This closes the observer-neutrality/native40 profiling cohort,not extended turn/context,CPU/GPU fidelity or broaderT2/M2 acceptance. Logical cold/warm/static-prefill simulations remain separate from runtime transfers/cache measurements. [Observer evidence](data/moe-roadmap-resume-20261009/observer-completed-summary.json).
+
+## R58:continuous router coefficients captured neutrally
+
+A standalone helper prototype remembers final selected-expert weight tensor identities during existing ask callbacks,then reads F32coefficient bits at the already-qualified after-up callback stage. It adds no callback stop point or tensor writes;extra tensor readbacks stay inside that stage. The repository's active corpus helper and engine DSOs are unchanged. All13OFF/ON/repeat processes preserve2,613 complete raw vectors against their respective unobserved R40 interventions;all ordered routes match R56. Each of the seven observed processes captures227,840 finite final coefficient records with full40x8x712geometry. Original/copy coefficients and all-projection repeat coefficients are exact. [Protocol](data/moe-roadmap-resume-20261009/r58-protocol.json),[standalone build and engine hashes](data/moe-roadmap-resume-20261009/r58-freeze.json),[qualified source snapshot](data/moe-roadmap-resume-20261009/r58-corpus-observer.cpp).
+
+First coefficient differences occur at layer18 in the same token as the first logit difference:gate/up/all token512,down token513. The first same-expert coefficient changes are2.98e-8,5.96e-8,1.49e-8 and1.49e-8 respectively. No earlier coefficient difference is observed. This localizes continuous propagation before expert membership changes;it does not explain the magnitude of later logit amplification or establish routing causality. Initial tiny differences and first violations of the existing R39fidelity envelope will be distinguished retrospectively after timing exits. Original numerical thresholds are unchanged. [Coefficient evidence](data/moe-roadmap-resume-20261009/r58-router-coefficient-summary.json).
+
+## Independent timing input amendment
+
+The original eighteen R51raw gate attempts abort before model initialization:CSVwriter's defaultCRLF header is rejected by the frozen replay helper's exactLFheader comparison. The resulting online library-mapping errors reflect processes too short to observe maps,not evidence of a loaded wrong engine. Original logs/manifests/results remain preserved and are ineligible. R51v2 changes only CSVline endings,verifies the exactLFheader and512/128token counts before launching,and retains all frozen engines,flags,orders,thresholds,raw gates and bootstrap rules. It starts at a verified interval between two complete stress processes;no live model is interrupted. The stress child/central parent remain paused until all timing and its CPUanalysis exit,then resume the registered stress order. [Timing amendment](data/moe-roadmap-resume-20261009/timing-protocol-v2.json).
+
+The first pressure baseline process completes all15cases but fails cross-cycle raw parity. The uncached target control passes against the recorded first baseline trajectories;that PASS does not restore the unstable baseline cell's timing eligibility. Full pressure and independent timing qualification remain running.
+
+The original state-output requirement is still unsatisfied on both B1 and candidate:the API header mentions cached logits/embeddings,but the inspected implementations serialize architecture and memory only. The amended18+16PASS gate is deliberately limited to serialized memory and subsequent teacher-forced continuation. It does not validate the first autonomous sample immediately after restore or restore sampler RNG/history. Original output-restoration failures remain a shared contract/documentation gap;they are not erased as mere parser noise,and the original acceptance protocol is not closed by the amended gate. A real client checkpoint must separately preserve valid output logits and sampler state or use a supported reevaluation policy before sampling. No such client workaround is promoted here.
+
+## R51 v2: independent short multilayer timing completed
+
+All54 registered processes pass:18 independent raw gates and36 independent timing runs across1/2/4 selected layers. The raw gates contain6966 finite,nonzero full-vocabulary vectors,byte-exact to same-placement B1. Timing uses four fresh processes per variant with one warmup and three measured repetitions,balanced resident/transfer/pool order,fixed512PP+128TG,c16384,Q8KV,b/ub512,FAon,mmap,fitOFF,t8/tb8. Pool logging,callbacks,raw writes,sanitizers and CPU analysis are absent from timing. Process rates aggregate token/time before taking independent-process medians. Bootstrap95% uses50000 draws,seed51 and the preregistered3% PP/TG and5% p95 margins. Resident drift stays below3.1%.
+
+| Selected layers | TG resident / transfer / pool, tokens/s | Pool TG vs transfer, effect [95% CI] | Pool TG vs resident, effect [95% CI] | Pool PP vs resident | Median sampled peak VRAM saved vs resident |
+| --- | --- | --- | --- | --- | --- |
+|17|31.14 /27.28 /29.83|+9.35% [+7.65,+10.42]|-4.21% [-5.61,-3.11]|-4.08%|0.210GiB|
+|16,17|32.16 /24.67 /29.73|+20.54% [+18.81,+22.12]|-7.54% [-9.79,-5.98]|-8.54%|0.455GiB|
+|14,15,16,17|34.29 /20.45 /29.95|+46.44% [+45.69,+47.09]|-12.64% [-13.74,-11.43]|-15.56%|0.881GiB|
+
+All three pool-vs-transfer TG intervals qualify as improvement. All three pool-vs-resident PP/TG intervals qualify as regression. Pool-vs-transfer PP is unchanged within the3% margin. TG p95 improves against transfer for2/4 layers; the1-layer interval crosses the5% practical boundary. Against resident,pool p95 is inconclusive for1/2 layers and regresses for4 layers. These are engine replay measurements,not application TTFT or agent throughput. The sampled VRAM values are total device peaks including desktop/driver allocations,not an allocator guarantee; actual pool payload is216MiB on layers14/15/17 and249MiB on layer16. Full transfer arenas remain allocated. The short gate does not erase R43/R47/R55/R57 long failures and cannot promote a default.
+
+Original CRLF pre-model failures remain preserved. The v2 input amendment changes only line serialization; exact tokens,flags,engines,order,thresholds and all failures remain recorded. Timing occupied a verified idle boundary between complete stress processes; all CPU analysis exited before resuming the original stress queue. Portable protocol,freeze,command manifests and complete confidence intervals accompany this report.
+
+## R59: magnitude of the roundtrip logit divergence
+
+This retrospective analysis reuses all201 full-vector F64 metric rows for each R40 projection intervention and the original R39 limits:maximum absolute error0.5,RMS0.05,symmetric KL0.01 and whole-trajectory argmax agreement0.99. It introduces no new model runs,epsilon or acceptance thresholds.
+
+| Intervention | First different logit token | First RMS >0.05 | First max abs >0.5 | First symmetric KL >0.01 | First membership change |
+| --- | --- | --- | --- | --- | --- |
+|gate|512|513|515|593|513|
+|up|512|512|513|683|513|
+|down|513|515|515|593|515|
+|all|512|513|515|593|513|
+
+The up intervention already fails the frozen RMS envelope at token512,one token before membership changes. Its first different output has maximum absolute error0.2377 and RMS0.0603 over248320 logits. The tiny first coefficient changes observed by R58 therefore do not imply tiny output error. All four interventions fail the original whole-trajectory fidelity screen. Temporal order alone does not identify the amplification mechanism:intermediate scales,weighted reductions and attention/recurrent state remain to be separated. Full numerical series are published; the optional plot was skipped because Matplotlib is unavailable in both available Python runtimes.
+
+## Occupied-context pressure progress
+
+The original36-process Q8/F16 KV and ubatch512/1024/2048 campaign remains running in its registered order. The first B1 resident process completes all15 cases but fails raw repeatability:only depth16128 cycle1 differs from its first occurrence,starting at physical prefill vector11 (zero-based),token6143. First-vector maximum error0.159593,RMS0.031174;argmax remains equal. Candidate transfer completes all15 cases byte-exact to the first B1 trajectories. That pass does not repair the shared baseline instability or make this pressure cell eligible for a performance ranking. All raw files and the independent full-vector audit remain local.

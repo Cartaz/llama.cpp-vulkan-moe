@@ -1,0 +1,645 @@
+{
+  "utc": "2026-10-09T09:55:48.925277+00:00",
+  "gate": "54_PASS_SHORT_SCOPE",
+  "raw_processes": 18,
+  "timing_processes": 36,
+  "full_raw_vectors": 6966,
+  "input": "512 fixed PP tokens +128 fixed TG tokens,c16384,b/ub512,Q8KV,FAon,mmap,fitOFF,t8/tb8",
+  "timing_results_sha256": "037cfc8d4696d862d581ca1306e3841cea3c802ce88716dcab80e55f0cfd9a35",
+  "timing_analysis_sha256": "dbc8ee415813553ff85ce60de3ac1b4dfed4a5da486f93548cd473d85bf299ac",
+  "protocol_sha256": "2d3f89161f861c06724437db1f74859057ca5a603680b9563a95bd909bf9aec1",
+  "freeze_sha256": "854b93c9e860a444a015bef98abe2bf0e084af6af58cba64808ee8d411a29557",
+  "layer_results": {
+    "1": {
+      "gate": "ELIGIBLE_SHORT_SCOPE",
+      "process_values": {
+        "resident": [
+          {
+            "pp_tps": 286.05488044824205,
+            "tg_tps": 30.927979528254887,
+            "tg_p95_ms": 37.40595
+          },
+          {
+            "pp_tps": 284.8289635452305,
+            "tg_tps": 31.22295179672232,
+            "tg_p95_ms": 37.34755
+          },
+          {
+            "pp_tps": 284.90076049583865,
+            "tg_tps": 31.059140972102583,
+            "tg_p95_ms": 37.2776
+          },
+          {
+            "pp_tps": 287.2458360574312,
+            "tg_tps": 31.27128524005109,
+            "tg_p95_ms": 37.1291
+          }
+        ],
+        "target": [
+          {
+            "pp_tps": 276.5171085959736,
+            "tg_tps": 27.577842410154048,
+            "tg_p95_ms": 41.27325
+          },
+          {
+            "pp_tps": 275.83076058895614,
+            "tg_tps": 27.303253395948794,
+            "tg_p95_ms": 41.87215
+          },
+          {
+            "pp_tps": 274.81586353102244,
+            "tg_tps": 27.19556757574461,
+            "tg_p95_ms": 41.80505
+          },
+          {
+            "pp_tps": 273.7266276487417,
+            "tg_tps": 27.257218921819412,
+            "tg_p95_ms": 41.50765
+          }
+        ],
+        "pool": [
+          {
+            "pp_tps": 276.02660422043954,
+            "tg_tps": 29.392678375668744,
+            "tg_p95_ms": 39.60885
+          },
+          {
+            "pp_tps": 274.09693002515945,
+            "tg_tps": 29.700691283589624,
+            "tg_p95_ms": 38.90285
+          },
+          {
+            "pp_tps": 273.56954828965604,
+            "tg_tps": 29.959767309353087,
+            "tg_p95_ms": 38.92589999999999
+          },
+          {
+            "pp_tps": 273.5409502021906,
+            "tg_tps": 30.100465005152348,
+            "tg_p95_ms": 38.18875
+          }
+        ]
+      },
+      "drift_percent": {
+        "pp_tps": 0.4163381541761879,
+        "tg_tps": 1.110016616127707,
+        "tg_p95_ms": -0.7401228948870298
+      },
+      "comparisons": {
+        "target_vs_resident": {
+          "pp_tps": {
+            "effect_percent": -3.5570218363235595,
+            "bootstrap95_percent": [
+              -4.327294242804447,
+              -3.050894858153197
+            ],
+            "verdict": "REGRESSIONE"
+          },
+          "tg_tps": {
+            "effect_percent": -12.397817908459452,
+            "bootstrap95_percent": [
+              -12.867507342281126,
+              -11.275976246742703
+            ],
+            "verdict": "REGRESSIONE"
+          },
+          "tg_p95_ms": {
+            "effect_percent": 11.641584640030889,
+            "bootstrap95_percent": [
+              10.614853035471295,
+              12.459227462043065
+            ],
+            "verdict": "REGRESSIONE"
+          }
+        },
+        "pool_vs_resident": {
+          "pp_tps": {
+            "effect_percent": -4.078979339052724,
+            "bootstrap95_percent": [
+              -4.669379053189038,
+              -3.3106656888346353
+            ],
+            "verdict": "REGRESSIONE"
+          },
+          "tg_tps": {
+            "effect_percent": -4.209290438606528,
+            "bootstrap95_percent": [
+              -5.614352154906543,
+              -3.1085299176639825
+            ],
+            "verdict": "REGRESSIONE"
+          },
+          "tg_p95_ms": {
+            "effect_percent": 4.292922694292733,
+            "bootstrap95_percent": [
+              2.3482029851866315,
+              6.154158484103545
+            ],
+            "verdict": "INCONCLUDENTE"
+          }
+        },
+        "pool_vs_target": {
+          "pp_tps": {
+            "effect_percent": -0.5412084038335485,
+            "bootstrap95_percent": [
+              -0.9705979684921706,
+              0.44056433782995175
+            ],
+            "verdict": "NESSUN_CAMBIAMENTO"
+          },
+          "tg_tps": {
+            "effect_percent": 9.347401256850274,
+            "bootstrap95_percent": [
+              7.652659371465154,
+              10.422832962075045
+            ],
+            "verdict": "MIGLIORAMENTO"
+          },
+          "tg_p95_ms": {
+            "effect_percent": -6.582369794761211,
+            "bootstrap95_percent": [
+              -8.324301096951615,
+              -4.85998800675983
+            ],
+            "verdict": "INCONCLUDENTE"
+          }
+        }
+      },
+      "limits": "Single fixed512+128 replay,c16384,explicitsameGPU placement; no applicationTTFT/quality/default promotion"
+    },
+    "2": {
+      "gate": "ELIGIBLE_SHORT_SCOPE",
+      "process_values": {
+        "resident": [
+          {
+            "pp_tps": 300.2893804302818,
+            "tg_tps": 31.85942559446867,
+            "tg_p95_ms": 36.9433
+          },
+          {
+            "pp_tps": 301.5842598148398,
+            "tg_tps": 32.44608225808509,
+            "tg_p95_ms": 36.25129999999999
+          },
+          {
+            "pp_tps": 300.1429196168019,
+            "tg_tps": 31.873547014477893,
+            "tg_p95_ms": 36.765
+          },
+          {
+            "pp_tps": 297.0737079324482,
+            "tg_tps": 32.801137721128995,
+            "tg_p95_ms": 35.8576
+          }
+        ],
+        "target": [
+          {
+            "pp_tps": 276.3265834808514,
+            "tg_tps": 24.666176383587818,
+            "tg_p95_ms": 45.70704999999999
+          },
+          {
+            "pp_tps": 273.6765396309821,
+            "tg_tps": 24.676322477379397,
+            "tg_p95_ms": 45.58875
+          },
+          {
+            "pp_tps": 275.38726333907056,
+            "tg_tps": 24.473192230934142,
+            "tg_p95_ms": 46.192099999999996
+          },
+          {
+            "pp_tps": 274.30315212895675,
+            "tg_tps": 24.668938350395802,
+            "tg_p95_ms": 45.406349999999996
+          }
+        ],
+        "pool": [
+          {
+            "pp_tps": 274.55099918868035,
+            "tg_tps": 30.00497660666687,
+            "tg_p95_ms": 38.3668
+          },
+          {
+            "pp_tps": 273.64855294965884,
+            "tg_tps": 29.55267865017525,
+            "tg_p95_ms": 39.502749999999985
+          },
+          {
+            "pp_tps": 275.73059182448026,
+            "tg_tps": 29.91468239098708,
+            "tg_p95_ms": 38.697300000000006
+          },
+          {
+            "pp_tps": 274.59551687064084,
+            "tg_tps": 29.30741092836719,
+            "tg_p95_ms": 39.7322
+          }
+        ]
+      },
+      "drift_percent": {
+        "pp_tps": -1.0708578815627479,
+        "tg_tps": 2.955835232709969,
+        "tg_p95_ms": -2.938827879480188
+      },
+      "comparisons": {
+        "target_vs_resident": {
+          "pp_tps": {
+            "effect_percent": -8.450891894902623,
+            "bootstrap95_percent": [
+              -9.036337733827526,
+              -7.46185865092518
+            ],
+            "verdict": "REGRESSIONE"
+          },
+          "tg_tps": {
+            "effect_percent": -23.29695414611378,
+            "bootstrap95_percent": [
+              -24.800851137248834,
+              -22.569418970696255
+            ],
+            "verdict": "REGRESSIONE"
+          },
+          "tg_p95_ms": {
+            "effect_percent": 25.034820992025054,
+            "bootstrap95_percent": [
+              23.401942977481703,
+              27.444947849710655
+            ],
+            "verdict": "REGRESSIONE"
+          }
+        },
+        "pool_vs_resident": {
+          "pp_tps": {
+            "effect_percent": -8.541476530116887,
+            "bootstrap95_percent": [
+              -8.96375050964422,
+              -7.574029374522784
+            ],
+            "verdict": "REGRESSIONE"
+          },
+          "tg_tps": {
+            "effect_percent": -7.543992846784819,
+            "bootstrap95_percent": [
+              -9.789122667151807,
+              -5.983266518400754
+            ],
+            "verdict": "REGRESSIONE"
+          },
+          "tg_p95_ms": {
+            "effect_percent": 7.099442179348969,
+            "bootstrap95_percent": [
+              4.552811555822056,
+              9.882344620428253
+            ],
+            "verdict": "INCONCLUDENTE"
+          }
+        },
+        "pool_vs_target": {
+          "pp_tps": {
+            "effect_percent": -0.09894649668270583,
+            "bootstrap95_percent": [
+              -0.6369777923536213,
+              0.5203876384374917
+            ],
+            "verdict": "NESSUN_CAMBIAMENTO"
+          },
+          "tg_tps": {
+            "effect_percent": 20.53759550740295,
+            "bootstrap95_percent": [
+              18.80953793821545,
+              22.115082320286472
+            ],
+            "verdict": "MIGLIORAMENTO"
+          },
+          "tg_p95_ms": {
+            "effect_percent": -14.344307186091799,
+            "bootstrap95_percent": [
+              -16.22528527605368,
+              -12.846480765539736
+            ],
+            "verdict": "MIGLIORAMENTO"
+          }
+        }
+      },
+      "limits": "Single fixed512+128 replay,c16384,explicitsameGPU placement; no applicationTTFT/quality/default promotion"
+    },
+    "4": {
+      "gate": "ELIGIBLE_SHORT_SCOPE",
+      "process_values": {
+        "resident": [
+          {
+            "pp_tps": 323.9591178778822,
+            "tg_tps": 34.19070077046607,
+            "tg_p95_ms": 34.315149999999996
+          },
+          {
+            "pp_tps": 327.181218775601,
+            "tg_tps": 34.72414066568529,
+            "tg_p95_ms": 34.33425
+          },
+          {
+            "pp_tps": 323.4534722919774,
+            "tg_tps": 34.38005684527524,
+            "tg_p95_ms": 34.8856
+          },
+          {
+            "pp_tps": 323.1809080878547,
+            "tg_tps": 33.81889576197275,
+            "tg_p95_ms": 35.35385
+          }
+        ],
+        "target": [
+          {
+            "pp_tps": 276.2272962203258,
+            "tg_tps": 20.515405760800732,
+            "tg_p95_ms": 53.662699999999994
+          },
+          {
+            "pp_tps": 270.55848132142455,
+            "tg_tps": 20.418004404865417,
+            "tg_p95_ms": 53.69109999999999
+          },
+          {
+            "pp_tps": 273.55478566822256,
+            "tg_tps": 20.427970232191544,
+            "tg_p95_ms": 53.9372
+          },
+          {
+            "pp_tps": 275.5450535895663,
+            "tg_tps": 20.479772811053618,
+            "tg_p95_ms": 53.49915
+          }
+        ],
+        "pool": [
+          {
+            "pp_tps": 273.84204127847863,
+            "tg_tps": 30.017792577522318,
+            "tg_p95_ms": 39.10495
+          },
+          {
+            "pp_tps": 272.9371610163995,
+            "tg_tps": 29.83850607924595,
+            "tg_p95_ms": 38.75055
+          },
+          {
+            "pp_tps": 273.70063031330704,
+            "tg_tps": 29.888627501771523,
+            "tg_p95_ms": 39.4559
+          },
+          {
+            "pp_tps": 272.9763054434248,
+            "tg_tps": 30.060995638963686,
+            "tg_p95_ms": 38.59054999999999
+          }
+        ]
+      },
+      "drift_percent": {
+        "pp_tps": -0.24021851742442868,
+        "tg_tps": -1.0874448318254126,
+        "tg_p95_ms": 3.0269429100557854
+      },
+      "comparisons": {
+        "target_vs_resident": {
+          "pp_tps": {
+            "effect_percent": -15.18548641234746,
+            "bootstrap95_percent": [
+              -16.483757860023328,
+              -14.634135866111198
+            ],
+            "verdict": "REGRESSIONE"
+          },
+          "tg_tps": {
+            "effect_percent": -40.342290991613226,
+            "bootstrap95_percent": [
+              -41.096104526971686,
+              -39.51939866522285
+            ],
+            "verdict": "REGRESSIONE"
+          },
+          "tg_p95_ms": {
+            "effect_percent": 55.091061306836096,
+            "bootstrap95_percent": [
+              51.827594448695095,
+              56.781917024987514
+            ],
+            "verdict": "REGRESSIONE"
+          }
+        },
+        "pool_vs_resident": {
+          "pp_tps": {
+            "effect_percent": -15.559730524656324,
+            "bootstrap95_percent": [
+              -16.456553068274804,
+              -15.324225218250852
+            ],
+            "verdict": "REGRESSIONE"
+          },
+          "tg_tps": {
+            "effect_percent": -12.635615877253281,
+            "bootstrap95_percent": [
+              -13.739521078351835,
+              -11.43054980131123
+            ],
+            "verdict": "REGRESSIONE"
+          },
+          "tg_p95_ms": {
+            "effect_percent": 12.475684359327577,
+            "bootstrap95_percent": [
+              9.882836497153647,
+              14.437780956570666
+            ],
+            "verdict": "REGRESSIONE"
+          }
+        },
+        "pool_vs_target": {
+          "pp_tps": {
+            "effect_percent": -0.44125008383394393,
+            "bootstrap95_percent": [
+              -1.0618298202304643,
+              1.0274993204292704
+            ],
+            "verdict": "NESSUN_CAMBIAMENTO"
+          },
+          "tg_tps": {
+            "effect_percent": 46.44274072017232,
+            "bootstrap95_percent": [
+              45.693068457625216,
+              47.08619086782748
+            ],
+            "verdict": "MIGLIORAMENTO"
+          },
+          "tg_p95_ms": {
+            "effect_percent": -27.477648671961287,
+            "bootstrap95_percent": [
+              -28.15617050940724,
+              -26.49370585857229
+            ],
+            "verdict": "MIGLIORAMENTO"
+          }
+        }
+      },
+      "limits": "Single fixed512+128 replay,c16384,explicitsameGPU placement; no applicationTTFT/quality/default promotion"
+    }
+  },
+  "memory": {
+    "1": {
+      "resident": {
+        "per_process_global_vram_peaks_bytes": [
+          14747926528,
+          14751666176,
+          14747930624,
+          14747934720
+        ],
+        "median_global_vram_peak_bytes": 14747932672.0,
+        "telemetry_sha256": {
+          "timing-v2/layers1/timing-resident-1-telemetry.csv": "ec9252a07fa75d6b076c6a94dc7c41b59b6363d91c62bbcfed253c3993e0b975",
+          "timing-v2/layers1/timing-resident-2-telemetry.csv": "0ad6f582f38218c0e66edc30a8c5fd9f6faa6eb40184d6d4f3b2b2b66b4ef156",
+          "timing-v2/layers1/timing-resident-3-telemetry.csv": "2d190f04a85c22a1162160ab161b05d8e99db2ea887c31c8362837968ca2b0e7",
+          "timing-v2/layers1/timing-resident-4-telemetry.csv": "5179a38b7c083e522c4008e1bac93f25f672b05f453678b5932c821166e643f5"
+        }
+      },
+      "target": {
+        "per_process_global_vram_peaks_bytes": [
+          14293757952,
+          14287466496,
+          14293762048,
+          14295859200
+        ],
+        "median_global_vram_peak_bytes": 14293760000.0,
+        "telemetry_sha256": {
+          "timing-v2/layers1/timing-target-1-telemetry.csv": "da333a3df108a8a7fbd8a93cbfb35381ab9673a8d73e34dee35fcf019f4ad750",
+          "timing-v2/layers1/timing-target-2-telemetry.csv": "67fcde189ada6164b82783c76d48eb2a49ffb1a3f82b0a6c2c2c449641112805",
+          "timing-v2/layers1/timing-target-3-telemetry.csv": "de43e594c654d2422fdb9f3809aaba63c5f1dfd2d266d90b48fbbca6705598c6",
+          "timing-v2/layers1/timing-target-4-telemetry.csv": "041c486816bd0e828a054ee31061cc9194e90dbce7fa28ecd74e582f394ff0a3"
+        }
+      },
+      "pool": {
+        "per_process_global_vram_peaks_bytes": [
+          14523994112,
+          14520258560,
+          14520262656,
+          14523998208
+        ],
+        "median_global_vram_peak_bytes": 14522128384.0,
+        "telemetry_sha256": {
+          "timing-v2/layers1/timing-pool-1-telemetry.csv": "2a10c9e11ca526841eedecc87c51b669938253e27de9a68c9ad275e15ce238d6",
+          "timing-v2/layers1/timing-pool-2-telemetry.csv": "c65e7cdb124e21380c377b1cc9865cf37c565553d0ba53696063cccbf0fb4d1d",
+          "timing-v2/layers1/timing-pool-3-telemetry.csv": "63de19f674dffdbc30a908cf5b3813c8b86f060db97b0ea17cb632a27db5f45d",
+          "timing-v2/layers1/timing-pool-4-telemetry.csv": "eb13c4c9641a9be5670222ca3382742b292a17dadd8e14caef86c844870f30b6"
+        }
+      },
+      "pool_payload_bytes_per_layer": {
+        "17": 226492416
+      },
+      "resident_minus_pool_median_global_peak_bytes": 225804288.0
+    },
+    "2": {
+      "resident": {
+        "per_process_global_vram_peaks_bytes": [
+          15271309312,
+          15272947712,
+          15269212160,
+          15269212160
+        ],
+        "median_global_vram_peak_bytes": 15270260736.0,
+        "telemetry_sha256": {
+          "timing-v2/layers2/timing-resident-1-telemetry.csv": "b67b5145806d4f36152b84a19928b808089113d67c0691ea1567efb4a1164b20",
+          "timing-v2/layers2/timing-resident-2-telemetry.csv": "af50fb4cc4d41c5cff3f68f2a7fa4be75e416bd6d1a140a26a5a60f2b7b6de56",
+          "timing-v2/layers2/timing-resident-3-telemetry.csv": "13fcbdfed8ab12e02e671cef73b1d5abcd6e70c34f88f5b661def2d2c5f2737d",
+          "timing-v2/layers2/timing-resident-4-telemetry.csv": "d0370dfdb1297fcbca055e4f17037d3a36495054d5b0bf78d7a5e50aa1b4b6cb"
+        }
+      },
+      "target": {
+        "per_process_global_vram_peaks_bytes": [
+          14296612864,
+          14295404544,
+          14295871488,
+          14293762048
+        ],
+        "median_global_vram_peak_bytes": 14295638016.0,
+        "telemetry_sha256": {
+          "timing-v2/layers2/timing-target-1-telemetry.csv": "163eb80e83f391c3c52beeebe4b0a9ca6c255821f37dbe30d130cec73e45cbf6",
+          "timing-v2/layers2/timing-target-2-telemetry.csv": "9e7f550a5759eeddcac9291bcb587cf08d36fea13922f3b2a3982723c40085ad",
+          "timing-v2/layers2/timing-target-3-telemetry.csv": "474510d3fff24cf1e2737dee4e4ef88c637a30ee51ac17d50749acab2658216f",
+          "timing-v2/layers2/timing-target-4-telemetry.csv": "7a1a20d5e779cccd9316b69546b24064edc791e734e80acb534babed0b5470c0"
+        }
+      },
+      "pool": {
+        "per_process_global_vram_peaks_bytes": [
+          14783004672,
+          14781366272,
+          14770880512,
+          14784217088
+        ],
+        "median_global_vram_peak_bytes": 14782185472.0,
+        "telemetry_sha256": {
+          "timing-v2/layers2/timing-pool-1-telemetry.csv": "df63d88aec9c9fcc634aac2d4c13fb08d620c2546fef4eb93b8e151d0a18b2de",
+          "timing-v2/layers2/timing-pool-2-telemetry.csv": "8703050a152326813bca0de32de000896645d9701efc686bb4499d7fb7d60189",
+          "timing-v2/layers2/timing-pool-3-telemetry.csv": "d480bae6b576ff4b2820aa4ae02cb79640b997d91ebb3ec4fbce4c308ec4860d",
+          "timing-v2/layers2/timing-pool-4-telemetry.csv": "e0a6b96d8391ea468a11e3f8057c5f0cefb3ca7c6d4ab3d6ec874a1d4f6dabcb"
+        }
+      },
+      "pool_payload_bytes_per_layer": {
+        "16": 261095424,
+        "17": 226492416
+      },
+      "resident_minus_pool_median_global_peak_bytes": 488075264.0
+    },
+    "4": {
+      "resident": {
+        "per_process_global_vram_peaks_bytes": [
+          16177446912,
+          16179343360,
+          16179343360,
+          16203378688
+        ],
+        "median_global_vram_peak_bytes": 16179343360.0,
+        "telemetry_sha256": {
+          "timing-v2/layers4/timing-resident-1-telemetry.csv": "e093626d7af9223c4824b2b614a6358270326663dbcc0601b9ca46bc04faf840",
+          "timing-v2/layers4/timing-resident-2-telemetry.csv": "a19b3ed0465edd9f043afa60f1894ac2a07d03615259339938067ce9ad8fcc41",
+          "timing-v2/layers4/timing-resident-3-telemetry.csv": "485725b3d3e92e9e337df71a288a82f076c0658795ce4be0109d647ec54862bf",
+          "timing-v2/layers4/timing-resident-4-telemetry.csv": "5ba3d40db67ff0e324eedc94170bb2645b838a2ea0fb79389fa2b80ce7018bfe"
+        }
+      },
+      "target": {
+        "per_process_global_vram_peaks_bytes": [
+          14295400448,
+          14293757952,
+          14303576064,
+          14293766144
+        ],
+        "median_global_vram_peak_bytes": 14294583296.0,
+        "telemetry_sha256": {
+          "timing-v2/layers4/timing-target-1-telemetry.csv": "f9236f70dab1601a5a5b213bb14b38814aecb77e2afaaec1cca13ad722e441c2",
+          "timing-v2/layers4/timing-target-2-telemetry.csv": "093ae8423909ae8677c4a94da9a9055211f0edc8002ced2f7fa1217edc0dd60b",
+          "timing-v2/layers4/timing-target-3-telemetry.csv": "88bf5e2b8ad4d76cff165137131c2db7f9318bbfd3c56c7d14b3ecb86da7a3e1",
+          "timing-v2/layers4/timing-target-4-telemetry.csv": "79e5744f9a97c9df7f520bd817478814cb60f24057b09a34303d22a846f3c909"
+        }
+      },
+      "pool": {
+        "per_process_global_vram_peaks_bytes": [
+          15235432448,
+          15225974784,
+          15232266240,
+          15236005888
+        ],
+        "median_global_vram_peak_bytes": 15233849344.0,
+        "telemetry_sha256": {
+          "timing-v2/layers4/timing-pool-1-telemetry.csv": "ab1f82c854e10925ce2f26561ca18f2ecc124be6617bf3d18e7684f9a62cb687",
+          "timing-v2/layers4/timing-pool-2-telemetry.csv": "74ef27b94c97f8ad46d2bb08f83de0ac59deffe447dced16ade81448dae861a8",
+          "timing-v2/layers4/timing-pool-3-telemetry.csv": "4b89fa64158214ccf455d49d9017b96fcda351cc98a5d18b6afb945e89e3e514",
+          "timing-v2/layers4/timing-pool-4-telemetry.csv": "e971935802b5352d531c6f62be54609b9540023c015659e67f2555eda4b64fc9"
+        }
+      },
+      "pool_payload_bytes_per_layer": {
+        "14": 226492416,
+        "15": 226492416,
+        "16": 261095424,
+        "17": 226492416
+      },
+      "resident_minus_pool_median_global_peak_bytes": 945494016.0
+    }
+  },
+  "limits": "Only the short replay gate is eligible. All long historical failures remain open. Telemetry VRAM is sampled total device usage including desktop and driver allocations; peaks are descriptive,not allocator payload,not a guaranteed memory bound. Arena remains allocated. No sampler/application TTFT,concurrency,quality or default promotion."
+}

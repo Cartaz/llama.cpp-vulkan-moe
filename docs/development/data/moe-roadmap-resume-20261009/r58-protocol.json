@@ -1,0 +1,27 @@
+{
+  "id": "R58-continuous-router-weight-attribution",
+  "registered_utc": "2026-10-09T08:46:29.581774+00:00",
+  "purpose": "Read final selected-expert coefficients after the same after-up synchronization point as R56; locate first coefficient difference relative to first full logit divergence. No kernel/engine changes.",
+  "workload": "Same R56/R40 immutable512PP+200TG,c1024,b/ub512,Q8KV,FAon,mmap,fitOFF,t8/tb8; teacher-forced.",
+  "order": [
+    "original-off",
+    "original-on",
+    "copy-off",
+    "copy-on",
+    "gate-off",
+    "gate-on",
+    "up-off",
+    "up-on",
+    "down-off",
+    "down-on",
+    "all-off",
+    "all-on",
+    "all-repeat"
+  ],
+  "gate": "All13 OFF/ON/repeat full raw dumps finite/nonzero and byte-identical to corresponding unobserved R40 dump;all40x8 ordered routes exact to R56;all40x8 final finite coefficients per token with exact tensor geometry;original/copy weights exact and all-repeat weights exact. Any failure makes attribution ineligible. No epsilon.",
+  "observer": "Remember final weight tensor identity during existing ask callbacks without adding synchronization points;read finalF32 coefficients at after-up callback;record bit patterns and tensor names separately. No forced routing/no counterfactual speed claims.",
+  "resources": "Serial GPU only after current corpus-after-up stage including all CPU analysis exits; controller05 parent paused and still holds exclusive lock;resume registered timing/stress queue afterR58.24G/2G/6Greserve/600s,unchanged clocks.",
+  "limits": "Additional reads can perturb execution;only complete raw neutrality validates this bounded diagnostic. Router coefficient differences do not prove magnitude/causality or account for logit amplification;shared long-context failures remain independent.",
+  "stage_order_amendment_utc": "2026-10-09T08:51:20.617789+00:00",
+  "failure_handling": "Stop remaining R58 model matrix after first strict helper/observer failure; preserve partial and label attribution INELIGIBLE. All13 gates still required for any coefficient attribution."
+}

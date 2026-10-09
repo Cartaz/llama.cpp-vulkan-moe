@@ -1,0 +1,65 @@
+{
+  "model": {
+    "path": "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+    "bytes": 21713462848,
+    "sha256": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f"
+  },
+  "candidate_commit": "d6844bd569e8059820d9242e59f5c3d45b789c67",
+  "utc": "2026-10-09T00:34:39.932730+00:00",
+  "helper_source_sha256": "76f4b5c618e2fa0892107968f79da9be9974b66aef0f357bdf416efaa8ed4d01",
+  "variants": {
+    "FIXED": "d6844bd + archived multi-pool engine + retained-ID fixture fix",
+    "ASAN": "same source + ASAN/UBSAN",
+    "STATE-BASE": "7fe450e19305b828c199d602c23a8337aaa1f03b; separately compiled state observer",
+    "TIMING-BASE": "B1 unmodified7fe450e,frozen replay helper"
+  },
+  "artifacts": {
+    "frozen/FIXED/libggml-base.so.0.25.1": "167ef8f0d9a0aabd4c0f87637a47dec24461e6810ef990962ed38f119fb9068e",
+    "frozen/FIXED/libggml-cpu.so.0.25.1": "d939874c41448f224794190e80548a7d09a309686450ac53c797b040eb2d995b",
+    "frozen/FIXED/libggml-vulkan.so.0.25.1": "4442d44cfa70f0cf12b5d6290f6bd74fbe1b24e4a90fe71759ab40efffeb22d4",
+    "frozen/FIXED/libggml.so.0.25.1": "dc0917f5b55bb86ecfa89c7d1734c5ab6579fb90ad97cd5a94735fa9eb9e5f22",
+    "frozen/FIXED/libllama.so.0.5.0": "d8cd670eab39b9ae327c11e5446e6b6faa4ae8f8250796ff7aabd031aeaca504",
+    "frozen/FIXED/libllama-common.so.0.5.0": "12c8b2dfbdd57b1ee7e095bd6d0756c0c5dcfb05e9dc8eb4bab1beb009515528",
+    "frozen/FIXED/scheduler-check": "17c9d95c4c9c1fdabea068e6ea310b74ceeb0d10c7bc466b7fa3c6fb187f98d3",
+    "frozen/FIXED/state-check": "ef2a28f468973897da14921f84d5257d3805fb4ec4710bdb8d7ff2738d4ad375",
+    "frozen/FIXED/corpus": "6df304061b815a6d46e8b168005f5eb85bc554ecbe783cae0a65f295292f1f06",
+    "frozen/FIXED/replay": "269b830ac97325df9d63ccc90b14040457a8965d72163756b2783de4f185f376",
+    "frozen/ASAN/libggml-base.so.0.25.1": "835001002805c93a86138981d455c6ae2a78bb97cd2160ca14928954ad49de77",
+    "frozen/ASAN/libggml-cpu.so.0.25.1": "221b8c5ecd1af695ddf529c302ecdd1b1191846e8bd9db8d3c2f76aa7e5d2a1c",
+    "frozen/ASAN/libggml-vulkan.so.0.25.1": "b26c87dcbfe579e7a2ce6bfb4a69f1abff57b2c030949f68802eb1f590ee4fcc",
+    "frozen/ASAN/libggml.so.0.25.1": "02e9e10b76d2c17e71d04d8bf86516da9813c38b52037241749dcc65b94aa98b",
+    "frozen/ASAN/libllama.so.0.5.0": "0aea3bbe6a8f6e81122acbfaf6f3b24cd385ee1e4a6ccc00f78c2c74a674d56b",
+    "frozen/ASAN/libllama-common.so.0.5.0": "866d566cd353cc710abea0e86bb7fcb6eca317a04be63eda8b02bb67146b6efc",
+    "frozen/ASAN/scheduler-check": "88e1404c10d727cff2054f4af68fa4f7c3178e443d24135ff07ad466606fad6c",
+    "frozen/ASAN/state-check": "653dee9ed2ffa882564c1307d6ec28fbef4bf1e9c24334243f3d9f0e4477d061",
+    "frozen/ASAN/corpus": "12b10e413892e8247da00dc931c50dab9453ba66509da77b8a55b9ad58a959e4",
+    "frozen/ASAN/replay": "dcebde19ec0f74cc63e31f4623726723b606e0ec1275a4abf47066ec434a6a39",
+    "frozen/STATE-BASE/libggml-base.so.0.25.1": "ed4b8f3d3ae59dfba891b43364fd7d5c4d297507fc483b4be8c95ccdde046084",
+    "frozen/STATE-BASE/libggml-cpu.so.0.25.1": "f4709ae474d658855aba3c9bb90c17a603b44943fa1793e433a46ee96e3d4226",
+    "frozen/STATE-BASE/libggml-vulkan.so.0.25.1": "a1d5ad88a266cb28f496da11726bee09d8021c1ff23e4d4cd9c9b1d06e61efd7",
+    "frozen/STATE-BASE/libggml.so.0.25.1": "8e8669c77ec573dd61fc2ab7f5d3d2ece7a2db9edacb354b300232ce7512b443",
+    "frozen/STATE-BASE/libllama.so.0.5.0": "61f97ce7a813603834536ce55d887c2cc749d107fe4233903b5462bf80478922",
+    "frozen/STATE-BASE/libllama-common.so.0.5.0": "57810254aec09155e20703ddda407c0ef48b415612ad65411ff35e9d246df077",
+    "frozen/STATE-BASE/state-check": "dc9177714d96b6d5ddc72f0a8b334d108058eccc302389b6dfaa5ab0b9e54105",
+    "frozen/TIMING-BASE/libggml-base.so.0.25.1": "ed4b8f3d3ae59dfba891b43364fd7d5c4d297507fc483b4be8c95ccdde046084",
+    "frozen/TIMING-BASE/libggml-cpu.so.0.25.1": "f4709ae474d658855aba3c9bb90c17a603b44943fa1793e433a46ee96e3d4226",
+    "frozen/TIMING-BASE/libggml-vulkan.so.0.25.1": "a1d5ad88a266cb28f496da11726bee09d8021c1ff23e4d4cd9c9b1d06e61efd7",
+    "frozen/TIMING-BASE/libggml.so.0.25.1": "8e8669c77ec573dd61fc2ab7f5d3d2ece7a2db9edacb354b300232ce7512b443",
+    "frozen/TIMING-BASE/libllama.so.0.5.0": "61f97ce7a813603834536ce55d887c2cc749d107fe4233903b5462bf80478922",
+    "frozen/TIMING-BASE/libllama-common.so.0.5.0": "57810254aec09155e20703ddda407c0ef48b415612ad65411ff35e9d246df077",
+    "frozen/TIMING-BASE/replay": "6a41bbc78951aa8f9110d26ab946b4a9415de93cacb39e5bd0f822e31703bf4a"
+  },
+  "source": {
+    "ggml/src/ggml-backend.cpp": "e7149e50ffaaa57cd2b5fbab36cd9e0592850bbd6506553644c19b6622095993",
+    "examples/moe-trace/expert-pool-check.cpp": "76f4b5c618e2fa0892107968f79da9be9974b66aef0f357bdf416efaa8ed4d01",
+    "examples/moe-trace/scheduler-check.cpp": "4e85c5a09d59bb66102cb0264efa1adf7aed14caabe1f42684ed44baacd33005",
+    "examples/moe-trace/state-check.cpp": "042685bd603803ddb6ec9a4cc15382f98a94c5ba880ab854973fcd6ca22cfd57",
+    "examples/moe-trace/moe-corpus.cpp": "5bbf28aa5b07399ac3472b34a774638e37fa075e04882739c95d72ec683a39c5"
+  },
+  "state_inputs": {
+    "stress/state-512.json": "9f8d206a56ac22d29589b44b3d0617771bf2eb75a3d67b36ed1e8e41d3df70b0",
+    "stress/state-8192.json": "ac4ee2bf67eb19043bfade81663f3d857344edfc3ab63e3d1ef0515cd3489937"
+  },
+  "timing_protocol_sha256": "2d3f89161f861c06724437db1f74859057ca5a603680b9563a95bd909bf9aec1",
+  "protocol_amendment": "Input LF serialization only; archived DSOs and executables unchanged"
+}

@@ -815,5 +815,6 @@
   },
   "primary_raw_vectors": 4641,
   "rewound_vectors": 288,
-  "limits": "34fresh serial processes validate only frozen512/8192+128 teacher-forced lifecycle at c16384,Q8KV,b/ub512,OFF/1/2/4layers and4layerASAN. Original invalid-logits-helper failures and collided attempts remain excluded/preserved. Does not resolve independent10000-token intermittence,CPU/GPU fidelity or broadM3 acceptance."
+  "limits": "34fresh serial processes validate only frozen512/8192+128 teacher-forced lifecycle at c16384,Q8KV,b/ub512,OFF/1/2/4layers and4layerASAN. Original invalid-logits-helper failures and collided attempts remain excluded/preserved. Does not resolve independent10000-token intermittence,CPU/GPU fidelity or broadM3 acceptance.",
+  "original_cached_output_gate": "FAIL_SHARED_UNIMPLEMENTED:original acceptance remains open;first autonomous sample and sampler RNG/history are not covered by teacher-forced state continuation."
 }

@@ -1,0 +1,52 @@
+{
+  "id": "R51-input-line-ending-amendment-v2",
+  "registered_before_new_model_runs": true,
+  "source": "Frozen FIXED multilayer engine and unmodified B1 state-control baseline",
+  "workload": "Exact frozen R46state512 prefill and128 fixed decode IDs; context16384,b512,ub512,Q8KV,FAon,fitOFF,mmap,t8/tb8",
+  "layers": [
+    [
+      17
+    ],
+    [
+      16,
+      17
+    ],
+    [
+      14,
+      15,
+      16,
+      17
+    ]
+  ],
+  "controls": [
+    "B1 GPUresident",
+    "FIXED host-to-GPU uncached",
+    "FIXED128slot pool per selected layer"
+  ],
+  "payload": "128slots/layer,actual heterogeneous triplet bytes; cap256MiB/layer; report allocator/full transfer arena/KV separately",
+  "prerequisites": "Fresh R45fixture/ASAN/Vulkan checks plus R46sameplacement state/no-state gates pass; raw full replay in two balanced fresh processes pervariant with warmup1+3repetitions,allfinite/nonzero and byte-exact B1 everychunk/token; pool truly admitted eachlayer",
+  "timing_order": [
+    "resident",
+    "target",
+    "pool",
+    "pool",
+    "target",
+    "resident",
+    "resident",
+    "target",
+    "pool",
+    "pool",
+    "target",
+    "resident"
+  ],
+  "independent_processes_per_variant": 4,
+  "repetitions": 3,
+  "warmup": 1,
+  "raw_gates": "Separate raw runs. Timing full output guard and everycallfingerprint must match raw B1reference; no raw I/O,profiler,poollog,callback,sanitizer or concurrent CPUanalysis in timing",
+  "analysis": "Aggregate token/time within each process; median across processes; pooled per-process TGp95; independent-process bootstrap95%,50000draws,seed51. Practical margins3%PP/TG,5%p95; initial/finalresident drift>20%invalidates cell; no favorable-regime selection or replacement of failure",
+  "limits": "Single inference stream,replay engine timing excludes initialization/raw checks/sampling/applicationTTFT; CPU/GPU fidelity separate; no broad milestone/default promotion; failed long10000 pool cell is not ranked",
+  "registered_utc": "2026-10-09T09:15:22.383602+00:00",
+  "original_protocol_sha256": "835fbeb927b017a13f718449bb2ba4919bf0e1df9f555b5375494f0c408ee299",
+  "amendment": "Original generated CSV uses CRLF; frozen replay requires exact LF header and aborts before model initialization. All18 original raw gate attempts preserved as pre-model harness failures. Same512/128 token IDs,flags,engines,thresholds,order and gates; only LF serialization changed.",
+  "stage_order": "Run in a verified idle interval between two fresh stress processes;pause only stress child and central parent when no model unit or systemd-run child is active. No live model interrupted. Resume original stress order after independent timing and all CPU analysis exits."
+}
