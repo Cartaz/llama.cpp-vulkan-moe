@@ -1,0 +1,2243 @@
+{
+  "utc": "2026-10-09T19:40:22.996246+00:00",
+  "protocol": "r63-protocol.json",
+  "engine_identity": "r61-model-freeze.json",
+  "settings_identity": "identity-resume07.json",
+  "configurations": {
+    "config-1": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "label": "R61-V2",
+      "source_commit": "2e08b57 + r61-engine-v2.patch; source freeze includes exact hashes",
+      "helper_commit": "2e08b57e9997358109a993c845ce6b39eeb266fa",
+      "helper_source_sha256": "d71a81d1616852d7a0511fc83014814d6900d0188212ac0e9e1fe88ded2d8e00",
+      "clocks": "OD_SCLK:\n0: 500Mhz\n1: 2600Mhz\nOD_MCLK:\n0: 97Mhz\n1: 1075MHz\nOD_RANGE:\nSCLK:     500Mhz       2600Mhz\nMCLK:     674Mhz       1075Mhz\nOD_VDDGFX_OFFSET:\n-100mV",
+      "power_cap": {
+        "power1_cap": "186000000"
+      },
+      "gpu_profile": "PROFILE_INDEX(NAME) CLOCK_TYPE(NAME) FPS MinFreqType MinActiveFreqType MinActiveFreq BoosterFreqType BoosterFreq PD_Data_limit_c PD_Data_error_coeff PD_Data_error_rate_coeff\n 0 BOOTUP_DEFAULT*:\n                    0(       GFXCLK)       0       5       1       0       4     800 4587520  -65536       0\n                    1(       SOCCLK)       0       5       1       0       1       0 3276800  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       4     800  327680  -65536       0\n 1 3D_FULL_SCREEN :\n                    0(       GFXCLK)       0       5       0    1600       4     650 5242880   -3276       0\n                    1(       SOCCLK)       0       5       1       0       1       0  655360  -65536   -6553\n                    2(       MEMCLK)       0       5       4     850       4     800  327680  -65536       0\n 2   POWER_SAVING :\n                    0(       GFXCLK)       0       5       1       0       3       0 5898240  -65536       0\n                    1(       SOCCLK)       0       5       1       0       1       0 3407872  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       3       0 1966080  -65536       0\n 3          VIDEO :\n                    0(       GFXCLK)       0       5       1       0       4     500 4587520  -65536       0\n                    1(       SOCCLK)       0       5       1       0       1       0 3473408  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       4     500 1966080  -65536       0\n 4             VR :\n                    0(       GFXCLK)       0       5       4    1000       1       0 3276800       0       0\n                    1(       SOCCLK)       0       5       1       0       1       0  655360  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       4     800  327680  -65536       0\n 5        COMPUTE :\n                    0(       GFXCLK)       0       5       4    1000       1       0 3932160       0       0\n                    1(       SOCCLK)       0       5       1       0       1       0  655360  -65536   -6553\n                    2(       MEMCLK)       0       5       4     850       3       0  327680  -65536  -32768\n 6         CUSTOM :\n                    0(       GFXCLK)       0       5       1       0       4     800 4587520  -65536       0\n                    1(       SOCCLK)       0       5       1       0       1       0 3276800  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       4     800  327680  -65536       0",
+      "expected_libraries": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libggml-base.so.0.25.1": "1d469090492e0335d9d26624b78e387778cd7584b4dbb6d9a7f18eef7ff82661",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libggml-cpu.so.0.25.1": "d939874c41448f224794190e80548a7d09a309686450ac53c797b040eb2d995b",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libggml-vulkan.so.0.25.1": "4442d44cfa70f0cf12b5d6290f6bd74fbe1b24e4a90fe71759ab40efffeb22d4",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libggml.so.0.25.1": "dc0917f5b55bb86ecfa89c7d1734c5ab6579fb90ad97cd5a94735fa9eb9e5f22",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libllama.so.0.5.0": "d8cd670eab39b9ae327c11e5446e6b6faa4ae8f8250796ff7aabd031aeaca504",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libllama-common.so.0.5.0": "95f75b06313398c916105b7718d31be963ee275c83e14c59cebc32582b0f05a7"
+      },
+      "static_environment": {
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_WARMUP": "0",
+        "GGML_SCHED_EXPERT_GPU_LAYER": "17",
+        "GGML_SCHED_EXPERT_POOL": "17:128:256"
+      },
+      "actual_loaded_engine_and_driver": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libggml-base.so.0.25.1": "1d469090492e0335d9d26624b78e387778cd7584b4dbb6d9a7f18eef7ff82661",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libggml-cpu.so.0.25.1": "d939874c41448f224794190e80548a7d09a309686450ac53c797b040eb2d995b",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libggml-vulkan.so.0.25.1": "4442d44cfa70f0cf12b5d6290f6bd74fbe1b24e4a90fe71759ab40efffeb22d4",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libggml.so.0.25.1": "dc0917f5b55bb86ecfa89c7d1734c5ab6579fb90ad97cd5a94735fa9eb9e5f22",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libllama-common.so.0.5.0": "95f75b06313398c916105b7718d31be963ee275c83e14c59cebc32582b0f05a7",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libllama.so.0.5.0": "d8cd670eab39b9ae327c11e5446e6b6faa4ae8f8250796ff7aabd031aeaca504",
+        "/usr/lib/libLLVM.so.23.1": "941dec5f3fd22e305eb8aafda3aacf1420b8ffe2f08c33d7ee2d3f284c47fe59",
+        "/usr/lib/libvulkan.so.1.4.363": "c3603ee46488ae6b581f3eeb65631a4c68c89c887d46a0b4ba0e7bff01307d88",
+        "/usr/lib/libvulkan_radeon.so": "beb888991d47606a01b0738dece66d28f2b1c01a7f48403c6505e4d55dbcd73b"
+      }
+    },
+    "config-2": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-OLD/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "label": "R61-OLD",
+      "source_commit": "Old frozen MULTI engine; uniform guarded replay helper",
+      "helper_commit": "2e08b57e9997358109a993c845ce6b39eeb266fa",
+      "helper_source_sha256": "d71a81d1616852d7a0511fc83014814d6900d0188212ac0e9e1fe88ded2d8e00",
+      "clocks": "OD_SCLK:\n0: 500Mhz\n1: 2600Mhz\nOD_MCLK:\n0: 97Mhz\n1: 1075MHz\nOD_RANGE:\nSCLK:     500Mhz       2600Mhz\nMCLK:     674Mhz       1075Mhz\nOD_VDDGFX_OFFSET:\n-100mV",
+      "power_cap": {
+        "power1_cap": "186000000"
+      },
+      "gpu_profile": "PROFILE_INDEX(NAME) CLOCK_TYPE(NAME) FPS MinFreqType MinActiveFreqType MinActiveFreq BoosterFreqType BoosterFreq PD_Data_limit_c PD_Data_error_coeff PD_Data_error_rate_coeff\n 0 BOOTUP_DEFAULT*:\n                    0(       GFXCLK)       0       5       1       0       4     800 4587520  -65536       0\n                    1(       SOCCLK)       0       5       1       0       1       0 3276800  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       4     800  327680  -65536       0\n 1 3D_FULL_SCREEN :\n                    0(       GFXCLK)       0       5       0    1600       4     650 5242880   -3276       0\n                    1(       SOCCLK)       0       5       1       0       1       0  655360  -65536   -6553\n                    2(       MEMCLK)       0       5       4     850       4     800  327680  -65536       0\n 2   POWER_SAVING :\n                    0(       GFXCLK)       0       5       1       0       3       0 5898240  -65536       0\n                    1(       SOCCLK)       0       5       1       0       1       0 3407872  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       3       0 1966080  -65536       0\n 3          VIDEO :\n                    0(       GFXCLK)       0       5       1       0       4     500 4587520  -65536       0\n                    1(       SOCCLK)       0       5       1       0       1       0 3473408  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       4     500 1966080  -65536       0\n 4             VR :\n                    0(       GFXCLK)       0       5       4    1000       1       0 3276800       0       0\n                    1(       SOCCLK)       0       5       1       0       1       0  655360  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       4     800  327680  -65536       0\n 5        COMPUTE :\n                    0(       GFXCLK)       0       5       4    1000       1       0 3932160       0       0\n                    1(       SOCCLK)       0       5       1       0       1       0  655360  -65536   -6553\n                    2(       MEMCLK)       0       5       4     850       3       0  327680  -65536  -32768\n 6         CUSTOM :\n                    0(       GFXCLK)       0       5       1       0       4     800 4587520  -65536       0\n                    1(       SOCCLK)       0       5       1       0       1       0 3276800  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       4     800  327680  -65536       0",
+      "expected_libraries": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-OLD/libggml-base.so.0.25.1": "167ef8f0d9a0aabd4c0f87637a47dec24461e6810ef990962ed38f119fb9068e",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-OLD/libggml-cpu.so.0.25.1": "d939874c41448f224794190e80548a7d09a309686450ac53c797b040eb2d995b",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-OLD/libggml-vulkan.so.0.25.1": "4442d44cfa70f0cf12b5d6290f6bd74fbe1b24e4a90fe71759ab40efffeb22d4",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-OLD/libggml.so.0.25.1": "dc0917f5b55bb86ecfa89c7d1734c5ab6579fb90ad97cd5a94735fa9eb9e5f22",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-OLD/libllama.so.0.5.0": "d8cd670eab39b9ae327c11e5446e6b6faa4ae8f8250796ff7aabd031aeaca504",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-OLD/libllama-common.so.0.5.0": "12c8b2dfbdd57b1ee7e095bd6d0756c0c5dcfb05e9dc8eb4bab1beb009515528"
+      },
+      "static_environment": {
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-OLD",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_WARMUP": "0",
+        "GGML_SCHED_EXPERT_GPU_LAYER": "17",
+        "GGML_SCHED_EXPERT_POOL": "17:128:256"
+      },
+      "actual_loaded_engine_and_driver": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-OLD/libggml-base.so.0.25.1": "167ef8f0d9a0aabd4c0f87637a47dec24461e6810ef990962ed38f119fb9068e",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-OLD/libggml-cpu.so.0.25.1": "d939874c41448f224794190e80548a7d09a309686450ac53c797b040eb2d995b",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-OLD/libggml-vulkan.so.0.25.1": "4442d44cfa70f0cf12b5d6290f6bd74fbe1b24e4a90fe71759ab40efffeb22d4",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-OLD/libggml.so.0.25.1": "dc0917f5b55bb86ecfa89c7d1734c5ab6579fb90ad97cd5a94735fa9eb9e5f22",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-OLD/libllama-common.so.0.5.0": "12c8b2dfbdd57b1ee7e095bd6d0756c0c5dcfb05e9dc8eb4bab1beb009515528",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-OLD/libllama.so.0.5.0": "d8cd670eab39b9ae327c11e5446e6b6faa4ae8f8250796ff7aabd031aeaca504",
+        "/usr/lib/libLLVM.so.23.1": "941dec5f3fd22e305eb8aafda3aacf1420b8ffe2f08c33d7ee2d3f284c47fe59",
+        "/usr/lib/libvulkan.so.1.4.363": "c3603ee46488ae6b581f3eeb65631a4c68c89c887d46a0b4ba0e7bff01307d88",
+        "/usr/lib/libvulkan_radeon.so": "beb888991d47606a01b0738dece66d28f2b1c01a7f48403c6505e4d55dbcd73b"
+      }
+    },
+    "config-3": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "label": "R61-V2",
+      "source_commit": "2e08b57 + r61-engine-v2.patch; source freeze includes exact hashes",
+      "helper_commit": "2e08b57e9997358109a993c845ce6b39eeb266fa",
+      "helper_source_sha256": "d71a81d1616852d7a0511fc83014814d6900d0188212ac0e9e1fe88ded2d8e00",
+      "clocks": "OD_SCLK:\n0: 500Mhz\n1: 2600Mhz\nOD_MCLK:\n0: 97Mhz\n1: 1075MHz\nOD_RANGE:\nSCLK:     500Mhz       2600Mhz\nMCLK:     674Mhz       1075Mhz\nOD_VDDGFX_OFFSET:\n-100mV",
+      "power_cap": {
+        "power1_cap": "186000000"
+      },
+      "gpu_profile": "PROFILE_INDEX(NAME) CLOCK_TYPE(NAME) FPS MinFreqType MinActiveFreqType MinActiveFreq BoosterFreqType BoosterFreq PD_Data_limit_c PD_Data_error_coeff PD_Data_error_rate_coeff\n 0 BOOTUP_DEFAULT*:\n                    0(       GFXCLK)       0       5       1       0       4     800 4587520  -65536       0\n                    1(       SOCCLK)       0       5       1       0       1       0 3276800  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       4     800  327680  -65536       0\n 1 3D_FULL_SCREEN :\n                    0(       GFXCLK)       0       5       0    1600       4     650 5242880   -3276       0\n                    1(       SOCCLK)       0       5       1       0       1       0  655360  -65536   -6553\n                    2(       MEMCLK)       0       5       4     850       4     800  327680  -65536       0\n 2   POWER_SAVING :\n                    0(       GFXCLK)       0       5       1       0       3       0 5898240  -65536       0\n                    1(       SOCCLK)       0       5       1       0       1       0 3407872  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       3       0 1966080  -65536       0\n 3          VIDEO :\n                    0(       GFXCLK)       0       5       1       0       4     500 4587520  -65536       0\n                    1(       SOCCLK)       0       5       1       0       1       0 3473408  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       4     500 1966080  -65536       0\n 4             VR :\n                    0(       GFXCLK)       0       5       4    1000       1       0 3276800       0       0\n                    1(       SOCCLK)       0       5       1       0       1       0  655360  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       4     800  327680  -65536       0\n 5        COMPUTE :\n                    0(       GFXCLK)       0       5       4    1000       1       0 3932160       0       0\n                    1(       SOCCLK)       0       5       1       0       1       0  655360  -65536   -6553\n                    2(       MEMCLK)       0       5       4     850       3       0  327680  -65536  -32768\n 6         CUSTOM :\n                    0(       GFXCLK)       0       5       1       0       4     800 4587520  -65536       0\n                    1(       SOCCLK)       0       5       1       0       1       0 3276800  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       4     800  327680  -65536       0",
+      "expected_libraries": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libggml-base.so.0.25.1": "1d469090492e0335d9d26624b78e387778cd7584b4dbb6d9a7f18eef7ff82661",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libggml-cpu.so.0.25.1": "d939874c41448f224794190e80548a7d09a309686450ac53c797b040eb2d995b",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libggml-vulkan.so.0.25.1": "4442d44cfa70f0cf12b5d6290f6bd74fbe1b24e4a90fe71759ab40efffeb22d4",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libggml.so.0.25.1": "dc0917f5b55bb86ecfa89c7d1734c5ab6579fb90ad97cd5a94735fa9eb9e5f22",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libllama.so.0.5.0": "d8cd670eab39b9ae327c11e5446e6b6faa4ae8f8250796ff7aabd031aeaca504",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libllama-common.so.0.5.0": "95f75b06313398c916105b7718d31be963ee275c83e14c59cebc32582b0f05a7"
+      },
+      "static_environment": {
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_WARMUP": "0",
+        "GGML_SCHED_EXPERT_GPU_LAYER": "17",
+        "GGML_SCHED_EXPERT_POOL": "17:128:256",
+        "GGML_SCHED_EXPERT_POOL_DECODE_ONLY": "1"
+      },
+      "actual_loaded_engine_and_driver": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libggml-base.so.0.25.1": "1d469090492e0335d9d26624b78e387778cd7584b4dbb6d9a7f18eef7ff82661",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libggml-cpu.so.0.25.1": "d939874c41448f224794190e80548a7d09a309686450ac53c797b040eb2d995b",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libggml-vulkan.so.0.25.1": "4442d44cfa70f0cf12b5d6290f6bd74fbe1b24e4a90fe71759ab40efffeb22d4",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libggml.so.0.25.1": "dc0917f5b55bb86ecfa89c7d1734c5ab6579fb90ad97cd5a94735fa9eb9e5f22",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libllama-common.so.0.5.0": "95f75b06313398c916105b7718d31be963ee275c83e14c59cebc32582b0f05a7",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-V2/libllama.so.0.5.0": "d8cd670eab39b9ae327c11e5446e6b6faa4ae8f8250796ff7aabd031aeaca504",
+        "/usr/lib/libLLVM.so.23.1": "941dec5f3fd22e305eb8aafda3aacf1420b8ffe2f08c33d7ee2d3f284c47fe59",
+        "/usr/lib/libvulkan.so.1.4.363": "c3603ee46488ae6b581f3eeb65631a4c68c89c887d46a0b4ba0e7bff01307d88",
+        "/usr/lib/libvulkan_radeon.so": "beb888991d47606a01b0738dece66d28f2b1c01a7f48403c6505e4d55dbcd73b"
+      }
+    },
+    "config-4": {
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-BASE/replay",
+        "-m",
+        "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+        "-ngl",
+        "99",
+        "-ot",
+        "^blk[.]17[.]ffn_(gate|up|down)_exps[.]weight$=Vulkan0",
+        "-ncmoe",
+        "18",
+        "-t",
+        "8",
+        "-tb",
+        "8",
+        "-c",
+        "1024",
+        "-b",
+        "512",
+        "-ub",
+        "512",
+        "-fa",
+        "on",
+        "-ctk",
+        "q8_0",
+        "-ctv",
+        "q8_0",
+        "--fit",
+        "off",
+        "--verbosity",
+        "4",
+        "--load-mode",
+        "mmap"
+      ],
+      "label": "R61-BASE",
+      "source_commit": "B1 unmodified7fe450e; uniform guarded replay helper",
+      "helper_commit": "2e08b57e9997358109a993c845ce6b39eeb266fa",
+      "helper_source_sha256": "d71a81d1616852d7a0511fc83014814d6900d0188212ac0e9e1fe88ded2d8e00",
+      "clocks": "OD_SCLK:\n0: 500Mhz\n1: 2600Mhz\nOD_MCLK:\n0: 97Mhz\n1: 1075MHz\nOD_RANGE:\nSCLK:     500Mhz       2600Mhz\nMCLK:     674Mhz       1075Mhz\nOD_VDDGFX_OFFSET:\n-100mV",
+      "power_cap": {
+        "power1_cap": "186000000"
+      },
+      "gpu_profile": "PROFILE_INDEX(NAME) CLOCK_TYPE(NAME) FPS MinFreqType MinActiveFreqType MinActiveFreq BoosterFreqType BoosterFreq PD_Data_limit_c PD_Data_error_coeff PD_Data_error_rate_coeff\n 0 BOOTUP_DEFAULT*:\n                    0(       GFXCLK)       0       5       1       0       4     800 4587520  -65536       0\n                    1(       SOCCLK)       0       5       1       0       1       0 3276800  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       4     800  327680  -65536       0\n 1 3D_FULL_SCREEN :\n                    0(       GFXCLK)       0       5       0    1600       4     650 5242880   -3276       0\n                    1(       SOCCLK)       0       5       1       0       1       0  655360  -65536   -6553\n                    2(       MEMCLK)       0       5       4     850       4     800  327680  -65536       0\n 2   POWER_SAVING :\n                    0(       GFXCLK)       0       5       1       0       3       0 5898240  -65536       0\n                    1(       SOCCLK)       0       5       1       0       1       0 3407872  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       3       0 1966080  -65536       0\n 3          VIDEO :\n                    0(       GFXCLK)       0       5       1       0       4     500 4587520  -65536       0\n                    1(       SOCCLK)       0       5       1       0       1       0 3473408  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       4     500 1966080  -65536       0\n 4             VR :\n                    0(       GFXCLK)       0       5       4    1000       1       0 3276800       0       0\n                    1(       SOCCLK)       0       5       1       0       1       0  655360  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       4     800  327680  -65536       0\n 5        COMPUTE :\n                    0(       GFXCLK)       0       5       4    1000       1       0 3932160       0       0\n                    1(       SOCCLK)       0       5       1       0       1       0  655360  -65536   -6553\n                    2(       MEMCLK)       0       5       4     850       3       0  327680  -65536  -32768\n 6         CUSTOM :\n                    0(       GFXCLK)       0       5       1       0       4     800 4587520  -65536       0\n                    1(       SOCCLK)       0       5       1       0       1       0 3276800  -65536   -6553\n                    2(       MEMCLK)       0       5       1       0       4     800  327680  -65536       0",
+      "expected_libraries": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-BASE/libggml-base.so.0.25.1": "ed4b8f3d3ae59dfba891b43364fd7d5c4d297507fc483b4be8c95ccdde046084",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-BASE/libggml-cpu.so.0.25.1": "f4709ae474d658855aba3c9bb90c17a603b44943fa1793e433a46ee96e3d4226",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-BASE/libggml-vulkan.so.0.25.1": "a1d5ad88a266cb28f496da11726bee09d8021c1ff23e4d4cd9c9b1d06e61efd7",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-BASE/libggml.so.0.25.1": "8e8669c77ec573dd61fc2ab7f5d3d2ece7a2db9edacb354b300232ce7512b443",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-BASE/libllama.so.0.5.0": "61f97ce7a813603834536ce55d887c2cc749d107fe4233903b5462bf80478922",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-BASE/libllama-common.so.0.5.0": "57810254aec09155e20703ddda407c0ef48b415612ad65411ff35e9d246df077"
+      },
+      "static_environment": {
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-BASE",
+        "MOE_REPLAY_REPS": "1",
+        "MOE_REPLAY_WARMUP": "0"
+      },
+      "actual_loaded_engine_and_driver": {
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-BASE/libggml-base.so.0.25.1": "ed4b8f3d3ae59dfba891b43364fd7d5c4d297507fc483b4be8c95ccdde046084",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-BASE/libggml-cpu.so.0.25.1": "f4709ae474d658855aba3c9bb90c17a603b44943fa1793e433a46ee96e3d4226",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-BASE/libggml-vulkan.so.0.25.1": "a1d5ad88a266cb28f496da11726bee09d8021c1ff23e4d4cd9c9b1d06e61efd7",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-BASE/libggml.so.0.25.1": "8e8669c77ec573dd61fc2ab7f5d3d2ece7a2db9edacb354b300232ce7512b443",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-BASE/libllama-common.so.0.5.0": "57810254aec09155e20703ddda407c0ef48b415612ad65411ff35e9d246df077",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-BASE/libllama.so.0.5.0": "61f97ce7a813603834536ce55d887c2cc749d107fe4233903b5462bf80478922",
+        "/usr/lib/libLLVM.so.23.1": "941dec5f3fd22e305eb8aafda3aacf1420b8ffe2f08c33d7ee2d3f284c47fe59",
+        "/usr/lib/libvulkan.so.1.4.363": "c3603ee46488ae6b581f3eeb65631a4c68c89c887d46a0b4ba0e7bff01307d88",
+        "/usr/lib/libvulkan_radeon.so": "beb888991d47606a01b0738dece66d28f2b1c01a7f48403c6505e4d55dbcd73b"
+      }
+    }
+  },
+  "processes": {
+    "r63-model/heldout-planning/cold-gate-off-1-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-off-1-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-off-1-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:19:04.393282+00:00",
+      "returncode": 0,
+      "wall_s": 8.753214288999516,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5448504340001818,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "08c754ab6bbed3506aa71312d32bda4cb6eb8b70ae6977011f9d3e62e161b2c8",
+      "csv_sha256": "1b43b4bed57a073e03a97bb18503576c0b8d2c2543efd02364dd8f982c93c8ab",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "8e399684629eb6cba15ec58d5d3d4ad7313a8b461fc5af185496dc9815c47a11"
+      }
+    },
+    "r63-model/heldout-planning/cold-gate-off-2-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-off-2-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-off-2-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:19:32.347652+00:00",
+      "returncode": 0,
+      "wall_s": 8.748130009000306,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5442047220003587,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "9a0fa8d5a4928dfef958beac9ecb82bb219d2aedfcdad472ff32c719d460529d",
+      "csv_sha256": "039ebcc3db1c7393c325d0e8ffa4db90a71012f6cca68af7ca87c27f13595534",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "8e399684629eb6cba15ec58d5d3d4ad7313a8b461fc5af185496dc9815c47a11"
+      }
+    },
+    "r63-model/heldout-planning/cold-gate-off-3-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-off-3-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-off-3-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:20:20.015346+00:00",
+      "returncode": 0,
+      "wall_s": 8.762279512000532,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5457604740004172,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "f1e4cee4bc3ffe8324a11fba25d8137be8bec4b4e59217205c3c87e6ee481362",
+      "csv_sha256": "514a7586e85ca061075c6ba599d4e36e44fd9d48fc185477a44efcfa089b7cab",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "8e399684629eb6cba15ec58d5d3d4ad7313a8b461fc5af185496dc9815c47a11"
+      }
+    },
+    "r63-model/heldout-planning/cold-gate-off-4-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-off-4-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-off-4-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:20:48.961648+00:00",
+      "returncode": 0,
+      "wall_s": 8.75377539100009,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5462324460004311,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "aca3228e77af35b72ee861810d7a00f5bac987f29ad317e6658f0db6b6ba2a7d",
+      "csv_sha256": "50d6338dda3064c5be71ef6f05572b4381f0e6008c3bba2bc1aad6ec7f11446a",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "8e399684629eb6cba15ec58d5d3d4ad7313a8b461fc5af185496dc9815c47a11"
+      }
+    },
+    "r63-model/heldout-planning/cold-gate-old-1-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-old-1-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-old-1-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:18:55.072196+00:00",
+      "returncode": 0,
+      "wall_s": 8.756231123999896,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5443320630001836,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "3f1d5a4cab06abdb8ed62eed3c0fa4912cc3c77e084c81c964625ea537c9de55",
+      "csv_sha256": "e03dfa64618c7130c494e5179cc80270043c7466a48fe42e4d3fc20d19688ac3",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "8e399684629eb6cba15ec58d5d3d4ad7313a8b461fc5af185496dc9815c47a11"
+      }
+    },
+    "r63-model/heldout-planning/cold-gate-old-2-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-old-2-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-old-2-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:19:41.662019+00:00",
+      "returncode": 0,
+      "wall_s": 8.756921583000803,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5466902530006337,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "01213d7e26e38ae9c9619dd1c377e2df71fbf90a7f6b13c0eb3ccb0715176fb8",
+      "csv_sha256": "2e9a344137b6bb38738e20e0da44e0d95627cc402ffc21e5cbadbba92323e710",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "8e399684629eb6cba15ec58d5d3d4ad7313a8b461fc5af185496dc9815c47a11"
+      }
+    },
+    "r63-model/heldout-planning/cold-gate-old-3-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-old-3-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-old-3-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:20:10.702647+00:00",
+      "returncode": 0,
+      "wall_s": 8.750786581000284,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5446798380016844,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "b8366769cbaf8dbd7d565eb778bc74aae51809c15efecdaa1d8dd318a980d8b9",
+      "csv_sha256": "3fca07ed505a07a1df99d47a54614726d6678e19a0b388d4499d1b13f9d73a7e",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "8e399684629eb6cba15ec58d5d3d4ad7313a8b461fc5af185496dc9815c47a11"
+      }
+    },
+    "r63-model/heldout-planning/cold-gate-old-4-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-old-4-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-old-4-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:20:58.273846+00:00",
+      "returncode": 0,
+      "wall_s": 8.748130420999587,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.545267713998328,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "213e1d9b8d641cca038019d73890ec0c4b5429b813eac45a00c920335cb1c2c3",
+      "csv_sha256": "07065a4a6dfaa1d3250967dd12c8595a3c09f8bed532df8cf583e0871bc9a267",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "8e399684629eb6cba15ec58d5d3d4ad7313a8b461fc5af185496dc9815c47a11"
+      }
+    },
+    "r63-model/heldout-planning/cold-gate-on-1-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-on-1-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-on-1-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:19:13.703199+00:00",
+      "returncode": 0,
+      "wall_s": 8.774284969000291,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5451795820008556,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "0ea6014f3880c3c7f1c34debba2b2843490f45ba00071d18b016fbcde1f4f7a0",
+      "csv_sha256": "dc3efd59c6fcaea8708158eb7719b61d0eabb84886c5a1bb1e462979415171e3",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "8e399684629eb6cba15ec58d5d3d4ad7313a8b461fc5af185496dc9815c47a11"
+      }
+    },
+    "r63-model/heldout-planning/cold-gate-on-2-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-on-2-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-on-2-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:19:23.036592+00:00",
+      "returncode": 0,
+      "wall_s": 8.753077167999436,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5457058329993743,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "57f0998939e0e3eac13c424d196de9c95ea2100d2d8e52c62d865b5fb46815e4",
+      "csv_sha256": "dcfcf991abfc3db36d45c2accbcddfec0b051fc27c2f1e1617003bccd9dd6493",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "8e399684629eb6cba15ec58d5d3d4ad7313a8b461fc5af185496dc9815c47a11"
+      }
+    },
+    "r63-model/heldout-planning/cold-gate-on-3-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-on-3-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-on-3-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:20:29.333596+00:00",
+      "returncode": 0,
+      "wall_s": 9.258156706999216,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5458264449989656,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "588fcf1eda8d3eec64ac003f5483dcd67276c6cb28cd3ab67cfe1966f940cc99",
+      "csv_sha256": "d25112891a052955f3d8e43d6ff6a24633e0050dc5d24c246316908ac4616586",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "8e399684629eb6cba15ec58d5d3d4ad7313a8b461fc5af185496dc9815c47a11"
+      }
+    },
+    "r63-model/heldout-planning/cold-gate-on-4-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-on-4-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-on-4-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:20:39.157600+00:00",
+      "returncode": 0,
+      "wall_s": 9.247066236999672,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5440253130000201,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "68ac3de80bf4f49e05e0842d2731e538a97b83ae0d7994992a8770258cec9fa4",
+      "csv_sha256": "97745c9ff9218e47ef5c124c1cc96995da07a0a25ff610d2c448908e0cce137f",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "8e399684629eb6cba15ec58d5d3d4ad7313a8b461fc5af185496dc9815c47a11"
+      }
+    },
+    "r63-model/heldout-planning/cold-gate-resident-1-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-resident-1-logits.bin"
+      },
+      "started_utc": "2026-10-09T19:18:44.090870+00:00",
+      "returncode": 0,
+      "wall_s": 10.420681700999921,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5396227070013992,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "61061fe4901890af2534738280d8ef18d6d4f0b7e2994a13dff0daa12ee87cfd",
+      "csv_sha256": "4807eb4c93c4353256585cee6374a535ec913256eaa58a4fe3419f72dadbfbcd",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "8e399684629eb6cba15ec58d5d3d4ad7313a8b461fc5af185496dc9815c47a11"
+      }
+    },
+    "r63-model/heldout-planning/cold-gate-resident-2-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-resident-2-logits.bin"
+      },
+      "started_utc": "2026-10-09T19:19:50.982277+00:00",
+      "returncode": 0,
+      "wall_s": 9.291144079999867,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5445341510003345,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "b9a80a097395b5cc29d6b59ab7ba9b920e81dba361803b59ca0fd3db53c377dd",
+      "csv_sha256": "1fbf3e10401b09568cd6ec0f46cd79cf5892d04ed8612a65a9db38b0c326ae15",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "8e399684629eb6cba15ec58d5d3d4ad7313a8b461fc5af185496dc9815c47a11"
+      }
+    },
+    "r63-model/heldout-planning/cold-gate-resident-3-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-resident-3-logits.bin"
+      },
+      "started_utc": "2026-10-09T19:20:00.828826+00:00",
+      "returncode": 0,
+      "wall_s": 9.308390129001054,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5429416690003563,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "ac610968788a06d8448e74765d7a37375ea78f7ad5df748b266fcb276fe654cb",
+      "csv_sha256": "2f4a5a4146cef453cb0fb20689d30584c799b33e6626a69b38f7955309fed375",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "8e399684629eb6cba15ec58d5d3d4ad7313a8b461fc5af185496dc9815c47a11"
+      }
+    },
+    "r63-model/heldout-planning/cold-gate-resident-4-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-planning/cold-gate-resident-4-logits.bin"
+      },
+      "started_utc": "2026-10-09T19:21:07.586366+00:00",
+      "returncode": 0,
+      "wall_s": 9.284582199001306,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5417557280015899,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "e97d878d9112de5b5adbcd98b8ba9cffcf584ca2f516216263af4ac58d7356d2",
+      "csv_sha256": "1036f68839b5e880d1f67c82db2edf5bae19618916f1223dc44f867bdb66e664",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "8e399684629eb6cba15ec58d5d3d4ad7313a8b461fc5af185496dc9815c47a11"
+      }
+    },
+    "r63-model/heldout-structured/cold-gate-off-1-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-off-1-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-off-1-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:21:36.551335+00:00",
+      "returncode": 0,
+      "wall_s": 8.75448365900047,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5461319300011382,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "e2c517c79831eb2e21da58d009e04a86017ca5bb296faea60ef7473d322ee85d",
+      "csv_sha256": "b1f6a54b860f4c5622a53eab165f9ad4f23f282277959f11e0580d4b23c25ed7",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "37f4a586d7cbe944193fdd89bf48abc508ab6ff4b663bee710a106894ca09531"
+      }
+    },
+    "r63-model/heldout-structured/cold-gate-off-2-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-off-2-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-off-2-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:22:04.478548+00:00",
+      "returncode": 0,
+      "wall_s": 8.772680530000798,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5444660390003264,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "df271a9ccc1b6074210984aecb0b7f58032aa53e16ab0a5f40be5c670be214b0",
+      "csv_sha256": "c6f1162c72c777e98ffb0f4399d6b5d42578cab41cbfb4965868638f6d32fa1a",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "37f4a586d7cbe944193fdd89bf48abc508ab6ff4b663bee710a106894ca09531"
+      }
+    },
+    "r63-model/heldout-structured/cold-gate-off-3-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-off-3-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-off-3-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:22:52.110310+00:00",
+      "returncode": 0,
+      "wall_s": 8.754869593998592,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5440644629998133,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "2b58c8f96a5d05d04b6b7ca371ee62cc8caf4883dacc0a23637fbf4aeceefe7c",
+      "csv_sha256": "fc9dd82313f60b6dff2bdde75ba86a95a7c925ed8dc2a1763eaeb3cf808c1683",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "37f4a586d7cbe944193fdd89bf48abc508ab6ff4b663bee710a106894ca09531"
+      }
+    },
+    "r63-model/heldout-structured/cold-gate-off-4-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-off-4-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-off-4-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:23:20.608224+00:00",
+      "returncode": 0,
+      "wall_s": 8.765574021001157,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5443267520004156,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "c0da2903bf58efd0c3325bdb33f873ba78f9e634ca46cf42f838971428d6e4d7",
+      "csv_sha256": "607cfd75299797f170dd53e2e9a8afa934efdaa212525dadf102f0fa993f7c9c",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "37f4a586d7cbe944193fdd89bf48abc508ab6ff4b663bee710a106894ca09531"
+      }
+    },
+    "r63-model/heldout-structured/cold-gate-old-1-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-old-1-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-old-1-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:21:27.222624+00:00",
+      "returncode": 0,
+      "wall_s": 8.765239651000229,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.551573427999756,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "610a1e8d3310dc745748bd3efca51e4164fd73558a939f9f4c8d857f0a6540fe",
+      "csv_sha256": "624f048d5615224e401ff774020b64955d584922b04ee8539b0d11c57a569a0a",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "37f4a586d7cbe944193fdd89bf48abc508ab6ff4b663bee710a106894ca09531"
+      }
+    },
+    "r63-model/heldout-structured/cold-gate-old-2-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-old-2-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-old-2-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:22:13.812425+00:00",
+      "returncode": 0,
+      "wall_s": 8.757874472999902,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5453412990009383,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "057548f0ac57a7a5fc91a7f9574825e605dfca8591b340d4e4e28a92f43cd20a",
+      "csv_sha256": "2a6446b837f331d3ffe694b5ef67e190e9a368b28cc8dede064b67ebc983fee1",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "37f4a586d7cbe944193fdd89bf48abc508ab6ff4b663bee710a106894ca09531"
+      }
+    },
+    "r63-model/heldout-structured/cold-gate-old-3-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-old-3-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-old-3-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:22:42.804164+00:00",
+      "returncode": 0,
+      "wall_s": 8.742317946000185,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5423672889992304,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "fd9fded2827c7f23a6f28364845715df29439505b90c6eb3c7de47ba40901e10",
+      "csv_sha256": "14ba5598b1a1bed7f56aa35e95e5d02faae23ed06ed8f67e82d2003d66435b3e",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "37f4a586d7cbe944193fdd89bf48abc508ab6ff4b663bee710a106894ca09531"
+      }
+    },
+    "r63-model/heldout-structured/cold-gate-old-4-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-old-4-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-old-4-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:23:29.934635+00:00",
+      "returncode": 0,
+      "wall_s": 8.763706431000173,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.544281835998845,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "01aebc3a45f700447fe8cbab1ca8a702ef5b3aab8b84d0a706d2aa525c594dcb",
+      "csv_sha256": "1acded3a7c875135117b217386b31c3990c743b7883f01b5b018b88297fac51f",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "37f4a586d7cbe944193fdd89bf48abc508ab6ff4b663bee710a106894ca09531"
+      }
+    },
+    "r63-model/heldout-structured/cold-gate-on-1-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-on-1-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-on-1-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:21:45.863088+00:00",
+      "returncode": 0,
+      "wall_s": 8.751265769000383,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5465777879999223,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "5db7bb46c038b855395111bff2268b31f1a83a54dffa11c5f5729bc6680a15a4",
+      "csv_sha256": "a0f4e9b02a2799a4c1b718d048df438496178c50ef7c49d4935f4ba03e4554ea",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "37f4a586d7cbe944193fdd89bf48abc508ab6ff4b663bee710a106894ca09531"
+      }
+    },
+    "r63-model/heldout-structured/cold-gate-on-2-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-on-2-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-on-2-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:21:55.176247+00:00",
+      "returncode": 0,
+      "wall_s": 8.745100415999332,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5441561869993166,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "20422883eab46ded5eb5de721154f99dde07780c999ba5df4d7e3ba9b99398d8",
+      "csv_sha256": "8e8f1363e14be6ad9ec30dfb91b9e34953eafd7c7a85dbd7b07879584a970c18",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "37f4a586d7cbe944193fdd89bf48abc508ab6ff4b663bee710a106894ca09531"
+      }
+    },
+    "r63-model/heldout-structured/cold-gate-on-3-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-on-3-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-on-3-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:23:01.424789+00:00",
+      "returncode": 0,
+      "wall_s": 9.300158113999714,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5444605009997758,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "19ec762081e6008e871cbf06e6eb61c1829b83b1e4574749ea33350e2e5016c4",
+      "csv_sha256": "7785af92b17fa87095c3e0262756092ef129638847abc59d2f7e72e0e22993d6",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "37f4a586d7cbe944193fdd89bf48abc508ab6ff4b663bee710a106894ca09531"
+      }
+    },
+    "r63-model/heldout-structured/cold-gate-on-4-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-on-4-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-on-4-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:23:11.285942+00:00",
+      "returncode": 0,
+      "wall_s": 8.754194739000013,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5456419210004242,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "e52932c42d01ac534833aa0e8d50612b71ac9c97ccc6764da791881955346da8",
+      "csv_sha256": "ffe78962847c9bc63e96dc72c291b3e8a4cd278cdaecf85f0d8bdedfe5f7cef9",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "37f4a586d7cbe944193fdd89bf48abc508ab6ff4b663bee710a106894ca09531"
+      }
+    },
+    "r63-model/heldout-structured/cold-gate-resident-1-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-resident-1-logits.bin"
+      },
+      "started_utc": "2026-10-09T19:21:17.427722+00:00",
+      "returncode": 0,
+      "wall_s": 9.237853936001557,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5439456370004336,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "d25954ed202176e5e1e575f54f7daa5efb53663032fc6a553b16fd359f46d19f",
+      "csv_sha256": "4502b8858ca82cd96c7444fa018efe2120ce99d5dc8c55a8dabc0b4d42ebac95",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "37f4a586d7cbe944193fdd89bf48abc508ab6ff4b663bee710a106894ca09531"
+      }
+    },
+    "r63-model/heldout-structured/cold-gate-resident-2-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-resident-2-logits.bin"
+      },
+      "started_utc": "2026-10-09T19:22:23.134393+00:00",
+      "returncode": 0,
+      "wall_s": 9.247863849999703,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5442680369997106,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "687aa44b4c386411ed990975f03617cbca2369797c0373a1307604bc18e10187",
+      "csv_sha256": "659222b13db6b055da7319b080d6f491b47709be0131ed3020851136a05f3fed",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "37f4a586d7cbe944193fdd89bf48abc508ab6ff4b663bee710a106894ca09531"
+      }
+    },
+    "r63-model/heldout-structured/cold-gate-resident-3-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-resident-3-logits.bin"
+      },
+      "started_utc": "2026-10-09T19:22:32.960474+00:00",
+      "returncode": 0,
+      "wall_s": 9.276827442001377,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5442633990005561,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "531facd560c44ca1e1c81eae98ef7c4cf42883bec61472bf0fe6640737c9d5fe",
+      "csv_sha256": "a6154cd99da3da702b645cce9cff2ab5978eb32ebcec3520eab297abe2971ee5",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "37f4a586d7cbe944193fdd89bf48abc508ab6ff4b663bee710a106894ca09531"
+      }
+    },
+    "r63-model/heldout-structured/cold-gate-resident-4-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/heldout-structured/cold-gate-resident-4-logits.bin"
+      },
+      "started_utc": "2026-10-09T19:23:39.262505+00:00",
+      "returncode": 0,
+      "wall_s": 9.380706578000172,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5423516560003918,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "e22380c71b4954c38d472ca66f089191351557389139c2917593678ab04de143",
+      "csv_sha256": "0de790987bab69fc0f71426b136bd4c87fc151aad8326c57af6664439e97988f",
+      "raw": {
+        "bytes": 64563200,
+        "vectors": 65,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "37f4a586d7cbe944193fdd89bf48abc508ab6ff4b663bee710a106894ca09531"
+      }
+    },
+    "r63-model/short/cold-gate-off-1-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-off-1-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-off-1-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:24:19.686235+00:00",
+      "returncode": 0,
+      "wall_s": 14.48202683099953,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5421631490007712,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "6768b940247bb2f26b1694e073543bb1a7c3d4dd9c340522e0769beb761d5789",
+      "csv_sha256": "ada9a474b0aec8ef751eac4979578bf8cf6af9c93156d0ee5e588c55691ce114",
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "311b49e5aac3ca8604e8e1fe4c8a36127cba23d9bcb1dc4b5abb86574dd4cf95"
+      }
+    },
+    "r63-model/short/cold-gate-off-2-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-off-2-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-off-2-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:25:05.473834+00:00",
+      "returncode": 0,
+      "wall_s": 14.4846432810009,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5435076939993451,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "d4aad4c523b2e19477fd08c8a0ba7c7ac8de9ed5e6276fb121340557ff9a38df",
+      "csv_sha256": "1dd44db4ae49afa4fe5401570e1d63c708640e78630bef2a2f2a48afd59b48e5",
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "311b49e5aac3ca8604e8e1fe4c8a36127cba23d9bcb1dc4b5abb86574dd4cf95"
+      }
+    },
+    "r63-model/short/cold-gate-off-3-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-off-3-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-off-3-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:26:21.698381+00:00",
+      "returncode": 0,
+      "wall_s": 14.475585272999524,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5431463200002327,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "4d5965b809c09e6536e6ef5a3b5399cf21e17ea720ed532f97e222cf84c5225f",
+      "csv_sha256": "c96c058f79c57d6b755709b2bebc5ca910953cca2168af47552f9caeaa18d8c4",
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "311b49e5aac3ca8604e8e1fe4c8a36127cba23d9bcb1dc4b5abb86574dd4cf95"
+      }
+    },
+    "r63-model/short/cold-gate-off-4-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-off-4-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-off-4-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:27:07.471693+00:00",
+      "returncode": 0,
+      "wall_s": 14.484749928000383,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5432734440000786,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "0ac340efd16bb6e4c3c7c713065797c22c453ac4e5dc793d982a6f1b403ddbea",
+      "csv_sha256": "58b28190f469e6c21e129071233ffed25adf4fa23cee1b04f9eedc2b59e803ac",
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "311b49e5aac3ca8604e8e1fe4c8a36127cba23d9bcb1dc4b5abb86574dd4cf95"
+      }
+    },
+    "r63-model/short/cold-gate-old-1-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-old-1-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-old-1-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:24:04.410452+00:00",
+      "returncode": 0,
+      "wall_s": 14.493585026000801,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5441605650012207,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "334d3cc68075aef8094fdef6859ba28d986f85d355df7bba718114b75b5b13ce",
+      "csv_sha256": "e1c48b29a41612e599b64a0597d2ef995bdab7d80da8eca7671c8199894ae787",
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "311b49e5aac3ca8604e8e1fe4c8a36127cba23d9bcb1dc4b5abb86574dd4cf95"
+      }
+    },
+    "r63-model/short/cold-gate-old-2-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-old-2-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-old-2-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:25:20.741030+00:00",
+      "returncode": 0,
+      "wall_s": 14.487740108999787,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5403501459986728,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "bbb1545258b5073d45a72c1e87d7821126eab63e2a3a89af211a97c6467bf1c2",
+      "csv_sha256": "89f13115232cc423031b33382fd25ebd33470a54b9df86531ad329a094c209c2",
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "311b49e5aac3ca8604e8e1fe4c8a36127cba23d9bcb1dc4b5abb86574dd4cf95"
+      }
+    },
+    "r63-model/short/cold-gate-old-3-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-old-3-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-old-3-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:26:06.448428+00:00",
+      "returncode": 0,
+      "wall_s": 14.470827844999803,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5441897399996378,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "72f661572922b0d7ee9694ba5eec1562bb18e28bb480faaadeb733abf6b72acc",
+      "csv_sha256": "b2d52600e4db0efb761bab9c78ced02824003a1a9c7f373f71bb5cfda163a621",
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "311b49e5aac3ca8604e8e1fe4c8a36127cba23d9bcb1dc4b5abb86574dd4cf95"
+      }
+    },
+    "r63-model/short/cold-gate-old-4-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-old-4-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-old-4-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:27:22.734054+00:00",
+      "returncode": 0,
+      "wall_s": 14.490835345999585,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5430999269992753,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "9f641478f676ff85ce1f00a9d09fa5e8e64c8fa6ae3f99039b574ad65f70574f",
+      "csv_sha256": "6b1ffc533445e1259249bed14c7f95c0c6131af211ac594a28bee6c1821a2550",
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "311b49e5aac3ca8604e8e1fe4c8a36127cba23d9bcb1dc4b5abb86574dd4cf95"
+      }
+    },
+    "r63-model/short/cold-gate-on-1-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-on-1-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-on-1-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:24:34.946115+00:00",
+      "returncode": 0,
+      "wall_s": 14.477460891999726,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5429806299998745,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "5d1bf554023e7437720d3ad3ee7124bb492e57c894407208c0077342ab91f7f2",
+      "csv_sha256": "c8c8ba6564de22058ea81c61e15680cced7ed9a0c6aa8863853ee15c450b7377",
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "311b49e5aac3ca8604e8e1fe4c8a36127cba23d9bcb1dc4b5abb86574dd4cf95"
+      }
+    },
+    "r63-model/short/cold-gate-on-2-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-on-2-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-on-2-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:24:50.198847+00:00",
+      "returncode": 0,
+      "wall_s": 14.497034455000176,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5455450389999896,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "58e89f85fbcb580969dbf65d5bbb78c754a7a3a3aeb801d7089f114824c3ec8f",
+      "csv_sha256": "88278128b6f1e3d9b727a23d6f11de6c76ab5f791a67657b73b3e1df04a0b33c",
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "311b49e5aac3ca8604e8e1fe4c8a36127cba23d9bcb1dc4b5abb86574dd4cf95"
+      }
+    },
+    "r63-model/short/cold-gate-on-3-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-on-3-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-on-3-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:26:36.951058+00:00",
+      "returncode": 0,
+      "wall_s": 14.47930192000058,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5428113460002351,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "533e9fb8863aa7c870d6d698a9e7ddd825a92d6435ff187cce4219f5501144a7",
+      "csv_sha256": "cb659edd8b05c4fb73238b5da53b2dc65c1942fc69f9257c564838e5febb7221",
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "311b49e5aac3ca8604e8e1fe4c8a36127cba23d9bcb1dc4b5abb86574dd4cf95"
+      }
+    },
+    "r63-model/short/cold-gate-on-4-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-on-4-logits.bin",
+        "GGML_SCHED_EXPERT_POOL_LOG": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-on-4-pool.csv"
+      },
+      "started_utc": "2026-10-09T19:26:52.207471+00:00",
+      "returncode": 0,
+      "wall_s": 14.4897220010007,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5424237180013733,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "7dab712d379755ac1da4346ce63d04b8d9d9855ca1c189aa41f3d38213572f9f",
+      "csv_sha256": "d408b01f2c76102c8245800b9606ee235d6b51c45bf8a8d2b7f547a7c5ff8c5d",
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "311b49e5aac3ca8604e8e1fe4c8a36127cba23d9bcb1dc4b5abb86574dd4cf95"
+      }
+    },
+    "r63-model/short/cold-gate-resident-1-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-resident-1-logits.bin"
+      },
+      "started_utc": "2026-10-09T19:23:49.206785+00:00",
+      "returncode": 0,
+      "wall_s": 14.434106369999427,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5426420429994323,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "bcf478ca03cbf4e4a13ff58b0166b410d347fbe72aa9690c8ac71fe52173fcd3",
+      "csv_sha256": "b40fc0f44343a8cbf74ee1008369a5154740dd9be8f71771d5303390426c6217",
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "311b49e5aac3ca8604e8e1fe4c8a36127cba23d9bcb1dc4b5abb86574dd4cf95"
+      }
+    },
+    "r63-model/short/cold-gate-resident-2-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-resident-2-logits.bin"
+      },
+      "started_utc": "2026-10-09T19:25:36.008125+00:00",
+      "returncode": 0,
+      "wall_s": 14.391782025999419,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5436364199995296,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "94da96aa940ed361e9b0653f69392e1067604e6602d0e334fc65ec3c8c942ea0",
+      "csv_sha256": "f3633410722f44d4c9dff1bbd4af0fa3fa4b1855d2444d4d644199bdd88daf5e",
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "311b49e5aac3ca8604e8e1fe4c8a36127cba23d9bcb1dc4b5abb86574dd4cf95"
+      }
+    },
+    "r63-model/short/cold-gate-resident-3-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-resident-3-logits.bin"
+      },
+      "started_utc": "2026-10-09T19:25:51.176228+00:00",
+      "returncode": 0,
+      "wall_s": 14.481942315000197,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5427466020009888,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "25fcc0b90fb6799f0c317de584f764252fe29537b999d353b74ed01f55833c90",
+      "csv_sha256": "58b56bf88c0bfa97d0413ef70dd43e592b2fdda46d22ffa5253fe748765b268e",
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "311b49e5aac3ca8604e8e1fe4c8a36127cba23d9bcb1dc4b5abb86574dd4cf95"
+      }
+    },
+    "r63-model/short/cold-gate-resident-4-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/tokens.csv",
+        "MOE_REPLAY_LOGITS_OUT": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-model/short/cold-gate-resident-4-logits.bin"
+      },
+      "started_utc": "2026-10-09T19:27:38.006039+00:00",
+      "returncode": 0,
+      "wall_s": 14.472482967999895,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5415610919990286,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "5c82346fabee77e70b1d385387f427621c4b73ee44841b377dd0ba96a94eeca1",
+      "csv_sha256": "8df1f523661c6114a330b635e3c4a1fdc9f181fce8bbb5d6a53631bab19c6bc2",
+      "raw": {
+        "bytes": 199649280,
+        "vectors": 201,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "311b49e5aac3ca8604e8e1fe4c8a36127cba23d9bcb1dc4b5abb86574dd4cf95"
+      }
+    },
+    "r63-timing/heldout-planning/timing-off-1-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-planning/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:28:24.521299+00:00",
+      "returncode": 0,
+      "wall_s": 8.752592704000563,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.543288737999319,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "ad5780bcdc1bd1366e882cff9938866da0dc64994f0cd30af17d32b9c6afd19b",
+      "csv_sha256": "d6cd38c20911fdccabd0660126ee11acfe45b9ac664ff37d16a530ad44c725e9"
+    },
+    "r63-timing/heldout-planning/timing-off-2-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-planning/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:28:52.138159+00:00",
+      "returncode": 0,
+      "wall_s": 8.75445750399922,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5423261260002619,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "467d190fb741ff0ff7dac796c7205ba0e9fe4da100e5454566d20364a58fbad1",
+      "csv_sha256": "6c6ec3d40148059d0f2243679dc7e5f13417e7329c8ea479da2479d0dc2f59ec"
+    },
+    "r63-timing/heldout-planning/timing-off-3-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-planning/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:29:40.280330+00:00",
+      "returncode": 0,
+      "wall_s": 9.256536559998494,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.543537411998841,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "3202887d640d06efc9d315e1156d5708bb92423918cf4e6820e953053dd87196",
+      "csv_sha256": "d080539ecb0e85cbd2c8d821b7df1dae745927de6b274d252616cef3a0ab599f"
+    },
+    "r63-timing/heldout-planning/timing-off-4-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-planning/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:30:08.903637+00:00",
+      "returncode": 0,
+      "wall_s": 8.751634324000406,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.543089950000649,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "4e4bd3ffb834d47e6daacf7d7f4ce753e479af631b5b11e733ef01ea23acf9e1",
+      "csv_sha256": "6e2231863bba23f9c0098d307db5566aae36d32917a93ea590f1709fb7398c68"
+    },
+    "r63-timing/heldout-planning/timing-old-1-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-planning/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:28:15.311677+00:00",
+      "returncode": 0,
+      "wall_s": 8.753128518999802,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5437086499987345,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "f99fd58f8067f01692d6c01df14c29802b09e6a969514eb113ffad38faea5b7d",
+      "csv_sha256": "e66d88d751850b68be17e9c554d058a07b078d7f666fa87cb0b2872037303589"
+    },
+    "r63-timing/heldout-planning/timing-old-2-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-planning/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:29:01.346287+00:00",
+      "returncode": 0,
+      "wall_s": 9.250579159001063,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5427827929997875,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "eae7711b35275914d63f697f8be4784a1b75fd5d611a38b7486c353720f365b5",
+      "csv_sha256": "cd61ae3462743847ed2c6099c9b971118792f8e850fb48721795d22ca1c59eac"
+    },
+    "r63-timing/heldout-planning/timing-old-3-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-planning/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:29:30.563103+00:00",
+      "returncode": 0,
+      "wall_s": 9.26029735100019,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5437167630007025,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "abb8f8709aedbbc3cd1fd1d1b185630a1db0a914e1f1295c6564d451545e098f",
+      "csv_sha256": "ba34d689bdb186fc2e1a79dd5a5df56f5816a1c216561e0b071d67bb69f42878"
+    },
+    "r63-timing/heldout-planning/timing-old-4-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-planning/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:30:18.106672+00:00",
+      "returncode": 0,
+      "wall_s": 8.757472314999177,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.544121130998974,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "96808ce065eb1c61858a09d88195ce66099a559a94829e36c1a68983d3835c12",
+      "csv_sha256": "ac149c2ce76c84a3c42cd25b63e9e8351c40be2734410ffbb8dbb5bf5c15e9ee"
+    },
+    "r63-timing/heldout-planning/timing-on-1-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-planning/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:28:33.726339+00:00",
+      "returncode": 0,
+      "wall_s": 8.75739969100141,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5447044900010951,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "1167c1cf2f72b617f8110d4cefe0834ca38039bf722475e3da5250f56ce4b329",
+      "csv_sha256": "2474a543db48bd3c7380f7c386b51a74d7f7d815cd5ca5c43f50795d1a8d74c0"
+    },
+    "r63-timing/heldout-planning/timing-on-2-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-planning/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:28:42.936565+00:00",
+      "returncode": 0,
+      "wall_s": 8.749145986001167,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5436940910003614,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "e5ef35d3d7557f727635569b97a7c90856bf5c58b58857a490026004514b72d7",
+      "csv_sha256": "22574a72ca77eb3dfb28f9805946a50b6da9acdcd4c892de4db19d02793c8ab7"
+    },
+    "r63-timing/heldout-planning/timing-on-3-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-planning/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:29:49.990558+00:00",
+      "returncode": 0,
+      "wall_s": 9.250034796999898,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5401027200005046,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "a428db231d60692572e245eb47a59a1ec7f1af727c6494357368657774a4678e",
+      "csv_sha256": "cf2922f94257e8022aeea01c8d1ef0f5f60cbbdbbf41df6dc66a5ebbb66921af"
+    },
+    "r63-timing/heldout-planning/timing-on-4-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-planning/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:29:59.690392+00:00",
+      "returncode": 0,
+      "wall_s": 8.758696863000296,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5417088009999134,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "a1756ad6b396ef3c421e44397a21e3de4c868e001af3bb6d80feab64bdb57f24",
+      "csv_sha256": "5829a71877efdb72b465d58aa0db88ac6c8c4b3bfce30d84e8d3c4842e878398"
+    },
+    "r63-timing/heldout-planning/timing-resident-1-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-planning/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:28:01.116486+00:00",
+      "returncode": 0,
+      "wall_s": 13.7415716839987,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5222717759988882,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "1fec80aecb92fd5bad88b26e207d80a392c6e5b5f43c8db4b63c0246ed8c8f9a",
+      "csv_sha256": "865e426c695939080a8b976b9921e5d87881d1d55d861af62e95a5cab412fc68"
+    },
+    "r63-timing/heldout-planning/timing-resident-2-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-planning/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:29:11.049610+00:00",
+      "returncode": 0,
+      "wall_s": 9.304139282001415,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5435229560007429,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "b43ae4e08dbface84715db964e03e73ada667a8f1c15ed7a30687291624650cf",
+      "csv_sha256": "0cf0c9d82b8563f6e3d45cb914e1617c87027e8ee27caf279474538e0d985a58"
+    },
+    "r63-timing/heldout-planning/timing-resident-3-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-planning/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:29:20.804184+00:00",
+      "returncode": 0,
+      "wall_s": 9.306395696001346,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5421275709995825,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "2bc35fe2a8a062fc18035a89a7e0c5049f303b2198adf2b88d18ce6bf9d37cae",
+      "csv_sha256": "86e77ea1389ba246628ed576a225e8af0a825ab46da571245c11a4302a00c48c"
+    },
+    "r63-timing/heldout-planning/timing-resident-4-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-planning/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:30:27.322187+00:00",
+      "returncode": 0,
+      "wall_s": 9.314108997999938,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5420560930015199,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "0ceb3b100178c3707473c8ac98eed11c6fb34223dee1254ea1dbc781f3fc1b03",
+      "csv_sha256": "21e90a934710492ec98f5945f8a3bbec18e135b27e6123173307ba5f62c1b0d4"
+    },
+    "r63-timing/heldout-structured/timing-off-1-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-structured/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:30:56.064473+00:00",
+      "returncode": 0,
+      "wall_s": 8.752860270000383,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5406699220002338,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "e017d1a0ae794bae47fb784bcb9c96b5cf3b6396f709b2992b7fd1f3d2caf7d2",
+      "csv_sha256": "cfc099c997fe7ec5be56aeaf625260192e5dab2b22f123cff67cc41da6cdbbbf"
+    },
+    "r63-timing/heldout-structured/timing-off-2-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-structured/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:31:24.676706+00:00",
+      "returncode": 0,
+      "wall_s": 9.260477039999387,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5449886610003887,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "d590db6dffc3ce69d829d2a1430815c170810730a940f34152326cc117f71d67",
+      "csv_sha256": "0454af2f73058e2fc03b7c156c5b1380918a8657b548e8a71a0f84ce9d7a38d1"
+    },
+    "r63-timing/heldout-structured/timing-off-3-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-structured/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:32:12.288402+00:00",
+      "returncode": 0,
+      "wall_s": 9.267017767999278,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5436808159993234,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "a98bb35e83640d6d1b29095fa2028de97ca4eeace521512a85388777c54795e9",
+      "csv_sha256": "144035fe7b2c922796b01761af9456a188766b91fad05c949ce2863fc602e3f1"
+    },
+    "r63-timing/heldout-structured/timing-off-4-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-structured/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:32:40.937965+00:00",
+      "returncode": 0,
+      "wall_s": 9.264594452000892,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5441692589993181,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "9f1f251b2f8f15209eb07b04429c75689c0f1cc886424e4d7aee52fca0b2f2af",
+      "csv_sha256": "c3d13e43071ba2e8d9d46a8060298b4a5a6dfc05de33d32c13ce7544539b266f"
+    },
+    "r63-timing/heldout-structured/timing-old-1-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-structured/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:30:46.854082+00:00",
+      "returncode": 0,
+      "wall_s": 8.754229444000885,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.543576371999734,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "57a024348b229e91e0b5f722ba2a5d33a88b22d250e2a79dc4256b0da7562560",
+      "csv_sha256": "acf8917120d4b2299194435822cf8cfeae21fb7bc377f69126f874a9c237acd8"
+    },
+    "r63-timing/heldout-structured/timing-old-2-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-structured/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:31:34.389035+00:00",
+      "returncode": 0,
+      "wall_s": 8.76267678899967,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5436366609992547,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "6d0b867cc431188cae1256f91a6b460d0518d9055c4f16090cd98c67278cbc3e",
+      "csv_sha256": "e53c40a8acca66ec9bcedebddff747c77d7b49a7aa22a305694b97913ccc1ae4"
+    },
+    "r63-timing/heldout-structured/timing-old-3-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-structured/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:32:03.063493+00:00",
+      "returncode": 0,
+      "wall_s": 8.765362846999778,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5442282490002981,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "b0e9ea05cb1b889e12aa771880cab210844970f4ac8de2a1076d261e5e54a795",
+      "csv_sha256": "2193271d72a3b2544f58c68264264c3cca325ab07db3f01ab0aecc368e3c37ef"
+    },
+    "r63-timing/heldout-structured/timing-old-4-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-structured/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:32:50.658224+00:00",
+      "returncode": 0,
+      "wall_s": 9.266027305000534,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5448430830001598,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "1631868f50dda4ca67a12a7c53b72a013a5786929287813bf3f248d3f658203e",
+      "csv_sha256": "6f184442c4593012f55f4f4a25b0cea03351cce2b68b93963ccf8b8189def8e9"
+    },
+    "r63-timing/heldout-structured/timing-on-1-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-structured/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:31:05.271905+00:00",
+      "returncode": 0,
+      "wall_s": 9.24623813800099,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.544490088999737,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "32ba4a884074b45d134fd201c62f81d40fd960ce94f2c979892ba42cac65740b",
+      "csv_sha256": "c7ac94313864e17cd8226bdf617ecd9848a3aae82286c8af8f6c4b91d4fc1a98"
+    },
+    "r63-timing/heldout-structured/timing-on-2-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-structured/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:31:14.966535+00:00",
+      "returncode": 0,
+      "wall_s": 9.261804749001385,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5433035610003571,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "5ba304f5696cc8bffd72b631ae9581db708de906e624cd2511d7eb272a70f3d0",
+      "csv_sha256": "796363001d54f08acda380c38ddbde37b861d4a3d907ef5077cd78d77ea424c3"
+    },
+    "r63-timing/heldout-structured/timing-on-3-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-structured/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:32:22.007556+00:00",
+      "returncode": 0,
+      "wall_s": 9.26444007200007,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5433803679989069,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "b5bfe19c2d7c201cd2b1bc5120517c9df6d16fac038e91dd78929370f8eeb227",
+      "csv_sha256": "cfbd2f417377677c45359edad6da3382e0410d477378495d75645f8010f02111"
+    },
+    "r63-timing/heldout-structured/timing-on-4-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-structured/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:32:31.726727+00:00",
+      "returncode": 0,
+      "wall_s": 8.752813785000399,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5433643929991376,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "15fc0cd5a900de7da6fa448d84747cbd36b51a2f0a11395ebc0ac7486c3ef399",
+      "csv_sha256": "6054b87d16eaca4f5faec9aa60d453cc41c3568fa5bb3ea71bc86b2ac8dd10c2"
+    },
+    "r63-timing/heldout-structured/timing-resident-1-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-structured/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:30:37.090281+00:00",
+      "returncode": 0,
+      "wall_s": 9.31037587100036,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5425562990003527,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "6f6b79ee838537d96e0ba62df1d86bea30deaaaf4ddade9bbac10ec08c1bc1ca",
+      "csv_sha256": "f4fe09dd033bc60ed6105d90857f072d5f96f8fbe286cf2c08620056ed6e4848"
+    },
+    "r63-timing/heldout-structured/timing-resident-2-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-structured/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:31:43.609853+00:00",
+      "returncode": 0,
+      "wall_s": 9.245524228999784,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5426368339994951,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "ad44208066c012e2a7cd5d7ea3b7b01970a873fc9846655a0660ba326ed6c965",
+      "csv_sha256": "b0a14c3418b9185fb9bd8a33f1eb560e88c19d6c79c666b6386986fa57384808"
+    },
+    "r63-timing/heldout-structured/timing-resident-3-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-structured/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:31:53.313431+00:00",
+      "returncode": 0,
+      "wall_s": 9.29008328800046,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5416137770007481,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "f412f84610c23b58e99b2264e1ae891059df9bde0cf8084df153cb48e8931e5f",
+      "csv_sha256": "f4470c4c681c8f64bbafa6a6453967fd78d7492b4e47ae2a6f7bc79137b98672"
+    },
+    "r63-timing/heldout-structured/timing-resident-4-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/heldout-structured/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:33:00.379501+00:00",
+      "returncode": 0,
+      "wall_s": 9.315152619999935,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.543284045999826,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "a420a61a3b4bfb5e772e097ac1ed831fd0d69cec5903b5e2adb2fc45352347c2",
+      "csv_sha256": "4fd714c9466da26097f858f48db465791b5d6170b23b4a7fe877f0d0763f0946"
+    },
+    "r63-timing/short/timing-off-1-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/short/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:33:39.419918+00:00",
+      "returncode": 0,
+      "wall_s": 14.511430344000473,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5404862750001485,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "80b3dd412dbb19348b6fd0db17b183b7ba5c7e20db4743cde39e9204d3153c0f",
+      "csv_sha256": "bc8419bdb3f6d4ce5ecec1c065fb5a74fda989506d06a0e7861a6b6232a1ddc8"
+    },
+    "r63-timing/short/timing-off-2-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/short/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:34:24.297430+00:00",
+      "returncode": 0,
+      "wall_s": 14.4998900089995,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5429611090003164,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "ddf326a54698f56b997859712be120aeded4975aa8e741b9d488cff90dc13b6b",
+      "csv_sha256": "ba8f0af8e2ddbb80837f9097005234ba6967b193fab2d07dbc6c3f860690ec11"
+    },
+    "r63-timing/short/timing-off-3-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/short/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:35:38.368342+00:00",
+      "returncode": 0,
+      "wall_s": 14.481322461000673,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5430578880004759,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "3b68e11491800003a27868fd4c4ea3a217e9f92d5d9826b3a8994213772c4724",
+      "csv_sha256": "007adf29eee9fda48cbb14ec22b730a155dab70c85ef0526fbb69853dff3cc02"
+    },
+    "r63-timing/short/timing-off-4-result.json": {
+      "config_id": "config-1",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/short/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:36:23.211694+00:00",
+      "returncode": 0,
+      "wall_s": 14.502626923000207,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5415318039995327,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "7f770fe1ac70544739b5efa2d7aac72c44e2c7f19f0302bc18c90b2c58ac23f0",
+      "csv_sha256": "cbbef34169333b53a7d237fe91dd09517d0712a56e915ceee76721c3cb408768"
+    },
+    "r63-timing/short/timing-old-1-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/short/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:33:24.522203+00:00",
+      "returncode": 0,
+      "wall_s": 14.443945110999266,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5430043779997504,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "b77c8e05854ddc19d55ba5f182ac1c40118c2745a39e37bd836987f728771936",
+      "csv_sha256": "b1eed59dbdcd2e8d5f4ea17caabf3544e8564a62d9612859e107466160c4b410"
+    },
+    "r63-timing/short/timing-old-2-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/short/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:34:39.251993+00:00",
+      "returncode": 0,
+      "wall_s": 14.505053523998868,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.543337231998521,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "9374bfb9904b357b270d4636c7034f27acfd106b4c0c4428c415b59332655dc6",
+      "csv_sha256": "3bf7eb204fdddf4bb3d7dea7ee272e347956c59e6c92f091ccd9e28b85a3d3ad"
+    },
+    "r63-timing/short/timing-old-3-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/short/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:35:23.426698+00:00",
+      "returncode": 0,
+      "wall_s": 14.487315205000414,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5434036059996288,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "19130d7a68a8f1844dffaa8a7a323013ded81bfe546a969e86bf83215f3e1fac",
+      "csv_sha256": "aede401b21f2f0e85f78039b542173165a80cc957654b0a71830609d00c4c2bb"
+    },
+    "r63-timing/short/timing-old-4-result.json": {
+      "config_id": "config-2",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/short/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:36:38.177942+00:00",
+      "returncode": 0,
+      "wall_s": 14.493798159999642,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5426506939984392,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "7eff664ec06ecf7bdf1d7ba3241fe3486a1a396f9e8530affe8b8e04d1cd23d8",
+      "csv_sha256": "91c205e554a1c48bf8cb8f0eae8ececd5e3b0665791b4fabf6d40084d6d1c55a"
+    },
+    "r63-timing/short/timing-on-1-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/short/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:33:54.386315+00:00",
+      "returncode": 0,
+      "wall_s": 14.499730014000306,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5426336349992198,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "af51cf6ff1592a5452e5fcde6c17baf855cc16d0fdff018e8ab7542154e9a46c",
+      "csv_sha256": "2f3439e710c9b46d8f0535b41b5432680cc67ad37c2e65c537c5a417c881590c"
+    },
+    "r63-timing/short/timing-on-2-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/short/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:34:09.343013+00:00",
+      "returncode": 0,
+      "wall_s": 14.493862057001024,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5426970460011944,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "45b83a0cb4bcc3542a82dd62e08f31dae26b0c809256d82edc1343d18c94fbd1",
+      "csv_sha256": "23f47bb218c07053706a032e3e33fe4246686c8649c061e38408d8e35119c6e9"
+    },
+    "r63-timing/short/timing-on-3-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/short/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:35:53.303953+00:00",
+      "returncode": 0,
+      "wall_s": 14.500847768998938,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5426619779991597,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "11e2a4112db635f05456bea9f2dbb1cbfb6d446749a6785e3f0b9401724bd8d9",
+      "csv_sha256": "9ada7c4bfbe55123cc4e6c16fa1c30162165d993a2718f9c57b625ad2825df13"
+    },
+    "r63-timing/short/timing-on-4-result.json": {
+      "config_id": "config-3",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/short/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:36:08.259135+00:00",
+      "returncode": 0,
+      "wall_s": 14.495258086999456,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5414686969998002,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "579cbf47e69f96b5249e553004a05fd5903b06c85efdc288986356131f4ec54d",
+      "csv_sha256": "2e434ca970c9d1cadaee727c2a9b61c69a5b99870d1a573a1a346ff6360a0e18"
+    },
+    "r63-timing/short/timing-resident-1-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/short/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:33:10.147572+00:00",
+      "returncode": 0,
+      "wall_s": 13.907888949999688,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5425963919988135,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "4050149b5fdaaa8c9a17f354fabe3b308be8f9bb4d5b0768607fefc4c3ee61a5",
+      "csv_sha256": "f537126ec7408eb984553f2168adfafae0279aa6701283579643bd1a41dd2ded"
+    },
+    "r63-timing/short/timing-resident-2-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/short/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:34:54.210397+00:00",
+      "returncode": 0,
+      "wall_s": 13.899614846999611,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5422178059998259,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "0e7442ad971c0b30cce18cf923b794079770692e96d1fa23704cc283b6f5dde5",
+      "csv_sha256": "7749042fbf48e9a1f51748293b5e118f9c0f23499b1905a00b0fb2ccbf637d64"
+    },
+    "r63-timing/short/timing-resident-3-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/short/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:35:08.569759+00:00",
+      "returncode": 0,
+      "wall_s": 14.40222764400096,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5410576859994762,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "56fcdeab2bfefe265971825379cd8f1143e2f738111316924fbb451c27aa16dc",
+      "csv_sha256": "96b021d2cde546d3b03297a58668a80f6517b0c975581eb48d52ff20cd20a7eb"
+    },
+    "r63-timing/short/timing-resident-4-result.json": {
+      "config_id": "config-4",
+      "dynamic_environment": {
+        "MOE_REPLAY_IN": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r63-timing/short/tokens.csv"
+      },
+      "started_utc": "2026-10-09T19:36:53.131241+00:00",
+      "returncode": 0,
+      "wall_s": 14.39513860199986,
+      "cpu_affinity": {
+        "allowed_list": "0-15",
+        "observed_elapsed_s": 0.5419753290007066,
+        "scope": "one live observation; inherited affinity, not pinned"
+      },
+      "manifest_sha256": "2a03690f1b6c72426e1b74399bab6f8722571b5cc9c55c1af0fd5fdfbe8ef0d3",
+      "csv_sha256": "f99f6348f5ac32b1c00d3893d98f0c070af7654e82da57f3d4413fb6be4e80b4"
+    }
+  }
+}
