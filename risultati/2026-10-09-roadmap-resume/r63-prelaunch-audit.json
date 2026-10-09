@@ -1,0 +1,25 @@
+{
+  "utc": "2026-10-09T18:52:12.409471+00:00",
+  "gate": "PASS_PRELAUNCH",
+  "protocol_sha256": "758e7c3c5c7633a1f636688fa981f4e95d8466053491307eb9c9d93145e7f31a",
+  "sources": {
+    "r63_common.py": "7769d98b2587a72f8c5e69d970385bd6b5864ae5d7b906dbed046c1d02fd31ab",
+    "r63-model-gates.py": "ba8b8e5e4a386632d75dec552b6d03ad2ce5c5d694702c71663cd293c2079fc7",
+    "r63-timing.py": "a50bb4e7b01c6f32ae8c606c845f173a6c902f9890e914a54fec24c85a269742",
+    "r63-analysis.py": "469e39bc43f5ad09615d7781550deb18f9ef9f304b39e89266a817d1d92fa364",
+    "r63-counters.py": "374c3f021dd952c9468ee930f17e204436c9fafd10ea9a0c845bacfe619f1790",
+    "qualification-r63.py": "d9f7aebe0edf68d21ab246a6dc1b0376d1477e51176f40f716121a0dd6bc9d35",
+    "replay-independent-audit.py": "07678e59887237f7d8106f3f483ea6947f07277f1ff00ee9c98802ed99ad96d8",
+    "timing-independent-audit.py": "c750fb30734d34289cbbfb5087fd3263cf7d78d5ca6357acf9907c480ee11c5f"
+  },
+  "checks": [
+    "Fresh process/warmup0/reps1; same exact frozen R61 artifacts, no new build",
+    "48 complete raw processes before48 independent timing processes",
+    "All cold raw vectors versus original first chronological cold B1 AND archived warm B1",
+    "Full raw independent audit required before timing",
+    "Exclusive lock; root post-R62 audit marker required",
+    "Three preselected inputs, all results retained, no default promotion"
+  ],
+  "limits": "Source/protocol review only; not runtime evidence",
+  "updated_utc": "2026-10-09T18:54:47.571469+00:00"
+}

@@ -6,7 +6,7 @@ Obiettivo: inferenza locale affidabile e veloce su RX 6800 16 GB, Ryzen 7 5700X3
 
 Ripresa autonoma del 2026-10-09: M0-M3 restano TEST_PARZIALI. Corpus normale e osservatore autonomo completano 108 casi ciascuno; stato/memoria e controlli separati passano 34 processi; timing breve 1/2/4 layer passa 54 processi. Il pool migliora TG rispetto alla copia dinamica, ma regredisce rispetto agli stessi layer residenti. Instabilita raw lunga, contratto di ripristino logits e fedelta CPU/GPU restano aperti; pressione KV in corso. Nessun default promosso. [Report della ripresa](docs/development/moe-roadmap-resume-rx6800.md).
 
-Resume07: pressione36/36 conclusa,32PASS4FAIL;540casi/72612raw finiti/nonzero,569vettori divergenti e3argmax successivi diversi. TreFAILresidentiB1,uno pool;nessunrankinglungo o M0-M3completo. R61/S14GPUin corso dopoaudit, R62 prefill nativo B1 attendejoin. Stato live in CHECKPOINT locale; nessuna nuova qualifica generale.
+Resume07: pressione36/36 conclusa,32PASS4FAIL;540casi/72612raw finiti/nonzero,569vettori divergenti e3argmax successivi diversi. TreFAILresidentiB1,uno pool;nessunrankinglungo o M0-M3completo. R61/S14GPU12/model28PASS, timing112in corso; R62 prefill nativo B1 attendejoin. R63 primo replay a poolvuoto preregistrato, attende entrambi e audit. Stato live in CHECKPOINT locale; nessuna nuova qualifica generale.
 
 ## Come leggere le sigle
 
