@@ -1,0 +1,60 @@
+{
+  "utc": "2026-10-09T20:31:24.528762+00:00",
+  "gate": "PARTIAL_UNRANKED",
+  "build": "PASS_SOURCE_AND_ARTIFACT_AUDIT;unmodified79e,B1unchanged",
+  "controller": {
+    "utc": "2026-10-09T20:22:41.728193+00:00",
+    "status": "RUNNING",
+    "protocol": "r65-protocol.json",
+    "stages": [
+      {
+        "name": "r65-build-v2",
+        "exit": 0,
+        "wall_s": 241.02430316900063
+      }
+    ],
+    "single_model_process": true,
+    "build_jobs": 2,
+    "updated_utc": "2026-10-09T20:26:42.752891+00:00",
+    "phase": "r65-model-gates"
+  },
+  "cells": {
+    "heldout-planning": {
+      "attempts": 8,
+      "PASS": 4,
+      "FAIL": [
+        [
+          "raw-B4-1",
+          "Same-GPU first B1 raw divergence"
+        ],
+        [
+          "raw-B4-2",
+          "Same-GPU first B1 raw divergence"
+        ],
+        [
+          "raw-B4-3",
+          "Same-GPU first B1 raw divergence"
+        ],
+        [
+          "raw-B4-4",
+          "Same-GPU first B1 raw divergence"
+        ]
+      ]
+    },
+    "short": {
+      "attempts": 3,
+      "PASS": 1,
+      "FAIL": [
+        [
+          "raw-B4-1",
+          "Same-GPU first B1 raw divergence"
+        ],
+        [
+          "raw-B4-2",
+          "Same-GPU first B1 raw divergence"
+        ]
+      ]
+    }
+  },
+  "limits": "Interim checkpoint only;full raw/independent audits not complete. Same-GPU cross-version divergence is not automatically a defect. No short timing or promotion."
+}
