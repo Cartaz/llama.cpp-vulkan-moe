@@ -1,0 +1,8 @@
+{
+  "utc": "2026-10-09T19:22:48.167219+00:00",
+  "original_path": "risultati/2026-10-09-roadmap-resume/guarded_runner.py",
+  "original_sha256": "e4ba7190a57608f5efe11978a120d3c2360f06778f1ffdc35b95c7beb66d5c95",
+  "published_path": "docs/development/data/moe-roadmap-resume-20261009/guarded-runner-source.py",
+  "published_sha256": "e080d0f3f48f1c01205547dc2dd29951b34673c95f8e8339ca72b4535dc72bd2",
+  "difference": "Publication copy removes one redundant trailing blank line; runtime source stays unchanged during R63. All code bytes before final newlines are identical."
+}

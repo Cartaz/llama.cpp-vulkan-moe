@@ -1,0 +1,2770 @@
+{
+  "utc": "2026-10-09T18:25:36.293324+00:00",
+  "cases": {
+    "heldout-arithmetic": {
+      "old": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 416,
+                "misses": 96,
+                "evictions": 0,
+                "upload_bytes": 169869312,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 21,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.8125
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      },
+      "off": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 416,
+                "misses": 96,
+                "evictions": 0,
+                "upload_bytes": 169869312,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 21,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.8125
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      },
+      "on": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 416,
+                "misses": 96,
+                "evictions": 0,
+                "upload_bytes": 169869312,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 21,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.8125
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      }
+    },
+    "heldout-code": {
+      "old": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 410,
+                "misses": 102,
+                "evictions": 0,
+                "upload_bytes": 180486144,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 21,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.80078125
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      },
+      "off": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 410,
+                "misses": 102,
+                "evictions": 0,
+                "upload_bytes": 180486144,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 21,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.80078125
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      },
+      "on": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 410,
+                "misses": 102,
+                "evictions": 0,
+                "upload_bytes": 180486144,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 21,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.80078125
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      }
+    },
+    "heldout-italian": {
+      "old": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 420,
+                "misses": 92,
+                "evictions": 0,
+                "upload_bytes": 162791424,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 21,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.8203125
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      },
+      "off": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 420,
+                "misses": 92,
+                "evictions": 0,
+                "upload_bytes": 162791424,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 21,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.8203125
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      },
+      "on": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 420,
+                "misses": 92,
+                "evictions": 0,
+                "upload_bytes": 162791424,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 21,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.8203125
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      }
+    },
+    "heldout-planning": {
+      "old": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 125,
+                "evictions": 0,
+                "upload_bytes": 221184000,
+                "calls": 1,
+                "admitted_calls": 1,
+                "full_request_hits": 0,
+                "reasons": {
+                  "ready": 1
+                },
+                "expert_hit_fraction": 0.0
+              },
+              "TG": {
+                "hits": 486,
+                "misses": 26,
+                "evictions": 23,
+                "upload_bytes": 46006272,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 45,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.94921875
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 109,
+                "misses": 16,
+                "evictions": 16,
+                "upload_bytes": 28311552,
+                "calls": 1,
+                "admitted_calls": 1,
+                "full_request_hits": 0,
+                "reasons": {
+                  "ready": 1
+                },
+                "expert_hit_fraction": 0.872
+              },
+              "TG": {
+                "hits": 484,
+                "misses": 28,
+                "evictions": 28,
+                "upload_bytes": 49545216,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 43,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.9453125
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 109,
+                "misses": 16,
+                "evictions": 16,
+                "upload_bytes": 28311552,
+                "calls": 1,
+                "admitted_calls": 1,
+                "full_request_hits": 0,
+                "reasons": {
+                  "ready": 1
+                },
+                "expert_hit_fraction": 0.872
+              },
+              "TG": {
+                "hits": 493,
+                "misses": 19,
+                "evictions": 19,
+                "upload_bytes": 33619968,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 49,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.962890625
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 109,
+                "misses": 16,
+                "evictions": 16,
+                "upload_bytes": 28311552,
+                "calls": 1,
+                "admitted_calls": 1,
+                "full_request_hits": 0,
+                "reasons": {
+                  "ready": 1
+                },
+                "expert_hit_fraction": 0.872
+              },
+              "TG": {
+                "hits": 493,
+                "misses": 19,
+                "evictions": 19,
+                "upload_bytes": 33619968,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 49,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.962890625
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      },
+      "off": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 125,
+                "evictions": 0,
+                "upload_bytes": 221184000,
+                "calls": 1,
+                "admitted_calls": 1,
+                "full_request_hits": 0,
+                "reasons": {
+                  "ready": 1
+                },
+                "expert_hit_fraction": 0.0
+              },
+              "TG": {
+                "hits": 486,
+                "misses": 26,
+                "evictions": 23,
+                "upload_bytes": 46006272,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 45,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.94921875
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 109,
+                "misses": 16,
+                "evictions": 16,
+                "upload_bytes": 28311552,
+                "calls": 1,
+                "admitted_calls": 1,
+                "full_request_hits": 0,
+                "reasons": {
+                  "ready": 1
+                },
+                "expert_hit_fraction": 0.872
+              },
+              "TG": {
+                "hits": 484,
+                "misses": 28,
+                "evictions": 28,
+                "upload_bytes": 49545216,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 43,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.9453125
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 109,
+                "misses": 16,
+                "evictions": 16,
+                "upload_bytes": 28311552,
+                "calls": 1,
+                "admitted_calls": 1,
+                "full_request_hits": 0,
+                "reasons": {
+                  "ready": 1
+                },
+                "expert_hit_fraction": 0.872
+              },
+              "TG": {
+                "hits": 493,
+                "misses": 19,
+                "evictions": 19,
+                "upload_bytes": 33619968,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 49,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.962890625
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 109,
+                "misses": 16,
+                "evictions": 16,
+                "upload_bytes": 28311552,
+                "calls": 1,
+                "admitted_calls": 1,
+                "full_request_hits": 0,
+                "reasons": {
+                  "ready": 1
+                },
+                "expert_hit_fraction": 0.872
+              },
+              "TG": {
+                "hits": 493,
+                "misses": 19,
+                "evictions": 19,
+                "upload_bytes": 33619968,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 49,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.962890625
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      },
+      "on": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 413,
+                "misses": 99,
+                "evictions": 0,
+                "upload_bytes": 175177728,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 18,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.806640625
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      }
+    },
+    "heldout-retrieval": {
+      "old": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 400,
+                "misses": 112,
+                "evictions": 0,
+                "upload_bytes": 198180864,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 17,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.78125
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      },
+      "off": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 400,
+                "misses": 112,
+                "evictions": 0,
+                "upload_bytes": 198180864,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 17,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.78125
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      },
+      "on": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 400,
+                "misses": 112,
+                "evictions": 0,
+                "upload_bytes": 198180864,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 17,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.78125
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      }
+    },
+    "heldout-structured": {
+      "old": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 125,
+                "evictions": 0,
+                "upload_bytes": 221184000,
+                "calls": 1,
+                "admitted_calls": 1,
+                "full_request_hits": 0,
+                "reasons": {
+                  "ready": 1
+                },
+                "expert_hit_fraction": 0.0
+              },
+              "TG": {
+                "hits": 462,
+                "misses": 50,
+                "evictions": 47,
+                "upload_bytes": 88473600,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 31,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.90234375
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 90,
+                "misses": 35,
+                "evictions": 35,
+                "upload_bytes": 61931520,
+                "calls": 1,
+                "admitted_calls": 1,
+                "full_request_hits": 0,
+                "reasons": {
+                  "ready": 1
+                },
+                "expert_hit_fraction": 0.72
+              },
+              "TG": {
+                "hits": 472,
+                "misses": 40,
+                "evictions": 40,
+                "upload_bytes": 70778880,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 37,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.921875
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 90,
+                "misses": 35,
+                "evictions": 35,
+                "upload_bytes": 61931520,
+                "calls": 1,
+                "admitted_calls": 1,
+                "full_request_hits": 0,
+                "reasons": {
+                  "ready": 1
+                },
+                "expert_hit_fraction": 0.72
+              },
+              "TG": {
+                "hits": 474,
+                "misses": 38,
+                "evictions": 38,
+                "upload_bytes": 67239936,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 39,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.92578125
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 90,
+                "misses": 35,
+                "evictions": 35,
+                "upload_bytes": 61931520,
+                "calls": 1,
+                "admitted_calls": 1,
+                "full_request_hits": 0,
+                "reasons": {
+                  "ready": 1
+                },
+                "expert_hit_fraction": 0.72
+              },
+              "TG": {
+                "hits": 474,
+                "misses": 38,
+                "evictions": 38,
+                "upload_bytes": 67239936,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 39,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.92578125
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      },
+      "off": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 125,
+                "evictions": 0,
+                "upload_bytes": 221184000,
+                "calls": 1,
+                "admitted_calls": 1,
+                "full_request_hits": 0,
+                "reasons": {
+                  "ready": 1
+                },
+                "expert_hit_fraction": 0.0
+              },
+              "TG": {
+                "hits": 462,
+                "misses": 50,
+                "evictions": 47,
+                "upload_bytes": 88473600,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 31,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.90234375
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 90,
+                "misses": 35,
+                "evictions": 35,
+                "upload_bytes": 61931520,
+                "calls": 1,
+                "admitted_calls": 1,
+                "full_request_hits": 0,
+                "reasons": {
+                  "ready": 1
+                },
+                "expert_hit_fraction": 0.72
+              },
+              "TG": {
+                "hits": 472,
+                "misses": 40,
+                "evictions": 40,
+                "upload_bytes": 70778880,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 37,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.921875
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 90,
+                "misses": 35,
+                "evictions": 35,
+                "upload_bytes": 61931520,
+                "calls": 1,
+                "admitted_calls": 1,
+                "full_request_hits": 0,
+                "reasons": {
+                  "ready": 1
+                },
+                "expert_hit_fraction": 0.72
+              },
+              "TG": {
+                "hits": 474,
+                "misses": 38,
+                "evictions": 38,
+                "upload_bytes": 67239936,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 39,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.92578125
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 90,
+                "misses": 35,
+                "evictions": 35,
+                "upload_bytes": 61931520,
+                "calls": 1,
+                "admitted_calls": 1,
+                "full_request_hits": 0,
+                "reasons": {
+                  "ready": 1
+                },
+                "expert_hit_fraction": 0.72
+              },
+              "TG": {
+                "hits": 474,
+                "misses": 38,
+                "evictions": 38,
+                "upload_bytes": 67239936,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 39,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.92578125
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      },
+      "on": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 400,
+                "misses": 112,
+                "evictions": 0,
+                "upload_bytes": 198180864,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 16,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 0.78125
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 512,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 64,
+                "admitted_calls": 64,
+                "full_request_hits": 64,
+                "reasons": {
+                  "ready": 64
+                },
+                "expert_hit_fraction": 1.0
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      }
+    },
+    "short": {
+      "old": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 1415,
+                "misses": 185,
+                "evictions": 57,
+                "upload_bytes": 327352320,
+                "calls": 200,
+                "admitted_calls": 200,
+                "full_request_hits": 95,
+                "reasons": {
+                  "ready": 200
+                },
+                "expert_hit_fraction": 0.884375
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 1494,
+                "misses": 106,
+                "evictions": 106,
+                "upload_bytes": 187564032,
+                "calls": 200,
+                "admitted_calls": 200,
+                "full_request_hits": 118,
+                "reasons": {
+                  "ready": 200
+                },
+                "expert_hit_fraction": 0.93375
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 1493,
+                "misses": 107,
+                "evictions": 107,
+                "upload_bytes": 189333504,
+                "calls": 200,
+                "admitted_calls": 200,
+                "full_request_hits": 117,
+                "reasons": {
+                  "ready": 200
+                },
+                "expert_hit_fraction": 0.933125
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 1493,
+                "misses": 107,
+                "evictions": 107,
+                "upload_bytes": 189333504,
+                "calls": 200,
+                "admitted_calls": 200,
+                "full_request_hits": 117,
+                "reasons": {
+                  "ready": 200
+                },
+                "expert_hit_fraction": 0.933125
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      },
+      "off": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 1415,
+                "misses": 185,
+                "evictions": 57,
+                "upload_bytes": 327352320,
+                "calls": 200,
+                "admitted_calls": 200,
+                "full_request_hits": 95,
+                "reasons": {
+                  "ready": 200
+                },
+                "expert_hit_fraction": 0.884375
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 1494,
+                "misses": 106,
+                "evictions": 106,
+                "upload_bytes": 187564032,
+                "calls": 200,
+                "admitted_calls": 200,
+                "full_request_hits": 118,
+                "reasons": {
+                  "ready": 200
+                },
+                "expert_hit_fraction": 0.93375
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 1493,
+                "misses": 107,
+                "evictions": 107,
+                "upload_bytes": 189333504,
+                "calls": 200,
+                "admitted_calls": 200,
+                "full_request_hits": 117,
+                "reasons": {
+                  "ready": 200
+                },
+                "expert_hit_fraction": 0.933125
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "capacity": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 1493,
+                "misses": 107,
+                "evictions": 107,
+                "upload_bytes": 189333504,
+                "calls": 200,
+                "admitted_calls": 200,
+                "full_request_hits": 117,
+                "reasons": {
+                  "ready": 200
+                },
+                "expert_hit_fraction": 0.933125
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      },
+      "on": {
+        "gate": "DESCRIPTIVE_COUNTERS",
+        "blocks": [
+          {
+            "block": "cold_model_warmup",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 1415,
+                "misses": 185,
+                "evictions": 57,
+                "upload_bytes": 327352320,
+                "calls": 200,
+                "admitted_calls": 200,
+                "full_request_hits": 95,
+                "reasons": {
+                  "ready": 200
+                },
+                "expert_hit_fraction": 0.884375
+              }
+            }
+          },
+          {
+            "block": "warm_rep0",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 1494,
+                "misses": 106,
+                "evictions": 106,
+                "upload_bytes": 187564032,
+                "calls": 200,
+                "admitted_calls": 200,
+                "full_request_hits": 118,
+                "reasons": {
+                  "ready": 200
+                },
+                "expert_hit_fraction": 0.93375
+              }
+            }
+          },
+          {
+            "block": "warm_rep1",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 1493,
+                "misses": 107,
+                "evictions": 107,
+                "upload_bytes": 189333504,
+                "calls": 200,
+                "admitted_calls": 200,
+                "full_request_hits": 117,
+                "reasons": {
+                  "ready": 200
+                },
+                "expert_hit_fraction": 0.933125
+              }
+            }
+          },
+          {
+            "block": "warm_rep2",
+            "phases": {
+              "PP": {
+                "hits": 0,
+                "misses": 0,
+                "evictions": 0,
+                "upload_bytes": 0,
+                "calls": 1,
+                "admitted_calls": 0,
+                "full_request_hits": 0,
+                "reasons": {
+                  "batched_bypass": 1
+                },
+                "expert_hit_fraction": null
+              },
+              "TG": {
+                "hits": 1493,
+                "misses": 107,
+                "evictions": 107,
+                "upload_bytes": 189333504,
+                "calls": 200,
+                "admitted_calls": 200,
+                "full_request_hits": 117,
+                "reasons": {
+                  "ready": 200
+                },
+                "expert_hit_fraction": 0.933125
+              }
+            }
+          }
+        ],
+        "max_pool_allocated_bytes": 226492416,
+        "limits": "Pool-upload bytes only; zero does not imply zero total PCIe transfers. Full-request hits cover selected layer17,not all40 layers. First model/context/expert-cache block is not a controlled cold shader-cache timing."
+      }
+    }
+  }
+}

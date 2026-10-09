@@ -265,3 +265,31 @@ All28 R61 model processes pass the original raw gate:7,092 complete vectors acro
 R63 preregisters an empty-pool first-replay comparison using the exact frozen R61 artifacts. Planning and structured inputs were selected from the earlier routing/churn observations; the512+200 replay is the negative control. Each of four variants runs four fresh processes per input. All48 complete raw gates must match the original first cold B1 and archived warm B1, and pass a separate full-vector audit, before48 independent timing processes are admitted. Common and replay warmup are OFF, with one replay per process. PP,TG,PP+TG decode duration and TGp95 use the same practical margins and process bootstrap as R61, with seed63. Driver and filesystem caches are uncontrolled and already warm; this tests empty expert pool/context, not model cold-start or application TTFT.
 
 ON can remove prefill pool churn but may increase first-TG misses; zero pool upload is not zero total PCIe traffic, and persistent payload remains allocated. R63 waits for R61/R62 to join and for the root post-run audits, under the existing exclusive lock and memory/device/time guards. The protocol, runner sources and source hashes are frozen before any R63 inference. All cells, failures and original references remain reportable. No new default or M0-M3 acceptance follows.
+
+## R61 warm replay completed and independently audited
+
+All112 independent timing processes pass the original B1 fingerprint gate. A separate audit re-reads every original CSV, verifies isolated no-raw/no-counter environments and actual loaded DSOs, and recalculates PP/TG sums, p95, drift, medians and the50,000 process-level bootstrap draws. All seven cells remain eligible under the preregistered20% resident drift limit. Full raw audit independently passes28 model processes and7,092 finite/nonzero complete vectors.
+
+ON versus new OFF, percent effect and95% process-bootstrap interval:
+
+| Fixed input | PP tokens/s | TG tokens/s | PP+TG decode duration | TGp95 |
+| --- | --- | --- | --- | --- |
+|heldout-arithmetic|-0.21% [-0.71,+0.10] NESSUN_CAMBIAMENTO|-2.16% [-3.21,+0.71] INCONCLUDENTE|+1.43% [-0.41,+2.24] NESSUN_CAMBIAMENTO|+1.37% [+0.25,+2.74] NESSUN_CAMBIAMENTO|
+|heldout-code|+0.33% [+0.05,+0.62] NESSUN_CAMBIAMENTO|+0.90% [-1.14,+2.43] NESSUN_CAMBIAMENTO|-0.70% [-1.68,+0.70] NESSUN_CAMBIAMENTO|-0.73% [-2.31,+2.97] NESSUN_CAMBIAMENTO|
+|heldout-italian|-0.28% [-0.83,+0.25] NESSUN_CAMBIAMENTO|-0.23% [-1.98,+1.58] NESSUN_CAMBIAMENTO|+0.42% [-0.85,+1.34] NESSUN_CAMBIAMENTO|-0.20% [-2.12,+2.27] NESSUN_CAMBIAMENTO|
+|heldout-planning|-2.56% [-3.58,-2.11] INCONCLUDENTE|+0.57% [-0.41,+2.71] NESSUN_CAMBIAMENTO|+0.68% [-0.82,+1.38] NESSUN_CAMBIAMENTO|+0.27% [-3.39,+2.09] NESSUN_CAMBIAMENTO|
+|heldout-retrieval|-0.40% [-0.76,+0.06] NESSUN_CAMBIAMENTO|+0.02% [-1.61,+1.45] NESSUN_CAMBIAMENTO|+0.19% [-0.82,+1.31] NESSUN_CAMBIAMENTO|+0.79% [-1.11,+3.20] NESSUN_CAMBIAMENTO|
+|heldout-structured|-2.36% [-2.72,-2.16] NESSUN_CAMBIAMENTO|+1.72% [+0.16,+4.10] INCONCLUDENTE|-0.15% [-1.70,+0.86] NESSUN_CAMBIAMENTO|-2.44% [-4.11,+0.45] NESSUN_CAMBIAMENTO|
+|short|-0.14% [-0.72,+0.54] NESSUN_CAMBIAMENTO|+1.73% [-0.60,+2.85] NESSUN_CAMBIAMENTO|-1.32% [-2.13,+0.56] NESSUN_CAMBIAMENTO|-2.36% [-3.76,+0.39] NESSUN_CAMBIAMENTO|
+
+Every PP+TG duration comparison is NESSUN_CAMBIAMENTO under the3% practical margin. TG for arithmetic/structured and PP for planning remain INCONCLUDENTE; every other ON/OFF metric is within its preregistered practical band. Old versus new OFF is NESSUN_CAMBIAMENTO for all four metrics in every input. No useful warm latency gain is established. ON versus resident TG points are negative in all seven inputs, but all intervals cross the practical regression boundary and remain INCONCLUDENTE. No global winner or new default follows.
+
+Counters explain the intended mechanism, not a measured speedup: ON has no batched pool admission, and planning/structured warm TG reaches512/512 expert hits without misses/evictions/pool uploads. In the first block, ON instead raises TG misses to99/112 versus26/50 under old/OFF. Original fallback copies and persistent payload remain. R61 timings have a warmup and cannot measure this first-block cost; R63 uses separate fresh empty-pool raw/timing processes. Model loading, sampling and application TTFT are excluded.
+
+## R62 native-prefill diagnostic completed
+
+Eight processes report64 cases and3,484 complete emitted vectors. All are finite/nonzero. Six processes pass internal/fresh repeats; GPU17/logical1 fails the code-trace duplicate, and GPU17/logical2 fails comparison to that anomalous first-process duplicate. Full independent audit finds64 differing vectors beginning at vector0 after the3174-token prefill, with identical prompt IDs, identical generated64-token histories and unchanged first argmax. First max absolute difference is0.1988800764 and RMS0.02911014985. The second-process internal duplicate and other first-process cases remain exact. The original anomaly is never substituted. Overall native repetition gate remains FAIL_NUMERICAL_OR_REPEAT.
+
+CPU17 logical versus legacy physical output is byte-exact in every case. GPU17 logical versus legacy is exact except the original anomalous duplicate. All four CPU processes and both GPU legacy processes pass in this bounded cohort; this does not establish equivalent reliability or a geometry fix. CPU17/GPU17 first differences normally occur at vector1, after the same first sampled token; later autonomous histories can differ, including two short controls. Neither semantic equivalence nor a placement fix is established. The64-token cap and raw-I/O helper remain diagnostic.
+
+R62 audit was amended only to report first-divergence geometry for every internal/fresh repeat after the original failure appeared. Original auditor SHA/source is retained; gate, input, binary and measurement protocol are unchanged. All R61/R62 model workers joined before full audits. Their complete audit marker admits R63 with its own full-raw gate, while preserving both long-pressure and native-repeat failures.

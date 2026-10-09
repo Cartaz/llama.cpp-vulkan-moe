@@ -59,30 +59,7 @@ for a,b in [('cpu-logical-1','gpu-logical-1'),('cpu-legacy-1','gpu-legacy-1'),('
     delta=av.astype(np.float64)-bv.astype(np.float64);entry.update(first_max_abs=float(np.max(np.abs(delta))),first_rms=float(np.sqrt(np.mean(delta*delta))),first_argmax_equal=int(av.argmax())==int(bv.argmax()))
   cell[id]=entry
  contrasts[b+'_vs_'+a]=cell
-repeat_details={}
-def repeat_geometry(a,aid,b,bid):
- ar=all_rows[a][aid];br=all_rows[b][bid]
- ap=q/'r62-native'/a/ar['raw_logits_file'];bp=q/'r62-native'/b/br['raw_logits_file']
- ab=np.memmap(ap,np.uint32,'r').reshape(ar['raw_vectors'],248320) if ar['raw_vectors'] else np.zeros((0,248320),np.uint32)
- bb=np.memmap(bp,np.uint32,'r').reshape(br['raw_vectors'],248320) if br['raw_vectors'] else np.zeros((0,248320),np.uint32)
- diffs=[i for i in range(min(len(ab),len(bb)))if not np.array_equal(ab[i],bb[i])];first=diffs[0]if diffs else None
- same_prompt=ar['prompt_token_ids']==br['prompt_token_ids']
- entry={'prompt_ids_exact':same_prompt,'generated_ids_exact':ar['generated_token_ids']==br['generated_token_ids'],'vector_counts':[len(ab),len(bb)],'different_common_vectors':len(diffs),'first_different_vector':first,'prior_generated_histories_exact_at_first':same_prompt and ar['generated_token_ids'][:first]==br['generated_token_ids'][:first]if first is not None else None}
- if first is not None:
-  av=ab[first].view(np.float32);bv=bb[first].view(np.float32)
-  if np.isfinite(av).all()and np.isfinite(bv).all():
-   delta=av.astype(np.float64)-bv.astype(np.float64);entry.update(first_max_abs=float(np.max(np.abs(delta))),first_rms=float(np.sqrt(np.mean(delta*delta))),first_argmax_equal=int(av.argmax())==int(bv.argmax()))
- return entry
-for name in protocol['order']:
- for item in items:
-  id=item['id']
-  if id not in all_rows.get(name,{}):continue
-  if item.get('repeat_of')and item['repeat_of']in all_rows[name]:
-   repeat_details[name+':'+id+'_vs_'+item['repeat_of']]=repeat_geometry(name,item['repeat_of'],name,id)
-  if name.endswith('-2'):
-   previous=name[:-1]+'1'
-   if id in all_rows.get(previous,{}):repeat_details[name+':'+id+'_vs_fresh1']=repeat_geometry(previous,id,name,id)
 count=sum(len(x)for x in records.values());exact=all(x.get('duplicate_exact',True)and x.get('fresh_process_exact',True)for cell in records.values()for x in cell.values())
-result={'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'gate':'DESCRIPTIVE_COMPLETE'if not errors and count==64 else 'AUDIT_INCOMPLETE','numerical_repeat_gate':'PASS_BOUNDED_DIAGNOSTIC'if not errors and count==64 and valid_cases==64 and exact else 'FAIL_NUMERICAL_OR_REPEAT','cases':count,'valid_cases':valid_cases,'vectors':vectors,'errors':errors,'processes':records,'contrasts':contrasts,'repeat_geometry':repeat_details,'limits':'Every emitted full sampling vector; first cross-configuration differences indicate matched history only when recorded. Later differing native histories are confounded.64-token diagnostic cap,raw I/O,already warmed drivers; no semantic quality/performance/server reliability qualification.'}
+result={'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'gate':'DESCRIPTIVE_COMPLETE'if not errors and count==64 else 'AUDIT_INCOMPLETE','numerical_repeat_gate':'PASS_BOUNDED_DIAGNOSTIC'if not errors and count==64 and valid_cases==64 and exact else 'FAIL_NUMERICAL_OR_REPEAT','cases':count,'valid_cases':valid_cases,'vectors':vectors,'errors':errors,'processes':records,'contrasts':contrasts,'limits':'Every emitted full sampling vector; first cross-configuration differences indicate matched history only when recorded. Later differing native histories are confounded.64-token diagnostic cap,raw I/O,already warmed drivers; no semantic quality/performance/server reliability qualification.'}
 (q/'r62-independent-audit.json').write_text(json.dumps(result,indent=2)+'\n');print(result['gate'],result['numerical_repeat_gate'],count,valid_cases,vectors,flush=True)
 assert not errors and count==64

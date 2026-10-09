@@ -1,0 +1,8 @@
+{
+  "utc": "2026-10-09T19:12:52.124243+00:00",
+  "reason": "First GPU17 logical process has finite vectors but failed duplicate raw parity; add descriptive first-divergence geometry for every internal/fresh repeat, including PASS cases.",
+  "original_sha256": "97e1658dd558e8a93d3c073d3be6b9e63e3967ed0088bdc2287565cf7d9323d9",
+  "amended_sha256": "cb651a3852b7740ef4997b9743da2df50b7f41ff94891c32a7be58ccac1f110b",
+  "gates_unchanged": true,
+  "model_protocol_inputs_binaries_unchanged": true
+}
