@@ -766,6 +766,7 @@ bool check_multilayer_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * out
                 }
             }
             if (!ggml_backend_is_cpu(target)) {
+                const bool admission = tokens == 1 || !getenv("GGML_SCHED_EXPERT_POOL_DECODE_ONLY");
                 std::vector<int32_t> ids(tokens*topk);
                 for (size_t i = 0; i < ids.size(); ++i) { ids[i] = i%topk; }
                 ok = off.submit(target,ids,6) && ok;
@@ -779,7 +780,7 @@ bool check_multilayer_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * out
                     abort_pool_graph fault(target);
                     const bool submitted = on.submit(target,ids,6);
                     fprintf(stderr,"abort fixture: submitted=%d calls=%d prior_ok=%d\n",submitted,fault.calls,ok);
-                    ok = !submitted && fault.calls == 1 && ok;
+                    ok = (admission ? !submitted && fault.calls == 1 : submitted && fault.calls == 0) && ok;
                 }
                 for (int i = 0; i < ggml_graph_n_nodes(on.graph); ++i) {
                     const bool restored = std::equal(original_sources[i].begin(),original_sources[i].end(),ggml_graph_node(on.graph,i)->src);
@@ -798,7 +799,7 @@ bool check_multilayer_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * out
                     }
                     ok = identical(actual,reference) && ok;
                 }
-                printf("pool abort_after_admission=1 graph_sources_restored=1 retry_raw_exact=1 %s\n",ok ? "OK" : "FAIL");
+                printf("pool admission=%d graph_sources_restored=1 retry_raw_exact=1 %s\n",admission,ok ? "OK" : "FAIL");
             }
             printf("multilayer pool layers=%d quant=%d tokens=%d changed_input=1 strided=1 resize_reused_scheduler=1 raw_exact=1 %s\n",count,quant,tokens,ok ? "OK" : "FAIL");
             previous = std::move(current);

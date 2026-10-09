@@ -1,0 +1,12 @@
+{
+  "utc": "2026-10-09T12:54:08.683835+00:00",
+  "sha256": {
+    "r61-gpu-fixtures.py": "dc35033c6222173d46bd5e7ca4619a6399a676803f9a474179ec4f34408b0e9e",
+    "r61-model-gates.py": "82cfb3b081f322b3a3e793d2b8da67a21e0ffcdf9852e885a6ccd3942d69f74b",
+    "r61-counters.py": "93a601444a9987b1a90bebadc31bf9628c552e3e51610964cc3ef49fe7e267f3",
+    "r61-timing.py": "7991ba30c411000406e461fb175175e573a1fac34bca6ff9eb9750ce82450c5a",
+    "r61-analysis.py": "6d351e0d718dae60d3c02f6b0c667ecb8178748c7fe7dcba82408e1139b603ce",
+    "qualification-r61.py": "9bba82975bbcc4ac85805cfeb6bd4499d7543a48f6660eeaf75fe7602ffa4583"
+  },
+  "GPU_start_condition": "Original pressure36 processes and independent audit joined; exclusive lock; CPU12PASS; fixtures/model full raw gates precede timing"
+}

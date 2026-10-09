@@ -1,0 +1,256 @@
+{
+  "utc": "2026-10-09T12:55:21.646476+00:00",
+  "scope": "CPU controls; does not exercise Vulkan-only pool admission",
+  "cases": {
+    "scheduler-pool-FIXED-OFF": {
+      "gate": "PASS",
+      "returncode": 0,
+      "raw_bytes": 28853760,
+      "raw_sha256": "0ef6c5c34eeda56f3bc8ebb6582cbb50725502a7094b591a2a97d27377f180b2",
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/FIXED/scheduler-check",
+        "--scheduler-pool",
+        "--output-bin",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r61-cpu/scheduler-pool-FIXED-OFF.bin"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0JU3r7R:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/FIXED"
+      }
+    },
+    "scheduler-pool-FIXED-ON": {
+      "gate": "PASS",
+      "returncode": 0,
+      "raw_bytes": 28853760,
+      "raw_sha256": "0ef6c5c34eeda56f3bc8ebb6582cbb50725502a7094b591a2a97d27377f180b2",
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/FIXED/scheduler-check",
+        "--scheduler-pool",
+        "--output-bin",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r61-cpu/scheduler-pool-FIXED-ON.bin"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0JU3r7R:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/FIXED",
+        "GGML_SCHED_EXPERT_POOL_DECODE_ONLY": "1"
+      }
+    },
+    "scheduler-pool-R61-OFF": {
+      "gate": "PASS",
+      "returncode": 0,
+      "raw_bytes": 28853760,
+      "raw_sha256": "0ef6c5c34eeda56f3bc8ebb6582cbb50725502a7094b591a2a97d27377f180b2",
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61/scheduler-check",
+        "--scheduler-pool",
+        "--output-bin",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r61-cpu/scheduler-pool-R61-OFF.bin"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0JU3r7R:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61"
+      }
+    },
+    "scheduler-pool-R61-ON": {
+      "gate": "PASS",
+      "returncode": 0,
+      "raw_bytes": 28853760,
+      "raw_sha256": "0ef6c5c34eeda56f3bc8ebb6582cbb50725502a7094b591a2a97d27377f180b2",
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61/scheduler-check",
+        "--scheduler-pool",
+        "--output-bin",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r61-cpu/scheduler-pool-R61-ON.bin"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0JU3r7R:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61",
+        "GGML_SCHED_EXPERT_POOL_DECODE_ONLY": "1"
+      }
+    },
+    "scheduler-pool-R61-ASAN-OFF": {
+      "gate": "PASS",
+      "returncode": 0,
+      "raw_bytes": 28853760,
+      "raw_sha256": "0ef6c5c34eeda56f3bc8ebb6582cbb50725502a7094b591a2a97d27377f180b2",
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-ASAN/scheduler-check",
+        "--scheduler-pool",
+        "--output-bin",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r61-cpu/scheduler-pool-R61-ASAN-OFF.bin"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0JU3r7R:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-ASAN",
+        "ASAN_OPTIONS": "detect_leaks=1:halt_on_error=1"
+      }
+    },
+    "scheduler-pool-R61-ASAN-ON": {
+      "gate": "PASS",
+      "returncode": 0,
+      "raw_bytes": 28853760,
+      "raw_sha256": "0ef6c5c34eeda56f3bc8ebb6582cbb50725502a7094b591a2a97d27377f180b2",
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-ASAN/scheduler-check",
+        "--scheduler-pool",
+        "--output-bin",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r61-cpu/scheduler-pool-R61-ASAN-ON.bin"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0JU3r7R:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-ASAN",
+        "GGML_SCHED_EXPERT_POOL_DECODE_ONLY": "1",
+        "ASAN_OPTIONS": "detect_leaks=1:halt_on_error=1"
+      }
+    },
+    "multi-pool-FIXED-OFF": {
+      "gate": "PASS",
+      "returncode": 0,
+      "raw_bytes": 49121280,
+      "raw_sha256": "8e56e4d276e98ab3019aeb428473837e9bf09435b148eabf2879cbed38152d42",
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/FIXED/scheduler-check",
+        "--multi-pool",
+        "--output-bin",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r61-cpu/multi-pool-FIXED-OFF.bin"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0JU3r7R:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/FIXED"
+      }
+    },
+    "multi-pool-FIXED-ON": {
+      "gate": "PASS",
+      "returncode": 0,
+      "raw_bytes": 49121280,
+      "raw_sha256": "8e56e4d276e98ab3019aeb428473837e9bf09435b148eabf2879cbed38152d42",
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/FIXED/scheduler-check",
+        "--multi-pool",
+        "--output-bin",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r61-cpu/multi-pool-FIXED-ON.bin"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0JU3r7R:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/FIXED",
+        "GGML_SCHED_EXPERT_POOL_DECODE_ONLY": "1"
+      }
+    },
+    "multi-pool-R61-OFF": {
+      "gate": "PASS",
+      "returncode": 0,
+      "raw_bytes": 49121280,
+      "raw_sha256": "8e56e4d276e98ab3019aeb428473837e9bf09435b148eabf2879cbed38152d42",
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61/scheduler-check",
+        "--multi-pool",
+        "--output-bin",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r61-cpu/multi-pool-R61-OFF.bin"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0JU3r7R:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61"
+      }
+    },
+    "multi-pool-R61-ON": {
+      "gate": "PASS",
+      "returncode": 0,
+      "raw_bytes": 49121280,
+      "raw_sha256": "8e56e4d276e98ab3019aeb428473837e9bf09435b148eabf2879cbed38152d42",
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61/scheduler-check",
+        "--multi-pool",
+        "--output-bin",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r61-cpu/multi-pool-R61-ON.bin"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0JU3r7R:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61",
+        "GGML_SCHED_EXPERT_POOL_DECODE_ONLY": "1"
+      }
+    },
+    "multi-pool-R61-ASAN-OFF": {
+      "gate": "PASS",
+      "returncode": 0,
+      "raw_bytes": 49121280,
+      "raw_sha256": "8e56e4d276e98ab3019aeb428473837e9bf09435b148eabf2879cbed38152d42",
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-ASAN/scheduler-check",
+        "--multi-pool",
+        "--output-bin",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r61-cpu/multi-pool-R61-ASAN-OFF.bin"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0JU3r7R:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-ASAN",
+        "ASAN_OPTIONS": "detect_leaks=1:halt_on_error=1"
+      }
+    },
+    "multi-pool-R61-ASAN-ON": {
+      "gate": "PASS",
+      "returncode": 0,
+      "raw_bytes": 49121280,
+      "raw_sha256": "8e56e4d276e98ab3019aeb428473837e9bf09435b148eabf2879cbed38152d42",
+      "argv": [
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-ASAN/scheduler-check",
+        "--multi-pool",
+        "--output-bin",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r61-cpu/multi-pool-R61-ASAN-ON.bin"
+      ],
+      "environment": {
+        "PATH": "/home/casa/.codex/tmp/arg0/codex-arg0JU3r7R:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/casa/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/usr/lib/chatgpt/resources",
+        "HOME": "/home/casa",
+        "USER": "casa",
+        "XDG_RUNTIME_DIR": "/run/user/1000",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R61-ASAN",
+        "GGML_SCHED_EXPERT_POOL_DECODE_ONLY": "1",
+        "ASAN_OPTIONS": "detect_leaks=1:halt_on_error=1"
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "source": {
+    "ggml/src/ggml-backend.cpp": "9dfa2beb372a00a94ca7dcdc59dbe057167b9b262344adeda82e3dc62136ac9e",
+    "examples/moe-trace/expert-pool-check.cpp": "48b5c443796188630211d13668b7ca9eb18532c1c97e2ddcd8946ff5c8da1fbe",
+    "examples/moe-trace/moe-replay.cpp": "d71a81d1616852d7a0511fc83014814d6900d0188212ac0e9e1fe88ded2d8e00"
+  },
+  "build_cache_sha256": "6d877f729bd5273e129d5189fe8902a5689369f04f38be74da3e67385d1e32eb",
+  "artifacts": {
+    "frozen/R61-ASAN-V2/libggml-base.so.0.25.1": "49c2c85fcb2a16330719e0794d34e1aef4b850513648a939a53fcf3a531f9749",
+    "frozen/R61-ASAN-V2/libggml-cpu.so.0.25.1": "221b8c5ecd1af695ddf529c302ecdd1b1191846e8bd9db8d3c2f76aa7e5d2a1c",
+    "frozen/R61-ASAN-V2/libggml-vulkan.so.0.25.1": "b26c87dcbfe579e7a2ce6bfb4a69f1abff57b2c030949f68802eb1f590ee4fcc",
+    "frozen/R61-ASAN-V2/libggml.so.0.25.1": "02e9e10b76d2c17e71d04d8bf86516da9813c38b52037241749dcc65b94aa98b",
+    "frozen/R61-ASAN-V2/scheduler-check": "b672cb65f1168dbd482011bae63c387a139597202347dce93283ed84cc04b5f5"
+  },
+  "utc": "2026-10-09T12:44:14.982959+00:00",
+  "label": "R61-ASAN-V2",
+  "fixture_amendment": "Batched bypass submits successfully under fault hook and leaves graph sources intact; eligible single-token cache abort remains required. Retries and raw fixtures retained. Original CPU cohort stays archived on original helper."
+}

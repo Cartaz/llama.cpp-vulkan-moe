@@ -965,6 +965,7 @@ struct ggml_backend_sched_expert_pool {
     uint64_t id = 0, call = 0;
     ggml_backend_expert_pool::counters before{};
     bool prepared = false, attempted = false, ready = false;
+    bool decode_only = getenv("GGML_SCHED_EXPERT_POOL_DECODE_ONLY") != nullptr;
     int last_split = -1, projections = 0;
     int64_t tokens = 0, admit_us = 0, wait_us = 0, prepare_us = 0, start_us = 0;
     const char * reason = "not_used";
@@ -1136,6 +1137,13 @@ struct ggml_backend_sched_expert_pool {
             return false;
         }
         const int64_t start = log ? ggml_time_us() : 0;
+        if (decode_only && ids->ne[1] > 1) {
+            attempted = true;
+            tokens = ids->ne[1];
+            reason = "batched_bypass";
+            admit_us = log ? ggml_time_us() - start : 0;
+            return false;
+        }
         std::vector<int32_t> packed;
         for (int64_t token = 0; token < ids->ne[1]; ++token) {
             for (int64_t rank = 0; rank < ids->ne[0]; ++rank) {
