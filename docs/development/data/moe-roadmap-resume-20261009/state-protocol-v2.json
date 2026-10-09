@@ -1,0 +1,65 @@
+{
+  "id": "R46-state-harness-amendment-v2",
+  "registered_utc": "2026-10-09T08:19:58.355239+00:00",
+  "context": 16384,
+  "batch": 2048,
+  "ubatch": [
+    512,
+    1024,
+    2048
+  ],
+  "kv": [
+    "q8_0",
+    "f16"
+  ],
+  "occupied_prefixes": [
+    1,
+    512,
+    2048,
+    8192,
+    16128
+  ],
+  "decode_tokens": 128,
+  "zero_context": "Clear data=true before every case; start empty. One BOS token supplies first valid logits. Decoding with zero evaluated tokens has no defined logits and is not an eligible cell.",
+  "cycles": "forward/reverse/forward; same loaded model/context,pools persist,clear+sync eachcase; deliberately measures consecutive-request lifetime, not independent cold caches per cell",
+  "variants": [
+    "B1residentL17",
+    "MULTItargetL17",
+    "MULTIpool128L17"
+  ],
+  "orders": [
+    [
+      "resident",
+      "target",
+      "s128"
+    ],
+    [
+      "s128",
+      "target",
+      "resident"
+    ]
+  ],
+  "correctness": "All emitted vectors finite/nonzero. Complete raw outputs for same config and prefix must repeat byte-exact across3cycles and match same-GPU B1 resident. No ranking, no thresholds changed. Infeasible cells preserved and excluded with exact resource evidence.",
+  "state_cases": [
+    512,
+    8192
+  ],
+  "state_variants": [
+    "B1residentL1",
+    "MULTIpoolL1",
+    "B1residentL2",
+    "MULTIpoolL2",
+    "B1residentL4",
+    "MULTIpoolL4",
+    "MULTIoff",
+    "B1off",
+    "ASANpoolL4"
+  ],
+  "state_gates": "Full state consumed and reserialized byte-exact after each restore; repeat16 logits byte-exact; CPU abort/recover; full128 primary trajectory byte-exact to independent no-state control. All18 state and16 controls required. No numerical tolerances, workloads or engine bytes changed.",
+  "resource_limits": "One model process at a time,MemoryMax24G,SwapMax2G,MemAvailable>=6GiB,600s timeout, preserve clocks and all loaded DLL hashes",
+  "performance": "No timing ranking: raw I/O/checkpoints/profiling may influence inter-call behavior. Per-decode timer is not app TTFT.",
+  "original_protocol_sha256": "0207945bea7c138086793ce1641689a7ad9ca63f6ed03c3f78a06eb38ac0c10f",
+  "original_failures": "state-results.json and state-harness-interruption-resume03.json preserved; initial helper asserted restored cached logits although engine serializes architecture and memory only",
+  "output_logits_serialized": false,
+  "engine_mutation": false
+}

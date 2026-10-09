@@ -67,17 +67,24 @@ int main(int argc, char ** argv) {
         if (llama_state_get_data(ctx,state.data(),state.size()) != size) { state.clear(); }
         return state;
     };
-    auto restore = [&](const std::vector<uint8_t> & state,const std::vector<float> & reference) {
+    nlohmann::json restores = nlohmann::json::array();
+    auto restore = [&](const std::vector<uint8_t> & state) {
         llama_synchronize(ctx);
-        if (llama_state_set_data(ctx,state.data(),state.size()) != state.size()) { return false; }
-        auto current = logits();
-        return current.size() == reference.size() && memcmp(current.data(),reference.data(),current.size()*sizeof(float)) == 0;
+        const size_t consumed = llama_state_set_data(ctx,state.data(),state.size());
+        const auto current = save();
+        // This engine serializes model identity and memory, but not cached output logits.
+        // Check the serialized state here; the following decode checks output correctness.
+        const bool exact = consumed == state.size() && current == state;
+        restores.push_back({{"expected_bytes",state.size()},{"consumed_bytes",consumed},
+                {"resaved_bytes",current.size()},{"state_bytes_byte_exact",exact}});
+        std::ofstream audit(base+"/restore-audit.json");
+        audit << restores.dump(2) << '\n';
+        return exact && bool(audit);
     };
     const int step = std::min(llama_n_batch(ctx),llama_n_ubatch(ctx));
     for (size_t i = 0; i < pp.size(); i += step) {
         if (evaluate(pp.data()+i,int(std::min(size_t(step),pp.size()-i)),raw.get()).empty()) { return 2; }
     }
-    const auto pp_logits = logits();
     const auto pp_state = save();
     if (pp_state.empty()) { return 3; }
     std::vector<std::vector<float>> reference;
@@ -86,12 +93,11 @@ int main(int argc, char ** argv) {
         if (value.empty()) { return 2; }
         reference.push_back(std::move(value));
     }
-    if (!restore(pp_state,pp_logits)) { return 4; }
+    if (!restore(pp_state)) { return 4; }
     for (int i = 0; i < 16; ++i) {
         auto value = evaluate(&tg[i],1,rewound.get());
         if (value.size() != reference[i].size() || memcmp(value.data(),reference[i].data(),value.size()*sizeof(float))) { return 5; }
     }
-    const auto checkpoint_logits = logits();
     const auto checkpoint = save();
     if (checkpoint.empty()) { return 3; }
     int abort_calls = 0;
@@ -99,14 +105,15 @@ int main(int argc, char ** argv) {
     const int aborted = llama_decode(ctx,llama_batch_get_one(&tg[16],1));
     llama_synchronize(ctx);
     llama_set_abort_callback(ctx,nullptr,nullptr);
-    if (aborted == 0 || abort_calls == 0 || !restore(checkpoint,checkpoint_logits)) { return 6; }
+    if (aborted == 0 || abort_calls == 0 || !restore(checkpoint)) { return 6; }
     for (size_t i = 16; i < tg.size(); ++i) {
         if (evaluate(&tg[i],1,raw.get()).empty()) { return 2; }
     }
     if (std::fclose(raw.release()) || std::fclose(rewound.release())) { return 1; }
     const nlohmann::json result = {{"prompt_tokens",pp.size()},{"decode_tokens",tg.size()},{"raw_vectors",vectors},
             {"rewound_vectors",16},{"pp_state_bytes",pp_state.size()},{"decode_state_bytes",checkpoint.size()},
-            {"abort_return",aborted},{"abort_calls",abort_calls},{"state_logits_byte_exact",true},
+            {"abort_return",aborted},{"abort_calls",abort_calls},{"state_bytes_byte_exact",true},
+            {"output_logits_serialized",false},
             {"rewound_logits_byte_exact",true},{"clear_after_test",true}};
     llama_memory_clear(llama_get_memory(ctx),true);
     std::ofstream report(base+"/state-result.json");

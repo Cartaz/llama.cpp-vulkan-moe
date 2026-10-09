@@ -1,0 +1,35 @@
+{
+  "id": "R56-roundtrip-downstream-routing-boundary",
+  "registered_utc": "2026-10-09T07:39:27.980737+00:00",
+  "purpose": "Check whether first logit amplification after the R40 Q8_K block-scale perturbation coincides with a later ordered-route or selected-expert-set change",
+  "engine": "Exact R39 WORK DSOs, R49 existing corpus helper; no new inference source or rebuild",
+  "workload": "R39 immutable512PP+200TG,c1024,b/ub512,Q8KV,FAon,mmap,t8/tb8,fitOFF; one fixed case per fresh process; no warmup",
+  "modes": [
+    "original",
+    "copy",
+    "gate",
+    "up",
+    "down",
+    "all"
+  ],
+  "order": [
+    "original-off",
+    "original-on",
+    "copy-off",
+    "copy-on",
+    "gate-off",
+    "gate-on",
+    "up-off",
+    "up-on",
+    "down-off",
+    "down-on",
+    "all-off",
+    "all-on",
+    "all-repeat"
+  ],
+  "observer": "Existing after-up callback, all40 normal layers/top8; input diagnostics are existing R37 modes in frozen R39 engine",
+  "gate": "Each OFF and ON raw dump finite/nonzero and byte-identical to the corresponding archived R40 unobserved result; OFF/ON and ON/repeat equality; exact fixed input and decode IDs; all40 routes complete; copy/original routes exact. Any missing or failed gate makes attribution ineligible",
+  "route_analysis": "Compare ordered top8 and unordered selected sets at every phase/token/layer. Identify first difference and whether any difference precedes the first differing logit vector. No route-probability/intermediate or causal magnitude claim",
+  "resources": "Serial GPU model runs only,24Gmemory/2Gswap,6GavailableRAM reserve,600s per process,unchanged clocks; start after all14R55controls finish",
+  "limits": "Teacher-forced diagnostic only. Does not resolve CPU/GPU fidelity, quality, context instability, timing or defaults. A changed route alone does not prove it accounts for amplification."
+}

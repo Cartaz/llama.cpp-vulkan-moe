@@ -1,0 +1,133 @@
+{
+  "model": {
+    "path": "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+    "bytes": 21713462848,
+    "sha256": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f"
+  },
+  "candidate_commit": "d6844bd569e8059820d9242e59f5c3d45b789c67",
+  "utc": "2026-10-09T08:19:58.355239+00:00",
+  "helper_source_sha256": "b364fbac5e155989c88d1d36fc88d494b37fe4f9b741037cea79261dee2a0139",
+  "variants": {
+    "STATE2-BASE": "7fe450e19305b828c199d602c23a8337aaa1f03b; separately compiled state observer",
+    "STATE2-FIXED": "d6844bd + archived multi-pool engine + retained-ID fixture fix",
+    "STATE2-ASAN": "same source + ASAN/UBSAN"
+  },
+  "artifacts": {
+    "frozen/STATE2-BASE/libggml-base.so.0.25.1": "ed4b8f3d3ae59dfba891b43364fd7d5c4d297507fc483b4be8c95ccdde046084",
+    "frozen/STATE2-BASE/libggml-cpu.so.0.25.1": "f4709ae474d658855aba3c9bb90c17a603b44943fa1793e433a46ee96e3d4226",
+    "frozen/STATE2-BASE/libggml-vulkan.so.0.25.1": "a1d5ad88a266cb28f496da11726bee09d8021c1ff23e4d4cd9c9b1d06e61efd7",
+    "frozen/STATE2-BASE/libggml.so.0.25.1": "8e8669c77ec573dd61fc2ab7f5d3d2ece7a2db9edacb354b300232ce7512b443",
+    "frozen/STATE2-BASE/libllama.so.0.5.0": "61f97ce7a813603834536ce55d887c2cc749d107fe4233903b5462bf80478922",
+    "frozen/STATE2-BASE/libllama-common.so.0.5.0": "57810254aec09155e20703ddda407c0ef48b415612ad65411ff35e9d246df077",
+    "frozen/STATE2-BASE/state-check": "ba706edce35e385434395d41b12cc5af6644f738561f690b9cf88242e8107b08",
+    "frozen/STATE2-FIXED/libggml-base.so.0.25.1": "167ef8f0d9a0aabd4c0f87637a47dec24461e6810ef990962ed38f119fb9068e",
+    "frozen/STATE2-FIXED/libggml-cpu.so.0.25.1": "d939874c41448f224794190e80548a7d09a309686450ac53c797b040eb2d995b",
+    "frozen/STATE2-FIXED/libggml-vulkan.so.0.25.1": "4442d44cfa70f0cf12b5d6290f6bd74fbe1b24e4a90fe71759ab40efffeb22d4",
+    "frozen/STATE2-FIXED/libggml.so.0.25.1": "dc0917f5b55bb86ecfa89c7d1734c5ab6579fb90ad97cd5a94735fa9eb9e5f22",
+    "frozen/STATE2-FIXED/libllama.so.0.5.0": "d8cd670eab39b9ae327c11e5446e6b6faa4ae8f8250796ff7aabd031aeaca504",
+    "frozen/STATE2-FIXED/libllama-common.so.0.5.0": "12c8b2dfbdd57b1ee7e095bd6d0756c0c5dcfb05e9dc8eb4bab1beb009515528",
+    "frozen/STATE2-FIXED/state-check": "ba706edce35e385434395d41b12cc5af6644f738561f690b9cf88242e8107b08",
+    "frozen/STATE2-ASAN/libggml-base.so.0.25.1": "835001002805c93a86138981d455c6ae2a78bb97cd2160ca14928954ad49de77",
+    "frozen/STATE2-ASAN/libggml-cpu.so.0.25.1": "221b8c5ecd1af695ddf529c302ecdd1b1191846e8bd9db8d3c2f76aa7e5d2a1c",
+    "frozen/STATE2-ASAN/libggml-vulkan.so.0.25.1": "b26c87dcbfe579e7a2ce6bfb4a69f1abff57b2c030949f68802eb1f590ee4fcc",
+    "frozen/STATE2-ASAN/libggml.so.0.25.1": "02e9e10b76d2c17e71d04d8bf86516da9813c38b52037241749dcc65b94aa98b",
+    "frozen/STATE2-ASAN/libllama.so.0.5.0": "0aea3bbe6a8f6e81122acbfaf6f3b24cd385ee1e4a6ccc00f78c2c74a674d56b",
+    "frozen/STATE2-ASAN/libllama-common.so.0.5.0": "866d566cd353cc710abea0e86bb7fcb6eca317a04be63eda8b02bb67146b6efc",
+    "frozen/STATE2-ASAN/state-check": "2981b083ddea8de24167001b56dbe481b5235d2332b0f2380c795c06a90e3e48"
+  },
+  "source": {
+    "examples/moe-trace/state-check.cpp": "b364fbac5e155989c88d1d36fc88d494b37fe4f9b741037cea79261dee2a0139"
+  },
+  "state_inputs": {
+    "stress/state-512.json": "9f8d206a56ac22d29589b44b3d0617771bf2eb75a3d67b36ed1e8e41d3df70b0",
+    "stress/state-8192.json": "ac4ee2bf67eb19043bfade81663f3d857344edfc3ab63e3d1ef0515cd3489937"
+  },
+  "builds": [
+    {
+      "label": "STATE2-BASE",
+      "args": [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/include",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/common",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/ggml/include",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/vendor",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/examples/moe-trace/state-check.cpp",
+        "-L/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/STATE2-BASE",
+        "-Wl,-rpath,$ORIGIN",
+        "-lllama-common",
+        "-lllama",
+        "-lggml",
+        "-lggml-base",
+        "-pthread",
+        "-o",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/STATE2-BASE/state-check"
+      ],
+      "source": {
+        "examples/moe-trace/state-check.cpp": "b364fbac5e155989c88d1d36fc88d494b37fe4f9b741037cea79261dee2a0139"
+      },
+      "engine_source_label": "STATE-BASE",
+      "compiler": "g++ (GCC) 16.2.1 20260810"
+    },
+    {
+      "label": "STATE2-FIXED",
+      "args": [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/include",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/common",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/ggml/include",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/vendor",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/examples/moe-trace/state-check.cpp",
+        "-L/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/STATE2-FIXED",
+        "-Wl,-rpath,$ORIGIN",
+        "-lllama-common",
+        "-lllama",
+        "-lggml",
+        "-lggml-base",
+        "-pthread",
+        "-o",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/STATE2-FIXED/state-check"
+      ],
+      "source": {
+        "examples/moe-trace/state-check.cpp": "b364fbac5e155989c88d1d36fc88d494b37fe4f9b741037cea79261dee2a0139"
+      },
+      "engine_source_label": "FIXED",
+      "compiler": "g++ (GCC) 16.2.1 20260810"
+    },
+    {
+      "label": "STATE2-ASAN",
+      "args": [
+        "g++",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/include",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/common",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/ggml/include",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/vendor",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/examples/moe-trace/state-check.cpp",
+        "-L/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/STATE2-ASAN",
+        "-Wl,-rpath,$ORIGIN",
+        "-lllama-common",
+        "-lllama",
+        "-lggml",
+        "-lggml-base",
+        "-pthread",
+        "-o",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/STATE2-ASAN/state-check"
+      ],
+      "source": {
+        "examples/moe-trace/state-check.cpp": "b364fbac5e155989c88d1d36fc88d494b37fe4f9b741037cea79261dee2a0139"
+      },
+      "engine_source_label": "ASAN",
+      "compiler": "g++ (GCC) 16.2.1 20260810"
+    }
+  ]
+}
