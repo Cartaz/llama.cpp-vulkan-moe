@@ -1,0 +1,7 @@
+{
+  "utc": "2026-10-09T01:56:59.442043+00:00",
+  "changed": "Manifest separates aliases from canonical loaded DSO keys",
+  "binary_or_protocol_change": false,
+  "R52_runs_started": false,
+  "prior_freeze": "cold-cost-freeze-symlink-schema.json"
+}

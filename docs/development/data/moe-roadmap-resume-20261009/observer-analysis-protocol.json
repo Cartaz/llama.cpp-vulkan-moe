@@ -1,0 +1,10 @@
+{
+  "id": "R54-autonomous-neutral-observer-analysis",
+  "registered_before_runs": true,
+  "cohort": "108 frozen R44 continuations; AFTER_UP callback must preserve full B1 raw output and every generated ID",
+  "geometry": "40 normal layers top8; metadata block40 is MTP, excluded",
+  "native_crosscheck": "Everycase compares observerCPU18 IDs to callback-free native target and callback-path native logger",
+  "analysis": "Per-case PP/TG/all,entropy/frequency/working-set/reuse,windows1/8/32/128,slots0/16/32/48/64/96/128; decode includes prefill-warmed logical policies",
+  "selection": "No policy allocation or tuning with HELDOUT; selected18 static allocations remain separate frozen TRAIN plans",
+  "limits": "Logical simulations, not measured hit rate/PCIe/cost/speedup; no general observer neutrality beyond qualified cohort"
+}

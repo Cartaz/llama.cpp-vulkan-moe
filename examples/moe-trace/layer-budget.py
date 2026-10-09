@@ -93,30 +93,38 @@ def plan(traces, sizes, budget, policy, minimum_slots=0):
         for groups in traces:
             for (_, layer), ids in groups.items():
                 requests[layer][ids] += 1
+        candidates = {}
         while True:
             best = None
             for layer in sorted(sizes):
-                missing = Counter()
-                for ids, count in requests[layer].items():
-                    rest = ids - selected[layer]
-                    if rest:
-                        missing[rest] += count
-                by_size = defaultdict(dict)
-                for rest, count in missing.items():
-                    by_size[len(rest)][rest] = count
-                for rest in missing:
-                    cost = len(rest) * sizes[layer]
-                    if used + cost > budget:
-                        continue
-                    gain = bundle_gain(rest, by_size)
-                    key = (-Fraction(gain, cost), cost, layer, tuple(sorted(rest)))
-                    if best is None or key < best[0]:
-                        best = key, layer, rest, cost
+                if layer not in candidates:
+                    missing = Counter()
+                    for ids, count in requests[layer].items():
+                        rest = ids - selected[layer]
+                        if rest:
+                            missing[rest] += count
+                    by_size = defaultdict(dict)
+                    for rest, count in missing.items():
+                        by_size[len(rest)][rest] = count
+                    ranked = []
+                    for rest in missing:
+                        cost = len(rest) * sizes[layer]
+                        gain = bundle_gain(rest, by_size)
+                        key = (-Fraction(gain, cost), cost, layer, tuple(sorted(rest)))
+                        ranked.append((key, rest, cost))
+                    candidates[layer] = sorted(ranked, key=lambda item: item[0])
+                # Budget changes eligibility, but gains only change in the selected layer.
+                for key, rest, cost in candidates[layer]:
+                    if used + cost <= budget:
+                        if best is None or key < best[0]:
+                            best = key, layer, rest, cost
+                        break
             if best is None:
                 break
             _, layer, rest, cost = best
             selected[layer].update(rest)
             used += cost
+            del candidates[layer]
     else:
         raise ValueError("unknown policy")
     assert used == sum(len(ids) * sizes[layer] for layer, ids in selected.items()) and used <= budget

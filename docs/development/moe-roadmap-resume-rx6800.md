@@ -10,7 +10,7 @@ The prior campaign contains50 process results:49 full raw gates pass. One pool12
 
 ## R44: six-family autonomous corpus
 
-The frozen corpus has36 prompts,three TRAIN and three HELDOUT prompts per family,and seeds11/29/47:108 autonomous continuations. Sampling is temperature0.8/top-p0.95/top-k40,max128 tokens or EOG. Consecutive cases clear and synchronize model memory while scheduler pools persist. Baseline resident, candidate same-GPU transfer and pool128 compare full emitted logits and generated IDs. The campaign is running; see `2026-10-09-roadmap-resume/corpus-results.json`.
+The frozen corpus has36 prompts,three TRAIN and three HELDOUT prompts per family,and seeds11/29/47:108 autonomous continuations. Sampling is temperature0.8/top-p0.95/top-k40,max128 tokens or EOG. Consecutive cases clear and synchronize model memory while scheduler pools persist. Baseline resident, candidate same-GPU transfer and pool128 compare full emitted logits and generated IDs. All108 autonomous continuations pass baseline resident/candidate transfer/pool byte parity:18fresh processes and40,086 emitted full raw vectors. All six legacy-callback batches fail autonomous trajectory parity and remain ineligible; see `2026-10-09-roadmap-resume/corpus-results.json`.
 
 Two harness errors are preserved and corrected separately. C++ temperature0.8 is serialized as its actual float representation; the verifier now compares against float32(0.8). A final generated token can end with incomplete UTF-8, causing JSON serialization to abort after valid inference on both baseline and fork. The helper now writes original text bytes to a binary sidecar and uses replacement decoding only for JSON text. IDs/logits are unchanged, including all available prior raw prefixes. The original aborted runs remain archived.
 
@@ -59,3 +59,33 @@ R45 uses repeated captured Q8_K input and selected expert weights; the selected 
 CMake regenerated after a Git commit and rebuilt `ggml.c` with its updated `GGML_COMMIT`,changing library hashes. The R52 helper is instead compiled standalone directly against archived FIXED DSOs; rebuilt DSOs are not used as the qualified engine. Its exact command/source/artifact hashes are in `cold-cost-freeze.json`.
 
 A600-second controller lease stops only owned queued experiments when the controller becomes unavailable. Its first180-second configuration expired during active controller work; that partial callback process and CPU planner attempt are preserved. Usage was66%,so this incident is not labeled quota exhaustion. Verified corpus checkpoints are resumed,and TRAIN allocation checkpoints are saved before HELDOUT scoring.
+
+## Extended TRAIN/HELDOUT routing evidence
+
+All21 TRAIN-only static quota allocations are frozen before HELDOUT scoring; two228.87MiB-cap allocations with minimum8 slots/layer are infeasible and remain so. TRAIN and HELDOUT each have54 complete callback-free CPU18 traces and162 per-case/phase analyses with windows1/8/32/128 and cold/prefill-warmed logical policies. HELDOUT scores every fixed allocation without retuning. Payload caps exclude allocator metadata,in-flight tensors,the retained transfer arena,KV and compute buffers.
+
+The planner caches a layer's candidate ranking until that layer's selected experts change,and filters the remaining byte budget every iteration. Exact gains,Fraction ranking and ties stay unchanged. The26-test suite includes540 independently recomputed greedy allocation matrices and600 subset-gain comparisons. Already completed allocations remain preserved; three actual54-case TRAIN allocations spanning all three caps exactly match their earlier fully recomputed versions. No sample,policy,threshold or HELDOUT-dependent selection changes.
+
+Pooled HELDOUT decode coverage for allocations without a minimum reservation:
+
+| Cap MiB | Policy | Byte coverage | Complete per-layer request coverage | Layers with zero quota |
+| --- | --- | --- | --- | --- |
+| 228.87 | Uniform frequency | 13.32% | 0.00% | 0 |
+| 228.87 | Global frequency/byte | 13.86% | 0.00% | 2 |
+| 228.87 | Request bundles | 4.34% | 3.01% | 17 |
+| 490.43 | Uniform frequency | 23.38% | 0.01% | 0 |
+| 490.43 | Global frequency/byte | 23.80% | 0.03% | 0 |
+| 490.43 | Request bundles | 6.55% | 6.01% | 16 |
+| 1013.55 | Uniform frequency | 37.78% | 0.58% | 0 |
+| 1013.55 | Global frequency/byte | 38.15% | 0.97% | 0 |
+| 1013.55 | Request bundles | 13.83% | 11.78% | 15 |
+
+These are logical static payload simulations,not runtime hit rates,transferred PCIe bytes or speed predictions. Complete-request greedy concentrates coverage in few layers and trades byte coverage for all-hit requests. No heldout token is fully covered across all18 selected layers by any feasible allocation. Low quotas can also fail an actual eight-expert pool admission; this simulation does not waive that runtime condition.
+
+## R47 baseline instability and R55 async controls
+
+The new R47 initial unmodified B1 resident process is itself not repeatable:rep0/1 agree;rep2 first diverges at physical prefill vector6/position3072.214/220 vectors differ,finite,first max absolute difference0.197236 and RMSE0.028863;argmax agrees throughout. This is a shared-reference failure,not evidence that the fork caused that particular divergence. It does not establish the same cause as the earlier R43b pool failure. A new Q8-FA synchronization-guard condition also diverges,so that existing opt-in barrier is not sufficient under the observed condition. All original gates remain unchanged and the cell is excluded from ranking.
+
+The initial unstable B1 leaves the registered R47 online comparison without an eligible reference; subsequent empty assertion errors are retained as ineligible cross-reference checks,not automatically fork regressions. Offline within-process differences distinguish these from actual repeatability failures.
+
+[Upstream issue25195](https://github.com/ggml-org/llama.cpp/issues/25195) reports an async transfer hazard on gfx1201/amdvlk and explicitly does not reproduce a native crash on RADV. It is a research lead,not evidence of this RX6800 failure. Current upstream de7fa0a and B1 source both expose `GGML_VK_DISABLE_ASYNC`; the source was inspected after an actual Gitfetch. R55 registers three balanced fresh processes each for B1resident/pool128,asyncON/OFF,plus B1ON/OFF model synchronization validation. Full raw repeatability and a predetermined chronological R43 B1reference are required. It uses existing runtime flags and unchanged archived engines,with no default promotion or performance ranking.

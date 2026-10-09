@@ -1,0 +1,6 @@
+{
+  "gate": "PASS",
+  "tests": 12,
+  "output_sha256": "ca42ccd487f72bc62c52b6d0882b8a5b71c0e91744afa7993dd802ccdcc8f7f0",
+  "fixture_freeze_sha256": "4642e95e4a54ce7cace3f0cc0d9fe70b44ac110b944770ff46b51f34215dc83d"
+}
