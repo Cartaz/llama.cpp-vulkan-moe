@@ -1,0 +1,303 @@
+{
+  "utc": "2026-10-09T19:17:47.434600+00:00",
+  "gate": "PASS_ALL28_FULL_RAW",
+  "processes": 28,
+  "vectors": 7092,
+  "cases": {
+    "heldout-arithmetic": {
+      "gate-resident": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "8b87192cf76231529026ceac24c65948bb6fd301ec482b3643f8eb90520b0f7f",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 0,
+        "batched_bypasses": 0
+      },
+      "gate-old": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "8b87192cf76231529026ceac24c65948bb6fd301ec482b3643f8eb90520b0f7f",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 256,
+        "batched_bypasses": 0
+      },
+      "gate-off": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "8b87192cf76231529026ceac24c65948bb6fd301ec482b3643f8eb90520b0f7f",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 256,
+        "batched_bypasses": 0
+      },
+      "gate-on": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "8b87192cf76231529026ceac24c65948bb6fd301ec482b3643f8eb90520b0f7f",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 256,
+        "batched_bypasses": 4
+      }
+    },
+    "heldout-code": {
+      "gate-resident": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "67aa542a198c6d8ac36d1e0d4edde35ba0b0b3e1cf6623be87779f3e00117226",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 0,
+        "batched_bypasses": 0
+      },
+      "gate-old": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "67aa542a198c6d8ac36d1e0d4edde35ba0b0b3e1cf6623be87779f3e00117226",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 256,
+        "batched_bypasses": 0
+      },
+      "gate-off": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "67aa542a198c6d8ac36d1e0d4edde35ba0b0b3e1cf6623be87779f3e00117226",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 256,
+        "batched_bypasses": 0
+      },
+      "gate-on": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "67aa542a198c6d8ac36d1e0d4edde35ba0b0b3e1cf6623be87779f3e00117226",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 256,
+        "batched_bypasses": 4
+      }
+    },
+    "heldout-italian": {
+      "gate-resident": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "397d0a5b3c82f78740cd8ed0f5fa266376bbc18fa3be1ef40c71979bd9dd51b2",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 0,
+        "batched_bypasses": 0
+      },
+      "gate-old": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "397d0a5b3c82f78740cd8ed0f5fa266376bbc18fa3be1ef40c71979bd9dd51b2",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 256,
+        "batched_bypasses": 0
+      },
+      "gate-off": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "397d0a5b3c82f78740cd8ed0f5fa266376bbc18fa3be1ef40c71979bd9dd51b2",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 256,
+        "batched_bypasses": 0
+      },
+      "gate-on": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "397d0a5b3c82f78740cd8ed0f5fa266376bbc18fa3be1ef40c71979bd9dd51b2",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 256,
+        "batched_bypasses": 4
+      }
+    },
+    "heldout-planning": {
+      "gate-resident": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "b23d6065167d0593cc2a502f7fbbed52840a04cca607f1fc1b52df0cac800e00",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 0,
+        "batched_bypasses": 0
+      },
+      "gate-old": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "b23d6065167d0593cc2a502f7fbbed52840a04cca607f1fc1b52df0cac800e00",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 256,
+        "batched_bypasses": 0
+      },
+      "gate-off": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "b23d6065167d0593cc2a502f7fbbed52840a04cca607f1fc1b52df0cac800e00",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 256,
+        "batched_bypasses": 0
+      },
+      "gate-on": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "b23d6065167d0593cc2a502f7fbbed52840a04cca607f1fc1b52df0cac800e00",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 256,
+        "batched_bypasses": 4
+      }
+    },
+    "heldout-retrieval": {
+      "gate-resident": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "7ce687f58fb5c6dc1bbe2501357b5ba0a8e541dff8ff2efaba449ac1348ac96b",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 0,
+        "batched_bypasses": 0
+      },
+      "gate-old": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "7ce687f58fb5c6dc1bbe2501357b5ba0a8e541dff8ff2efaba449ac1348ac96b",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 256,
+        "batched_bypasses": 0
+      },
+      "gate-off": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "7ce687f58fb5c6dc1bbe2501357b5ba0a8e541dff8ff2efaba449ac1348ac96b",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 256,
+        "batched_bypasses": 0
+      },
+      "gate-on": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "7ce687f58fb5c6dc1bbe2501357b5ba0a8e541dff8ff2efaba449ac1348ac96b",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 256,
+        "batched_bypasses": 4
+      }
+    },
+    "heldout-structured": {
+      "gate-resident": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "07bf837cd870529b87debb97f2f436c63b5d2f6c0c28a83c0fa31b6d209d72ea",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 0,
+        "batched_bypasses": 0
+      },
+      "gate-old": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "07bf837cd870529b87debb97f2f436c63b5d2f6c0c28a83c0fa31b6d209d72ea",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 256,
+        "batched_bypasses": 0
+      },
+      "gate-off": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "07bf837cd870529b87debb97f2f436c63b5d2f6c0c28a83c0fa31b6d209d72ea",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 256,
+        "batched_bypasses": 0
+      },
+      "gate-on": {
+        "gate": "PASS",
+        "vectors": 195,
+        "finite_nonzero": true,
+        "raw_sha256": "07bf837cd870529b87debb97f2f436c63b5d2f6c0c28a83c0fa31b6d209d72ea",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 256,
+        "batched_bypasses": 4
+      }
+    },
+    "short": {
+      "gate-resident": {
+        "gate": "PASS",
+        "vectors": 603,
+        "finite_nonzero": true,
+        "raw_sha256": "5436d1a5cf83795598498faecca31fb8b7aa1acca3fa073ec7801c31a72c2b8d",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 0,
+        "batched_bypasses": 0
+      },
+      "gate-old": {
+        "gate": "PASS",
+        "vectors": 603,
+        "finite_nonzero": true,
+        "raw_sha256": "5436d1a5cf83795598498faecca31fb8b7aa1acca3fa073ec7801c31a72c2b8d",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 800,
+        "batched_bypasses": 0
+      },
+      "gate-off": {
+        "gate": "PASS",
+        "vectors": 603,
+        "finite_nonzero": true,
+        "raw_sha256": "5436d1a5cf83795598498faecca31fb8b7aa1acca3fa073ec7801c31a72c2b8d",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 800,
+        "batched_bypasses": 0
+      },
+      "gate-on": {
+        "gate": "PASS",
+        "vectors": 603,
+        "finite_nonzero": true,
+        "raw_sha256": "5436d1a5cf83795598498faecca31fb8b7aa1acca3fa073ec7801c31a72c2b8d",
+        "mismatches": [],
+        "warm_B1_exact": true,
+        "admitted_TG": 800,
+        "batched_bypasses": 4
+      }
+    }
+  },
+  "limits": "Complete float32 vectors; fixed teacher-forced histories, same-GPU B1. No semantic/native generation, long-context or general correctness qualification."
+}

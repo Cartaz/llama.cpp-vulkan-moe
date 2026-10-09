@@ -1,0 +1,586 @@
+{
+  "utc": "2026-10-09T10:26:58.253152+00:00",
+  "gate": "DESCRIPTIVE_PARTIAL",
+  "processes_audited": 7,
+  "expected_processes": 12,
+  "reference": "first chronological independent no-state B1resident process;later passes do not replace failures",
+  "results": {
+    "r60-no-state-resident-1": {
+      "original_gate": "PASS",
+      "complete_cases": 6,
+      "different_cases": 0,
+      "generated_id_divergent_cases": 0,
+      "cases": [
+        {
+          "id": "client-depth512-seed11",
+          "primary_sha256": "589446cef1266b586e43029566074274c392e415bd3b11c848c0dbfd872f32d8",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth512-seed29",
+          "primary_sha256": "3c4bf1e0e27d22248381b9b72cb803a76651483799fdd72b91fc3aafca487760",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth512-seed47",
+          "primary_sha256": "6d57a17bcd8343ef1a8b924198c95cbc23ec8ef4adb7bf34b30206a5027b947f",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed11",
+          "primary_sha256": "6a317aba0f5437b78534719d18183d090bd47024b7a9a80dda77ff2b8caf0092",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed29",
+          "primary_sha256": "d6b1a13d862f3e0ac0d39590b278f07a98d5a1816c7fc9adb65aa27ba32946eb",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed47",
+          "primary_sha256": "993099abc24fdde2e1410fd6ec25b52037c2b6156aaa15b7d9475b435d08d18d",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        }
+      ]
+    },
+    "r60-no-state-target-1": {
+      "original_gate": "PASS",
+      "complete_cases": 6,
+      "different_cases": 0,
+      "generated_id_divergent_cases": 0,
+      "cases": [
+        {
+          "id": "client-depth512-seed11",
+          "primary_sha256": "589446cef1266b586e43029566074274c392e415bd3b11c848c0dbfd872f32d8",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth512-seed29",
+          "primary_sha256": "3c4bf1e0e27d22248381b9b72cb803a76651483799fdd72b91fc3aafca487760",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth512-seed47",
+          "primary_sha256": "6d57a17bcd8343ef1a8b924198c95cbc23ec8ef4adb7bf34b30206a5027b947f",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed11",
+          "primary_sha256": "6a317aba0f5437b78534719d18183d090bd47024b7a9a80dda77ff2b8caf0092",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed29",
+          "primary_sha256": "d6b1a13d862f3e0ac0d39590b278f07a98d5a1816c7fc9adb65aa27ba32946eb",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed47",
+          "primary_sha256": "993099abc24fdde2e1410fd6ec25b52037c2b6156aaa15b7d9475b435d08d18d",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        }
+      ]
+    },
+    "r60-no-state-pool-1": {
+      "original_gate": "FAIL",
+      "complete_cases": 6,
+      "different_cases": 1,
+      "generated_id_divergent_cases": 0,
+      "cases": [
+        {
+          "id": "client-depth512-seed11",
+          "primary_sha256": "589446cef1266b586e43029566074274c392e415bd3b11c848c0dbfd872f32d8",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth512-seed29",
+          "primary_sha256": "3c4bf1e0e27d22248381b9b72cb803a76651483799fdd72b91fc3aafca487760",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth512-seed47",
+          "primary_sha256": "6d57a17bcd8343ef1a8b924198c95cbc23ec8ef4adb7bf34b30206a5027b947f",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed11",
+          "primary_sha256": "0ca1520f735644c8082a2247d0966aa00f69d0e82eaf41be7a203a7dfa67411a",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 22,
+          "argmax_changed_vectors": 0,
+          "first_difference": {
+            "vector_zero_based": 4,
+            "phase": "prefill",
+            "token_end_zero_based": 2559,
+            "different_elements": 248295,
+            "max_abs": 0.03429222106933594,
+            "RMS": 0.006308721397537139,
+            "argmax_equal": true
+          },
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed29",
+          "primary_sha256": "d6b1a13d862f3e0ac0d39590b278f07a98d5a1816c7fc9adb65aa27ba32946eb",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed47",
+          "primary_sha256": "993099abc24fdde2e1410fd6ec25b52037c2b6156aaa15b7d9475b435d08d18d",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        }
+      ]
+    },
+    "r60-no-state-pool-2": {
+      "original_gate": "PASS",
+      "complete_cases": 6,
+      "different_cases": 0,
+      "generated_id_divergent_cases": 0,
+      "cases": [
+        {
+          "id": "client-depth512-seed11",
+          "primary_sha256": "589446cef1266b586e43029566074274c392e415bd3b11c848c0dbfd872f32d8",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth512-seed29",
+          "primary_sha256": "3c4bf1e0e27d22248381b9b72cb803a76651483799fdd72b91fc3aafca487760",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth512-seed47",
+          "primary_sha256": "6d57a17bcd8343ef1a8b924198c95cbc23ec8ef4adb7bf34b30206a5027b947f",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed11",
+          "primary_sha256": "6a317aba0f5437b78534719d18183d090bd47024b7a9a80dda77ff2b8caf0092",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed29",
+          "primary_sha256": "d6b1a13d862f3e0ac0d39590b278f07a98d5a1816c7fc9adb65aa27ba32946eb",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed47",
+          "primary_sha256": "993099abc24fdde2e1410fd6ec25b52037c2b6156aaa15b7d9475b435d08d18d",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        }
+      ]
+    },
+    "r60-no-state-target-2": {
+      "original_gate": "FAIL",
+      "complete_cases": 6,
+      "different_cases": 1,
+      "generated_id_divergent_cases": 1,
+      "cases": [
+        {
+          "id": "client-depth512-seed11",
+          "primary_sha256": "589446cef1266b586e43029566074274c392e415bd3b11c848c0dbfd872f32d8",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth512-seed29",
+          "primary_sha256": "3c4bf1e0e27d22248381b9b72cb803a76651483799fdd72b91fc3aafca487760",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth512-seed47",
+          "primary_sha256": "6d57a17bcd8343ef1a8b924198c95cbc23ec8ef4adb7bf34b30206a5027b947f",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed11",
+          "primary_sha256": "6a317aba0f5437b78534719d18183d090bd47024b7a9a80dda77ff2b8caf0092",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed29",
+          "primary_sha256": "26367036af352077db4646683a85325e4732322505c2b7ae7434c08d9fb5d26f",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 67,
+          "argmax_changed_vectors": 37,
+          "first_difference": {
+            "vector_zero_based": 13,
+            "phase": "prefill",
+            "token_end_zero_based": 7167,
+            "different_elements": 248318,
+            "max_abs": 0.19166946411132812,
+            "RMS": 0.03281610795353277,
+            "argmax_equal": true
+          },
+          "first_generated_id_difference": 28,
+          "generated_ids_exact": false,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed47",
+          "primary_sha256": "993099abc24fdde2e1410fd6ec25b52037c2b6156aaa15b7d9475b435d08d18d",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        }
+      ]
+    },
+    "r60-no-state-resident-2": {
+      "original_gate": "PASS",
+      "complete_cases": 6,
+      "different_cases": 0,
+      "generated_id_divergent_cases": 0,
+      "cases": [
+        {
+          "id": "client-depth512-seed11",
+          "primary_sha256": "589446cef1266b586e43029566074274c392e415bd3b11c848c0dbfd872f32d8",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth512-seed29",
+          "primary_sha256": "3c4bf1e0e27d22248381b9b72cb803a76651483799fdd72b91fc3aafca487760",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth512-seed47",
+          "primary_sha256": "6d57a17bcd8343ef1a8b924198c95cbc23ec8ef4adb7bf34b30206a5027b947f",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed11",
+          "primary_sha256": "6a317aba0f5437b78534719d18183d090bd47024b7a9a80dda77ff2b8caf0092",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed29",
+          "primary_sha256": "d6b1a13d862f3e0ac0d39590b278f07a98d5a1816c7fc9adb65aa27ba32946eb",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed47",
+          "primary_sha256": "993099abc24fdde2e1410fd6ec25b52037c2b6156aaa15b7d9475b435d08d18d",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        }
+      ]
+    },
+    "r60-checkpoint-resident-1": {
+      "original_gate": "PASS",
+      "complete_cases": 6,
+      "different_cases": 0,
+      "generated_id_divergent_cases": 0,
+      "cases": [
+        {
+          "id": "client-depth512-seed11",
+          "primary_sha256": "589446cef1266b586e43029566074274c392e415bd3b11c848c0dbfd872f32d8",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth512-seed29",
+          "primary_sha256": "3c4bf1e0e27d22248381b9b72cb803a76651483799fdd72b91fc3aafca487760",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth512-seed47",
+          "primary_sha256": "6d57a17bcd8343ef1a8b924198c95cbc23ec8ef4adb7bf34b30206a5027b947f",
+          "raw_vectors": 65,
+          "reference_vectors": 65,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed11",
+          "primary_sha256": "6a317aba0f5437b78534719d18183d090bd47024b7a9a80dda77ff2b8caf0092",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed29",
+          "primary_sha256": "d6b1a13d862f3e0ac0d39590b278f07a98d5a1816c7fc9adb65aa27ba32946eb",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        },
+        {
+          "id": "client-depth8192-seed47",
+          "primary_sha256": "993099abc24fdde2e1410fd6ec25b52037c2b6156aaa15b7d9475b435d08d18d",
+          "raw_vectors": 80,
+          "reference_vectors": 80,
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null,
+          "first_generated_id_difference": null,
+          "generated_ids_exact": true,
+          "eog_matches": true
+        }
+      ]
+    }
+  },
+  "limits": "Full finite/nonzero checks on completed return0 model processes only; no numerical tolerance,epsilon or timing ranking. For different generated trajectories,the first causal sequence point stays descriptive. Original underlying API gate remains open."
+}

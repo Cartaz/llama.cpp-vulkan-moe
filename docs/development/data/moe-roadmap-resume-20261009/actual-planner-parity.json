@@ -1,0 +1,24 @@
+{
+  "gate": "PASS",
+  "training_plans_sha256": "b827b533bbabcc63d75f88b54620717296aa2742f7b96d2b8123cfb6402deb70",
+  "model_cases": 54,
+  "allocations": [
+    {
+      "key": "239984640:0:request_bundle",
+      "exact": true,
+      "wall_s": 8.782026706001488
+    },
+    {
+      "key": "514252800:4:request_bundle",
+      "exact": true,
+      "wall_s": 9.739278089000436
+    },
+    {
+      "key": "1062789120:0:request_bundle",
+      "exact": true,
+      "wall_s": 27.15467674500178
+    }
+  ],
+  "amendment_sha256": "89dd00d1d1918c7f373e7629434d51fafd4c3cef1dd22cef95f1133172b4b972",
+  "limits": "Semantic parity of frozen earlier allocations; diagnostic wall time not an inference or standalone balanced performance benchmark"
+}

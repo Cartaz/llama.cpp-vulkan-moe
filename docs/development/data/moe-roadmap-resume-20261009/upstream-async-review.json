@@ -1,0 +1,10 @@
+{
+  "utc": "2026-10-09T02:12:54.806223+00:00",
+  "source": "https://github.com/ggml-org/llama.cpp/issues/25195",
+  "reported_scope": "gfx1201/RX9070XT; nativeWindowsamdvlkcrash and Linux synchronization hazard; report explicitly lacks nativecrash reproduction underRADV; cannotextrapolate toRX6800",
+  "code_inspected": {
+    "B1": "baseline-v050 ggml-vulkan.cpp support_async uses GGML_VK_DISABLE_ASYNC; AMDnon-GCNdiscrete prefersdedicatedtransferqueue when graphicsqueue disabled",
+    "current": "de7fa0a3c6a2e1b4cd9f22eb8d6bf5b12dbdb63b actual Gitfetch; same built-inasyncflag andqueuepreference inspected"
+  },
+  "decision": "Use existingflagfor onefactorA/B, preservebaseline; no kernelchange orassumedrootcause"
+}

@@ -1,0 +1,13 @@
+{
+  "utc": "2026-10-09T16:41:01.415771+00:00",
+  "uname": "Linux PARR-2026c 7.2.9-1-cachyos #1 SMP PREEMPT_DYNAMIC Sat, 03 Oct 2026 18:34:55 +0000 x86_64 GNU/Linux",
+  "packages": "mesa 3:26.2.4-1\nvulkan-radeon 3:26.2.4-1\ngcc 16.2.1+r23+gd564253eb6c8-1\ncmake 4.4.4-1.1\nninja 1.13.2-3.1\n",
+  "gpu": "OD_SCLK:\n0: 500Mhz\n1: 2600Mhz\nOD_MCLK:\n0: 97Mhz\n1: 1075MHz\nOD_RANGE:\nSCLK:     500Mhz       2600Mhz\nMCLK:     674Mhz       1075Mhz\nOD_VDDGFX_OFFSET:\n-100mV\n",
+  "bar": "09:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Navi 21 [Radeon RX 6800/6800 XT / 6900 XT] (rev c3) (prog-if 00 [VGA controller])\n\tSubsystem: XFX Limited Device 6705\n\tFlags: bus master, fast devsel, latency 0, IRQ 95, IOMMU group 19\n\tMemory at 7800000000 (64-bit, prefetchable) [size=16G]\n\tMemory at 7c00000000 (64-bit, prefetchable) [size=256M]\n\tI/O ports at e000 [size=256]\n\tMemory at fc800000 (32-bit, non-prefetchable) [size=1M]\n\tExpansion ROM at fc900000 [disabled] [size=128K]\n\tCapabilities: <access denied>\n\tKernel driver in use: amdgpu\n\tKernel modules: amdgpu\n\n",
+  "build_metadata": "Original frozen engines and CMake caches unchanged; individual manifests record actual loaded libraries and env -i",
+  "dirty_files": {
+    "docs/development/moe-quality-ab-rx6800.md": "43cc01d44e6c6da54a6dca5149941f87c5e0ef22a7460b77b328a355dab383a1",
+    "examples/moe-trace/README.md": "6c2efcc6968e63eddfbf18bf228ae67d58d10f08de95e871ee3ad0e94b32226a",
+    "examples/moe-trace/quality-eval.cpp": "3bb9bb08791004722e57849f3a2052e0fd659319b73bf92bab478a6d4585249b"
+  }
+}

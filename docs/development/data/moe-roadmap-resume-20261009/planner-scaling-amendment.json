@@ -1,0 +1,9 @@
+{
+  "id": "R50-planner-scaling-amendment",
+  "utc": "2026-10-09T01:11:46.879598+00:00",
+  "initial_attempt": "TRAIN planner terminated before writing any plans or opening HELDOUT; CPU-only initial log preserved",
+  "policy": "unchanged request_bundle greedy with exact integer gain and deterministic Fraction/ties",
+  "implementation": "partition missing requests by cardinality; equal-size subset lookup; smaller requests either scanned or enumerated by combinations,whichever requires fewer candidates",
+  "verification": "independent subset oracle and full allocation equality across heterogeneous costs/minima/budgets; existing profile suite",
+  "inference_changes": false
+}

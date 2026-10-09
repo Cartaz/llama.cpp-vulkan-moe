@@ -1,0 +1,16 @@
+{
+  "utc": "2026-10-09T12:31:05.510557+00:00",
+  "amendment": "Reuse5 completed hash-verified processes and original firstB1 references. Keep sixth quota-interrupted folder unchanged. Its fresh suffix is the only run-path change. Original36 order,inputs,flags,gates,thresholds,engine libraries remain fixed. Watchdog includes active,activating,deactivating owned planned units. Disk reserve8GiB is resource-only, no artifact deletion.",
+  "sha256": {
+    "prepare-resume06.py": "edeb452127ad6e1e634da7126167435c9e86cbd7fd7d0d07813362b81dadaec0",
+    "stress-campaign.py": "dd4a58ef9aff285bc5b6412cf8e85cbdcee9c111cb483dab13db413d5e38569a",
+    "stress-campaign-resume06.py": "99dbd1de614bf68e66e30a110668c31b9071bf447ba6d774c4103c84dccffccc",
+    "stress-independent-audit-resume06.py": "12f936e5bf9b35893e479cd3b2e5843db763cfba9a0238a345010fad16156a6a",
+    "qualification-resume06.py": "ec30dd523eada6eb34cb708ef979b8994693833ea1a9a04496bf706d54ce5ebc",
+    "lease-watchdog.py": "e2efa6b9549ff3d6377416ede6fd533aa657f315115085c587d51e351de5a90a",
+    "owned_processes.py": "4ebfd45b99dc77ccddb213260aaf5211ee3d4a94646b360b2d6027eb6af36040",
+    "guarded_runner.py": "e4ba7190a57608f5efe11978a120d3c2360f06778f1ffdc35b95c7beb66d5c95",
+    "state-protocol.json": "0207945bea7c138086793ce1641689a7ad9ca63f6ed03c3f78a06eb38ac0c10f",
+    "stress-freeze.json": "6b1ce2b7a1731486ba46c0ba9940c385a434455f06b7da5a653037a371aa3be4"
+  }
+}

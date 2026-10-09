@@ -1,0 +1,33 @@
+{
+  "id": "R64-B1-context-lifecycle-native-repeat-diagnostic",
+  "registered_utc": "2026-10-09T19:28:54.331156+00:00",
+  "trigger": "R62 GPU17/logical first-process last code-trace duplicate differs at first pre-sampling vector despite identical input/generated histories; all64vectors finite. Original failure preserved.",
+  "selection": "Diagnostic follow-up of the observed anomaly; not new heldout/general qualification. Same complete8case R62sequence, including short intervening tasks and both long duplicates.",
+  "engine": "Unmodified B1 DSOs from R62; no engine/kernel/driver patch. Rebuild only archived helper,after all R63timing and independent audit join.",
+  "factory": "Both modes use same experimental context factory and threadpool setup. Initial common context remains unused but retained identically in both modes to preserve sampler/model metadata initialization; exactly one experimental context at a time. Fresh frees and recreates experimental context/threadpools before each case; reuse creates once. No overlap in inference.",
+  "prefill": "Cross context reuse/fresh with original logical2048 and legacyphysical512 geometry;GPU17resident,ncmoe18,c8192,Q8KV,FAon,other R62flags unchanged. Clear(true),sampler reset,seed42,temp0.6,top_p.95,top_k20,min_p0,native thinking,64token cap unchanged.",
+  "order": [
+    "reuse-logical-1",
+    "fresh-logical-1",
+    "reuse-legacy-1",
+    "fresh-legacy-1",
+    "fresh-legacy-2",
+    "reuse-legacy-2",
+    "fresh-logical-2",
+    "reuse-logical-2",
+    "reuse-logical-3",
+    "fresh-logical-3",
+    "reuse-legacy-3",
+    "fresh-legacy-3",
+    "fresh-legacy-4",
+    "reuse-legacy-4",
+    "fresh-logical-4",
+    "reuse-logical-4"
+  ],
+  "gates": "All16freshprocesses/128cases full248320f32 emitted pre-sampling vectors finite/nonzero. Original first chronological reference percell never replaced. Report raw+prompt/generatedIDs internal/fresh repeat differences and first-vector geometry; preserve allFAIL. Stable first instances (first7cases) compared to archived benign R62GPUlegacy1. Helper compatibility is separate from last-duplicate repeat outcome. No interpretations if first7compatibility fails. No silent omission.",
+  "causality": "Fresh includes context/scheduler/buffer/threadpool lifecycle, not an isolated memory_clear fix. Different later sampled histories are confounded; only earliest differences with equal histories are matched input. Fewer failures in16processes cannot certify reliability or prove root cause. Extra unused context is common to both modes; no performance,VRAM-saving or application-coldstart claims.",
+  "start": "Root post-R63 audit marker and exclusive lock; one model; same memory/time/device guards. No compile or CPU matrix work during R63timing.",
+  "acceptance": "Descriptive baseline repeat diagnostic only; does not repair engine state API,pressure/semantic/CPU-GPU failures,or qualify cache/default/M0-M3.",
+  "source_sha256": "7e046389896f5a777494342617e5ea7a5b6eba181433c076c593a1c576433231",
+  "cases_sha256": "95ef40f87589e7b909b72e3ce1318a81fc8d6f68c8daee904b8770d8b00faadb"
+}

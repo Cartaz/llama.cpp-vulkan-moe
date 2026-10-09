@@ -1,0 +1,49 @@
+{
+  "utc": "2026-10-09T16:42:17.483047+00:00",
+  "gate": "PASS_PRELAUNCH_SOURCE_AND_ORACLES",
+  "dataset": [
+    {
+      "id": "retrieval-000",
+      "oracle_consistent": true,
+      "repeat_of": null
+    },
+    {
+      "id": "code_trace-000",
+      "oracle_consistent": true,
+      "repeat_of": null
+    },
+    {
+      "id": "retrieval-short",
+      "oracle_consistent": true,
+      "repeat_of": null
+    },
+    {
+      "id": "arithmetic-short",
+      "oracle_consistent": true,
+      "repeat_of": null
+    },
+    {
+      "id": "logic-short",
+      "oracle_consistent": true,
+      "repeat_of": null
+    },
+    {
+      "id": "code_trace-short",
+      "oracle_consistent": true,
+      "repeat_of": null
+    },
+    {
+      "id": "retrieval-000-repeat-r62",
+      "oracle_consistent": true,
+      "repeat_of": "retrieval-000"
+    },
+    {
+      "id": "code_trace-000-repeat-r62",
+      "oracle_consistent": true,
+      "repeat_of": "code_trace-000"
+    }
+  ],
+  "source_review": "Only archive source is changed; prefills set logits only on final logical application chunk vs every physical chunk in legacy mode; no autoregressive intermediate outputs before sampling. Clear+sync eachcase and independent seeded sampler. Full pre-sample logits dumped beforefinite/nonzero check. On invalid output retain failure/raw and clear before nextcase. Engine7fe450eDSOs unchanged and headers compileagainst recorded working source; no observed ABI discrepancy. Native sampling returns CPU logits; no backend sampler registered.",
+  "scope": "No semantic score,64token cap,CPU/GPU trajectories not causal matched-input comparison once tokens differ; no timing rank. Oracles verified from recorded structured inputs; prompt text content remains frozen.",
+  "start_condition": "After pressure/audit/R61 joined under exclusive lock,one model process; not launched yet"
+}

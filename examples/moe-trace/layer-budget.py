@@ -5,6 +5,8 @@ import argparse
 import csv
 import hashlib
 import json
+from itertools import combinations
+from math import comb
 from collections import Counter, defaultdict
 from fractions import Fraction
 from pathlib import Path
@@ -44,6 +46,19 @@ def frequencies(traces, sizes):
     return result
 
 
+def bundle_gain(rest, by_size):
+    """Count complete requests contained in rest, using the cheaper exact lookup."""
+    gain = by_size[len(rest)].get(rest, 0)
+    for size, requests in by_size.items():
+        if size >= len(rest):
+            continue
+        if len(requests) <= comb(len(rest), size):
+            gain += sum(count for other, count in requests.items() if other <= rest)
+        else:
+            gain += sum(requests.get(frozenset(ids), 0) for ids in combinations(rest, size))
+    return gain
+
+
 def plan(traces, sizes, budget, policy, minimum_slots=0):
     if type(budget) is not int or budget < 0 or not sizes or any(type(size) is not int or size < 1 for size in sizes.values()):
         raise ValueError("invalid payload budget or expert sizes")
@@ -78,27 +93,38 @@ def plan(traces, sizes, budget, policy, minimum_slots=0):
         for groups in traces:
             for (_, layer), ids in groups.items():
                 requests[layer][ids] += 1
+        candidates = {}
         while True:
             best = None
             for layer in sorted(sizes):
-                missing = Counter()
-                for ids, count in requests[layer].items():
-                    rest = ids - selected[layer]
-                    if rest:
-                        missing[rest] += count
-                for rest in missing:
-                    cost = len(rest) * sizes[layer]
-                    if used + cost > budget:
-                        continue
-                    gain = sum(count for other, count in missing.items() if other <= rest)
-                    key = (-Fraction(gain, cost), cost, layer, tuple(sorted(rest)))
-                    if best is None or key < best[0]:
-                        best = key, layer, rest, cost
+                if layer not in candidates:
+                    missing = Counter()
+                    for ids, count in requests[layer].items():
+                        rest = ids - selected[layer]
+                        if rest:
+                            missing[rest] += count
+                    by_size = defaultdict(dict)
+                    for rest, count in missing.items():
+                        by_size[len(rest)][rest] = count
+                    ranked = []
+                    for rest in missing:
+                        cost = len(rest) * sizes[layer]
+                        gain = bundle_gain(rest, by_size)
+                        key = (-Fraction(gain, cost), cost, layer, tuple(sorted(rest)))
+                        ranked.append((key, rest, cost))
+                    candidates[layer] = sorted(ranked, key=lambda item: item[0])
+                # Budget changes eligibility, but gains only change in the selected layer.
+                for key, rest, cost in candidates[layer]:
+                    if used + cost <= budget:
+                        if best is None or key < best[0]:
+                            best = key, layer, rest, cost
+                        break
             if best is None:
                 break
             _, layer, rest, cost = best
             selected[layer].update(rest)
             used += cost
+            del candidates[layer]
     else:
         raise ValueError("unknown policy")
     assert used == sum(len(ids) * sizes[layer] for layer, ids in selected.items()) and used <= budget

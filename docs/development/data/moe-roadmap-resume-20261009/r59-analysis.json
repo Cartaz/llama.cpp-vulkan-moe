@@ -1,0 +1,525 @@
+{
+  "id": "R59-retrospective-logit-magnitude-onset",
+  "utc": "2026-10-09T09:52:18.407975+00:00",
+  "gate": "DESCRIPTIVE_COMPLETE",
+  "frozen_thresholds": {
+    "argmax": 0.99,
+    "max_abs": 0.5,
+    "max_RMS": 0.05,
+    "max_symmetric_KL": 0.01
+  },
+  "threshold_protocol_sha256": "162a7015c782a8556b8bba92309828c6b0eb2af2d928f9d5c50a2c561b7eb6df",
+  "R40_analysis_source_sha256": "1a4da7de686c95e33fd03671614a96588280945f9af8f02eb655b41c510d43a8",
+  "inputs": {
+    "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/gate-logits-vs-control.csv": "10b8242de622e84421c627d0a0738ed2330d8b6db5f56a6c72df83abd3166df0",
+    "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/up-logits-vs-control.csv": "69ae3369d6fa9c0fcdf00ab54e4bc1df81132501f2ff5e635a63648c3a6a9281",
+    "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/down-logits-vs-control.csv": "c940b4d40227e9087a04b8ee3905ba3313dffe1f88e81856ee2427a1e9be7bd9",
+    "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/all-logits-vs-control.csv": "9ea78647b4f8782350b8b37748238748bb597bad7f379f03d4b04ea00a08db24"
+  },
+  "R56_sha256": "f7f97992c5e972c3b7a6b737d62438b5b8e52b659d8c199b51cf5d3481903cf4",
+  "R58_sha256": "6dbf78fad006ab1632a92701b39fc46ae11f3dcf8db0316432319adb4801abfd",
+  "comparisons": {
+    "gate": {
+      "first_numeric_difference": {
+        "call": 1,
+        "token": 512,
+        "phase": "decode",
+        "different_elements": 248320,
+        "max_abs": 0.22041606903076172,
+        "RMS": 0.04537746092631195,
+        "symmetric_KL": 4.03116033635298e-05,
+        "argmax_equal": true
+      },
+      "first_max_abs_exceeds_frozen_limit": {
+        "call": 4,
+        "token": 515,
+        "phase": "decode",
+        "different_elements": 248318,
+        "max_abs": 0.7631187438964844,
+        "RMS": 0.11666171406904786,
+        "symmetric_KL": 3.5028104929011047e-06,
+        "argmax_equal": true
+      },
+      "first_RMS_exceeds_frozen_limit": {
+        "call": 2,
+        "token": 513,
+        "phase": "decode",
+        "different_elements": 248319,
+        "max_abs": 0.48912835121154785,
+        "RMS": 0.09550310663638814,
+        "symmetric_KL": 3.2308449643342704e-05,
+        "argmax_equal": true
+      },
+      "first_symmetric_KL_exceeds_frozen_limit": {
+        "call": 82,
+        "token": 593,
+        "phase": "decode",
+        "different_elements": 248320,
+        "max_abs": 0.6503448486328125,
+        "RMS": 0.10180118710670404,
+        "symmetric_KL": 0.012936603329727365,
+        "argmax_equal": false
+      },
+      "first_argmax_change_descriptive": {
+        "call": 72,
+        "token": 583,
+        "phase": "decode",
+        "different_elements": 248320,
+        "max_abs": 0.4053429365158081,
+        "RMS": 0.07289962029411237,
+        "symmetric_KL": 0.0004036420199455401,
+        "argmax_equal": false
+      },
+      "whole_trajectory_argmax_agreement": 0.9850746268656716,
+      "first_ordered_route_change": {
+        "phase": "decode",
+        "token": 512,
+        "layer": 39,
+        "reference": [
+          69,
+          38,
+          154,
+          110,
+          217,
+          12,
+          243,
+          222
+        ],
+        "intervention": [
+          69,
+          38,
+          110,
+          154,
+          217,
+          12,
+          243,
+          222
+        ]
+      },
+      "first_membership_change": {
+        "phase": "decode",
+        "token": 513,
+        "layer": 39,
+        "reference": [
+          10,
+          85,
+          177,
+          222,
+          13,
+          34,
+          171,
+          205
+        ],
+        "intervention": [
+          10,
+          85,
+          177,
+          222,
+          13,
+          34,
+          171,
+          78
+        ]
+      },
+      "first_coefficient_change": {
+        "phase": "decode",
+        "token": 512,
+        "layer": 18,
+        "rank": 0,
+        "reference": [
+          197,
+          "3e64e188",
+          "ffn_moe_weights_norm-18 (reshaped)"
+        ],
+        "intervention": [
+          197,
+          "3e64e186",
+          "ffn_moe_weights_norm-18 (reshaped)"
+        ],
+        "same_expert": true,
+        "abs_coefficient_delta_same_expert": 2.9802322387695312e-08
+      },
+      "max_abs": 2.33651065826416,
+      "max_RMS": 0.5162668726511745,
+      "max_symmetric_KL": 0.03044910273506988,
+      "frozen_screen": "FAIL"
+    },
+    "up": {
+      "first_numeric_difference": {
+        "call": 1,
+        "token": 512,
+        "phase": "decode",
+        "different_elements": 248320,
+        "max_abs": 0.23769664764404297,
+        "RMS": 0.060315297994755344,
+        "symmetric_KL": 1.7349789832303462e-06,
+        "argmax_equal": true
+      },
+      "first_max_abs_exceeds_frozen_limit": {
+        "call": 2,
+        "token": 513,
+        "phase": "decode",
+        "different_elements": 248319,
+        "max_abs": 0.5081121921539307,
+        "RMS": 0.09164884396569245,
+        "symmetric_KL": 3.196621530976266e-05,
+        "argmax_equal": true
+      },
+      "first_RMS_exceeds_frozen_limit": {
+        "call": 1,
+        "token": 512,
+        "phase": "decode",
+        "different_elements": 248320,
+        "max_abs": 0.23769664764404297,
+        "RMS": 0.060315297994755344,
+        "symmetric_KL": 1.7349789832303462e-06,
+        "argmax_equal": true
+      },
+      "first_symmetric_KL_exceeds_frozen_limit": {
+        "call": 172,
+        "token": 683,
+        "phase": "decode",
+        "different_elements": 248320,
+        "max_abs": 1.5539566278457642,
+        "RMS": 0.28804534922356606,
+        "symmetric_KL": 0.020391577870095084,
+        "argmax_equal": true
+      },
+      "first_argmax_change_descriptive": {
+        "call": 34,
+        "token": 545,
+        "phase": "decode",
+        "different_elements": 248319,
+        "max_abs": 0.9931624531745911,
+        "RMS": 0.27090670924769256,
+        "symmetric_KL": 0.0008156883184230316,
+        "argmax_equal": false
+      },
+      "whole_trajectory_argmax_agreement": 0.9950248756218906,
+      "first_ordered_route_change": {
+        "phase": "decode",
+        "token": 512,
+        "layer": 39,
+        "reference": [
+          69,
+          38,
+          154,
+          110,
+          217,
+          12,
+          243,
+          222
+        ],
+        "intervention": [
+          69,
+          38,
+          110,
+          154,
+          217,
+          12,
+          243,
+          222
+        ]
+      },
+      "first_membership_change": {
+        "phase": "decode",
+        "token": 513,
+        "layer": 39,
+        "reference": [
+          10,
+          85,
+          177,
+          222,
+          13,
+          34,
+          171,
+          205
+        ],
+        "intervention": [
+          10,
+          85,
+          177,
+          222,
+          13,
+          34,
+          171,
+          78
+        ]
+      },
+      "first_coefficient_change": {
+        "phase": "decode",
+        "token": 512,
+        "layer": 18,
+        "rank": 0,
+        "reference": [
+          197,
+          "3e64e188",
+          "ffn_moe_weights_norm-18 (reshaped)"
+        ],
+        "intervention": [
+          197,
+          "3e64e184",
+          "ffn_moe_weights_norm-18 (reshaped)"
+        ],
+        "same_expert": true,
+        "abs_coefficient_delta_same_expert": 5.960464477539063e-08
+      },
+      "max_abs": 2.392941474914551,
+      "max_RMS": 0.6517882491224258,
+      "max_symmetric_KL": 0.03178199828288968,
+      "frozen_screen": "FAIL"
+    },
+    "down": {
+      "first_numeric_difference": {
+        "call": 2,
+        "token": 513,
+        "phase": "decode",
+        "different_elements": 248313,
+        "max_abs": 0.07437849044799805,
+        "RMS": 0.012603743344040562,
+        "symmetric_KL": 8.418261402791368e-07,
+        "argmax_equal": true
+      },
+      "first_max_abs_exceeds_frozen_limit": {
+        "call": 4,
+        "token": 515,
+        "phase": "decode",
+        "different_elements": 248320,
+        "max_abs": 0.8009262084960938,
+        "RMS": 0.1173991044103897,
+        "symmetric_KL": 4.77526017476629e-07,
+        "argmax_equal": true
+      },
+      "first_RMS_exceeds_frozen_limit": {
+        "call": 4,
+        "token": 515,
+        "phase": "decode",
+        "different_elements": 248320,
+        "max_abs": 0.8009262084960938,
+        "RMS": 0.1173991044103897,
+        "symmetric_KL": 4.77526017476629e-07,
+        "argmax_equal": true
+      },
+      "first_symmetric_KL_exceeds_frozen_limit": {
+        "call": 82,
+        "token": 593,
+        "phase": "decode",
+        "different_elements": 248320,
+        "max_abs": 0.6767644882202148,
+        "RMS": 0.09935924355354961,
+        "symmetric_KL": 0.015378341241472474,
+        "argmax_equal": false
+      },
+      "first_argmax_change_descriptive": {
+        "call": 72,
+        "token": 583,
+        "phase": "decode",
+        "different_elements": 248320,
+        "max_abs": 0.7138519287109375,
+        "RMS": 0.054792463094550575,
+        "symmetric_KL": 0.00011837264710005321,
+        "argmax_equal": false
+      },
+      "whole_trajectory_argmax_agreement": 0.9900497512437811,
+      "first_ordered_route_change": {
+        "phase": "decode",
+        "token": 514,
+        "layer": 39,
+        "reference": [
+          1,
+          246,
+          138,
+          250,
+          92,
+          215,
+          183,
+          15
+        ],
+        "intervention": [
+          246,
+          1,
+          138,
+          250,
+          92,
+          215,
+          183,
+          15
+        ]
+      },
+      "first_membership_change": {
+        "phase": "decode",
+        "token": 515,
+        "layer": 36,
+        "reference": [
+          0,
+          234,
+          8,
+          68,
+          211,
+          34,
+          179,
+          193
+        ],
+        "intervention": [
+          0,
+          234,
+          8,
+          68,
+          211,
+          34,
+          179,
+          117
+        ]
+      },
+      "first_coefficient_change": {
+        "phase": "decode",
+        "token": 513,
+        "layer": 18,
+        "rank": 0,
+        "reference": [
+          43,
+          "3e69c074",
+          "ffn_moe_weights_norm-18 (reshaped)"
+        ],
+        "intervention": [
+          43,
+          "3e69c073",
+          "ffn_moe_weights_norm-18 (reshaped)"
+        ],
+        "same_expert": true,
+        "abs_coefficient_delta_same_expert": 1.4901161193847656e-08
+      },
+      "max_abs": 2.3244376182556152,
+      "max_RMS": 0.42320653644914075,
+      "max_symmetric_KL": 0.0208440766685059,
+      "frozen_screen": "FAIL"
+    },
+    "all": {
+      "first_numeric_difference": {
+        "call": 1,
+        "token": 512,
+        "phase": "decode",
+        "different_elements": 248320,
+        "max_abs": 0.22041702270507812,
+        "RMS": 0.04537736490836948,
+        "symmetric_KL": 4.031162838921382e-05,
+        "argmax_equal": true
+      },
+      "first_max_abs_exceeds_frozen_limit": {
+        "call": 4,
+        "token": 515,
+        "phase": "decode",
+        "different_elements": 248319,
+        "max_abs": 0.7402133941650391,
+        "RMS": 0.1154333893271058,
+        "symmetric_KL": 1.0495827141841504e-05,
+        "argmax_equal": true
+      },
+      "first_RMS_exceeds_frozen_limit": {
+        "call": 2,
+        "token": 513,
+        "phase": "decode",
+        "different_elements": 248320,
+        "max_abs": 0.4891289472579956,
+        "RMS": 0.09550304534040811,
+        "symmetric_KL": 3.230808471192958e-05,
+        "argmax_equal": true
+      },
+      "first_symmetric_KL_exceeds_frozen_limit": {
+        "call": 82,
+        "token": 593,
+        "phase": "decode",
+        "different_elements": 248320,
+        "max_abs": 0.6681442260742188,
+        "RMS": 0.10555490815365032,
+        "symmetric_KL": 0.010166708224449815,
+        "argmax_equal": false
+      },
+      "first_argmax_change_descriptive": {
+        "call": 72,
+        "token": 583,
+        "phase": "decode",
+        "different_elements": 248319,
+        "max_abs": 0.22554969787597656,
+        "RMS": 0.039886910893104255,
+        "symmetric_KL": 0.0002657010983931249,
+        "argmax_equal": false
+      },
+      "whole_trajectory_argmax_agreement": 0.9900497512437811,
+      "first_ordered_route_change": {
+        "phase": "decode",
+        "token": 512,
+        "layer": 39,
+        "reference": [
+          69,
+          38,
+          154,
+          110,
+          217,
+          12,
+          243,
+          222
+        ],
+        "intervention": [
+          69,
+          38,
+          110,
+          154,
+          217,
+          12,
+          243,
+          222
+        ]
+      },
+      "first_membership_change": {
+        "phase": "decode",
+        "token": 513,
+        "layer": 39,
+        "reference": [
+          10,
+          85,
+          177,
+          222,
+          13,
+          34,
+          171,
+          205
+        ],
+        "intervention": [
+          10,
+          85,
+          177,
+          222,
+          13,
+          34,
+          171,
+          78
+        ]
+      },
+      "first_coefficient_change": {
+        "phase": "decode",
+        "token": 512,
+        "layer": 18,
+        "rank": 2,
+        "reference": [
+          43,
+          "3e4e75d1",
+          "ffn_moe_weights_norm-18 (reshaped)"
+        ],
+        "intervention": [
+          43,
+          "3e4e75d0",
+          "ffn_moe_weights_norm-18 (reshaped)"
+        ],
+        "same_expert": true,
+        "abs_coefficient_delta_same_expert": 1.4901161193847656e-08
+      },
+      "max_abs": 2.4580695629119873,
+      "max_RMS": 0.7010150515461798,
+      "max_symmetric_KL": 0.033246955985451,
+      "frozen_screen": "FAIL"
+    }
+  },
+  "limits": "Reuse existing R40 full-vector F64 metrics exactly;no new model run,epsilon or threshold. Distinguish first numeric bit/element difference from first breach of original registered fidelity envelope. Argmax0.99 is a whole-trajectory criterion,not a new per-token gate. Temporal coincidences do not establish routing causality;stored attention/recurrent state and intermediate amplification remain unseparated.",
+  "plot_status": "Matplotlib unavailable;full numerical series preserved"
+}

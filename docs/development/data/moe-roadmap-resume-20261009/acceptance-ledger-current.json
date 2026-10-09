@@ -1,0 +1,284 @@
+{
+  "utc": "2026-10-09T10:39:01.318974+00:00",
+  "acceptance_protocol_sha256": "fce2409e34069cf3a15cd57401196e9f7b2f6ac96f41d1b83ca7fd94d04ccd19",
+  "status": "RUNNING",
+  "milestones": {
+    "M0": {
+      "status": "TEST_PARZIALI",
+      "baseline_source": {
+        "head": "7fe450e19305b828c199d602c23a8337aaa1f03b",
+        "clean": true
+      },
+      "recorded_evidence": [
+        "model-identity.json",
+        "fixture-freeze.json",
+        "corpus-freeze.json",
+        "identity-packages.txt",
+        "identity-kernel.txt",
+        "FIXED-CMakeCache.txt",
+        "ASAN-CMakeCache.txt",
+        "publish-r45.json"
+      ],
+      "remaining": "Final source/configuration/evidence ledger closure after campaign; no unsupported build-parity assumption"
+    },
+    "M1": {
+      "status": "TEST_PARZIALI",
+      "historical_long_pool_raw_failure": "R43b pool128-1 rep2 first physical prefill vector12; finite208/220vectors diverge; remains ineligible regardless of new passing repeats",
+      "long_diagnostic": {
+        "status": "PARTIAL_OR_FAILED",
+        "processes": 14,
+        "expected_processes": 14,
+        "passed": 3,
+        "failed": 11,
+        "evidence": "long-diagnostic-results.json",
+        "sha256": "7fa3d4ff60715bcfc6751da354345a0bb32f3e7808eec5c21eee1f67323270bf"
+      },
+      "occupied_context_KV": {
+        "status": "PARTIAL_OR_FAILED",
+        "processes": 5,
+        "expected_processes": 36,
+        "passed": 4,
+        "failed": 1,
+        "evidence": "stress-results.json",
+        "sha256": "fda36bb2f48244462fb671d1d43af95cc4cd18c86874e3e958a543500f9a352f"
+      },
+      "independent_timing": {
+        "status": "54_PASS_SHORT_SCOPE",
+        "evidence": "timing-completed-summary-v2.json",
+        "sha256": "a53539020a1825fb1655a9f683430df355cf4a6ce76bc398b99b107d4aa30cbb"
+      },
+      "remaining": "Resolve or contain original long mismatch; complete eligible-cell timing and pressure gates",
+      "async_controls": {
+        "status": "PARTIAL_OR_FAILED",
+        "processes": 14,
+        "expected_processes": 14,
+        "passed": 12,
+        "failed": 2,
+        "evidence": "async-control-results.json",
+        "sha256": "caa8be679b4dcede86a6172f030cb242cfada24d2bafd3ad4cd1687666599a26"
+      },
+      "pool_sync_validation": {
+        "status": "PARTIAL_OR_FAILED",
+        "processes": 2,
+        "expected_processes": 2,
+        "passed": 0,
+        "failed": 2,
+        "evidence": "r57-results.json",
+        "sha256": "aa581d033d2e47761d01bce9418b7f83cda5bb83a4882210160cfac94623cc20"
+      },
+      "pool_validation_independent_audit": {
+        "status": "PARTIAL_OR_FAILED",
+        "evidence": "r57-independent-summary-v2.json",
+        "sha256": "67b2aff480ed37c4d777b18e736d380c2d285cc7eb3bc015f10dfe632641f6fd"
+      },
+      "long_independent_audit": {
+        "status": "RECORDED",
+        "evidence": "long-diagnostics-summary-resume02.json",
+        "sha256": "a2976b3cf4802f439543c580b910f1f09472a1ed3045660ad452d83f1c83dffe"
+      },
+      "replay_source_metadata_correction": {
+        "status": "SOURCE_MAPPING_RECORDED",
+        "evidence": "timing-source-provenance-audit-v2.json",
+        "sha256": "1de378f1b1211a9cc88cc736b22975d68b4b5627130a3f487ee8df8f759a932a"
+      },
+      "runtime_pool_counters": {
+        "status": "DESCRIPTIVE_COMPLETE_6_RAW_PROCESSES",
+        "evidence": "timing-pool-counters-v2.json",
+        "sha256": "2d3e137f01dc4970b6d4d87e1d86192c26ba73b85c6e39de177e1e1ecb564ad1"
+      },
+      "pressure_independent_audit": {
+        "status": "DESCRIPTIVE_PARTIAL",
+        "evidence": "stress-independent-audit.json",
+        "sha256": "d697322a45bdceeb2f2335e04de0c0844baff7a8d1b18c68751ed7e40a12b56d"
+      },
+      "original_timing_preflight": {
+        "status": "RECORDED",
+        "evidence": "timing-analysis.json",
+        "sha256": "0767c61c413acc339079ae8de53e4de27b021e099b775341ced7fb80d6e1f271"
+      }
+    },
+    "M2": {
+      "status": "TEST_PARZIALI",
+      "normal_autonomous_corpus": {
+        "expected_processes": 18,
+        "completed_processes": 18,
+        "passed_processes": 18,
+        "case_triplets_passed": 108,
+        "raw_vectors_passed": 40086
+      },
+      "TRAIN_allocations": {
+        "status": "RECORDED",
+        "evidence": "extended-train-plans.json",
+        "sha256": "b827b533bbabcc63d75f88b54620717296aa2742f7b96d2b8123cfb6402deb70"
+      },
+      "HELDOUT_fixed_scoring": {
+        "status": "PASS",
+        "evidence": "extended-heldout-scores.json",
+        "sha256": "8419194322f2b3582d9c6ff1680412afe2eaa927f686607a6a9a106e72a1a8d7"
+      },
+      "observer_autonomous": {
+        "status": "PASS",
+        "processes": 6,
+        "expected_processes": 6,
+        "passed": 6,
+        "failed": 0,
+        "evidence": "corpus-after-up-results.json",
+        "sha256": "75c5636a01999ca0d5a67e4d1088bb3e5a8b2af3bdd5bd664aeb6a806e3f22f9"
+      },
+      "observer_native40_analysis": {
+        "status": "PASS",
+        "evidence": "observer-route-analysis.json",
+        "sha256": "433491b7cdb7166f7a65d8c93855c96da6652a28a146fe32b1441f40ee6823d2"
+      },
+      "warm_cpu_transfer_cost": {
+        "status": "PASS",
+        "evidence": "cost-analysis.json",
+        "sha256": "bcaed0276d52f303735a9bcedda03c70e24fc963f28b699011e65408df5cf2d1"
+      },
+      "cold_cpu_weight_cost": {
+        "status": "PASS",
+        "evidence": "cold-cost-analysis.json",
+        "sha256": "8c00c8d38578cf68c8fd0315547f9e64fb47a4e070b013bea5e5f62247126ecf"
+      },
+      "CPU_GPU_fidelity": "Prior R33/R39 screens failed under preserved numerical limits; not relaxed or promoted",
+      "remaining": "Observer108cases/40layer and costs completed; original CPU/GPU fidelity and independent semantic quality acceptance remain open",
+      "roundtrip_route_attribution": {
+        "status": "PASS",
+        "evidence": "r56-analysis.json",
+        "sha256": "f7f97992c5e972c3b7a6b737d62438b5b8e52b659d8c199b51cf5d3481903cf4"
+      },
+      "continuous_router_coefficients": {
+        "status": "PASS",
+        "evidence": "r58-analysis.json",
+        "sha256": "6dbf78fad006ab1632a92701b39fc46ae11f3dcf8db0316432319adb4801abfd"
+      },
+      "autonomous_observer_complete": {
+        "status": "PASS",
+        "evidence": "observer-completed-summary.json",
+        "sha256": "592213348769aff954ffe7308e7886047ff050587447893175b11507697456f7"
+      },
+      "logit_magnitude_onset": {
+        "status": "DESCRIPTIVE_COMPLETE",
+        "evidence": "r59-analysis.json",
+        "sha256": "9a5caf63da6b5a3431cbaf295f14dc90e9ff715e6702c4eef921020365a99d08"
+      }
+    },
+    "M3": {
+      "status": "TEST_PARZIALI",
+      "dependency": "M0-M2 acceptance not closed",
+      "release_sanitizer_validation_cost_fixtures": {
+        "status": "PASS",
+        "processes": 25,
+        "expected_processes": 25,
+        "passed": 25,
+        "failed": 0,
+        "evidence": "fixture-results-v2.json",
+        "sha256": "4bc913070c42d147a389606601fd99e2d5649c1a819508fc62ed8c6811f148db"
+      },
+      "fresh_vulkan_scheduler_suite": {
+        "status": "PASS",
+        "evidence": "scheduler-vulkan-suite-result.json",
+        "sha256": "faaa19d543425bb1c553cf6a256b6491203f435db14d31fb070096e5d73f9edb"
+      },
+      "model_state": {
+        "status": "PASS",
+        "processes": 18,
+        "expected_processes": 18,
+        "passed": 18,
+        "failed": 0,
+        "evidence": "state-results-v2.json",
+        "sha256": "53edf9eef830436c98d640a7c0b2bd2019378de6d49fd6a872a01d3232267fe8"
+      },
+      "independent_state_controls": {
+        "status": "PASS",
+        "processes": 16,
+        "expected_processes": 16,
+        "passed": 16,
+        "failed": 0,
+        "evidence": "state-control-results-v2.json",
+        "sha256": "cbb62ffb65c8a601609b4ecbc90708acf8cab9526918e95fdd38fff4c1b1028b"
+      },
+      "remaining": "Bounded2/4layer state/raw/timing completed; cached-output state contract,pressure and prerequisite acceptance remain open",
+      "state_lifecycle_completed": {
+        "status": "PASS",
+        "evidence": "state-v2-completed-summary.json",
+        "sha256": "ec846ab8d5114598671dc561c62301ecd4b16b678f55578842ae2a640d273e93"
+      },
+      "original_cached_output_restoration": {
+        "status": "FAIL_SHARED_UNIMPLEMENTED",
+        "api_comment_vs_implementation": "Header promises logits/embeddings;frozen B1/candidate serialize architecture and memory only",
+        "amended_gate_scope": "Teacher-forced memory/future-output only;not original cached-output acceptance or immediate autonomous resumption/sampler RNG",
+        "original_acceptance_closed": false
+      },
+      "client_checkpoint_campaign": {
+        "status": "PARTIAL_OR_FAILED",
+        "processes": 12,
+        "expected_processes": 12,
+        "passed": 10,
+        "failed": 2,
+        "evidence": "r60-results.json",
+        "sha256": "3a2978756e00cbbe48ec760ea392f121182a313e043a679f72818e7e5a823e09"
+      },
+      "client_checkpoint_independent_audit": {
+        "status": "DESCRIPTIVE_COMPLETE",
+        "evidence": "r60-independent-audit.json",
+        "sha256": "95bb28fae87e15d71997742bb1491ecbe6c0ff1a9a17e19654024c4bb9bc37a2"
+      },
+      "state_protocol_amendment": {
+        "evidence": "state-protocol-v2.json",
+        "sha256": "d9dc4b61ee7b722418757ecf6de0862c1e7d2ac27c641a129a0e7d6df7aba3fb",
+        "original_harness_results": {
+          "status": "PARTIAL_OR_FAILED",
+          "processes": 17,
+          "expected_processes": 18,
+          "passed": 0,
+          "failed": 17,
+          "evidence": "state-results.json",
+          "sha256": "d0e3a3491247bce4854d5f8f74a4b543948fc522b261d0d7a969242ca4754db9"
+        },
+        "prelaunch_failure_preserved": "state-v2-prelaunch-amendment.json",
+        "implementation": "unchanged archived engine; helper validates serialized memory and future logits separately"
+      }
+    },
+    "M4-M8": {
+      "status": "PROPOSTO_OR_TEST_PARZIALI",
+      "dependency": "See roadmap.md; no integration/default promotion"
+    }
+  },
+  "legacy_callback_failures": {
+    "train-0-callback": "Autonomous trajectory changed",
+    "train-1-callback": "Autonomous trajectory changed",
+    "train-2-callback": "Autonomous trajectory changed",
+    "heldout-0-callback": "Autonomous trajectory changed",
+    "heldout-1-callback": "Autonomous trajectory changed",
+    "heldout-2-callback": "Autonomous trajectory changed"
+  },
+  "controller_recovery": {
+    "utc": "2026-10-09T01:41:39.639265+00:00",
+    "reason": "Controller heartbeat interval exceeded during active work; quota available66%; preserve partial job and resume verified checkpoints",
+    "heartbeat_ttl_seconds": 600
+  },
+  "last_usage_snapshot": {
+    "utc": "2026-10-09T10:31:11.805Z",
+    "ordinaryUsageAllowed": true,
+    "limitId": "codex",
+    "limitName": null,
+    "normalModelSlug": null,
+    "primary": {
+      "usedPercent": 93,
+      "windowDurationMins": 300,
+      "resetsAt": 1791547779
+    },
+    "secondary": {
+      "usedPercent": 97,
+      "windowDurationMins": 10080,
+      "resetsAt": 1791954566
+    },
+    "individualLimit": null,
+    "spendControlReached": false,
+    "planType": "plus",
+    "rateLimitReachedType": null,
+    "source": "get_usage_limits; no reset credits used"
+  },
+  "limits": "Bounded PASS results never close broader milestone gates. Missing/incomplete/failed results stay explicit; historical failures are retained."
+}

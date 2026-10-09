@@ -1,0 +1,14 @@
+{
+  "utc": "2026-10-09T12:38:39.226304+00:00",
+  "status": "METADATA_CORRECTION_ONLY",
+  "preserved_original_generic_helper_source_sha256": "76f4b5c618e2fa0892107968f79da9be9974b66aef0f357bdf416efaa8ed4d01",
+  "preserved_original_source_field": "5bbf28aa5b07399ac3472b34a774638e37fa075e04882739c95d72ec683a39c5",
+  "actual_helper_source": {
+    "path": "examples/moe-trace/moe-corpus.cpp",
+    "sha256": "94a9764b8963f54340a6f212aa4a6410712f006fa94078c87d65b2f35df17990",
+    "committed_source": "2e08b57e9997358109a993c845ce6b39eeb266fa",
+    "evidence": "Three DIAG/STATE compile manifests agree and match committed/current source. Original UTF8 corpus freeze refers to earlier ed7a helper, not current7110 helper."
+  },
+  "actual_helper_binary_sha256": "7110f1e09d0f785f3ccb0da6b7575db8c60a9e89d10c834973ba6023df233c7f",
+  "limits": "Original freezes/launch metadata remain unchanged. This records source identity from compile manifests and committed source, not reproducible-bit compilation or full M0 closure."
+}

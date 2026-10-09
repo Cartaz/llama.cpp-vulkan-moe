@@ -110,6 +110,28 @@ class SummaryTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 route_summary.convert(path, phases, {0}, 2, 8)
 
+    def test_all_repetitions_share_strict_route_validation(self):
+        phases = self.phases([dict(rep=0, start_us=100, end_us=500),
+                              dict(rep=1, start_us=600, end_us=900)])
+        path = phases.with_name("routes.csv")
+        valid = ("scheduler,call,event,tensor,n_expert,n_tokens,token,rank,expert,host_us\n"
+                 "1,1,router,blk.0.ffn_up_exps.weight,8,1,0,0,2,200\n"
+                 "1,1,router,blk.0.ffn_up_exps.weight,8,1,0,1,3,200\n"
+                 "1,2,router,blk.0.ffn_up_exps.weight,8,1,0,0,4,700\n"
+                 "1,2,router,blk.0.ffn_up_exps.weight,8,1,0,1,5,700\n"
+                 "1,2,scheduler_end,,0,0,-1,-1,-1,0\n")
+        path.write_text(valid)
+        rows, report = route_summary.convert(path, phases, {0}, 2, 8, rep=None)
+        self.assertEqual(set(rows), {0, 1})
+        self.assertEqual(report["output_rows"], 4)
+        for rep in rows:
+            selected, _ = route_summary.convert(path, phases, {0}, 2, 8, rep=rep)
+            self.assertEqual(rows[rep], selected)
+        self.assertEqual(rows[1], [("prefill", 0, 0, 0, 4), ("prefill", 0, 0, 1, 5)])
+        path.write_text(valid.replace("1,2,router,blk.0.ffn_up_exps.weight,8,1,0,1,5,700\n", ""))
+        with self.assertRaises(ValueError):
+            route_summary.convert(path, phases, {0}, 2, 8, rep=None)
+
     def test_reject_invalid_or_incomplete_profiles(self):
         for rows in ([{}], [{}, {"event": "scheduler_end"}, {}], [{}, {}, {"event": "scheduler_end"}],
                      [{"duration_us": -1}], [{"status": -2}], [{"bytes": 1, "padding_bytes": 2}],

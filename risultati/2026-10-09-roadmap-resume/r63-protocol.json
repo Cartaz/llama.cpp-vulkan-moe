@@ -1,0 +1,57 @@
+{
+  "id": "R63-S14-empty-pool-first-replay",
+  "registered_utc": "2026-10-09T18:47:55.857350+00:00",
+  "engine": "Reuse exact R61 BASE/OLD/V2 replay binaries and DSOs; no kernel/helper change",
+  "bottleneck": "R61 counters show more first-TG misses after batched bypass; warm timing does not measure empty-pool first replay latency",
+  "inputs": {
+    "heldout-planning": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-planning/tokens.csv",
+      "original_sha256": "0a2103503817bb5ed69c001475fb33a7ba7f13697af0b95be72043c71e73d885",
+      "path": "r61-inputs/heldout-planning.csv",
+      "sha256": "0a2103503817bb5ed69c001475fb33a7ba7f13697af0b95be72043c71e73d885",
+      "PP": 119,
+      "TG": 64
+    },
+    "heldout-structured": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-structured/tokens.csv",
+      "original_sha256": "17688a4b930656e3853bb43765aab3761cb5f95ace3d2787315600989195c732",
+      "path": "r61-inputs/heldout-structured.csv",
+      "sha256": "17688a4b930656e3853bb43765aab3761cb5f95ace3d2787315600989195c732",
+      "PP": 126,
+      "TG": 64
+    },
+    "short": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/short/tokens.csv",
+      "original_sha256": "711949862bf3674e00add770c2add1b3fac53d0f3695ee28769ca8a082c7052d",
+      "path": "r61-inputs/short.csv",
+      "sha256": "711949862bf3674e00add770c2add1b3fac53d0f3695ee28769ca8a082c7052d",
+      "PP": 512,
+      "TG": 200
+    }
+  },
+  "selection": "Planning/structured are the two prefill-admission churn cases identified by R42 and confirmed by separate R61 counters. Short512+200 is the original oversized-prefill negative control. Selected before any cold latency run; report every cell.",
+  "order": [
+    "resident",
+    "old",
+    "off",
+    "on",
+    "on",
+    "off",
+    "old",
+    "resident",
+    "resident",
+    "old",
+    "off",
+    "on",
+    "on",
+    "off",
+    "old",
+    "resident"
+  ],
+  "cold_scope": "Fresh model/context/scheduler/pool for each process; common and replay warmup OFF,reps1. Driver shader and filesystem caches uncontrolled and already warmed by prior campaigns. Not a cold-start, model-loading or application TTFT measurement.",
+  "raw_gates": "48 fresh raw processes;4/variant/cell. Full emitted vectors finite/nonzero and byte-exact to first chronological cold resident AND archived R61 warm B1 at same input. Do not replace missing/failed first reference. Require actual TG triplets,first-call empty-pool counters and batched bypass on ON. All3cells must pass before timing.",
+  "timing": "48 independent no-raw/no-counter/no-profiler fresh processes;warmup0,reps1;4/variant/cell;balanced order. Fingerprints match first cold B1. PP,TG,PP+TG decode duration,TGp95;process bootstrap50000,seed63,95%CI;practical3%rates/duration,5%p95;resident drift>20%ineligible. No combine-best winner.",
+  "tradeoffs": "Cold TG can worsen even if total PP+TG improves. Zero pool PP upload does not mean zero total PCIe copies; persistent payload still allocated. Single-token rule applies to batched decode too.",
+  "start": "Only after all R61/R62 GPU workers join and post-run independent audits;exclusive lock,one model,MemoryMax24G,Swap2G,MemAvailable6GiB,timeout600s,disk8GiBreserve,unchangedGPU settings.",
+  "acceptance": "Bounded first fixed replay only. Preserve all failed warm/long/state/fidelity gates. No general/default/M0-M3 promotion."
+}

@@ -1,0 +1,13 @@
+{
+  "utc": "2026-10-09T16:55:11.219445+00:00",
+  "status": "RUNNING",
+  "complete": 20,
+  "PASS": 17,
+  "FAIL": 3,
+  "registered_total": 36,
+  "recovery": "stress-resume07-verification.json",
+  "rule": "Preserve all17originalcompleted records and interruptedfolder; use new suffix and reconstruct originalfirstresident1referenceperKV/ubatch;no gate replacement.",
+  "R61": "12CPUcontrolsPASS;prelaunchsourceauditPASS;GPU/model/timingpending",
+  "R62": "Source/8oracles/artifacts prelaunch auditPASS;notlaunched",
+  "limits": "RUNNING snapshot,not final pressure qualification or M0-M3 acceptance."
+}

@@ -1,0 +1,19 @@
+{
+  "utc": "2026-10-09T20:10:27.484712+00:00",
+  "gate": "PASS_SOURCE_PROTOCOL_PRELAUNCH",
+  "protocol_sha256": "fca544859bf4e930a8caccf88a2e73da7fdf4a067f1fb143b905112835346751",
+  "source_freeze_sha256": "50b657e57838bbaa682d4c08a82a502632f595adf6995110366a3a61e0fb5516",
+  "checks": [
+    "All4CSV inputs use exact LF header and decimal0..248319 IDs; PP/TG counts verified; shortSHAidenticalR61",
+    "LongIDs match original benign R62GPUlegacy1,selecteddiagnostically; no long timing regardlessrawstatus",
+    "Canonical replay/phase header bytes equal2e08source and B1helper SHA d71a81; candidate helper recompiled for ABI0.6",
+    "Current code/PR30160/issue30033,CUDA30229 andfit28331 reviewed; no non-AMD performance extrapolation",
+    "Candidate source is separate clean detached79e;sharednativeVulkanGCC16 build2jobs,CUDAOFF,backendDLOFF",
+    "First chronological B1 reference retained;fullraw/self/fresh comparison and independent audit before eligible short timing",
+    "Allfailedattempts/cells retained;32raw+atmost16shorttiming,processbootstrap50k seed65,original3/5percentmargins",
+    "No profiler/counter/poolenv;isolatedone-modelguards,originalmodel/userdirtyfiles/GPUsettings/B1preserved",
+    "Full original model SHA reverified before isolated candidate build,while no model/timing workers run",
+    "Independent timing audit source frozen before build/measurements; CSV fingerprints,balanced timestamp order,DSOs,environment,sums,p95,bootstrap/CI/verdict and excluded cells rechecked after all timing joins"
+  ],
+  "limits": "Static source/input/protocol audit only; current engine/helper build and actual loaded libraries remain to verify. No adoption/general/quality/performance claim."
+}

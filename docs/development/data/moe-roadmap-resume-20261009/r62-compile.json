@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "g++",
+    "-std=c++17",
+    "-O3",
+    "-DNDEBUG",
+    "-pthread",
+    "-Icommon",
+    "-Iinclude",
+    "-Iggml/include",
+    "-Ivendor",
+    "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r62-native-prefill.cpp",
+    "-o",
+    "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R62-BASE/corpus",
+    "-L/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R62-BASE",
+    "-Wl,-rpath,$ORIGIN",
+    "-lllama-common",
+    "-lllama",
+    "-lggml",
+    "-lggml-base"
+  ],
+  "source_sha256": "525b355f337cfb60904535315d5dc9ae8ae555e04e9d8c7d8fc8014e13fac7f8",
+  "original_source_sha256": "3bb9bb08791004722e57849f3a2052e0fd659319b73bf92bab478a6d4585249b"
+}

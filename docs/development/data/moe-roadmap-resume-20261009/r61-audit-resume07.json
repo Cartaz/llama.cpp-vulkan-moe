@@ -1,0 +1,9 @@
+{
+  "utc": "2026-10-09T16:41:01.414532+00:00",
+  "status": "SOURCE_AND_PROTOCOL_REVIEWED_BEFORE_GPU_LAUNCH",
+  "source_commit": "bc77a7b02086b984dc81a37f30b85ba4b979298d",
+  "mechanism": "Flag reads presence per scheduler; batched shape returns before packed routing,request_status,allocate_ids,acquire; prepare still reserves the original payload. begin/release and split fallback unchanged. Single-token follows original code. Experimental option absent by default. No changed engine or benchmark margins.",
+  "coverage": "12 archived CPU controls;12 GPU fixture OFF/ON including extracted validation layer;7 model raw cells of4variants then eligible separate16-process timing percell.",
+  "runner_amendment": "Inspect stdout,stderr and validation file for VUID/SYNC/ValidationError,with loaded layer checked; previous script archived. No measurements occurred before this amendment.",
+  "pending": "Pressure and independent audit finish under same exclusive lock; GPU and model/timing not yet launched; full generated/heldout quality and1/2/4/8streams remain open."
+}

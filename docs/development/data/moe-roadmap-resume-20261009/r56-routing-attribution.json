@@ -1,0 +1,321 @@
+{
+  "gate": "PASS",
+  "model_processes": 13,
+  "full_raw_vectors": 2613,
+  "observer_geometry": "40x8 complete on all712tokens",
+  "identity_copy_routes_exact": true,
+  "comparisons": {
+    "gate": {
+      "first_logit_vector_zero_based": 1,
+      "first_logit_token": 512,
+      "ordered_route_changes": 1708,
+      "selected_set_changes": 634,
+      "first_order_change": {
+        "phase": "decode",
+        "token": 512,
+        "layer": 39,
+        "reference": [
+          69,
+          38,
+          154,
+          110,
+          217,
+          12,
+          243,
+          222
+        ],
+        "intervention": [
+          69,
+          38,
+          110,
+          154,
+          217,
+          12,
+          243,
+          222
+        ]
+      },
+      "first_set_change": {
+        "phase": "decode",
+        "token": 513,
+        "layer": 39,
+        "reference": [
+          10,
+          85,
+          177,
+          222,
+          13,
+          34,
+          171,
+          205
+        ],
+        "intervention": [
+          10,
+          85,
+          177,
+          222,
+          13,
+          34,
+          171,
+          78
+        ]
+      },
+      "ordered_changes_at_first_logit_token": [
+        {
+          "phase": "decode",
+          "token": 512,
+          "layer": 39,
+          "reference": [
+            69,
+            38,
+            154,
+            110,
+            217,
+            12,
+            243,
+            222
+          ],
+          "intervention": [
+            69,
+            38,
+            110,
+            154,
+            217,
+            12,
+            243,
+            222
+          ]
+        }
+      ],
+      "set_changes_at_first_logit_token": []
+    },
+    "up": {
+      "first_logit_vector_zero_based": 1,
+      "first_logit_token": 512,
+      "ordered_route_changes": 1575,
+      "selected_set_changes": 588,
+      "first_order_change": {
+        "phase": "decode",
+        "token": 512,
+        "layer": 39,
+        "reference": [
+          69,
+          38,
+          154,
+          110,
+          217,
+          12,
+          243,
+          222
+        ],
+        "intervention": [
+          69,
+          38,
+          110,
+          154,
+          217,
+          12,
+          243,
+          222
+        ]
+      },
+      "first_set_change": {
+        "phase": "decode",
+        "token": 513,
+        "layer": 39,
+        "reference": [
+          10,
+          85,
+          177,
+          222,
+          13,
+          34,
+          171,
+          205
+        ],
+        "intervention": [
+          10,
+          85,
+          177,
+          222,
+          13,
+          34,
+          171,
+          78
+        ]
+      },
+      "ordered_changes_at_first_logit_token": [
+        {
+          "phase": "decode",
+          "token": 512,
+          "layer": 39,
+          "reference": [
+            69,
+            38,
+            154,
+            110,
+            217,
+            12,
+            243,
+            222
+          ],
+          "intervention": [
+            69,
+            38,
+            110,
+            154,
+            217,
+            12,
+            243,
+            222
+          ]
+        }
+      ],
+      "set_changes_at_first_logit_token": []
+    },
+    "down": {
+      "first_logit_vector_zero_based": 2,
+      "first_logit_token": 513,
+      "ordered_route_changes": 1428,
+      "selected_set_changes": 508,
+      "first_order_change": {
+        "phase": "decode",
+        "token": 514,
+        "layer": 39,
+        "reference": [
+          1,
+          246,
+          138,
+          250,
+          92,
+          215,
+          183,
+          15
+        ],
+        "intervention": [
+          246,
+          1,
+          138,
+          250,
+          92,
+          215,
+          183,
+          15
+        ]
+      },
+      "first_set_change": {
+        "phase": "decode",
+        "token": 515,
+        "layer": 36,
+        "reference": [
+          0,
+          234,
+          8,
+          68,
+          211,
+          34,
+          179,
+          193
+        ],
+        "intervention": [
+          0,
+          234,
+          8,
+          68,
+          211,
+          34,
+          179,
+          117
+        ]
+      },
+      "ordered_changes_at_first_logit_token": [],
+      "set_changes_at_first_logit_token": []
+    },
+    "all": {
+      "first_logit_vector_zero_based": 1,
+      "first_logit_token": 512,
+      "ordered_route_changes": 1753,
+      "selected_set_changes": 674,
+      "first_order_change": {
+        "phase": "decode",
+        "token": 512,
+        "layer": 39,
+        "reference": [
+          69,
+          38,
+          154,
+          110,
+          217,
+          12,
+          243,
+          222
+        ],
+        "intervention": [
+          69,
+          38,
+          110,
+          154,
+          217,
+          12,
+          243,
+          222
+        ]
+      },
+      "first_set_change": {
+        "phase": "decode",
+        "token": 513,
+        "layer": 39,
+        "reference": [
+          10,
+          85,
+          177,
+          222,
+          13,
+          34,
+          171,
+          205
+        ],
+        "intervention": [
+          10,
+          85,
+          177,
+          222,
+          13,
+          34,
+          171,
+          78
+        ]
+      },
+      "ordered_changes_at_first_logit_token": [
+        {
+          "phase": "decode",
+          "token": 512,
+          "layer": 39,
+          "reference": [
+            69,
+            38,
+            154,
+            110,
+            217,
+            12,
+            243,
+            222
+          ],
+          "intervention": [
+            69,
+            38,
+            110,
+            154,
+            217,
+            12,
+            243,
+            222
+          ]
+        }
+      ],
+      "set_changes_at_first_logit_token": []
+    }
+  },
+  "protocol_sha256": "dfeb9bd597cf653ba1a6be3ebf88ad72527aa7ea39f59fd45846529fe7e99e78",
+  "limits": "Teacher-forced diagnostic only. Does not resolve CPU/GPU fidelity, quality, context instability, timing or defaults. A changed route alone does not prove it accounts for amplification."
+}

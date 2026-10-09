@@ -1,0 +1,103 @@
+[
+  {
+    "name": "clone",
+    "argv": [
+      "git",
+      "clone",
+      "--no-hardlinks",
+      "--no-checkout",
+      "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab",
+      "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r65-upstream-src-v2"
+    ],
+    "cwd": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab"
+  },
+  {
+    "name": "fetch",
+    "argv": [
+      "git",
+      "fetch",
+      "--no-tags",
+      "https://github.com/ggml-org/llama.cpp.git",
+      "79e2e74eb11022c1ba2e438df7f0ca2d4c10f8b6"
+    ],
+    "cwd": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r65-upstream-src-v2"
+  },
+  {
+    "name": "checkout",
+    "argv": [
+      "git",
+      "checkout",
+      "--detach",
+      "79e2e74eb11022c1ba2e438df7f0ca2d4c10f8b6"
+    ],
+    "cwd": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r65-upstream-src-v2"
+  },
+  {
+    "name": "configure",
+    "argv": [
+      "cmake",
+      "-S",
+      "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r65-upstream-src-v2",
+      "-B",
+      "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r65-upstream-build-v2",
+      "-G",
+      "Ninja",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DCMAKE_C_COMPILER=/usr/bin/gcc",
+      "-DCMAKE_CXX_COMPILER=/usr/bin/g++",
+      "-DCMAKE_C_FLAGS=",
+      "-DCMAKE_CXX_FLAGS=",
+      "-DBUILD_SHARED_LIBS=ON",
+      "-DGGML_NATIVE=ON",
+      "-DGGML_OPENMP=ON",
+      "-DGGML_BACKEND_DL=OFF",
+      "-DGGML_VULKAN=ON",
+      "-DGGML_CUDA=OFF",
+      "-DLLAMA_BUILD_COMMON=ON",
+      "-DLLAMA_BUILD_TESTS=OFF",
+      "-DLLAMA_BUILD_TOOLS=OFF",
+      "-DLLAMA_BUILD_EXAMPLES=OFF",
+      "-DLLAMA_BUILD_MTMD=OFF"
+    ],
+    "cwd": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab"
+  },
+  {
+    "name": "compile",
+    "argv": [
+      "cmake",
+      "--build",
+      "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r65-upstream-build-v2",
+      "--target",
+      "llama-common",
+      "ggml-cpu",
+      "ggml-vulkan",
+      "-j",
+      "2"
+    ],
+    "cwd": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab"
+  },
+  {
+    "name": "helper",
+    "argv": [
+      "g++",
+      "-std=c++17",
+      "-O3",
+      "-DNDEBUG",
+      "-pthread",
+      "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r65-upstream-src-v2/common",
+      "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r65-upstream-src-v2/include",
+      "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r65-upstream-src-v2/ggml/include",
+      "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r65-upstream-src-v2/vendor",
+      "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/r65-source/moe-replay.cpp",
+      "-o",
+      "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R65-B4/replay",
+      "-L/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R65-B4",
+      "-Wl,-rpath,$ORIGIN",
+      "-lllama-common",
+      "-lllama",
+      "-lggml",
+      "-lggml-base"
+    ],
+    "cwd": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab"
+  }
+]

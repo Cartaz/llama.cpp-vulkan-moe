@@ -1,0 +1,802 @@
+{
+  "utc": "2026-10-09T10:27:08.748494+00:00",
+  "gate": "DESCRIPTIVE_PARTIAL",
+  "completed_model_processes_audited": 5,
+  "expected_processes": 36,
+  "groups": {
+    "stress-q8_0-ub512-resident-1": {
+      "original_gate": "FAIL",
+      "all_cases_complete": true,
+      "different_cases": 1,
+      "cases": [
+        {
+          "case": "depth1-rep0",
+          "depth": 1,
+          "vectors": 129,
+          "full_raw_sha256": "658d839fc11ff5285de6bb9f00b071cd494d72e4350ab517ce24aaadf2f0af72",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth1-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth512-rep0",
+          "depth": 512,
+          "vectors": 129,
+          "full_raw_sha256": "4189cdcf8a611ec2b7939e766d50e2935521e70b236c94f1ee942a51692e51ae",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth512-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth2048-rep0",
+          "depth": 2048,
+          "vectors": 132,
+          "full_raw_sha256": "f5ea530e764fa3585760f12d2ba5a00a0e95cf64a9a57d31d963890f765a0b26",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth2048-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth8192-rep0",
+          "depth": 8192,
+          "vectors": 144,
+          "full_raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth8192-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth16128-rep0",
+          "depth": 16128,
+          "vectors": 160,
+          "full_raw_sha256": "ad3062b9bf0ee89c071726df9dd4a4c1202c940b0f867c400ef52f1d086a3291",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth16128-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth16128-rep1",
+          "depth": 16128,
+          "vectors": 160,
+          "full_raw_sha256": "729354e92af1c40da4d597dcb93d1384ac0cfe4489b4201e935e8e0aa0d0054a",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth16128-rep0-logits.bin",
+          "different_vectors": 149,
+          "argmax_changed_vectors": 1,
+          "first_difference": {
+            "vector_zero_based": 11,
+            "phase": "prefill",
+            "token_end_zero_based": 6143,
+            "different_elements": 248317,
+            "max_abs": 0.1595931053161621,
+            "RMS": 0.031173607718076854,
+            "argmax_equal": true
+          }
+        },
+        {
+          "case": "depth8192-rep1",
+          "depth": 8192,
+          "vectors": 144,
+          "full_raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth8192-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth2048-rep1",
+          "depth": 2048,
+          "vectors": 132,
+          "full_raw_sha256": "f5ea530e764fa3585760f12d2ba5a00a0e95cf64a9a57d31d963890f765a0b26",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth2048-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth512-rep1",
+          "depth": 512,
+          "vectors": 129,
+          "full_raw_sha256": "4189cdcf8a611ec2b7939e766d50e2935521e70b236c94f1ee942a51692e51ae",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth512-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth1-rep1",
+          "depth": 1,
+          "vectors": 129,
+          "full_raw_sha256": "658d839fc11ff5285de6bb9f00b071cd494d72e4350ab517ce24aaadf2f0af72",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth1-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth1-rep2",
+          "depth": 1,
+          "vectors": 129,
+          "full_raw_sha256": "658d839fc11ff5285de6bb9f00b071cd494d72e4350ab517ce24aaadf2f0af72",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth1-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth512-rep2",
+          "depth": 512,
+          "vectors": 129,
+          "full_raw_sha256": "4189cdcf8a611ec2b7939e766d50e2935521e70b236c94f1ee942a51692e51ae",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth512-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth2048-rep2",
+          "depth": 2048,
+          "vectors": 132,
+          "full_raw_sha256": "f5ea530e764fa3585760f12d2ba5a00a0e95cf64a9a57d31d963890f765a0b26",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth2048-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth8192-rep2",
+          "depth": 8192,
+          "vectors": 144,
+          "full_raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth8192-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth16128-rep2",
+          "depth": 16128,
+          "vectors": 160,
+          "full_raw_sha256": "ad3062b9bf0ee89c071726df9dd4a4c1202c940b0f867c400ef52f1d086a3291",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth16128-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        }
+      ]
+    },
+    "stress-q8_0-ub512-target-1": {
+      "original_gate": "PASS",
+      "all_cases_complete": true,
+      "different_cases": 0,
+      "cases": [
+        {
+          "case": "depth1-rep0",
+          "depth": 1,
+          "vectors": 129,
+          "full_raw_sha256": "658d839fc11ff5285de6bb9f00b071cd494d72e4350ab517ce24aaadf2f0af72",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth1-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth512-rep0",
+          "depth": 512,
+          "vectors": 129,
+          "full_raw_sha256": "4189cdcf8a611ec2b7939e766d50e2935521e70b236c94f1ee942a51692e51ae",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth512-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth2048-rep0",
+          "depth": 2048,
+          "vectors": 132,
+          "full_raw_sha256": "f5ea530e764fa3585760f12d2ba5a00a0e95cf64a9a57d31d963890f765a0b26",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth2048-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth8192-rep0",
+          "depth": 8192,
+          "vectors": 144,
+          "full_raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth8192-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth16128-rep0",
+          "depth": 16128,
+          "vectors": 160,
+          "full_raw_sha256": "ad3062b9bf0ee89c071726df9dd4a4c1202c940b0f867c400ef52f1d086a3291",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth16128-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth16128-rep1",
+          "depth": 16128,
+          "vectors": 160,
+          "full_raw_sha256": "ad3062b9bf0ee89c071726df9dd4a4c1202c940b0f867c400ef52f1d086a3291",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth16128-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth8192-rep1",
+          "depth": 8192,
+          "vectors": 144,
+          "full_raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth8192-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth2048-rep1",
+          "depth": 2048,
+          "vectors": 132,
+          "full_raw_sha256": "f5ea530e764fa3585760f12d2ba5a00a0e95cf64a9a57d31d963890f765a0b26",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth2048-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth512-rep1",
+          "depth": 512,
+          "vectors": 129,
+          "full_raw_sha256": "4189cdcf8a611ec2b7939e766d50e2935521e70b236c94f1ee942a51692e51ae",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth512-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth1-rep1",
+          "depth": 1,
+          "vectors": 129,
+          "full_raw_sha256": "658d839fc11ff5285de6bb9f00b071cd494d72e4350ab517ce24aaadf2f0af72",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth1-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth1-rep2",
+          "depth": 1,
+          "vectors": 129,
+          "full_raw_sha256": "658d839fc11ff5285de6bb9f00b071cd494d72e4350ab517ce24aaadf2f0af72",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth1-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth512-rep2",
+          "depth": 512,
+          "vectors": 129,
+          "full_raw_sha256": "4189cdcf8a611ec2b7939e766d50e2935521e70b236c94f1ee942a51692e51ae",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth512-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth2048-rep2",
+          "depth": 2048,
+          "vectors": 132,
+          "full_raw_sha256": "f5ea530e764fa3585760f12d2ba5a00a0e95cf64a9a57d31d963890f765a0b26",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth2048-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth8192-rep2",
+          "depth": 8192,
+          "vectors": 144,
+          "full_raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth8192-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth16128-rep2",
+          "depth": 16128,
+          "vectors": 160,
+          "full_raw_sha256": "ad3062b9bf0ee89c071726df9dd4a4c1202c940b0f867c400ef52f1d086a3291",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth16128-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        }
+      ]
+    },
+    "stress-q8_0-ub512-s128-1": {
+      "original_gate": "PASS",
+      "all_cases_complete": true,
+      "different_cases": 0,
+      "cases": [
+        {
+          "case": "depth1-rep0",
+          "depth": 1,
+          "vectors": 129,
+          "full_raw_sha256": "658d839fc11ff5285de6bb9f00b071cd494d72e4350ab517ce24aaadf2f0af72",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth1-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth512-rep0",
+          "depth": 512,
+          "vectors": 129,
+          "full_raw_sha256": "4189cdcf8a611ec2b7939e766d50e2935521e70b236c94f1ee942a51692e51ae",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth512-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth2048-rep0",
+          "depth": 2048,
+          "vectors": 132,
+          "full_raw_sha256": "f5ea530e764fa3585760f12d2ba5a00a0e95cf64a9a57d31d963890f765a0b26",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth2048-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth8192-rep0",
+          "depth": 8192,
+          "vectors": 144,
+          "full_raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth8192-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth16128-rep0",
+          "depth": 16128,
+          "vectors": 160,
+          "full_raw_sha256": "ad3062b9bf0ee89c071726df9dd4a4c1202c940b0f867c400ef52f1d086a3291",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth16128-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth16128-rep1",
+          "depth": 16128,
+          "vectors": 160,
+          "full_raw_sha256": "ad3062b9bf0ee89c071726df9dd4a4c1202c940b0f867c400ef52f1d086a3291",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth16128-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth8192-rep1",
+          "depth": 8192,
+          "vectors": 144,
+          "full_raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth8192-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth2048-rep1",
+          "depth": 2048,
+          "vectors": 132,
+          "full_raw_sha256": "f5ea530e764fa3585760f12d2ba5a00a0e95cf64a9a57d31d963890f765a0b26",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth2048-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth512-rep1",
+          "depth": 512,
+          "vectors": 129,
+          "full_raw_sha256": "4189cdcf8a611ec2b7939e766d50e2935521e70b236c94f1ee942a51692e51ae",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth512-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth1-rep1",
+          "depth": 1,
+          "vectors": 129,
+          "full_raw_sha256": "658d839fc11ff5285de6bb9f00b071cd494d72e4350ab517ce24aaadf2f0af72",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth1-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth1-rep2",
+          "depth": 1,
+          "vectors": 129,
+          "full_raw_sha256": "658d839fc11ff5285de6bb9f00b071cd494d72e4350ab517ce24aaadf2f0af72",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth1-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth512-rep2",
+          "depth": 512,
+          "vectors": 129,
+          "full_raw_sha256": "4189cdcf8a611ec2b7939e766d50e2935521e70b236c94f1ee942a51692e51ae",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth512-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth2048-rep2",
+          "depth": 2048,
+          "vectors": 132,
+          "full_raw_sha256": "f5ea530e764fa3585760f12d2ba5a00a0e95cf64a9a57d31d963890f765a0b26",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth2048-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth8192-rep2",
+          "depth": 8192,
+          "vectors": 144,
+          "full_raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth8192-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth16128-rep2",
+          "depth": 16128,
+          "vectors": 160,
+          "full_raw_sha256": "ad3062b9bf0ee89c071726df9dd4a4c1202c940b0f867c400ef52f1d086a3291",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth16128-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        }
+      ]
+    },
+    "stress-q8_0-ub512-s128-2": {
+      "original_gate": "PASS",
+      "all_cases_complete": true,
+      "different_cases": 0,
+      "cases": [
+        {
+          "case": "depth1-rep0",
+          "depth": 1,
+          "vectors": 129,
+          "full_raw_sha256": "658d839fc11ff5285de6bb9f00b071cd494d72e4350ab517ce24aaadf2f0af72",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth1-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth512-rep0",
+          "depth": 512,
+          "vectors": 129,
+          "full_raw_sha256": "4189cdcf8a611ec2b7939e766d50e2935521e70b236c94f1ee942a51692e51ae",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth512-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth2048-rep0",
+          "depth": 2048,
+          "vectors": 132,
+          "full_raw_sha256": "f5ea530e764fa3585760f12d2ba5a00a0e95cf64a9a57d31d963890f765a0b26",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth2048-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth8192-rep0",
+          "depth": 8192,
+          "vectors": 144,
+          "full_raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth8192-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth16128-rep0",
+          "depth": 16128,
+          "vectors": 160,
+          "full_raw_sha256": "ad3062b9bf0ee89c071726df9dd4a4c1202c940b0f867c400ef52f1d086a3291",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth16128-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth16128-rep1",
+          "depth": 16128,
+          "vectors": 160,
+          "full_raw_sha256": "ad3062b9bf0ee89c071726df9dd4a4c1202c940b0f867c400ef52f1d086a3291",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth16128-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth8192-rep1",
+          "depth": 8192,
+          "vectors": 144,
+          "full_raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth8192-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth2048-rep1",
+          "depth": 2048,
+          "vectors": 132,
+          "full_raw_sha256": "f5ea530e764fa3585760f12d2ba5a00a0e95cf64a9a57d31d963890f765a0b26",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth2048-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth512-rep1",
+          "depth": 512,
+          "vectors": 129,
+          "full_raw_sha256": "4189cdcf8a611ec2b7939e766d50e2935521e70b236c94f1ee942a51692e51ae",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth512-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth1-rep1",
+          "depth": 1,
+          "vectors": 129,
+          "full_raw_sha256": "658d839fc11ff5285de6bb9f00b071cd494d72e4350ab517ce24aaadf2f0af72",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth1-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth1-rep2",
+          "depth": 1,
+          "vectors": 129,
+          "full_raw_sha256": "658d839fc11ff5285de6bb9f00b071cd494d72e4350ab517ce24aaadf2f0af72",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth1-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth512-rep2",
+          "depth": 512,
+          "vectors": 129,
+          "full_raw_sha256": "4189cdcf8a611ec2b7939e766d50e2935521e70b236c94f1ee942a51692e51ae",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth512-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth2048-rep2",
+          "depth": 2048,
+          "vectors": 132,
+          "full_raw_sha256": "f5ea530e764fa3585760f12d2ba5a00a0e95cf64a9a57d31d963890f765a0b26",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth2048-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth8192-rep2",
+          "depth": 8192,
+          "vectors": 144,
+          "full_raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth8192-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth16128-rep2",
+          "depth": 16128,
+          "vectors": 160,
+          "full_raw_sha256": "ad3062b9bf0ee89c071726df9dd4a4c1202c940b0f867c400ef52f1d086a3291",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth16128-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        }
+      ]
+    },
+    "stress-q8_0-ub512-target-2": {
+      "original_gate": "PASS",
+      "all_cases_complete": true,
+      "different_cases": 0,
+      "cases": [
+        {
+          "case": "depth1-rep0",
+          "depth": 1,
+          "vectors": 129,
+          "full_raw_sha256": "658d839fc11ff5285de6bb9f00b071cd494d72e4350ab517ce24aaadf2f0af72",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth1-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth512-rep0",
+          "depth": 512,
+          "vectors": 129,
+          "full_raw_sha256": "4189cdcf8a611ec2b7939e766d50e2935521e70b236c94f1ee942a51692e51ae",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth512-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth2048-rep0",
+          "depth": 2048,
+          "vectors": 132,
+          "full_raw_sha256": "f5ea530e764fa3585760f12d2ba5a00a0e95cf64a9a57d31d963890f765a0b26",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth2048-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth8192-rep0",
+          "depth": 8192,
+          "vectors": 144,
+          "full_raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth8192-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth16128-rep0",
+          "depth": 16128,
+          "vectors": 160,
+          "full_raw_sha256": "ad3062b9bf0ee89c071726df9dd4a4c1202c940b0f867c400ef52f1d086a3291",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth16128-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth16128-rep1",
+          "depth": 16128,
+          "vectors": 160,
+          "full_raw_sha256": "ad3062b9bf0ee89c071726df9dd4a4c1202c940b0f867c400ef52f1d086a3291",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth16128-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth8192-rep1",
+          "depth": 8192,
+          "vectors": 144,
+          "full_raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth8192-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth2048-rep1",
+          "depth": 2048,
+          "vectors": 132,
+          "full_raw_sha256": "f5ea530e764fa3585760f12d2ba5a00a0e95cf64a9a57d31d963890f765a0b26",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth2048-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth512-rep1",
+          "depth": 512,
+          "vectors": 129,
+          "full_raw_sha256": "4189cdcf8a611ec2b7939e766d50e2935521e70b236c94f1ee942a51692e51ae",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth512-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth1-rep1",
+          "depth": 1,
+          "vectors": 129,
+          "full_raw_sha256": "658d839fc11ff5285de6bb9f00b071cd494d72e4350ab517ce24aaadf2f0af72",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth1-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth1-rep2",
+          "depth": 1,
+          "vectors": 129,
+          "full_raw_sha256": "658d839fc11ff5285de6bb9f00b071cd494d72e4350ab517ce24aaadf2f0af72",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth1-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth512-rep2",
+          "depth": 512,
+          "vectors": 129,
+          "full_raw_sha256": "4189cdcf8a611ec2b7939e766d50e2935521e70b236c94f1ee942a51692e51ae",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth512-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth2048-rep2",
+          "depth": 2048,
+          "vectors": 132,
+          "full_raw_sha256": "f5ea530e764fa3585760f12d2ba5a00a0e95cf64a9a57d31d963890f765a0b26",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth2048-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth8192-rep2",
+          "depth": 8192,
+          "vectors": 144,
+          "full_raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth8192-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        },
+        {
+          "case": "depth16128-rep2",
+          "depth": 16128,
+          "vectors": 160,
+          "full_raw_sha256": "ad3062b9bf0ee89c071726df9dd4a4c1202c940b0f867c400ef52f1d086a3291",
+          "reference_path": "stress/runs/stress-q8_0-ub512-resident-1/depth16128-rep0-logits.bin",
+          "different_vectors": 0,
+          "argmax_changed_vectors": 0,
+          "first_difference": null
+        }
+      ]
+    }
+  },
+  "limits": "Independent full raw audit of completed return0 processes only. Each KV/ubatch group uses the first chronological B1 resident occurrence of each prefix. A later exact candidate does not repair baseline cycle instability. No timing ranking,epsilon replacement or failure discard."
+}

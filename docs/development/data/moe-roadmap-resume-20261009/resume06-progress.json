@@ -1,0 +1,97 @@
+{
+  "utc": "2026-10-09T12:55:21.646476+00:00",
+  "status": "RUNNING",
+  "pressure_completed": 10,
+  "pressure_expected": 36,
+  "pressure_PASS": 8,
+  "pressure_FAIL": 2,
+  "results": {
+    "stress-q8_0-ub512-resident-1": {
+      "gate": "FAIL",
+      "returncode": 0,
+      "error": "Across-cycles/processes/placements raw divergence",
+      "run_folder": null,
+      "sequence_identity": null,
+      "wall_s": 363.22286647500005
+    },
+    "stress-q8_0-ub512-target-1": {
+      "gate": "PASS",
+      "returncode": 0,
+      "error": null,
+      "run_folder": null,
+      "sequence_identity": null,
+      "wall_s": 385.81096527499903
+    },
+    "stress-q8_0-ub512-s128-1": {
+      "gate": "PASS",
+      "returncode": 0,
+      "error": null,
+      "run_folder": null,
+      "sequence_identity": null,
+      "wall_s": 380.172714129003
+    },
+    "stress-q8_0-ub512-s128-2": {
+      "gate": "PASS",
+      "returncode": 0,
+      "error": null,
+      "run_folder": null,
+      "sequence_identity": null,
+      "wall_s": 383.0064930469962
+    },
+    "stress-q8_0-ub512-target-2": {
+      "gate": "PASS",
+      "returncode": 0,
+      "error": null,
+      "run_folder": null,
+      "sequence_identity": null,
+      "wall_s": 386.3512292189989
+    },
+    "stress-q8_0-ub512-resident-2": {
+      "gate": "FAIL",
+      "returncode": 0,
+      "error": "Across-cycles/processes/placements raw divergence",
+      "run_folder": "stress/runs/stress-q8_0-ub512-resident-2-resume06",
+      "sequence_identity": "stress-q8_0-ub512-resident-2",
+      "wall_s": 373.76041571899987
+    },
+    "stress-q8_0-ub1024-resident-1": {
+      "gate": "PASS",
+      "returncode": 0,
+      "error": null,
+      "run_folder": "stress/runs/stress-q8_0-ub1024-resident-1",
+      "sequence_identity": "stress-q8_0-ub1024-resident-1",
+      "wall_s": 251.0354624190004
+    },
+    "stress-q8_0-ub1024-target-1": {
+      "gate": "PASS",
+      "returncode": 0,
+      "error": null,
+      "run_folder": "stress/runs/stress-q8_0-ub1024-target-1",
+      "sequence_identity": "stress-q8_0-ub1024-target-1",
+      "wall_s": 265.4426782290029
+    },
+    "stress-q8_0-ub1024-s128-1": {
+      "gate": "PASS",
+      "returncode": 0,
+      "error": null,
+      "run_folder": "stress/runs/stress-q8_0-ub1024-s128-1",
+      "sequence_identity": "stress-q8_0-ub1024-s128-1",
+      "wall_s": 258.06925668199983
+    },
+    "stress-q8_0-ub1024-s128-2": {
+      "gate": "PASS",
+      "returncode": 0,
+      "error": null,
+      "run_folder": "stress/runs/stress-q8_0-ub1024-s128-2",
+      "sequence_identity": "stress-q8_0-ub1024-s128-2",
+      "wall_s": 256.727249880998
+    }
+  },
+  "recovery": "Five prior processes full-file hash verified; original firstB1 FAIL and refs retained. Sixth quota-interrupted archive unchanged; fresh suffix sixth alsoFAIL. Original order continues.",
+  "r61_CPU_controls": {
+    "processes": 12,
+    "PASS": 12,
+    "scope": "CPU raw/sanitizer controls on initialR61 fixture helper; final fixture-only amendment changes Vulkan fault-hook expectations on bypassed batches. GPU mechanism/raw/timing gates remain pending."
+  },
+  "source_audit": "stress-source-provenance-audit-resume06.json:7110 helper corresponds to committed94a976 source; generic stress metadata remains unchanged and corrected separately."
+}

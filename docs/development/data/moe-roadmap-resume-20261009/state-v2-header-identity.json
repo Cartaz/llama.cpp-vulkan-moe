@@ -1,0 +1,55 @@
+{
+  "gate": "PASS",
+  "utc": "2026-10-09T08:36:38.476070+00:00",
+  "headers": {
+    "include/llama.h": {
+      "current_sha256": "0199c9f12a5dd4099191a9b508d62ad715212981d181046a0d29750c57dd8694",
+      "archived_source_sha256": {
+        "7fe450e19305b828c199d602c23a8337aaa1f03b": "0199c9f12a5dd4099191a9b508d62ad715212981d181046a0d29750c57dd8694",
+        "d6844bd569e8059820d9242e59f5c3d45b789c67": "0199c9f12a5dd4099191a9b508d62ad715212981d181046a0d29750c57dd8694"
+      },
+      "byte_identical": true
+    },
+    "common/common.h": {
+      "current_sha256": "1c1da208649f0f8955610d975d57b0a63cd35d60a23b3e2765e6ad19c392cc45",
+      "archived_source_sha256": {
+        "7fe450e19305b828c199d602c23a8337aaa1f03b": "1c1da208649f0f8955610d975d57b0a63cd35d60a23b3e2765e6ad19c392cc45",
+        "d6844bd569e8059820d9242e59f5c3d45b789c67": "1c1da208649f0f8955610d975d57b0a63cd35d60a23b3e2765e6ad19c392cc45"
+      },
+      "byte_identical": true
+    },
+    "common/arg.h": {
+      "current_sha256": "42f21df75ada0e5bba795a40edc02724f0e0be03db288b64eed6057c1dfa261b",
+      "archived_source_sha256": {
+        "7fe450e19305b828c199d602c23a8337aaa1f03b": "42f21df75ada0e5bba795a40edc02724f0e0be03db288b64eed6057c1dfa261b",
+        "d6844bd569e8059820d9242e59f5c3d45b789c67": "42f21df75ada0e5bba795a40edc02724f0e0be03db288b64eed6057c1dfa261b"
+      },
+      "byte_identical": true
+    },
+    "common/log.h": {
+      "current_sha256": "82aa52b47261d380a54a23f96276b64b08898a041c1c666a713e2cffb6d8e003",
+      "archived_source_sha256": {
+        "7fe450e19305b828c199d602c23a8337aaa1f03b": "82aa52b47261d380a54a23f96276b64b08898a041c1c666a713e2cffb6d8e003",
+        "d6844bd569e8059820d9242e59f5c3d45b789c67": "82aa52b47261d380a54a23f96276b64b08898a041c1c666a713e2cffb6d8e003"
+      },
+      "byte_identical": true
+    },
+    "ggml/include/ggml.h": {
+      "current_sha256": "12ee71f99db7db9b353bc02b1fbb57c344ee17c01ac5fb7952b41a637a747ea9",
+      "archived_source_sha256": {
+        "7fe450e19305b828c199d602c23a8337aaa1f03b": "12ee71f99db7db9b353bc02b1fbb57c344ee17c01ac5fb7952b41a637a747ea9",
+        "d6844bd569e8059820d9242e59f5c3d45b789c67": "12ee71f99db7db9b353bc02b1fbb57c344ee17c01ac5fb7952b41a637a747ea9"
+      },
+      "byte_identical": true
+    },
+    "ggml/include/ggml-backend.h": {
+      "current_sha256": "46d84cb998105f871240864fd0f55446939a2fe86c5c281afa63a010fb1f65a2",
+      "archived_source_sha256": {
+        "7fe450e19305b828c199d602c23a8337aaa1f03b": "46d84cb998105f871240864fd0f55446939a2fe86c5c281afa63a010fb1f65a2",
+        "d6844bd569e8059820d9242e59f5c3d45b789c67": "46d84cb998105f871240864fd0f55446939a2fe86c5c281afa63a010fb1f65a2"
+      },
+      "byte_identical": true
+    }
+  },
+  "scope": "Current standalone helper public/common headers byte-identical to both frozen engine sources; engine DSOs separately verified every run"
+}

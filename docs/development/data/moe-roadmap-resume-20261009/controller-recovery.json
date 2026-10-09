@@ -1,0 +1,5 @@
+{
+  "utc": "2026-10-09T01:41:39.639265+00:00",
+  "reason": "Controller heartbeat interval exceeded during active work; quota available66%; preserve partial job and resume verified checkpoints",
+  "heartbeat_ttl_seconds": 600
+}

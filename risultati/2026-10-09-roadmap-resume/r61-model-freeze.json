@@ -1,0 +1,113 @@
+{
+  "model": {
+    "path": "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+    "bytes": 21713462848,
+    "sha256": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f"
+  },
+  "candidate_commit": "2e08b57e9997358109a993c845ce6b39eeb266fa",
+  "utc": "2026-10-09T00:34:39.932730+00:00",
+  "helper_source_sha256": "d71a81d1616852d7a0511fc83014814d6900d0188212ac0e9e1fe88ded2d8e00",
+  "variants": {
+    "R61-BASE": "B1 unmodified7fe450e; uniform guarded replay helper",
+    "R61-OLD": "Old frozen MULTI engine; uniform guarded replay helper",
+    "R61-V2": "2e08b57 + r61-engine-v2.patch; source freeze includes exact hashes"
+  },
+  "artifacts": {
+    "frozen/R61-BASE/libggml-base.so.0.25.1": "ed4b8f3d3ae59dfba891b43364fd7d5c4d297507fc483b4be8c95ccdde046084",
+    "frozen/R61-BASE/libggml-cpu.so.0.25.1": "f4709ae474d658855aba3c9bb90c17a603b44943fa1793e433a46ee96e3d4226",
+    "frozen/R61-BASE/libggml-vulkan.so.0.25.1": "a1d5ad88a266cb28f496da11726bee09d8021c1ff23e4d4cd9c9b1d06e61efd7",
+    "frozen/R61-BASE/libggml.so.0.25.1": "8e8669c77ec573dd61fc2ab7f5d3d2ece7a2db9edacb354b300232ce7512b443",
+    "frozen/R61-BASE/libllama.so.0.5.0": "61f97ce7a813603834536ce55d887c2cc749d107fe4233903b5462bf80478922",
+    "frozen/R61-BASE/libllama-common.so.0.5.0": "57810254aec09155e20703ddda407c0ef48b415612ad65411ff35e9d246df077",
+    "frozen/R61-BASE/replay": "269b830ac97325df9d63ccc90b14040457a8965d72163756b2783de4f185f376",
+    "frozen/R61-OLD/libggml-base.so.0.25.1": "167ef8f0d9a0aabd4c0f87637a47dec24461e6810ef990962ed38f119fb9068e",
+    "frozen/R61-OLD/libggml-cpu.so.0.25.1": "d939874c41448f224794190e80548a7d09a309686450ac53c797b040eb2d995b",
+    "frozen/R61-OLD/libggml-vulkan.so.0.25.1": "4442d44cfa70f0cf12b5d6290f6bd74fbe1b24e4a90fe71759ab40efffeb22d4",
+    "frozen/R61-OLD/libggml.so.0.25.1": "dc0917f5b55bb86ecfa89c7d1734c5ab6579fb90ad97cd5a94735fa9eb9e5f22",
+    "frozen/R61-OLD/libllama.so.0.5.0": "d8cd670eab39b9ae327c11e5446e6b6faa4ae8f8250796ff7aabd031aeaca504",
+    "frozen/R61-OLD/libllama-common.so.0.5.0": "12c8b2dfbdd57b1ee7e095bd6d0756c0c5dcfb05e9dc8eb4bab1beb009515528",
+    "frozen/R61-OLD/replay": "269b830ac97325df9d63ccc90b14040457a8965d72163756b2783de4f185f376",
+    "frozen/R61-V2/libggml-base.so.0.25.1": "1d469090492e0335d9d26624b78e387778cd7584b4dbb6d9a7f18eef7ff82661",
+    "frozen/R61-V2/libggml-cpu.so.0.25.1": "d939874c41448f224794190e80548a7d09a309686450ac53c797b040eb2d995b",
+    "frozen/R61-V2/libggml-vulkan.so.0.25.1": "4442d44cfa70f0cf12b5d6290f6bd74fbe1b24e4a90fe71759ab40efffeb22d4",
+    "frozen/R61-V2/libggml.so.0.25.1": "dc0917f5b55bb86ecfa89c7d1734c5ab6579fb90ad97cd5a94735fa9eb9e5f22",
+    "frozen/R61-V2/libllama.so.0.5.0": "d8cd670eab39b9ae327c11e5446e6b6faa4ae8f8250796ff7aabd031aeaca504",
+    "frozen/R61-V2/libllama-common.so.0.5.0": "95f75b06313398c916105b7718d31be963ee275c83e14c59cebc32582b0f05a7",
+    "frozen/R61-V2/replay": "269b830ac97325df9d63ccc90b14040457a8965d72163756b2783de4f185f376",
+    "frozen/R61-V2/scheduler-check": "84fb7c18600cede8459233bc6a3978cab4471a5ae4578aeb41eeadadc8f1e49a",
+    "frozen/R61-V2/corpus": "7110f1e09d0f785f3ccb0da6b7575db8c60a9e89d10c834973ba6023df233c7f"
+  },
+  "source": {
+    "ggml/src/ggml-backend.cpp": "e7149e50ffaaa57cd2b5fbab36cd9e0592850bbd6506553644c19b6622095993",
+    "examples/moe-trace/expert-pool-check.cpp": "76f4b5c618e2fa0892107968f79da9be9974b66aef0f357bdf416efaa8ed4d01",
+    "examples/moe-trace/scheduler-check.cpp": "4e85c5a09d59bb66102cb0264efa1adf7aed14caabe1f42684ed44baacd33005",
+    "examples/moe-trace/state-check.cpp": "042685bd603803ddb6ec9a4cc15382f98a94c5ba880ab854973fcd6ca22cfd57",
+    "examples/moe-trace/moe-corpus.cpp": "5bbf28aa5b07399ac3472b34a774638e37fa075e04882739c95d72ec683a39c5"
+  },
+  "state_inputs": {
+    "stress/state-512.json": "9f8d206a56ac22d29589b44b3d0617771bf2eb75a3d67b36ed1e8e41d3df70b0",
+    "stress/state-8192.json": "ac4ee2bf67eb19043bfade81663f3d857344edfc3ab63e3d1ef0515cd3489937",
+    "stress/state-control-512.jsonl": "46924807464035a74322712106765f0e430be03fa8a68d189cd24643e0ca85db",
+    "stress/state-control-8192.jsonl": "ff4e0116e68de312fa986d4375c2951a7e3f1ac123b570f3db0a4a0aa1a529da"
+  },
+  "stress_input_sha256": "ee850f5dbf6c448d2b863d28968daabd7d65a44634018d18bd4a45729d83f5c8",
+  "protocol_sha256": "35b94e4630369722a95e9486e5c861fbff20e928b3a250bba327d4d91e8bc10b",
+  "inputs": {
+    "heldout-arithmetic": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-arithmetic/tokens.csv",
+      "original_sha256": "c2c1c2f1037ddd0a4a55a1d881aaf66177b954b32fb7064b3820960950595c0a",
+      "path": "r61-inputs/heldout-arithmetic.csv",
+      "sha256": "c2c1c2f1037ddd0a4a55a1d881aaf66177b954b32fb7064b3820960950595c0a",
+      "PP": 133,
+      "TG": 64
+    },
+    "heldout-code": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-code/tokens.csv",
+      "original_sha256": "8f2546f451addd4ca355fcaee6d5335c2ad07df49e4879849a49a783faa4904f",
+      "path": "r61-inputs/heldout-code.csv",
+      "sha256": "8f2546f451addd4ca355fcaee6d5335c2ad07df49e4879849a49a783faa4904f",
+      "PP": 113,
+      "TG": 64
+    },
+    "heldout-italian": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-italian/tokens.csv",
+      "original_sha256": "5db390b32d7e7e8284b23bf0b44163e309a5ae9a174cfa07d3211400012a22c2",
+      "path": "r61-inputs/heldout-italian.csv",
+      "sha256": "5db390b32d7e7e8284b23bf0b44163e309a5ae9a174cfa07d3211400012a22c2",
+      "PP": 149,
+      "TG": 64
+    },
+    "heldout-planning": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-planning/tokens.csv",
+      "original_sha256": "0a2103503817bb5ed69c001475fb33a7ba7f13697af0b95be72043c71e73d885",
+      "path": "r61-inputs/heldout-planning.csv",
+      "sha256": "0a2103503817bb5ed69c001475fb33a7ba7f13697af0b95be72043c71e73d885",
+      "PP": 119,
+      "TG": 64
+    },
+    "heldout-retrieval": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-retrieval/tokens.csv",
+      "original_sha256": "5fb7e1722f531c88bdedee7d30ee32a6474d4e526cda96aa0a6d4a4d1c77574c",
+      "path": "r61-inputs/heldout-retrieval.csv",
+      "sha256": "5fb7e1722f531c88bdedee7d30ee32a6474d4e526cda96aa0a6d4a4d1c77574c",
+      "PP": 139,
+      "TG": 64
+    },
+    "heldout-structured": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-structured/tokens.csv",
+      "original_sha256": "17688a4b930656e3853bb43765aab3761cb5f95ace3d2787315600989195c732",
+      "path": "r61-inputs/heldout-structured.csv",
+      "sha256": "17688a4b930656e3853bb43765aab3761cb5f95ace3d2787315600989195c732",
+      "PP": 126,
+      "TG": 64
+    },
+    "short": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/short/tokens.csv",
+      "original_sha256": "711949862bf3674e00add770c2add1b3fac53d0f3695ee28769ca8a082c7052d",
+      "path": "r61-inputs/short.csv",
+      "sha256": "711949862bf3674e00add770c2add1b3fac53d0f3695ee28769ca8a082c7052d",
+      "PP": 512,
+      "TG": 200
+    }
+  }
+}

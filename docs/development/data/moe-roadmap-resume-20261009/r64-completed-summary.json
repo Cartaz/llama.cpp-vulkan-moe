@@ -1,0 +1,26 @@
+{
+  "utc": "2026-10-09T20:10:27.484712+00:00",
+  "gate": "FAIL_NUMERICAL_OR_REPEAT",
+  "processes": 16,
+  "process_PASS": 12,
+  "process_FAIL": 4,
+  "cases": 128,
+  "vectors": 7088,
+  "finite_nonzero_all": true,
+  "helper_compatibility": "111/112first7 checks exact;fresh-legacy1 retrievalduplicatefails",
+  "original_anomalous_duplicate": {
+    "case": "retrieval-000-repeat-r62",
+    "process": "fresh-legacy-1",
+    "PP": 3294,
+    "vectors_different": 34,
+    "first_vector": 0,
+    "generated_ids_exact": true,
+    "first_argmax_equal": true,
+    "first_max_abs": 0.1889941692352295,
+    "first_rms": 0.03670543679923314
+  },
+  "fresh_followups": "2/3/4 own duplicates exact but differ from frozen anomalous first reference;not3additionalindependentanomalies",
+  "root_cause": "UNRESOLVED;helpercompatibilityfails;no inference of isolatedcontext/memory_clearcause or repair",
+  "audit_sha256": "928e8357f8d86d32911c272133e979112ef73f3950f82248e844a3cd7530e813",
+  "prior_failures": "Preserved;no defaults/integration/M0-M3closure"
+}

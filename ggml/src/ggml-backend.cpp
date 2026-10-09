@@ -835,7 +835,8 @@ struct ggml_backend_sched {
     size_t context_buffer_size;
 
     bool op_offload;
-    int expert_gpu_layer;
+    int expert_gpu_layers[32];
+    int n_expert_gpu_layers;
 
     int debug;
 
@@ -950,6 +951,7 @@ static void ggml_backend_sched_profile_cpu_routes(ggml_backend_sched_t sched, gg
 }
 
 struct ggml_backend_sched_expert_pool {
+    ggml_backend_sched_expert_pool * next = nullptr;
     int layer, slots;
     size_t budget;
     ggml_backend_expert_pool pool;
@@ -963,6 +965,7 @@ struct ggml_backend_sched_expert_pool {
     uint64_t id = 0, call = 0;
     ggml_backend_expert_pool::counters before{};
     bool prepared = false, attempted = false, ready = false;
+    bool decode_only = getenv("GGML_SCHED_EXPERT_POOL_DECODE_ONLY") != nullptr;
     int last_split = -1, projections = 0;
     int64_t tokens = 0, admit_us = 0, wait_us = 0, prepare_us = 0, start_us = 0;
     const char * reason = "not_used";
@@ -994,6 +997,7 @@ struct ggml_backend_sched_expert_pool {
             std::lock_guard<std::mutex> lock(ggml_backend_sched_profile_mutex);
             fclose(log);
         }
+        delete next;
     }
 
     static ggml_backend_sched_expert_pool * from_env() {
@@ -1001,26 +1005,49 @@ struct ggml_backend_sched_expert_pool {
         if (!config || !*config || strcmp(config, "0") == 0) {
             return nullptr;
         }
-        unsigned values[3]{};
         const char * cursor = config;
-        for (int i = 0; i < 3; ++i) {
-            const char * start = cursor;
-            while (*cursor >= '0' && *cursor <= '9') {
-                if (values[i] > 4096) {
-                    break;
+        std::vector<std::array<unsigned, 3>> entries;
+        unsigned total_budget = 0;
+        while (*cursor) {
+            std::array<unsigned, 3> values{};
+            for (int i = 0; i < 3; ++i) {
+                const char * start = cursor;
+                while (*cursor >= '0' && *cursor <= '9' && values[i] <= 4096) {
+                    values[i] = values[i] * 10 + unsigned(*cursor++ - '0');
                 }
-                values[i] = values[i] * 10 + unsigned(*cursor++ - '0');
+                if (cursor == start || values[i] > 4096 || (i < 2 ? *cursor != ':' : *cursor && *cursor != ';')) {
+                    GGML_LOG_WARN("expert pool: invalid config '%s'; disabled (expected layer:slots:budget_MiB[;...])\n", config);
+                    return nullptr;
+                }
+                if (i < 2) { ++cursor; }
             }
-            if (cursor == start || (i < 2 ? *cursor++ != ':' : *cursor != '\0') || values[i] > 4096) {
-                GGML_LOG_WARN("expert pool: invalid config '%s'; disabled (expected layer:slots:budget_MiB)\n", config);
+            const bool duplicate = std::any_of(entries.begin(), entries.end(), [&](const std::array<unsigned, 3> & entry) { return entry[0] == values[0]; });
+            if (values[1] == 0 || values[1] > 256 || values[2] == 0 || values[2] > 2048 ||
+                    total_budget + values[2] > 2048 || entries.size() == 32 || duplicate) {
+                GGML_LOG_WARN("expert pool: invalid slots, layers or aggregate budget; disabled\n");
+                return nullptr;
+            }
+            total_budget += values[2];
+            entries.push_back(values);
+            if (*cursor == ';' && !*++cursor) {
+                GGML_LOG_WARN("expert pool: trailing separator; disabled\n");
                 return nullptr;
             }
         }
-        if (values[1] == 0 || values[1] > 256 || values[2] == 0 || values[2] > 2048) {
-            GGML_LOG_WARN("expert pool: invalid slots/budget; disabled\n");
-            return nullptr;
+        ggml_backend_sched_expert_pool * head = nullptr;
+        auto ** tail = &head;
+        for (const auto & values : entries) {
+            *tail = new ggml_backend_sched_expert_pool(int(values[0]), int(values[1]), size_t(values[2]) * 1024 * 1024);
+            tail = &(*tail)->next;
         }
-        return new ggml_backend_sched_expert_pool(int(values[0]), int(values[1]), size_t(values[2]) * 1024 * 1024);
+        return head;
+    }
+
+    ggml_backend_sched_expert_pool * for_weight(const ggml_tensor * weight) {
+        for (auto * cache = this; cache; cache = cache->next) {
+            if (cache->prepared && cache->projection(weight) >= 0) { return cache; }
+        }
+        return nullptr;
     }
 
     static ggml_tensor * first_compute(const ggml_cgraph & graph) {
@@ -1110,6 +1137,13 @@ struct ggml_backend_sched_expert_pool {
             return false;
         }
         const int64_t start = log ? ggml_time_us() : 0;
+        if (decode_only && ids->ne[1] > 1) {
+            attempted = true;
+            tokens = ids->ne[1];
+            reason = "batched_bypass";
+            admit_us = log ? ggml_time_us() - start : 0;
+            return false;
+        }
         std::vector<int32_t> packed;
         for (int64_t token = 0; token < ids->ne[1]; ++token) {
             for (int64_t rank = 0; rank < ids->ne[0]; ++rank) {
@@ -1169,18 +1203,20 @@ struct ggml_backend_sched_expert_pool {
 struct ggml_backend_sched_pool_call {
     ggml_backend_sched_expert_pool * state;
     explicit ggml_backend_sched_pool_call(ggml_backend_sched_expert_pool * state) : state(state) {}
-    ~ggml_backend_sched_pool_call() { if (state) { state->finish(); } }
+    ~ggml_backend_sched_pool_call() {
+        for (auto * cache = state; cache; cache = cache->next) { cache->finish(); }
+    }
 };
 
 struct ggml_backend_sched_pool_patch {
     ggml_backend_t backend;
-    ggml_backend_sched_expert_pool * state;
-    struct entry { ggml_tensor * node; ggml_tensor * weight; ggml_tensor * ids; int projection; };
+    struct entry { ggml_tensor * node; ggml_tensor * weight; ggml_tensor * ids; int projection; ggml_backend_sched_expert_pool * state; };
     std::vector<entry> entries;
     bool applied = false;
-    ggml_backend_sched_pool_patch(ggml_backend_t backend, ggml_backend_sched_expert_pool * state) : backend(backend), state(state) {}
+    explicit ggml_backend_sched_pool_patch(ggml_backend_t backend) : backend(backend) {}
     void apply() {
         for (auto & entry : entries) {
+            auto * state = entry.state;
             entry.node->src[0] = state->pool.weight(entry.projection);
             entry.node->src[2] = state->mapped_ids;
             ++state->projections;
@@ -1189,10 +1225,16 @@ struct ggml_backend_sched_pool_patch {
     }
     void restore() {
         if (applied) {
-            const int64_t start = state->log ? ggml_time_us() : 0;
+            const bool logging = std::any_of(entries.begin(), entries.end(), [](const entry & item) { return item.state->log != nullptr; });
+            const int64_t start = logging ? ggml_time_us() : 0;
             ggml_backend_synchronize(backend);
-            state->wait_us += state->log ? ggml_time_us() - start : 0;
-            for (auto & entry : entries) {
+            const int64_t elapsed = logging ? ggml_time_us() - start : 0;
+            for (size_t i = 0; i < entries.size(); ++i) {
+                auto & entry = entries[i];
+                if (entry.state->log && std::none_of(entries.begin(), entries.begin()+i,
+                        [&](const struct entry & previous) { return previous.state == entry.state; })) {
+                    entry.state->wait_us += elapsed;
+                }
                 entry.node->src[0] = entry.weight;
                 entry.node->src[2] = entry.ids;
             }
@@ -1248,14 +1290,16 @@ static int ggml_backend_sched_backend_id(ggml_backend_sched_t sched, ggml_backen
 }
 
 static bool ggml_backend_sched_expert_gpu_op(ggml_backend_sched_t sched, const ggml_tensor * op) {
-    if (sched->expert_gpu_layer < 0 || op->op != GGML_OP_MUL_MAT_ID || !op->src[0]) {
+    if (sched->n_expert_gpu_layers == 0 || op->op != GGML_OP_MUL_MAT_ID || !op->src[0]) {
         return false;
     }
-    for (const char * projection : {"gate", "up", "down"}) {
-        char expected[GGML_MAX_NAME];
-        snprintf(expected, sizeof(expected), "blk.%d.ffn_%s_exps.weight", sched->expert_gpu_layer, projection);
-        if (strcmp(op->src[0]->name, expected) == 0) {
-            return true;
+    for (int i = 0; i < sched->n_expert_gpu_layers; ++i) {
+        for (const char * projection : {"gate", "up", "down"}) {
+            char expected[GGML_MAX_NAME];
+            snprintf(expected, sizeof(expected), "blk.%d.ffn_%s_exps.weight", sched->expert_gpu_layers[i], projection);
+            if (strcmp(op->src[0]->name, expected) == 0) {
+                return true;
+            }
         }
     }
     return false;
@@ -2035,8 +2079,7 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
 
     int prev_backend_id = -1;
     ggml_backend_sched_pool_call pool_call(sched->expert_pool);
-    if (sched->expert_pool) {
-        auto * cache = sched->expert_pool;
+    for (auto * cache = sched->expert_pool; cache; cache = cache->next) {
         cache->begin();
         if (sched->n_copies == 1 && !sched->callback_eval) {
             std::array<ggml_tensor *, 3> weights{};
@@ -2076,7 +2119,7 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
         struct ggml_backend_sched_split * split = &splits[split_id];
         int split_backend_id = split->backend_id;
         ggml_backend_t split_backend = sched->backends[split_backend_id];
-        ggml_backend_sched_pool_patch pool_patch(split_backend, sched->expert_pool);
+        ggml_backend_sched_pool_patch pool_patch(split_backend);
         ggml_backend_sched_profile_scope split_profile(sched, split_id, "split", nullptr, split_backend);
         if (sched->profile) {
             split_profile.buffer_bytes = ggml_backend_sched_get_buffer_size(sched, split_backend);
@@ -2126,7 +2169,7 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
 
                 // when offloading MoE weights, we can reduce the amount of data copied by copying only the experts that are used
                 ggml_tensor * node = split->graph.nodes[0];
-                if (sched->expert_pool && sched->expert_pool->prepared && sched->expert_pool->projection(input) >= 0) {
+                if (sched->expert_pool && sched->expert_pool->for_weight(input)) {
                     node = sched->expert_pool->first_compute(split->graph);
                 }
                 if (split->graph.n_nodes > 0 && node &&
@@ -2189,8 +2232,7 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
                         ggml_backend_sched_profile_routes(sched, input, ids_tensor, ids.data());
                     }
 
-                    if (sched->expert_pool && sched->expert_pool->prepared) {
-                        auto * cache = sched->expert_pool;
+                    if (auto * cache = sched->expert_pool ? sched->expert_pool->for_weight(input) : nullptr) {
                         const int projection = cache->projection(input);
                         bool single_use = projection >= 0 && cache->weights[projection] == input && cache->backend == split_backend;
                         for (int n = 0; n < split->graph.n_nodes && single_use; ++n) {
@@ -2210,7 +2252,7 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
                             profile.bytes = cache->pool.counts().upload_bytes - before;
                             profile.buffer_bytes = cache->pool.allocated_bytes();
                             if (admitted) {
-                                pool_patch.entries.push_back({node, node->src[0], node->src[2], projection});
+                                pool_patch.entries.push_back({node, node->src[0], node->src[2], projection, cache});
                                 continue;
                             }
                         }
@@ -2340,8 +2382,8 @@ static enum ggml_status ggml_backend_sched_compute_splits(ggml_backend_sched_t s
         }
 
         pool_patch.restore();
-        if (sched->expert_pool && split_id == sched->expert_pool->last_split) {
-            sched->expert_pool->pool.release();
+        for (auto * cache = sched->expert_pool; cache; cache = cache->next) {
+            if (split_id == cache->last_split) { cache->pool.release(); }
         }
 
         // record the event of this split
@@ -2369,19 +2411,25 @@ ggml_backend_sched_t ggml_backend_sched_new(
     struct ggml_backend_sched * sched = (ggml_backend_sched *) calloc(1, sizeof(struct ggml_backend_sched));
 
     sched->expert_pool = ggml_backend_sched_expert_pool::from_env();
-    sched->expert_gpu_layer = -1;
+    sched->n_expert_gpu_layers = 0;
     if (const char * value = getenv("GGML_SCHED_EXPERT_GPU_LAYER")) {
         if (*value) {
-            unsigned layer = 0;
             const char * cursor = value;
-            while (*cursor >= '0' && *cursor <= '9' && layer <= 4096) {
-                layer = layer * 10 + unsigned(*cursor++ - '0');
+            bool valid = true;
+            while (*cursor && valid) {
+                unsigned layer = 0;
+                const char * start = cursor;
+                while (*cursor >= '0' && *cursor <= '9' && layer <= 4096) { layer = layer * 10 + unsigned(*cursor++ - '0'); }
+                valid = start != cursor && layer <= 4096 && sched->n_expert_gpu_layers < 32 && (*cursor == '\0' || *cursor == ',');
+                for (int i = 0; i < sched->n_expert_gpu_layers; ++i) { valid = valid && sched->expert_gpu_layers[i] != int(layer); }
+                if (valid) { sched->expert_gpu_layers[sched->n_expert_gpu_layers++] = int(layer); }
+                if (*cursor == ',' && !*++cursor) { valid = false; }
             }
-            if (*cursor || layer > 4096) {
-                GGML_LOG_WARN("expert GPU placement: invalid layer '%s'; disabled\n", value);
+            if (!valid) {
+                sched->n_expert_gpu_layers = 0;
+                GGML_LOG_WARN("expert GPU placement: invalid layer list '%s'; disabled\n", value);
             } else {
-                sched->expert_gpu_layer = int(layer);
-                GGML_LOG_INFO("expert GPU placement: layer=%d (host gate/up/down only)\n", sched->expert_gpu_layer);
+                GGML_LOG_INFO("expert GPU placement: layers=%s (host gate/up/down only)\n", value);
             }
         }
     }

@@ -1,0 +1,72 @@
+{
+  "id": "R65-current-unmodified-upstream-79e-qualification",
+  "registered_utc": "2026-10-09T19:54:19.740234+00:00",
+  "baseline": "B1 unmodified7fe450e19305b828c199d602c23a8337aaa1f03b; exact existing R61-BASE replay/DSOs",
+  "candidate": "Full unmodified upstream79e2e74eb11022c1ba2e438df7f0ca2d4c10f8b6;0.6.0-dev; build separately, no patch/cherry-pick/pool/adoption",
+  "source_review": "upstream-review-79e.json and selected patch; embeddingGET_ROWS graph ordering may alter splits; no RX6800 benefit or repeat fix established. CUDA roundf edit is not in this Vulkan/GCC build. SYCL issue30033 performance numbers are not AMD evidence.",
+  "inputs": {
+    "heldout-planning": {
+      "path": "r65-inputs/heldout-planning.csv",
+      "sha256": "0a2103503817bb5ed69c001475fb33a7ba7f13697af0b95be72043c71e73d885",
+      "PP": 119,
+      "TG": 64,
+      "context": 1024,
+      "batch": 512,
+      "timing_allowed": true,
+      "selection": "Previously inspected R61/R63 replay; no fresh heldout/general quality qualification"
+    },
+    "short": {
+      "path": "r65-inputs/short.csv",
+      "sha256": "711949862bf3674e00add770c2add1b3fac53d0f3695ee28769ca8a082c7052d",
+      "PP": 512,
+      "TG": 200,
+      "context": 1024,
+      "batch": 512,
+      "timing_allowed": true,
+      "selection": "Previously inspected R61/R63 replay; no fresh heldout/general quality qualification"
+    },
+    "long-code": {
+      "path": "r65-inputs/long-code.csv",
+      "sha256": "d0987c55cd43c5cbb66946cc4298a4916910f63426574530c428274277cfa6f2",
+      "PP": 3174,
+      "TG": 64,
+      "context": 8192,
+      "batch": 2048,
+      "timing_allowed": false,
+      "source_response": "r62-native/gpu-legacy-1/responses.jsonl",
+      "source_case": "code_trace-000",
+      "selection": "Diagnostic follow-up of prior code/retrieval repeat anomalies; fixed IDs from original benign R62GPUlegacy1. Forced final EOG,if present,is still decoded by replay; not native answer quality."
+    },
+    "long-retrieval": {
+      "path": "r65-inputs/long-retrieval.csv",
+      "sha256": "94bce4eda5f44a128b458f1b2dadfec6b58f0ec0f84fb1e998ac61914bdbb481",
+      "PP": 3294,
+      "TG": 34,
+      "context": 8192,
+      "batch": 2048,
+      "timing_allowed": false,
+      "source_response": "r62-native/gpu-legacy-1/responses.jsonl",
+      "source_case": "retrieval-000",
+      "selection": "Diagnostic follow-up of prior code/retrieval repeat anomalies; fixed IDs from original benign R62GPUlegacy1. Forced final EOG,if present,is still decoded by replay; not native answer quality."
+    }
+  },
+  "build": "Clone into isolated local source checkout at exact detached79e; original Git source remains clean. Release,GGML_NATIVE=ON,GGML_VULKAN=ON,CUDAOFF,GGML_BACKEND_DL=OFF,OpenMPON,explicitgcc/g++,emptybaseC/CXXflags,shared libs,commonON,tests/tools/examplesOFF,MTMDOFF;Ninja2jobs. Preserve all stdout/stderr,cache,compiler/Git identity. No build while R64modelworkers/audits run.",
+  "helper": "Compile byte-identical archived replay/phase header against candidate headers/DSOs; B1 existing binary unchanged. Main backend sampling defaultfalse verified in current common.h; no profiler/counter/callback. Common warmupfalse;replaywarmup1,reps3.",
+  "flags": "Single stream,mmap,fitOFF,ngl99,ncmoe18,selectedlayer17residentGPU,t8tb8,ub512,FAON,Q8KV;context/batchperinput declared. No feature/cache envs. User GPU clocks/power preserved.",
+  "raw_order": [
+    "B1",
+    "B4",
+    "B4",
+    "B1",
+    "B1",
+    "B4",
+    "B4",
+    "B1"
+  ],
+  "raw_gates": "32freshrawprocesses;all4inputs/all4freshpervariant/3measuredreps. Every full248320float32 vector finite/nonzero and byte-exact to first chronological B1;within-process/freshrepeat exact. Never replace failed/missing B1 refs. Loaded coherent DSOs required. Report first divergence and all failures, including baseline.",
+  "timing": "At most16independent short timing processes:onlyplanning119+64 andshort512+200 if their8rawprocesses pass independent fullraw audit. Same balanced order,4freshpervariant,warmup1,reps3,no raw/counter/profiler. No long timing even if long raw passes. CSV fingerprints to originalB1;process bootstrap50000 seed65,95%CI,practical3%rates/decode-duration and5%TGp95;B1firstlastdrift>20%ineligible. Report all cells, no best selection.",
+  "guards": "Root post-R64 audit marker and exclusivelock;one model;MemoryMax24G,Swap2G,MemAvailable6GiB,timeout600s,disk8GiBreserve; build2jobs. Original B1/userdirtyfiles/pressure/native/lifecycle failures preserved.",
+  "acceptance": "Bounded current-engine qualification; bundled upstream changes cannot be attributed to PR30160 without isolated A/B. No engine integration,newdefault,semantic equivalence,TTFT,concurrency or M0-M3 closure.",
+  "helper_source_path": "r65-source/moe-replay.cpp",
+  "helper_header_path": "r65-source/phase-profile.h"
+}

@@ -1,0 +1,20 @@
+{
+  "utc": "2026-10-09T19:39:20.168258+00:00",
+  "gate": "POST_R63_AUDIT_COMPLETE",
+  "audits": {
+    "r63-raw-audit.json": {
+      "gate": "PASS_ALL48_FULL_RAW",
+      "sha256": "a7503223fdaf633b87374053aa8c5b8b29e45d8af105a90fe2234c202f861fa3"
+    },
+    "r63-timing-audit.json": {
+      "gate": "PASS_COMPLETE_CSV_CI_AUDIT",
+      "sha256": "78fb8d2f63d3e2514f9f5f49bb3e4f051c777c0307d605678142aa140aecae37"
+    },
+    "r63-analysis.json": {
+      "gate": "DESCRIPTIVE_COMPLETE",
+      "sha256": "18a2c2af254be786948922087f3e1281a88b795f412fff350118db2c53e8e5dc"
+    }
+  },
+  "model_workers_joined": true,
+  "limits": "No demonstrated practical warm or empty-pool benefit; this marker admits separate B1 repeat diagnostic,not integration/default promotion."
+}

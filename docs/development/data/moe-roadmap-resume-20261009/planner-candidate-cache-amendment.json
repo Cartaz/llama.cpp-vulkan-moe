@@ -1,0 +1,11 @@
+{
+  "utc": "2026-10-09T01:59:27.030870+00:00",
+  "stopped_cpu_only_planner_pid": 37579,
+  "completed_TRAIN_allocations_preserved": 18,
+  "change": "Cache per-layer candidate ranking until experts selected in that layer; budget filters eligibility every iteration; exact gains/Fraction/ties unchanged",
+  "qualification": "26testsPASS including600subsetgain comparisons and540independent uncached greedy allocation matrices",
+  "before_source_sha256": "cec53496211aebb15f283e2c78df3c35a764811043ed91b041ac1ce031c09915",
+  "after_source_sha256": "86179e57de2ee09f4e5ab288f0e3acd51eda397769b952bae0886ca92577d824",
+  "HELDOUT_opened_for_scoring": false,
+  "threshold_sample_or_policy_changes": false
+}

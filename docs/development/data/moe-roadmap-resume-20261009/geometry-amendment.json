@@ -1,0 +1,10 @@
+{
+  "id": "R49-routing-geometry-amendment",
+  "classification": "HARNESS_ERROR",
+  "original_expectation": 41,
+  "normal_inference_layers": 40,
+  "metadata": {"qwen35moe.block_count": 41, "qwen35moe.nextn_predict_layers": 1},
+  "code_evidence": "src/llama-hparams.cpp:347-348 n_layer() = n_layer_all - n_layer_nextn",
+  "scope": "No inference or threshold change. Validate all 40 normal layers with exact top8 IDs, preserve original verifier failures and audit raw independently.",
+  "speculative_mtp": "Not enabled or qualified; block40 not part of this normal-inference routing cohort"
+}

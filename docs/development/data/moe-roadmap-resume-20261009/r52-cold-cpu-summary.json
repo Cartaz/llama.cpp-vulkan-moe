@@ -1,0 +1,258 @@
+{
+  "gate": "PASS",
+  "full8": [
+    {
+      "condition": "cold",
+      "projection_pass_selected": [
+        "down",
+        0,
+        8
+      ],
+      "medians_us": [
+        103.5,
+        103.0,
+        104.0
+      ],
+      "median_us": 103.5
+    },
+    {
+      "condition": "cold",
+      "projection_pass_selected": [
+        "down",
+        1,
+        8
+      ],
+      "medians_us": [
+        104.0,
+        104.0,
+        103.0
+      ],
+      "median_us": 104.0
+    },
+    {
+      "condition": "cold",
+      "projection_pass_selected": [
+        "down",
+        2,
+        8
+      ],
+      "medians_us": [
+        104.0,
+        105.0,
+        103.0
+      ],
+      "median_us": 104.0
+    },
+    {
+      "condition": "cold",
+      "projection_pass_selected": [
+        "gate",
+        0,
+        8
+      ],
+      "medians_us": [
+        116.5,
+        111.0,
+        113.0
+      ],
+      "median_us": 113.0
+    },
+    {
+      "condition": "cold",
+      "projection_pass_selected": [
+        "gate",
+        1,
+        8
+      ],
+      "medians_us": [
+        110.0,
+        111.0,
+        111.0
+      ],
+      "median_us": 111.0
+    },
+    {
+      "condition": "cold",
+      "projection_pass_selected": [
+        "gate",
+        2,
+        8
+      ],
+      "medians_us": [
+        111.0,
+        111.0,
+        114.0
+      ],
+      "median_us": 111.0
+    },
+    {
+      "condition": "cold",
+      "projection_pass_selected": [
+        "up",
+        0,
+        8
+      ],
+      "medians_us": [
+        112.0,
+        112.5,
+        114.0
+      ],
+      "median_us": 112.5
+    },
+    {
+      "condition": "cold",
+      "projection_pass_selected": [
+        "up",
+        1,
+        8
+      ],
+      "medians_us": [
+        110.0,
+        110.0,
+        110.5
+      ],
+      "median_us": 110.0
+    },
+    {
+      "condition": "cold",
+      "projection_pass_selected": [
+        "up",
+        2,
+        8
+      ],
+      "medians_us": [
+        111.0,
+        111.0,
+        113.0
+      ],
+      "median_us": 111.0
+    },
+    {
+      "condition": "warm",
+      "projection_pass_selected": [
+        "down",
+        0,
+        8
+      ],
+      "medians_us": [
+        43.0,
+        42.0,
+        45.0
+      ],
+      "median_us": 43.0
+    },
+    {
+      "condition": "warm",
+      "projection_pass_selected": [
+        "down",
+        1,
+        8
+      ],
+      "medians_us": [
+        43.0,
+        42.0,
+        43.0
+      ],
+      "median_us": 43.0
+    },
+    {
+      "condition": "warm",
+      "projection_pass_selected": [
+        "down",
+        2,
+        8
+      ],
+      "medians_us": [
+        43.0,
+        42.0,
+        42.0
+      ],
+      "median_us": 42.0
+    },
+    {
+      "condition": "warm",
+      "projection_pass_selected": [
+        "gate",
+        0,
+        8
+      ],
+      "medians_us": [
+        35.0,
+        39.0,
+        59.0
+      ],
+      "median_us": 39.0
+    },
+    {
+      "condition": "warm",
+      "projection_pass_selected": [
+        "gate",
+        1,
+        8
+      ],
+      "medians_us": [
+        58.0,
+        35.0,
+        40.0
+      ],
+      "median_us": 40.0
+    },
+    {
+      "condition": "warm",
+      "projection_pass_selected": [
+        "gate",
+        2,
+        8
+      ],
+      "medians_us": [
+        43.0,
+        59.0,
+        38.5
+      ],
+      "median_us": 43.0
+    },
+    {
+      "condition": "warm",
+      "projection_pass_selected": [
+        "up",
+        0,
+        8
+      ],
+      "medians_us": [
+        59.0,
+        58.0,
+        35.0
+      ],
+      "median_us": 58.0
+    },
+    {
+      "condition": "warm",
+      "projection_pass_selected": [
+        "up",
+        1,
+        8
+      ],
+      "medians_us": [
+        45.0,
+        46.0,
+        36.0
+      ],
+      "median_us": 45.0
+    },
+    {
+      "condition": "warm",
+      "projection_pass_selected": [
+        "up",
+        2,
+        8
+      ],
+      "medians_us": [
+        35.0,
+        45.0,
+        37.0
+      ],
+      "median_us": 37.0
+    }
+  ],
+  "limits": "Isolated CPU weight-cache miss+projection/sync component; actual capturedQ8_K work bypasses F32input quantization; excludes routing/activation transfers/allocator/cache admission. Does not validate complete hybrid fallback, quality or end-to-end speed. Empty sync-only control and microsecond resolution retained"
+}

@@ -1,0 +1,100 @@
+{
+  "utc": "2026-10-09T20:26:42.565406+00:00",
+  "model": {
+    "path": "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+    "bytes": 21713462848,
+    "sha256": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f"
+  },
+  "candidate_commit": "2e08b57e9997358109a993c845ce6b39eeb266fa",
+  "helper_source_sha256": "d71a81d1616852d7a0511fc83014814d6900d0188212ac0e9e1fe88ded2d8e00",
+  "variants": {
+    "R65-B1": "7fe450e19305b828c199d602c23a8337aaa1f03b unmodified B1 engine,existing frozen helper",
+    "R65-B4": "79e2e74eb11022c1ba2e438df7f0ca2d4c10f8b6 full unmodified upstream0.6.0-dev;canonical helper recompiled against candidate ABI"
+  },
+  "artifacts": {
+    "frozen/R65-B1/libggml-base.so.0.25.1": "ed4b8f3d3ae59dfba891b43364fd7d5c4d297507fc483b4be8c95ccdde046084",
+    "frozen/R65-B1/libggml-cpu.so.0.25.1": "f4709ae474d658855aba3c9bb90c17a603b44943fa1793e433a46ee96e3d4226",
+    "frozen/R65-B1/libggml-vulkan.so.0.25.1": "a1d5ad88a266cb28f496da11726bee09d8021c1ff23e4d4cd9c9b1d06e61efd7",
+    "frozen/R65-B1/libggml.so.0.25.1": "8e8669c77ec573dd61fc2ab7f5d3d2ece7a2db9edacb354b300232ce7512b443",
+    "frozen/R65-B1/libllama.so.0.5.0": "61f97ce7a813603834536ce55d887c2cc749d107fe4233903b5462bf80478922",
+    "frozen/R65-B1/libllama-common.so.0.5.0": "57810254aec09155e20703ddda407c0ef48b415612ad65411ff35e9d246df077",
+    "frozen/R65-B1/replay": "269b830ac97325df9d63ccc90b14040457a8965d72163756b2783de4f185f376",
+    "frozen/R65-B4/libggml-base.so.0.26.0": "a57d8a09184bf2a370d55473b01e9777c18f7dd523eaaa68d2ef607733c0dbd1",
+    "frozen/R65-B4/libggml-cpu.so.0.26.0": "fd34ad7f4466398c8db87c66d5c44dfc4298a0c48661d6ed8a37c651f1ba1bc8",
+    "frozen/R65-B4/libggml-vulkan.so.0.26.0": "64545abea5b31d38d3d2c293fec2c8283aabbe4d7dc998ff135338260fd46287",
+    "frozen/R65-B4/libggml.so.0.26.0": "0bb60cdc6cd6385c222cce32a654e83571775e9472f18fd1e7f67ee4c104290e",
+    "frozen/R65-B4/libllama.so.0.6.0": "2fd3fce93529d94592df8214eba8b409263928a200c41aa417eae6349a77f0c5",
+    "frozen/R65-B4/libllama-common.so.0.6.0": "7c77d33e2b1893fe08986d87043655bbbb1ecf0923f32bc1058f58673b21073e",
+    "frozen/R65-B4/replay": "a52a54e3f5f603d9678934aeb4738d58286a9a8d213e5a4bbde7dcaa521df69f"
+  },
+  "inputs": {
+    "heldout-planning": {
+      "path": "r65-inputs/heldout-planning.csv",
+      "sha256": "0a2103503817bb5ed69c001475fb33a7ba7f13697af0b95be72043c71e73d885",
+      "PP": 119,
+      "TG": 64,
+      "context": 1024,
+      "batch": 512,
+      "timing_allowed": true,
+      "selection": "Previously inspected R61/R63 replay; no fresh heldout/general quality qualification"
+    },
+    "short": {
+      "path": "r65-inputs/short.csv",
+      "sha256": "711949862bf3674e00add770c2add1b3fac53d0f3695ee28769ca8a082c7052d",
+      "PP": 512,
+      "TG": 200,
+      "context": 1024,
+      "batch": 512,
+      "timing_allowed": true,
+      "selection": "Previously inspected R61/R63 replay; no fresh heldout/general quality qualification"
+    },
+    "long-code": {
+      "path": "r65-inputs/long-code.csv",
+      "sha256": "d0987c55cd43c5cbb66946cc4298a4916910f63426574530c428274277cfa6f2",
+      "PP": 3174,
+      "TG": 64,
+      "context": 8192,
+      "batch": 2048,
+      "timing_allowed": false,
+      "source_response": "r62-native/gpu-legacy-1/responses.jsonl",
+      "source_case": "code_trace-000",
+      "selection": "Diagnostic follow-up of prior code/retrieval repeat anomalies; fixed IDs from original benign R62GPUlegacy1. Forced final EOG,if present,is still decoded by replay; not native answer quality."
+    },
+    "long-retrieval": {
+      "path": "r65-inputs/long-retrieval.csv",
+      "sha256": "94bce4eda5f44a128b458f1b2dadfec6b58f0ec0f84fb1e998ac61914bdbb481",
+      "PP": 3294,
+      "TG": 34,
+      "context": 8192,
+      "batch": 2048,
+      "timing_allowed": false,
+      "source_response": "r62-native/gpu-legacy-1/responses.jsonl",
+      "source_case": "retrieval-000",
+      "selection": "Diagnostic follow-up of prior code/retrieval repeat anomalies; fixed IDs from original benign R62GPUlegacy1. Forced final EOG,if present,is still decoded by replay; not native answer quality."
+    }
+  },
+  "protocol_sha256": "fca544859bf4e930a8caccf88a2e73da7fdf4a067f1fb143b905112835346751",
+  "source_freeze_sha256": "6ceabad808428775304a020ab77b3f08c82241b34ee7ec5702ebf766c0dafe39",
+  "sources": {
+    "r65-build.py": "c044ff24fed1f4a9f4d286460253f00f276b6e4d641e89d952a86b1d161171a2",
+    "r65_common.py": "661de64be90761820fd85a3405aa2a07a19b4362ac5e0d1b1f5fdca355c72416",
+    "r65-model-gates.py": "b0d02f2d83f582c213ce52def8c8a86bc78bf43eb2d7163472aecf956dbd1613",
+    "r65-raw-audit.py": "108fb7b7898e5bdfd4242b0c12a84f64187acfafe55ee82a19b96ead5f2b083d",
+    "r65-timing.py": "f040717fcd91cda3c5af00ede7937d7f98d5cb46e1ea46cecc1d206dac0f7d12",
+    "r65-analysis.py": "b29561b3320c75244f6d523e120b57b3ae3649c5370bbc0814a9fcfdafbdb95e",
+    "qualification-r65.py": "30a6ee82cd26dfbba3f86e4afbdb40777826e15b0e5591eedc89370c2a85d297",
+    "r65-source/moe-replay.cpp": "d71a81d1616852d7a0511fc83014814d6900d0188212ac0e9e1fe88ded2d8e00",
+    "r65-source/phase-profile.h": "e8d3694ef7ad1ccaa1b338baa0a4823e00de92c428e899304c48ab0586d5129d",
+    "r65-protocol.json": "fca544859bf4e930a8caccf88a2e73da7fdf4a067f1fb143b905112835346751",
+    "guarded_runner.py": "e4ba7190a57608f5efe11978a120d3c2360f06778f1ffdc35b95c7beb66d5c95",
+    "r65-timing-audit.py": "d68d270bdf486411695123cf1d889833902c1dc5f665e1436a2337da7311be47",
+    "r65-build-v2.py": "310bbadaea95c84708bb5e6466cbc3aff163973b415239ae140e8eef23b348bc",
+    "qualification-r65-v2.py": "0df4699b533258e3b11d783037f4a4aac8e71025f12a5a14703c17191df70cb5"
+  },
+  "build_cache_sha256": "6af35698d439ddb71f042397d8eabd688ae3fdda882273056656b279174790c5",
+  "compile_commands_sha256": "e8d2720641ec1a2264b87266dfe12bf101103e0de80ddbcf8e9bbfc0afee2dd9",
+  "compiler": "g++ (GCC) 16.2.1 20260810\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "relevant_build_environment": {},
+  "upstream_source_clean": true,
+  "build_commands": "r65-build-v2-commands.json"
+}

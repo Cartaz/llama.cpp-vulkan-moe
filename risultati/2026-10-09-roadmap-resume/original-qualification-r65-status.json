@@ -1,0 +1,16 @@
+{
+  "utc": "2026-10-09T20:21:07.970919+00:00",
+  "status": "DEPENDENT_GATE_CLOSED",
+  "protocol": "r65-protocol.json",
+  "stages": [
+    {
+      "name": "r65-build",
+      "exit": 1,
+      "wall_s": 14.001202049999847
+    }
+  ],
+  "single_model_process": true,
+  "build_jobs": 2,
+  "updated_utc": "2026-10-09T20:21:21.972508+00:00",
+  "phase": "preserved_failure"
+}

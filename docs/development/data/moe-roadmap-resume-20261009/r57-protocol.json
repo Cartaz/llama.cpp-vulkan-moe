@@ -1,0 +1,17 @@
+{
+  "id": "R57-full-model-pool-synchronization-validation",
+  "registered_utc": "2026-10-09T08:07:10.749495+00:00",
+  "trigger": "R55cache ON and OFF each have one within-process prefill raw failure; R55validation only covered B1, not pool",
+  "engine_workload": "Identical R55frozen WORK engine, L17pool128,10000PP+200TG,c12288,b/ub512,Q8KV,mmap,fitOFF,t8/tb8; clocks unchanged",
+  "conditions": [
+    "asyncON",
+    "asyncOFF"
+  ],
+  "repetitions": 3,
+  "warmup": 1,
+  "reference_sha256": "272f9fc0107a777dbc834bda7888bd6b1a4098645e590454bb264bfa32f5da6e",
+  "validation": "Existing Khronos layer and validate_sync=1. Log_filename explicit separate file to avoid CSV contamination; duplicate-message suppression unchanged and error counts are lower bounds. Also inspect both stdout/stderr; prove actual loaded layer",
+  "gate": "Full raw finite/nonzero and byte exact across all3reps and predetermined chronologicalR43 B1reference, plus no reported validation errors",
+  "resources": "Serial GPU model processes,24Gmemory/2Gswap,6GavailableRAMreserve,600s deadline perprocess; run after CPUcost timing completed",
+  "limits": "Validation alters execution timing and does not establish absence of every shader/host hazard. Passing validated repeats do not erase failed unvalidated controls or permit performance ranking/default promotion."
+}

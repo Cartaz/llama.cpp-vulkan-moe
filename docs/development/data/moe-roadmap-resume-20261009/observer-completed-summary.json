@@ -1,0 +1,2004 @@
+{
+  "gate": "PASS",
+  "model_processes": 6,
+  "cases": 108,
+  "raw_vectors": 13362,
+  "batches": {
+    "train-0-after-up": {
+      "gate": "PASS",
+      "cases": 18,
+      "raw_vectors": 2231,
+      "geometry": "40x8 complete",
+      "observer_neutrality": "full autonomous raw B1 parity"
+    },
+    "train-1-after-up": {
+      "gate": "PASS",
+      "cases": 18,
+      "raw_vectors": 2322,
+      "geometry": "40x8 complete",
+      "observer_neutrality": "full autonomous raw B1 parity"
+    },
+    "train-2-after-up": {
+      "gate": "PASS",
+      "cases": 18,
+      "raw_vectors": 2255,
+      "geometry": "40x8 complete",
+      "observer_neutrality": "full autonomous raw B1 parity"
+    },
+    "heldout-0-after-up": {
+      "gate": "PASS",
+      "cases": 18,
+      "raw_vectors": 2186,
+      "geometry": "40x8 complete",
+      "observer_neutrality": "full autonomous raw B1 parity"
+    },
+    "heldout-1-after-up": {
+      "gate": "PASS",
+      "cases": 18,
+      "raw_vectors": 2111,
+      "geometry": "40x8 complete",
+      "observer_neutrality": "full autonomous raw B1 parity"
+    },
+    "heldout-2-after-up": {
+      "gate": "PASS",
+      "cases": 18,
+      "raw_vectors": 2257,
+      "geometry": "40x8 complete",
+      "observer_neutrality": "full autonomous raw B1 parity"
+    }
+  },
+  "routing_and_analyses": {
+    "gate": "PASS",
+    "cases": {
+      "heldout-arithmetic-3-seed47": {
+        "observer_routes_sha256": "24d2337946553c572c87f012c5d1a11d905dad9809f8e29ab668ca97ff1145ed",
+        "native_callback_free_sha256": "b521a9131142f8c9e09393ac942c86d42785a1b7ff0022a6a87583d74e8bcc2a",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-planning-3-seed47": {
+        "observer_routes_sha256": "e11a58190eddebe2bc31e7fca38c0632bb118e0717dd42c3ec61bcbf98627beb",
+        "native_callback_free_sha256": "19ec45868edbc29f5bdab997240488a30828d58789c7e7e34456ab30abf9a944",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-arithmetic-2-seed47": {
+        "observer_routes_sha256": "6a4a3a2b737b1fcd1de47529b0aa3653c672888afcbd2075d29328bf512cd8ac",
+        "native_callback_free_sha256": "3a19833db536909a2d91dbec004a4c9e131762ce8934fcf9a3e2f05f909df18f",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-italian-2-seed11": {
+        "observer_routes_sha256": "13288a074558b05d28b90582a4a4a2ff2f73973ce0871840d39d2bd87a39b408",
+        "native_callback_free_sha256": "6cc469663f3c58fb27c7cc5b11e70c038df882be3647780674dfa16c30b4e680",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-planning-1-seed11": {
+        "observer_routes_sha256": "544272db787e7f1ebc9cb08f55e5376b15faf42a658170ad4b815124094c3665",
+        "native_callback_free_sha256": "0381428f070b3e4280983a398c2f54f89819faa9dc3044af8c4e41644c22906e",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-code-1-seed11": {
+        "observer_routes_sha256": "befec83ab1393ec442b277375231313bbb9b1f1141ecf98cc288e0a92eede77f",
+        "native_callback_free_sha256": "f46823e8bca49fe16abfb9339c4b8cc2b59213ee617b256021971cbf4f8a9552",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-structured-1-seed11": {
+        "observer_routes_sha256": "ea04d62e423c80a5bc347c2248493a39cb867d4f2e1bec9ac4048f1cf09b61df",
+        "native_callback_free_sha256": "baa15babb052ff3295e1134365ba53d0975e1d038921d73b07ebf10a80bd5551",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-planning-3-seed11": {
+        "observer_routes_sha256": "06d3e15dd7a61bed3a383512a4fe0a45fe3c17dc6d54a20e4217339df10a9960",
+        "native_callback_free_sha256": "43ee48acd6c47b84ebb444a03cd63d615a13f7ee376eb13c36db7f2052aae94c",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-italian-2-seed47": {
+        "observer_routes_sha256": "f15505320cafe653890236aefdabf7590e23600e7284bd70ed74cc7846c62f26",
+        "native_callback_free_sha256": "c614e1ae69252c633e27568e295219ac0cb4a5155f339df9e1bda8d289e7aade",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-structured-2-seed11": {
+        "observer_routes_sha256": "6041d81e1386a3e647e7bb4ddc53dbe664360992c0c0938be792935f6e4c8438",
+        "native_callback_free_sha256": "5198cec6a549b6c83c9d53398d5caad7b3c71b2686f6284701cd1413ae47bcb0",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-arithmetic-3-seed29": {
+        "observer_routes_sha256": "4464ee6cf1ae95e37d432f552db470d9c862b8c756a39a27f5518e885de911a5",
+        "native_callback_free_sha256": "0ec12b0aafd0b8e2c8fabc9851adad0180e4781c9718681ebf8b052a0b58a892",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-code-3-seed29": {
+        "observer_routes_sha256": "c99ec2a5aaf3ae119aa03887852aa72fdde92d8365a7676c724049d4b2d69d4b",
+        "native_callback_free_sha256": "01a3cdd4d1063bbb02fb87ef962e738767832ce94524e83c39a9899122c5e95d",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-italian-1-seed11": {
+        "observer_routes_sha256": "f6e14ed260b1a109050e9d7c52b301351a2f765202512f4e84b8bf10ae74c337",
+        "native_callback_free_sha256": "45d21c4007cf0cf0b71c2293fafe497503a0c149b3de4f4dda02daf1f4d50acc",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-structured-1-seed47": {
+        "observer_routes_sha256": "88c701014cbc3658777955493fd27d00a4f1a9a2a36ffdb63e71c94b2348c16f",
+        "native_callback_free_sha256": "c351523e446aef6114f545c44a22a35ba8d9369f61797a900005b919328ccde5",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-italian-3-seed47": {
+        "observer_routes_sha256": "9fba7c2260c7908db0be9a2456f40a147c33126f683fa9fe2aff880f1048fd2d",
+        "native_callback_free_sha256": "d800ce8b7fe480b76ef92db906c5af37fd6acc31fd718860f229396c25280cff",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-code-2-seed11": {
+        "observer_routes_sha256": "483f4b87d8699b51662006a92ac5c712018bd2d791cba0eafa07cff4c4356074",
+        "native_callback_free_sha256": "675665affb6b653219eababd0baffe41592ea79c6ca1b6e3d488d68f084b7f2e",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-arithmetic-2-seed11": {
+        "observer_routes_sha256": "92dd080f410304e631cb2c3046ecef0dc86ac312c8f694043b84811784bb06bd",
+        "native_callback_free_sha256": "e6e23984f22735493e4051e941cc82a9c2688197284d1297fffc1144fdc228fe",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-structured-2-seed29": {
+        "observer_routes_sha256": "6041d81e1386a3e647e7bb4ddc53dbe664360992c0c0938be792935f6e4c8438",
+        "native_callback_free_sha256": "5198cec6a549b6c83c9d53398d5caad7b3c71b2686f6284701cd1413ae47bcb0",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-retrieval-1-seed47": {
+        "observer_routes_sha256": "ff74ea4eb107d350db3d5523331d0884e552cc2582e283ec79782bee65be911d",
+        "native_callback_free_sha256": "fd4d7c85960558eede185cea5fccf2227973b40ffe53f7957d31bcb11803c319",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-structured-3-seed29": {
+        "observer_routes_sha256": "b268997eadd8c3c02e0d59654d8efc782a9cab5111eb9158b8968184152e42df",
+        "native_callback_free_sha256": "a009d8adeadfcb884e237d7ac60e7b5b4ef21d01cfb5b21adda5605b131a37f4",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-structured-3-seed47": {
+        "observer_routes_sha256": "b23c645efcc7edc6f8b0a2614db59deb1cae7070bfe5e45441808bebe6f5022d",
+        "native_callback_free_sha256": "ae82a292c666f934d212ed854e548729cadd89696a902f1f838e7af5dc3e1b41",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-planning-2-seed29": {
+        "observer_routes_sha256": "a98804413d379033832bd4594f061172e3f954e3761fabec8b246e6193a1c4ca",
+        "native_callback_free_sha256": "da46b512107d102a3fbc0c1dd39d6523021ea116d04f832dd903729c4a4cd78b",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-italian-3-seed29": {
+        "observer_routes_sha256": "0635d40a09db66d3b519ead7090bfa16306551dfed87163400447b310b52819c",
+        "native_callback_free_sha256": "306367bcd8a3476227decd62d0b92c1cf9f1fd3115867d824a638ab66c4e8fbf",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-arithmetic-1-seed11": {
+        "observer_routes_sha256": "8f7cc37b4e18c55831d6ba6946049d890b97defc10f5346c2fa0b3b26eea5ca5",
+        "native_callback_free_sha256": "f29cbc2372178bfb85f56b2a98f491fa005d8d784b62636b151c680820e8c892",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-code-3-seed47": {
+        "observer_routes_sha256": "7818825f05525ced35990337f48821eb545f110ab12124f1417f94fc66c21e4c",
+        "native_callback_free_sha256": "d4f7a423f153a40e834fc05ac1ff420537620960c8bab990ab3d8e32b10eb78c",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-retrieval-2-seed29": {
+        "observer_routes_sha256": "f03774144d342dc17354107f5b3e0306cfbec10395299bd59388c5eb5b7c2d5b",
+        "native_callback_free_sha256": "58924df5ebb39e00fa6f0c1b692448f524a70e07574674ba1000b61c0f6fe3e0",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-planning-2-seed47": {
+        "observer_routes_sha256": "3e3631901850bf2dd57c7930212ad9b4a869a469cd189fab52e8d18496a5f53f",
+        "native_callback_free_sha256": "aad6dd2fcfcf153ff6166560044251670aa2aa131bed38c72b26da565bb78e1d",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-arithmetic-1-seed47": {
+        "observer_routes_sha256": "f89a3b6c36c884f91caecdd72552766cbf2180ee51f695ad993db6a136b98e9a",
+        "native_callback_free_sha256": "e4b0914c876dcb10a5de708eddaed31022966ca2216371b5e797bc765e4eac20",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-planning-2-seed11": {
+        "observer_routes_sha256": "28efc193a4646ce9f124abdef1a45e3437a4a408ffde8d96f55911babfcfabe7",
+        "native_callback_free_sha256": "5731319e0cdb734cd13000b8d827b3e84d262fbe915990662b757d9a0a32fa1c",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-italian-1-seed29": {
+        "observer_routes_sha256": "d9245a7435b88d222edfaccb958fb210332ac8890f3583ff16888055bea7c82b",
+        "native_callback_free_sha256": "b230f7685f5acd688615e5b361317298a74023e1c19c862f86745a2b8f722201",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-structured-2-seed47": {
+        "observer_routes_sha256": "c0f57d6334913c1d35564104807d0052491412e3d606af4bf2e8fd1698308850",
+        "native_callback_free_sha256": "929823999dc15537f3a578ae180112b9d50f977d3ce2bd10fa48ddd185842df9",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-planning-3-seed29": {
+        "observer_routes_sha256": "c5c563aab307bffe7dea18e1937348e5570fc8de922abd043b6b0f53665bdf43",
+        "native_callback_free_sha256": "4c6e247c489f8ceb3374d83619957b9b1aff4acfbafbea4563f5e48db9b5edb4",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-retrieval-3-seed29": {
+        "observer_routes_sha256": "bdf4d950371e6620f22cdb4522b2cdae5a10181f83f997391df91ffe0a0337cf",
+        "native_callback_free_sha256": "9134f387f0d9c460ea0b1ccabd8e15fcda30473f1df9eb5f2ef2a5178f1412e4",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-code-1-seed29": {
+        "observer_routes_sha256": "a19dc8225fee8e0810918ae2827d8851c800ed3dc531a4a056a2e2614ab831b3",
+        "native_callback_free_sha256": "77e25b83813a58d174a4d204ab8e6bb06ce7c9a33131bf5dee179d42c748c1bd",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-italian-1-seed47": {
+        "observer_routes_sha256": "16ca8f8a693184d9e20767ddfc216084e24d4cd2fb8ce5d895e215e1fb4b53d3",
+        "native_callback_free_sha256": "b31ac0051c7064346109e557c789d651bae2f1119dc9bb8668ef06028b1e968f",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-arithmetic-1-seed29": {
+        "observer_routes_sha256": "8e428e8dd24c6bf7843a803844b5ef7a8467db9b7cd26a41322e796b7b268bb7",
+        "native_callback_free_sha256": "26508ec20a32471c3dd802b8bb74a76a8e22255f59caca9d130061d5632ec065",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-structured-1-seed29": {
+        "observer_routes_sha256": "d8c7d074592457cdb3cdc13fee0c4902b526c4e41cbf9dfc75280cc4c172718e",
+        "native_callback_free_sha256": "329d55610297212f8fc63b2adacb1de89bec1bb4e3b3df4c6b65af8793cfdd69",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-retrieval-3-seed47": {
+        "observer_routes_sha256": "f2488b28b7c62119a138ef2d1729793da2c9863d562fd77f436401b695515134",
+        "native_callback_free_sha256": "6327e0ed2571e43cf411d65ff6643e191f67dbf6f05b743e6b121111b52e438f",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-arithmetic-2-seed29": {
+        "observer_routes_sha256": "15fd26fdfcdc46bf3290602049fd01b0e28d47be27b6249fbb227e21d4d2b82d",
+        "native_callback_free_sha256": "c3a802c33e2052bdaa25652cb14e4faf36cefd85920c01a3d13190b41a8d095d",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-code-1-seed47": {
+        "observer_routes_sha256": "bc449a94a33c7129ae1e2695d14a07d36730a901794437d5f238481652c4042d",
+        "native_callback_free_sha256": "e565c1493b403deb8852f09ec0f34aa3e0084b7895fb0fffe1b8c20e31192bc9",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-retrieval-2-seed47": {
+        "observer_routes_sha256": "9033aaab80dd8c1b3a72438ab7fed2881263533fdedbdfd5b08311d7c98aa754",
+        "native_callback_free_sha256": "893afb642b56bdecf1f28b8b087e82b535cd66954202734e773f8a1bacc12296",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-italian-3-seed11": {
+        "observer_routes_sha256": "f099f5da304f7f57cac597351f6f059f045a83679d6f9ac2b6f1d5f2d32f79ee",
+        "native_callback_free_sha256": "74e3064207e54e9ea520901b9fdeee376f6f343c9009b089f01736e79ca3dada",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-planning-1-seed29": {
+        "observer_routes_sha256": "8f619dc9cd4261b664fd62134077d8d32374512109bf4ea624cbe73cc37f8a7b",
+        "native_callback_free_sha256": "f4eb0c373d22fdbd2bb5566feaaf6a9a941bfe983def044a0f1d3539e5891a5c",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-code-3-seed11": {
+        "observer_routes_sha256": "197b944c70f88e6bb43fd644709717ada4c73399bcd6b571c871997cc605e760",
+        "native_callback_free_sha256": "3ffc226285e2e643b38eb60ac866e6727b5a3aa50219ec70e014e76a19c9e087",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-structured-3-seed11": {
+        "observer_routes_sha256": "b268997eadd8c3c02e0d59654d8efc782a9cab5111eb9158b8968184152e42df",
+        "native_callback_free_sha256": "a009d8adeadfcb884e237d7ac60e7b5b4ef21d01cfb5b21adda5605b131a37f4",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-retrieval-3-seed11": {
+        "observer_routes_sha256": "a01d305e375d42d8a83cef1d3b1f1e7dbfb91688c25bf479edb22525b5b18065",
+        "native_callback_free_sha256": "967a9d11bd1d7bda99ece3d07b9260bb3e03eb48452b35f232bea16a76061365",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-retrieval-1-seed11": {
+        "observer_routes_sha256": "35233fc4e87a276b749f3e3ecc1db8b8d9ced69e372813a7d57e955da476af50",
+        "native_callback_free_sha256": "dd871be044bb0d35840fe40b8889d455d6c47923e26d725b460c7908f9369fa3",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-planning-1-seed47": {
+        "observer_routes_sha256": "ba0befbb802979f077e9db71c3313515934b0065f13f9a3ae773b7896cbfabbf",
+        "native_callback_free_sha256": "69d84e7210711ba7c053258722176a9c75575573b40eb8ec6dfc43610e43acc1",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-arithmetic-3-seed11": {
+        "observer_routes_sha256": "db75e270b6b99a92c5351005696e2dcfc13b851f532ad9074c340011f24a4a1a",
+        "native_callback_free_sha256": "2930482da139f24d7647a5c8d67d9ae916983b07bc339876680ca9ed83e7bff6",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-retrieval-2-seed11": {
+        "observer_routes_sha256": "9bd7f2588b252cb999cbda3343185879325acba25b40a8b9d14694dadeea8226",
+        "native_callback_free_sha256": "c1d536de377b399868c738bb453954c01f179a9459b8dbf63afd9e8b9f9999cb",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-code-2-seed29": {
+        "observer_routes_sha256": "7e4d42b76a47595614e46fb9355f3a8ab312677cef90a2d91b48a547a17797aa",
+        "native_callback_free_sha256": "b330171f33232d7753af2a7f4c74b0a3c4258368da5c06ec4fbd3f6bf3c72560",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-italian-2-seed29": {
+        "observer_routes_sha256": "cebe58e06bd403fdc812ae9f61533f7ff99dd1b3f3a8ede8d3904ac2d8f0538f",
+        "native_callback_free_sha256": "c7239259e6f4052c1e8f4ba8993c9302efc1fc8dca244fd8fafb9e1361fc1be8",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-code-2-seed47": {
+        "observer_routes_sha256": "809e7305db9ae74cf79bd32d75b5ca4da31a9993cac39f7e259bd7c1c31613f3",
+        "native_callback_free_sha256": "07da4965ad663cac8a9bea80b59b7359ac6a8e2d9c17c84fda57bddcc9807c94",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "heldout-retrieval-1-seed29": {
+        "observer_routes_sha256": "6d86e925863840577b838573a721ea9210eda32147224ae888d6c52db315cd44",
+        "native_callback_free_sha256": "a3f3a370a27faa6fa65a9ac85c9a2469946a4d17e40cbd602647bd06a90ae3ef",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-arithmetic-3-seed11": {
+        "observer_routes_sha256": "b54bf6ed7ebf2734440037f5500d84b5b5ddc1881de9ca803d279795c4b5bbf9",
+        "native_callback_free_sha256": "bd1c2232803f2bba5fb01cd7c417e90329e641d3e878e4def1024d065d576c03",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-code-3-seed29": {
+        "observer_routes_sha256": "503f55972a8ceb66112a7d079bd91384c586ad5ccfc95032c7b773a7396b2345",
+        "native_callback_free_sha256": "f60bfe8341ad2c3c314a1ebc4f8304cc925773477502dd1d50cf5cefdcc18f12",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-code-2-seed47": {
+        "observer_routes_sha256": "000a1c81a352f3f12f9c965106b212debd5684105bc32a05577e52f5e696a22b",
+        "native_callback_free_sha256": "2db3d39025bd71eac5cea18db98df9a9c59bed9d5efa86d266a0279840df12e1",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-italian-1-seed47": {
+        "observer_routes_sha256": "e00aac24f6f05f7d561e04e0847bc63dc470ebf38ab4b699d070712abb4ac4f1",
+        "native_callback_free_sha256": "3e8d6e2cdd492c36772390c49b8e6cb6ca2daa9c3b71e33b3cd675da6445f548",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-structured-1-seed29": {
+        "observer_routes_sha256": "6f37d19b64b943117d147ba91c105d31e61a0b3998c812a524c48c0de9a24c6a",
+        "native_callback_free_sha256": "63ca3228bd6c2d235bc88797402e155c73b431dc1213f12ed2902aba1002ae3d",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-arithmetic-2-seed47": {
+        "observer_routes_sha256": "a5ea8c00c074cbcd493949ed3e013bca0ed978088cf9689aa236f8b04a036ab9",
+        "native_callback_free_sha256": "49c03ab4ee555c9dc6bf203fa7172ae2489ae70a6f02bbbdd0ab49b4fa178523",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-code-1-seed11": {
+        "observer_routes_sha256": "ce35bfacaf7d1bf324a65f2f3b05ccd6b60ba4cef089bb1e13a07b736de77d30",
+        "native_callback_free_sha256": "e14bc76266299a086fb4dc87bbe2037216dc0568d9a07862273c885c3eea0aff",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-structured-1-seed11": {
+        "observer_routes_sha256": "d648b7b3d8581bb4e8fd026fe5267254904268f09177b6c8f3ea0c35eee78a0d",
+        "native_callback_free_sha256": "745c26448945c25f8a7806ffafb847ccfdf9a9f5d2110cb0f125e5ee466c0b7f",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-retrieval-3-seed29": {
+        "observer_routes_sha256": "a1b164f1d8f31bb23f4917a4b3ac34fea115ce5500fa4d42706af4b32988931f",
+        "native_callback_free_sha256": "7ef1ed9b315b80352e809c1529c337be9bf190f2e2c0980d71a791059a3128cb",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-structured-3-seed11": {
+        "observer_routes_sha256": "95485445a03f4eb7d0a81042881427c07471db9c7874419b11c4a129338684cb",
+        "native_callback_free_sha256": "47e0c86b396b1ffba97ff6f12226e31385851da32a762a72fb3316fbb05c99bb",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-planning-2-seed11": {
+        "observer_routes_sha256": "16859c14a18413db67b95ad8261a9675a91e4db79210b04d97bf6ab000e70b03",
+        "native_callback_free_sha256": "5ae468ff1fc8b4b25096b97d4a05ba094e63cb2204869413185025e9fe999041",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-arithmetic-1-seed29": {
+        "observer_routes_sha256": "8a9d36961d160811929b334852946b000f1c6dcd4e699289adb5f28c01bff91c",
+        "native_callback_free_sha256": "816b2a8de6726c8df3a40825c5bdeae393f2ecdb0293aeb33cb145f059a81066",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-code-1-seed29": {
+        "observer_routes_sha256": "95d334641c1c0df2487046c51103f67a36ab92146f92d37c23afdc149dfb100a",
+        "native_callback_free_sha256": "8c5ff91a98dcbd207edb91dc35d2fb6a4eb12ab2f06288e03d26981273d588d3",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-retrieval-3-seed11": {
+        "observer_routes_sha256": "c859d778c3bb509597e3eecb696ec0d7976cf7f459376c08f91d9230ddcfe1d3",
+        "native_callback_free_sha256": "54c8c01dbf4ecbac26f52891ee6b6a2e7026703eb9c6b7b79f5c900ee00dfa29",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-structured-2-seed11": {
+        "observer_routes_sha256": "987367eebf11a1b16788bb533d74b2b39ff7a2ff1b946ee844492795de7f04b9",
+        "native_callback_free_sha256": "3311dd44884ef26a67673242d6beebb8393b519ee5e1202c5b2b63b6c3440145",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-italian-2-seed47": {
+        "observer_routes_sha256": "2a712d0472e5047549ddd203a32f3f2ea66e3b8eef3a9328773eae595a09eb6d",
+        "native_callback_free_sha256": "082b1548262f8261e3079fc757c8747f342c80c9f870c47a2924d0c3afaa1460",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-structured-2-seed47": {
+        "observer_routes_sha256": "987367eebf11a1b16788bb533d74b2b39ff7a2ff1b946ee844492795de7f04b9",
+        "native_callback_free_sha256": "3311dd44884ef26a67673242d6beebb8393b519ee5e1202c5b2b63b6c3440145",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-planning-2-seed29": {
+        "observer_routes_sha256": "be18701f3a196af2279ede59266d58f830e55d7e0e63c671c40c615c090fc4af",
+        "native_callback_free_sha256": "757de7fb6e095449907983dcb7c05b30c351a7e770dedac550560f9dcbf1ded8",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-code-1-seed47": {
+        "observer_routes_sha256": "734a9ca5b76e2973f4ed6682ccfa3ea64aadad6c5f4514371af6f43a91966c90",
+        "native_callback_free_sha256": "960368d141db437d140345ece0695e42a09c4f4605898a9f6e74730a3bf563a9",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-retrieval-1-seed29": {
+        "observer_routes_sha256": "d83e088e541027de3638d3ff04cba0d483274aebbe51b7dba3fb64295bb6d502",
+        "native_callback_free_sha256": "bec37645a56e6594a4a4daf759b0be52986385a9398a009a811d93cabd4c1958",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-italian-1-seed29": {
+        "observer_routes_sha256": "9cdda2c24e0d00b33a37d8ba8b6ca0a10706b12cb2e692bc26d2f26cec74e5df",
+        "native_callback_free_sha256": "8e604e104e0d8022eb926f91f905cc69f7aad00b9f84e5e451e2e7130468e813",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-planning-1-seed29": {
+        "observer_routes_sha256": "8faa59139174070704765003ea4cb7a32236102dcab37149c0ca7e56137866d2",
+        "native_callback_free_sha256": "320de3e949d11be6940e39f3214730851a59c0118c64e4387baf640cc3ddb231",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-italian-2-seed29": {
+        "observer_routes_sha256": "ba9592278a25ba2c95e9a501dfdf122dce6042e0880d24745529f3fe09a2f708",
+        "native_callback_free_sha256": "df77e661bd40e8c9a8a0cee86b883a11b0eaae910d128ffeb4d71f4936f53bbc",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-italian-3-seed29": {
+        "observer_routes_sha256": "4e7e8279526d0946d039780f9ef6d725c3aa9276e75bb016666e0813fa065513",
+        "native_callback_free_sha256": "5387f11b716ecdab86e75ec46f0182472782d9526e8a7a80e9d0f86665f11d8c",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-italian-3-seed47": {
+        "observer_routes_sha256": "19546320b139e2d1200aaa28805130927582a5483b31d745b4876fff778e5932",
+        "native_callback_free_sha256": "16f05b177a0b797f903fa6bcbc8c318a369a2386315d75528cbcb09cd1d7b9ef",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-retrieval-3-seed47": {
+        "observer_routes_sha256": "f7c4cbfcf0ea7bf59224c195ae5ea3ac1cc68c1a0aa419d348b89dee37cdc5a0",
+        "native_callback_free_sha256": "756870418bdaf8a414b789f6b98144aec8f2a8620395883ffeeff6e21e72b5ed",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-arithmetic-1-seed47": {
+        "observer_routes_sha256": "bc1dd96b75cd710284f11269436f29dfc6377ccceb31389954b756cbbcf4d975",
+        "native_callback_free_sha256": "6018742ee8e8be051763e08d36a5daee8745c62cf9bac1185bead2b3509c3448",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-planning-2-seed47": {
+        "observer_routes_sha256": "cef7d1ee140688615c859c35879a745c9c69f19ddcbee120e7bcfa953ff4fd27",
+        "native_callback_free_sha256": "7fdda52a6070ec1378f2c17af1a37acab894bef93af24de8cfc0f816fc293685",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-code-2-seed29": {
+        "observer_routes_sha256": "5369eeaab8c6c14524ea1dde40f6b695db6a9bef162b2185502da929dd032767",
+        "native_callback_free_sha256": "017eeac994deee080c1132334234f0c84f7a7a73bb3e697d279b4295fbef9f51",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-arithmetic-3-seed47": {
+        "observer_routes_sha256": "3687ff69f36359ad5dbae6f0f5e1171b966edc153004e9b2bfd7e830e923cb2e",
+        "native_callback_free_sha256": "be9e00eefdf5cfd2242d102c531d80b3a2ac363c0f94cd53148245b46b2cee6a",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-code-2-seed11": {
+        "observer_routes_sha256": "d44f2d112e340ddf598880ea28a5480cd25fe6c50da65947312fec2c48d00ae3",
+        "native_callback_free_sha256": "de4f9b146d7ee62758e685987921cb54e108b168692a0339442659c05c5bbb64",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-code-3-seed11": {
+        "observer_routes_sha256": "4008900c501bdbe3a66bc3d700ccbae98f856b49dfd68edf3681eac14ddca62b",
+        "native_callback_free_sha256": "ed63b4339d16c7be19e20c30b7f593cd167c956f43a450996fabd057dbe272bd",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-retrieval-1-seed11": {
+        "observer_routes_sha256": "6a1e1236047cb0ad098089c9e8bfd9377c6cc9c5b53fb8c26fd16659c8a9e41f",
+        "native_callback_free_sha256": "5aae4130f20cfda8e8948c30fdf5321e662522317b2609ca5459f3a45b64aec7",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-code-3-seed47": {
+        "observer_routes_sha256": "648ce83ca1c1037076214eaaeaa25d6894de6cba100df73cb71f4fc9a3e3a6f3",
+        "native_callback_free_sha256": "fb81f40592f3237d16a8a459321322e9ea82d215c570eb53473a892ee25da074",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-retrieval-2-seed11": {
+        "observer_routes_sha256": "8e9ed593e5df30f95444c31da58186a001772d0c55bf12504649c90a89f488ca",
+        "native_callback_free_sha256": "f4a76b41f879040becfb09af4d947a325171d65ed326ef4d675347e1551a1bab",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-planning-1-seed47": {
+        "observer_routes_sha256": "1133281fa72f6993ffbd466378a778470c0fe0919ed6e130b9884407ef9bccc3",
+        "native_callback_free_sha256": "a46a9758eedc7af1658393774294f107c558ff7b6b9ade40e084b16c5304c19b",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-retrieval-2-seed47": {
+        "observer_routes_sha256": "c3bd2955c4a53cd20e6a6790b33dfd95df6913fca33c95b4e0e58fcae5b99f68",
+        "native_callback_free_sha256": "891b8ce03a437aee6133c60d4b61efc9df3b3b36cc366e77d548217c49453730",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-planning-3-seed47": {
+        "observer_routes_sha256": "096ad6ccde7736c89f3254a6191d31fe92b3ba56ebdadf91adebe429a2677779",
+        "native_callback_free_sha256": "ae9f11f660e0720dc526237a7a98bbca9209cb30ba8e24df4d61f01739ae505d",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-retrieval-1-seed47": {
+        "observer_routes_sha256": "64b4637219bbfb22fcf5674a343fc70710728134be33eac1e387ddbff9a03e49",
+        "native_callback_free_sha256": "c73e3e00b3e041f8ae9f738ec2ee3567ca3c3d94750bfd3c2faae4d8cbbc280f",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-planning-1-seed11": {
+        "observer_routes_sha256": "e7a34102a10562f4f6f3dc0b155d26bbfa8904ad9551a5ebd61e04eb27eb3c6d",
+        "native_callback_free_sha256": "cbd86b03ff9f4dee94cd19028b5e2f0bb376b0f8417f0ac68155b36b85e05ee0",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-italian-3-seed11": {
+        "observer_routes_sha256": "accf42ddfb55295b26c55dffe0dcbdb7e27b6593b4c5d9bccb3820410cab8a74",
+        "native_callback_free_sha256": "373d94da28de2f8e213125fc78da3d821719b06e50e52ecea940d84164ad1b7b",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-planning-3-seed11": {
+        "observer_routes_sha256": "e555a6f45a7965b5189468f8edf0b96d38e0c376859ae8249e83ad27505ab2d3",
+        "native_callback_free_sha256": "1ae39848a1afd99a6a98002d46eff761d328c0840ea2839133afb8b76f0c2df2",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-planning-3-seed29": {
+        "observer_routes_sha256": "b84dd250980bc4adb94bf80f90951a3319b71e53a868083063d33b84e56a2155",
+        "native_callback_free_sha256": "1cd422956c5683730f2085de5c075311c9c1cbf25b354b7e1165b47417656c1e",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-italian-1-seed11": {
+        "observer_routes_sha256": "53a31fb339980d418a327457d1b6e39ab852fdadb46a420d6e33f1396483186e",
+        "native_callback_free_sha256": "f91c5de41e1d2d4eebbec64ec626c06c36c3991f457b730f71daa5f416179596",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-structured-3-seed29": {
+        "observer_routes_sha256": "40323087b65e1a936f8bda971257573125cd05bcccbc285cd1f16a1fb44469cc",
+        "native_callback_free_sha256": "ca4b29211e7a3b9afc3b23a1ec65c4f1b24c3b192ea5d3859728fcefa9190d8e",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-arithmetic-2-seed11": {
+        "observer_routes_sha256": "7b2d67f5d0a8c88d6b4dc9f12f8fed4d7728e0ccb7006d141c4d77b4218f2f41",
+        "native_callback_free_sha256": "28609bd18301b505032ad7e9a6f95d5aa4f7f91d97a74e65f78df24660267918",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-italian-2-seed11": {
+        "observer_routes_sha256": "e4c787cc0bd5e1107ef1d295fb9f62d0cfa1ac7ff34364881039b006f2bf6e0c",
+        "native_callback_free_sha256": "39cc4f7d091d0a00a47191f973d4a9505dccdaeaf14c1ec2ba396475905fd770",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-structured-3-seed47": {
+        "observer_routes_sha256": "a2f0853412390a827c23d28d707b1797b4463b37f51a30ef0eec52437050bb7d",
+        "native_callback_free_sha256": "de8a94ad84c8d28ee53ea7598c8a7f53fb5486b5101b86dcc81390dcb427ebbf",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-structured-2-seed29": {
+        "observer_routes_sha256": "ea9f8db42b26974ec439810269f71750e2b56a1bc8bfbbd724aab53ce169abd8",
+        "native_callback_free_sha256": "f0f9fc996a73e3ac0fb8a887abbf5dc35b5c130382900862456aadf4f5c51e82",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-structured-1-seed47": {
+        "observer_routes_sha256": "b49d721185eb409a76b6200c70f44eaced5935eb187df2bd73e3fd3f6da643b0",
+        "native_callback_free_sha256": "b348b40319638d276ff0628cf1ce9e1f5c9b73504100d498a3d177c50d18a8b3",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-retrieval-2-seed29": {
+        "observer_routes_sha256": "fb09fe2046cfe989b975a442f98ebc10910700830cfe7fded0d70a38f2283d81",
+        "native_callback_free_sha256": "8b7977408bb52010d6b2647f53dd7f6fadac6a57a8e2a2c720831d579f8a5548",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-arithmetic-3-seed29": {
+        "observer_routes_sha256": "ebc3c3594b9fa88b9acad29f2cb132d4e614a5f77c2e0a0bb53b63d11f24c7cc",
+        "native_callback_free_sha256": "dcf6e2261d454e9ec190d16f0331844e0d67f4be5fc5b9bb11bc4ba3b0297dcc",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-arithmetic-2-seed29": {
+        "observer_routes_sha256": "97b1ca22d40f077945806c9e95725b50f00daacda2eff85448176b71c7403316",
+        "native_callback_free_sha256": "51c8939a42770d5aaeb655f71b416a9e476248e959741d18a7fc7514085c8197",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      },
+      "train-arithmetic-1-seed11": {
+        "observer_routes_sha256": "0c55b938b1d103c16fce0f56c0e9430fb993dd0d3a81e13591a13a114462e79d",
+        "native_callback_free_sha256": "27a283d5bbe77f3c3f3ea536dcdcc0829633da87de21de35c438cf39c72efb63",
+        "geometry": "40x8 fullraw gated",
+        "nativeCPU18_exact": true
+      }
+    },
+    "analyses": {
+      "heldout-arithmetic-3-seed47-prefill": {
+        "path": "observer-routing-analysis/heldout-arithmetic-3-seed47-prefill.json",
+        "sha256": "96f06ab9b11e4910e78a6b6a9d073d72dac259c57dfc8fbdec2163f156feecb6"
+      },
+      "heldout-arithmetic-3-seed47-decode": {
+        "path": "observer-routing-analysis/heldout-arithmetic-3-seed47-decode.json",
+        "sha256": "7a47f11f2e0abad9489ccd31b590c9df1bb9d48bd1ebbad57ba603637f0f2a34"
+      },
+      "heldout-arithmetic-3-seed47-all": {
+        "path": "observer-routing-analysis/heldout-arithmetic-3-seed47-all.json",
+        "sha256": "00c8806e099f1c5a841025dde56ad04178931510e2f6a23e1daa6f537ecefcf3"
+      },
+      "heldout-planning-3-seed47-prefill": {
+        "path": "observer-routing-analysis/heldout-planning-3-seed47-prefill.json",
+        "sha256": "39825492f0e12043dcca40be6b7cb2d2f04221854441e0b0f97da76f12591df0"
+      },
+      "heldout-planning-3-seed47-decode": {
+        "path": "observer-routing-analysis/heldout-planning-3-seed47-decode.json",
+        "sha256": "c63cae7c02c6571a4b2c3b1537c9b106e143d3f69c70e8af9034b17e9831facc"
+      },
+      "heldout-planning-3-seed47-all": {
+        "path": "observer-routing-analysis/heldout-planning-3-seed47-all.json",
+        "sha256": "f7a8538ebaf22ced4a7be4530d560fd1d99f48d85477e728de815e5a157b6154"
+      },
+      "heldout-arithmetic-2-seed47-prefill": {
+        "path": "observer-routing-analysis/heldout-arithmetic-2-seed47-prefill.json",
+        "sha256": "5f3e520bc1a8238060a238a2eed4ad4261a5ee9580a678fc88fbb9fa11756e1d"
+      },
+      "heldout-arithmetic-2-seed47-decode": {
+        "path": "observer-routing-analysis/heldout-arithmetic-2-seed47-decode.json",
+        "sha256": "2e290a9e417dca4d2818e25f3e337a68f4e2ffc287dd8aecf17771e40d689e85"
+      },
+      "heldout-arithmetic-2-seed47-all": {
+        "path": "observer-routing-analysis/heldout-arithmetic-2-seed47-all.json",
+        "sha256": "deb2e3d15b644baaaafce763c897c746bce4057c89750ff6bd94c7002bc77e49"
+      },
+      "heldout-italian-2-seed11-prefill": {
+        "path": "observer-routing-analysis/heldout-italian-2-seed11-prefill.json",
+        "sha256": "62ada25470b39e670d1146ceec430cfa1000574039467ac4443b790428ed6f57"
+      },
+      "heldout-italian-2-seed11-decode": {
+        "path": "observer-routing-analysis/heldout-italian-2-seed11-decode.json",
+        "sha256": "320a86b653601bc69d3df1cbdfc87d2c8313135d3f12e70a3620b34e1fad6e72"
+      },
+      "heldout-italian-2-seed11-all": {
+        "path": "observer-routing-analysis/heldout-italian-2-seed11-all.json",
+        "sha256": "ebfc9ce28889016bf81f9b590f186e0333fcbf70487c4fe4aebed1d2b6e1ea27"
+      },
+      "heldout-planning-1-seed11-prefill": {
+        "path": "observer-routing-analysis/heldout-planning-1-seed11-prefill.json",
+        "sha256": "b6c4d318b90028dc137be7cb3ef640505fac0a264e0c8c38447abcf57454403f"
+      },
+      "heldout-planning-1-seed11-decode": {
+        "path": "observer-routing-analysis/heldout-planning-1-seed11-decode.json",
+        "sha256": "efa3a92c57942423118b9211448a8c8f610f0607e5bc027a78b707d3e98209f3"
+      },
+      "heldout-planning-1-seed11-all": {
+        "path": "observer-routing-analysis/heldout-planning-1-seed11-all.json",
+        "sha256": "57421698c752ea69b68821da643f582883eb64bb9efacb1e4d3d59e0e81e87c7"
+      },
+      "heldout-code-1-seed11-prefill": {
+        "path": "observer-routing-analysis/heldout-code-1-seed11-prefill.json",
+        "sha256": "f6e5e95951bcfe6781e2093014fa1f86e0e093f7f88371eb1ed7c468840f2fe6"
+      },
+      "heldout-code-1-seed11-decode": {
+        "path": "observer-routing-analysis/heldout-code-1-seed11-decode.json",
+        "sha256": "f8cbc72ca5dbff671854b97e132a59f6345518d27167d281e3d4fca825aa77b1"
+      },
+      "heldout-code-1-seed11-all": {
+        "path": "observer-routing-analysis/heldout-code-1-seed11-all.json",
+        "sha256": "d988a84474daacf68a456852c3a45deef94f4dc66fac88f79669b18e6ac1668f"
+      },
+      "heldout-structured-1-seed11-prefill": {
+        "path": "observer-routing-analysis/heldout-structured-1-seed11-prefill.json",
+        "sha256": "d6ad8f683520fbb93696a059ab55007a7966e9bdf0f6b88fe08e84dc6f99e373"
+      },
+      "heldout-structured-1-seed11-decode": {
+        "path": "observer-routing-analysis/heldout-structured-1-seed11-decode.json",
+        "sha256": "55f5803651a59f2ac896bbf42706b06787dc80da8df8857f3b3cadbd9a68ab17"
+      },
+      "heldout-structured-1-seed11-all": {
+        "path": "observer-routing-analysis/heldout-structured-1-seed11-all.json",
+        "sha256": "eee47e9cf3658c9aa26fbcc14337fe7da51e228ff767bd62e3b0d2b115bee331"
+      },
+      "heldout-planning-3-seed11-prefill": {
+        "path": "observer-routing-analysis/heldout-planning-3-seed11-prefill.json",
+        "sha256": "a694cf0d8d0ad2c75c7179f448ebe1a3c01d3748a93a7e44f8c1982f268052e9"
+      },
+      "heldout-planning-3-seed11-decode": {
+        "path": "observer-routing-analysis/heldout-planning-3-seed11-decode.json",
+        "sha256": "43fba8f83a994cb9cb3b41caa3def1648009a1b983bfae3af09ce43ed67263a8"
+      },
+      "heldout-planning-3-seed11-all": {
+        "path": "observer-routing-analysis/heldout-planning-3-seed11-all.json",
+        "sha256": "cac2862df65776ac4575849965dd8f49caef879dcd1ef3f05a8e31ee3603f76a"
+      },
+      "heldout-italian-2-seed47-prefill": {
+        "path": "observer-routing-analysis/heldout-italian-2-seed47-prefill.json",
+        "sha256": "4da7f0bc63f0ae35a48c686a2b2a1bdc3387b33a21824971ca0ddfc365dda3ec"
+      },
+      "heldout-italian-2-seed47-decode": {
+        "path": "observer-routing-analysis/heldout-italian-2-seed47-decode.json",
+        "sha256": "d01cd41f7c1cd7110411a7913f4d45b4fab67e233bf1cb783b2c88e5e0f8a002"
+      },
+      "heldout-italian-2-seed47-all": {
+        "path": "observer-routing-analysis/heldout-italian-2-seed47-all.json",
+        "sha256": "6328f83c8f78cecb4fe5ac570c6533bf092cac52ddf38d16a6e603d810f6f520"
+      },
+      "heldout-structured-2-seed11-prefill": {
+        "path": "observer-routing-analysis/heldout-structured-2-seed11-prefill.json",
+        "sha256": "7dcc2cf0f7229b00be76b678f6632f686238bc173335b34289f0a52a20159ec8"
+      },
+      "heldout-structured-2-seed11-decode": {
+        "path": "observer-routing-analysis/heldout-structured-2-seed11-decode.json",
+        "sha256": "82f3d7758f19915ba81405b277ce040c9321e9277243a0ea4742ec13feea4b31"
+      },
+      "heldout-structured-2-seed11-all": {
+        "path": "observer-routing-analysis/heldout-structured-2-seed11-all.json",
+        "sha256": "290e7d59ba708767fc16cbd6da9bd4cc2fe528e5ad731698e164924dcc6e7749"
+      },
+      "heldout-arithmetic-3-seed29-prefill": {
+        "path": "observer-routing-analysis/heldout-arithmetic-3-seed29-prefill.json",
+        "sha256": "52f30de51a9b58063d88748b1c876d29ce50f1f56374bd94a702bc0cf2b9242d"
+      },
+      "heldout-arithmetic-3-seed29-decode": {
+        "path": "observer-routing-analysis/heldout-arithmetic-3-seed29-decode.json",
+        "sha256": "39b32a755f88f3ca149afe8b2035bd731cb0ab302484369523023a4865f9b52e"
+      },
+      "heldout-arithmetic-3-seed29-all": {
+        "path": "observer-routing-analysis/heldout-arithmetic-3-seed29-all.json",
+        "sha256": "08ac06a2e1952fe316d5ff8f0e8a3707f2e43c49b528e57eeb801eb86f44c7ac"
+      },
+      "heldout-code-3-seed29-prefill": {
+        "path": "observer-routing-analysis/heldout-code-3-seed29-prefill.json",
+        "sha256": "383960e55ff3329c838789cbbd62ebd4990205323e03ba354b67348c75fbe614"
+      },
+      "heldout-code-3-seed29-decode": {
+        "path": "observer-routing-analysis/heldout-code-3-seed29-decode.json",
+        "sha256": "edea33caf6ed9020bed02ed62e9603d94ab545cd9452c338f4e9c49beeb7f926"
+      },
+      "heldout-code-3-seed29-all": {
+        "path": "observer-routing-analysis/heldout-code-3-seed29-all.json",
+        "sha256": "c17e02d0823f75e702e2d0d90e944838979fe98cc9ead19deea192cc2d3a6d6f"
+      },
+      "heldout-italian-1-seed11-prefill": {
+        "path": "observer-routing-analysis/heldout-italian-1-seed11-prefill.json",
+        "sha256": "8f12934b4a1b6f979e644f892fb4dec42c8f9ba492ab0aa6f09fedbf937f4281"
+      },
+      "heldout-italian-1-seed11-decode": {
+        "path": "observer-routing-analysis/heldout-italian-1-seed11-decode.json",
+        "sha256": "906a387aa1122bdc11bc0b18023bce3a54ec6afbfc712f594427a6d2fee2430a"
+      },
+      "heldout-italian-1-seed11-all": {
+        "path": "observer-routing-analysis/heldout-italian-1-seed11-all.json",
+        "sha256": "4d751f155868d561560f75fa9e34e9ea32f87403187a84e7e32752f0ec00794c"
+      },
+      "heldout-structured-1-seed47-prefill": {
+        "path": "observer-routing-analysis/heldout-structured-1-seed47-prefill.json",
+        "sha256": "ff2be986e8078c3bf3d703db761fc2ac66bce07312d9e6e3fa522e90acdc7adc"
+      },
+      "heldout-structured-1-seed47-decode": {
+        "path": "observer-routing-analysis/heldout-structured-1-seed47-decode.json",
+        "sha256": "a1921f460d3e457c95822fee042ebc31c87679d219d3824582483a7839b8f5fb"
+      },
+      "heldout-structured-1-seed47-all": {
+        "path": "observer-routing-analysis/heldout-structured-1-seed47-all.json",
+        "sha256": "f373d36fb2d3a13b59e55618bd652f3edb6cbe33855feaaa817ce9e4696de669"
+      },
+      "heldout-italian-3-seed47-prefill": {
+        "path": "observer-routing-analysis/heldout-italian-3-seed47-prefill.json",
+        "sha256": "204e86323fa8c1b78d7e7f2836da9a57234bd3d5d13af17c44e1a6057d3fc29a"
+      },
+      "heldout-italian-3-seed47-decode": {
+        "path": "observer-routing-analysis/heldout-italian-3-seed47-decode.json",
+        "sha256": "6cb44eba55146e8a88ce1fb649bfca80d607c2dceba6ce8c75b4b76a5d00c8be"
+      },
+      "heldout-italian-3-seed47-all": {
+        "path": "observer-routing-analysis/heldout-italian-3-seed47-all.json",
+        "sha256": "87a13c77d0545c8496ad90dc5699056124b71416e8f4b010c7cfc51620216347"
+      },
+      "heldout-code-2-seed11-prefill": {
+        "path": "observer-routing-analysis/heldout-code-2-seed11-prefill.json",
+        "sha256": "fc607d7344b3efd5b0838b5f0acf9e7fca6130610d7a976895ac52885b1c05ef"
+      },
+      "heldout-code-2-seed11-decode": {
+        "path": "observer-routing-analysis/heldout-code-2-seed11-decode.json",
+        "sha256": "12be43e48afbaecd4266d33006c444ebccaf5b32b46a17f148067ad38706ad1a"
+      },
+      "heldout-code-2-seed11-all": {
+        "path": "observer-routing-analysis/heldout-code-2-seed11-all.json",
+        "sha256": "3e7affb41ff7b83e3160aece211cc08104dd863e8df53dd153d1bdc37b515be3"
+      },
+      "heldout-arithmetic-2-seed11-prefill": {
+        "path": "observer-routing-analysis/heldout-arithmetic-2-seed11-prefill.json",
+        "sha256": "fa2a950def41decc8007b936552b54afd18d9ef44449ccabfdbb8f1380927c67"
+      },
+      "heldout-arithmetic-2-seed11-decode": {
+        "path": "observer-routing-analysis/heldout-arithmetic-2-seed11-decode.json",
+        "sha256": "aa0a5b86b403c60c88cbd7e7e2b5975b13463cdcd60e0545d0cc8ef206c2dde9"
+      },
+      "heldout-arithmetic-2-seed11-all": {
+        "path": "observer-routing-analysis/heldout-arithmetic-2-seed11-all.json",
+        "sha256": "23a0184bb945390d7259f9ac39ddccca5b03370340af9d42be0b342b67e8cb05"
+      },
+      "heldout-structured-2-seed29-prefill": {
+        "path": "observer-routing-analysis/heldout-structured-2-seed29-prefill.json",
+        "sha256": "6e305e623b0d74e615c7d5f6880b5491a4238578bbb89e0c5ff2d9244a105835"
+      },
+      "heldout-structured-2-seed29-decode": {
+        "path": "observer-routing-analysis/heldout-structured-2-seed29-decode.json",
+        "sha256": "931f1a304aabaf2536ec681479571be6e509971f4674345920b68e3930c2862e"
+      },
+      "heldout-structured-2-seed29-all": {
+        "path": "observer-routing-analysis/heldout-structured-2-seed29-all.json",
+        "sha256": "78bf3529fb503f7b273a93c5b4f9e02c4f717b819a5971856041083475a6bfe0"
+      },
+      "heldout-retrieval-1-seed47-prefill": {
+        "path": "observer-routing-analysis/heldout-retrieval-1-seed47-prefill.json",
+        "sha256": "1bf4ca304e48923ecc9d2f2d21bed6dbab3ca6f8cbbba8e918464c5afcd253e1"
+      },
+      "heldout-retrieval-1-seed47-decode": {
+        "path": "observer-routing-analysis/heldout-retrieval-1-seed47-decode.json",
+        "sha256": "3ac28abcb07bb09b9b021a1415ad0672a47312594f6c7f214b3fc4d35e06a64d"
+      },
+      "heldout-retrieval-1-seed47-all": {
+        "path": "observer-routing-analysis/heldout-retrieval-1-seed47-all.json",
+        "sha256": "143fda6542778da26f609f85b0350376162df5b8455ebae863344688da53164b"
+      },
+      "heldout-structured-3-seed29-prefill": {
+        "path": "observer-routing-analysis/heldout-structured-3-seed29-prefill.json",
+        "sha256": "04d397a8e4487de6c1686d689f91824613a9028f7d915c3c3e5dac2323298627"
+      },
+      "heldout-structured-3-seed29-decode": {
+        "path": "observer-routing-analysis/heldout-structured-3-seed29-decode.json",
+        "sha256": "a77bdaa1e69b351b12039da5d21d7b1bdb57526d10c59eca668acab0bd065156"
+      },
+      "heldout-structured-3-seed29-all": {
+        "path": "observer-routing-analysis/heldout-structured-3-seed29-all.json",
+        "sha256": "bb38ac7f562f77dd40f2800fea213baf4a0534624a620eac93e937386ef96ca4"
+      },
+      "heldout-structured-3-seed47-prefill": {
+        "path": "observer-routing-analysis/heldout-structured-3-seed47-prefill.json",
+        "sha256": "f4990dc18b306bd0fc6493de3637ab7bd708b198615861ef7a6ef70826e4083b"
+      },
+      "heldout-structured-3-seed47-decode": {
+        "path": "observer-routing-analysis/heldout-structured-3-seed47-decode.json",
+        "sha256": "17ac88a1cdb3a126b0aead1496eb441cd15359fc6edd528762e36067f118c769"
+      },
+      "heldout-structured-3-seed47-all": {
+        "path": "observer-routing-analysis/heldout-structured-3-seed47-all.json",
+        "sha256": "aeeab5b4a2767ed2097571ce01247ce45b152ee70fef79f82be1d2b2be17b553"
+      },
+      "heldout-planning-2-seed29-prefill": {
+        "path": "observer-routing-analysis/heldout-planning-2-seed29-prefill.json",
+        "sha256": "c5f9b96d7ac905ea05d186d39bb05c8c941e7bce32c95ced7cde4971fcf29896"
+      },
+      "heldout-planning-2-seed29-decode": {
+        "path": "observer-routing-analysis/heldout-planning-2-seed29-decode.json",
+        "sha256": "1cde98afc15220ba220683acee787d15558a624f2ded1cc0202615598265d758"
+      },
+      "heldout-planning-2-seed29-all": {
+        "path": "observer-routing-analysis/heldout-planning-2-seed29-all.json",
+        "sha256": "b07610e6b887358b56b3e36e29e33148015ae3f25bd22cce5ade2a85a634ec66"
+      },
+      "heldout-italian-3-seed29-prefill": {
+        "path": "observer-routing-analysis/heldout-italian-3-seed29-prefill.json",
+        "sha256": "077c2ffda514345c4a867a83f5b07a985c6020c7368c66c61c39c5d6ef9eaded"
+      },
+      "heldout-italian-3-seed29-decode": {
+        "path": "observer-routing-analysis/heldout-italian-3-seed29-decode.json",
+        "sha256": "04ff8cdeb3134894020f4aca39efb5fe75c30cc7c90880370a186c829ab6e46b"
+      },
+      "heldout-italian-3-seed29-all": {
+        "path": "observer-routing-analysis/heldout-italian-3-seed29-all.json",
+        "sha256": "75910eaa38c95c92c1f6920188087311766b725d0a273e415b1855ae28a9de18"
+      },
+      "heldout-arithmetic-1-seed11-prefill": {
+        "path": "observer-routing-analysis/heldout-arithmetic-1-seed11-prefill.json",
+        "sha256": "b5719ec5a9c89673d9df37fce2b2fb3621b768129b1273738fb41498a476b28c"
+      },
+      "heldout-arithmetic-1-seed11-decode": {
+        "path": "observer-routing-analysis/heldout-arithmetic-1-seed11-decode.json",
+        "sha256": "6d215ff42f5d67626493ba2efebe47dbd7192afe084b0830226832f780051954"
+      },
+      "heldout-arithmetic-1-seed11-all": {
+        "path": "observer-routing-analysis/heldout-arithmetic-1-seed11-all.json",
+        "sha256": "fca7fd80987eadf72e468c5cefa0f6256debebd87783f7b6aaf8a2cdbdf9346d"
+      },
+      "heldout-code-3-seed47-prefill": {
+        "path": "observer-routing-analysis/heldout-code-3-seed47-prefill.json",
+        "sha256": "2849d02200325dad4fff70e3296db4e78d7a33eb8844ef988fd9d3e1cafd8ce3"
+      },
+      "heldout-code-3-seed47-decode": {
+        "path": "observer-routing-analysis/heldout-code-3-seed47-decode.json",
+        "sha256": "6e8291b79b83a52213ef690fe798afb3e7996ac92d9b36cebbdc3a7b6a36145d"
+      },
+      "heldout-code-3-seed47-all": {
+        "path": "observer-routing-analysis/heldout-code-3-seed47-all.json",
+        "sha256": "5e4f7311406a7aeba4d2481b9511305038c30644c0ee231db610bc9dc0474dcf"
+      },
+      "heldout-retrieval-2-seed29-prefill": {
+        "path": "observer-routing-analysis/heldout-retrieval-2-seed29-prefill.json",
+        "sha256": "b050a5d8f5cd8d638317abdeac13110059015e23ec135e7359b59ea923f715cf"
+      },
+      "heldout-retrieval-2-seed29-decode": {
+        "path": "observer-routing-analysis/heldout-retrieval-2-seed29-decode.json",
+        "sha256": "6fd0f157455dd616ade654c8a11404fd42c0413a052c591b2c0faa17d2289b68"
+      },
+      "heldout-retrieval-2-seed29-all": {
+        "path": "observer-routing-analysis/heldout-retrieval-2-seed29-all.json",
+        "sha256": "5e0141e7418bff8591272f25bbd4c270c3a03e097daed29bd922badfed2a19a0"
+      },
+      "heldout-planning-2-seed47-prefill": {
+        "path": "observer-routing-analysis/heldout-planning-2-seed47-prefill.json",
+        "sha256": "c5f21a57ba3cc412e02a7d920b668a259b04f0ab77246301d00a60f813153417"
+      },
+      "heldout-planning-2-seed47-decode": {
+        "path": "observer-routing-analysis/heldout-planning-2-seed47-decode.json",
+        "sha256": "04191ab8308974f62108ad766e71e92e273875319bb480cc6e1d0e179d0409e2"
+      },
+      "heldout-planning-2-seed47-all": {
+        "path": "observer-routing-analysis/heldout-planning-2-seed47-all.json",
+        "sha256": "a33c8c8bfd68a9baf85597a093a5eddb55aa7f65fc94f610c1f7f94af4026daf"
+      },
+      "heldout-arithmetic-1-seed47-prefill": {
+        "path": "observer-routing-analysis/heldout-arithmetic-1-seed47-prefill.json",
+        "sha256": "a93e57796ba2b0e47eeb7b88c1bae46861bf0775ef4a605621453bad3093291d"
+      },
+      "heldout-arithmetic-1-seed47-decode": {
+        "path": "observer-routing-analysis/heldout-arithmetic-1-seed47-decode.json",
+        "sha256": "463201e9d2e37803bcd382dae9bbe3bce9a017384d0258e16a15747f078b7684"
+      },
+      "heldout-arithmetic-1-seed47-all": {
+        "path": "observer-routing-analysis/heldout-arithmetic-1-seed47-all.json",
+        "sha256": "48980b15356330076ebfaee44ebff751013a1b839958b6e470dcddc2c00a8f13"
+      },
+      "heldout-planning-2-seed11-prefill": {
+        "path": "observer-routing-analysis/heldout-planning-2-seed11-prefill.json",
+        "sha256": "839a859a9fb64fd2c2b14085d9e259ba44487a484639fe7903d213ef6eb28c5c"
+      },
+      "heldout-planning-2-seed11-decode": {
+        "path": "observer-routing-analysis/heldout-planning-2-seed11-decode.json",
+        "sha256": "d0ab9b2e47d9a5926e6f3bca475c1c90d9825a2a353231e5d84ad8a56c691f55"
+      },
+      "heldout-planning-2-seed11-all": {
+        "path": "observer-routing-analysis/heldout-planning-2-seed11-all.json",
+        "sha256": "5ec38bf524bf14d0ea6b7137d62fda0aabfcf3c487335b5c00e03b4b97b9253c"
+      },
+      "heldout-italian-1-seed29-prefill": {
+        "path": "observer-routing-analysis/heldout-italian-1-seed29-prefill.json",
+        "sha256": "d624abb7e69f4c684eb54cfba557d65f9582e7df7226fdc1daf44f82deeefd39"
+      },
+      "heldout-italian-1-seed29-decode": {
+        "path": "observer-routing-analysis/heldout-italian-1-seed29-decode.json",
+        "sha256": "c019bb57b17cf7aa44ffe23fe472652476f760b3820bdd59d7b18b72085bb732"
+      },
+      "heldout-italian-1-seed29-all": {
+        "path": "observer-routing-analysis/heldout-italian-1-seed29-all.json",
+        "sha256": "68130b7777e67d26cb861e94ed0db18153c92ddc92cbfb2c649cb4f579156b1f"
+      },
+      "heldout-structured-2-seed47-prefill": {
+        "path": "observer-routing-analysis/heldout-structured-2-seed47-prefill.json",
+        "sha256": "7382a7fdde563a691acc64fdb07083bf508bce948e3811fe015984e9373f268e"
+      },
+      "heldout-structured-2-seed47-decode": {
+        "path": "observer-routing-analysis/heldout-structured-2-seed47-decode.json",
+        "sha256": "b523dc26ef08ca75facb1a151ea7a28151c2b1d804a826ae4e61b3636563bf08"
+      },
+      "heldout-structured-2-seed47-all": {
+        "path": "observer-routing-analysis/heldout-structured-2-seed47-all.json",
+        "sha256": "d6cc7f3fc142389ee4cdc4ff2a925a01b48ec358c5cbc78accf4e38176820ea5"
+      },
+      "heldout-planning-3-seed29-prefill": {
+        "path": "observer-routing-analysis/heldout-planning-3-seed29-prefill.json",
+        "sha256": "a44599f6db4e654cc6b23a9ccdab9295d430d87406f0576220774994617a0efe"
+      },
+      "heldout-planning-3-seed29-decode": {
+        "path": "observer-routing-analysis/heldout-planning-3-seed29-decode.json",
+        "sha256": "77e8a91b5ded42257f75808327232dfcafe8ea2377b0232aac5964210ef69ad8"
+      },
+      "heldout-planning-3-seed29-all": {
+        "path": "observer-routing-analysis/heldout-planning-3-seed29-all.json",
+        "sha256": "841acbf334dd4a3c75b653736b64bb75f18946ea47b222707347628ec1e68059"
+      },
+      "heldout-retrieval-3-seed29-prefill": {
+        "path": "observer-routing-analysis/heldout-retrieval-3-seed29-prefill.json",
+        "sha256": "90ae8fc3ac6af6a18a5314093918c0d6e7513f6386a11de8254c61546c337980"
+      },
+      "heldout-retrieval-3-seed29-decode": {
+        "path": "observer-routing-analysis/heldout-retrieval-3-seed29-decode.json",
+        "sha256": "ca2645fa162f8141bb7376dffa65db38db10a655587c4e27c2ae8538fbcbe6e6"
+      },
+      "heldout-retrieval-3-seed29-all": {
+        "path": "observer-routing-analysis/heldout-retrieval-3-seed29-all.json",
+        "sha256": "80471cd7dbf29a4016853dd5fae7214ad6e65e810ad6b44f93bc553f065a6a91"
+      },
+      "heldout-code-1-seed29-prefill": {
+        "path": "observer-routing-analysis/heldout-code-1-seed29-prefill.json",
+        "sha256": "970fe51b0597c60c63fc0f6cec6eaa288ff1f08514df11993d222fc1da3668c0"
+      },
+      "heldout-code-1-seed29-decode": {
+        "path": "observer-routing-analysis/heldout-code-1-seed29-decode.json",
+        "sha256": "6b04683d5af0e00f15db13f886c7ca612fe5329de6f51fe9a1ef144fae382f65"
+      },
+      "heldout-code-1-seed29-all": {
+        "path": "observer-routing-analysis/heldout-code-1-seed29-all.json",
+        "sha256": "0e458d90669364bdff97b7a20102da1137a527ba9d96e121419704977959477d"
+      },
+      "heldout-italian-1-seed47-prefill": {
+        "path": "observer-routing-analysis/heldout-italian-1-seed47-prefill.json",
+        "sha256": "6e0658914cbc58318bfc0c3db640d545887db7e95b67f7dfc50b8049dcc1916a"
+      },
+      "heldout-italian-1-seed47-decode": {
+        "path": "observer-routing-analysis/heldout-italian-1-seed47-decode.json",
+        "sha256": "f2fd7f956e041e9ad6e4bd746a0ddbc587f9c4d501bfe2ef80081a5ff0d1c838"
+      },
+      "heldout-italian-1-seed47-all": {
+        "path": "observer-routing-analysis/heldout-italian-1-seed47-all.json",
+        "sha256": "93f070e659abc6cfe450870da9e7a9dcff68e701498b9c73332576cdaddd14ee"
+      },
+      "heldout-arithmetic-1-seed29-prefill": {
+        "path": "observer-routing-analysis/heldout-arithmetic-1-seed29-prefill.json",
+        "sha256": "d030e0f372db1fc41c2786bde88172180abcb23fdc35552f14d3ea13cacc60ec"
+      },
+      "heldout-arithmetic-1-seed29-decode": {
+        "path": "observer-routing-analysis/heldout-arithmetic-1-seed29-decode.json",
+        "sha256": "1033e346f3798f147fc899857bd4cf41b5ea38675c19080ee2297664f9ebc8da"
+      },
+      "heldout-arithmetic-1-seed29-all": {
+        "path": "observer-routing-analysis/heldout-arithmetic-1-seed29-all.json",
+        "sha256": "2e2a5585c8ae17fe7e7fa3c267098c7c4f2e4c2e6cbfcbc2137a1ed71a24ff4c"
+      },
+      "heldout-structured-1-seed29-prefill": {
+        "path": "observer-routing-analysis/heldout-structured-1-seed29-prefill.json",
+        "sha256": "a70028e61ea467b3276b8a8a75d62b9baa477c5a0f94dfe86ab2c8cd86983055"
+      },
+      "heldout-structured-1-seed29-decode": {
+        "path": "observer-routing-analysis/heldout-structured-1-seed29-decode.json",
+        "sha256": "c6e93ca7a7d2aaa39289d3c96f24a106f1eec6459d8d6644c686bd5d854c749b"
+      },
+      "heldout-structured-1-seed29-all": {
+        "path": "observer-routing-analysis/heldout-structured-1-seed29-all.json",
+        "sha256": "01af16085ad7ba9fdc52b5a554abb1b173ad844080aa2875070f71426f18efd4"
+      },
+      "heldout-retrieval-3-seed47-prefill": {
+        "path": "observer-routing-analysis/heldout-retrieval-3-seed47-prefill.json",
+        "sha256": "a0a0a95a6f46d7c38284fa83515f7364dc518d1530baf622e209c9accfa6458e"
+      },
+      "heldout-retrieval-3-seed47-decode": {
+        "path": "observer-routing-analysis/heldout-retrieval-3-seed47-decode.json",
+        "sha256": "e5e4776308be26a81a5c69d6010afe0d80db1a0a3ef88849bfb59919c4a49892"
+      },
+      "heldout-retrieval-3-seed47-all": {
+        "path": "observer-routing-analysis/heldout-retrieval-3-seed47-all.json",
+        "sha256": "b143752acb0b3924fb0d23e787f231b4d377cb7d57cf560350b1af1f8b10d5fd"
+      },
+      "heldout-arithmetic-2-seed29-prefill": {
+        "path": "observer-routing-analysis/heldout-arithmetic-2-seed29-prefill.json",
+        "sha256": "bc0afd85338d19278c0758f00c21fe40fedc383a218b79f57d39cbbfb84ac04b"
+      },
+      "heldout-arithmetic-2-seed29-decode": {
+        "path": "observer-routing-analysis/heldout-arithmetic-2-seed29-decode.json",
+        "sha256": "c713e80b5d96edf9f9ea5db4ce4bfa48e0e269d6febc4e206d38e5f2309bbb55"
+      },
+      "heldout-arithmetic-2-seed29-all": {
+        "path": "observer-routing-analysis/heldout-arithmetic-2-seed29-all.json",
+        "sha256": "cef0c0d831a6e2d5a2ac0770b64e9a187fe65612a347e799262d85095418b908"
+      },
+      "heldout-code-1-seed47-prefill": {
+        "path": "observer-routing-analysis/heldout-code-1-seed47-prefill.json",
+        "sha256": "05bb6ad9b91963eac5d20ed9904f64367642232de8fd55b85bcb93db7f1bdbbe"
+      },
+      "heldout-code-1-seed47-decode": {
+        "path": "observer-routing-analysis/heldout-code-1-seed47-decode.json",
+        "sha256": "4e2bbc5011924a69b0a3b73ea6c8627285d1d2dfc82a43beea5ea0aa3efe74ad"
+      },
+      "heldout-code-1-seed47-all": {
+        "path": "observer-routing-analysis/heldout-code-1-seed47-all.json",
+        "sha256": "f02ca42a60179206c7125a0f30994e13467acdbad502801172600cec3fab236f"
+      },
+      "heldout-retrieval-2-seed47-prefill": {
+        "path": "observer-routing-analysis/heldout-retrieval-2-seed47-prefill.json",
+        "sha256": "fa738a81cac0d6d0e12b435fd26083ba853f2c3ff9c1c4e56c8e32fdc807a276"
+      },
+      "heldout-retrieval-2-seed47-decode": {
+        "path": "observer-routing-analysis/heldout-retrieval-2-seed47-decode.json",
+        "sha256": "52ab4afcf4b7b42027a9da15dd8e38c4018dfe693d21f818795340e7935030a7"
+      },
+      "heldout-retrieval-2-seed47-all": {
+        "path": "observer-routing-analysis/heldout-retrieval-2-seed47-all.json",
+        "sha256": "986e83fb06ebc380f441129fd7c083f6b9e69d9d0e32ef8e7bea697436603fbe"
+      },
+      "heldout-italian-3-seed11-prefill": {
+        "path": "observer-routing-analysis/heldout-italian-3-seed11-prefill.json",
+        "sha256": "ab3febf0631419022ed62d645cb1eca802843beeefaf9832384e6c184d720274"
+      },
+      "heldout-italian-3-seed11-decode": {
+        "path": "observer-routing-analysis/heldout-italian-3-seed11-decode.json",
+        "sha256": "72e5bc227dcb3dd59d3bf42752f68900db1393edc5bc97a5de54f7475b8b21e9"
+      },
+      "heldout-italian-3-seed11-all": {
+        "path": "observer-routing-analysis/heldout-italian-3-seed11-all.json",
+        "sha256": "ef00e5448bc4597f33a308460052b04b55c20fcde0eaf1e33fe0e5ee24f07498"
+      },
+      "heldout-planning-1-seed29-prefill": {
+        "path": "observer-routing-analysis/heldout-planning-1-seed29-prefill.json",
+        "sha256": "e2f96fbc1f29c5072fec290490804a28842627e2b889a4d0d26a6d0283a1ca5a"
+      },
+      "heldout-planning-1-seed29-decode": {
+        "path": "observer-routing-analysis/heldout-planning-1-seed29-decode.json",
+        "sha256": "05473749d12fe501bb1bc68362004fa275409ad625ebe57058fbceeff459cf04"
+      },
+      "heldout-planning-1-seed29-all": {
+        "path": "observer-routing-analysis/heldout-planning-1-seed29-all.json",
+        "sha256": "188ffd8fb31560ec9b167f3442d2e7437a717e45d90aa63e4e16ccfc3843e715"
+      },
+      "heldout-code-3-seed11-prefill": {
+        "path": "observer-routing-analysis/heldout-code-3-seed11-prefill.json",
+        "sha256": "f6bc1633c251e04656e2ecb065fa6fab938711504a0f61acec73a862d607c05b"
+      },
+      "heldout-code-3-seed11-decode": {
+        "path": "observer-routing-analysis/heldout-code-3-seed11-decode.json",
+        "sha256": "406565f7f95350825b622d30d1d2f36dbb98c0c374545f77e795e0e1cbe62e03"
+      },
+      "heldout-code-3-seed11-all": {
+        "path": "observer-routing-analysis/heldout-code-3-seed11-all.json",
+        "sha256": "3d9d45383f85b479c9897544762a38a7edf083c4694037d4a225e1ad39f2cfde"
+      },
+      "heldout-structured-3-seed11-prefill": {
+        "path": "observer-routing-analysis/heldout-structured-3-seed11-prefill.json",
+        "sha256": "529527fcb54486c67341813d9222a07f308bcbfb542c948afd2832a9cacf7f62"
+      },
+      "heldout-structured-3-seed11-decode": {
+        "path": "observer-routing-analysis/heldout-structured-3-seed11-decode.json",
+        "sha256": "753886bc451347646d49513382d1a6009756263110d45bc5e8b905f830fe2248"
+      },
+      "heldout-structured-3-seed11-all": {
+        "path": "observer-routing-analysis/heldout-structured-3-seed11-all.json",
+        "sha256": "6992aadbd8a6c44a12b10405937b8d4ec95e40ae5f6986c49ec9b3ce16b45403"
+      },
+      "heldout-retrieval-3-seed11-prefill": {
+        "path": "observer-routing-analysis/heldout-retrieval-3-seed11-prefill.json",
+        "sha256": "d8e92f9433bcb7dac12b5c0baf802147b36e0fd4ea1d26bbf66f7433a698c320"
+      },
+      "heldout-retrieval-3-seed11-decode": {
+        "path": "observer-routing-analysis/heldout-retrieval-3-seed11-decode.json",
+        "sha256": "bef895a9610011ae9df3b9efe5654f8b9623b0506cfa76f3022fd8ce396b0338"
+      },
+      "heldout-retrieval-3-seed11-all": {
+        "path": "observer-routing-analysis/heldout-retrieval-3-seed11-all.json",
+        "sha256": "0c326528b122d2bf8308d9cdcbee69cb29ec5ddf6d750cc5579f3c3af4637ad5"
+      },
+      "heldout-retrieval-1-seed11-prefill": {
+        "path": "observer-routing-analysis/heldout-retrieval-1-seed11-prefill.json",
+        "sha256": "2ff83dbac1a722cea5f938a52e74f768a4ec46e1db688742c2da99e1c892e34a"
+      },
+      "heldout-retrieval-1-seed11-decode": {
+        "path": "observer-routing-analysis/heldout-retrieval-1-seed11-decode.json",
+        "sha256": "dff6fcd83304e478358f467df41534c1deef075a32e41d31885bbb67a53d74e6"
+      },
+      "heldout-retrieval-1-seed11-all": {
+        "path": "observer-routing-analysis/heldout-retrieval-1-seed11-all.json",
+        "sha256": "58117b40105a59c0aad97defa2430398f204ad6fd7de3fc37e090051db79c888"
+      },
+      "heldout-planning-1-seed47-prefill": {
+        "path": "observer-routing-analysis/heldout-planning-1-seed47-prefill.json",
+        "sha256": "f70775375073a6e44e990aef26dc23f324061089736f0d009bdd35f1c0430c35"
+      },
+      "heldout-planning-1-seed47-decode": {
+        "path": "observer-routing-analysis/heldout-planning-1-seed47-decode.json",
+        "sha256": "1dd29281fc3534dd53a7fb23f8e8d1ab8ec8a646976c4cd1d3ee932562f4b8b9"
+      },
+      "heldout-planning-1-seed47-all": {
+        "path": "observer-routing-analysis/heldout-planning-1-seed47-all.json",
+        "sha256": "1bf6e260eabac9a154bd1b8252d9bd0b5bc8bdbe889fa66bac7f4997053b4b94"
+      },
+      "heldout-arithmetic-3-seed11-prefill": {
+        "path": "observer-routing-analysis/heldout-arithmetic-3-seed11-prefill.json",
+        "sha256": "c29686ce0532d6dbd5d9687449d7e2dd8ed6287e963b5534672e24d32be274da"
+      },
+      "heldout-arithmetic-3-seed11-decode": {
+        "path": "observer-routing-analysis/heldout-arithmetic-3-seed11-decode.json",
+        "sha256": "ba9b397a261462206c7f12792782f3d85f300f6322ae19935119e3b02f0fb4c6"
+      },
+      "heldout-arithmetic-3-seed11-all": {
+        "path": "observer-routing-analysis/heldout-arithmetic-3-seed11-all.json",
+        "sha256": "027bf8485202220e04f9eea1029e197667d67945acc01dccf0fbbf192b0e8603"
+      },
+      "heldout-retrieval-2-seed11-prefill": {
+        "path": "observer-routing-analysis/heldout-retrieval-2-seed11-prefill.json",
+        "sha256": "82886542ed4e6b64e7dd2b1481c72974fea053c76a3b26464a4380fe23fde2f7"
+      },
+      "heldout-retrieval-2-seed11-decode": {
+        "path": "observer-routing-analysis/heldout-retrieval-2-seed11-decode.json",
+        "sha256": "58b02fb7b45ca7d27354061f544481ea198a3ca33990c9d23388b5235f839431"
+      },
+      "heldout-retrieval-2-seed11-all": {
+        "path": "observer-routing-analysis/heldout-retrieval-2-seed11-all.json",
+        "sha256": "5320089c29df336a8160f2e432c659a1bdf3bada589c652ac2ad7d6693dcda34"
+      },
+      "heldout-code-2-seed29-prefill": {
+        "path": "observer-routing-analysis/heldout-code-2-seed29-prefill.json",
+        "sha256": "cfb18ae6c35f0b76026e5ef5d378dc60e067fe1a7a170f4e428875f85b1df1f1"
+      },
+      "heldout-code-2-seed29-decode": {
+        "path": "observer-routing-analysis/heldout-code-2-seed29-decode.json",
+        "sha256": "374db5db386fbf83f65c70286c9ae93ec5a8e6c1bdf0889d06071a8ca9486d87"
+      },
+      "heldout-code-2-seed29-all": {
+        "path": "observer-routing-analysis/heldout-code-2-seed29-all.json",
+        "sha256": "f812564849ad97894aa8f8d8f5be02767dae248cfa1a41a95e6937cb4a61e412"
+      },
+      "heldout-italian-2-seed29-prefill": {
+        "path": "observer-routing-analysis/heldout-italian-2-seed29-prefill.json",
+        "sha256": "59ab0fb4ab4058b229e01b2bbbc4375069b2af5f5aee9ff90d3a743d2c90d5fe"
+      },
+      "heldout-italian-2-seed29-decode": {
+        "path": "observer-routing-analysis/heldout-italian-2-seed29-decode.json",
+        "sha256": "816ba321102c562947717bce82114308812788e5b9a0136c33c0e007f5c4fc56"
+      },
+      "heldout-italian-2-seed29-all": {
+        "path": "observer-routing-analysis/heldout-italian-2-seed29-all.json",
+        "sha256": "788dedf0aad4d4319b81060ccb0d7d7ab587d0f9eb544d04382d399e7f98c4d9"
+      },
+      "heldout-code-2-seed47-prefill": {
+        "path": "observer-routing-analysis/heldout-code-2-seed47-prefill.json",
+        "sha256": "327292ab337014ce388cbba3c97349204b3d3fde2b92dc7f9886375ce542b635"
+      },
+      "heldout-code-2-seed47-decode": {
+        "path": "observer-routing-analysis/heldout-code-2-seed47-decode.json",
+        "sha256": "70a09384403daadb1c336eba632f545c98d08775581d64f57e634ca7ca0b0b65"
+      },
+      "heldout-code-2-seed47-all": {
+        "path": "observer-routing-analysis/heldout-code-2-seed47-all.json",
+        "sha256": "6c95edf36cf0d3fed81b7924f82fb8b44709c788802e7f33636e5e3b6223f0ac"
+      },
+      "heldout-retrieval-1-seed29-prefill": {
+        "path": "observer-routing-analysis/heldout-retrieval-1-seed29-prefill.json",
+        "sha256": "f74a46b653a7162c825aaf17a3955edbcfa4a4d781b134fe39df7bb17bb9dd60"
+      },
+      "heldout-retrieval-1-seed29-decode": {
+        "path": "observer-routing-analysis/heldout-retrieval-1-seed29-decode.json",
+        "sha256": "9a5c7c158c42cf4d0107a6d1cca3dbb7429d25861b7fc025f276c58c9385a9ab"
+      },
+      "heldout-retrieval-1-seed29-all": {
+        "path": "observer-routing-analysis/heldout-retrieval-1-seed29-all.json",
+        "sha256": "9f1b47482484e00ce506682d40536202862e3d862147264be6d08fb09d936b04"
+      },
+      "train-arithmetic-3-seed11-prefill": {
+        "path": "observer-routing-analysis/train-arithmetic-3-seed11-prefill.json",
+        "sha256": "c7f5bd08f3142383d258e3467b30a51df907d506ccba7079e8fc29d62a21e38a"
+      },
+      "train-arithmetic-3-seed11-decode": {
+        "path": "observer-routing-analysis/train-arithmetic-3-seed11-decode.json",
+        "sha256": "16521eb416585b58453d1402776da05091607fd2946e17e9bab4d94e9953bf69"
+      },
+      "train-arithmetic-3-seed11-all": {
+        "path": "observer-routing-analysis/train-arithmetic-3-seed11-all.json",
+        "sha256": "d209fd3bf43f6f0a3a9955235894407869bdc9c75f7616f610f6dd23b30cbbde"
+      },
+      "train-code-3-seed29-prefill": {
+        "path": "observer-routing-analysis/train-code-3-seed29-prefill.json",
+        "sha256": "eafbc71865e36b253a350f5c0c89318472b7dd004085d7e585deea12be69c68a"
+      },
+      "train-code-3-seed29-decode": {
+        "path": "observer-routing-analysis/train-code-3-seed29-decode.json",
+        "sha256": "834eb35656913926fe0ff0e1b66906a2fa6e2840368e7e1be48ff8e62c2add45"
+      },
+      "train-code-3-seed29-all": {
+        "path": "observer-routing-analysis/train-code-3-seed29-all.json",
+        "sha256": "a6fdd87b3c402961c5e18280cc114472bfd15a7407dc8d00533542c2483328c1"
+      },
+      "train-code-2-seed47-prefill": {
+        "path": "observer-routing-analysis/train-code-2-seed47-prefill.json",
+        "sha256": "ff822f17d4dfda135372d2fa9f66fac5cce3941dfa35efce0da52d5db0f5645a"
+      },
+      "train-code-2-seed47-decode": {
+        "path": "observer-routing-analysis/train-code-2-seed47-decode.json",
+        "sha256": "750f9544192cf6ba15c633d5fad4ac1ffc5225caefc342fdd6293368534ece9f"
+      },
+      "train-code-2-seed47-all": {
+        "path": "observer-routing-analysis/train-code-2-seed47-all.json",
+        "sha256": "01376797eb0f4e24d6c2fddbb0e50558b4c5a2652e9a04092c6b168e06fffc82"
+      },
+      "train-italian-1-seed47-prefill": {
+        "path": "observer-routing-analysis/train-italian-1-seed47-prefill.json",
+        "sha256": "6aacdc8ecaf011cabc936a4e92e4e2aa544f1de40291f1eac6927fdbdaa37107"
+      },
+      "train-italian-1-seed47-decode": {
+        "path": "observer-routing-analysis/train-italian-1-seed47-decode.json",
+        "sha256": "1728822211877dc6dec5b98ce3a58a42b2c32c183cc5d0bf58fe696815ec2906"
+      },
+      "train-italian-1-seed47-all": {
+        "path": "observer-routing-analysis/train-italian-1-seed47-all.json",
+        "sha256": "6282e1690bae8ed2bde86f83b808d68ef9bf93a1346ad1594f8905d7da4d7fb5"
+      },
+      "train-structured-1-seed29-prefill": {
+        "path": "observer-routing-analysis/train-structured-1-seed29-prefill.json",
+        "sha256": "c0e819f65aad8c488bd4486ed51b74a817ce993d231a6dfa12293ca7fc36e317"
+      },
+      "train-structured-1-seed29-decode": {
+        "path": "observer-routing-analysis/train-structured-1-seed29-decode.json",
+        "sha256": "a6fda479c3af7532b14030bbf4134a81bc2e2b1ba26cdd04c0c4b3f6416886db"
+      },
+      "train-structured-1-seed29-all": {
+        "path": "observer-routing-analysis/train-structured-1-seed29-all.json",
+        "sha256": "a7b5a5a1244bdf40cb266ab61a2386b402227b9c14bb19e71ef627a0d4290f77"
+      },
+      "train-arithmetic-2-seed47-prefill": {
+        "path": "observer-routing-analysis/train-arithmetic-2-seed47-prefill.json",
+        "sha256": "a92a1f92b6c16b3d6f403fcab67d39d4a3a72ff6e35710f79ccc61c5f2e65e5d"
+      },
+      "train-arithmetic-2-seed47-decode": {
+        "path": "observer-routing-analysis/train-arithmetic-2-seed47-decode.json",
+        "sha256": "98e9f8960b4ca2392e93893221bc878971123ff9f8077905c544c387199d4874"
+      },
+      "train-arithmetic-2-seed47-all": {
+        "path": "observer-routing-analysis/train-arithmetic-2-seed47-all.json",
+        "sha256": "c2f2a3c7ce89273288c67c26281beb08ba49fc004ebc2ea48e42262764d3a904"
+      },
+      "train-code-1-seed11-prefill": {
+        "path": "observer-routing-analysis/train-code-1-seed11-prefill.json",
+        "sha256": "d5da2e23381be0b798608585a38e479e0fb8eefbea363ceff93d57582b629ff0"
+      },
+      "train-code-1-seed11-decode": {
+        "path": "observer-routing-analysis/train-code-1-seed11-decode.json",
+        "sha256": "a9694ef48710e5b703791f5202344dc39a4f708fc3d14ff5a84a06fdfa155cbb"
+      },
+      "train-code-1-seed11-all": {
+        "path": "observer-routing-analysis/train-code-1-seed11-all.json",
+        "sha256": "2d78057ee5db208a8448f0b3acae73389257b4895545e606c6f73f612726ab13"
+      },
+      "train-structured-1-seed11-prefill": {
+        "path": "observer-routing-analysis/train-structured-1-seed11-prefill.json",
+        "sha256": "acf48c1439e4686af0273a941003bb74575f77f42af619585267fb98a01d8a3a"
+      },
+      "train-structured-1-seed11-decode": {
+        "path": "observer-routing-analysis/train-structured-1-seed11-decode.json",
+        "sha256": "19ed661fcbe83558239fb2d74594a6d7843d6127721c0fc5ce669195211e7f40"
+      },
+      "train-structured-1-seed11-all": {
+        "path": "observer-routing-analysis/train-structured-1-seed11-all.json",
+        "sha256": "8a5e5856bf484a0b87da0f84c21fb29af8b6f46827cf3334d6fe83f0bea9d073"
+      },
+      "train-retrieval-3-seed29-prefill": {
+        "path": "observer-routing-analysis/train-retrieval-3-seed29-prefill.json",
+        "sha256": "997b471793e10a73abc2d44a0e868ee34b4e3f371feec861fa94cb138fe087be"
+      },
+      "train-retrieval-3-seed29-decode": {
+        "path": "observer-routing-analysis/train-retrieval-3-seed29-decode.json",
+        "sha256": "27988fa0e9f4fadf19118d7b3272f2a34387aa6c739dcc8fa5b77712fe22f90b"
+      },
+      "train-retrieval-3-seed29-all": {
+        "path": "observer-routing-analysis/train-retrieval-3-seed29-all.json",
+        "sha256": "53ec10111b6108ba799a76c6026de54c567845a6c6cf10fd6c3c43e82ab4f64c"
+      },
+      "train-structured-3-seed11-prefill": {
+        "path": "observer-routing-analysis/train-structured-3-seed11-prefill.json",
+        "sha256": "c60ca1f55b8be1628093d517ecff5c2e3b3b37c96be89924a9d526d79894f8d2"
+      },
+      "train-structured-3-seed11-decode": {
+        "path": "observer-routing-analysis/train-structured-3-seed11-decode.json",
+        "sha256": "4135c77dda0eb2ff09ac409b2f8195752286082d43fe6bab61f0b481c8dc13ab"
+      },
+      "train-structured-3-seed11-all": {
+        "path": "observer-routing-analysis/train-structured-3-seed11-all.json",
+        "sha256": "a41643d7f7767363aa6039dbb2abe5fe0f0f70f2b968e495eae8b9d5ec0bfc6f"
+      },
+      "train-planning-2-seed11-prefill": {
+        "path": "observer-routing-analysis/train-planning-2-seed11-prefill.json",
+        "sha256": "1d84f27e1ec6f3a541af7a63f725438456e895912c023c6d6ee81f49220b2d8d"
+      },
+      "train-planning-2-seed11-decode": {
+        "path": "observer-routing-analysis/train-planning-2-seed11-decode.json",
+        "sha256": "1087fef43db84a6d78899275d8743cb4c94d34c89b418419abcf20e31858c3b2"
+      },
+      "train-planning-2-seed11-all": {
+        "path": "observer-routing-analysis/train-planning-2-seed11-all.json",
+        "sha256": "4dd66f0fbfefbe084a08804611355321a6c07f6eec30f77960eab22f51fc5cc5"
+      },
+      "train-arithmetic-1-seed29-prefill": {
+        "path": "observer-routing-analysis/train-arithmetic-1-seed29-prefill.json",
+        "sha256": "99b4f5bb83e24f1ab26093ce1d0628ce70364ff6f8cd3c6230dc302ae6ed2e86"
+      },
+      "train-arithmetic-1-seed29-decode": {
+        "path": "observer-routing-analysis/train-arithmetic-1-seed29-decode.json",
+        "sha256": "b8daa5d4f8b7d010d8951c0afb4a138a17d34a72385e2ec5a85e73c1ce0f1838"
+      },
+      "train-arithmetic-1-seed29-all": {
+        "path": "observer-routing-analysis/train-arithmetic-1-seed29-all.json",
+        "sha256": "4b95e572baf7438dcd629a1275f852d996938b68c030bd07facbfb88c604e540"
+      },
+      "train-code-1-seed29-prefill": {
+        "path": "observer-routing-analysis/train-code-1-seed29-prefill.json",
+        "sha256": "cade5cd78893f753838c75c1bafb1d5218af063f3b9919df81dd10bd4db86c47"
+      },
+      "train-code-1-seed29-decode": {
+        "path": "observer-routing-analysis/train-code-1-seed29-decode.json",
+        "sha256": "5ed09e40317ae07292be04ac4820d2413694cd6565fcaf5fdf88167801a4df44"
+      },
+      "train-code-1-seed29-all": {
+        "path": "observer-routing-analysis/train-code-1-seed29-all.json",
+        "sha256": "4c1ac5331a8c98159177e0f1ae0a25d225e9060b05e858817ea1432be9af43d7"
+      },
+      "train-retrieval-3-seed11-prefill": {
+        "path": "observer-routing-analysis/train-retrieval-3-seed11-prefill.json",
+        "sha256": "7dd48029c3fe8b26b7cc63ad60cbc116a0c16b2c9fddcb5037987de4d8a2bce5"
+      },
+      "train-retrieval-3-seed11-decode": {
+        "path": "observer-routing-analysis/train-retrieval-3-seed11-decode.json",
+        "sha256": "ad932af1839fa138c189e722753acf292488539fa890b4d8c538981e6231b890"
+      },
+      "train-retrieval-3-seed11-all": {
+        "path": "observer-routing-analysis/train-retrieval-3-seed11-all.json",
+        "sha256": "34b3ff994ae71dee0a6dcfe62cc108067ce6e756d9ee27a22f8b68e1f2b2edfb"
+      },
+      "train-structured-2-seed11-prefill": {
+        "path": "observer-routing-analysis/train-structured-2-seed11-prefill.json",
+        "sha256": "13fc1d55e870b2fce42c015843cefc2ec8ef9745ac9679dba6b3f018bd6e006b"
+      },
+      "train-structured-2-seed11-decode": {
+        "path": "observer-routing-analysis/train-structured-2-seed11-decode.json",
+        "sha256": "925ee13b069f9e26ef7bb0cb66b72b1cd9a762de0414a83cb1722b868859b86d"
+      },
+      "train-structured-2-seed11-all": {
+        "path": "observer-routing-analysis/train-structured-2-seed11-all.json",
+        "sha256": "23e46c871cab40bcd72ab2ac5dad54523d454eba103d0c00ce6a13a7384a1d45"
+      },
+      "train-italian-2-seed47-prefill": {
+        "path": "observer-routing-analysis/train-italian-2-seed47-prefill.json",
+        "sha256": "43e76728f1c9e259a2f5d3a083407831206f774ad0d8a1e70507bff174714698"
+      },
+      "train-italian-2-seed47-decode": {
+        "path": "observer-routing-analysis/train-italian-2-seed47-decode.json",
+        "sha256": "12f30d58210c7b7686ae678daf4dd6279d19650be2e1350f850212ec30e3df42"
+      },
+      "train-italian-2-seed47-all": {
+        "path": "observer-routing-analysis/train-italian-2-seed47-all.json",
+        "sha256": "6240cc5d9746914f8069b01c3eb6475840f1422b0294e2e2d828f4706eab5f2d"
+      },
+      "train-structured-2-seed47-prefill": {
+        "path": "observer-routing-analysis/train-structured-2-seed47-prefill.json",
+        "sha256": "27ea46a56942c7d450940d1c9d0cac2c96346dc1cb62a632dfff79a00f18d59d"
+      },
+      "train-structured-2-seed47-decode": {
+        "path": "observer-routing-analysis/train-structured-2-seed47-decode.json",
+        "sha256": "3c25cb74a06434731a4282a7008b55c463670c25a5e483e1e9651188c34de353"
+      },
+      "train-structured-2-seed47-all": {
+        "path": "observer-routing-analysis/train-structured-2-seed47-all.json",
+        "sha256": "f6940a2f1c5748879579b811eaf2fc9431dc99282cc4281226390789f4c9a81b"
+      },
+      "train-planning-2-seed29-prefill": {
+        "path": "observer-routing-analysis/train-planning-2-seed29-prefill.json",
+        "sha256": "be0adcfa879fed954b9a95204b42adfdf1961d96a9e6ef199f280975037f0044"
+      },
+      "train-planning-2-seed29-decode": {
+        "path": "observer-routing-analysis/train-planning-2-seed29-decode.json",
+        "sha256": "1134dfb71fb15cccca5c8299aa7128c80696122662e74991ec1acf09f3fa229b"
+      },
+      "train-planning-2-seed29-all": {
+        "path": "observer-routing-analysis/train-planning-2-seed29-all.json",
+        "sha256": "a3a461351348530380151e01aa4fc097a4bb5aaa51722c94cb18057b262c612f"
+      },
+      "train-code-1-seed47-prefill": {
+        "path": "observer-routing-analysis/train-code-1-seed47-prefill.json",
+        "sha256": "00d63f14a64111790d1ece1e70c23edb7a494062e9b9a46f6d1fe6345184342f"
+      },
+      "train-code-1-seed47-decode": {
+        "path": "observer-routing-analysis/train-code-1-seed47-decode.json",
+        "sha256": "3bb371b5d1e579c23995c15784c7756b49dc763f7635386ae32780ef0606ae34"
+      },
+      "train-code-1-seed47-all": {
+        "path": "observer-routing-analysis/train-code-1-seed47-all.json",
+        "sha256": "77723ad69b40a476756c9287e855a6f891da284a103676b7216760268b3b519f"
+      },
+      "train-retrieval-1-seed29-prefill": {
+        "path": "observer-routing-analysis/train-retrieval-1-seed29-prefill.json",
+        "sha256": "34ca7d16fad5b1a21645639ae29b9672c00e36476926dc6cfb2dcf41c7d435ce"
+      },
+      "train-retrieval-1-seed29-decode": {
+        "path": "observer-routing-analysis/train-retrieval-1-seed29-decode.json",
+        "sha256": "8af282c03c6024739f419f7100324d48f2b6f6cfbd420afd979459d5168ce887"
+      },
+      "train-retrieval-1-seed29-all": {
+        "path": "observer-routing-analysis/train-retrieval-1-seed29-all.json",
+        "sha256": "44e7f4a4404f3d4ac68aa68084a9006164670d6ca895ad7f5430fef8d0024db7"
+      },
+      "train-italian-1-seed29-prefill": {
+        "path": "observer-routing-analysis/train-italian-1-seed29-prefill.json",
+        "sha256": "b2c252978e597d330d3c726dcb7df606c97ff2a8d32deaae2212d4176a3ca64b"
+      },
+      "train-italian-1-seed29-decode": {
+        "path": "observer-routing-analysis/train-italian-1-seed29-decode.json",
+        "sha256": "b14683a9a9aac943f99f7f016f61a54eb4c9b687e32a99e89ead5cd8fc0a3c93"
+      },
+      "train-italian-1-seed29-all": {
+        "path": "observer-routing-analysis/train-italian-1-seed29-all.json",
+        "sha256": "c6f0ef6da47a4f5b7402dc35b14e0e0d94b3d106f17635f89c22d7bb0c396b3f"
+      },
+      "train-planning-1-seed29-prefill": {
+        "path": "observer-routing-analysis/train-planning-1-seed29-prefill.json",
+        "sha256": "0c644e455994a79eff021655613ebac38bba658e78fe2ee170dabc54b417408e"
+      },
+      "train-planning-1-seed29-decode": {
+        "path": "observer-routing-analysis/train-planning-1-seed29-decode.json",
+        "sha256": "4e6947ddd51b4336ec5cc677fba17586a5e8b17d5c1cf9065905a348e4f3878b"
+      },
+      "train-planning-1-seed29-all": {
+        "path": "observer-routing-analysis/train-planning-1-seed29-all.json",
+        "sha256": "0be9b90e1eb27cdf0875acfd67a07de7d5ea88fddef422255f4995d9ea587b7b"
+      },
+      "train-italian-2-seed29-prefill": {
+        "path": "observer-routing-analysis/train-italian-2-seed29-prefill.json",
+        "sha256": "7a55974e51a6e07113fdef9bc480a9a1452f7cba362eab12eec52a54195959aa"
+      },
+      "train-italian-2-seed29-decode": {
+        "path": "observer-routing-analysis/train-italian-2-seed29-decode.json",
+        "sha256": "57ada5ed0305d9bfbf6c58e062eb592ecbabacbae5def4139b19efb1ebb3afc3"
+      },
+      "train-italian-2-seed29-all": {
+        "path": "observer-routing-analysis/train-italian-2-seed29-all.json",
+        "sha256": "8f26f7df385c7a60c094e87b5c06da49a345b28fb125dad51e7f9d5e29d8000e"
+      },
+      "train-italian-3-seed29-prefill": {
+        "path": "observer-routing-analysis/train-italian-3-seed29-prefill.json",
+        "sha256": "dee1a795b5961a5700d11a4469fa81bee646159ebd99365c69fa43f83f56da99"
+      },
+      "train-italian-3-seed29-decode": {
+        "path": "observer-routing-analysis/train-italian-3-seed29-decode.json",
+        "sha256": "a2d9b5055b80df4c97d52a6a92b85dd8645236f81684345d8fba834b37bae415"
+      },
+      "train-italian-3-seed29-all": {
+        "path": "observer-routing-analysis/train-italian-3-seed29-all.json",
+        "sha256": "7ab6610bd0d57ae0216452ed291366454e12422e48f434e6779c3b72dec6cfa9"
+      },
+      "train-italian-3-seed47-prefill": {
+        "path": "observer-routing-analysis/train-italian-3-seed47-prefill.json",
+        "sha256": "f90198a1ca8173cd2f2c80175b55f585d754258a1a507ac3417089265297cc13"
+      },
+      "train-italian-3-seed47-decode": {
+        "path": "observer-routing-analysis/train-italian-3-seed47-decode.json",
+        "sha256": "c1fb7dc3b523327fbdfac3271d9c748b69ad95e76fe2e0deec99926e6491c817"
+      },
+      "train-italian-3-seed47-all": {
+        "path": "observer-routing-analysis/train-italian-3-seed47-all.json",
+        "sha256": "9beaf9f6e27e046de5e30628560404674b41a0e180a9d1056f986c7d798bd920"
+      },
+      "train-retrieval-3-seed47-prefill": {
+        "path": "observer-routing-analysis/train-retrieval-3-seed47-prefill.json",
+        "sha256": "985756e314c1346dcf677616a7785b7cffa820e867efe426b3a6db6269674549"
+      },
+      "train-retrieval-3-seed47-decode": {
+        "path": "observer-routing-analysis/train-retrieval-3-seed47-decode.json",
+        "sha256": "31e07877be1c01f52a4ad190fdcea2d52de5d0f4df24c6a5369906c628aefc8d"
+      },
+      "train-retrieval-3-seed47-all": {
+        "path": "observer-routing-analysis/train-retrieval-3-seed47-all.json",
+        "sha256": "8e20c0b8c7c174e4b015b08214f3a1bce7d5edfc8816ff7ed90959de326e7eea"
+      },
+      "train-arithmetic-1-seed47-prefill": {
+        "path": "observer-routing-analysis/train-arithmetic-1-seed47-prefill.json",
+        "sha256": "99d39b0f756c3d472ae4766b9d53a5a1313f0f04019e13a9e3eecaea2861f478"
+      },
+      "train-arithmetic-1-seed47-decode": {
+        "path": "observer-routing-analysis/train-arithmetic-1-seed47-decode.json",
+        "sha256": "1649ed4c925dbe747d22278c4a77c0f2dc5bc770a25f295deceb223f51042c53"
+      },
+      "train-arithmetic-1-seed47-all": {
+        "path": "observer-routing-analysis/train-arithmetic-1-seed47-all.json",
+        "sha256": "420bd3e09c0d01bc149806cc8da0073edf123259f0c8ebef2fe0462b0fd43943"
+      },
+      "train-planning-2-seed47-prefill": {
+        "path": "observer-routing-analysis/train-planning-2-seed47-prefill.json",
+        "sha256": "2657e13287e04ef6ae129c0cfb4b35f4eafb1afad976b3ca8d38f2aa7afd0607"
+      },
+      "train-planning-2-seed47-decode": {
+        "path": "observer-routing-analysis/train-planning-2-seed47-decode.json",
+        "sha256": "38a7636ae6e203e67e738da300a5c16ad65d4d88ed07062424da0885edd794b6"
+      },
+      "train-planning-2-seed47-all": {
+        "path": "observer-routing-analysis/train-planning-2-seed47-all.json",
+        "sha256": "33c0d22ae23b58465b790959777df2d8e0264a485e4b112ed946b17712b80bc0"
+      },
+      "train-code-2-seed29-prefill": {
+        "path": "observer-routing-analysis/train-code-2-seed29-prefill.json",
+        "sha256": "195abc2b22b69da9324945980cabdcd9e85010597b8d46cf5c6c6c164703e82d"
+      },
+      "train-code-2-seed29-decode": {
+        "path": "observer-routing-analysis/train-code-2-seed29-decode.json",
+        "sha256": "308210f46b6048f2e85f8cfaf7c57d846d45998dc6e323aa43bee83828cd359f"
+      },
+      "train-code-2-seed29-all": {
+        "path": "observer-routing-analysis/train-code-2-seed29-all.json",
+        "sha256": "c47fd454a8d6fe9edbe07cab52a7c10f258e649f0de320a5641b2057eb08858b"
+      },
+      "train-arithmetic-3-seed47-prefill": {
+        "path": "observer-routing-analysis/train-arithmetic-3-seed47-prefill.json",
+        "sha256": "eef821dc8f699dfeafec81afc82ecd3a800c4741bee1803295c50a813501dcd8"
+      },
+      "train-arithmetic-3-seed47-decode": {
+        "path": "observer-routing-analysis/train-arithmetic-3-seed47-decode.json",
+        "sha256": "6eee51bbc7723ea65f85bab8f979d4f4fc99f08dd861a34c2812646a35e5bc04"
+      },
+      "train-arithmetic-3-seed47-all": {
+        "path": "observer-routing-analysis/train-arithmetic-3-seed47-all.json",
+        "sha256": "0fe7260b9a2606d3a470c22c936942732aef571db60fe97a525d5c9216fd696d"
+      },
+      "train-code-2-seed11-prefill": {
+        "path": "observer-routing-analysis/train-code-2-seed11-prefill.json",
+        "sha256": "99e7e5e85cfe203276905b6e74fb6508c3707d6f53ff124efe191a7b6a2aaf1f"
+      },
+      "train-code-2-seed11-decode": {
+        "path": "observer-routing-analysis/train-code-2-seed11-decode.json",
+        "sha256": "d1dbf1b20a7abc0f1f510683776f7db844cafc32fbd69e18c62123807ef588ff"
+      },
+      "train-code-2-seed11-all": {
+        "path": "observer-routing-analysis/train-code-2-seed11-all.json",
+        "sha256": "d5e8da38f7b1f59165edddd5abe1ff521e0b16fd33598093e67bb51b61b743f0"
+      },
+      "train-code-3-seed11-prefill": {
+        "path": "observer-routing-analysis/train-code-3-seed11-prefill.json",
+        "sha256": "66716da541f9bf0d3b2e72a198b0c6de451494c084ffb533c3480c2c168831e6"
+      },
+      "train-code-3-seed11-decode": {
+        "path": "observer-routing-analysis/train-code-3-seed11-decode.json",
+        "sha256": "9a4c3101401f63932d441d626b0e34178a065011ae0348397b1742a01046f971"
+      },
+      "train-code-3-seed11-all": {
+        "path": "observer-routing-analysis/train-code-3-seed11-all.json",
+        "sha256": "b5af82d9f4f09213f76ab04b025ceadcf7afb9e9a8bf6383790c902942ea3000"
+      },
+      "train-retrieval-1-seed11-prefill": {
+        "path": "observer-routing-analysis/train-retrieval-1-seed11-prefill.json",
+        "sha256": "d9751f8f47a91e8d0a7e898dcc31b57a58e216da31bce42642480100a5725f23"
+      },
+      "train-retrieval-1-seed11-decode": {
+        "path": "observer-routing-analysis/train-retrieval-1-seed11-decode.json",
+        "sha256": "b8e1fecfe3c28f2e7e82a72e2400dc499f202eb2cbff44c862f798bf76c51143"
+      },
+      "train-retrieval-1-seed11-all": {
+        "path": "observer-routing-analysis/train-retrieval-1-seed11-all.json",
+        "sha256": "20b2798f6f53bd6965b50b2e16854141c9fd0751b252c82f6153c8080d46e1d7"
+      },
+      "train-code-3-seed47-prefill": {
+        "path": "observer-routing-analysis/train-code-3-seed47-prefill.json",
+        "sha256": "e6a3f518ac91bdb376520db75ca53da3ddbb59feb14dd1437a2835133407307d"
+      },
+      "train-code-3-seed47-decode": {
+        "path": "observer-routing-analysis/train-code-3-seed47-decode.json",
+        "sha256": "084f372260c18d22a7106ced14d6c9106e5ac302bf47d79c974de58a2f3a6cfe"
+      },
+      "train-code-3-seed47-all": {
+        "path": "observer-routing-analysis/train-code-3-seed47-all.json",
+        "sha256": "d3da39c4971526fda3403ea2025e5e207303eefd54bb1163579c2485563ed153"
+      },
+      "train-retrieval-2-seed11-prefill": {
+        "path": "observer-routing-analysis/train-retrieval-2-seed11-prefill.json",
+        "sha256": "910b40f744e45ec372de565896571e68b1e289ab96f73beafb02a7fd7fb4d889"
+      },
+      "train-retrieval-2-seed11-decode": {
+        "path": "observer-routing-analysis/train-retrieval-2-seed11-decode.json",
+        "sha256": "54d5aede597db52d1d81ac6d36c92b69b7c1f36dfa6893a0c6efe03d3a8b9835"
+      },
+      "train-retrieval-2-seed11-all": {
+        "path": "observer-routing-analysis/train-retrieval-2-seed11-all.json",
+        "sha256": "2f3673191b92322d4ba297412ed7cf8156fdafea197277b90a39f0ae375a8941"
+      },
+      "train-planning-1-seed47-prefill": {
+        "path": "observer-routing-analysis/train-planning-1-seed47-prefill.json",
+        "sha256": "9f82640089e9d37230b0181ddf21836c16dfaed96c35fab08a7092e6babf8e9a"
+      },
+      "train-planning-1-seed47-decode": {
+        "path": "observer-routing-analysis/train-planning-1-seed47-decode.json",
+        "sha256": "1a4894821d74b8ba9ca1cf1177053e25b96b65f742fb8b9773e06095e3cfc49a"
+      },
+      "train-planning-1-seed47-all": {
+        "path": "observer-routing-analysis/train-planning-1-seed47-all.json",
+        "sha256": "532e22df8dfc9b1f77f0142e0d9e44c6826cf6e70a47ff6ee8679fca70ca7b39"
+      },
+      "train-retrieval-2-seed47-prefill": {
+        "path": "observer-routing-analysis/train-retrieval-2-seed47-prefill.json",
+        "sha256": "bf6c02f42f694736e7cc73ad079303172e017d01483a6edeb8c1893ec5945df1"
+      },
+      "train-retrieval-2-seed47-decode": {
+        "path": "observer-routing-analysis/train-retrieval-2-seed47-decode.json",
+        "sha256": "3e03ddb2a61ae616d31f395bbb19594f6ba5a579bf03a198e20801347c30c4f5"
+      },
+      "train-retrieval-2-seed47-all": {
+        "path": "observer-routing-analysis/train-retrieval-2-seed47-all.json",
+        "sha256": "896c9614c0e2cf8edacbb8b5a6f22478f8f1cd1caa6e42a8b34d0702f05a2dc6"
+      },
+      "train-planning-3-seed47-prefill": {
+        "path": "observer-routing-analysis/train-planning-3-seed47-prefill.json",
+        "sha256": "b141cf6a430dfb2ec2507c4dd8796258219adc87a6badff99ff1c37fb7dc4b20"
+      },
+      "train-planning-3-seed47-decode": {
+        "path": "observer-routing-analysis/train-planning-3-seed47-decode.json",
+        "sha256": "c6551972f7a0070b44f57764f7fb750e012d7d92796367d3d3c66124c1603746"
+      },
+      "train-planning-3-seed47-all": {
+        "path": "observer-routing-analysis/train-planning-3-seed47-all.json",
+        "sha256": "fa3a33e57432731f36fae10eb777ee51166a2094076a108add3c01c32637999b"
+      },
+      "train-retrieval-1-seed47-prefill": {
+        "path": "observer-routing-analysis/train-retrieval-1-seed47-prefill.json",
+        "sha256": "5c7331f60500973bf1d858de8bf33897d85ea3a059cd4d7d9a2f9d25f0615fc8"
+      },
+      "train-retrieval-1-seed47-decode": {
+        "path": "observer-routing-analysis/train-retrieval-1-seed47-decode.json",
+        "sha256": "3e90ca7fac19c084b6c5ee0d987a4620b54a04b6bfc5a0f250e8ec93552abb10"
+      },
+      "train-retrieval-1-seed47-all": {
+        "path": "observer-routing-analysis/train-retrieval-1-seed47-all.json",
+        "sha256": "40aeef87b522833d0c623085a919aa9e4bd8fc7ce9df665e1454259e3dd62413"
+      },
+      "train-planning-1-seed11-prefill": {
+        "path": "observer-routing-analysis/train-planning-1-seed11-prefill.json",
+        "sha256": "6a637831e6303c7c3d6d1265a05ce9ae370c60f2ee3426313e7943f5467ca624"
+      },
+      "train-planning-1-seed11-decode": {
+        "path": "observer-routing-analysis/train-planning-1-seed11-decode.json",
+        "sha256": "d3b7a9e8004b8de94a73e43a6fcaca3107338982b3aab8a65c093dae0c063eae"
+      },
+      "train-planning-1-seed11-all": {
+        "path": "observer-routing-analysis/train-planning-1-seed11-all.json",
+        "sha256": "b682f8a83202a242466f00df17b6884cf6fb06db359499caf82be4e2585e9024"
+      },
+      "train-italian-3-seed11-prefill": {
+        "path": "observer-routing-analysis/train-italian-3-seed11-prefill.json",
+        "sha256": "d0dab6916e47168ae78e23b984963759e6b50de8a590d4d8637802fdcbb26908"
+      },
+      "train-italian-3-seed11-decode": {
+        "path": "observer-routing-analysis/train-italian-3-seed11-decode.json",
+        "sha256": "c8576007635026df4f15c3cd2af86014ce23906c19fc08d68397aa650c7e0626"
+      },
+      "train-italian-3-seed11-all": {
+        "path": "observer-routing-analysis/train-italian-3-seed11-all.json",
+        "sha256": "63f208831dce408e7386b85aa54fbb6e9edf394ca886cf431ca4d2f455288f8b"
+      },
+      "train-planning-3-seed11-prefill": {
+        "path": "observer-routing-analysis/train-planning-3-seed11-prefill.json",
+        "sha256": "4fb92ba194bf902b9a94956ab1f087a7094e26ab9bad657ee1c261087c48020f"
+      },
+      "train-planning-3-seed11-decode": {
+        "path": "observer-routing-analysis/train-planning-3-seed11-decode.json",
+        "sha256": "ddecc5893b034b280e9898e3272033ad5effc4a5b6f81633c0cbe0441fedce6f"
+      },
+      "train-planning-3-seed11-all": {
+        "path": "observer-routing-analysis/train-planning-3-seed11-all.json",
+        "sha256": "359592e3b3fd45be36e429d17f30460ec12779264df5c25c07b69c90413e8010"
+      },
+      "train-planning-3-seed29-prefill": {
+        "path": "observer-routing-analysis/train-planning-3-seed29-prefill.json",
+        "sha256": "06b0011ef054cd0a415f6e0bce17d47ee6bf61864b0d7b797cc35b41f3078ef1"
+      },
+      "train-planning-3-seed29-decode": {
+        "path": "observer-routing-analysis/train-planning-3-seed29-decode.json",
+        "sha256": "cf7eb20b85ee8468236a475240db4ff9e537f611be6a4c5b708d017470556ee4"
+      },
+      "train-planning-3-seed29-all": {
+        "path": "observer-routing-analysis/train-planning-3-seed29-all.json",
+        "sha256": "3160811becfcf43f6402fdb0132f30585ae41cf80d998240a7d2451babc7f571"
+      },
+      "train-italian-1-seed11-prefill": {
+        "path": "observer-routing-analysis/train-italian-1-seed11-prefill.json",
+        "sha256": "06d1fa22b1f75f1938dcd49574d0d092511ad00fa15f5c62f05d18904f650e41"
+      },
+      "train-italian-1-seed11-decode": {
+        "path": "observer-routing-analysis/train-italian-1-seed11-decode.json",
+        "sha256": "67149c807a6d5bca76b1910adf272eea1e4890c5dedacb66bd7362eb643776bc"
+      },
+      "train-italian-1-seed11-all": {
+        "path": "observer-routing-analysis/train-italian-1-seed11-all.json",
+        "sha256": "2efd5c8c100396db7a7aad1e3b2df7e6bbcb1e9928dad89dff8d4d4bef981dab"
+      },
+      "train-structured-3-seed29-prefill": {
+        "path": "observer-routing-analysis/train-structured-3-seed29-prefill.json",
+        "sha256": "1c5d487c0e19bc991bf7ac44ba3019a3573d2abbe2a56108f9c87904b0b55d31"
+      },
+      "train-structured-3-seed29-decode": {
+        "path": "observer-routing-analysis/train-structured-3-seed29-decode.json",
+        "sha256": "3da07d6b4acc7b5cd255cb27fc4d7e0bfefa291b722c0c2a2791c85426390bf2"
+      },
+      "train-structured-3-seed29-all": {
+        "path": "observer-routing-analysis/train-structured-3-seed29-all.json",
+        "sha256": "c68a64d49c09ba7b792b544bd17f7f1e0d74a16a9444f2d6372817b7c7dd745b"
+      },
+      "train-arithmetic-2-seed11-prefill": {
+        "path": "observer-routing-analysis/train-arithmetic-2-seed11-prefill.json",
+        "sha256": "a5e6fb5c4a24e1691880dd942503ef69ab64c6349fe6cc287e7219ff26b68b84"
+      },
+      "train-arithmetic-2-seed11-decode": {
+        "path": "observer-routing-analysis/train-arithmetic-2-seed11-decode.json",
+        "sha256": "42a0c4bd4d836cf8a063bc43f122c6de1b1bf1a03b5a76c30443ac3b6420a0b9"
+      },
+      "train-arithmetic-2-seed11-all": {
+        "path": "observer-routing-analysis/train-arithmetic-2-seed11-all.json",
+        "sha256": "9ece8bfdf426c10f0cddefb5b453ee4f9ee7bebb80040b4714e151cf5efd61ca"
+      },
+      "train-italian-2-seed11-prefill": {
+        "path": "observer-routing-analysis/train-italian-2-seed11-prefill.json",
+        "sha256": "27443d4e429173e3431eae22f8b8559d9eefe7349f5909a23ed7a0e3b5832eb5"
+      },
+      "train-italian-2-seed11-decode": {
+        "path": "observer-routing-analysis/train-italian-2-seed11-decode.json",
+        "sha256": "ac50cb96e36ee3e062a3e63944c9e838da5165903fb314b8b2316c80f09637a0"
+      },
+      "train-italian-2-seed11-all": {
+        "path": "observer-routing-analysis/train-italian-2-seed11-all.json",
+        "sha256": "8d154e1369e842fab434f29e56c8ec573d53cc9675e771383e34d0309458f6df"
+      },
+      "train-structured-3-seed47-prefill": {
+        "path": "observer-routing-analysis/train-structured-3-seed47-prefill.json",
+        "sha256": "2e9bad008d91357e38429441cd9bcdef9ea19246a0105bccf54b3377e226c954"
+      },
+      "train-structured-3-seed47-decode": {
+        "path": "observer-routing-analysis/train-structured-3-seed47-decode.json",
+        "sha256": "9f5958009d2b1491d738b1b8ff6c2f523bb77bbfcf0389fe4bdbc189b14d078f"
+      },
+      "train-structured-3-seed47-all": {
+        "path": "observer-routing-analysis/train-structured-3-seed47-all.json",
+        "sha256": "399f46c79b4869836a89bd9a30549e7a9bd49df2dfe1dd73dea58c5ee920a1c7"
+      },
+      "train-structured-2-seed29-prefill": {
+        "path": "observer-routing-analysis/train-structured-2-seed29-prefill.json",
+        "sha256": "d84ced8a7aff250028d349c59b24f4bec9c9b81d4ce30e378be424ff4f062750"
+      },
+      "train-structured-2-seed29-decode": {
+        "path": "observer-routing-analysis/train-structured-2-seed29-decode.json",
+        "sha256": "aba8d85faf6e2808f3b2133adba5364b75823413b74da6e0f6750a6b11f2db14"
+      },
+      "train-structured-2-seed29-all": {
+        "path": "observer-routing-analysis/train-structured-2-seed29-all.json",
+        "sha256": "dae77bec57978aa7153ce55cc2fe38f8114656e52006efd6d1c1fc34395553e0"
+      },
+      "train-structured-1-seed47-prefill": {
+        "path": "observer-routing-analysis/train-structured-1-seed47-prefill.json",
+        "sha256": "31ec3f5bdd295d25a2b9437617a61d7c1d57445937f58bd74c80f8855177e503"
+      },
+      "train-structured-1-seed47-decode": {
+        "path": "observer-routing-analysis/train-structured-1-seed47-decode.json",
+        "sha256": "7e65e1a3a41ea6ee27365c75e782b9030d8c06a206e4c7347ec4f0589ef00f83"
+      },
+      "train-structured-1-seed47-all": {
+        "path": "observer-routing-analysis/train-structured-1-seed47-all.json",
+        "sha256": "9f497eaf01543be3b385efd20e4c77d3935b240c52b807dbc2e9fa1904ad3fd3"
+      },
+      "train-retrieval-2-seed29-prefill": {
+        "path": "observer-routing-analysis/train-retrieval-2-seed29-prefill.json",
+        "sha256": "c7ad29437939f538dfce6be0ef5fd817114274aed21351acec84de821c39f2d5"
+      },
+      "train-retrieval-2-seed29-decode": {
+        "path": "observer-routing-analysis/train-retrieval-2-seed29-decode.json",
+        "sha256": "9b216620cec7f6fdd1a88dbd2988a86aa9b4aa8c22a24ff2ad012f84b6eb0ab6"
+      },
+      "train-retrieval-2-seed29-all": {
+        "path": "observer-routing-analysis/train-retrieval-2-seed29-all.json",
+        "sha256": "fdc8ebfdf473337de5267a954578dd8de68fa5c74ba140cd27661bcaa54bfa48"
+      },
+      "train-arithmetic-3-seed29-prefill": {
+        "path": "observer-routing-analysis/train-arithmetic-3-seed29-prefill.json",
+        "sha256": "401c46f25ddf5997aa57decc421951329a1dd2e6c2008d0b93be92a4d9614e3d"
+      },
+      "train-arithmetic-3-seed29-decode": {
+        "path": "observer-routing-analysis/train-arithmetic-3-seed29-decode.json",
+        "sha256": "f3a6113133042d3fbf47130bc96b261d004dc4ce77b0be72b449555dd5c18ed6"
+      },
+      "train-arithmetic-3-seed29-all": {
+        "path": "observer-routing-analysis/train-arithmetic-3-seed29-all.json",
+        "sha256": "5e99131690a86ccac4b956ef6016c11468b09a8d92f241ac790feefb6f411375"
+      },
+      "train-arithmetic-2-seed29-prefill": {
+        "path": "observer-routing-analysis/train-arithmetic-2-seed29-prefill.json",
+        "sha256": "b4408e4162e365cdbf7c625ccd4339a7ad0609c725c886bb54168e576b7f310b"
+      },
+      "train-arithmetic-2-seed29-decode": {
+        "path": "observer-routing-analysis/train-arithmetic-2-seed29-decode.json",
+        "sha256": "7d43a7951950bb6fd8641c0999abece59b1241b47d3fdf870e5bd4dafe6c05fc"
+      },
+      "train-arithmetic-2-seed29-all": {
+        "path": "observer-routing-analysis/train-arithmetic-2-seed29-all.json",
+        "sha256": "8576c95f4377d2c0be0d8617f8b45290db039479b0da0d6b80b9626ad2b26aa0"
+      },
+      "train-arithmetic-1-seed11-prefill": {
+        "path": "observer-routing-analysis/train-arithmetic-1-seed11-prefill.json",
+        "sha256": "1f4b384ce360d014709e74cfe861e51b02b1eb52b239404202d23349e4d404bc"
+      },
+      "train-arithmetic-1-seed11-decode": {
+        "path": "observer-routing-analysis/train-arithmetic-1-seed11-decode.json",
+        "sha256": "b5c0d2cd6a7eeabeab2304a8684a5c42588a19a44943ff6966adf18e00947d16"
+      },
+      "train-arithmetic-1-seed11-all": {
+        "path": "observer-routing-analysis/train-arithmetic-1-seed11-all.json",
+        "sha256": "149f0104688c3c3fd88c1340d3ce5311aa42b06bec9790137e132ca299ccbb00"
+      }
+    },
+    "protocol_sha256": "507dc7b60b85b4e03a077fbb080dae1a4bf056113881e7b89f745d8cf9abd62a",
+    "limits": "Logical simulations, not measured hit rate/PCIe/cost/speedup; no general observer neutrality beyond qualified cohort"
+  },
+  "limits": "Observer matches full autonomous B1 same-placement raw logits and generated IDs for108cases. Native callback-free CPU18 route order matches all108. Normal40logical simulations are not measured runtime hit rate,transferred PCIe bytes,quality or speed;legacy callback remains failed. Extended turns/context,CPU/GPU fidelity and broadT2/M2 acceptance remain separate."
+}

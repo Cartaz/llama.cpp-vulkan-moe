@@ -1,0 +1,17 @@
+{
+  "utc": "2026-10-09T19:33:04.131567+00:00",
+  "gate": "PASS_SOURCE_PRELAUNCH",
+  "protocol_sha256": "deb9c2a65e3c3fdbdf407f1c351520c2bb72c237f351254ae03bee92c6d839da",
+  "source_sha256": "7e046389896f5a777494342617e5ea7a5b6eba181433c076c593a1c576433231",
+  "checks": [
+    "Exact archived R62sequence and oracles retained; source introduces only uniform context factory/lifecycle and response metadata",
+    "Unused initialized common context retained identically in both modes; its params preserve model sampling metadata",
+    "Experimental context synchronized/destroyed before threadpools; trial destroyed before model; fresh destroys previous trial before allocation",
+    "Context params/threadpool setup use public baseline APIs; root common/common.h and include/llama.h have no diff against7fe450e",
+    "Same prompt/template/sampling/clear(true)/raw vectors; context_generation must be1orcaseindex+1",
+    "First7case helper compatibility versus original benign R62GPUlegacy1 is separate from last duplicate failure",
+    "Header/source/protocol hashes verified before compilation and every model invocation; one model process under lock",
+    "Binary compilation/loaded DSO audit pending until after R63join; no runtime result implied"
+  ],
+  "limits": "Static source/API review only. No lifecycle/performance/general qualification; fresh includes scheduler/buffer/threadpool recreation,not isolated memory_clear."
+}

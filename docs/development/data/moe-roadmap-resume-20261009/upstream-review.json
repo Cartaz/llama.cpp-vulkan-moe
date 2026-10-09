@@ -1,0 +1,64 @@
+{
+  "utc": "2026-10-09T00:33:47.436912+00:00",
+  "head": {
+    "sha": "de7fa0a3c6a2e1b4cd9f22eb8d6bf5b12dbdb63b",
+    "title": null,
+    "state": null,
+    "merged": null,
+    "merge_commit_sha": null,
+    "updated_at": null,
+    "html_url": "https://github.com/ggml-org/llama.cpp/commit/de7fa0a3c6a2e1b4cd9f22eb8d6bf5b12dbdb63b",
+    "commit": {
+      "author": {
+        "name": "bri-prism",
+        "email": "288398250+bri-prism@users.noreply.github.com",
+        "date": "2026-10-08T19:56:54Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2026-10-08T19:56:54Z"
+      },
+      "message": "Musa FWHT fix (#30167)",
+      "tree": {
+        "sha": "58c6b0373c3269318325db485f3f6b29598c1ee8",
+        "url": "https://api.github.com/repos/ggml-org/llama.cpp/git/trees/58c6b0373c3269318325db485f3f6b29598c1ee8"
+      },
+      "url": "https://api.github.com/repos/ggml-org/llama.cpp/git/commits/de7fa0a3c6a2e1b4cd9f22eb8d6bf5b12dbdb63b",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqx/WGCRC1aQ7uu5UhlAAAXZ8QAKQOiFoV9CzmKgziWJAWiFp4\nI8Q8WyF5py0xkV699j8qUKkC974IXQy8n50t/poztftWIH2BvF7PyJpPqsLPvvIC\n2t7qqAAb8nRjiqujiF7J0krHGVEIWad3O2/fSrmM7F5Kf5cfKyXyeYvr6HVHQ6/R\ncPwfzgkvz12oayI5GgB3b7JA2H5LIAR/OVAIKC9acjWYCjWOrNFJA6Lu7enJscp4\nlj7160cgjVPbGGVcH51LOJqZrSeV1HtbCoQ52zb1tSTiCBxFCMFNb1xHqSB/dufc\nkD30MNCZhfltbqqbVkeiJBaAE3DpTa2VG6R18sKJ2lbL2zEYUDvtX1VRVHEuVw02\naZSAPeRrUqrJJcboN7fUe87xvg/bP6UE+avG12OE3u6G5xkgGqhbC7VB1jpSr/Fb\n7gSPGIi2g9mLCUAxJLTj/jXfbxQdnbH/JgodMTM4IX+fNsu2MVrI4EhnWv65CMz3\nImiGEqV82s6pui44kArr+4wbiCMwxE3+z/6y6QDj8g6+S9GwiNbPD7JRegI3gxW1\nBfFfI/YjeWZgdpGlI2aBjs7MsbsA4YXMwqHy3G22XZcrzvRZunf4cHT/tD2eK9wN\nXe+n0X1OsLF7uB0FZb4rxReC10UnkUfwG31cXI5194Xf6A8bF/3jIHDbOxLmXlWK\n+Hug57pUv+xNDLma5WsG\n=YKqY\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 58c6b0373c3269318325db485f3f6b29598c1ee8\nparent 71ad0590f4808b6202f9213d166913858c73b1bc\nauthor bri-prism <288398250+bri-prism@users.noreply.github.com> 1791489414 -0700\ncommitter GitHub <noreply@github.com> 1791489414 +0200\n\nMusa FWHT fix (#30167)",
+        "verified_at": "2026-10-08T19:56:55Z"
+      }
+    },
+    "files": [
+      {
+        "filename": "ggml/src/ggml-cuda/fwht.cu",
+        "status": "modified",
+        "patch": "@@ -200,9 +200,12 @@ static bool ggml_cuda_op_fwht_impl(ggml_backend_cuda_context & ctx, const ggml_t\n             case 4096:\n                 ggml_cuda_kernel_launch(fwht_cuda_block<4096, nt, T>, launch_params_w, src_d, dst_d, rows, scale);\n                 return true;\n+#if !defined(GGML_USE_MUSA)\n+            // 32 KB of shared memory, above the MUSA limit; falls back there\n             case 8192:\n                 ggml_cuda_kernel_launch(fwht_cuda_block<8192, nt, T>, launch_params_w, src_d, dst_d, rows, scale);\n                 return true;\n+#endif // !defined(GGML_USE_MUSA)\n             default:\n                 return false;\n         }"
+      }
+    ]
+  },
+  "cache_pr": {
+    "sha": null,
+    "title": "llama : add a GPU cache for MoE experts kept in host memory",
+    "state": "closed",
+    "merged": true,
+    "merge_commit_sha": "d6cf9acb25e6c657d6c6a4645ab7b69fce119995",
+    "updated_at": "2026-10-08T14:31:54Z",
+    "html_url": "https://github.com/ggml-org/llama.cpp/pull/29887",
+    "head": "2de17c21b81fab40ba962500deb3ee2247d8e356"
+  },
+  "gpu_lru_issue": {
+    "sha": null,
+    "title": "Feature Request: MoE expert cache with GPU-resident LRU - cache decisions and copies run on the GPU inside the compute graph",
+    "state": "open",
+    "merged": null,
+    "merge_commit_sha": null,
+    "updated_at": "2026-10-08T22:45:23Z",
+    "html_url": "https://github.com/ggml-org/llama.cpp/issues/29949"
+  }
+}

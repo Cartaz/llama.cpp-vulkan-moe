@@ -1,0 +1,98 @@
+{
+  "utc": "2026-10-09T12:44:14.896422+00:00",
+  "base_commit": "2e08b57e9997358109a993c845ce6b39eeb266fa",
+  "protocol_sha256": "35b94e4630369722a95e9486e5c861fbff20e928b3a250bba327d4d91e8bc10b",
+  "source": {
+    "ggml/src/ggml-backend.cpp": "9dfa2beb372a00a94ca7dcdc59dbe057167b9b262344adeda82e3dc62136ac9e",
+    "examples/moe-trace/expert-pool-check.cpp": "48b5c443796188630211d13668b7ca9eb18532c1c97e2ddcd8946ff5c8da1fbe",
+    "examples/moe-trace/moe-replay.cpp": "d71a81d1616852d7a0511fc83014814d6900d0188212ac0e9e1fe88ded2d8e00"
+  },
+  "artifacts": {
+    "frozen/R61-V2/libggml-base.so.0.25.1": "1d469090492e0335d9d26624b78e387778cd7584b4dbb6d9a7f18eef7ff82661",
+    "frozen/R61-V2/libggml-cpu.so.0.25.1": "d939874c41448f224794190e80548a7d09a309686450ac53c797b040eb2d995b",
+    "frozen/R61-V2/libggml-vulkan.so.0.25.1": "4442d44cfa70f0cf12b5d6290f6bd74fbe1b24e4a90fe71759ab40efffeb22d4",
+    "frozen/R61-V2/libggml.so.0.25.1": "dc0917f5b55bb86ecfa89c7d1734c5ab6579fb90ad97cd5a94735fa9eb9e5f22",
+    "frozen/R61-V2/libllama.so.0.5.0": "d8cd670eab39b9ae327c11e5446e6b6faa4ae8f8250796ff7aabd031aeaca504",
+    "frozen/R61-V2/libllama-common.so.0.5.0": "95f75b06313398c916105b7718d31be963ee275c83e14c59cebc32582b0f05a7",
+    "frozen/R61-V2/replay": "269b830ac97325df9d63ccc90b14040457a8965d72163756b2783de4f185f376",
+    "frozen/R61-V2/scheduler-check": "84fb7c18600cede8459233bc6a3978cab4471a5ae4578aeb41eeadadc8f1e49a",
+    "frozen/R61-V2/corpus": "7110f1e09d0f785f3ccb0da6b7575db8c60a9e89d10c834973ba6023df233c7f"
+  },
+  "helper_source": {
+    "corpus": {
+      "path": "examples/moe-trace/moe-corpus.cpp",
+      "sha256": "94a9764b8963f54340a6f212aa4a6410712f006fa94078c87d65b2f35df17990",
+      "copy_binary_from": "frozen/STATE-CONTROL/corpus",
+      "provenance": "Three compile manifests and callback-after-up-freeze agree; separate stress-source-provenance-audit-resume06.json"
+    },
+    "replay": {
+      "path": "examples/moe-trace/moe-replay.cpp",
+      "sha256": "d71a81d1616852d7a0511fc83014814d6900d0188212ac0e9e1fe88ded2d8e00"
+    }
+  },
+  "build_cache_sha256": "940335f558803aac6d77380e4014c4867f7c777eccb615f0acc28d4f6dafceb3",
+  "build_jobs": 2,
+  "build": "Release,native,Vulkan,GCC16.2.1; existing build-milestone-validation",
+  "default": "OFF; absent env flag",
+  "cohort": "New binary/DSO set; gate compatibility explicitly before timing",
+  "label": "R61-V2",
+  "fixture_amendment": "Batched bypass submits successfully under fault hook and leaves graph sources intact; eligible single-token cache abort remains required. Retries and raw fixtures retained. Original CPU cohort stays archived on original helper.",
+  "inputs": {
+    "heldout-arithmetic": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-arithmetic/tokens.csv",
+      "original_sha256": "c2c1c2f1037ddd0a4a55a1d881aaf66177b954b32fb7064b3820960950595c0a",
+      "path": "r61-inputs/heldout-arithmetic.csv",
+      "sha256": "c2c1c2f1037ddd0a4a55a1d881aaf66177b954b32fb7064b3820960950595c0a",
+      "PP": 133,
+      "TG": 64
+    },
+    "heldout-code": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-code/tokens.csv",
+      "original_sha256": "8f2546f451addd4ca355fcaee6d5335c2ad07df49e4879849a49a783faa4904f",
+      "path": "r61-inputs/heldout-code.csv",
+      "sha256": "8f2546f451addd4ca355fcaee6d5335c2ad07df49e4879849a49a783faa4904f",
+      "PP": 113,
+      "TG": 64
+    },
+    "heldout-italian": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-italian/tokens.csv",
+      "original_sha256": "5db390b32d7e7e8284b23bf0b44163e309a5ae9a174cfa07d3211400012a22c2",
+      "path": "r61-inputs/heldout-italian.csv",
+      "sha256": "5db390b32d7e7e8284b23bf0b44163e309a5ae9a174cfa07d3211400012a22c2",
+      "PP": 149,
+      "TG": 64
+    },
+    "heldout-planning": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-planning/tokens.csv",
+      "original_sha256": "0a2103503817bb5ed69c001475fb33a7ba7f13697af0b95be72043c71e73d885",
+      "path": "r61-inputs/heldout-planning.csv",
+      "sha256": "0a2103503817bb5ed69c001475fb33a7ba7f13697af0b95be72043c71e73d885",
+      "PP": 119,
+      "TG": 64
+    },
+    "heldout-retrieval": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-retrieval/tokens.csv",
+      "original_sha256": "5fb7e1722f531c88bdedee7d30ee32a6474d4e526cda96aa0a6d4a4d1c77574c",
+      "path": "r61-inputs/heldout-retrieval.csv",
+      "sha256": "5fb7e1722f531c88bdedee7d30ee32a6474d4e526cda96aa0a6d4a4d1c77574c",
+      "PP": 139,
+      "TG": 64
+    },
+    "heldout-structured": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-structured/tokens.csv",
+      "original_sha256": "17688a4b930656e3853bb43765aab3761cb5f95ace3d2787315600989195c732",
+      "path": "r61-inputs/heldout-structured.csv",
+      "sha256": "17688a4b930656e3853bb43765aab3761cb5f95ace3d2787315600989195c732",
+      "PP": 126,
+      "TG": 64
+    },
+    "short": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/short/tokens.csv",
+      "original_sha256": "711949862bf3674e00add770c2add1b3fac53d0f3695ee28769ca8a082c7052d",
+      "path": "r61-inputs/short.csv",
+      "sha256": "711949862bf3674e00add770c2add1b3fac53d0f3695ee28769ca8a082c7052d",
+      "PP": 512,
+      "TG": 200
+    }
+  }
+}

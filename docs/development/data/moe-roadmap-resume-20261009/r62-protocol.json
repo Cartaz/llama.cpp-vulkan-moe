@@ -1,0 +1,26 @@
+{
+  "id": "R62-native-prefill-output-shape-diagnostic",
+  "registered_utc": "2026-10-09T13:15:44.890403+00:00",
+  "engine": "B1 unmodified7fe450e; no engine/kernel changes",
+  "source_original": "User dirty quality-eval.cpp copied read-only at recorded3bb9 SHA; active file unchanged",
+  "source_prototype": "r62-native-prefill.cpp adds complete sampling-vector dump and raw-text byte companion; safe UTF8 replacement in derived JSON only",
+  "dataset": "8 fixed cases generated seed20261009,90records:retrieval/code_trace long,4shortcontrols,2longduplicates; complete oracles verified before inference",
+  "sampling": "Native thinking,template fixed time1791072000,temp0.6,top_p0.95,top_k20,min_p0,seed42,repeat penalty default1.0; no grammar;64-token limit intentional diagnostic,not semantic-quality certification",
+  "flags": "ngl99,ncmoe18,t8,tb8,c8192,b2048,ub512,FAon,Q8KV,fitOFF,mmap; no synchronization workaround env",
+  "variants": "CPU17/GPU17 resident crossed with logical n_batch calls and legacy physical min(batch,ubatch) calls; GPU17 is only weight placement override",
+  "order": [
+    "cpu-logical-1",
+    "cpu-legacy-1",
+    "gpu-logical-1",
+    "gpu-legacy-1",
+    "gpu-legacy-2",
+    "gpu-logical-2",
+    "cpu-legacy-2",
+    "cpu-logical-2"
+  ],
+  "gates": "Every emitted sampling vector full248320 float32 finite/nonzero. Within duplicate and across two fresh process repeats at same configuration require full raw bytes/generatedIDs exact. CPU/GPU and logical/legacy contrasts descriptive; preserve prior screen limits and mismatches,never treat different history as matched-input causality. Invalid cases preserved,empty response,continue only after data clear. No performance ranking.",
+  "scope": "64 sampled vectors maximum percase; emitted outputs only,not hidden physical-ubatch intermediates. Raw I/O can influence inter-call behavior. This does not qualify natural server reliability,full semantic score,long generation or cache feature.",
+  "source_sha256": "525b355f337cfb60904535315d5dc9ae8ae555e04e9d8c7d8fc8014e13fac7f8",
+  "cases_sha256": "95ef40f87589e7b909b72e3ce1318a81fc8d6f68c8daee904b8770d8b00faadb",
+  "start_condition": "After pressure and R61 phases joined under exclusive lock; one model process; original memory/time/device guards and user GPU settings retained."
+}

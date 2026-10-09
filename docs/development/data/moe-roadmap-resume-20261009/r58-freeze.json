@@ -1,0 +1,93 @@
+{
+  "candidate_commit": "R39f3a5150 + existing R49 helper, archived engines unchanged",
+  "helper_source_sha256": "f480791c2f79fe6d798313c67fbbd1126caf861be7aa87a9bd748caf2c8bb668",
+  "variants": {
+    "R58-WORK": "f3a5150eb0c6eb57e60effe6498b7f6319e73136 mixed frozenR39 WORK engine"
+  },
+  "model": {
+    "path": "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+    "bytes": 21713462848,
+    "sha256": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f",
+    "sha256_rechecked": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f",
+    "sha256_rechecked_for_R31": true,
+    "sha256_rechecked_for_R32": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f",
+    "sha256_rechecked_for_R33": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f",
+    "sha256_rechecked_for_R34": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f",
+    "sha256_rechecked_for_R36": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f",
+    "sha256_rechecked_for_R37": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f"
+  },
+  "artifacts": {
+    "frozen/R58-WORK/libllama-common.so.0.5.0": "a43eeaa3d3d9f59545b23f66e5c9d1d7197b682a83e0ca1c1d81fc9eda382643",
+    "frozen/R58-WORK/libllama.so.0.5.0": "2554f1d140cd0e6a647d451dcbecd96b77fba1ab54fb553c9bf88564a61de913",
+    "frozen/R58-WORK/libggml.so.0.25.1": "6b04bffa1a08145c278cd8ccbacbb9eb117ab2e1decd1aca27888432e8f1a8a0",
+    "frozen/R58-WORK/libggml-vulkan.so.0.25.1": "92550c31e1817cea32d006539e05d54a5a7639ab24efb9cb7ff7ac2ccb71753b",
+    "frozen/R58-WORK/libggml-cpu.so.0.25.1": "813eea209fd238cb6be91d967d46a89ce1346e2d2076ff34fc9820d20b3553f3",
+    "frozen/R58-WORK/libggml-base.so.0.25.1": "21691b6ddf7c1d3d420e68188ea27468ac30bcaa357afff03d788790ed2a44c1",
+    "frozen/R58-WORK/corpus": "1eb0484dbc6eead20555d2049c06e172fb06b76ff57fab46ec39e7e95ebef8b7"
+  },
+  "input_files": {
+    "r56-input.jsonl": "ec6b475d2843b56ded4deb15ac6fcd7949529dbdc21ceffcd45da9fa55f09b5e"
+  },
+  "references": {
+    "original": {
+      "path": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/r40-control-logits.bin",
+      "sha256": "70a46c02e881eccb8f109aeda82cbde51990391b077edd3515c206814f7c0424"
+    },
+    "copy": {
+      "path": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/r40-copy-off-logits.bin",
+      "sha256": "70a46c02e881eccb8f109aeda82cbde51990391b077edd3515c206814f7c0424"
+    },
+    "gate": {
+      "path": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/r40-gate-off-logits.bin",
+      "sha256": "a95fccdd315a4225aa396b977b7db9ee9c1337a3ad53a0fc7d9797d304e3c5ff"
+    },
+    "up": {
+      "path": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/r40-up-off-logits.bin",
+      "sha256": "bfe158a26ad18b39a7359df3f87cd819f1d3483227d57d97d2c4040f7c3977ba"
+    },
+    "down": {
+      "path": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/r40-down-off-logits.bin",
+      "sha256": "28b27442c811da62b1a506983727349e6359bdc7a58d6e8fd0529a2585a98a92"
+    },
+    "all": {
+      "path": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-roundtrip-intermediates/short/r40-all-off-logits.bin",
+      "sha256": "657983a5afc2203117c6421a3db418945daf98097bb892e4a533af57602dc1a2"
+    }
+  },
+  "original_tokens": {
+    "path": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-quantized-work-replay/short/tokens.csv",
+    "sha256": "711949862bf3674e00add770c2add1b3fac53d0f3695ee28769ca8a082c7052d"
+  },
+  "helper_copy": {
+    "path": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/DIAG-WORK/corpus",
+    "sha256": "7110f1e09d0f785f3ccb0da6b7575db8c60a9e89d10c834973ba6023df233c7f"
+  },
+  "protocol_sha256": "16b3e3fb787ffffb4f8a2a9d6b7deffd1fa2566adcfc198ecda92dc16fd41d11",
+  "headers_identical_R39_to_current": true,
+  "source_prototype": "router-weights-corpus.cpp",
+  "original_helper_source_sha256": "94a9764b8963f54340a6f212aa4a6410712f006fa94078c87d65b2f35df17990",
+  "standalone_build": {
+    "argv": [
+      "g++",
+      "-std=c++17",
+      "-O2",
+      "-DNDEBUG",
+      "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/include",
+      "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/common",
+      "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/ggml/include",
+      "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/vendor",
+      "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/examples/moe-trace",
+      "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/router-weights-corpus.cpp",
+      "-L/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R58-WORK",
+      "-Wl,-rpath,$ORIGIN",
+      "-lllama-common",
+      "-lllama",
+      "-lggml",
+      "-lggml-base",
+      "-pthread",
+      "-o",
+      "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R58-WORK/corpus"
+    ],
+    "compiler": "g++ (GCC) 16.2.1 20260810"
+  }
+}

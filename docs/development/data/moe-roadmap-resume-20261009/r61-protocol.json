@@ -1,0 +1,75 @@
+{
+  "id": "R61-S14-single-token-pool-admission",
+  "status": "REGISTERED_BEFORE_IMPLEMENTATION",
+  "base_commit": "2e08b57e9997358109a993c845ce6b39eeb266fa",
+  "bottleneck": "Batched prompt admission can upload experts and evict decode residents even when the next single-token request has a different working set. R42 observed prompt churn. R51 already bypassed oversized batches, so this option has no assumed benefit on those cells.",
+  "hypothesis": "On RDNA2/RADV, bypassing pool admission for MoE ID tensors with more than one token can avoid pool uploads, remap allocation and cache pollution while keeping the existing expert-copy fallback. This does not remove all prompt transfers or routing readbacks.",
+  "option": "GGML_SCHED_EXPERT_POOL_DECODE_ONLY; absent=original behavior, present (including0)=bypass admission when ids.ne[1]>1. Single-token prompt chunks can still admit. Batched decode/speculation also bypasses; this is a shape rule, not a semantic phase detector.",
+  "minimal_change": "One opt-in member and early admission return in scheduler expert pool; reuse current fallback and graph restoration. Existing multilayer fixture injects cache-admission abort only on shapes eligible for admission, and still checks all batched output vectors.",
+  "tradeoffs": "Cold TG can upload more after PP; batching or concurrency can bypass useful cache hits. Existing resident payload stays allocated. No claimed VRAM saving or faster end-to-end generation before measurement.",
+  "fixtures": "Existing scheduler and multilayer CPU/Vulkan fixtures OFF/ON, full raw byte equality to frozen prior candidate, changed inputs, strided IDs, resizing1/3/33/3/1, layer isolation and eligible abort/retry. External pool CSV: batched_bypass has0projections/hits/misses/evictions/upload; single-token admitted triplets remain required. ASAN/UBSAN CPU and actual Vulkan validation separately.",
+  "model_gate": "Separate single-model idle boundary after original pressure campaign; same-GPU B1 resident, previous pool, new source pool OFF/ON. Fixed R42 short/heldout token files and original engine settings; full raw finite/nonzero byte exact to resident for every emitted vector. Preserve all failures. Require actual skip in batched calls and actual admission on TG.",
+  "AB": "Only eligible cells: previous pool vs new pool OFF vs ON at identical layer17/slots128/budget256MiB.4fresh processes each, balanced orders, warmup1+3 repetitions; PP,TG,PP+TG decode duration,TGp95,process drift; process bootstrap50k,seed61,CI95,margins3% PP/TG and5% p95. Separate pool-counter runs with PP/TG upload,evictions,expert and full-request hit counts. Raw/profiler/callback/sanitizer/CPU analyses excluded from timing. No long-cell ranking or default promotion.",
+  "resource_limits": "Original pressure binaries and order remain fixed. Build at most2jobs; no additional GPU process while pressure queue runs. Preserve GPU2600/1075MHz,-100mV,186W and all failed/partial artifacts.",
+  "registered_inputs": {
+    "heldout-arithmetic": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-arithmetic/tokens.csv",
+      "original_sha256": "c2c1c2f1037ddd0a4a55a1d881aaf66177b954b32fb7064b3820960950595c0a",
+      "path": "r61-inputs/heldout-arithmetic.csv",
+      "sha256": "c2c1c2f1037ddd0a4a55a1d881aaf66177b954b32fb7064b3820960950595c0a",
+      "PP": 133,
+      "TG": 64
+    },
+    "heldout-code": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-code/tokens.csv",
+      "original_sha256": "8f2546f451addd4ca355fcaee6d5335c2ad07df49e4879849a49a783faa4904f",
+      "path": "r61-inputs/heldout-code.csv",
+      "sha256": "8f2546f451addd4ca355fcaee6d5335c2ad07df49e4879849a49a783faa4904f",
+      "PP": 113,
+      "TG": 64
+    },
+    "heldout-italian": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-italian/tokens.csv",
+      "original_sha256": "5db390b32d7e7e8284b23bf0b44163e309a5ae9a174cfa07d3211400012a22c2",
+      "path": "r61-inputs/heldout-italian.csv",
+      "sha256": "5db390b32d7e7e8284b23bf0b44163e309a5ae9a174cfa07d3211400012a22c2",
+      "PP": 149,
+      "TG": 64
+    },
+    "heldout-planning": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-planning/tokens.csv",
+      "original_sha256": "0a2103503817bb5ed69c001475fb33a7ba7f13697af0b95be72043c71e73d885",
+      "path": "r61-inputs/heldout-planning.csv",
+      "sha256": "0a2103503817bb5ed69c001475fb33a7ba7f13697af0b95be72043c71e73d885",
+      "PP": 119,
+      "TG": 64
+    },
+    "heldout-retrieval": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-retrieval/tokens.csv",
+      "original_sha256": "5fb7e1722f531c88bdedee7d30ee32a6474d4e526cda96aa0a6d4a4d1c77574c",
+      "path": "r61-inputs/heldout-retrieval.csv",
+      "sha256": "5fb7e1722f531c88bdedee7d30ee32a6474d4e526cda96aa0a6d4a4d1c77574c",
+      "PP": 139,
+      "TG": 64
+    },
+    "heldout-structured": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/heldout-structured/tokens.csv",
+      "original_sha256": "17688a4b930656e3853bb43765aab3761cb5f95ace3d2787315600989195c732",
+      "path": "r61-inputs/heldout-structured.csv",
+      "sha256": "17688a4b930656e3853bb43765aab3761cb5f95ace3d2787315600989195c732",
+      "PP": 126,
+      "TG": 64
+    },
+    "short": {
+      "original": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-08-heldout-validation/short/tokens.csv",
+      "original_sha256": "711949862bf3674e00add770c2add1b3fac53d0f3695ee28769ca8a082c7052d",
+      "path": "r61-inputs/short.csv",
+      "sha256": "711949862bf3674e00add770c2add1b3fac53d0f3695ee28769ca8a082c7052d",
+      "PP": 512,
+      "TG": 200
+    }
+  },
+  "model_gate_detail": "All7 frozen R42 inputs:short512+200 and6heldout natural prompts+64; one prompt/family/one continuation, previously inspected.4 fresh variants per input:resident,previous pool,newOFF,newON; warmup1+3raw repetitions,byte parity to first currentB1 and repeat parity. No semantic/concurrency/general reliability closure.",
+  "AB_detail": "Per each of7 inputs separately,16 fresh timing processes balanced [resident,old,off,on,on,off,old,resident] twice;4processes each. Warmup1+3rep. Bootstrap50k/seed61/margins3% rates and full replay decode duration,5% TGp95; resident drift>20% invalidates cell. Never combine best cases into winner. Copies/profile counters are separate; no app TTFT/cold-start speedup claim.",
+  "input_serialization": "OnlyLF CSV newline normalization; every parsed phase/token/id row equals archived R42; original and serialized hashes recorded before launch."
+}

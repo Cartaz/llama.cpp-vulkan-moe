@@ -1,0 +1,40 @@
+{
+  "utc": "2026-10-09T10:17:43.795546+00:00",
+  "gate": "SOURCE_MAPPING_RECORDED",
+  "original_freeze_sha256": "854b93c9e860a444a015bef98abe2bf0e084af6af58cba64808ee8d411a29557",
+  "preserved_original_helper_source_sha256": "76f4b5c618e2fa0892107968f79da9be9974b66aef0f357bdf416efaa8ed4d01",
+  "original_field_identifies": "examples/moe-trace/expert-pool-check.cpp; generic runner field inherited fixture hash,not replay source",
+  "actual_replay_source": {
+    "path": "examples/moe-trace/moe-replay.cpp",
+    "sha256": "d71a81d1616852d7a0511fc83014814d6900d0188212ac0e9e1fe88ded2d8e00",
+    "commit": "d6844bd569e8059820d9242e59f5c3d45b789c67",
+    "archived_snapshot": "risultati/2026-10-08-pool-capacity/guarded-helper/moe-replay.cpp",
+    "snapshot_and_commit_match": true
+  },
+  "candidate_engine_patch_source": {
+    "path": "ggml/src/ggml-backend.cpp",
+    "sha256": "e7149e50ffaaa57cd2b5fbab36cd9e0592850bbd6506553644c19b6622095993",
+    "committed_patch_snapshot": "5779fcd1ec4beb0f5b35e3bb8969a8637b38900b",
+    "base_commit": "d6844bd569e8059820d9242e59f5c3d45b789c67",
+    "scope": "Only core-source delta d684..5779 is scheduler multi-pool patch; captured build-source hash matches committed file"
+  },
+  "baseline_engine_commit": "7fe450e19305b828c199d602c23a8337aaa1f03b",
+  "artifacts": {
+    "frozen/FIXED/libggml-base.so.0.25.1": "167ef8f0d9a0aabd4c0f87637a47dec24461e6810ef990962ed38f119fb9068e",
+    "frozen/FIXED/libggml-cpu.so.0.25.1": "d939874c41448f224794190e80548a7d09a309686450ac53c797b040eb2d995b",
+    "frozen/FIXED/libggml-vulkan.so.0.25.1": "4442d44cfa70f0cf12b5d6290f6bd74fbe1b24e4a90fe71759ab40efffeb22d4",
+    "frozen/FIXED/libggml.so.0.25.1": "dc0917f5b55bb86ecfa89c7d1734c5ab6579fb90ad97cd5a94735fa9eb9e5f22",
+    "frozen/FIXED/libllama.so.0.5.0": "d8cd670eab39b9ae327c11e5446e6b6faa4ae8f8250796ff7aabd031aeaca504",
+    "frozen/FIXED/libllama-common.so.0.5.0": "12c8b2dfbdd57b1ee7e095bd6d0756c0c5dcfb05e9dc8eb4bab1beb009515528",
+    "frozen/FIXED/replay": "269b830ac97325df9d63ccc90b14040457a8965d72163756b2783de4f185f376",
+    "frozen/ASAN/replay": "dcebde19ec0f74cc63e31f4623726723b606e0ec1275a4abf47066ec434a6a39",
+    "frozen/TIMING-BASE/libggml-base.so.0.25.1": "ed4b8f3d3ae59dfba891b43364fd7d5c4d297507fc483b4be8c95ccdde046084",
+    "frozen/TIMING-BASE/libggml-cpu.so.0.25.1": "f4709ae474d658855aba3c9bb90c17a603b44943fa1793e433a46ee96e3d4226",
+    "frozen/TIMING-BASE/libggml-vulkan.so.0.25.1": "a1d5ad88a266cb28f496da11726bee09d8021c1ff23e4d4cd9c9b1d06e61efd7",
+    "frozen/TIMING-BASE/libggml.so.0.25.1": "8e8669c77ec573dd61fc2ab7f5d3d2ece7a2db9edacb354b300232ce7512b443",
+    "frozen/TIMING-BASE/libllama.so.0.5.0": "61f97ce7a813603834536ce55d887c2cc749d107fe4233903b5462bf80478922",
+    "frozen/TIMING-BASE/libllama-common.so.0.5.0": "57810254aec09155e20703ddda407c0ef48b415612ad65411ff35e9d246df077",
+    "frozen/TIMING-BASE/replay": "6a41bbc78951aa8f9110d26ab946b4a9415de93cacb39e5bd0f822e31703bf4a"
+  },
+  "limits": "Original freezes and launch manifests are unchanged; this is a separate source-identity correction. Exact executable/loaded-library hashes remain original. Source snapshot equality does not establish reproducible-bit compilation or close M0 across all cohorts."
+}

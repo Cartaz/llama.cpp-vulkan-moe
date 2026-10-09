@@ -1,0 +1,245 @@
+#include "arg.h"
+#include "common.h"
+#include "llama.h"
+#include "log.h"
+#include "sampling.h"
+#include "phase-profile.h"
+#include "nlohmann/json.hpp"
+
+#include <algorithm>
+#include <cmath>
+#include <clocale>
+#include <cstring>
+#include <fstream>
+#include <memory>
+#include <string>
+#include <vector>
+
+using json = nlohmann::json;
+
+struct corpus_route {
+    FILE * file = nullptr;
+    const char * phase = "prefill";
+    size_t position = 0;
+    bool after_up = false;
+};
+
+static bool corpus_callback(ggml_tensor * t, bool ask, void * data) {
+    auto & route = *static_cast<corpus_route *>(data);
+    const bool topk = route.after_up ? t->op == GGML_OP_MUL_MAT_ID && std::strncmp(t->name, "ffn_moe_up-", 11) == 0 :
+            std::strncmp(t->name, "ffn_moe_topk-", 13) == 0;
+    if (ask) { return topk; }
+    auto * ids = route.after_up ? t->src[2] : t;
+    if (!topk || !ids || ids->type != GGML_TYPE_I32 || ids->ne[2] != 1 || ids->ne[3] != 1) { return true; }
+    const char * dash = std::strrchr(t->name, '-');
+    if (!route.file || !dash) { return false; }
+    std::vector<uint8_t> storage(ggml_nbytes(ids));
+    ggml_backend_tensor_get(ids, storage.data(), 0, storage.size());
+    for (int64_t token = 0; token < ids->ne[1]; ++token) {
+        for (int64_t rank = 0; rank < ids->ne[0]; ++rank) {
+            int32_t expert;
+            std::memcpy(&expert, storage.data() + token*ids->nb[1] + rank*ids->nb[0], sizeof(expert));
+            if (std::fprintf(route.file, "%s,%zu,%d,%lld,%d\n", route.phase, route.position + token,
+                    std::atoi(dash+1), (long long) rank, expert) < 0) { return false; }
+        }
+    }
+    return true;
+}
+
+int main(int argc, char ** argv) {
+    std::setlocale(LC_NUMERIC, "C");
+    common_init();
+    common_params params;
+    if (!common_params_parse(argc, argv, params, LLAMA_EXAMPLE_COMMON)) { return 1; }
+    const bool checkpoint_enabled = std::getenv("MOE_CLIENT_CHECKPOINT") != nullptr;
+    const char * cases_path = std::getenv("MOE_CORPUS_CASES");
+    const char * output_path = std::getenv("MOE_CORPUS_OUT");
+    if (!cases_path || !output_path || params.n_predict <= 0) {
+        LOG_ERR("set MOE_CORPUS_CASES, MOE_CORPUS_OUT and positive -n\n");
+        return 1;
+    }
+    std::ifstream cases(cases_path);
+    std::vector<json> items;
+    std::string line;
+    while (std::getline(cases, line)) {
+        items.push_back(json::parse(line));
+        const std::string id = items.back().at("id");
+        if (id.empty() || id.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_") != std::string::npos) { return 1; }
+    }
+    if (!cases.eof() || items.empty()) { return 1; }
+    corpus_route route;
+    route.after_up = std::getenv("MOE_CORPUS_CALLBACK_AFTER_UP") != nullptr;
+    params.warmup = false;
+    const bool callback = std::getenv("MOE_CORPUS_CALLBACK") != nullptr;
+    params.cb_eval = callback ? corpus_callback : nullptr;
+    params.cb_eval_user_data = callback ? &route : nullptr;
+    llama_backend_init();
+    llama_numa_init(params.numa);
+    auto initialized = common_init_from_params(params);
+    auto * model = initialized->model();
+    auto * ctx = initialized->context();
+    if (!model || !ctx) { return 1; }
+    const auto * vocab = llama_model_get_vocab(model);
+    const int nv = llama_vocab_n_tokens(vocab);
+    using file_ptr = std::unique_ptr<FILE, int (*)(FILE *)>;
+    file_ptr result(std::fopen((std::string(output_path)+"/responses.jsonl").c_str(), "wx"), std::fclose);
+    moe_phase_profile phases;
+    if (!result || !phases.good()) { return 1; }
+    for (size_t index = 0; index < items.size(); ++index) {
+        const auto & item = items[index];
+        const std::string id = item.at("id");
+        const std::string base = std::string(output_path)+"/"+id;
+        const std::string prompt = item.value("prompt", std::string());
+        if (!item.contains("prefill_ids") && prompt.empty()) { return 1; }
+        auto tokens = item.contains("prefill_ids") ? item.at("prefill_ids").get<std::vector<llama_token>>() :
+                common_tokenize(ctx, prompt, llama_vocab_get_add_bos(vocab), true);
+        const std::vector<llama_token> forced = item.value("decode", std::vector<llama_token>{});
+        const size_t limit = item.contains("decode") ? forced.size() : size_t(params.n_predict);
+        if (tokens.empty() || tokens.size()+limit > llama_n_ctx_seq(ctx) ||
+                std::any_of(tokens.begin(), tokens.end(), [nv](llama_token token) { return token < 0 || token >= nv; }) ||
+                std::any_of(forced.begin(), forced.end(), [nv](llama_token token) { return token < 0 || token >= nv; })) { return 1; }
+        file_ptr raw(std::fopen((base+"-logits.bin").c_str(), "wx"), std::fclose);
+        file_ptr token_file(std::fopen((base+"-tokens.csv").c_str(), "wx"), std::fclose);
+        file_ptr route_file(callback ? std::fopen((base+"-routes.csv").c_str(), "wx") : nullptr, std::fclose);
+        if (!raw || !token_file || (callback && !route_file)) { return 1; }
+        route.file = route_file.get();
+        if (callback) { std::fprintf(route.file, "phase,token,layer,rank,expert\n"); }
+        std::fprintf(token_file.get(), "phase,token,id\n");
+        for (size_t i = 0; i < tokens.size(); ++i) { std::fprintf(token_file.get(), "prefill,%zu,%d\n", i, tokens[i]); }
+        llama_synchronize(ctx);
+        llama_memory_clear(llama_get_memory(ctx), true);
+        auto sampling = params.sampling;
+        sampling.seed = item.at("seed").get<uint32_t>();
+        std::unique_ptr<common_sampler, decltype(&common_sampler_free)> sampler(common_sampler_init(model, sampling), common_sampler_free);
+        if (!sampler) { return 1; }
+        for (llama_token token : tokens) { common_sampler_accept(sampler.get(), token, false); }
+        struct client_checkpoint {
+            size_t next;
+            std::vector<uint8_t> memory;
+            std::vector<float> output;
+            common_sampler_ptr sampler;
+        };
+        std::vector<client_checkpoint> snapshots;
+        std::vector<std::vector<float>> primary_outputs;
+        auto save_memory = [&]() {
+            llama_synchronize(ctx);
+            const size_t bytes = llama_state_get_size(ctx);
+            if (!bytes || bytes > 1024*1024*1024) { return std::vector<uint8_t>{}; }
+            std::vector<uint8_t> saved(bytes);
+            if (llama_state_get_data(ctx,saved.data(),saved.size()) != bytes) { saved.clear(); }
+            return saved;
+        };
+        auto checkpoint = [&](size_t next) {
+            auto memory = save_memory();
+            const float * output = llama_get_logits_ith(ctx,-1);
+            common_sampler_ptr copy(common_sampler_clone(sampler.get()));
+            if (memory.empty() || !output || !copy) { return false; }
+            snapshots.push_back({next,std::move(memory),std::vector<float>(output,output+nv),std::move(copy)});
+            return true;
+        };
+        size_t raw_vectors = 0;
+        auto evaluate = [&](llama_token * input, int count, const char * phase, size_t position) {
+            route.phase = phase;
+            route.position = position;
+            const int64_t start = ggml_time_us();
+            const int status = llama_decode(ctx, llama_batch_get_one(input, count));
+            llama_synchronize(ctx);
+            if (!phases.record(int(index), phase, position, count, start, ggml_time_us(), status) || status) { return false; }
+            const float * logits = llama_get_logits_ith(ctx, -1);
+            bool nonzero = false;
+            if (!logits) { return false; }
+            for (int v = 0; v < nv; ++v) {
+                if (!std::isfinite(logits[v])) { return false; }
+                nonzero |= logits[v] != 0;
+            }
+            if (!nonzero || std::fwrite(logits, sizeof(float), nv, raw.get()) != size_t(nv)) { return false; }
+            ++raw_vectors;
+            return true;
+        };
+        const int step = std::min(llama_n_batch(ctx), llama_n_ubatch(ctx));
+        for (size_t position = 0; position < tokens.size(); position += step) {
+            if (!evaluate(tokens.data()+position, int(std::min(size_t(step),tokens.size()-position)), "prefill", position)) { return 2; }
+        }
+        if (checkpoint_enabled && !checkpoint(0)) { return 3; }
+        std::string text;
+        std::vector<llama_token> generated;
+        bool eog = false;
+        llama_token eog_id = LLAMA_TOKEN_NULL;
+        for (size_t i = 0; i < limit; ++i) {
+            llama_token token = item.contains("decode") ? forced[i] : common_sampler_sample(sampler.get(), ctx, -1);
+            if (!item.contains("decode") && llama_vocab_is_eog(vocab, token)) { eog = true; eog_id = token; break; }
+            common_sampler_accept(sampler.get(), token, true);
+            if (!evaluate(&token, 1, "decode", tokens.size()+i)) { return 2; }
+            std::fprintf(token_file.get(), "decode,%zu,%d\n", tokens.size()+i, token);
+            generated.push_back(token);
+            const float * output = llama_get_logits_ith(ctx,-1);
+            primary_outputs.emplace_back(output,output+nv);
+            if (checkpoint_enabled && generated.size() == 16 && !checkpoint(16)) { return 3; }
+            text += common_token_to_piece(vocab, token, true);
+        }
+        if (checkpoint_enabled) {
+            if (snapshots.size() != 2 || generated.size() <= 16 || item.contains("decode")) { return 4; }
+            file_ptr audit(std::fopen((base+"-restore-audit.jsonl").c_str(),"wx"),std::fclose);
+            if (!audit) { return 1; }
+            for (const auto & saved : snapshots) {
+                llama_synchronize(ctx);
+                const size_t consumed = llama_state_set_data(ctx,saved.memory.data(),saved.memory.size());
+                if (consumed != saved.memory.size() || save_memory() != saved.memory) { return 5; }
+                float * output = llama_get_logits_ith(ctx,-1);
+                if (!output || llama_get_sampled_token_ith(ctx,-1) != LLAMA_TOKEN_NULL) { return 6; }
+                const bool stale_output_matches = std::memcmp(output,saved.output.data(),nv*sizeof(float)) == 0;
+                // The client retains the last output separately from the engine memory snapshot.
+                std::memcpy(output,saved.output.data(),nv*sizeof(float));
+                common_sampler_ptr replay(common_sampler_clone(saved.sampler.get()));
+                if (!replay) { return 6; }
+                file_ptr replay_raw(std::fopen((base+"-rewind"+std::to_string(saved.next)+".bin").c_str(),"wx"),std::fclose);
+                if (!replay_raw) { return 1; }
+                size_t verified = 0;
+                llama_token first = LLAMA_TOKEN_NULL;
+                for (size_t i = saved.next; i < generated.size(); ++i) {
+                    llama_token token = common_sampler_sample(replay.get(),ctx,-1);
+                    if (i == saved.next) { first = token; }
+                    if (token != generated[i]) { return 7; }
+                    common_sampler_accept(replay.get(),token,true);
+                    if (llama_decode(ctx,llama_batch_get_one(&token,1))) { return 2; }
+                    llama_synchronize(ctx);
+                    const float * value = llama_get_logits_ith(ctx,-1);
+                    if (!value || std::any_of(value,value+nv,[](float x) { return !std::isfinite(x); }) ||
+                            std::all_of(value,value+nv,[](float x) { return x == 0; }) ||
+                            std::fwrite(value,sizeof(float),nv,replay_raw.get()) != size_t(nv)) { return 2; }
+                    if (std::memcmp(value,primary_outputs[i].data(),nv*sizeof(float))) { return 8; }
+                    ++verified;
+                }
+                if (eog && common_sampler_sample(replay.get(),ctx,-1) != eog_id) { return 9; }
+                if (std::fclose(replay_raw.release())) { return 1; }
+                const json restored = {{"next_generated_index",saved.next},{"memory_bytes",saved.memory.size()},
+                        {"consumed_bytes",consumed},{"memory_reserialized_byte_exact",true},
+                        {"output_serialized_by_engine",false},{"client_restored_output",true},
+                        {"stale_output_matches_checkpoint",stale_output_matches},{"sampler_cloned",true},
+                        {"first_sampled_id",first},{"expected_first_id",generated[saved.next]},
+                        {"autonomous_ids_exact",true},{"full_raw_vectors_verified",verified},{"eog_token_checked",eog},{"eog_token_exact",eog ? json(true) : json(nullptr)}};
+                const auto serialized = restored.dump();
+                if (std::fprintf(audit.get(),"%s\n",serialized.c_str()) < 0 || std::fflush(audit.get())) { return 1; }
+            }
+            if (std::fclose(audit.release())) { return 1; }
+        }
+        file_ptr raw_text(std::fopen((base+"-text.bin").c_str(), "wx"), std::fclose);
+        if (!raw_text || std::fwrite(text.data(), 1, text.size(), raw_text.get()) != text.size() || std::fclose(raw_text.release())) { return 1; }
+        const json row = {{"id",id},{"case_index",index},{"prompt_ids",tokens},{"generated_ids",generated},
+                {"text",text},{"eog",eog},{"raw_vectors",raw_vectors},{"seed",sampling.seed},{"temperature",sampling.temp},
+                {"text_encoding","utf8_replace"},{"text_raw_file",id+"-text.bin"},{"text_bytes",text.size()},
+                {"client_checkpoint",checkpoint_enabled},{"callback",callback},{"mode",item.contains("decode") ? "teacher_forced" : "autonomous"},
+                {"callback_stage",route.after_up ? "up_projection" : "topk"},
+                {"input",item.contains("prefill_ids") ? "fixed_token_ids" : "tokenized_prompt"},
+                {"reset","synchronize then clear_data=true; scheduler pools persist between cases"}};
+        if (std::fclose(raw.release()) || std::fclose(token_file.release())) { return 1; }
+        if (route_file && std::fclose(route_file.release())) { return 1; }
+        route.file = nullptr;
+        const auto serialized = row.dump(-1, ' ', false, json::error_handler_t::replace);
+        if (std::fprintf(result.get(), "%s\n", serialized.c_str()) < 0 || std::fflush(result.get())) { return 1; }
+        LOG_INF("corpus: %s prompt=%zu decode=%zu vectors=%zu\n",id.c_str(),tokens.size(),generated.size(),raw_vectors);
+    }
+    const bool finished = phases.finish();
+    const int closed = std::fclose(result.release());
+    return finished && closed == 0 ? 0 : 1;
+}

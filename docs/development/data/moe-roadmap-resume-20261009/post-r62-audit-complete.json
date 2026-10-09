@@ -1,0 +1,21 @@
+{
+  "utc": "2026-10-09T19:18:43.254541+00:00",
+  "gate": "POST_RUN_AUDITS_COMPLETE",
+  "audits": {
+    "r61-raw-audit.json": {
+      "gate": "PASS_ALL28_FULL_RAW",
+      "sha256": "5e3fb579bb288da2672ba0c23e3eb8832aec6a7d6822316a48a0070b619825e6"
+    },
+    "r61-timing-audit.json": {
+      "gate": "PASS_COMPLETE_CSV_CI_AUDIT",
+      "sha256": "c10e97a8b85600a17bb698cd836f1675177fcdcb1ebf32538af2aff0472b8df9"
+    },
+    "r62-independent-audit.json": {
+      "gate": "DESCRIPTIVE_COMPLETE",
+      "sha256": "67945959099d9be5557fee13e0aea6dbff83370476bb05a5e2aaa7c5de7c04fb"
+    }
+  },
+  "R62_acceptance": "FAIL_NUMERICAL_OR_REPEAT; all64cases finite/nonzero,1 original anomalous64-vector duplicate and its fresh comparison retained",
+  "model_processes_joined": true,
+  "limits": "Audit complete is not all correctness PASS. R63 has its own short same-GPU full raw gate; no general/default promotion."
+}

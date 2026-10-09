@@ -16,6 +16,8 @@ bool check_expert_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * output)
 bool check_scheduler_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * output);
 bool check_expert_placement(ggml_backend_t target, ggml_backend_t cpu, FILE * output);
 bool check_operator_numerics(ggml_backend_t target, FILE * output);
+bool check_multilayer_pool(ggml_backend_t target, ggml_backend_t cpu, FILE * output);
+bool check_transfer_cost(ggml_backend_t target);
 
 static float weight_value(int expert, int row, int col) {
     return float((expert * 7 + row * 3 + col) % 17 - 8) / 16;
@@ -135,6 +137,8 @@ int main(int argc, char ** argv) {
     bool scheduler_pool = false;
     bool expert_placement = false;
     bool operator_numerics = false;
+    bool multi_pool = false;
+    bool transfer_cost = false;
     const char * output_path = nullptr;
     for (int i = 1; i < argc; ++i) {
         if (strcmp(argv[i], "--vulkan") == 0) {
@@ -147,6 +151,10 @@ int main(int argc, char ** argv) {
             expert_placement = true;
         } else if (strcmp(argv[i], "--operator-numerics") == 0) {
             operator_numerics = true;
+        } else if (strcmp(argv[i], "--multi-pool") == 0) {
+            multi_pool = true;
+        } else if (strcmp(argv[i], "--transfer-cost") == 0) {
+            transfer_cost = true;
         } else if (strcmp(argv[i], "--serial") == 0) {
             serial = true;
         } else if (i + 1 < argc && strcmp(argv[i], "--output-bin") == 0) {
@@ -155,7 +163,8 @@ int main(int argc, char ** argv) {
             return 2;
         }
     }
-    if (operator_numerics && (expert_pool || scheduler_pool || expert_placement)) {
+    if ((operator_numerics && (expert_pool || scheduler_pool || expert_placement || multi_pool || transfer_cost)) ||
+            (transfer_cost && (expert_pool || scheduler_pool || expert_placement || multi_pool || !vulkan || output_path))) {
         return 2;
     }
     ggml_backend_t cpu = ggml_backend_cpu_init();
@@ -188,9 +197,11 @@ int main(int argc, char ** argv) {
     ok = (!scheduler_pool || check_scheduler_pool(target, cpu, output)) && ok;
     ok = (!expert_placement || check_expert_placement(target, cpu, output)) && ok;
     ok = (!operator_numerics || check_operator_numerics(target, output)) && ok;
+    ok = (!multi_pool || check_multilayer_pool(target, cpu, output)) && ok;
+    ok = (!transfer_cost || check_transfer_cost(target)) && ok;
     int rep = 0;
     for (bool parallel : {false, true}) {
-        if (expert_pool || scheduler_pool || expert_placement || operator_numerics) {
+        if (expert_pool || scheduler_pool || expert_placement || operator_numerics || multi_pool || transfer_cost) {
             break;
         }
         if (serial && parallel) {

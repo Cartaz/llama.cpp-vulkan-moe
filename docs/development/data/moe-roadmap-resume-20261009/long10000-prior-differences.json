@@ -1,0 +1,89 @@
+[
+  {
+    "variant": "s128-1",
+    "rep": 0,
+    "different_vectors": 0,
+    "first": null,
+    "finite": true
+  },
+  {
+    "variant": "s128-1",
+    "rep": 1,
+    "different_vectors": 0,
+    "first": null,
+    "finite": true
+  },
+  {
+    "variant": "s128-1",
+    "rep": 2,
+    "different_vectors": 208,
+    "first": 12,
+    "finite": true,
+    "first_elements": 248320,
+    "first_max": 1.1308965682983398,
+    "first_top1_equal": true
+  },
+  {
+    "variant": "s128-2",
+    "rep": 0,
+    "different_vectors": 0,
+    "first": null,
+    "finite": true
+  },
+  {
+    "variant": "s128-2",
+    "rep": 1,
+    "different_vectors": 0,
+    "first": null,
+    "finite": true
+  },
+  {
+    "variant": "s128-2",
+    "rep": 2,
+    "different_vectors": 0,
+    "first": null,
+    "finite": true
+  },
+  {
+    "variant": "target-1",
+    "rep": 0,
+    "different_vectors": 0,
+    "first": null,
+    "finite": true
+  },
+  {
+    "variant": "target-1",
+    "rep": 1,
+    "different_vectors": 0,
+    "first": null,
+    "finite": true
+  },
+  {
+    "variant": "target-1",
+    "rep": 2,
+    "different_vectors": 0,
+    "first": null,
+    "finite": true
+  },
+  {
+    "variant": "resident-2",
+    "rep": 0,
+    "different_vectors": 0,
+    "first": null,
+    "finite": true
+  },
+  {
+    "variant": "resident-2",
+    "rep": 1,
+    "different_vectors": 0,
+    "first": null,
+    "finite": true
+  },
+  {
+    "variant": "resident-2",
+    "rep": 2,
+    "different_vectors": 0,
+    "first": null,
+    "finite": true
+  }
+]
