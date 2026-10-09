@@ -1,0 +1,819 @@
+{
+  "gate": "PASS",
+  "utc": "2026-10-09T08:57:06.992396+00:00",
+  "state_cases": {
+    "gate": "PASS",
+    "model_processes": 18,
+    "restore_operations": 36,
+    "cases": [
+      {
+        "name": "state512-b1-off",
+        "raw_sha256": "583b9571a708fb27998674b815dc2721a3e563a525009813beea7c6d2bf068e6",
+        "state": {
+          "abort_calls": 1,
+          "abort_return": 2,
+          "clear_after_test": true,
+          "decode_state_bytes": 71622005,
+          "decode_tokens": 128,
+          "output_logits_serialized": false,
+          "pp_state_bytes": 71447541,
+          "prompt_tokens": 512,
+          "raw_vectors": 129,
+          "rewound_logits_byte_exact": true,
+          "rewound_vectors": 16,
+          "state_bytes_byte_exact": true
+        },
+        "restores": [
+          {
+            "consumed_bytes": 71447541,
+            "expected_bytes": 71447541,
+            "resaved_bytes": 71447541,
+            "state_bytes_byte_exact": true
+          },
+          {
+            "consumed_bytes": 71622005,
+            "expected_bytes": 71622005,
+            "resaved_bytes": 71622005,
+            "state_bytes_byte_exact": true
+          }
+        ],
+        "engine_mapping_exact": true
+      },
+      {
+        "name": "state512-fixed-off",
+        "raw_sha256": "583b9571a708fb27998674b815dc2721a3e563a525009813beea7c6d2bf068e6",
+        "state": {
+          "abort_calls": 1,
+          "abort_return": 2,
+          "clear_after_test": true,
+          "decode_state_bytes": 71622005,
+          "decode_tokens": 128,
+          "output_logits_serialized": false,
+          "pp_state_bytes": 71447541,
+          "prompt_tokens": 512,
+          "raw_vectors": 129,
+          "rewound_logits_byte_exact": true,
+          "rewound_vectors": 16,
+          "state_bytes_byte_exact": true
+        },
+        "restores": [
+          {
+            "consumed_bytes": 71447541,
+            "expected_bytes": 71447541,
+            "resaved_bytes": 71447541,
+            "state_bytes_byte_exact": true
+          },
+          {
+            "consumed_bytes": 71622005,
+            "expected_bytes": 71622005,
+            "resaved_bytes": 71622005,
+            "state_bytes_byte_exact": true
+          }
+        ],
+        "engine_mapping_exact": true
+      },
+      {
+        "name": "state512-b1-l1",
+        "raw_sha256": "ff96d01a2aeb1d54a82c330e57b0331f837c05adf7443be399c5ff215b61fa40",
+        "state": {
+          "abort_calls": 1,
+          "abort_return": 2,
+          "clear_after_test": true,
+          "decode_state_bytes": 71622005,
+          "decode_tokens": 128,
+          "output_logits_serialized": false,
+          "pp_state_bytes": 71447541,
+          "prompt_tokens": 512,
+          "raw_vectors": 129,
+          "rewound_logits_byte_exact": true,
+          "rewound_vectors": 16,
+          "state_bytes_byte_exact": true
+        },
+        "restores": [
+          {
+            "consumed_bytes": 71447541,
+            "expected_bytes": 71447541,
+            "resaved_bytes": 71447541,
+            "state_bytes_byte_exact": true
+          },
+          {
+            "consumed_bytes": 71622005,
+            "expected_bytes": 71622005,
+            "resaved_bytes": 71622005,
+            "state_bytes_byte_exact": true
+          }
+        ],
+        "engine_mapping_exact": true
+      },
+      {
+        "name": "state512-fixed-l1",
+        "raw_sha256": "ff96d01a2aeb1d54a82c330e57b0331f837c05adf7443be399c5ff215b61fa40",
+        "state": {
+          "abort_calls": 1,
+          "abort_return": 2,
+          "clear_after_test": true,
+          "decode_state_bytes": 71622005,
+          "decode_tokens": 128,
+          "output_logits_serialized": false,
+          "pp_state_bytes": 71447541,
+          "prompt_tokens": 512,
+          "raw_vectors": 129,
+          "rewound_logits_byte_exact": true,
+          "rewound_vectors": 16,
+          "state_bytes_byte_exact": true
+        },
+        "restores": [
+          {
+            "consumed_bytes": 71447541,
+            "expected_bytes": 71447541,
+            "resaved_bytes": 71447541,
+            "state_bytes_byte_exact": true
+          },
+          {
+            "consumed_bytes": 71622005,
+            "expected_bytes": 71622005,
+            "resaved_bytes": 71622005,
+            "state_bytes_byte_exact": true
+          }
+        ],
+        "engine_mapping_exact": true
+      },
+      {
+        "name": "state512-b1-l2",
+        "raw_sha256": "604b7304aba99556d016e0e49656c453960a8618f64e70cb360fd6895586ac00",
+        "state": {
+          "abort_calls": 1,
+          "abort_return": 2,
+          "clear_after_test": true,
+          "decode_state_bytes": 71622005,
+          "decode_tokens": 128,
+          "output_logits_serialized": false,
+          "pp_state_bytes": 71447541,
+          "prompt_tokens": 512,
+          "raw_vectors": 129,
+          "rewound_logits_byte_exact": true,
+          "rewound_vectors": 16,
+          "state_bytes_byte_exact": true
+        },
+        "restores": [
+          {
+            "consumed_bytes": 71447541,
+            "expected_bytes": 71447541,
+            "resaved_bytes": 71447541,
+            "state_bytes_byte_exact": true
+          },
+          {
+            "consumed_bytes": 71622005,
+            "expected_bytes": 71622005,
+            "resaved_bytes": 71622005,
+            "state_bytes_byte_exact": true
+          }
+        ],
+        "engine_mapping_exact": true
+      },
+      {
+        "name": "state512-fixed-l2",
+        "raw_sha256": "604b7304aba99556d016e0e49656c453960a8618f64e70cb360fd6895586ac00",
+        "state": {
+          "abort_calls": 1,
+          "abort_return": 2,
+          "clear_after_test": true,
+          "decode_state_bytes": 71622005,
+          "decode_tokens": 128,
+          "output_logits_serialized": false,
+          "pp_state_bytes": 71447541,
+          "prompt_tokens": 512,
+          "raw_vectors": 129,
+          "rewound_logits_byte_exact": true,
+          "rewound_vectors": 16,
+          "state_bytes_byte_exact": true
+        },
+        "restores": [
+          {
+            "consumed_bytes": 71447541,
+            "expected_bytes": 71447541,
+            "resaved_bytes": 71447541,
+            "state_bytes_byte_exact": true
+          },
+          {
+            "consumed_bytes": 71622005,
+            "expected_bytes": 71622005,
+            "resaved_bytes": 71622005,
+            "state_bytes_byte_exact": true
+          }
+        ],
+        "engine_mapping_exact": true
+      },
+      {
+        "name": "state512-b1-l4",
+        "raw_sha256": "1e04854b3d3a7b166f2b20c9224bccd5567b64ab1d91e522ac527bc240fb1017",
+        "state": {
+          "abort_calls": 1,
+          "abort_return": 2,
+          "clear_after_test": true,
+          "decode_state_bytes": 71622005,
+          "decode_tokens": 128,
+          "output_logits_serialized": false,
+          "pp_state_bytes": 71447541,
+          "prompt_tokens": 512,
+          "raw_vectors": 129,
+          "rewound_logits_byte_exact": true,
+          "rewound_vectors": 16,
+          "state_bytes_byte_exact": true
+        },
+        "restores": [
+          {
+            "consumed_bytes": 71447541,
+            "expected_bytes": 71447541,
+            "resaved_bytes": 71447541,
+            "state_bytes_byte_exact": true
+          },
+          {
+            "consumed_bytes": 71622005,
+            "expected_bytes": 71622005,
+            "resaved_bytes": 71622005,
+            "state_bytes_byte_exact": true
+          }
+        ],
+        "engine_mapping_exact": true
+      },
+      {
+        "name": "state512-fixed-l4",
+        "raw_sha256": "1e04854b3d3a7b166f2b20c9224bccd5567b64ab1d91e522ac527bc240fb1017",
+        "state": {
+          "abort_calls": 1,
+          "abort_return": 2,
+          "clear_after_test": true,
+          "decode_state_bytes": 71622005,
+          "decode_tokens": 128,
+          "output_logits_serialized": false,
+          "pp_state_bytes": 71447541,
+          "prompt_tokens": 512,
+          "raw_vectors": 129,
+          "rewound_logits_byte_exact": true,
+          "rewound_vectors": 16,
+          "state_bytes_byte_exact": true
+        },
+        "restores": [
+          {
+            "consumed_bytes": 71447541,
+            "expected_bytes": 71447541,
+            "resaved_bytes": 71447541,
+            "state_bytes_byte_exact": true
+          },
+          {
+            "consumed_bytes": 71622005,
+            "expected_bytes": 71622005,
+            "resaved_bytes": 71622005,
+            "state_bytes_byte_exact": true
+          }
+        ],
+        "engine_mapping_exact": true
+      },
+      {
+        "name": "state512-asan-l4",
+        "raw_sha256": "1e04854b3d3a7b166f2b20c9224bccd5567b64ab1d91e522ac527bc240fb1017",
+        "state": {
+          "abort_calls": 1,
+          "abort_return": 2,
+          "clear_after_test": true,
+          "decode_state_bytes": 71622005,
+          "decode_tokens": 128,
+          "output_logits_serialized": false,
+          "pp_state_bytes": 71447541,
+          "prompt_tokens": 512,
+          "raw_vectors": 129,
+          "rewound_logits_byte_exact": true,
+          "rewound_vectors": 16,
+          "state_bytes_byte_exact": true
+        },
+        "restores": [
+          {
+            "consumed_bytes": 71447541,
+            "expected_bytes": 71447541,
+            "resaved_bytes": 71447541,
+            "state_bytes_byte_exact": true
+          },
+          {
+            "consumed_bytes": 71622005,
+            "expected_bytes": 71622005,
+            "resaved_bytes": 71622005,
+            "state_bytes_byte_exact": true
+          }
+        ],
+        "engine_mapping_exact": true
+      },
+      {
+        "name": "state8192-b1-off",
+        "raw_sha256": "2b344aa37165ed214f420a1487e8beba397686261bc7c7055157da81f32bf7cc",
+        "state": {
+          "abort_calls": 1,
+          "abort_return": 2,
+          "clear_after_test": true,
+          "decode_state_bytes": 155364725,
+          "decode_tokens": 128,
+          "output_logits_serialized": false,
+          "pp_state_bytes": 155190261,
+          "prompt_tokens": 8192,
+          "raw_vectors": 144,
+          "rewound_logits_byte_exact": true,
+          "rewound_vectors": 16,
+          "state_bytes_byte_exact": true
+        },
+        "restores": [
+          {
+            "consumed_bytes": 155190261,
+            "expected_bytes": 155190261,
+            "resaved_bytes": 155190261,
+            "state_bytes_byte_exact": true
+          },
+          {
+            "consumed_bytes": 155364725,
+            "expected_bytes": 155364725,
+            "resaved_bytes": 155364725,
+            "state_bytes_byte_exact": true
+          }
+        ],
+        "engine_mapping_exact": true
+      },
+      {
+        "name": "state8192-fixed-off",
+        "raw_sha256": "2b344aa37165ed214f420a1487e8beba397686261bc7c7055157da81f32bf7cc",
+        "state": {
+          "abort_calls": 1,
+          "abort_return": 2,
+          "clear_after_test": true,
+          "decode_state_bytes": 155364725,
+          "decode_tokens": 128,
+          "output_logits_serialized": false,
+          "pp_state_bytes": 155190261,
+          "prompt_tokens": 8192,
+          "raw_vectors": 144,
+          "rewound_logits_byte_exact": true,
+          "rewound_vectors": 16,
+          "state_bytes_byte_exact": true
+        },
+        "restores": [
+          {
+            "consumed_bytes": 155190261,
+            "expected_bytes": 155190261,
+            "resaved_bytes": 155190261,
+            "state_bytes_byte_exact": true
+          },
+          {
+            "consumed_bytes": 155364725,
+            "expected_bytes": 155364725,
+            "resaved_bytes": 155364725,
+            "state_bytes_byte_exact": true
+          }
+        ],
+        "engine_mapping_exact": true
+      },
+      {
+        "name": "state8192-b1-l1",
+        "raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+        "state": {
+          "abort_calls": 1,
+          "abort_return": 2,
+          "clear_after_test": true,
+          "decode_state_bytes": 155364725,
+          "decode_tokens": 128,
+          "output_logits_serialized": false,
+          "pp_state_bytes": 155190261,
+          "prompt_tokens": 8192,
+          "raw_vectors": 144,
+          "rewound_logits_byte_exact": true,
+          "rewound_vectors": 16,
+          "state_bytes_byte_exact": true
+        },
+        "restores": [
+          {
+            "consumed_bytes": 155190261,
+            "expected_bytes": 155190261,
+            "resaved_bytes": 155190261,
+            "state_bytes_byte_exact": true
+          },
+          {
+            "consumed_bytes": 155364725,
+            "expected_bytes": 155364725,
+            "resaved_bytes": 155364725,
+            "state_bytes_byte_exact": true
+          }
+        ],
+        "engine_mapping_exact": true
+      },
+      {
+        "name": "state8192-fixed-l1",
+        "raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+        "state": {
+          "abort_calls": 1,
+          "abort_return": 2,
+          "clear_after_test": true,
+          "decode_state_bytes": 155364725,
+          "decode_tokens": 128,
+          "output_logits_serialized": false,
+          "pp_state_bytes": 155190261,
+          "prompt_tokens": 8192,
+          "raw_vectors": 144,
+          "rewound_logits_byte_exact": true,
+          "rewound_vectors": 16,
+          "state_bytes_byte_exact": true
+        },
+        "restores": [
+          {
+            "consumed_bytes": 155190261,
+            "expected_bytes": 155190261,
+            "resaved_bytes": 155190261,
+            "state_bytes_byte_exact": true
+          },
+          {
+            "consumed_bytes": 155364725,
+            "expected_bytes": 155364725,
+            "resaved_bytes": 155364725,
+            "state_bytes_byte_exact": true
+          }
+        ],
+        "engine_mapping_exact": true
+      },
+      {
+        "name": "state8192-b1-l2",
+        "raw_sha256": "f21e80c0017bde7ae1c832152a2c9f487cb38ee708c9f51c19728b2bb8757cb3",
+        "state": {
+          "abort_calls": 1,
+          "abort_return": 2,
+          "clear_after_test": true,
+          "decode_state_bytes": 155364725,
+          "decode_tokens": 128,
+          "output_logits_serialized": false,
+          "pp_state_bytes": 155190261,
+          "prompt_tokens": 8192,
+          "raw_vectors": 144,
+          "rewound_logits_byte_exact": true,
+          "rewound_vectors": 16,
+          "state_bytes_byte_exact": true
+        },
+        "restores": [
+          {
+            "consumed_bytes": 155190261,
+            "expected_bytes": 155190261,
+            "resaved_bytes": 155190261,
+            "state_bytes_byte_exact": true
+          },
+          {
+            "consumed_bytes": 155364725,
+            "expected_bytes": 155364725,
+            "resaved_bytes": 155364725,
+            "state_bytes_byte_exact": true
+          }
+        ],
+        "engine_mapping_exact": true
+      },
+      {
+        "name": "state8192-fixed-l2",
+        "raw_sha256": "f21e80c0017bde7ae1c832152a2c9f487cb38ee708c9f51c19728b2bb8757cb3",
+        "state": {
+          "abort_calls": 1,
+          "abort_return": 2,
+          "clear_after_test": true,
+          "decode_state_bytes": 155364725,
+          "decode_tokens": 128,
+          "output_logits_serialized": false,
+          "pp_state_bytes": 155190261,
+          "prompt_tokens": 8192,
+          "raw_vectors": 144,
+          "rewound_logits_byte_exact": true,
+          "rewound_vectors": 16,
+          "state_bytes_byte_exact": true
+        },
+        "restores": [
+          {
+            "consumed_bytes": 155190261,
+            "expected_bytes": 155190261,
+            "resaved_bytes": 155190261,
+            "state_bytes_byte_exact": true
+          },
+          {
+            "consumed_bytes": 155364725,
+            "expected_bytes": 155364725,
+            "resaved_bytes": 155364725,
+            "state_bytes_byte_exact": true
+          }
+        ],
+        "engine_mapping_exact": true
+      },
+      {
+        "name": "state8192-b1-l4",
+        "raw_sha256": "a3bc14f2f99a1d4a391917f62e1ef524a4f47708613501e01ff22cd92aa9bf9f",
+        "state": {
+          "abort_calls": 1,
+          "abort_return": 2,
+          "clear_after_test": true,
+          "decode_state_bytes": 155364725,
+          "decode_tokens": 128,
+          "output_logits_serialized": false,
+          "pp_state_bytes": 155190261,
+          "prompt_tokens": 8192,
+          "raw_vectors": 144,
+          "rewound_logits_byte_exact": true,
+          "rewound_vectors": 16,
+          "state_bytes_byte_exact": true
+        },
+        "restores": [
+          {
+            "consumed_bytes": 155190261,
+            "expected_bytes": 155190261,
+            "resaved_bytes": 155190261,
+            "state_bytes_byte_exact": true
+          },
+          {
+            "consumed_bytes": 155364725,
+            "expected_bytes": 155364725,
+            "resaved_bytes": 155364725,
+            "state_bytes_byte_exact": true
+          }
+        ],
+        "engine_mapping_exact": true
+      },
+      {
+        "name": "state8192-fixed-l4",
+        "raw_sha256": "a3bc14f2f99a1d4a391917f62e1ef524a4f47708613501e01ff22cd92aa9bf9f",
+        "state": {
+          "abort_calls": 1,
+          "abort_return": 2,
+          "clear_after_test": true,
+          "decode_state_bytes": 155364725,
+          "decode_tokens": 128,
+          "output_logits_serialized": false,
+          "pp_state_bytes": 155190261,
+          "prompt_tokens": 8192,
+          "raw_vectors": 144,
+          "rewound_logits_byte_exact": true,
+          "rewound_vectors": 16,
+          "state_bytes_byte_exact": true
+        },
+        "restores": [
+          {
+            "consumed_bytes": 155190261,
+            "expected_bytes": 155190261,
+            "resaved_bytes": 155190261,
+            "state_bytes_byte_exact": true
+          },
+          {
+            "consumed_bytes": 155364725,
+            "expected_bytes": 155364725,
+            "resaved_bytes": 155364725,
+            "state_bytes_byte_exact": true
+          }
+        ],
+        "engine_mapping_exact": true
+      },
+      {
+        "name": "state8192-asan-l4",
+        "raw_sha256": "a3bc14f2f99a1d4a391917f62e1ef524a4f47708613501e01ff22cd92aa9bf9f",
+        "state": {
+          "abort_calls": 1,
+          "abort_return": 2,
+          "clear_after_test": true,
+          "decode_state_bytes": 155364725,
+          "decode_tokens": 128,
+          "output_logits_serialized": false,
+          "pp_state_bytes": 155190261,
+          "prompt_tokens": 8192,
+          "raw_vectors": 144,
+          "rewound_logits_byte_exact": true,
+          "rewound_vectors": 16,
+          "state_bytes_byte_exact": true
+        },
+        "restores": [
+          {
+            "consumed_bytes": 155190261,
+            "expected_bytes": 155190261,
+            "resaved_bytes": 155190261,
+            "state_bytes_byte_exact": true
+          },
+          {
+            "consumed_bytes": 155364725,
+            "expected_bytes": 155364725,
+            "resaved_bytes": 155364725,
+            "state_bytes_byte_exact": true
+          }
+        ],
+        "engine_mapping_exact": true
+      }
+    ],
+    "limits": "Independent no-state16 gates still required; shared long10000 intermittence not explained."
+  },
+  "independent_no_state_controls": {
+    "state-control512-b1-off": {
+      "gate": "PASS",
+      "state_case": "state512-b1-off",
+      "raw": {
+        "bytes": 128133120,
+        "vectors": 129,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "583b9571a708fb27998674b815dc2721a3e563a525009813beea7c6d2bf068e6"
+      },
+      "state_raw_sha256": "583b9571a708fb27998674b815dc2721a3e563a525009813beea7c6d2bf068e6",
+      "engine_mapping_exact": true
+    },
+    "state-control512-fixed-off": {
+      "gate": "PASS",
+      "state_case": "state512-fixed-off",
+      "raw": {
+        "bytes": 128133120,
+        "vectors": 129,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "583b9571a708fb27998674b815dc2721a3e563a525009813beea7c6d2bf068e6"
+      },
+      "state_raw_sha256": "583b9571a708fb27998674b815dc2721a3e563a525009813beea7c6d2bf068e6",
+      "engine_mapping_exact": true
+    },
+    "state-control512-b1-l1": {
+      "gate": "PASS",
+      "state_case": "state512-b1-l1",
+      "raw": {
+        "bytes": 128133120,
+        "vectors": 129,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "ff96d01a2aeb1d54a82c330e57b0331f837c05adf7443be399c5ff215b61fa40"
+      },
+      "state_raw_sha256": "ff96d01a2aeb1d54a82c330e57b0331f837c05adf7443be399c5ff215b61fa40",
+      "engine_mapping_exact": true
+    },
+    "state-control512-fixed-l1": {
+      "gate": "PASS",
+      "state_case": "state512-fixed-l1",
+      "raw": {
+        "bytes": 128133120,
+        "vectors": 129,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "ff96d01a2aeb1d54a82c330e57b0331f837c05adf7443be399c5ff215b61fa40"
+      },
+      "state_raw_sha256": "ff96d01a2aeb1d54a82c330e57b0331f837c05adf7443be399c5ff215b61fa40",
+      "engine_mapping_exact": true
+    },
+    "state-control512-b1-l2": {
+      "gate": "PASS",
+      "state_case": "state512-b1-l2",
+      "raw": {
+        "bytes": 128133120,
+        "vectors": 129,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "604b7304aba99556d016e0e49656c453960a8618f64e70cb360fd6895586ac00"
+      },
+      "state_raw_sha256": "604b7304aba99556d016e0e49656c453960a8618f64e70cb360fd6895586ac00",
+      "engine_mapping_exact": true
+    },
+    "state-control512-fixed-l2": {
+      "gate": "PASS",
+      "state_case": "state512-fixed-l2",
+      "raw": {
+        "bytes": 128133120,
+        "vectors": 129,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "604b7304aba99556d016e0e49656c453960a8618f64e70cb360fd6895586ac00"
+      },
+      "state_raw_sha256": "604b7304aba99556d016e0e49656c453960a8618f64e70cb360fd6895586ac00",
+      "engine_mapping_exact": true
+    },
+    "state-control512-b1-l4": {
+      "gate": "PASS",
+      "state_case": "state512-b1-l4",
+      "raw": {
+        "bytes": 128133120,
+        "vectors": 129,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "1e04854b3d3a7b166f2b20c9224bccd5567b64ab1d91e522ac527bc240fb1017"
+      },
+      "state_raw_sha256": "1e04854b3d3a7b166f2b20c9224bccd5567b64ab1d91e522ac527bc240fb1017",
+      "engine_mapping_exact": true
+    },
+    "state-control512-fixed-l4": {
+      "gate": "PASS",
+      "state_case": "state512-fixed-l4",
+      "raw": {
+        "bytes": 128133120,
+        "vectors": 129,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "1e04854b3d3a7b166f2b20c9224bccd5567b64ab1d91e522ac527bc240fb1017"
+      },
+      "state_raw_sha256": "1e04854b3d3a7b166f2b20c9224bccd5567b64ab1d91e522ac527bc240fb1017",
+      "engine_mapping_exact": true
+    },
+    "state-control8192-b1-off": {
+      "gate": "PASS",
+      "state_case": "state8192-b1-off",
+      "raw": {
+        "bytes": 143032320,
+        "vectors": 144,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "2b344aa37165ed214f420a1487e8beba397686261bc7c7055157da81f32bf7cc"
+      },
+      "state_raw_sha256": "2b344aa37165ed214f420a1487e8beba397686261bc7c7055157da81f32bf7cc",
+      "engine_mapping_exact": true
+    },
+    "state-control8192-fixed-off": {
+      "gate": "PASS",
+      "state_case": "state8192-fixed-off",
+      "raw": {
+        "bytes": 143032320,
+        "vectors": 144,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "2b344aa37165ed214f420a1487e8beba397686261bc7c7055157da81f32bf7cc"
+      },
+      "state_raw_sha256": "2b344aa37165ed214f420a1487e8beba397686261bc7c7055157da81f32bf7cc",
+      "engine_mapping_exact": true
+    },
+    "state-control8192-b1-l1": {
+      "gate": "PASS",
+      "state_case": "state8192-b1-l1",
+      "raw": {
+        "bytes": 143032320,
+        "vectors": 144,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7"
+      },
+      "state_raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+      "engine_mapping_exact": true
+    },
+    "state-control8192-fixed-l1": {
+      "gate": "PASS",
+      "state_case": "state8192-fixed-l1",
+      "raw": {
+        "bytes": 143032320,
+        "vectors": 144,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7"
+      },
+      "state_raw_sha256": "02959183946b1fa904ad931bfe189a0bd2a053d1e5470d6a29b1e06d93b249b7",
+      "engine_mapping_exact": true
+    },
+    "state-control8192-b1-l2": {
+      "gate": "PASS",
+      "state_case": "state8192-b1-l2",
+      "raw": {
+        "bytes": 143032320,
+        "vectors": 144,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "f21e80c0017bde7ae1c832152a2c9f487cb38ee708c9f51c19728b2bb8757cb3"
+      },
+      "state_raw_sha256": "f21e80c0017bde7ae1c832152a2c9f487cb38ee708c9f51c19728b2bb8757cb3",
+      "engine_mapping_exact": true
+    },
+    "state-control8192-fixed-l2": {
+      "gate": "PASS",
+      "state_case": "state8192-fixed-l2",
+      "raw": {
+        "bytes": 143032320,
+        "vectors": 144,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "f21e80c0017bde7ae1c832152a2c9f487cb38ee708c9f51c19728b2bb8757cb3"
+      },
+      "state_raw_sha256": "f21e80c0017bde7ae1c832152a2c9f487cb38ee708c9f51c19728b2bb8757cb3",
+      "engine_mapping_exact": true
+    },
+    "state-control8192-b1-l4": {
+      "gate": "PASS",
+      "state_case": "state8192-b1-l4",
+      "raw": {
+        "bytes": 143032320,
+        "vectors": 144,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "a3bc14f2f99a1d4a391917f62e1ef524a4f47708613501e01ff22cd92aa9bf9f"
+      },
+      "state_raw_sha256": "a3bc14f2f99a1d4a391917f62e1ef524a4f47708613501e01ff22cd92aa9bf9f",
+      "engine_mapping_exact": true
+    },
+    "state-control8192-fixed-l4": {
+      "gate": "PASS",
+      "state_case": "state8192-fixed-l4",
+      "raw": {
+        "bytes": 143032320,
+        "vectors": 144,
+        "vocab": 248320,
+        "finite_nonzero_each_vector": true,
+        "sha256": "a3bc14f2f99a1d4a391917f62e1ef524a4f47708613501e01ff22cd92aa9bf9f"
+      },
+      "state_raw_sha256": "a3bc14f2f99a1d4a391917f62e1ef524a4f47708613501e01ff22cd92aa9bf9f",
+      "engine_mapping_exact": true
+    }
+  },
+  "primary_raw_vectors": 4641,
+  "rewound_vectors": 288,
+  "limits": "34fresh serial processes validate only frozen512/8192+128 teacher-forced lifecycle at c16384,Q8KV,b/ub512,OFF/1/2/4layers and4layerASAN. Original invalid-logits-helper failures and collided attempts remain excluded/preserved. Does not resolve independent10000-token intermittence,CPU/GPU fidelity or broadM3 acceptance."
+}
