@@ -1,0 +1,25 @@
+{
+  "utc": "2026-10-09T19:50:55.843720+00:00",
+  "previous": "50e3e3e480c80b9ee0ea067e475602d540dc62c8",
+  "head": "79e2e74eb11022c1ba2e438df7f0ca2d4c10f8b6",
+  "commits": [
+    "79e2e74eb11022c1ba2e438df7f0ca2d4c10f8b6 CUDA: fix round issue, under MSVC the CPU and GPU agree (#30229)",
+    "8e2d31e0eb658d0382d3106a61369dff81f0c080 graph : reorder get_rows for embeddings (#30160)",
+    "baef3ed9a1e81c4b620f6923857b1c080bffec5b ui: Models Manager Follow-up Improvements (#30228)",
+    "f39148a953e52d6d14e92b73187e9883544dce49 llama-bench: respect -fitc if bigger than required benchmark size (#28331)"
+  ],
+  "source_review": {
+    "30160": "build_inp_embd now pins GET_ROWS at start with ggml_build_forward_order to avoid interleaving embedding PAD/MUL/SCALE across splits; bundled Gemma4/Qwen4exp adjustments. No local effect or fix established.",
+    "30229": "Only ggml-cuda/unary.cu changes round to roundf for MSVC CUDA tests. Not compiled on this Vulkan/GCC target; no AMD fidelity fix inferred.",
+    "28331": "llama-bench respects explicit -fitc minimum; planned replay usesfitOFF,not synthetic fitted benchmark.",
+    "common": "Current main sampling backend_sampling false; explicit mmap andfitOFF flags still supported; current version0.6.0-dev. Helper must be recompiled against this ABI."
+  },
+  "sources": [
+    "https://github.com/ggml-org/llama.cpp/pull/30160",
+    "https://github.com/ggml-org/llama.cpp/issues/30033",
+    "https://github.com/ggml-org/llama.cpp/pull/30229",
+    "https://github.com/ggml-org/llama.cpp/pull/28331"
+  ],
+  "selected_patch_sha256": "9ba949b5c449a4866617b83a5c006978c993af57372d9aaf99e069b40442c0fb",
+  "adoption": "NONE; current B1 and all R61/R64 engines remain frozen; a full unmodified upstream qualification will be a separate cohort,not a cherry-pick attribution."
+}
