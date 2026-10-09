@@ -1,5 +1,5 @@
 {
-  "utc": "2026-10-09T09:55:49.047784+00:00",
+  "utc": "2026-10-09T10:30:07.795708+00:00",
   "acceptance_protocol_sha256": "fce2409e34069cf3a15cd57401196e9f7b2f6ac96f41d1b83ca7fd94d04ccd19",
   "status": "RUNNING",
   "milestones": {
@@ -35,12 +35,12 @@
       },
       "occupied_context_KV": {
         "status": "PARTIAL_OR_FAILED",
-        "processes": 2,
+        "processes": 5,
         "expected_processes": 36,
-        "passed": 1,
+        "passed": 4,
         "failed": 1,
         "evidence": "stress-results.json",
-        "sha256": "defb58819ea7489f58d407d6795eef2f8b71aa7d589aeb07e346f23c3efdd291"
+        "sha256": "fda36bb2f48244462fb671d1d43af95cc4cd18c86874e3e958a543500f9a352f"
       },
       "independent_timing": {
         "status": "54_PASS_SHORT_SCOPE",
@@ -76,10 +76,20 @@
         "evidence": "long-diagnostics-summary-resume02.json",
         "sha256": "a2976b3cf4802f439543c580b910f1f09472a1ed3045660ad452d83f1c83dffe"
       },
+      "replay_source_metadata_correction": {
+        "status": "SOURCE_MAPPING_RECORDED",
+        "evidence": "timing-source-provenance-audit-v2.json",
+        "sha256": "1de378f1b1211a9cc88cc736b22975d68b4b5627130a3f487ee8df8f759a932a"
+      },
+      "runtime_pool_counters": {
+        "status": "DESCRIPTIVE_COMPLETE_6_RAW_PROCESSES",
+        "evidence": "timing-pool-counters-v2.json",
+        "sha256": "2d3e137f01dc4970b6d4d87e1d86192c26ba73b85c6e39de177e1e1ecb564ad1"
+      },
       "pressure_independent_audit": {
         "status": "DESCRIPTIVE_PARTIAL",
         "evidence": "stress-independent-audit.json",
-        "sha256": "704caf10382887b2fd4055050f3b0d6b3f84de16890ea27341003c8a1372713b"
+        "sha256": "d697322a45bdceeb2f2335e04de0c0844baff7a8d1b18c68751ed7e40a12b56d"
       },
       "original_timing_preflight": {
         "status": "RECORDED",
@@ -200,6 +210,20 @@
         "amended_gate_scope": "Teacher-forced memory/future-output only;not original cached-output acceptance or immediate autonomous resumption/sampler RNG",
         "original_acceptance_closed": false
       },
+      "client_checkpoint_campaign": {
+        "status": "PARTIAL_OR_FAILED",
+        "processes": 8,
+        "expected_processes": 12,
+        "passed": 6,
+        "failed": 2,
+        "evidence": "r60-results.json",
+        "sha256": "9dedbfa996292a72b52a286d285544d4643baf3c64028ff250a65d8d9ca4e713"
+      },
+      "client_checkpoint_independent_audit": {
+        "status": "DESCRIPTIVE_PARTIAL",
+        "evidence": "r60-independent-audit.json",
+        "sha256": "c6c021760137287b3a13cf1b374568e19e9aa2218103af91504c6ddc01a456d6"
+      },
       "state_protocol_amendment": {
         "evidence": "state-protocol-v2.json",
         "sha256": "d9dc4b61ee7b722418757ecf6de0862c1e7d2ac27c641a129a0e7d6df7aba3fb",
@@ -235,21 +259,26 @@
     "heartbeat_ttl_seconds": 600
   },
   "last_usage_snapshot": {
-    "utc": "2026-10-09T09:39:35.384Z",
+    "utc": "2026-10-09T10:19:31.867Z",
     "ordinaryUsageAllowed": true,
+    "limitId": "codex",
+    "limitName": null,
+    "normalModelSlug": null,
     "primary": {
-      "usedPercent": 69,
+      "usedPercent": 86,
       "windowDurationMins": 300,
       "resetsAt": 1791547779
     },
     "secondary": {
-      "usedPercent": 93,
+      "usedPercent": 96,
       "windowDurationMins": 10080,
       "resetsAt": 1791954566
     },
-    "rateLimitReachedType": null,
+    "individualLimit": null,
     "spendControlReached": false,
-    "source": "get_usage_limits resumed active turn; no reset credits used"
+    "planType": "plus",
+    "rateLimitReachedType": null,
+    "source": "get_usage_limits; no reset credits used"
   },
   "limits": "Bounded PASS results never close broader milestone gates. Missing/incomplete/failed results stay explicit; historical failures are retained."
 }

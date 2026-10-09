@@ -1,0 +1,22 @@
+{
+  "utc": "2026-10-09T10:15:06.955456+00:00",
+  "commit": "8a1a9b5126126e5228b95fa909d4b08fac65e8b3",
+  "sources": {
+    "src/llama-context.cpp": {
+      "sha256": "578e4b2cdcf3c2230bc6081bbe33f18a935c277903675c2f81efc6145c2dc61c",
+      "excerpt": "size_t llama_context::state_write_data(llama_io_write_i & io) {\n    LLAMA_LOG_DEBUG(\"%s: writing state\\n\", __func__);\n\n    // write model info\n    {\n        LLAMA_LOG_DEBUG(\"%s: - writing model info\\n\", __func__);\n\n        const std::string arch_str = llm_arch_name(model.arch);\n        io.write_string(arch_str);\n        // TODO: add more model-specific info which should prevent loading the session file if not identical\n    }\n\n    if (memory != nullptr) {\n        LLAMA_LOG_DEBUG(\"%s: - writing memory module\\n\", __func__);\n        memory->state_write(io);\n    }\n\n    return io.n_bytes();\n}",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/8a1a9b5126126e5228b95fa909d4b08fac65e8b3/src/llama-context.cpp"
+    },
+    "src/llama-sampler.cpp": {
+      "sha256": "d0c147129ded606691b0b3e78562bec36f53459446aa7a5bac23bb93a01c86f6",
+      "excerpt": "static struct llama_sampler * llama_sampler_dist_clone(const struct llama_sampler * smpl) {\n    const auto * ctx = (const llama_sampler_dist *) smpl->ctx;\n    auto * result = llama_sampler_init_dist(ctx->seed);\n\n    // copy the state\n    {\n        auto * result_ctx = (llama_sampler_dist *) result->ctx;\n\n        result_ctx->seed_cur                  = ctx->seed_cur;\n        result_ctx->rng                       = ctx->rng;\n        result_ctx->backend_transactional     = ctx->backend_transactional;\n        result_ctx->rng_backend               = ctx->rng_backend;\n        result_ctx->n_backend_draws_generated = ctx->n_backend_draws_generated;\n        result_ctx->n_backend_draws_committed = ctx->n_backend_draws_committed;\n    }\n\n    return result;\n}",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/8a1a9b5126126e5228b95fa909d4b08fac65e8b3/src/llama-sampler.cpp"
+    },
+    "common/sampling.cpp": {
+      "sha256": "1b2ec5909a110e394748403b9142c05a8b5c0c24deaf88516972ced470711ee4",
+      "excerpt": "struct common_sampler * common_sampler_clone(common_sampler * gsmpl) {\n    return new common_sampler {\n        /* .params  = */ gsmpl->params,\n        /* .grmr    = */ llama_sampler_clone(gsmpl->grmr),\n        /* .rbudget = */ llama_sampler_clone(gsmpl->rbudget),\n        /* .chain   = */ llama_sampler_clone(gsmpl->chain),\n        /* .prev    = */ gsmpl->prev,\n        /* .cur     = */ gsmpl->cur,\n        /* .cur_p   = */ gsmpl->cur_p,\n        /* .rng     = */ gsmpl->rng,\n    };\n}",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/8a1a9b5126126e5228b95fa909d4b08fac65e8b3/common/sampling.cpp"
+    }
+  },
+  "limits": "Frozen B1/candidate behavior and current inspected upstream code distinguished; search found no verified specific current issue matching cached-output gap. No upstream change adopted,issue filed or generic cross-model state guarantee."
+}

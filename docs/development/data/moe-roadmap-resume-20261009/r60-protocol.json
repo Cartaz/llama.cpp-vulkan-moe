@@ -1,0 +1,24 @@
+{
+  "id": "R60-autonomous-client-checkpoint",
+  "registered_utc": "2026-10-09T10:07:13.910690+00:00",
+  "inputs": "Exact frozen R46 prefix512/8192 IDs; seeds11/29/47;64autonomous tokens or EOG; common defaults temp0.8,topk40,topp0.95,minp0.05,penalty_repeat1.0;CPU sampler,no grammar/backend sampling",
+  "layers": [
+    14,
+    15,
+    16,
+    17
+  ],
+  "fresh_order": [
+    "resident",
+    "target",
+    "pool",
+    "pool",
+    "target",
+    "resident"
+  ],
+  "controls": "Six independent no-state processes in identical balanced order then six checkpoint processes; each process six autonomous cases. All generated IDs and every primary/rewound logit vector byte-exact to chronological independent B1,finite/nonzero. No-state uses same prototype with switchOFF and performs no state save/restore/samplerclone. No tolerance/replacement.",
+  "checkpoint": "After PP before firstsample and after16 autonomous decode steps; engine memory get/set/resave byte-exact; caller copies last logitvector via exported mutable output pointer and clones common_sampler includinghistory/RNG; first sampled ID and entire continuation/EOG(ifobserved) must equal primary. Two checkpoints percase required; EOG<=16 recorded as missing coverage/FAIL.",
+  "flags": "c16384,b/ub512,Q8KV,FAon,mmap,fitOFF,t8/tb8,ngl99,ncmoe18; sameGPU4layerplacement; pool128slots/layer cap256MiB/layer",
+  "limits": "Standalone prototype only; no engine mutation,defaultchange,underlyingcached-outputAPI repair,diskportable sampler serialization,embeddings/alllogits/multisequence/grammar/backend sampler/ASANqualification or performance ranking. Single last output remains one vector at each restore; broader output metadata not restored. CPU build outside R51 timing.",
+  "coordination": "Run only at verified idle fresh-process boundary; pause central/stressPython controllers,require no non-zombie directchild and no active/activating/deactivating ownedmodelservice; resume originalstressorder afterward."
+}

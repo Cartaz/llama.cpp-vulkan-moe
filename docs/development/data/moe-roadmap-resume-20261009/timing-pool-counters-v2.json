@@ -1,0 +1,1012 @@
+{
+  "utc": "2026-10-09T10:10:29.456535+00:00",
+  "gate": "DESCRIPTIVE_COMPLETE_6_RAW_PROCESSES",
+  "data": {
+    "1": {
+      "process1": {
+        "pool_log_sha256": "3ba992e0731dfbb7c2a1ead5e5969f6ba0588ccfccebe14c405949f7dccea34f",
+        "cohorts": {
+          "17-warmup": {
+            "layer": 17,
+            "phase": "warmup",
+            "TG_calls": 128,
+            "expert_hits": 879,
+            "expert_misses": 145,
+            "expert_hit_rate": 0.8583984375,
+            "evictions": 17,
+            "pool_upload_bytes": 256573440,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 54,
+            "complete_layer_hit_rate": 0.421875
+          },
+          "17-rep0": {
+            "layer": 17,
+            "phase": "rep0",
+            "TG_calls": 128,
+            "expert_hits": 957,
+            "expert_misses": 67,
+            "expert_hit_rate": 0.9345703125,
+            "evictions": 67,
+            "pool_upload_bytes": 118554624,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 79,
+            "complete_layer_hit_rate": 0.6171875
+          },
+          "17-rep1": {
+            "layer": 17,
+            "phase": "rep1",
+            "TG_calls": 128,
+            "expert_hits": 957,
+            "expert_misses": 67,
+            "expert_hit_rate": 0.9345703125,
+            "evictions": 67,
+            "pool_upload_bytes": 118554624,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 79,
+            "complete_layer_hit_rate": 0.6171875
+          },
+          "17-rep2": {
+            "layer": 17,
+            "phase": "rep2",
+            "TG_calls": 128,
+            "expert_hits": 957,
+            "expert_misses": 67,
+            "expert_hit_rate": 0.9345703125,
+            "evictions": 67,
+            "pool_upload_bytes": 118554624,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 79,
+            "complete_layer_hit_rate": 0.6171875
+          }
+        }
+      },
+      "process2": {
+        "pool_log_sha256": "604e174c46f53ab914b33bab32260a43e7a6a37434b25ac66064883f6c9065c4",
+        "cohorts": {
+          "17-warmup": {
+            "layer": 17,
+            "phase": "warmup",
+            "TG_calls": 128,
+            "expert_hits": 879,
+            "expert_misses": 145,
+            "expert_hit_rate": 0.8583984375,
+            "evictions": 17,
+            "pool_upload_bytes": 256573440,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 54,
+            "complete_layer_hit_rate": 0.421875
+          },
+          "17-rep0": {
+            "layer": 17,
+            "phase": "rep0",
+            "TG_calls": 128,
+            "expert_hits": 957,
+            "expert_misses": 67,
+            "expert_hit_rate": 0.9345703125,
+            "evictions": 67,
+            "pool_upload_bytes": 118554624,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 79,
+            "complete_layer_hit_rate": 0.6171875
+          },
+          "17-rep1": {
+            "layer": 17,
+            "phase": "rep1",
+            "TG_calls": 128,
+            "expert_hits": 957,
+            "expert_misses": 67,
+            "expert_hit_rate": 0.9345703125,
+            "evictions": 67,
+            "pool_upload_bytes": 118554624,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 79,
+            "complete_layer_hit_rate": 0.6171875
+          },
+          "17-rep2": {
+            "layer": 17,
+            "phase": "rep2",
+            "TG_calls": 128,
+            "expert_hits": 957,
+            "expert_misses": 67,
+            "expert_hit_rate": 0.9345703125,
+            "evictions": 67,
+            "pool_upload_bytes": 118554624,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 79,
+            "complete_layer_hit_rate": 0.6171875
+          }
+        }
+      }
+    },
+    "2": {
+      "process1": {
+        "pool_log_sha256": "a8e3e106c9748876314ca2b93192cc3b4dc00e3de205b2298c35f6f36916cafb",
+        "cohorts": {
+          "16-warmup": {
+            "layer": 16,
+            "phase": "warmup",
+            "TG_calls": 128,
+            "expert_hits": 874,
+            "expert_misses": 150,
+            "expert_hit_rate": 0.853515625,
+            "evictions": 22,
+            "pool_upload_bytes": 305971200,
+            "pool_payload_bytes": 261095424,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 52,
+            "complete_layer_hit_rate": 0.40625
+          },
+          "16-rep0": {
+            "layer": 16,
+            "phase": "rep0",
+            "TG_calls": 128,
+            "expert_hits": 939,
+            "expert_misses": 85,
+            "expert_hit_rate": 0.9169921875,
+            "evictions": 85,
+            "pool_upload_bytes": 173383680,
+            "pool_payload_bytes": 261095424,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 71,
+            "complete_layer_hit_rate": 0.5546875
+          },
+          "16-rep1": {
+            "layer": 16,
+            "phase": "rep1",
+            "TG_calls": 128,
+            "expert_hits": 939,
+            "expert_misses": 85,
+            "expert_hit_rate": 0.9169921875,
+            "evictions": 85,
+            "pool_upload_bytes": 173383680,
+            "pool_payload_bytes": 261095424,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 71,
+            "complete_layer_hit_rate": 0.5546875
+          },
+          "16-rep2": {
+            "layer": 16,
+            "phase": "rep2",
+            "TG_calls": 128,
+            "expert_hits": 940,
+            "expert_misses": 84,
+            "expert_hit_rate": 0.91796875,
+            "evictions": 84,
+            "pool_upload_bytes": 171343872,
+            "pool_payload_bytes": 261095424,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 72,
+            "complete_layer_hit_rate": 0.5625
+          },
+          "17-warmup": {
+            "layer": 17,
+            "phase": "warmup",
+            "TG_calls": 128,
+            "expert_hits": 879,
+            "expert_misses": 145,
+            "expert_hit_rate": 0.8583984375,
+            "evictions": 17,
+            "pool_upload_bytes": 256573440,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 54,
+            "complete_layer_hit_rate": 0.421875
+          },
+          "17-rep0": {
+            "layer": 17,
+            "phase": "rep0",
+            "TG_calls": 128,
+            "expert_hits": 957,
+            "expert_misses": 67,
+            "expert_hit_rate": 0.9345703125,
+            "evictions": 67,
+            "pool_upload_bytes": 118554624,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 79,
+            "complete_layer_hit_rate": 0.6171875
+          },
+          "17-rep1": {
+            "layer": 17,
+            "phase": "rep1",
+            "TG_calls": 128,
+            "expert_hits": 957,
+            "expert_misses": 67,
+            "expert_hit_rate": 0.9345703125,
+            "evictions": 67,
+            "pool_upload_bytes": 118554624,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 79,
+            "complete_layer_hit_rate": 0.6171875
+          },
+          "17-rep2": {
+            "layer": 17,
+            "phase": "rep2",
+            "TG_calls": 128,
+            "expert_hits": 957,
+            "expert_misses": 67,
+            "expert_hit_rate": 0.9345703125,
+            "evictions": 67,
+            "pool_upload_bytes": 118554624,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 79,
+            "complete_layer_hit_rate": 0.6171875
+          }
+        }
+      },
+      "process2": {
+        "pool_log_sha256": "60b4fd7e40f6b589d4999618fbd92f10cdad84f50cfb0145ecf16164443d0f8c",
+        "cohorts": {
+          "16-warmup": {
+            "layer": 16,
+            "phase": "warmup",
+            "TG_calls": 128,
+            "expert_hits": 874,
+            "expert_misses": 150,
+            "expert_hit_rate": 0.853515625,
+            "evictions": 22,
+            "pool_upload_bytes": 305971200,
+            "pool_payload_bytes": 261095424,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 52,
+            "complete_layer_hit_rate": 0.40625
+          },
+          "16-rep0": {
+            "layer": 16,
+            "phase": "rep0",
+            "TG_calls": 128,
+            "expert_hits": 939,
+            "expert_misses": 85,
+            "expert_hit_rate": 0.9169921875,
+            "evictions": 85,
+            "pool_upload_bytes": 173383680,
+            "pool_payload_bytes": 261095424,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 71,
+            "complete_layer_hit_rate": 0.5546875
+          },
+          "16-rep1": {
+            "layer": 16,
+            "phase": "rep1",
+            "TG_calls": 128,
+            "expert_hits": 939,
+            "expert_misses": 85,
+            "expert_hit_rate": 0.9169921875,
+            "evictions": 85,
+            "pool_upload_bytes": 173383680,
+            "pool_payload_bytes": 261095424,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 71,
+            "complete_layer_hit_rate": 0.5546875
+          },
+          "16-rep2": {
+            "layer": 16,
+            "phase": "rep2",
+            "TG_calls": 128,
+            "expert_hits": 940,
+            "expert_misses": 84,
+            "expert_hit_rate": 0.91796875,
+            "evictions": 84,
+            "pool_upload_bytes": 171343872,
+            "pool_payload_bytes": 261095424,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 72,
+            "complete_layer_hit_rate": 0.5625
+          },
+          "17-warmup": {
+            "layer": 17,
+            "phase": "warmup",
+            "TG_calls": 128,
+            "expert_hits": 879,
+            "expert_misses": 145,
+            "expert_hit_rate": 0.8583984375,
+            "evictions": 17,
+            "pool_upload_bytes": 256573440,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 54,
+            "complete_layer_hit_rate": 0.421875
+          },
+          "17-rep0": {
+            "layer": 17,
+            "phase": "rep0",
+            "TG_calls": 128,
+            "expert_hits": 957,
+            "expert_misses": 67,
+            "expert_hit_rate": 0.9345703125,
+            "evictions": 67,
+            "pool_upload_bytes": 118554624,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 79,
+            "complete_layer_hit_rate": 0.6171875
+          },
+          "17-rep1": {
+            "layer": 17,
+            "phase": "rep1",
+            "TG_calls": 128,
+            "expert_hits": 957,
+            "expert_misses": 67,
+            "expert_hit_rate": 0.9345703125,
+            "evictions": 67,
+            "pool_upload_bytes": 118554624,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 79,
+            "complete_layer_hit_rate": 0.6171875
+          },
+          "17-rep2": {
+            "layer": 17,
+            "phase": "rep2",
+            "TG_calls": 128,
+            "expert_hits": 957,
+            "expert_misses": 67,
+            "expert_hit_rate": 0.9345703125,
+            "evictions": 67,
+            "pool_upload_bytes": 118554624,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 79,
+            "complete_layer_hit_rate": 0.6171875
+          }
+        }
+      }
+    },
+    "4": {
+      "process1": {
+        "pool_log_sha256": "e371722dc752ffe01c2d42d14d27a21999baead26b767eb698cc7a40961dc608",
+        "cohorts": {
+          "14-warmup": {
+            "layer": 14,
+            "phase": "warmup",
+            "TG_calls": 128,
+            "expert_hits": 891,
+            "expert_misses": 133,
+            "expert_hit_rate": 0.8701171875,
+            "evictions": 5,
+            "pool_upload_bytes": 235339776,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 61,
+            "complete_layer_hit_rate": 0.4765625
+          },
+          "14-rep0": {
+            "layer": 14,
+            "phase": "rep0",
+            "TG_calls": 128,
+            "expert_hits": 981,
+            "expert_misses": 43,
+            "expert_hit_rate": 0.9580078125,
+            "evictions": 43,
+            "pool_upload_bytes": 76087296,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 95,
+            "complete_layer_hit_rate": 0.7421875
+          },
+          "14-rep1": {
+            "layer": 14,
+            "phase": "rep1",
+            "TG_calls": 128,
+            "expert_hits": 981,
+            "expert_misses": 43,
+            "expert_hit_rate": 0.9580078125,
+            "evictions": 43,
+            "pool_upload_bytes": 76087296,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 95,
+            "complete_layer_hit_rate": 0.7421875
+          },
+          "14-rep2": {
+            "layer": 14,
+            "phase": "rep2",
+            "TG_calls": 128,
+            "expert_hits": 981,
+            "expert_misses": 43,
+            "expert_hit_rate": 0.9580078125,
+            "evictions": 43,
+            "pool_upload_bytes": 76087296,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 95,
+            "complete_layer_hit_rate": 0.7421875
+          },
+          "15-warmup": {
+            "layer": 15,
+            "phase": "warmup",
+            "TG_calls": 128,
+            "expert_hits": 876,
+            "expert_misses": 148,
+            "expert_hit_rate": 0.85546875,
+            "evictions": 20,
+            "pool_upload_bytes": 261881856,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 58,
+            "complete_layer_hit_rate": 0.453125
+          },
+          "15-rep0": {
+            "layer": 15,
+            "phase": "rep0",
+            "TG_calls": 128,
+            "expert_hits": 953,
+            "expert_misses": 71,
+            "expert_hit_rate": 0.9306640625,
+            "evictions": 71,
+            "pool_upload_bytes": 125632512,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 76,
+            "complete_layer_hit_rate": 0.59375
+          },
+          "15-rep1": {
+            "layer": 15,
+            "phase": "rep1",
+            "TG_calls": 128,
+            "expert_hits": 954,
+            "expert_misses": 70,
+            "expert_hit_rate": 0.931640625,
+            "evictions": 70,
+            "pool_upload_bytes": 123863040,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 77,
+            "complete_layer_hit_rate": 0.6015625
+          },
+          "15-rep2": {
+            "layer": 15,
+            "phase": "rep2",
+            "TG_calls": 128,
+            "expert_hits": 955,
+            "expert_misses": 69,
+            "expert_hit_rate": 0.9326171875,
+            "evictions": 69,
+            "pool_upload_bytes": 122093568,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 78,
+            "complete_layer_hit_rate": 0.609375
+          },
+          "16-warmup": {
+            "layer": 16,
+            "phase": "warmup",
+            "TG_calls": 128,
+            "expert_hits": 874,
+            "expert_misses": 150,
+            "expert_hit_rate": 0.853515625,
+            "evictions": 22,
+            "pool_upload_bytes": 305971200,
+            "pool_payload_bytes": 261095424,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 52,
+            "complete_layer_hit_rate": 0.40625
+          },
+          "16-rep0": {
+            "layer": 16,
+            "phase": "rep0",
+            "TG_calls": 128,
+            "expert_hits": 939,
+            "expert_misses": 85,
+            "expert_hit_rate": 0.9169921875,
+            "evictions": 85,
+            "pool_upload_bytes": 173383680,
+            "pool_payload_bytes": 261095424,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 71,
+            "complete_layer_hit_rate": 0.5546875
+          },
+          "16-rep1": {
+            "layer": 16,
+            "phase": "rep1",
+            "TG_calls": 128,
+            "expert_hits": 939,
+            "expert_misses": 85,
+            "expert_hit_rate": 0.9169921875,
+            "evictions": 85,
+            "pool_upload_bytes": 173383680,
+            "pool_payload_bytes": 261095424,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 71,
+            "complete_layer_hit_rate": 0.5546875
+          },
+          "16-rep2": {
+            "layer": 16,
+            "phase": "rep2",
+            "TG_calls": 128,
+            "expert_hits": 940,
+            "expert_misses": 84,
+            "expert_hit_rate": 0.91796875,
+            "evictions": 84,
+            "pool_upload_bytes": 171343872,
+            "pool_payload_bytes": 261095424,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 72,
+            "complete_layer_hit_rate": 0.5625
+          },
+          "17-warmup": {
+            "layer": 17,
+            "phase": "warmup",
+            "TG_calls": 128,
+            "expert_hits": 879,
+            "expert_misses": 145,
+            "expert_hit_rate": 0.8583984375,
+            "evictions": 17,
+            "pool_upload_bytes": 256573440,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 51,
+            "complete_layer_hit_rate": 0.3984375
+          },
+          "17-rep0": {
+            "layer": 17,
+            "phase": "rep0",
+            "TG_calls": 128,
+            "expert_hits": 957,
+            "expert_misses": 67,
+            "expert_hit_rate": 0.9345703125,
+            "evictions": 67,
+            "pool_upload_bytes": 118554624,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 77,
+            "complete_layer_hit_rate": 0.6015625
+          },
+          "17-rep1": {
+            "layer": 17,
+            "phase": "rep1",
+            "TG_calls": 128,
+            "expert_hits": 957,
+            "expert_misses": 67,
+            "expert_hit_rate": 0.9345703125,
+            "evictions": 67,
+            "pool_upload_bytes": 118554624,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 77,
+            "complete_layer_hit_rate": 0.6015625
+          },
+          "17-rep2": {
+            "layer": 17,
+            "phase": "rep2",
+            "TG_calls": 128,
+            "expert_hits": 957,
+            "expert_misses": 67,
+            "expert_hit_rate": 0.9345703125,
+            "evictions": 67,
+            "pool_upload_bytes": 118554624,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 77,
+            "complete_layer_hit_rate": 0.6015625
+          }
+        }
+      },
+      "process2": {
+        "pool_log_sha256": "2d956b906198b08c9c0717d8b2db7cfc053a8ab32cdd9684c95671343e7a4888",
+        "cohorts": {
+          "14-warmup": {
+            "layer": 14,
+            "phase": "warmup",
+            "TG_calls": 128,
+            "expert_hits": 891,
+            "expert_misses": 133,
+            "expert_hit_rate": 0.8701171875,
+            "evictions": 5,
+            "pool_upload_bytes": 235339776,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 61,
+            "complete_layer_hit_rate": 0.4765625
+          },
+          "14-rep0": {
+            "layer": 14,
+            "phase": "rep0",
+            "TG_calls": 128,
+            "expert_hits": 981,
+            "expert_misses": 43,
+            "expert_hit_rate": 0.9580078125,
+            "evictions": 43,
+            "pool_upload_bytes": 76087296,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 95,
+            "complete_layer_hit_rate": 0.7421875
+          },
+          "14-rep1": {
+            "layer": 14,
+            "phase": "rep1",
+            "TG_calls": 128,
+            "expert_hits": 981,
+            "expert_misses": 43,
+            "expert_hit_rate": 0.9580078125,
+            "evictions": 43,
+            "pool_upload_bytes": 76087296,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 95,
+            "complete_layer_hit_rate": 0.7421875
+          },
+          "14-rep2": {
+            "layer": 14,
+            "phase": "rep2",
+            "TG_calls": 128,
+            "expert_hits": 981,
+            "expert_misses": 43,
+            "expert_hit_rate": 0.9580078125,
+            "evictions": 43,
+            "pool_upload_bytes": 76087296,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 95,
+            "complete_layer_hit_rate": 0.7421875
+          },
+          "15-warmup": {
+            "layer": 15,
+            "phase": "warmup",
+            "TG_calls": 128,
+            "expert_hits": 876,
+            "expert_misses": 148,
+            "expert_hit_rate": 0.85546875,
+            "evictions": 20,
+            "pool_upload_bytes": 261881856,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 58,
+            "complete_layer_hit_rate": 0.453125
+          },
+          "15-rep0": {
+            "layer": 15,
+            "phase": "rep0",
+            "TG_calls": 128,
+            "expert_hits": 953,
+            "expert_misses": 71,
+            "expert_hit_rate": 0.9306640625,
+            "evictions": 71,
+            "pool_upload_bytes": 125632512,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 76,
+            "complete_layer_hit_rate": 0.59375
+          },
+          "15-rep1": {
+            "layer": 15,
+            "phase": "rep1",
+            "TG_calls": 128,
+            "expert_hits": 954,
+            "expert_misses": 70,
+            "expert_hit_rate": 0.931640625,
+            "evictions": 70,
+            "pool_upload_bytes": 123863040,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 77,
+            "complete_layer_hit_rate": 0.6015625
+          },
+          "15-rep2": {
+            "layer": 15,
+            "phase": "rep2",
+            "TG_calls": 128,
+            "expert_hits": 955,
+            "expert_misses": 69,
+            "expert_hit_rate": 0.9326171875,
+            "evictions": 69,
+            "pool_upload_bytes": 122093568,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 78,
+            "complete_layer_hit_rate": 0.609375
+          },
+          "16-warmup": {
+            "layer": 16,
+            "phase": "warmup",
+            "TG_calls": 128,
+            "expert_hits": 874,
+            "expert_misses": 150,
+            "expert_hit_rate": 0.853515625,
+            "evictions": 22,
+            "pool_upload_bytes": 305971200,
+            "pool_payload_bytes": 261095424,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 52,
+            "complete_layer_hit_rate": 0.40625
+          },
+          "16-rep0": {
+            "layer": 16,
+            "phase": "rep0",
+            "TG_calls": 128,
+            "expert_hits": 939,
+            "expert_misses": 85,
+            "expert_hit_rate": 0.9169921875,
+            "evictions": 85,
+            "pool_upload_bytes": 173383680,
+            "pool_payload_bytes": 261095424,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 71,
+            "complete_layer_hit_rate": 0.5546875
+          },
+          "16-rep1": {
+            "layer": 16,
+            "phase": "rep1",
+            "TG_calls": 128,
+            "expert_hits": 939,
+            "expert_misses": 85,
+            "expert_hit_rate": 0.9169921875,
+            "evictions": 85,
+            "pool_upload_bytes": 173383680,
+            "pool_payload_bytes": 261095424,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 71,
+            "complete_layer_hit_rate": 0.5546875
+          },
+          "16-rep2": {
+            "layer": 16,
+            "phase": "rep2",
+            "TG_calls": 128,
+            "expert_hits": 940,
+            "expert_misses": 84,
+            "expert_hit_rate": 0.91796875,
+            "evictions": 84,
+            "pool_upload_bytes": 171343872,
+            "pool_payload_bytes": 261095424,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 72,
+            "complete_layer_hit_rate": 0.5625
+          },
+          "17-warmup": {
+            "layer": 17,
+            "phase": "warmup",
+            "TG_calls": 128,
+            "expert_hits": 879,
+            "expert_misses": 145,
+            "expert_hit_rate": 0.8583984375,
+            "evictions": 17,
+            "pool_upload_bytes": 256573440,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 51,
+            "complete_layer_hit_rate": 0.3984375
+          },
+          "17-rep0": {
+            "layer": 17,
+            "phase": "rep0",
+            "TG_calls": 128,
+            "expert_hits": 957,
+            "expert_misses": 67,
+            "expert_hit_rate": 0.9345703125,
+            "evictions": 67,
+            "pool_upload_bytes": 118554624,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 77,
+            "complete_layer_hit_rate": 0.6015625
+          },
+          "17-rep1": {
+            "layer": 17,
+            "phase": "rep1",
+            "TG_calls": 128,
+            "expert_hits": 957,
+            "expert_misses": 67,
+            "expert_hit_rate": 0.9345703125,
+            "evictions": 67,
+            "pool_upload_bytes": 118554624,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 77,
+            "complete_layer_hit_rate": 0.6015625
+          },
+          "17-rep2": {
+            "layer": 17,
+            "phase": "rep2",
+            "TG_calls": 128,
+            "expert_hits": 957,
+            "expert_misses": 67,
+            "expert_hit_rate": 0.9345703125,
+            "evictions": 67,
+            "pool_upload_bytes": 118554624,
+            "pool_payload_bytes": 226492416,
+            "PP_reason": "capacity",
+            "PP_pool_upload_bytes": 0,
+            "complete_layer_hit_calls": 77,
+            "complete_layer_hit_rate": 0.6015625
+          }
+        }
+      }
+    }
+  },
+  "scope": "Actual per-layer runtime counters in the six separate R51 raw gate processes only;warmup and repetitions identified from frozen129call geometry,not measured timing runs. EveryTGtriplet admitted and hits+misses=8 pertoken. Pool upload counter excludes ordinary transfer/fallback/arena traffic and is not total PCIe traffic. PP capacity fallback and warmup remain explicit. No summed per-pool wait times or physical-transfer gain inferred from logical policy simulations.",
+  "joint_complete_request_coverage": {
+    "1": {
+      "1-warmup": {
+        "complete_all_selected_layers_hit_calls": 54,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.421875
+      },
+      "1-rep0": {
+        "complete_all_selected_layers_hit_calls": 79,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.6171875
+      },
+      "1-rep1": {
+        "complete_all_selected_layers_hit_calls": 79,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.6171875
+      },
+      "1-rep2": {
+        "complete_all_selected_layers_hit_calls": 79,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.6171875
+      },
+      "2-warmup": {
+        "complete_all_selected_layers_hit_calls": 54,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.421875
+      },
+      "2-rep0": {
+        "complete_all_selected_layers_hit_calls": 79,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.6171875
+      },
+      "2-rep1": {
+        "complete_all_selected_layers_hit_calls": 79,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.6171875
+      },
+      "2-rep2": {
+        "complete_all_selected_layers_hit_calls": 79,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.6171875
+      }
+    },
+    "2": {
+      "1-warmup": {
+        "complete_all_selected_layers_hit_calls": 24,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.1875
+      },
+      "1-rep0": {
+        "complete_all_selected_layers_hit_calls": 47,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.3671875
+      },
+      "1-rep1": {
+        "complete_all_selected_layers_hit_calls": 47,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.3671875
+      },
+      "1-rep2": {
+        "complete_all_selected_layers_hit_calls": 47,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.3671875
+      },
+      "2-warmup": {
+        "complete_all_selected_layers_hit_calls": 24,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.1875
+      },
+      "2-rep0": {
+        "complete_all_selected_layers_hit_calls": 47,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.3671875
+      },
+      "2-rep1": {
+        "complete_all_selected_layers_hit_calls": 47,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.3671875
+      },
+      "2-rep2": {
+        "complete_all_selected_layers_hit_calls": 47,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.3671875
+      }
+    },
+    "4": {
+      "1-warmup": {
+        "complete_all_selected_layers_hit_calls": 11,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.0859375
+      },
+      "1-rep0": {
+        "complete_all_selected_layers_hit_calls": 25,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.1953125
+      },
+      "1-rep1": {
+        "complete_all_selected_layers_hit_calls": 26,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.203125
+      },
+      "1-rep2": {
+        "complete_all_selected_layers_hit_calls": 27,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.2109375
+      },
+      "2-warmup": {
+        "complete_all_selected_layers_hit_calls": 11,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.0859375
+      },
+      "2-rep0": {
+        "complete_all_selected_layers_hit_calls": 25,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.1953125
+      },
+      "2-rep1": {
+        "complete_all_selected_layers_hit_calls": 26,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.203125
+      },
+      "2-rep2": {
+        "complete_all_selected_layers_hit_calls": 27,
+        "TG_calls": 128,
+        "complete_hit_rate": 0.2109375
+      }
+    }
+  },
+  "updated_utc": "2026-10-09T10:12:18.136972+00:00"
+}

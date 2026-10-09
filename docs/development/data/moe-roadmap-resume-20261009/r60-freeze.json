@@ -1,0 +1,98 @@
+{
+  "model": {
+    "path": "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+    "bytes": 21713462848,
+    "sha256": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f"
+  },
+  "candidate_commit": "d6844bd569e8059820d9242e59f5c3d45b789c67",
+  "utc": "2026-10-09T10:07:13.910690+00:00",
+  "helper_source_sha256": "aab8c79662a8a807a4a336d98af8cc9d292d926b4eec8822a4f8281277294de2",
+  "variants": {
+    "R60-BASE": "7fe450e19305b828c199d602c23a8337aaa1f03b; separately compiled state observer",
+    "R60-FIXED": "d6844bd + archived multi-pool engine + retained-ID fixture fix"
+  },
+  "artifacts": {
+    "frozen/R60-BASE/libggml-base.so.0.25.1": "ed4b8f3d3ae59dfba891b43364fd7d5c4d297507fc483b4be8c95ccdde046084",
+    "frozen/R60-BASE/libggml-cpu.so.0.25.1": "f4709ae474d658855aba3c9bb90c17a603b44943fa1793e433a46ee96e3d4226",
+    "frozen/R60-BASE/libggml-vulkan.so.0.25.1": "a1d5ad88a266cb28f496da11726bee09d8021c1ff23e4d4cd9c9b1d06e61efd7",
+    "frozen/R60-BASE/libggml.so.0.25.1": "8e8669c77ec573dd61fc2ab7f5d3d2ece7a2db9edacb354b300232ce7512b443",
+    "frozen/R60-BASE/libllama.so.0.5.0": "61f97ce7a813603834536ce55d887c2cc749d107fe4233903b5462bf80478922",
+    "frozen/R60-BASE/libllama-common.so.0.5.0": "57810254aec09155e20703ddda407c0ef48b415612ad65411ff35e9d246df077",
+    "frozen/R60-BASE/corpus": "72f46ca3c4f99c7d54df15c1c2e1e131d7794d987487721172f2b474bc1295dc",
+    "frozen/R60-FIXED/libggml-base.so.0.25.1": "167ef8f0d9a0aabd4c0f87637a47dec24461e6810ef990962ed38f119fb9068e",
+    "frozen/R60-FIXED/libggml-cpu.so.0.25.1": "d939874c41448f224794190e80548a7d09a309686450ac53c797b040eb2d995b",
+    "frozen/R60-FIXED/libggml-vulkan.so.0.25.1": "4442d44cfa70f0cf12b5d6290f6bd74fbe1b24e4a90fe71759ab40efffeb22d4",
+    "frozen/R60-FIXED/libggml.so.0.25.1": "dc0917f5b55bb86ecfa89c7d1734c5ab6579fb90ad97cd5a94735fa9eb9e5f22",
+    "frozen/R60-FIXED/libllama.so.0.5.0": "d8cd670eab39b9ae327c11e5446e6b6faa4ae8f8250796ff7aabd031aeaca504",
+    "frozen/R60-FIXED/libllama-common.so.0.5.0": "12c8b2dfbdd57b1ee7e095bd6d0756c0c5dcfb05e9dc8eb4bab1beb009515528",
+    "frozen/R60-FIXED/corpus": "72f46ca3c4f99c7d54df15c1c2e1e131d7794d987487721172f2b474bc1295dc"
+  },
+  "source": {
+    "client-checkpoint-corpus.cpp": "aab8c79662a8a807a4a336d98af8cc9d292d926b4eec8822a4f8281277294de2"
+  },
+  "state_inputs": {
+    "stress/state-512.json": "9f8d206a56ac22d29589b44b3d0617771bf2eb75a3d67b36ed1e8e41d3df70b0",
+    "stress/state-8192.json": "ac4ee2bf67eb19043bfade81663f3d857344edfc3ab63e3d1ef0515cd3489937"
+  },
+  "builds": [
+    {
+      "label": "R60-BASE",
+      "argv": [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/include",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/common",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/ggml/include",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/vendor",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/examples/moe-trace",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/client-checkpoint-corpus.cpp",
+        "-L/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R60-BASE",
+        "-Wl,-rpath,$ORIGIN",
+        "-lllama-common",
+        "-lllama",
+        "-lggml",
+        "-lggml-base",
+        "-pthread",
+        "-o",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R60-BASE/corpus"
+      ],
+      "compiler": "g++ (GCC) 16.2.1 20260810",
+      "engine_library_set_unchanged": "STATE2-BASE"
+    },
+    {
+      "label": "R60-FIXED",
+      "argv": [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/include",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/common",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/ggml/include",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/vendor",
+        "-I/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/examples/moe-trace",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/client-checkpoint-corpus.cpp",
+        "-L/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R60-FIXED",
+        "-Wl,-rpath,$ORIGIN",
+        "-lllama-common",
+        "-lllama",
+        "-lggml",
+        "-lggml-base",
+        "-pthread",
+        "-o",
+        "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/risultati/2026-10-09-roadmap-resume/frozen/R60-FIXED/corpus"
+      ],
+      "compiler": "g++ (GCC) 16.2.1 20260810",
+      "engine_library_set_unchanged": "STATE2-FIXED"
+    }
+  ],
+  "helper_commit": "a893eec94f7138041ee672f2917789af42eae618",
+  "cases_sha256": "a4f12bacd9079d438cba4e5506f8a8c295bf7540acd85d0f79b4a4d7e1b7ddfb",
+  "sampling_header_sha256": "92a10833fc729a5a8eff065d269a88ceb21b81d77c2eba5942a3450fe1a0d2d1",
+  "protocol_sha256": "6af31a74c44d4f16ba3f13e3c54d54ec391cf59b11841e13ed1fc22ed73b0dbf",
+  "campaign_source_sha256": "1f623ea90020f34ae3ea6b3944e4a2393664efbf08834c73026e443f7f3ef5a0",
+  "idle_watcher_sha256": "cada837b4ab0e6b6db5e9910ee796564c940708d35b7005e379aa3b972cf1c94",
+  "source_audit_utc": "2026-10-09T10:08:29.539062+00:00"
+}
