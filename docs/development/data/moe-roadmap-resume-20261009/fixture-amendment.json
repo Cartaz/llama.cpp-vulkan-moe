@@ -1,0 +1,13 @@
+{
+  "scope": "Diagnostic fixture only; engine multi-pool patch unchanged from previous session",
+  "cause": "ggml gallocr frees graph input storage after its last consumer unless output flag also retains it. Multilayer fixture read source ID storage after compute without retaining it. All resident/pool projection output comparisons already passed in failed diagnostic; stored-ID assertions read reused float data.",
+  "fix": "Mark retained multilayer ID storage as graph output before scheduler allocation, allowing valid post-compute immutability assertion. Keep original failure logs.",
+  "source_sha256": "76f4b5c618e2fa0892107968f79da9be9974b66aef0f357bdf416efaa8ed4d01",
+  "validation_required": [
+    "CPU and Vulkan raw parity",
+    "real pool admissions for all12 independent pools",
+    "ASAN/UBSAN/leak",
+    "Khronos sync validation",
+    "abort restored sources and retry"
+  ]
+}

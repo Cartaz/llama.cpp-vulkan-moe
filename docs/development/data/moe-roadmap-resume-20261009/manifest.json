@@ -1,0 +1,31 @@
+{
+  "status": "RUNNING",
+  "archive": "risultati/2026-10-09-roadmap-resume",
+  "model_sha256": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f",
+  "source_sha256": "94a9764b8963f54340a6f212aa4a6410712f006fa94078c87d65b2f35df17990",
+  "tests": {
+    "scheduler_profile_cpu": {
+      "tests": 11,
+      "gate": "PASS"
+    },
+    "profile_offline": {
+      "tests": 24,
+      "gate": "PASS"
+    },
+    "current_helper_build": "PASS"
+  },
+  "files": {
+    "callback-after-up-protocol.json": "0def7f6361cec31983b8ed1c1100d1ad22b1d06c9d355503e8d7d4ca354eb299",
+    "callback-after-up-freeze.json": "835ef3b8bde1e38c704d710e47ce371e364a185a41ea062ec714bc109b7e3edf",
+    "callback-after-up-order.json": "b6b14e824ae57df0a8f1642456554fc7d4edeafbd4cf4ca482e7ff439d0a0f1d",
+    "callback-after-up-audit.json": "72f53e79f77f8107e6e5b5ee18bba26dfe5b99b7bde5dd115ac43a3db2b3e592",
+    "geometry-amendment.json": "e9da35f1a00144675d7c39040994122bbde60cf4c2513283bfdb2ceaa0a675fe",
+    "corpus-after-up-protocol.json": "90d35f26c63b1e612703a39877478ae5f32b43cf8d7191853889c1b56c576e06",
+    "fixture-amendment.json": "22d174e48133dcdb9a9223aa051fac5055f10bd1269fe8fd1e2c38a960348702",
+    "multi-vulkan-fix-validation.json": "7fe770224a8d9e3ae9277fa98bcb5f8e788e509194704efa778bd8342c8c50c6",
+    "long10000-prior-differences.json": "dd0cc3338b977805b681a81adfe10e22fb7a81d47148535209a694ccf190f1ca",
+    "state-amendment.json": "db670cc283aae2adcc50467f4760c7ca01a3275ca464ed41585c273a8992236d",
+    "model-identity.json": "23e9f2932b42e18fd18deaf539ca02916a888934d52f95362cd6c55450cd0b99",
+    "upstream-review.json": "f43fb50494e285312de5bdff5ce9ecbe0640633cf961833b2b26ae9dd6da9907"
+  }
+}

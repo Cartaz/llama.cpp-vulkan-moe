@@ -1,0 +1,9 @@
+{
+  "gate": "PASS",
+  "independent_pools": 12,
+  "all_triplets_admitted": true,
+  "pool_csv_sha256": "b13e9c6ca45b157c0568d688e9f820082dc6162c3f6c9a9c63bb3c7b82fae14c",
+  "source_ids_retained": true,
+  "graph_sources_restored_on_abort": true,
+  "retry_byte_exact": true
+}

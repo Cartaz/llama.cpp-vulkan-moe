@@ -1,0 +1,10 @@
+{
+  "id": "R49-observer-after-up",
+  "utc": "2026-10-09T00:52:09.729353+00:00",
+  "hypothesis": "Stopping at topk can cut the Vulkan TOPK_MOE fused subgraph. Read the live routing ID input after the first up projection, preserving that router fusion boundary. This is a hypothesis until strict raw gates and pipeline traces pass.",
+  "implementation": "Helper-only opt-in MOE_CORPUS_CALLBACK_AFTER_UP with existing callback enabled; no engine, routing or weights modified. Legacy callback and OFF behavior retained. Up projection source IDs remain live for gate/down consumers.",
+  "gates": "B1/WORK callbackOFF/legacy/after-up on same fixed TRAIN token arrays; full finite/nonzero raw exact and complete41layer/top8 routes. Verify source shape/rank/count, CPU18 native-route cross-check. Then autonomous corpus raw+token parity before any policy use. No performance claim from callback timings.",
+  "model_library_identity": "Existing B1 and R42 engine libraries copied unchanged; separately compiled helper source SHA recorded",
+  "source_sha256": "94a9764b8963f54340a6f212aa4a6410712f006fa94078c87d65b2f35df17990",
+  "resource_limits": "one GPU process,24G/2G,6GiB,600s,unchanged clocks"
+}

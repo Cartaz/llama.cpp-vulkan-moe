@@ -1,0 +1,227 @@
+{
+  "amendment": "geometry-amendment.json",
+  "results": {
+    "b1after-1": {
+      "gate": "PASS",
+      "cases": [
+        {
+          "id": "train-arithmetic-3-seed11",
+          "different_vectors": 0,
+          "first": null,
+          "vectors": 129,
+          "geometry": "40x8 PASS",
+          "native_cpu18_match": true
+        },
+        {
+          "id": "train-structured-2-seed11",
+          "different_vectors": 0,
+          "first": null,
+          "vectors": 87,
+          "geometry": "40x8 PASS",
+          "native_cpu18_match": true
+        },
+        {
+          "id": "train-code-1-seed11",
+          "different_vectors": 0,
+          "first": null,
+          "vectors": 129,
+          "geometry": "40x8 PASS",
+          "native_cpu18_match": true
+        }
+      ]
+    },
+    "b1after-2": {
+      "gate": "PASS",
+      "cases": [
+        {
+          "id": "train-arithmetic-3-seed11",
+          "different_vectors": 0,
+          "first": null,
+          "vectors": 129,
+          "geometry": "40x8 PASS",
+          "native_cpu18_match": true
+        },
+        {
+          "id": "train-structured-2-seed11",
+          "different_vectors": 0,
+          "first": null,
+          "vectors": 87,
+          "geometry": "40x8 PASS",
+          "native_cpu18_match": true
+        },
+        {
+          "id": "train-code-1-seed11",
+          "different_vectors": 0,
+          "first": null,
+          "vectors": 129,
+          "geometry": "40x8 PASS",
+          "native_cpu18_match": true
+        }
+      ]
+    },
+    "b1legacy-1": {
+      "gate": "FAIL",
+      "cases": [
+        {
+          "id": "train-arithmetic-3-seed11",
+          "different_vectors": 129,
+          "first": 0,
+          "vectors": 129,
+          "first_max_abs": 1.9669908285140991,
+          "geometry": "40x8 PASS"
+        },
+        {
+          "id": "train-structured-2-seed11",
+          "different_vectors": 87,
+          "first": 0,
+          "vectors": 87,
+          "first_max_abs": 3.7778964042663574,
+          "geometry": "40x8 PASS"
+        },
+        {
+          "id": "train-code-1-seed11",
+          "different_vectors": 129,
+          "first": 0,
+          "vectors": 129,
+          "first_max_abs": 1.1581463813781738,
+          "geometry": "40x8 PASS"
+        }
+      ]
+    },
+    "b1off-1": {
+      "gate": "PASS",
+      "cases": [
+        {
+          "id": "train-arithmetic-3-seed11",
+          "different_vectors": 0,
+          "first": null,
+          "vectors": 129
+        },
+        {
+          "id": "train-structured-2-seed11",
+          "different_vectors": 0,
+          "first": null,
+          "vectors": 87
+        },
+        {
+          "id": "train-code-1-seed11",
+          "different_vectors": 0,
+          "first": null,
+          "vectors": 129
+        }
+      ]
+    },
+    "workafter-1": {
+      "gate": "PASS",
+      "cases": [
+        {
+          "id": "train-arithmetic-3-seed11",
+          "different_vectors": 0,
+          "first": null,
+          "vectors": 129,
+          "geometry": "40x8 PASS",
+          "native_cpu18_match": true
+        },
+        {
+          "id": "train-structured-2-seed11",
+          "different_vectors": 0,
+          "first": null,
+          "vectors": 87,
+          "geometry": "40x8 PASS",
+          "native_cpu18_match": true
+        },
+        {
+          "id": "train-code-1-seed11",
+          "different_vectors": 0,
+          "first": null,
+          "vectors": 129,
+          "geometry": "40x8 PASS",
+          "native_cpu18_match": true
+        }
+      ]
+    },
+    "workafter-2": {
+      "gate": "PASS",
+      "cases": [
+        {
+          "id": "train-arithmetic-3-seed11",
+          "different_vectors": 0,
+          "first": null,
+          "vectors": 129,
+          "geometry": "40x8 PASS",
+          "native_cpu18_match": true
+        },
+        {
+          "id": "train-structured-2-seed11",
+          "different_vectors": 0,
+          "first": null,
+          "vectors": 87,
+          "geometry": "40x8 PASS",
+          "native_cpu18_match": true
+        },
+        {
+          "id": "train-code-1-seed11",
+          "different_vectors": 0,
+          "first": null,
+          "vectors": 129,
+          "geometry": "40x8 PASS",
+          "native_cpu18_match": true
+        }
+      ]
+    },
+    "worklegacy-1": {
+      "gate": "FAIL",
+      "cases": [
+        {
+          "id": "train-arithmetic-3-seed11",
+          "different_vectors": 129,
+          "first": 0,
+          "vectors": 129,
+          "first_max_abs": 1.9669908285140991,
+          "geometry": "40x8 PASS"
+        },
+        {
+          "id": "train-structured-2-seed11",
+          "different_vectors": 87,
+          "first": 0,
+          "vectors": 87,
+          "first_max_abs": 3.7778964042663574,
+          "geometry": "40x8 PASS"
+        },
+        {
+          "id": "train-code-1-seed11",
+          "different_vectors": 129,
+          "first": 0,
+          "vectors": 129,
+          "first_max_abs": 1.1581463813781738,
+          "geometry": "40x8 PASS"
+        }
+      ]
+    },
+    "workoff-1": {
+      "gate": "PASS",
+      "cases": [
+        {
+          "id": "train-arithmetic-3-seed11",
+          "different_vectors": 0,
+          "first": null,
+          "vectors": 129
+        },
+        {
+          "id": "train-structured-2-seed11",
+          "different_vectors": 0,
+          "first": null,
+          "vectors": 87
+        },
+        {
+          "id": "train-code-1-seed11",
+          "different_vectors": 0,
+          "first": null,
+          "vectors": 129
+        }
+      ]
+    }
+  },
+  "neutral_after_up": true,
+  "legacy_defect_shared_B1_WORK": true
+}

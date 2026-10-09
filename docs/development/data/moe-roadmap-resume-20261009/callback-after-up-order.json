@@ -1,0 +1,13 @@
+{
+  "order": [
+    "B1OFF",
+    "B1AFTER",
+    "B1LEGACY",
+    "WORKOFF",
+    "WORKAFTER",
+    "WORKLEGACY",
+    "WORKAFTER",
+    "B1AFTER"
+  ],
+  "case_sha256": "bfb679ebd066c18c49144be8b49a4ab1fb259fae4e2a2c7ff1dd8418b1c06e37"
+}

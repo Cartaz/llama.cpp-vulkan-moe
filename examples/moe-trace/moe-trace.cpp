@@ -19,6 +19,7 @@
 #include "common.h"
 #include "log.h"
 #include "llama.h"
+#include "sampling.h"
 
 #include <algorithm>
 #include <cinttypes>
@@ -77,6 +78,12 @@ int main(int argc, char ** argv) {
     if (!common_params_parse(argc, argv, params, LLAMA_EXAMPLE_COMMON)) {
         return 1;
     }
+    const char * sampling = std::getenv("MOE_TRACE_SAMPLING");
+    if (sampling && strcmp(sampling, "0") != 0 && strcmp(sampling, "1") != 0) {
+        LOG_ERR("MOE_TRACE_SAMPLING must be 0 or 1\n");
+        return 1;
+    }
+    const bool sampled = sampling && strcmp(sampling, "1") == 0;
 
     const char * out_path = getenv("MOE_TRACE_OUT");
     moe_trace_state trace;
@@ -162,6 +169,16 @@ int main(int argc, char ** argv) {
             std::fprintf(token_output.get(), "prefill,%zu,%d\n", i, tokens[i]);
         }
     }
+    std::unique_ptr<common_sampler, decltype(&common_sampler_free)> sampler(
+            sampled ? common_sampler_init(model, params.sampling) : nullptr, common_sampler_free);
+    if (sampled && !sampler) {
+        return 1;
+    }
+    if (sampler) {
+        for (llama_token token : tokens) {
+            common_sampler_accept(sampler.get(), token, false);
+        }
+    }
     LOG_INF("%s: %zu prompt tokens, n_predict = %d\n", __func__, tokens.size(), params.n_predict);
 
     // prefill in ubatch-sized chunks
@@ -181,13 +198,17 @@ int main(int argc, char ** argv) {
         fflush(trace.out);
     }
 
-    // short greedy decode so pure-decode routing is represented as well
+    // Greedy by default; optional sampling uses common CLI sampler parameters.
     for (int i = 0; i < params.n_predict; ++i) {
         const float * logits = llama_get_logits_ith(ctx, -1);
         llama_token best = 0;
         float best_v = logits[0];
         for (int v = 1; v < n_vocab; ++v) {
             if (logits[v] > best_v) { best_v = logits[v]; best = v; }
+        }
+        if (sampler) {
+            best = common_sampler_sample(sampler.get(), ctx, -1);
+            common_sampler_accept(sampler.get(), best, true);
         }
         if (llama_vocab_is_eog(vocab, best)) {
             break;

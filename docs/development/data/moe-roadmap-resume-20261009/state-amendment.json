@@ -1,0 +1,5 @@
+{
+  "utc": "2026-10-09T00:46:55.808437+00:00",
+  "scope": "Run unchanged preregistered R46 state cells at512 and8192; isolated state helpers; duplicate no-state control with identical chunking required. CPUabort and cache-admission abort separate",
+  "controls": "B1off, FIXEDoff, B1residentL1/L2/L4, FIXEDpoolL1/L2/L4, ASANpoolL4. Selected layers respectively17;16,17;14,15,16,17; slots128 and budget256MiBperlayer. Full raw state and rewind parity before timing or integration."
+}

@@ -1,8 +1,10 @@
 # Roadmap: llama.cpp-vulkan-moe su RX 6800
 
-Aggiornamento: **2026-10-08**. Documento di lavoro per `Cartaz/llama.cpp-vulkan-moe`, branch di riferimento `experiment/moe-trace-strides`; incrementi sperimentali R17-R42 su branch separati. Snapshot del codice prima di questa roadmap: `c679dc22012ee9281db57336ff8fd17a93bc54b2`.
+Aggiornamento: **2026-10-09**. Documento di lavoro per `Cartaz/llama.cpp-vulkan-moe`, branch di riferimento `experiment/moe-trace-strides`; incrementi sperimentali R17-R42 su branch separati. Snapshot del codice prima di questa roadmap: `c679dc22012ee9281db57336ff8fd17a93bc54b2`.
 
 Obiettivo: inferenza locale affidabile e veloce su RX 6800 16 GB, Ryzen 7 5700X3D e 32 GB RAM, CachyOS/RADV. Prima una sequenza; poi 2, 4 e 8 richieste da agenti. PP, TG, TTFT, latenza completa, throughput aggregato e throughput per richiesta sono risultati distinti.
+
+Ripresa autonoma del2026-10-09: qualificazione M0–M3 estesa ancora **RUNNING**. R43b conserva un mismatch raw pool128 lungo; R44 estende a36prompt/108continuazioni; R45 verifica fixture2/4layer e12pool Vulkan realmente ammessi. R49 corregge l’osservatore con callback dopo la proiezione up:2070raw esatti nei controlli fissati e routing40layer/top8,CPU18 identico al percorso normale. Callback originale difettoso anche B1; qualificazione autonoma108casi,stato/KV,costi e timing ancora in corso. [Report della ripresa](docs/development/moe-roadmap-resume-rx6800.md). Nessuna milestone completata o default promosso da questi risultati parziali.
 
 ## Come leggere le sigle
 

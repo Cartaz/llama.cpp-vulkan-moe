@@ -1,0 +1,93 @@
+{
+  "protocol_sha256": "24caff08d61f7dc442133e69cbf8fb47f7fb9971f522065f2fb8a8ab2474f167",
+  "acceptance_sha256": "fce2409e34069cf3a15cd57401196e9f7b2f6ac96f41d1b83ca7fd94d04ccd19",
+  "candidate_commit": "d6844bd569e8059820d9242e59f5c3d45b789c67",
+  "helper_source_sha256": "94a9764b8963f54340a6f212aa4a6410712f006fa94078c87d65b2f35df17990",
+  "model": {
+    "path": "/home/casa/Programmi/modelli/Ornith-1.5-35B-Q4_K_M.gguf",
+    "bytes": 21713462848,
+    "sha256": "ca6ea26329c88b78ffd90a85163be2e746c2fafd1024f56db47e499f117f9a7f"
+  },
+  "variants": {
+    "DIAG-BASE": "B1 unmodified7fe450e",
+    "DIAG-WORK": "R42 unmodifiedff7d365 engine"
+  },
+  "source": {
+    "examples/moe-trace/moe-corpus.cpp": "94a9764b8963f54340a6f212aa4a6410712f006fa94078c87d65b2f35df17990"
+  },
+  "artifacts": {
+    "frozen/DIAG-BASE/libggml-base.so.0.25.1": "ed4b8f3d3ae59dfba891b43364fd7d5c4d297507fc483b4be8c95ccdde046084",
+    "frozen/DIAG-BASE/libggml-cpu.so.0.25.1": "f4709ae474d658855aba3c9bb90c17a603b44943fa1793e433a46ee96e3d4226",
+    "frozen/DIAG-BASE/libggml-vulkan.so.0.25.1": "a1d5ad88a266cb28f496da11726bee09d8021c1ff23e4d4cd9c9b1d06e61efd7",
+    "frozen/DIAG-BASE/libggml.so.0.25.1": "8e8669c77ec573dd61fc2ab7f5d3d2ece7a2db9edacb354b300232ce7512b443",
+    "frozen/DIAG-BASE/libllama.so.0.5.0": "61f97ce7a813603834536ce55d887c2cc749d107fe4233903b5462bf80478922",
+    "frozen/DIAG-BASE/libllama-common.so.0.5.0": "57810254aec09155e20703ddda407c0ef48b415612ad65411ff35e9d246df077",
+    "frozen/DIAG-BASE/corpus": "7110f1e09d0f785f3ccb0da6b7575db8c60a9e89d10c834973ba6023df233c7f",
+    "frozen/DIAG-WORK/libggml-base.so.0.25.1": "9eb96a245852d03cdb1881637fa0292ae2ed1d272e1f9dd194278c4ed3af3d4a",
+    "frozen/DIAG-WORK/libggml-cpu.so.0.25.1": "d939874c41448f224794190e80548a7d09a309686450ac53c797b040eb2d995b",
+    "frozen/DIAG-WORK/libggml-vulkan.so.0.25.1": "4442d44cfa70f0cf12b5d6290f6bd74fbe1b24e4a90fe71759ab40efffeb22d4",
+    "frozen/DIAG-WORK/libggml.so.0.25.1": "dc0917f5b55bb86ecfa89c7d1734c5ab6579fb90ad97cd5a94735fa9eb9e5f22",
+    "frozen/DIAG-WORK/libllama.so.0.5.0": "d8cd670eab39b9ae327c11e5446e6b6faa4ae8f8250796ff7aabd031aeaca504",
+    "frozen/DIAG-WORK/libllama-common.so.0.5.0": "9549aeb24187520c4e20c2afe9e814694aa1b5d281ac24ed9d01dfb9759321f4",
+    "frozen/DIAG-WORK/corpus": "7110f1e09d0f785f3ccb0da6b7575db8c60a9e89d10c834973ba6023df233c7f"
+  },
+  "input_files": {
+    "corpus/train-0.jsonl": "71ac167b670bd23425cecc4d12c955161d358226cca5fc3f792e823b4e068f65",
+    "corpus/train-1.jsonl": "8d6cfa37ed9e45f5063a4abf49cd868c839835743b19db01b24ea611137f6796",
+    "corpus/train-2.jsonl": "f3f7cbad1a7424321ca192fb4116af1fa5a02f86793672d58b349e8d318ffbb8",
+    "corpus/heldout-0.jsonl": "b8f0c3f9d095f5b80f57691aeebe635629c9f7d221de665e4fe1426b1246c688",
+    "corpus/heldout-1.jsonl": "ffcef63d36abe8358052be23a062761820bb39d395d46324b400fd5d099e5aac",
+    "corpus/heldout-2.jsonl": "6d784753e29a3f64653d042b28121c599a8ab4900aea129f2279a7063dedbe7d"
+  },
+  "cases": [
+    {
+      "name": "short",
+      "prompt_tokens": 244,
+      "decode_tokens": 128,
+      "context": 1024,
+      "source": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/examples/moe-trace/workloads/r22-244-128.csv",
+      "source_sha256": "85935136b367ed46e47e967b05495774bc290d2d32dd92776c0c242d744cf29c",
+      "construction": "prefix of archived prefill and fixed archived decode, no autonomous quality claim"
+    },
+    {
+      "name": "medium",
+      "prompt_tokens": 512,
+      "decode_tokens": 200,
+      "context": 1024,
+      "source": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/examples/moe-trace/workloads/r31-short-512-200.csv",
+      "source_sha256": "711949862bf3674e00add770c2add1b3fac53d0f3695ee28769ca8a082c7052d",
+      "construction": "prefix of archived prefill and fixed archived decode, no autonomous quality claim"
+    },
+    {
+      "name": "long3107",
+      "prompt_tokens": 3107,
+      "decode_tokens": 128,
+      "context": 8192,
+      "source": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/examples/moe-trace/workloads/r23-code-review-3107-128.csv",
+      "source_sha256": "487fee2134b6f69f2ab1e1cef26e64757f1b5ec240a71e9bb014e6e916ceac4f",
+      "construction": "prefix of archived prefill and fixed archived decode, no autonomous quality claim"
+    },
+    {
+      "name": "long4096",
+      "prompt_tokens": 4096,
+      "decode_tokens": 128,
+      "context": 8192,
+      "source": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/examples/moe-trace/workloads/r31-long-10000-200.csv",
+      "source_sha256": "b51f817559a54e37e34d64e9a5c37d0a7dc38101792ab3bdd9fbe01c44157889",
+      "construction": "prefix of archived prefill and fixed archived decode, no autonomous quality claim"
+    },
+    {
+      "name": "long10000",
+      "prompt_tokens": 10000,
+      "decode_tokens": 200,
+      "context": 12288,
+      "source": "/home/casa/Programmi/Ottimizzazione_llama_cpp_moe/llama-moe-ab/examples/moe-trace/workloads/r31-long-10000-200.csv",
+      "source_sha256": "b51f817559a54e37e34d64e9a5c37d0a7dc38101792ab3bdd9fbe01c44157889",
+      "construction": "prefix of archived prefill and fixed archived decode, no autonomous quality claim"
+    }
+  ],
+  "build_cache_sha256": "940335f558803aac6d77380e4014c4867f7c777eccb615f0acc28d4f6dafceb3",
+  "helper_source": "examples/moe-trace/moe-corpus.cpp",
+  "helper_compile_command": "g++ -std=c++17 -O2 -DNDEBUG -Iinclude -Iggml/include -Icommon -Iexamples/moe-trace -Ivendor examples/moe-trace/moe-corpus.cpp frozen/LABEL/libllama-common.so frozen/LABEL/libllama.so frozen/LABEL/libggml.so frozen/LABEL/libggml-base.so -Wl,-rpath-link,frozen/LABEL -pthread -o frozen/LABEL/corpus; LABEL BASE/WORK",
+  "utc": "2026-10-09T00:39:08.291960+00:00"
+}
