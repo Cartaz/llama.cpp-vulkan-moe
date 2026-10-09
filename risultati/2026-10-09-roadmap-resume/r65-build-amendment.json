@@ -1,0 +1,19 @@
+{
+  "utc": "2026-10-09T20:22:12.321123+00:00",
+  "gate": "PREINFERENCE_CHECKOUT_AMENDMENT",
+  "original_status": "DEPENDENT_GATE_CLOSED at checkout;no compile/model inference",
+  "reason": "Local clone did not contain readable tree for fetched upstream79e;FETCH_HEAD was not a cloned branch ref",
+  "preserved": [
+    "r65-build.py",
+    "qualification-r65.py",
+    "r65-upstream-src",
+    "r65-build-clone.log",
+    "r65-build-checkout.log",
+    "r65-build-commands.json",
+    "original-r65-source-freeze.json",
+    "original-r65-prelaunch-audit.json",
+    "original-qualification-r65-status.json"
+  ],
+  "replacement": "r65-build-v2.py and qualification-r65-v2.py;new isolated -v2 source/build paths and commands/logs;explicit public fetch of same exact SHA",
+  "unchanged": "Model identity,B1,canonical replay,inputIDs,32raw,atmost16shorttiming,all acceptance criteria;no inference on original attempt"
+}

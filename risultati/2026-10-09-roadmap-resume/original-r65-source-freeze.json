@@ -1,5 +1,5 @@
 {
-  "utc": "2026-10-09T20:22:12.321123+00:00",
+  "utc": "2026-10-09T20:19:35.488633+00:00",
   "upstream_commit": "79e2e74eb11022c1ba2e438df7f0ca2d4c10f8b6",
   "sources": {
     "r65-build.py": "c044ff24fed1f4a9f4d286460253f00f276b6e4d641e89d952a86b1d161171a2",
@@ -13,9 +13,7 @@
     "r65-source/phase-profile.h": "e8d3694ef7ad1ccaa1b338baa0a4823e00de92c428e899304c48ab0586d5129d",
     "r65-protocol.json": "fca544859bf4e930a8caccf88a2e73da7fdf4a067f1fb143b905112835346751",
     "guarded_runner.py": "e4ba7190a57608f5efe11978a120d3c2360f06778f1ffdc35b95c7beb66d5c95",
-    "r65-timing-audit.py": "d68d270bdf486411695123cf1d889833902c1dc5f665e1436a2337da7311be47",
-    "r65-build-v2.py": "310bbadaea95c84708bb5e6466cbc3aff163973b415239ae140e8eef23b348bc",
-    "qualification-r65-v2.py": "0df4699b533258e3b11d783037f4a4aac8e71025f12a5a14703c17191df70cb5"
+    "r65-timing-audit.py": "d68d270bdf486411695123cf1d889833902c1dc5f665e1436a2337da7311be47"
   },
   "input_sha256": {
     "heldout-planning": "0a2103503817bb5ed69c001475fb33a7ba7f13697af0b95be72043c71e73d885",
@@ -23,6 +21,5 @@
     "long-code": "d0987c55cd43c5cbb66946cc4298a4916910f63426574530c428274277cfa6f2",
     "long-retrieval": "94bce4eda5f44a128b458f1b2dadfec6b58f0ec0f84fb1e998ac61914bdbb481"
   },
-  "conditions": "Unmodified new checkout/build only after R64joined and root post-run audit; all future numerical/performance gates separate",
-  "preinference_amendment": "r65-build-amendment.json"
+  "conditions": "Unmodified new checkout/build only after R64joined and root post-run audit; all future numerical/performance gates separate"
 }

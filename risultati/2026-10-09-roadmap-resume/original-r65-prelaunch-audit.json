@@ -2,7 +2,7 @@
   "utc": "2026-10-09T20:10:27.484712+00:00",
   "gate": "PASS_SOURCE_PROTOCOL_PRELAUNCH",
   "protocol_sha256": "fca544859bf4e930a8caccf88a2e73da7fdf4a067f1fb143b905112835346751",
-  "source_freeze_sha256": "6ceabad808428775304a020ab77b3f08c82241b34ee7ec5702ebf766c0dafe39",
+  "source_freeze_sha256": "50b657e57838bbaa682d4c08a82a502632f595adf6995110366a3a61e0fb5516",
   "checks": [
     "All4CSV inputs use exact LF header and decimal0..248319 IDs; PP/TG counts verified; shortSHAidenticalR61",
     "LongIDs match original benign R62GPUlegacy1,selecteddiagnostically; no long timing regardlessrawstatus",
@@ -13,8 +13,7 @@
     "Allfailedattempts/cells retained;32raw+atmost16shorttiming,processbootstrap50k seed65,original3/5percentmargins",
     "No profiler/counter/poolenv;isolatedone-modelguards,originalmodel/userdirtyfiles/GPUsettings/B1preserved",
     "Full original model SHA reverified before isolated candidate build,while no model/timing workers run",
-    "Independent timing audit source frozen before build/measurements; CSV fingerprints,balanced timestamp order,DSOs,environment,sums,p95,bootstrap/CI/verdict and excluded cells rechecked after all timing joins",
-    "Original clone cannot read exact upstream tree; failed attempt/source/logs frozen. V2 fetches exact public upstream SHA into a new isolated checkout before detached checkout; no build or inference previously occurred. Numerical/performance criteria and all inputs unchanged."
+    "Independent timing audit source frozen before build/measurements; CSV fingerprints,balanced timestamp order,DSOs,environment,sums,p95,bootstrap/CI/verdict and excluded cells rechecked after all timing joins"
   ],
   "limits": "Static source/input/protocol audit only; current engine/helper build and actual loaded libraries remain to verify. No adoption/general/quality/performance claim."
 }
