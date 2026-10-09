@@ -1,0 +1,1461 @@
+{
+  "utc": "2026-10-09T10:39:01.169763+00:00",
+  "gate": "FAIL_INDEPENDENT_NO_STATE_CONTROLS",
+  "model_processes_complete": 12,
+  "processes_PASS": 10,
+  "processes_FAIL": 2,
+  "no_state_controls": {
+    "complete": 6,
+    "PASS": 4,
+    "FAIL": 2
+  },
+  "client_checkpoint_controls": {
+    "complete": 6,
+    "PASS": 6,
+    "autonomous_cases": 36,
+    "restores": 72,
+    "stale_output_before_client_copy": 72,
+    "scope": "First sampled IDs and all subsequent IDs/logits exact to primary and independent chronological no-state B1; same live context,one last output,CPU common sampler defaults,activepenalties/grammar/backend/diskserialization excluded"
+  },
+  "primary_raw_vectors": 5220,
+  "rewound_raw_vectors": 4032,
+  "models": {
+    "r60-no-state-resident-1": {
+      "gate": "PASS",
+      "original_error": null,
+      "model_returncode": 0,
+      "case_count": 6,
+      "primary_raw_vectors": 435,
+      "restores": []
+    },
+    "r60-no-state-target-1": {
+      "gate": "PASS",
+      "original_error": null,
+      "model_returncode": 0,
+      "case_count": 6,
+      "primary_raw_vectors": 435,
+      "restores": []
+    },
+    "r60-no-state-pool-1": {
+      "gate": "FAIL",
+      "original_error": "Primary independent-control raw divergence",
+      "model_returncode": 0,
+      "case_count": 6,
+      "primary_raw_vectors": 435,
+      "restores": []
+    },
+    "r60-no-state-pool-2": {
+      "gate": "PASS",
+      "original_error": null,
+      "model_returncode": 0,
+      "case_count": 6,
+      "primary_raw_vectors": 435,
+      "restores": []
+    },
+    "r60-no-state-target-2": {
+      "gate": "FAIL",
+      "original_error": "",
+      "model_returncode": 0,
+      "case_count": 6,
+      "primary_raw_vectors": 435,
+      "restores": []
+    },
+    "r60-no-state-resident-2": {
+      "gate": "PASS",
+      "original_error": null,
+      "model_returncode": 0,
+      "case_count": 6,
+      "primary_raw_vectors": 435,
+      "restores": []
+    },
+    "r60-checkpoint-resident-1": {
+      "gate": "PASS",
+      "original_error": null,
+      "model_returncode": 0,
+      "case_count": 6,
+      "primary_raw_vectors": 435,
+      "restores": [
+        {
+          "case": "client-depth512-seed11",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71447541,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 198,
+              "first_sampled_id": 198,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 71447541,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71622005,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 11,
+              "first_sampled_id": 11,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 71622005,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth512-seed29",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71447541,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 198,
+              "first_sampled_id": 198,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 71447541,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71622005,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 29612,
+              "first_sampled_id": 29612,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 71622005,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth512-seed47",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71447541,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 198,
+              "first_sampled_id": 198,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 71447541,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71622005,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 328,
+              "first_sampled_id": 328,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 71622005,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth8192-seed11",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155190261,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 15167,
+              "first_sampled_id": 15167,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 155190261,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155364725,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 24528,
+              "first_sampled_id": 24528,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 155364725,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth8192-seed29",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155190261,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 15167,
+              "first_sampled_id": 15167,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 155190261,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155364725,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 628,
+              "first_sampled_id": 628,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 155364725,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth8192-seed47",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155190261,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 15167,
+              "first_sampled_id": 15167,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 155190261,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155364725,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 313,
+              "first_sampled_id": 313,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 155364725,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        }
+      ]
+    },
+    "r60-checkpoint-target-1": {
+      "gate": "PASS",
+      "original_error": null,
+      "model_returncode": 0,
+      "case_count": 6,
+      "primary_raw_vectors": 435,
+      "restores": [
+        {
+          "case": "client-depth512-seed11",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71447541,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 198,
+              "first_sampled_id": 198,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 71447541,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71622005,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 11,
+              "first_sampled_id": 11,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 71622005,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth512-seed29",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71447541,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 198,
+              "first_sampled_id": 198,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 71447541,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71622005,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 29612,
+              "first_sampled_id": 29612,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 71622005,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth512-seed47",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71447541,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 198,
+              "first_sampled_id": 198,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 71447541,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71622005,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 328,
+              "first_sampled_id": 328,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 71622005,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth8192-seed11",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155190261,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 15167,
+              "first_sampled_id": 15167,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 155190261,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155364725,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 24528,
+              "first_sampled_id": 24528,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 155364725,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth8192-seed29",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155190261,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 15167,
+              "first_sampled_id": 15167,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 155190261,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155364725,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 628,
+              "first_sampled_id": 628,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 155364725,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth8192-seed47",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155190261,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 15167,
+              "first_sampled_id": 15167,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 155190261,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155364725,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 313,
+              "first_sampled_id": 313,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 155364725,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        }
+      ]
+    },
+    "r60-checkpoint-pool-1": {
+      "gate": "PASS",
+      "original_error": null,
+      "model_returncode": 0,
+      "case_count": 6,
+      "primary_raw_vectors": 435,
+      "restores": [
+        {
+          "case": "client-depth512-seed11",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71447541,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 198,
+              "first_sampled_id": 198,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 71447541,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71622005,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 11,
+              "first_sampled_id": 11,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 71622005,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth512-seed29",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71447541,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 198,
+              "first_sampled_id": 198,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 71447541,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71622005,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 29612,
+              "first_sampled_id": 29612,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 71622005,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth512-seed47",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71447541,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 198,
+              "first_sampled_id": 198,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 71447541,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71622005,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 328,
+              "first_sampled_id": 328,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 71622005,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth8192-seed11",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155190261,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 15167,
+              "first_sampled_id": 15167,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 155190261,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155364725,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 24528,
+              "first_sampled_id": 24528,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 155364725,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth8192-seed29",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155190261,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 15167,
+              "first_sampled_id": 15167,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 155190261,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155364725,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 628,
+              "first_sampled_id": 628,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 155364725,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth8192-seed47",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155190261,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 15167,
+              "first_sampled_id": 15167,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 155190261,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155364725,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 313,
+              "first_sampled_id": 313,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 155364725,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        }
+      ]
+    },
+    "r60-checkpoint-pool-2": {
+      "gate": "PASS",
+      "original_error": null,
+      "model_returncode": 0,
+      "case_count": 6,
+      "primary_raw_vectors": 435,
+      "restores": [
+        {
+          "case": "client-depth512-seed11",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71447541,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 198,
+              "first_sampled_id": 198,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 71447541,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71622005,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 11,
+              "first_sampled_id": 11,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 71622005,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth512-seed29",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71447541,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 198,
+              "first_sampled_id": 198,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 71447541,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71622005,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 29612,
+              "first_sampled_id": 29612,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 71622005,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth512-seed47",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71447541,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 198,
+              "first_sampled_id": 198,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 71447541,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71622005,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 328,
+              "first_sampled_id": 328,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 71622005,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth8192-seed11",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155190261,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 15167,
+              "first_sampled_id": 15167,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 155190261,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155364725,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 24528,
+              "first_sampled_id": 24528,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 155364725,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth8192-seed29",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155190261,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 15167,
+              "first_sampled_id": 15167,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 155190261,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155364725,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 628,
+              "first_sampled_id": 628,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 155364725,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth8192-seed47",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155190261,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 15167,
+              "first_sampled_id": 15167,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 155190261,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155364725,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 313,
+              "first_sampled_id": 313,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 155364725,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        }
+      ]
+    },
+    "r60-checkpoint-target-2": {
+      "gate": "PASS",
+      "original_error": null,
+      "model_returncode": 0,
+      "case_count": 6,
+      "primary_raw_vectors": 435,
+      "restores": [
+        {
+          "case": "client-depth512-seed11",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71447541,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 198,
+              "first_sampled_id": 198,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 71447541,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71622005,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 11,
+              "first_sampled_id": 11,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 71622005,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth512-seed29",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71447541,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 198,
+              "first_sampled_id": 198,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 71447541,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71622005,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 29612,
+              "first_sampled_id": 29612,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 71622005,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth512-seed47",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71447541,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 198,
+              "first_sampled_id": 198,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 71447541,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71622005,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 328,
+              "first_sampled_id": 328,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 71622005,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth8192-seed11",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155190261,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 15167,
+              "first_sampled_id": 15167,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 155190261,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155364725,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 24528,
+              "first_sampled_id": 24528,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 155364725,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth8192-seed29",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155190261,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 15167,
+              "first_sampled_id": 15167,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 155190261,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155364725,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 628,
+              "first_sampled_id": 628,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 155364725,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth8192-seed47",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155190261,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 15167,
+              "first_sampled_id": 15167,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 155190261,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155364725,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 313,
+              "first_sampled_id": 313,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 155364725,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        }
+      ]
+    },
+    "r60-checkpoint-resident-2": {
+      "gate": "PASS",
+      "original_error": null,
+      "model_returncode": 0,
+      "case_count": 6,
+      "primary_raw_vectors": 435,
+      "restores": [
+        {
+          "case": "client-depth512-seed11",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71447541,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 198,
+              "first_sampled_id": 198,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 71447541,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71622005,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 11,
+              "first_sampled_id": 11,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 71622005,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth512-seed29",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71447541,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 198,
+              "first_sampled_id": 198,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 71447541,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71622005,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 29612,
+              "first_sampled_id": 29612,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 71622005,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth512-seed47",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71447541,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 198,
+              "first_sampled_id": 198,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 71447541,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 71622005,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 328,
+              "first_sampled_id": 328,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 71622005,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth8192-seed11",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155190261,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 15167,
+              "first_sampled_id": 15167,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 155190261,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155364725,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 24528,
+              "first_sampled_id": 24528,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 155364725,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth8192-seed29",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155190261,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 15167,
+              "first_sampled_id": 15167,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 155190261,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155364725,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 628,
+              "first_sampled_id": 628,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 155364725,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        },
+        {
+          "case": "client-depth8192-seed47",
+          "restores": [
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155190261,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 15167,
+              "first_sampled_id": 15167,
+              "full_raw_vectors_verified": 64,
+              "memory_bytes": 155190261,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 0,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            },
+            {
+              "autonomous_ids_exact": true,
+              "client_restored_output": true,
+              "consumed_bytes": 155364725,
+              "eog_token_checked": false,
+              "eog_token_exact": null,
+              "expected_first_id": 313,
+              "first_sampled_id": 313,
+              "full_raw_vectors_verified": 48,
+              "memory_bytes": 155364725,
+              "memory_reserialized_byte_exact": true,
+              "next_generated_index": 16,
+              "output_serialized_by_engine": false,
+              "sampler_cloned": true,
+              "stale_output_matches_checkpoint": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "original_cached_output_gate": "FAIL_SHARED_UNIMPLEMENTED; caller copies logits and clones sampler explicitly,not an API repair",
+  "limits": "Failed no-state controls remain failed and ineligible;all registered processes and partial/failure artifacts retained;no broader reliability/performance/default promotion",
+  "independent_audit_sha256": "95bb28fae87e15d71997742bb1491ecbe6c0ff1a9a17e19654024c4bb9bc37a2"
+}

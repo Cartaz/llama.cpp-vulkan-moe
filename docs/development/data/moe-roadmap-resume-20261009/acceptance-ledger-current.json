@@ -1,5 +1,5 @@
 {
-  "utc": "2026-10-09T10:30:07.795708+00:00",
+  "utc": "2026-10-09T10:39:01.318974+00:00",
   "acceptance_protocol_sha256": "fce2409e34069cf3a15cd57401196e9f7b2f6ac96f41d1b83ca7fd94d04ccd19",
   "status": "RUNNING",
   "milestones": {
@@ -212,17 +212,17 @@
       },
       "client_checkpoint_campaign": {
         "status": "PARTIAL_OR_FAILED",
-        "processes": 8,
+        "processes": 12,
         "expected_processes": 12,
-        "passed": 6,
+        "passed": 10,
         "failed": 2,
         "evidence": "r60-results.json",
-        "sha256": "9dedbfa996292a72b52a286d285544d4643baf3c64028ff250a65d8d9ca4e713"
+        "sha256": "3a2978756e00cbbe48ec760ea392f121182a313e043a679f72818e7e5a823e09"
       },
       "client_checkpoint_independent_audit": {
-        "status": "DESCRIPTIVE_PARTIAL",
+        "status": "DESCRIPTIVE_COMPLETE",
         "evidence": "r60-independent-audit.json",
-        "sha256": "c6c021760137287b3a13cf1b374568e19e9aa2218103af91504c6ddc01a456d6"
+        "sha256": "95bb28fae87e15d71997742bb1491ecbe6c0ff1a9a17e19654024c4bb9bc37a2"
       },
       "state_protocol_amendment": {
         "evidence": "state-protocol-v2.json",
@@ -259,18 +259,18 @@
     "heartbeat_ttl_seconds": 600
   },
   "last_usage_snapshot": {
-    "utc": "2026-10-09T10:19:31.867Z",
+    "utc": "2026-10-09T10:31:11.805Z",
     "ordinaryUsageAllowed": true,
     "limitId": "codex",
     "limitName": null,
     "normalModelSlug": null,
     "primary": {
-      "usedPercent": 86,
+      "usedPercent": 93,
       "windowDurationMins": 300,
       "resetsAt": 1791547779
     },
     "secondary": {
-      "usedPercent": 96,
+      "usedPercent": 97,
       "windowDurationMins": 10080,
       "resetsAt": 1791954566
     },
